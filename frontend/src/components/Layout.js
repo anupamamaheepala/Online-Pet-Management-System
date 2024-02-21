@@ -24,11 +24,11 @@ function Layout({ children }) {
             subMenu: [
                 {
                     name: "Vet Services",
-                    path: "/services/vet",
+                    path: "/vetservices",
                 },
                 {
                     name: "Groom Services",
-                    path: "/services/groom",
+                    path: "/groomeservices",
                 },
                 {
                     name: "Training Services",

@@ -4,7 +4,7 @@ const app = express();
 require('dotenv').config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
-//const userRoute = require("./routes/userRoute"); 
+
 
 app.use(cors()); 
 
