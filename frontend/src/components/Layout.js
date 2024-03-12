@@ -19,20 +19,20 @@ function Layout({ children }) {
 
         {
             name: "Services",
-            path: "/services",
+            path: "/",
             icon: "ri-settings-3-line",
             subMenu: [
                 {
                     name: "Vet Services",
-                    path: "/services/vet",
+                    path: "/Vetservices",
                 },
                 {
                     name: "Groom Services",
-                    path: "/services/groom",
+                    path: "/Groomservices",
                 },
                 {
                     name: "Training Services",
-                    path: "/services/training",
+                    path: "/training",
                 },
             ],
         },
@@ -75,6 +75,78 @@ function Layout({ children }) {
             icon: "ri-questionnaire-line",
         },
     ];
+
+    const vetmenu = [
+        
+      {
+          name: "Home",
+          path: "/",
+          icon: "ri-home-3-line",
+      },
+      {
+        name: "Appointments",
+        path: "/ViewAllAppointments",
+        icon: "ri-calendar-schedule-fill",
+    },
+      {
+          name: "Services",
+          path: "/",
+          icon: "ri-settings-3-line",
+          subMenu: [
+              {
+                  name: "Vet Services",
+                  path: "/Vetservices",
+              },
+              {
+                  name: "Groom Services",
+                  path: "/Groomservices",
+              },
+              {
+                  name: "Training Services",
+                  path: "/training",
+              },
+          ],
+      },
+
+      {
+          name: "Store",
+          path: "/store",
+          icon: "ri-store-line",
+          subMenu: [
+              {
+                  name: "Inventory Management",
+                  path: "/inventory",
+              },
+              {
+                  name: "Advertisement",
+                  path: "/advertisement",
+              },
+          ],
+      },
+
+      {
+          name: "Blog & News",
+          path: "/blog",
+          icon: "ri-newspaper-line",
+          subMenu: [
+            {
+              name: "Blogs",
+              path: "/blogs",
+            },
+            {
+              name: "News",
+              path: "/news"
+            }
+          ]
+      },
+
+      {
+          name: "FAQ",
+          path: "/faq",
+          icon: "ri-questionnaire-line",
+      },
+  ];
+
 
   return (
     <div>
