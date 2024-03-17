@@ -23,6 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
 import Payerinfo from './pages/Payerinfo';
+import Cardpay from './pages/Cardpay'
 
 function App() {
 
@@ -57,10 +58,8 @@ function App() {
         <Route path="/MyAdvertisements" element={<MyAdvertisements/>} ></Route>
         <Route path='/AllAdvertisements' element={<AllAdvertisements/>}></Route>
 
-
-
-
         <Route path="/Payerinfo" element={<Payerinfo/>} ></Route>
+        <Route path="/Cardpay" element={<Cardpay/>} ></Route>
 
        </Routes>
         
