@@ -1,8 +1,10 @@
+import { Header } from 'antd/es/layout/layout';
 import Layout from '../components/Layout';
 
 const Home = () => {
     return (
-        <Layout>
+
+  <Layout>
 
             
             
