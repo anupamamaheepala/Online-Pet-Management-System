@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-
+import Feedback from "./pages/Feedback";
 import Traininga from './pages/Traininga';
 import Trainingb from './pages/Trainingb';
 import Privatea from './pages/Privatea';
@@ -18,10 +18,12 @@ import AddAdvertisement from './pages/AddAdvertisement';
 import ConfirmAdvertisement from './pages/ConfirmAdvertisement';
 import MyAdvertisements from './pages/MyAdvertisements';
 import AllAdvertisements from './pages/AllAdvertisements';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
 import Payerinfo from './pages/Payerinfo';
+import Cardpay from './pages/Cardpay'
 
 function App() {
 
@@ -35,6 +37,10 @@ function App() {
         <Route path= "/Traininga" element={<Traininga />}></Route>
         <Route path= "/Trainingb" element={<Trainingb />}></Route>
         <Route path="/Privatea"  element={<Privatea/>}></Route>
+
+        <Route path="/" element={<Home/>} ></Route>
+        <Route path="/Feedback" element={<Feedback/>} ></Route>    
+
 
         <Route path="/" element={<Home/>} ></Route>   
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
@@ -52,8 +58,9 @@ function App() {
         <Route path="/MyAdvertisements" element={<MyAdvertisements/>} ></Route>
         <Route path='/AllAdvertisements' element={<AllAdvertisements/>}></Route>
 
-
         <Route path="/Payerinfo" element={<Payerinfo/>} ></Route>
+        <Route path="/Cardpay" element={<Cardpay/>} ></Route>
+
        </Routes>
         
     </BrowserRouter>
