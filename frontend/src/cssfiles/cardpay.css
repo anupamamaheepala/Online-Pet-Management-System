@@ -1,5 +1,5 @@
-/* UserInfoForm.css */
-.user-info-container {
+/* CardPaymentForm.css */
+.card-payment-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -23,51 +23,35 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
-  
-  .user-info-form input,
-  .user-info-form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: calc(100% - 16px);
-    border: 1px solid #000000;
-    border-radius: 5px;
-    color: #000000;
-  }
 
   .topic{
     text-align: center;
     color: #000000;
   }
   
-  .user-info-form button {
+  .card-payment-form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: calc(100% - 16px);
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  
+  .card-payment-form button {
     padding: 10px 20px;
     font-size: 16px; /* Increased text size */
     font-weight: bold; /* Bold text */
     background-color: rgba(46, 119, 107, 0.397);
     color: #000000;
-    border: none;
+    border: 1px solid #000000;
     border-radius: 5px;
     cursor: pointer;
     width: calc(100% - 16px);
-    border: 1px solid #000000;
   }
   
-  .user-info-form button:hover {
+  .card-payment-form button:hover {
     background-color: rgba(46, 119, 107, 0.397);
     color: rgb(0, 0, 0); /* Change text color on hover */
   }
-  
-  .user-info-form textarea {
-    height: 100px;
-  }
-  
-  .user-info-form input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-  
-  .user-info-form input[type="submit"]:hover {
-    background-color: #45a049;
-  }
+
   
