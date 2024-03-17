@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../cssfiles/cardpay.css';
+import '../css/cardpay.css';
 import Layout from '../components/Layout';
 
 const Cardpay = ({ onNext }) => {
