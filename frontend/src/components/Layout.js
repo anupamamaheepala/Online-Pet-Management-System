@@ -32,7 +32,7 @@ function Layout({ children }) {
                 },
                 {
                     name: "Training Services",
-                    path: "/training",
+                    path: "/Traininga",
                 },
             ],
         },

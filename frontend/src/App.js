@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 
-import Traininga from "./pages/Traininga";
+import Traininga from './pages/Traininga';
 import Trainingb from './pages/Trainingb';
 import Privatea from './pages/Privatea';
 
@@ -31,9 +31,9 @@ function App() {
     <Layout />
       <Routes>
         <Route path="/" element={<Home/>} ></Route> 
-        <Route path= "/services/training" element={<Traininga />}></Route>
-        <Route path= "/pages/trainingb" element={<Trainingb />}></Route>
-        <Route path="/pages/privatea"  element={<Privatea/>}></Route>
+        <Route path= "/Traininga" element={<Traininga />}></Route>
+        <Route path= "/Trainingb" element={<Trainingb />}></Route>
+        <Route path="/Privatea"  element={<Privatea/>}></Route>
 
         <Route path="/" element={<Home/>} ></Route>   
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
