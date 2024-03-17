@@ -18,6 +18,7 @@ function ScheduleAppointments() {
 
   return (
     <Layout>
+      
 
     
     <Form onSubmit={handleSubmit}>
@@ -47,6 +48,7 @@ function ScheduleAppointments() {
           <option value="veterinary">Veterinary Services</option>
           <option value="grooming">Grooming Services</option>
         </Form.Control>
+
       </Form.Group>
 
       <Button variant="primary" type="submit">

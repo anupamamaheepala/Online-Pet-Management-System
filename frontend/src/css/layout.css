@@ -10,10 +10,9 @@
   size: 100%;
   color: rgb(255, 255, 255);
   overflow-x: auto; /* Ensure horizontal scrolling if menu items exceed width */
-
-    align-items: left; 
-    display: flex; 
-    background-color: rgba(46, 119, 107, 0.397);
+  align-items: left; 
+  display: flex; 
+  background-color: rgba(46, 119, 107, 0.397);
     width: auto;
     height: 75px; 
     size: 100%;
@@ -39,7 +38,7 @@
     transition: border 0.3s;
 
     background-color: rgb(179, 14, 220);
-
+    width: auto;
     background-color: rgba(46, 119, 107, 0.397);
 
     color: rgb(39, 20, 9);

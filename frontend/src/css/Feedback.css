@@ -44,7 +44,7 @@
     display: block;
     width: 100%;
     padding: 15px;
-    background-color: #007bff;
+    background-color: rgba(46, 119, 107, 0.397);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -54,7 +54,8 @@
   }
   
   .feedback-form button:hover {
-    background-color: #0056b3;
+    background-color: rgba(46, 119, 107, 0.397);
+    
   }
   
   .success-message {
