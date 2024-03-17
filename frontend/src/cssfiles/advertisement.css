@@ -138,7 +138,7 @@
 }
 
 .advertisement-form {
-    max-width: 700px;
+    width: 700px;
     margin: 0 auto;
     padding: 20px;
     background-color: #cec8c8;
