@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import '../css/Trainingprogram.css';
+import { Link } from 'react-router-dom';
 
 const Trainingb = () => {
     // Sample data for products
@@ -40,7 +41,7 @@ const Trainingb = () => {
                             <p className="product-price">Price: {product.price}</p>
                             <div className="row justify-content-center"> {/* Wrap buttons in a row and center them */}
                                 <div className="col">
-                                    <a href='/pages/privatea'>
+                                    <a href='/privatea'>
                                     <button className="add-button">Apply</button>
                                     </a>
                                 </div>

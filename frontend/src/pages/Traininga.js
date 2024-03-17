@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import '../css/Trainingprogram.css';
+import { Link } from 'react-router-dom';
 
 const Traininga = () => {
     return (
@@ -24,7 +25,7 @@ const Traininga = () => {
             <section className="container mt-5">
                 <div className="row justify-content-center">
                     <div className="col-md-4 text-center">
-                        <a href="/pages/Trainingb" className="btn btn-outline-primary btn-lg btn-block mb-4">
+                        <a href="/Trainingb" className="btn btn-outline-primary btn-lg btn-block mb-4">
                             <img src="/images/tp6.jpg" alt="Private Training Icon" className="img-fluid" />
                             Private Training Programs
                         </a>

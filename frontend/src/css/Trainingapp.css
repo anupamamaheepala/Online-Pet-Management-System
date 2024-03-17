@@ -19,10 +19,11 @@
 
 .left-side, .right-side {
     width: 45%;
-    background-color: lightblue;
+    background-color: rgb(98, 133, 144,0.35);
     padding: 20px;
     margin: 10px;
     border-radius: 10px;
+    
 }
 
 .form-container, .info-container {
