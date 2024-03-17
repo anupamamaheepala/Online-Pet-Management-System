@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button } from 'react-bootstrap';
-import '../ScheduleAppointments.css';
+import '../css/scheduleappointments.css';
 import Layout from '../components/Layout';
 
 function ScheduleAppointments() {
@@ -13,11 +13,13 @@ function ScheduleAppointments() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission here
+    
   };
 
   return (
     <Layout>
+
+    
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formName">
         <Form.Label>Pet Owner Name</Form.Label>

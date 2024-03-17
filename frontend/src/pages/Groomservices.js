@@ -1,23 +1,21 @@
 import React from 'react';
-import Layout from  '../components/Layout'
+import { Link } from 'react-router-dom';
+import '../css/groomeservices.css';
+import Layout from  '../components/Layout';
 
 function Groomservices() {
   return (
+
     <Layout>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
-        <h1>Grooming Services</h1>
+            <div className="appointment-container">
+            <Link to="/ScheduleAppointment">
+                <button className="appointment-button">Make an Appointment</button>
+            </Link>
+        </div>
+        <div class="slideshow"></div>
     </Layout>
+
   )
 }
 
-export default Groomservices
+export default Groomservices;
