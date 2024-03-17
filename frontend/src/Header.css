@@ -1,0 +1,45 @@
+/* Style for card */
+.card {
+    margin: 20px auto;
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  /* Style for card header */
+  .card-header {
+    background-color: #f0f0f0; /* Change background color */
+  }
+  
+  /* Style for nav tabs */
+  .nav-tabs .nav-item .nav-link {
+    color: #333; /* Change text color */
+  }
+  
+  .nav-tabs .nav-item .nav-link.active {
+    background-color: #007bff; /* Change active tab background color */
+    color: #fff; /* Change active tab text color */
+  }
+  
+  /* Style for card body */
+  .card-body {
+    background-color: #fff; /* Change background color */
+  }
+  
+  .card-title {
+    color: #333; /* Change title color */
+  }
+  
+  .card-text {
+    color: #555; /* Change text color */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Change button background color */
+    border-color: #007bff; /* Change button border color */
+    color: #fff; /* Change button text color */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Change button background color on hover */
+    border-color: #0056b3; /* Change button border color on hover */
+  }
+  

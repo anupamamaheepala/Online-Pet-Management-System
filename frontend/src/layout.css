@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .menu {
+
+  align-items: left; 
+  display: flex; 
+  background-color: rgb(179, 14, 220);
+  width: auto;
+  height: 75px; 
+  size: 100%;
+  color: rgb(255, 255, 255);
+  overflow-x: auto; /* Ensure horizontal scrolling if menu items exceed width */
+
     align-items: left; 
     display: flex; 
     background-color: rgba(46, 119, 107, 0.397);
@@ -8,6 +18,7 @@
     height: 75px; 
     size: 100%;
     color: rgb(255, 255, 255);
+
 }
 .menu .ant-menu-submenu-title {
     color: rgb(39, 20, 9);
@@ -26,7 +37,11 @@
 .menu .ant-menu-horizontal > .ant-menu-submenu {
     border: none; 
     transition: border 0.3s;
+
+    background-color: rgb(179, 14, 220);
+
     background-color: rgba(46, 119, 107, 0.397);
+
     color: rgb(39, 20, 9);
     font-size: 19px; 
     padding: 10px;
@@ -119,7 +134,10 @@ ul{
 }
 
 .footer {
+
+    background-color: rgb(179, 14, 220);
     background-color: rgb(35, 49, 43);
+
     padding: 40px 5px; 
     display: flex; 
     flex-wrap: wrap;
