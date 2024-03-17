@@ -3,21 +3,22 @@
 .menu {
     align-items: left; 
     display: flex; 
-    justify-content: flex-end;
-    background-color: rgb(46, 6, 147);
-    width: 100%;
+    background-color: rgb(254, 169, 16);
+    width: auto;
     height: 75px; 
     size: 100%;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 .menu .ant-menu-submenu-title {
-    color: white;
+    color: rgb(39, 20, 9);
     margin-right: 30px;
+    
   }
 
 .menu .ant-menu-submenu-title:hover,
 .menu .ant-menu-submenu-title:active {
-  color: black;
+  color: rgb(39, 20, 9);
+  
 }
 
   
@@ -25,18 +26,20 @@
 .menu .ant-menu-horizontal > .ant-menu-submenu {
     border: none; 
     transition: border 0.3s;
-    background-color: rgb(46, 6, 147);
-    color: white;
+    background-color: rgb(254, 169, 16);
+    color: rgb(39, 20, 9);
     font-size: 19px; 
     padding: 10px;
     margin-bottom: 10px;
     height: 75px; 
+    
 }
 
 
 .menu .ant-menu-submenu-popup .ant-menu-item  {
-    color: white;
+    color: rgb(255, 255, 255);
     margin-right: 30px;
+    
   }
   
 
@@ -44,37 +47,48 @@
 .menu .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover {
     border: none;
     background-color: rgba(255, 255, 255, 0.464);
+    
 }
 
 
 .menu i {
     font-size: 25px;
+    
 
+}
+.menu {
+  text-align: left;
+  
 }
 .menu .ant-menu-item a,
 .menu .ant-menu-submenu-title a {
   text-decoration: none;
   
+  
 }
 
 .body-content {
+ 
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     overflow-y: auto;
+    
 }
 
 .layout-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    
 }
 
 .body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    
 }
 
 .main-content {
@@ -105,7 +119,7 @@ ul{
 }
 
 .footer {
-    background-color: #24262b;
+    background-color: rgb(254, 169, 16);
     padding: 40px 5px; 
     display: flex; 
     flex-wrap: wrap;
@@ -124,7 +138,7 @@ ul{
   
 .footer-col h4{
     font-size: 18px;
-    color: #ffffff;
+    color: rgb(39, 20, 9);
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 500;
@@ -136,7 +150,7 @@ ul{
     position:absolute;
     left: 0;
     bottom: -10px;
-    background-color: #e91e63;
+    background-color: rgb(39, 20, 9);
     height: 2px;
     box-sizing:border-box;
     width: 50px;
@@ -152,7 +166,7 @@ ul{
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 300;
-    color: #bbbbbb;
+    color: rgb(39, 20, 9);
     display:block;
     transition: all 0.3s ease;
 }
@@ -170,13 +184,13 @@ ul{
     background-color: rgba(255, 255, 255, 0.2);
     margin: 0 10px 10px 0;
     text-decoration: none;
-    color: #ffffff;
+    color: rgb(39, 20, 9);
     border-radius: 50%;
     transition: all 0.5s ease;
   }
 .footer-col .social-links a:hover{
     color: #24262b;
-    background-color: #ffffff;
+    background-color: rgb(39, 20, 9);
   }
 .footer-col .social-links a:hover {
     transform: scale(1.2); 
@@ -207,7 +221,7 @@ ul{
     background-color: rgba(255, 255, 255, 0.2);
     margin: 0 10px 10px 0;
     text-decoration: none;
-    color: #ffffff;
+    color: rgb(39, 20, 9);
     border-radius: 50%;
     transition: all 0.5s ease;
   }
@@ -243,7 +257,7 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #8f8f8f;
+    color: black;
     width: 100%;
   }
 

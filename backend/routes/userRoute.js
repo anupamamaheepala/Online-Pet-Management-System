@@ -13,6 +13,7 @@ router.post('/get-user-info-by-id', async (req, res) => {
     if (!user) {
       return res.status(200).send({ message: "User does not exist...", success: false });
     } 
+    
     else {
       res.status(200).send({
         success: true,
