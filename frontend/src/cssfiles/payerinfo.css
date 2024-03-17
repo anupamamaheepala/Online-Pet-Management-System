@@ -5,7 +5,7 @@
     padding: 20px;
     border: 2px solid #000000;
     border-radius: 10px;
-    background-color: rgb(131, 160, 223);
+    background-color: rgb(172, 201, 196);
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -23,17 +23,19 @@
     width: calc(100% - 16px);
     border: 1px solid #000000;
     border-radius: 5px;
+    color: #000000;
   }
 
   .topic{
     text-align: center;
+    color: #000000;
   }
   
   .user-info-form button {
     padding: 10px 20px;
     font-size: 16px; /* Increased text size */
     font-weight: bold; /* Bold text */
-    background-color: #007bff;
+    background-color: rgba(46, 119, 107, 0.397);
     color: #000000;
     border: none;
     border-radius: 5px;
