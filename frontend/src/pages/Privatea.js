@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
-import '../css/Trainingapp.css'; // Import your CSS file
-
-
-
+import '../css/Trainingapp.css';
 
 const Privatea = () => {
     const [report, setReport] = useState(null);
@@ -21,41 +18,55 @@ const Privatea = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can handle form submission logic here, like sending data to the server
         console.log('Report:', report);
         console.log('Date:', date);
+        // Add logic here to handle form submission, such as sending data to the server
     };
+
     return (
         <Layout>
-        <div className="background-container">
-            <img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />
-            <div className="container">
-                <div className="right-side">
-                    {/* Information Section */}
-                    <div className="info-container">
-                        <h2>Class Information</h2>
-                        {/* Include your class information here */}
-                        <p>This is where you display the class information...</p>
+            <div className="background-container">
+                <img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />
+                <div className="container">
+                    <div className="right-side">
+                        <div className="info-container">
+                            <h2></h2>
+                            <p>Training Program information...</p>
+                        </div>
                     </div>
-                </div>
-                <div className="left-side">
-                    {/* Form Section */}
-                    <div className="form-container">
-                        <h2>Enter Your Details</h2>
-                        <form>
-                            <div className="form-group">
-                                <label htmlFor="name">Name:</label>
-                                <input type="text" id="name" name="name" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="email">Email:</label>
-                                <input type="email" id="email" name="email" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="message">Message:</label>
-                                <textarea id="message" name="message"></textarea>
-                            </div>
-                            <div className="form-group">
+                    <div className="left-side">
+                        <div className="form-container">
+                            <h2>Fill the Application</h2>
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="name">Name:</label>
+                                    <input type="text" id="name" name="name" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Email:</label>
+                                    <input type="email" id="email" name="email" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="dogName">Dog Name:</label>
+                                    <input type="text" id="dogName" name="dogName" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="dogAge">Dog Age:</label>
+                                    <input type="number" id="dogAge" name="dogAge" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="dogBreed">Dog Breed:</label>
+                                    <input type="text" id="dogBreed" name="dogBreed" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="dogVaccination">Dog Vaccination:</label>
+                                    <input type="text" id="dogVaccination" name="dogVaccination" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="message">Message:</label>
+                                    <textarea id="message" name="message"></textarea>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="report">Health Checkup Report:</label>
                                     <input type="file" id="report" name="report" accept=".pdf,.jpg,.jpeg" onChange={handleReportUpload} />
                                 </div>
@@ -71,10 +82,10 @@ const Privatea = () => {
                                 </div>
                                 <button type="submit">Submit</button>
                             </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </Layout>
     );
 }
