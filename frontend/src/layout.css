@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .menu {
+
   align-items: left; 
   display: flex; 
   background-color: rgb(179, 14, 220);
@@ -9,6 +10,15 @@
   size: 100%;
   color: rgb(255, 255, 255);
   overflow-x: auto; /* Ensure horizontal scrolling if menu items exceed width */
+
+    align-items: left; 
+    display: flex; 
+    background-color: rgba(46, 119, 107, 0.397);
+    width: auto;
+    height: 75px; 
+    size: 100%;
+    color: rgb(255, 255, 255);
+
 }
 .menu .ant-menu-submenu-title {
     color: rgb(39, 20, 9);
@@ -27,7 +37,11 @@
 .menu .ant-menu-horizontal > .ant-menu-submenu {
     border: none; 
     transition: border 0.3s;
+
     background-color: rgb(179, 14, 220);
+
+    background-color: rgba(46, 119, 107, 0.397);
+
     color: rgb(39, 20, 9);
     font-size: 19px; 
     padding: 10px;
@@ -120,7 +134,10 @@ ul{
 }
 
 .footer {
+
     background-color: rgb(179, 14, 220);
+    background-color: rgb(35, 49, 43);
+
     padding: 40px 5px; 
     display: flex; 
     flex-wrap: wrap;
@@ -139,7 +156,7 @@ ul{
   
 .footer-col h4{
     font-size: 18px;
-    color: rgb(39, 20, 9);
+    color: rgb(255, 255, 255);
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 500;
@@ -151,7 +168,7 @@ ul{
     position:absolute;
     left: 0;
     bottom: -10px;
-    background-color: rgb(39, 20, 9);
+    background-color: rgb(255, 255, 255);
     height: 2px;
     box-sizing:border-box;
     width: 50px;
@@ -167,7 +184,7 @@ ul{
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 300;
-    color: rgb(39, 20, 9);
+    color: rgb(253, 253, 253);
     display:block;
     transition: all 0.3s ease;
 }
@@ -185,13 +202,13 @@ ul{
     background-color: rgba(255, 255, 255, 0.2);
     margin: 0 10px 10px 0;
     text-decoration: none;
-    color: rgb(39, 20, 9);
+    color: rgb(255, 255, 255);
     border-radius: 50%;
     transition: all 0.5s ease;
   }
 .footer-col .social-links a:hover{
     color: #24262b;
-    background-color: rgb(39, 20, 9);
+    background-color: rgb(255, 255, 255);
   }
 .footer-col .social-links a:hover {
     transform: scale(1.2); 
@@ -222,7 +239,7 @@ ul{
     background-color: rgba(255, 255, 255, 0.2);
     margin: 0 10px 10px 0;
     text-decoration: none;
-    color: rgb(39, 20, 9);
+    color: rgb(255, 255, 255);
     border-radius: 50%;
     transition: all 0.5s ease;
   }
@@ -258,7 +275,7 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: rgb(255, 255, 255);
     width: 100%;
   }
 

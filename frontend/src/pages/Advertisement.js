@@ -18,6 +18,7 @@ const Advertisement = () => {
                     id: 1,
                     type: "Pets for sale",
                     title: "Ad Title 1",
+                    
                     description: "Description of the pet for sale.",
                     price: "LKRXXX",
                     contact: "Contact details"
