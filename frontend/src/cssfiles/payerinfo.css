@@ -1,0 +1,63 @@
+/* UserInfoForm.css */
+.user-info-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: rgb(131, 160, 223);
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .tile {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .user-info-form input,
+  .user-info-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: calc(100% - 16px);
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+
+  .topic{
+    text-align: center;
+  }
+  
+  .user-info-form button {
+    padding: 10px 20px;
+    font-size: 16px; /* Increased text size */
+    font-weight: bold; /* Bold text */
+    background-color: #007bff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: calc(100% - 16px);
+    border: 1px solid #000000;
+  }
+  
+  .user-info-form button:hover {
+    background-color: #007bff;
+    color: #37e410; /* Change text color on hover */
+  }
+  
+  .user-info-form textarea {
+    height: 100px;
+  }
+  
+  .user-info-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  .user-info-form input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
