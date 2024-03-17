@@ -44,7 +44,7 @@ function Layout({ children }) {
             subMenu: [
                 {
                     name: "Inventory Management",
-                    path: "/store/inventory",
+                    path: "/",
                 },
                 {
                     name: "Advertisement",
