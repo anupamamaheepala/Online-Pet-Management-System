@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../cssfiles/payerinfo.css';
+import '../css/payerinfo.css';
 import Layout from '../components/Layout';
 
 const Payerinfo = ({ onNext }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import { useState } from 'react';
-import '../Feedback.css';
+import '../css/Feedback.css';
 
 function Feedback(){
         const [feedback, setFeedback] = useState('');

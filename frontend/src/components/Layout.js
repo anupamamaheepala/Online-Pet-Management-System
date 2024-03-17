@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import '../layout.css';
+import '../css/layout.css';
 
 
 const { SubMenu } = Menu;
@@ -41,13 +41,13 @@ function Layout({ children }) {
             name: "Store",
             path: "/store",
             icon: "ri-store-line",
-
         },
 
         {
             name: "Advertisements",
             path: "/Advertisement",
             icon: "ri-newspaper-line",
+
             
         },
 
@@ -55,6 +55,7 @@ function Layout({ children }) {
             name: "FAQ",
             path: "/Feedback",
             icon: "ri-questionnaire-line",
+            
         },
     ];
 
