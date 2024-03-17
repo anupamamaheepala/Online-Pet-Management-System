@@ -2,8 +2,10 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-
 import Feedback from "./pages/Feedback";
+import Traininga from './pages/Traininga';
+import Trainingb from './pages/Trainingb';
+import Privatea from './pages/Privatea';
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
@@ -20,6 +22,7 @@ import AllAdvertisements from './pages/AllAdvertisements';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
+import Payerinfo from './pages/Payerinfo';
 
 function App() {
 
@@ -29,6 +32,10 @@ function App() {
     <BrowserRouter>
     <Layout />
       <Routes>
+        <Route path="/" element={<Home/>} ></Route> 
+        <Route path= "/Traininga" element={<Traininga />}></Route>
+        <Route path= "/Trainingb" element={<Trainingb />}></Route>
+        <Route path="/Privatea"  element={<Privatea/>}></Route>
 
         <Route path="/" element={<Home/>} ></Route>
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
@@ -50,7 +57,11 @@ function App() {
         <Route path="/MyAdvertisements" element={<MyAdvertisements/>} ></Route>
         <Route path='/AllAdvertisements' element={<AllAdvertisements/>}></Route>
 
- fae44ca1c5a34276f786a246cc607e557e07cc6d
+
+
+
+        <Route path="/Payerinfo" element={<Payerinfo/>} ></Route>
+
        </Routes>
         
     </BrowserRouter>
