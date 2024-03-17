@@ -1,0 +1,59 @@
+.background-container {
+    position: relative;
+}
+
+.background-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1; /* Ensure the image is behind other content */
+}
+
+.container {
+    position: relative; /* Ensure the container is positioned relative to the parent */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+}
+
+.left-side, .right-side {
+    width: 45%;
+    background-color: lightblue;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.form-container, .info-container {
+    padding: 10px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
