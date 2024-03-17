@@ -2,6 +2,11 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
+
+import Traininga from "./pages/Traininga";
+import Trainingb from './pages/Trainingb';
+import Privatea from './pages/Privatea';
+
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import ScheduleAppointment from './pages/ScheduleAppointment';
@@ -25,6 +30,10 @@ function App() {
     <BrowserRouter>
     <Layout />
       <Routes>
+        <Route path="/" element={<Home/>} ></Route> 
+        <Route path= "/services/training" element={<Traininga />}></Route>
+        <Route path= "/pages/trainingb" element={<Trainingb />}></Route>
+        <Route path="/pages/privatea"  element={<Privatea/>}></Route>
 
         <Route path="/" element={<Home/>} ></Route>   
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
@@ -41,7 +50,6 @@ function App() {
         <Route path="/ConfirmAdvertisement" element={<ConfirmAdvertisement/>} ></Route>
         <Route path="/MyAdvertisements" element={<MyAdvertisements/>} ></Route>
         <Route path='/AllAdvertisements' element={<AllAdvertisements/>}></Route>
-
        </Routes>
         
     </BrowserRouter>
