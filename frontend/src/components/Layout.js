@@ -42,16 +42,6 @@ function Layout({ children }) {
             path: "/store",
             icon: "ri-store-line",
 
-            subMenu: [
-                {
-                    name: "Inventory Management",
-                    path: "/",
-                },
-                {
-                    name: "Advertisement",
-                    path: "/store/advertisement",
-                },
-            ],
         },
 
         {
@@ -63,7 +53,7 @@ function Layout({ children }) {
 
         {
             name: "FAQ",
-            path: "/faq",
+            path: "/Feedback",
             icon: "ri-questionnaire-line",
         },
     ];
