@@ -16,6 +16,7 @@ import AllAdvertisements from './pages/AllAdvertisements';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
+import Register from './pages/Register';
 
 function App() {
 
@@ -41,6 +42,9 @@ function App() {
         <Route path="/ConfirmAdvertisement" element={<ConfirmAdvertisement/>} ></Route>
         <Route path="/MyAdvertisements" element={<MyAdvertisements/>} ></Route>
         <Route path='/AllAdvertisements' element={<AllAdvertisements/>}></Route>
+
+        <Route path="/Register" element={<Register/>} ></Route>
+
 
        </Routes>
         
