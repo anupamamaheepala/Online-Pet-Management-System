@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import '../advertisement.css'; // Import the CSS file
+import '../cssfiles/advertisement.css'; // Import the CSS file
 
 const AddAdvertisement = () => {
     return (

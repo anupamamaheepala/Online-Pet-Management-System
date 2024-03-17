@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import '../advertisement.css';
+import '../cssfiles/advertisement.css';
 import { Link } from 'react-router-dom';
 
 const MyAdvertisements = () => {
