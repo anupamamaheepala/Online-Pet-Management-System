@@ -71,7 +71,7 @@ function Layout({ children }) {
 
         {
             name: "FAQ",
-            path: "/faq",
+            path: "/Feedback",
             icon: "ri-questionnaire-line",
         },
     ];
