@@ -19,20 +19,20 @@ function Layout({ children }) {
 
         {
             name: "Services",
-            path: "/services",
+            path: "/",
             icon: "ri-settings-3-line",
             subMenu: [
                 {
                     name: "Vet Services",
-                    path: "/services/vet",
+                    path: "/Vetservices",
                 },
                 {
                     name: "Groom Services",
-                    path: "/services/groom",
+                    path: "/Groomservices",
                 },
                 {
                     name: "Training Services",
-                    path: "/services/training",
+                    path: "/training",
                 },
             ],
         },
@@ -44,7 +44,7 @@ function Layout({ children }) {
             subMenu: [
                 {
                     name: "Inventory Management",
-                    path: "/store/inventory",
+                    path: "/",
                 },
                 {
                     name: "Advertisement",
@@ -54,19 +54,10 @@ function Layout({ children }) {
         },
 
         {
-            name: "Blog & News",
-            path: "/blog",
+            name: "Advertisements",
+            path: "/Advertisement",
             icon: "ri-newspaper-line",
-            subMenu: [
-              {
-                name: "Blogs",
-                path: "/blogs",
-              },
-              {
-                name: "News",
-                path: "/news"
-              }
-            ]
+            
         },
 
         {
@@ -76,10 +67,296 @@ function Layout({ children }) {
         },
     ];
 
+    const adminmenu = [
+        
+      {
+          name: "Home",
+          path: "/",
+          icon: "ri-home-3-line",
+      },
+      {
+        name: "View All Users",
+        path: "/ViewAllUsers",
+        icon: "ri-users-line",
+    },
+      {
+          name: "Services",
+          path: "/",
+          icon: "ri-settings-3-line",
+          subMenu: [
+              {
+                  name: "Vet Services",
+                  path: "/Vetservices",
+              },
+              {
+                  name: "Groom Services",
+                  path: "/Groomservices",
+              },
+              {
+                  name: "Training Services",
+                  path: "/training",
+              },
+          ],
+      },
+
+      {
+          name: "Store",
+          path: "/store",
+          icon: "ri-store-line",
+          subMenu: [
+              {
+                  name: "Inventory Management",
+                  path: "/inventory",
+              },
+              {
+                  name: "Advertisement",
+                  path: "/advertisement",
+              },
+          ],
+      },
+
+      {
+          name: "Blog & News",
+          path: "/blog",
+          icon: "ri-newspaper-line",
+          subMenu: [
+            {
+              name: "Blogs",
+              path: "/blogs",
+            },
+            {
+              name: "News",
+              path: "/news"
+            }
+          ]
+      },
+
+      {
+          name: "FAQ",
+          path: "/faq",
+          icon: "ri-questionnaire-line",
+      },
+  ];
+
+    const vetmenu = [
+        
+      {
+          name: "Home",
+          path: "/",
+          icon: "ri-home-3-line",
+      },
+      {
+        name: "Appointments",
+        path: "/ViewAllAppointments",
+        icon: "ri-calendar-schedule-fill",
+    },
+      {
+          name: "Services",
+          path: "/",
+          icon: "ri-settings-3-line",
+          subMenu: [
+              {
+                  name: "Vet Services",
+                  path: "/Vetservices",
+              },
+              {
+                  name: "Groom Services",
+                  path: "/Groomservices",
+              },
+              {
+                  name: "Training Services",
+                  path: "/training",
+              },
+          ],
+      },
+
+      {
+          name: "Store",
+          path: "/store",
+          icon: "ri-store-line",
+          subMenu: [
+              {
+                  name: "Inventory Management",
+                  path: "/inventory",
+              },
+              {
+                  name: "Advertisement",
+                  path: "/advertisement",
+              },
+          ],
+      },
+
+      {
+          name: "Blog & News",
+          path: "/blog",
+          icon: "ri-newspaper-line",
+          subMenu: [
+            {
+              name: "Blogs",
+              path: "/blogs",
+            },
+            {
+              name: "News",
+              path: "/news"
+            }
+          ]
+      },
+
+      {
+          name: "FAQ",
+          path: "/faq",
+          icon: "ri-questionnaire-line",
+      },
+  ];
+
+  const groommenu = [
+        
+    {
+        name: "Home",
+        path: "/",
+        icon: "ri-home-3-line",
+    },
+    {
+      name: "Appointments",
+      path: "/ViewAllAppointments",
+      icon: "ri-calendar-schedule-fill",
+  },
+    {
+        name: "Services",
+        path: "/",
+        icon: "ri-settings-3-line",
+        subMenu: [
+            {
+                name: "Vet Services",
+                path: "/Vetservices",
+            },
+            {
+                name: "Groom Services",
+                path: "/Groomservices",
+            },
+            {
+                name: "Training Services",
+                path: "/training",
+            },
+        ],
+    },
+
+    {
+        name: "Store",
+        path: "/store",
+        icon: "ri-store-line",
+        subMenu: [
+            {
+                name: "Inventory Management",
+                path: "/inventory",
+            },
+            {
+                name: "Advertisement",
+                path: "/advertisement",
+            },
+        ],
+    },
+
+    {
+        name: "Blog & News",
+        path: "/blog",
+        icon: "ri-newspaper-line",
+        subMenu: [
+          {
+            name: "Blogs",
+            path: "/blogs",
+          },
+          {
+            name: "News",
+            path: "/news"
+          }
+        ]
+    },
+
+    {
+        name: "FAQ",
+        path: "/faq",
+        icon: "ri-questionnaire-line",
+    },
+    ];
+
+
+    const trainermenu = [
+        
+      {
+          name: "Home",
+          path: "/",
+          icon: "ri-home-3-line",
+      },
+      {
+        name: "All courses",
+        path: "/AllCourses",
+        icon: "ri-list-line",
+    },
+      {
+          name: "Services",
+          path: "/",
+          icon: "ri-settings-3-line",
+          subMenu: [
+              {
+                  name: "Vet Services",
+                  path: "/Vetservices",
+              },
+              {
+                  name: "Groom Services",
+                  path: "/Groomservices",
+              },
+              {
+                  name: "Training Services",
+                  path: "/training",
+              },
+          ],
+      },
+
+      {
+          name: "Store",
+          path: "/store",
+          icon: "ri-store-line",
+          subMenu: [
+              {
+                  name: "Inventory Management",
+                  path: "/inventory",
+              },
+              {
+                  name: "Advertisement",
+                  path: "/advertisement",
+              },
+          ],
+      },
+
+      {
+          name: "Blog & News",
+          path: "/blog",
+          icon: "ri-newspaper-line",
+          subMenu: [
+            {
+              name: "Blogs",
+              path: "/blogs",
+            },
+            {
+              name: "News",
+              path: "/news"
+            }
+          ]
+      },
+
+      {
+          name: "FAQ",
+          path: "/faq",
+          icon: "ri-questionnaire-line",
+      },
+  ];
+
+
   return (
     <div>
       <div className="menu">
-        <Menu mode="horizontal">
+      <Menu mode="horizontal" style={{ textAlign: 'left' }}>
           {userMenu.map((item) => {
             if (item.subMenu) {
               return (

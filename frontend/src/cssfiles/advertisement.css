@@ -1,0 +1,260 @@
+.advertisement-column {
+    width: 48%; /* Adjust width to fit two columns */
+    float: none; /* Remove float to allow for proper alignment */
+    margin: 0 auto; /* Center align columns */
+}
+
+.add_button {
+    background-color: rgb(254, 169, 16); 
+    border: 2px solid rgb(39, 20, 9);
+    color: rgb(39, 20, 9);
+    padding: 15px 32px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 19px;
+    outline: none;
+}
+
+.add_button:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    margin-top: 10px; 
+}
+
+.advertisement-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: space-between; /* Add space between items */
+    margin-bottom: 20px;
+}
+
+.advertisement-box {
+    position: relative; /* Ensure relative positioning for the checkbox */
+    background-color: #f9f9f9;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.advertisement-box input[type="checkbox"] {
+    position:absolute;
+    top: 20px;
+    right: 20px;
+    transform: scale(1.5); 
+}
+
+.confirm_button {
+    background-color: green;
+    border: 2px solid green;
+    color: white;
+}
+
+.reject_button {
+    background-color: red;
+    border: 2px solid red;
+    color: white;
+}
+
+.advertisement-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.button-container {
+    margin: 0;
+}
+
+
+.advertisement-column {
+    width: 50%;
+    float: right;
+}
+
+.left-column {
+    text-align: justify;
+}
+
+.right-column {
+    text-align: justify;
+}
+
+.add_button {
+    background-color: rgb(254, 169, 16); 
+    border: 2px solid rgb(39, 20, 9);
+    color: rgb(39, 20, 9);
+    padding: 15px 32px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 19px;
+    outline: none;
+}
+
+.add_button:hover {
+    background-color: rgb(255, 255, 255);
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; 
+}
+
+.advertisement-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.advertisement-column {
+    width: 48%; 
+}
+
+.advertisement-box {
+    background-color: #f9f9f9;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.advertisement-box h3 {
+    margin-top: 10px;
+}
+
+.advertisement-form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #cec8c8;
+    border: 5px solid #858080;
+    border-radius: 8px;
+}
+
+.advertisement-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group select {
+    width: 100%;
+    padding: 15px; /* Adjust padding to match other input fields */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    height: 100px; 
+}
+
+.submit-button {
+    background-color: rgb(254, 169, 16); 
+    border: 2px solid rgb(39, 20, 9);
+    color: rgb(39, 20, 9);
+    padding: 15px 32px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+    border-radius: 19px;
+    outline: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    display: block;
+
+    
+}
+
+.submit-button:hover {
+    background-color: rgb(255, 255, 255);
+    
+}
+
+
+
+
+
+
+/* Style confirm button */
+.confirm_button {
+    background-color: green;
+    border: 2px solid green;
+    color: white;
+}
+
+.confirm_button1 {
+    background-color: rgb(67, 64, 240);
+    border: 2px solid rgb(67, 64, 240);
+    color: white;
+}
+
+/* Style reject button */
+.reject_button {
+    background-color: red;
+    border: 2px solid red;
+    color: white;
+}
+
+/* Adjust button container to align buttons in one line */
+.advertisement-buttons {
+    display: flex;
+    justify-content:last baseline;
+}
+
+/* Remove extra margin from the button containers */
+.button-container {
+    margin: 0;
+}
+
+.advertisement-box {
+    position: relative; /* Ensure relative positioning for the checkbox */
+    background-color: #f9f9f9;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.advertisement-box input[type="checkbox"] {
+    position:absolute;
+    top: 20px;
+    right: 20px;
+    transform: scale(1.5); 
+}
