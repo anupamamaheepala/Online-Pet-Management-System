@@ -5,16 +5,7 @@ function ScheduleAppointment() {
   return (
     <Layout>
 
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
-    <h1>Schedule Appointments</h1>
+
     
     
 
