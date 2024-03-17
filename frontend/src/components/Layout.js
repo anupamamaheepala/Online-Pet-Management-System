@@ -41,32 +41,14 @@ function Layout({ children }) {
             name: "Store",
             path: "/store",
             icon: "ri-store-line",
-            subMenu: [
-                {
-                    name: "Inventory Management",
-                    path: "/store/inventory",
-                },
-                {
-                    name: "Advertisement",
-                    path: "/store/advertisement",
-                },
-            ],
+            
         },
 
         {
-            name: "Blog & News",
-            path: "/blog",
+            name: "Advertisements",
+            path: "/Advertisement",
             icon: "ri-newspaper-line",
-            subMenu: [
-              {
-                name: "Blogs",
-                path: "/blogs",
-              },
-              {
-                name: "News",
-                path: "/news"
-              }
-            ]
+            
         },
 
         {
@@ -79,7 +61,7 @@ function Layout({ children }) {
   return (
     <div>
       <div className="menu">
-        <Menu mode="horizontal">
+      <Menu mode="horizontal" style={{ textAlign: 'left' }}>
           {userMenu.map((item) => {
             if (item.subMenu) {
               return (
