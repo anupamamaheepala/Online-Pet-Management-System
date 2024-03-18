@@ -1,11 +1,15 @@
 import React from 'react';
+import Layout from '../components/Layout';
+
 import '../css/signin.css';
 
 function SignIn() {
   return (
-    <div className="container">
-      <h2><center>Sign In To PetZone</center></h2>
+    <Layout>
+    <body>
       <br></br>
+    <div className="signinform">
+      <h2><center>Sign In To PetZone</center></h2>
       <form>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -26,6 +30,9 @@ function SignIn() {
         </div>
       </form>
     </div>
+    <br></br>
+    </body>
+    </Layout>
   );
 }
 

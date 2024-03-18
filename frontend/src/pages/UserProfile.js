@@ -5,10 +5,10 @@ import '../css/userprofile.css';
 
 function UserProfile() {
   const [profileData, setProfileData] = useState({
-    userName: 'John Doe',
-    email: 'johndoe@example.com',
+    userName: 'subodhi',
+    email: 'subodhi@gmail.com',
     contactNumber: '123-456-7890',
-    address: '123 Main St, City, Country',
+    address: '123 Main St,galle',
     profilePhoto: 'default-profile-photo.jpg'
   });
 
