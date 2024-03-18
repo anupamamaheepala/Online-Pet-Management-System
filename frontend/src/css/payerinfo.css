@@ -53,8 +53,9 @@
     margin-bottom: 10px;
   }
   
-  .user-info-form button:hover {
+  .link:hover {
     background-color: rgba(46, 119, 107, 0.397);
+    text-decoration: none;
     color: rgb(0, 0, 0); /* Change text color on hover */
   }
   
@@ -70,5 +71,20 @@
   
   .user-info-form input[type="submit"]:hover {
     background-color: #45a049;
+  }
+
+  .link{
+    padding: 10px 20px;
+    font-size: 16px; /* Increased text size */
+    font-weight: bold; /* Bold text */
+    background-color: rgba(46, 119, 107, 0.397);
+    color: #000000;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: calc(100% - 16px);
+    border: 1px solid #000000;
+    
   }
   

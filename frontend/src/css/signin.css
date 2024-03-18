@@ -1,14 +1,7 @@
-.container {
-    margin-top: 100px;
-    width: 600px;
-    max-width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(46, 119, 107, 0.397);
-  }
+
   
   .form-group {
+
     margin-top: 20px;
     margin-bottom: 15px;
   }
