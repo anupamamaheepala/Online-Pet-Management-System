@@ -25,10 +25,12 @@ import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
 
 import Register from './pages/Register';
+import SignIn from './pages/SignIn';
 
 import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
 import Banktrans from './pages/Banktrans';
+import UserProfile from './pages/UserProfile';
 
 
 function App() {
@@ -66,6 +68,8 @@ function App() {
 
 
         <Route path="/Register" element={<Register/>} ></Route>
+        <Route path="/SignIn" element={<SignIn/>}></Route>
+        <Route path="/UserProfile" element={<UserProfile/>}></Route>
         
         <Route path="/Payerinfo" element={<Payerinfo/>} ></Route>
         <Route path="/Cardpay" element={<Cardpay/>} ></Route>
