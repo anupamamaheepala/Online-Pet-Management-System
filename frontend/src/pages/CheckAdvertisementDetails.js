@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import '../css/advertisement.css';
+
 
 const CheckAdvertisementDetails = () => {
     const [advertisements, setAdvertisements] = useState([
@@ -32,7 +34,8 @@ const CheckAdvertisementDetails = () => {
     };
 
     return (
-        <Layout>
+        <>
+        <Header/>
             <div className="advertisement-container">
                 {advertisements.map(advertisement => (
                     <div key={advertisement.id} className="advertisement-column">
@@ -59,7 +62,8 @@ const CheckAdvertisementDetails = () => {
                     </div>
                 ))}
             </div>
-        </Layout>
+        <Footer/>
+        </>
     );
 }
 
