@@ -63,6 +63,7 @@ const ProductCatalog = () => {
     }
   ];
 
+
   return (
     <Layout>
       <div className="product-catalog">
