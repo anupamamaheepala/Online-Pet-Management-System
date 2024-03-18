@@ -3,9 +3,11 @@ import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 import Feedback from "./pages/Feedback";
-import Traininga from './pages/Traininga';
-import Trainingb from './pages/Trainingb';
-import Privatea from './pages/Privatea';
+
+import TrainingPrograms from './pages/TrainingPrograms';
+import Trainingb from './pages/PrivateTrainingPrograms';
+import PrivateTraining from './pages/PrivateTraining';
+import AdminTrainingApplication from './pages/AdminTrainingApplication';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Vetservices from './pages/Vetservices';
@@ -29,6 +31,7 @@ import Register from './pages/Register';
 import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
 import Banktrans from './pages/Banktrans';
+import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 
 
 function App() {
@@ -40,9 +43,10 @@ function App() {
     <Layout />
       <Routes>
         <Route path="/" element={<Home/>} ></Route> 
-        <Route path= "/Traininga" element={<Traininga />}></Route>
-        <Route path= "/Trainingb" element={<Trainingb />}></Route>
-        <Route path="/Privatea"  element={<Privatea/>}></Route>
+        <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
+        <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
+        <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
+        <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
 
         <Route path="/" element={<Home/>} ></Route>
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
