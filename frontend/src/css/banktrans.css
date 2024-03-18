@@ -1,0 +1,61 @@
+.bank-transfer-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: rgb(172, 201, 196);
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .tile {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .bank-transfer-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .bank-transfer-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .bank-transfer-form input[type="text"],
+  .bank-transfer-form input[type="file"] {
+    padding: 8px;
+    width: calc(100% - 16px);
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+
+  .up{
+    text-align: left;
+    color: #000000;
+  }
+
+  .bt{
+    color: #000000;
+  }
+  
+  .bank-transfer-form button {
+    padding: 10px 20px;
+    font-size: 16px; /* Increased text size */
+    font-weight: bold; /* Bold text */
+    background-color: rgba(46, 119, 107, 0.397);
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    width: calc(100% - 16px);
+  }
+  
+  .bank-transfer-form button:hover {
+    background-color: rgba(46, 119, 107, 0.397);
+    color: #000000; /* Change text color on hover */
+  }
+  
