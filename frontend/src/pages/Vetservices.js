@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/vetservices.css';
 import Layout from '../components/Layout';
+  
 
 function Vetservices() {
   return (
@@ -14,10 +15,7 @@ function Vetservices() {
         </div>
         <hr></hr>
 
-        <div class="slideshow">
-        <p className='vettext'>Step into a world of compassionate care and expertise at our Veterinary Services. Begin your journey by exploring further. 
-        Click below to unveil the full spectrum of our offerings and let your furry friends thrive in the best hands possible.</p>
-        </div>
+       
 
         <div className="vet-services-container">
       <h1>Available Veterinary Services</h1>

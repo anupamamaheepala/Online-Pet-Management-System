@@ -25,20 +25,6 @@
     transform: scale(1.05);
 }
 
-.slideshow {
-    height: 100vh; 
-    background-size: cover;
-    background-position: center top;
-    animation: slideshow 12s infinite;
-}
-
-@keyframes slideshow {
-    10% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/groome1.jpg");}
-    30% {background-image: url("/C:/Online-Pet-Management-System/frontend/public/images/groome2.jpg");}
-    50% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/groome3.jpg");}
-    70% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/groome4.jpg");}
-    90% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/groome5.jpg");}
-}
 
 .groometext{
     color: white;

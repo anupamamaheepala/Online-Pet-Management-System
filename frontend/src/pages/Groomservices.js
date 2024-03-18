@@ -16,10 +16,7 @@ function Groomservices() {
             </Link>
         </div>
         <hr></hr>
-        <div class="slideshow">
-        <p className='vettext'>Elevate your pet's style and well-being with our grooming expertise. From chic trims to soothing baths, we cater to their every need.
-         Trust us to pamper your furry friend, leaving them looking and feeling their finest in no time.</p>
-        </div>
+     
       
 
         <div className="groom-services-container">

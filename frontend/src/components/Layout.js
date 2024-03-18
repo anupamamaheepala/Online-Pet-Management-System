@@ -41,12 +41,40 @@ function Layout({ children }) {
             name: "Store",
             path: "/store",
             icon: "ri-store-line",
+            subMenu: [
+              {
+                  name: "Vet Services",
+                  path: "/Vetservices",
+              },
+              {
+                  name: "Groom Services",
+                  path: "/Groomservices",
+              },
+              {
+                  name: "Training Services",
+                  path: "/Traininga",
+              },
+          ],
         },
 
         {
             name: "Advertisements",
             path: "/Advertisement",
             icon: "ri-newspaper-line",
+            subMenu: [
+              {
+                  name: "Vet Services",
+                  path: "/Vetservices",
+              },
+              {
+                  name: "Groom Services",
+                  path: "/Groomservices",
+              },
+              {
+                  name: "Training Services",
+                  path: "/Traininga",
+              },
+          ],
 
             
         },
