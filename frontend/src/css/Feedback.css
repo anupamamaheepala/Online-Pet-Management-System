@@ -29,6 +29,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: vertical;
+    font-family: 'Times New Roman', Times, serif;
     
   }
   
@@ -39,6 +40,7 @@
   .feedback-form .rating p {
     margin-right: 10px;
     font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
   }
   
   .feedback-form .star {
@@ -61,6 +63,7 @@
     cursor: pointer;
     font-size: 18px;
     transition: background-color 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
   }
   
   .feedback-form button:hover {
