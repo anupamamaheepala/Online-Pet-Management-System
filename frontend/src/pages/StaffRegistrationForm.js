@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import React from 'react';
-import './StaffRegister.css';
+import '../css/StaffRegister.css';
 
 function StaffRegistrationForm() {
   return (

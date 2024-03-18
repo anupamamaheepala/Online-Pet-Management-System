@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import React from 'react';
-import './StaffLeaveForm.css';
+import '../css/StaffLeaveForm.css';
 
 function StaffLeaveForm() {
     return (

@@ -64,7 +64,7 @@ const Banktrans = ({ onNext }) => {
             required
           />
         </div>
-        <button type="submit">Next</button>
+        <button type="submit">Confirm Payment</button>
       </form>
     </div>
     </Layout>

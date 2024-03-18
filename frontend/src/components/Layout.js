@@ -32,14 +32,14 @@ function Layout({ children }) {
                 },
                 {
                     name: "Training Services",
-                    path: "/Traininga",
+                    path: "/TrainingPrograms",
                 },
             ],
         },
 
         {
             name: "Store",
-            path: "/store",
+            path: "/ProductCatalog",
             icon: "ri-store-line",
             
         },
