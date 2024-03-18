@@ -39,7 +39,7 @@ function Layout({ children }) {
 
         {
             name: "Store",
-            path: "/store",
+            path: "/ProductCatalog",
             icon: "ri-store-line",
             
         },

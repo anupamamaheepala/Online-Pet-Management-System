@@ -32,6 +32,8 @@ import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile';
+import ProductCatalog from './pages/ProductCatalog';
+import ProductDescription from './pages/ProductDescription';
 
 function App() {
   console.log(global);
@@ -70,6 +72,9 @@ function App() {
         <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
+        <Route path="/ProductCatalog" element={<ProductCatalog />} />
+        <Route path="/product/:id" element={<ProductDescription />} />
+        
 
        </Routes>
 
