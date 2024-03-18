@@ -1,45 +1,71 @@
-import Layout from '../components/Layout';
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/StaffRegister.css';
+import Layout from '../components/Layout';
+import { Link } from 'react-router-dom';
 
-function StaffRegistrationForm() {
+function StaffRegister() {
+  const [formData, setFormData] = useState({
+    sname: '',
+    semail: '',
+    scontactNumber: '',
+    saddress: '',
+    designation: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // You can add your registration logic here
+    console.log(formData);
+  };
+
   return (
-    
-<Layout>
-    <div className="wrap">
-      <div className="StaffRegister">
-        <h2>Register Staff Members</h2>
-        <form action="#" method="post" id="sform">
-          <div className="input_box">
-            <label>Name</label>
-            <input type="text" placeholder="Enter Name" required id="na" />
-          </div>
-          <div className="input_box">
-            <label>E-mail</label>
-            <input type="email" placeholder="Enter Email" required id="na" />
-          </div>
-          <div className="input_box">
-            <label>Contact Number</label>
-            <input type="tel" placeholder="Enter Contact Number" required id="na" />
-          </div>
-          <div className="input_box">
-            <label>Address</label>
-            <input type="text" placeholder="Enter Address" required id="na" />
-          </div>
-          <div className="input_box">
-            <label>Designation</label>
-            <input type="text" placeholder="Enter Designation" required id="na" />
-          </div>
-          <div className="input_box">
-            <label>Educational Qualifications:</label>
-            <textarea name="Enter Qualifications" required />
-            </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+    <Layout>
+    <body>
+      <br></br>
+
+    <div className="staffRegistration-form">
+      <h2>Register As Staff</h2>
+      <br></br>
+
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Name:</label>
+          <input type="text" name="sname" value={formData.sname} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="email" name="semail" value={formData.semail} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label>Contact Number:</label>
+          <input type="text" name="scontactNumber" value={formData.scontactNumber} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label>Address:</label>
+          <input type="text" name="saddress" value={formData.saddress} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label>Designation:</label>
+          <input type="text" name="designation" value={formData.designation} onChange={handleChange} />
+        </div>
+        <br></br>
+        <center><button style={{width:'200px'}} type="submit">Register</button></center>
+      </form>
+      <br></br>
+
     </div>
+    <br></br>
+    </body>
     </Layout>
   );
 }
 
-export default StaffRegistrationForm;
+export default StaffRegister;

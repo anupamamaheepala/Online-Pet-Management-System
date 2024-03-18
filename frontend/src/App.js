@@ -89,10 +89,7 @@ function App() {
 
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
-        
        </Routes>
-
-        
     </BrowserRouter>
 
     </div>
