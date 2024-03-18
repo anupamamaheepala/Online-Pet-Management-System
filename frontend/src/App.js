@@ -78,12 +78,8 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
-        
        </Routes>
-
-        
     </BrowserRouter>
-
 
     </div>
   );
