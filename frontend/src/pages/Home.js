@@ -80,7 +80,7 @@ const Home = () => {
         <p>
 Pet Zone Hospital is a multifaceted platform dedicated to providing holistic pet care solutions, encompassing veterinary services, professional grooming, expert training programs, efficient inventory management, lost and found advertisement postings, streamlined staff management tools, easy registration processes, and convenient payment methods. Our integrated approach ensures that pets receive comprehensive care while offering pet owners a seamless experience, from accessing essential services to managing their pets' well-being and administrative needs
  </p>
-        <button class="primary-btn">ABOUT US</button>
+        <button class="primary-btn" style={{width: '110px'}}>ABOUT US</button>
       </div>
       <div class="right">
       <img style={{ height: "300px",paddingRight:'10px'}} src="/images/tp1.jpg" alt="Info Image" />

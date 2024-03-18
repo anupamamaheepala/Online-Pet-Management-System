@@ -41,7 +41,7 @@ const AddAdvertisement = () => {
                     <input type="text" id="contact" name="contact" />
                 </div>
                 
-                <button type="submit" className="submit-button">Submit</button>
+                <button style={{width:'150px'}} type="submit" className="submit-button">Submit</button>
             </form>
         </Layout>
     );
