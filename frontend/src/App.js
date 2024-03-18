@@ -25,6 +25,7 @@ import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
 import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
+import Banktrans from './pages/Banktrans';
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
 
         <Route path="/Payerinfo" element={<Payerinfo/>} ></Route>
         <Route path="/Cardpay" element={<Cardpay/>} ></Route>
+        <Route path="/Banktrans" element={<Banktrans/>}></Route>
 
        </Routes>
         
