@@ -19,7 +19,7 @@ const ConfirmAdvertisement = () => {
                         <p>Contact details</p>
                         <div className="advertisement-buttons">
     <div className="button-container">
-        <Link to="/ConfirmAdvertisement" className="add_button confirm_button1">Calculate payment</Link>
+        <Link to="/Payerinfo" className="add_button confirm_button1">Calculate payment</Link>
     </div>
 
     <div className="button-container">
