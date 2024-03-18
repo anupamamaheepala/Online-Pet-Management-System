@@ -50,25 +50,17 @@ function App() {
     <Layout />
       <Routes>
         <Route path="/" element={<Home/>} ></Route> 
-
-
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
-
-
-
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
-   
-
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
         <Route path="/Groomservices" element={<Groomservices/>} ></Route>
         <Route path="/ScheduleAppointment" element={<ScheduleAppointment/>} ></Route>   
         <Route path="/MyAppointments" element={<MyAppointments/>} ></Route> 
         <Route path="/AllVetAppointments" element={<AllVetAppointments/>} ></Route> 
         <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route> 
-
         <Route path="/Advertisement" element={<Advertisement/>} ></Route>  
         <Route path="/AddAdvertisement" element={<AddAdvertisement/>} ></Route>
         <Route path="/CheckAdvertisementDetails" element={<CheckAdvertisementDetails/>} ></Route>
@@ -84,9 +76,6 @@ function App() {
         <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
-
-        
-
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
         
