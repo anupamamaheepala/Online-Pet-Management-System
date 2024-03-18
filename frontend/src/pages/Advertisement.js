@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import '../css/advertisement.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 
 const CheckAdvertisementDetails = () => {
     const [advertisements, setAdvertisements] = useState([
@@ -55,7 +57,8 @@ const CheckAdvertisementDetails = () => {
     };
 
     return (
-        <Layout>
+        <>
+        <Header/>
              <div className="button-container">
                 <div className="advertisement-buttons">
                     <Link to="/AddAdvertisement" className="add_button">Add a new advertisement</Link>
@@ -91,7 +94,8 @@ const CheckAdvertisementDetails = () => {
                     </div>
                 ))}
             </div>
-        </Layout>
+            <Footer />
+        </>
     );
 }
 

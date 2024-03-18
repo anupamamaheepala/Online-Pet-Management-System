@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
+import '../css/ProductCatalog.css';
 
 const ProductCatalog = () => {
   const products = [
@@ -61,6 +62,7 @@ const ProductCatalog = () => {
       image: "images/Drools.png"
     }
   ];
+
 
   return (
     <Layout>

@@ -1,10 +1,13 @@
-import Layout from '../components/Layout';
+
 import '../css/advertisement.css';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const MyAdvertisements = () => {
     return (
-        <Layout>
+        <>
+            <Header /> 
            
             <div className="advertisement-container">
                 <div className="advertisement-column">
@@ -30,7 +33,8 @@ const MyAdvertisements = () => {
                     
                 </div>
             </div>
-        </Layout>
+            <Footer />
+            </>
     );
 }
 

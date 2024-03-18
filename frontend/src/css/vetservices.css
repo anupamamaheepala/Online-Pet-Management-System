@@ -32,22 +32,19 @@
   }
   
   .service-list {
-    list-style-type: none;
-    padding: 0;
+    list-style: none;
+    padding-left: 0;
   }
   
   .service-list li {
     margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .service-list li h3 {
-    color: #333;
-    margin-bottom: 10px;
+  .service-list li h3,
+  .service-list li p {
+    text-align: left;
   }
+  
   
   .service-list li p {
     color: #666;
@@ -56,4 +53,6 @@
   .service-list li:hover {
     background-color: #f0f0f0;
   }
+
+  
   
