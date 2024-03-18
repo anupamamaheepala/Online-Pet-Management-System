@@ -6,7 +6,7 @@
     padding: 20px;
     border: 1px solid #000000;
     border-radius: 5px;
-    background-color: rgba(180, 186, 185, 0.244);
+    background-color: rgb(180, 186, 185);
     color: #000000;
     font-weight: bold;
     backdrop-filter: blur(10px);
@@ -37,7 +37,7 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: rgba(46, 119, 107, 0.397);
+    background-color:#000000;
     color: #fff;
     cursor: pointer;
     border-radius: 19px;
