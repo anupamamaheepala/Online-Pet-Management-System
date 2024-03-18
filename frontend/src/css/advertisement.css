@@ -50,8 +50,9 @@
 .advertisement-box input[type="checkbox"] {
     position:absolute;
     top: 20px;
-    right: 20px;
     transform: scale(1.5); 
+    width: 15px;
+    left: 200px;
 }
 
 .confirm_button {
@@ -255,6 +256,6 @@
 .advertisement-box input[type="checkbox"] {
     position:absolute;
     top: 20px;
-    right: 20px;
+    left: 750px;
     transform: scale(1.5); 
 }

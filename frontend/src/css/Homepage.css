@@ -31,13 +31,6 @@
 }
 
 /* Styles for the previous and next buttons */
-.button-container {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  
-}
 
 .prev, .next {
   background-color: #7e3f3f;
