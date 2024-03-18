@@ -1,7 +1,7 @@
-
-
 import React, { useState, useEffect } from 'react';
 import Homepage from'../css//Homepage.css'; // Import your CSS file for styling
+
+
 import Layout from '../components/Layout';
 
 const Home = () => {
