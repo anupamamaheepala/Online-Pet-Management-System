@@ -37,7 +37,7 @@ const Payerinfo = ({ onNext }) => {
           onChange={handleChange}
           required
         />
-        <input
+        <input 
           type="email"
           name="email"
           placeholder="Email"
