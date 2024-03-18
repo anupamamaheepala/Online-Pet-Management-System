@@ -6,6 +6,7 @@ import Feedback from "./pages/Feedback";
 import Traininga from './pages/Traininga';
 import Trainingb from './pages/Trainingb';
 import Privatea from './pages/Privatea';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
