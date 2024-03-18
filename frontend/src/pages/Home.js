@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,} from 'react';
 import '../css/Homepage.css'; // Import your CSS file for styling
 import Layout from '../components/Layout';
 
