@@ -54,7 +54,8 @@ const Home = () => {
             <div className="slide-text">{slides[currentSlide].text}</div>
           </div>
         </div>
-        <div className="button-container">
+        <div className="button-container" style={{position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)'}}>
+
         <div className="button-container">
   <button className="btn btn-outline-info" onClick={goToPrevSlide}>
     <i className="bi bi-arrow-left"></i>
