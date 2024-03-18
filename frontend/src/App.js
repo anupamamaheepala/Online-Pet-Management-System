@@ -76,40 +76,15 @@ function App() {
         <Route path="/Cardpay" element={<Cardpay/>} ></Route>
         <Route path="/Banktrans" element={<Banktrans/>}></Route>
 
+        <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
+        <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
+        <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
+
        </Routes>
 
         
     </BrowserRouter>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<StaffRegistrationForm />} />
-            <Route path="/StaffLeave" element={<StaffLeaveForm />} />
-            <Route path="/StaffSalary" element={<StaffSalaryForm />} />
-            <Route path="/Traininga" element={<Traininga />} />
-            <Route path="/Trainingb" element={<Trainingb />} />
-            <Route path="/Privatea" element={<Privatea />} />
-            <Route path="/Feedback" element={<Feedback />} />
-            <Route path="/Vetservices" element={<Vetservices />} />
-            <Route path="/Groomservices" element={<Groomservices />} />
-            <Route path="/ScheduleAppointment" element={<ScheduleAppointment />} />
-            <Route path="/MyAppointments" element={<MyAppointments />} />
-            <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
-            <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
-            <Route path="/Advertisement" element={<Advertisement />} />
-            <Route path="/AddAdvertisement" element={<AddAdvertisement />} />
-            <Route path="/CheckAdvertisementDetails" element={<CheckAdvertisementDetails />} />
-            <Route path="/ConfirmAdvertisement" element={<ConfirmAdvertisement />} />
-            <Route path="/MyAdvertisements" element={<MyAdvertisements />} />
-            <Route path="/AllAdvertisements" element={<AllAdvertisements />} />
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Payerinfo" element={<Payerinfo />} />
-            <Route path="/Cardpay" element={<Cardpay />} />
-            <Route path="/Banktrans" element={<Banktrans />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+
 
     </div>
   );

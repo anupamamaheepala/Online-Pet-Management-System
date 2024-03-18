@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import React from 'react';
-import './StaffSalary.css';
+import '../css/StaffSalary.css';
 
 function SalaryCalculator(){
     return(
