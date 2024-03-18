@@ -1,7 +1,7 @@
 // UserProfile.js
 
 import React, { useState } from 'react';
-import './userprofile.css';
+import '../css/userprofile.css';
 
 function UserProfile() {
   const [profileData, setProfileData] = useState({
