@@ -1,0 +1,86 @@
+.registration-form {
+    margin-top: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: rgba(44, 82, 75, 0.397);
+    color: #000000;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+  
+  
+  }
+  .body1{
+    margin-top: 10px;
+    background-image: back;
+    margin-bottom: 10px;
+
+  }
+  
+  .registration-form h2 {
+    text-align: center;
+    
+
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(46, 119, 107, 0.397);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid rgb(39, 20, 9);
+    transition: background-color 0.3s;
+    border-radius: 19px;
+    
+
+  }
+  
+  button:hover {
+    background-color: #214267;
+  }
+  .staff{
+    position: center;
+  }
+  
+  .staff-registration-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(46, 119, 107, 0.397);
+    color: white;
+    border: 2px solid rgb(39, 20, 9);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 19px;
+    
+
+  }
+  
+  .staff-registration-btn:hover {
+    background-color: #214267;
+  }
+  

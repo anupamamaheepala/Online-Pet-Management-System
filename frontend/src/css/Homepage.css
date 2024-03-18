@@ -1,0 +1,149 @@
+/* Homepage.css */
+
+/* Styles for the slide container */
+.homepage-container {
+  position: relative;
+}
+
+/* Styles for individual slides */
+.slide {
+  width: 100%;
+  height: 800px; /* Adjust the height as needed */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  
+}
+
+/* Styles for the text on the slides */
+.slide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-top: 220px;
+  transform: translate(-50%, -50%);
+  color: rgb(2, 3, 3);
+  font-size: 60px;
+  font-weight: bold;
+  font-weight: 500;
+  text-align: center;
+  
+}
+
+/* Styles for the previous and next buttons */
+
+.prev, .next {
+  background-color: #7e3f3f;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.prev:hover, .next:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* heading and info */
+h1{
+  text-align: center;
+  padding-top: 70px;
+  font-size: xx-large;
+
+}
+h3{
+  text-align: center;
+  font-weight: 400;
+
+}
+
+/* blue line with 3 squares*/
+.info-section {
+  position: relative;
+  width: 100%; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+  z-index:0 ;
+}
+
+.info-section img {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background: center;
+  opacity: 70%;
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background-color: rgba(130, 102, 12, 0.8); /* Semi-transparent overlay */
+
+}
+
+.info-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #eaeaea; /* Text color */
+  font-size: 18px; /* Adjust font size as needed */
+  text-align: center;
+}
+
+/*rectanlge*/
+
+.inner-rectangle {
+position: absolute;
+top: 50%;
+left: 0%;
+transform: translate(-50%, -50%);
+width: 300px; /* Adjust the width of the inner rectangle */
+height: 250px; /* Adjust the height of the inner rectangle */
+background-color: rgb(255, 255, 255,0.0); /* Background color of the inner rectangle */
+border: 2px solid #eaeaee;
+padding: 10px;
+color: #eaeaea;
+
+}
+@media screen and (max-width: 850px) {
+.inner-rectangle {
+  width: 150px; /* Adjust the width for smaller screens */
+  height: 150px; /* Adjust the height for smaller screens */
+
+}
+}
+
+.rec-row{
+display: flex;
+justify-content: space-between;
+}
+
+/*welcome part*/
+.about .heading h1{
+  padding-top: 0px;
+}
+.heading h1{
+   font-size: 100px;
+   font-weight: 500;
+   opacity: 0.2;
+   font-family: serif;
+   position: absolute;
+  
+}
+
+.heading h2{
+  font-size: 45px;
+  font-family: serif;
+  font-weight: 400;
+}
+
+.about .heading h2{
+  padding-top: 40px;
+}
+

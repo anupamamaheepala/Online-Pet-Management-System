@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import '../layout.css';
+import '../css/layout.css';
 
 
 const { SubMenu } = Menu;
@@ -19,20 +19,20 @@ function Layout({ children }) {
 
         {
             name: "Services",
-            path: "/services",
+            path: "/",
             icon: "ri-settings-3-line",
             subMenu: [
                 {
                     name: "Vet Services",
-                    path: "/services/vet",
+                    path: "/Vetservices",
                 },
                 {
                     name: "Groom Services",
-                    path: "/services/groom",
+                    path: "/Groomservices",
                 },
                 {
                     name: "Training Services",
-                    path: "/services/training",
+                    path: "/Traininga",
                 },
             ],
         },
@@ -41,46 +41,32 @@ function Layout({ children }) {
             name: "Store",
             path: "/store",
             icon: "ri-store-line",
-            subMenu: [
-                {
-                    name: "Inventory Management",
-                    path: "/store/inventory",
-                },
-                {
-                    name: "Advertisement",
-                    path: "/store/advertisement",
-                },
-            ],
+            
         },
 
         {
-            name: "Blog & News",
-            path: "/blog",
+            name: "Ads",
+            path: "/Advertisement",
             icon: "ri-newspaper-line",
-            subMenu: [
-              {
-                name: "Blogs",
-                path: "/blogs",
-              },
-              {
-                name: "News",
-                path: "/news"
-              }
-            ]
+            
         },
 
         {
             name: "FAQ",
-            path: "/faq",
+            path: "/Feedback",
             icon: "ri-questionnaire-line",
         },
     ];
 
   return (
+
     <div>
+
+       
       <div className="menu">
         <Menu mode="horizontal">
           {userMenu.map((item) => {
+            
             if (item.subMenu) {
               return (
                 <SubMenu key={item.name} title={item.name} icon={<i className={item.icon} />}>
@@ -101,6 +87,12 @@ function Layout({ children }) {
           })}
         </Menu>
       </div>
+      <div class="text-start">
+   <a href='/SignIn'> <button type="button" class="btn btn-custom me-2">Sign In</button> </a>
+    <a href = '/Register'><button type="button" class="btn btn-custom">Sign Up</button></a>
+</div>
+
+
       {children}
 
 
