@@ -4,7 +4,6 @@ import { Layout } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Sidebar from './components/Sidebar';
-
 import Home from "./pages/Home";
 import Feedback from './pages/Feedback'
 import Vetservices from './pages/Vetservices';
@@ -19,30 +18,22 @@ import ConfirmAdvertisement from './pages/ConfirmAdvertisement';
 import MyAdvertisements from './pages/MyAdvertisements';
 import AllAdvertisements from './pages/AllAdvertisements';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
-
 import Register from './pages/Register';
 import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
 import Banktrans from './pages/Banktrans';
-
-
 import StaffRegistrationForm from './pages/StaffRegistrationForm';
 import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import SignIn from './pages/SignIn';
-import UserProfile from './pages/UserProfile'; // This line should only appear once
+import UserProfile from './pages/UserProfile'; 
 import ProductCatalog from './pages/ProductCatalog';
 import ProductDescription from './pages/ProductDescription';
-
-
-
 import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import AdminTrainingApplication from './pages/AdminTrainingApplication';
-
 import TrainingUpdate from './pages/TrainingUpdate';
-
 
 function App() {
   console.log(global);
@@ -59,18 +50,13 @@ function App() {
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
         <Route path='/TrainingUpdate' element={<TrainingUpdate/>}></Route>
-
-
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
-   
-
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
         <Route path="/Groomservices" element={<Groomservices/>} ></Route>
         <Route path="/ScheduleAppointment" element={<ScheduleAppointment/>} ></Route>   
         <Route path="/MyAppointments" element={<MyAppointments/>} ></Route> 
         <Route path="/AllVetAppointments" element={<AllVetAppointments/>} ></Route> 
-        <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route> 
-
+        <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route>
         <Route path="/Advertisement" element={<Advertisement/>} ></Route>  
         <Route path="/AddAdvertisement" element={<AddAdvertisement/>} ></Route>
         <Route path="/CheckAdvertisementDetails" element={<CheckAdvertisementDetails/>} ></Route>
@@ -86,9 +72,6 @@ function App() {
         <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
-
-        
-
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
         
