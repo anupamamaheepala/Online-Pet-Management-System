@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../cssfiles/register.css';
 import Layout from '../components/Layout';
+import { Link } from 'react-router-dom';
 
 function Register() {
   const [formData, setFormData] = useState({
