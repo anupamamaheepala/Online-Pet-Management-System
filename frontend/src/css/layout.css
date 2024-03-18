@@ -278,18 +278,21 @@ ul{
     width: 100%;
   }
   .btn-custom {
-    color: rgba(46, 119, 107, 0.397) !important;
-    margin-top: 10px;
+    display: inline-block; /* Added to limit width to content size */
+    color: black !important;
+    margin-top: 10px !important;
     background-color: white !important;
+    border: 1px solid rgba(46, 119, 107, 0.397) !important;
+    padding: 8px 16px; /* Adjust padding as needed */
+    width: 100px !important;
+}
+
+.btn-custom:hover {
+    color: White !important;
+    background-color: rgba(46, 119, 107, 0.397) !important;
     border: 1px solid rgba(46, 119, 107, 0.397) !important;
 }
 
-
-.btn-custom:hover {
-  color: White !important;
-  background-color: rgba(46, 119, 107, 0.397) !important;
-  border: 1px solid rgba(46, 119, 107, 0.397) !important;
-}
 
 
 
