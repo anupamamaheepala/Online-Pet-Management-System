@@ -59,7 +59,10 @@ function Layout({ children }) {
     ];
 
   return (
+
     <div>
+
+       
       <div className="menu">
         <Menu mode="horizontal">
           {userMenu.map((item) => {
@@ -84,6 +87,12 @@ function Layout({ children }) {
           })}
         </Menu>
       </div>
+      <div class="text-start">
+   <a href='/SignIn'> <button type="button" class="btn btn-custom me-2">Sign In</button> </a>
+    <a href = '/Register'><button type="button" class="btn btn-custom">Sign Up</button></a>
+</div>
+
+
       {children}
 
 
