@@ -30,8 +30,10 @@ function Register() {
   return (
     <Layout>
     <body>
+      <br></br>
     <div className="registration-form">
       <h2>Sign Up To PetZone</h2>
+      <br></br>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Username:</label>
@@ -57,14 +59,15 @@ function Register() {
           <label>Confirm Password:</label>
           <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
         </div>
-        <button type="submit">Register</button>
+        <center><button style={{width:'200px'}} type="submit">Register</button></center>
       </form>
       <br></br>
 
-      <label class name="staff"> <center>Register for staff:</center></label>
+      <center><label class name="staff"> <center>Register for staff:</center></label>
 
-      <button className="staff-registration-btn" onClick={() => console.log('Redirect to staff registration')}>Staff Registration</button>
+     <button style={{width:'150px'}} className="staff-registration-btn" onClick={() => console.log('Redirect to staff registration')}>Staff Registration</button></center>
     </div>
+    <br></br>
     </body>
     </Layout>
   );
