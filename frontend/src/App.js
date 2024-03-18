@@ -94,7 +94,11 @@ function App() {
 
         
     </BrowserRouter>
+<<<<<<< HEAD
+      
+=======
 
+>>>>>>> 667c6dcd5c925e822d0f9c798ea0a7f5c224fb34
 
     </div>
   );
