@@ -1,0 +1,63 @@
+/* style.css */
+
+/* Center the form */
+.wrap {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style the form container */
+.StaffRegister {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style form headings */
+.StaffRegister h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Style input fields and labels */
+.input_box {
+    margin-bottom: 15px;
+}
+
+.input_box label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input_box input[type="text"],
+.input_box input[type="email"],
+.input_box input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Style the submit button */
+.StaffRegister button[type="submit"] {
+    background-color: #393b39;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.StaffRegister button[type="submit"]:hover {
+    background-color: #676464;
+}
