@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/advertisement.css';
 import Header from '../components/Header';
-import { Footer } from 'antd/es/layout/layout';
+import Footer from '../components/Footer';
+
 
 const CheckAdvertisementDetails = () => {
     const [advertisements, setAdvertisements] = useState([
