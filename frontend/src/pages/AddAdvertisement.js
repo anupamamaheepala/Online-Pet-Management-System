@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 import Layout from '../components/Layout';
 import '../css/advertisement.css'; 
-=======
+
 import React from 'react';
 import '../css/advertisement.css'; // Import the CSS file
 import Header from '../components/Header'; // Import the Header component
->>>>>>> a17a9607952cc5aa5e72ed846033b0a477269a74
+
 
 const AddAdvertisement = () => {
     return (
