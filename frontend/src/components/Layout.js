@@ -32,22 +32,22 @@ function Layout({ children }) {
                 },
                 {
                     name: "Training Services",
-                    path: "/Traininga",
+                    path: "/TrainingPrograms",
                 },
             ],
         },
 
         {
             name: "Store",
-            path: "/store",
+            path: "/ProductCatalog",
             icon: "ri-store-line",
+            
         },
 
         {
-            name: "Advertisements",
+            name: "Ads",
             path: "/Advertisement",
             icon: "ri-newspaper-line",
-
             
         },
 
@@ -55,16 +55,18 @@ function Layout({ children }) {
             name: "FAQ",
             path: "/Feedback",
             icon: "ri-questionnaire-line",
-            
         },
     ];
 
-
   return (
+
     <div>
+
+       
       <div className="menu">
-      <Menu mode="horizontal" style={{ textAlign: 'left' }}>
+        <Menu mode="horizontal">
           {userMenu.map((item) => {
+            
             if (item.subMenu) {
               return (
                 <SubMenu key={item.name} title={item.name} icon={<i className={item.icon} />}>
@@ -85,6 +87,12 @@ function Layout({ children }) {
           })}
         </Menu>
       </div>
+      <div class="text-start">
+   <a href='/SignIn'> <button type="button" class="btn btn-custom me-2">Sign In</button> </a>
+    <a href = '/Register'><button type="button" class="btn btn-custom">Sign Up</button></a>
+</div>
+
+
       {children}
 
 

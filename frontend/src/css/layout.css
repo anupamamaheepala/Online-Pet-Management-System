@@ -2,21 +2,21 @@
 
 .menu {
 
-  align-items: left; 
-  display: flex; 
+  align-items: right; 
+  display: inline-flex; 
+  justify-content: flex-end;
   background-color: rgb(179, 14, 220);
   width: auto;
   height: 75px; 
   size: 100%;
   color: rgb(255, 255, 255);
   overflow-x: auto; /* Ensure horizontal scrolling if menu items exceed width */
-  align-items: left; 
+  align-items: right; 
   display: flex; 
   background-color: rgba(46, 119, 107, 0.397);
-    width: auto;
-    height: 75px; 
-    size: 100%;
-    color: rgb(255, 255, 255);
+  width: auto;
+  height: 75px; 
+  size: auto;
 
 }
 .menu .ant-menu-submenu-title {
@@ -277,4 +277,23 @@ ul{
     color: rgb(255, 255, 255);
     width: 100%;
   }
+  .btn-custom {
+    display: inline-block; /* Added to limit width to content size */
+    color: black !important;
+    margin-top: 10px !important;
+    background-color: white !important;
+    border: 1px solid rgba(46, 119, 107, 0.397) !important;
+    padding: 8px 16px; /* Adjust padding as needed */
+    width: 100px !important;
+}
+
+.btn-custom:hover {
+    color: White !important;
+    background-color: rgba(46, 119, 107, 0.397) !important;
+    border: 1px solid rgba(46, 119, 107, 0.397) !important;
+}
+
+
+
+
 

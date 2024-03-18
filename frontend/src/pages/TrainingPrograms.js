@@ -1,8 +1,10 @@
+import React from 'react';
 import Layout from '../components/Layout';
 import '../css/Trainingprogram.css';
 import { Link } from 'react-router-dom';
 
-const Traininga = () => {
+
+const TrainingPrograms = () => {
     return (
         <Layout>
 
@@ -10,7 +12,7 @@ const Traininga = () => {
                 <div className="search-bar">
                     <input type="text" placeholder="Search products" />
                     <button className="search-button">Search</button>
-                    <button className="cart-button">Cart</button>
+                   
                 </div>
                  
             <div style={{ position: "relative" }}>
@@ -25,7 +27,7 @@ const Traininga = () => {
             <section className="container mt-5">
                 <div className="row justify-content-center">
                     <div className="col-md-4 text-center">
-                        <a href="/Trainingb" className="btn btn-outline-primary btn-lg btn-block mb-4">
+                        <a href="/PrivateTrainingPrograms" className="btn btn-outline-primary btn-lg btn-block mb-4">
                             <img src="/images/tp6.jpg" alt="Private Training Icon" className="img-fluid" />
                             Private Training Programs
                         </a>
@@ -87,4 +89,4 @@ const Traininga = () => {
     );
 }
 
-export default Traininga;
+export default TrainingPrograms;

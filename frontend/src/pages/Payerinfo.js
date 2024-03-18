@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../css/payerinfo.css';
 import Layout from '../components/Layout';
+import { Link } from 'react-router-dom';
 
 const Payerinfo = ({ onNext }) => {
   const [userInfo, setUserInfo] = useState({
@@ -36,7 +37,7 @@ const Payerinfo = ({ onNext }) => {
           onChange={handleChange}
           required
         />
-        <input
+        <input 
           type="email"
           name="email"
           placeholder="Email"
@@ -59,7 +60,8 @@ const Payerinfo = ({ onNext }) => {
           onChange={handleChange}
           required
         ></textarea>
-        <button type="submit">View Status</button>
+        <Link to="/Cardpay" className='link'>Card Payment</Link>
+        <Link to="/Banktrans" className='link'>Bank Transfer</Link>
         </center>
       </form>
     </div>

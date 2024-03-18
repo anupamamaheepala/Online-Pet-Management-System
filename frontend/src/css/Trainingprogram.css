@@ -99,8 +99,7 @@ body{
 
 .search-bar {
   display: flex;
-  align-items: center;
-  margin-top: 25px;
+  margin-top: 5px;
 
 }
 
@@ -109,7 +108,7 @@ body{
   width: 200px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-left: 750px;
+  margin-left: 1100px;
   width: 400px;
   
 }
@@ -124,7 +123,7 @@ body{
   transition: background-color 0.3s ease;
   font-size: 16px;
   margin-left: 10px;
-  width: 150px;
+  width: 100px;
 }
 
 .search-button:hover {
@@ -147,6 +146,23 @@ body{
 .cart-button:hover {
   background-color: #218838;
 }
+
+.add-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(119, 16, 124, 0.876);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three items in one row */
@@ -190,20 +206,4 @@ body{
 .product-price {
   font-weight: bold;
   color: #007bff;
-}
-
-.add-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: rgba(119, 16, 124, 0.876);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: #0056b3;
 }

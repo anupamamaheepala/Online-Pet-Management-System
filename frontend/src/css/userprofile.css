@@ -1,0 +1,66 @@
+.UserProfile {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .profilePhotoContainer {
+    position: relative;
+  }
+  
+  .profilePhotoContainer img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .profilePhotoContainer input[type="file"] {
+    display: none;
+  }
+  
+  .createPetProfileButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .profileInfo label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .profileInfo input,
+  .profileInfo textarea {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .profileInfo button {
+    width: calc(50% - 5px);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .profileInfo button:hover {
+    background-color: #0056b3;
+  }
+  
+  .profileInfo button:last-child {
+    margin-left: 10px;
+  }
+  

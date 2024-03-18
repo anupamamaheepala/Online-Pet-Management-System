@@ -25,28 +25,6 @@
     transform: scale(1.05);
 }
 
-.slideshow {
-    height: 100vh; 
-    background-size: cover;
-    background-position: center top;
-    animation: slideshow 12s infinite;
-    margin-top: 0;
-}
-
-@keyframes slideshow {
-    10% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/vetback1.jpg");}
-    30% {background-image: url("/C:/Online-Pet-Management-System/frontend/public/images/vetback2.jpg");}
-    50% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/vetback3.jpg");}
-    70% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/vetback4.jpg");}
-    90% {background-image: url("C:/Online-Pet-Management-System/frontend/public/images/vetback5.jpg");}
-}
-
-.vettext{
-    color: white;
-    font-size: 55px;
-    font-weight: bold;
-    text-align: center;
-}
 
 .vet-services-container {
     padding: 20px;
@@ -54,22 +32,19 @@
   }
   
   .service-list {
-    list-style-type: none;
-    padding: 0;
+    list-style: none;
+    padding-left: 0;
   }
   
   .service-list li {
     margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .service-list li h3 {
-    color: #333;
-    margin-bottom: 10px;
+  .service-list li h3,
+  .service-list li p {
+    text-align: left;
   }
+  
   
   .service-list li p {
     color: #666;
@@ -78,4 +53,6 @@
   .service-list li:hover {
     background-color: #f0f0f0;
   }
+
+  
   
