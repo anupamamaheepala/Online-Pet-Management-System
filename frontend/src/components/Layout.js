@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import '../layout.css';
+import '../css/layout.css';
 
 
 const { SubMenu } = Menu;
@@ -32,7 +32,7 @@ function Layout({ children }) {
                 },
                 {
                     name: "Training Services",
-                    path: "/training",
+                    path: "/Traininga",
                 },
             ],
         },
@@ -41,20 +41,11 @@ function Layout({ children }) {
             name: "Store",
             path: "/store",
             icon: "ri-store-line",
-            subMenu: [
-                {
-                    name: "Inventory Management",
-                    path: "/",
-                },
-                {
-                    name: "Advertisement",
-                    path: "/store/advertisement",
-                },
-            ],
+            
         },
 
         {
-            name: "Advertisements",
+            name: "Ads",
             path: "/Advertisement",
             icon: "ri-newspaper-line",
             
@@ -62,302 +53,17 @@ function Layout({ children }) {
 
         {
             name: "FAQ",
-            path: "/faq",
+            path: "/Feedback",
             icon: "ri-questionnaire-line",
         },
     ];
 
-    const adminmenu = [
-        
-      {
-          name: "Home",
-          path: "/",
-          icon: "ri-home-3-line",
-      },
-      {
-        name: "View All Users",
-        path: "/ViewAllUsers",
-        icon: "ri-users-line",
-    },
-      {
-          name: "Services",
-          path: "/",
-          icon: "ri-settings-3-line",
-          subMenu: [
-              {
-                  name: "Vet Services",
-                  path: "/Vetservices",
-              },
-              {
-                  name: "Groom Services",
-                  path: "/Groomservices",
-              },
-              {
-                  name: "Training Services",
-                  path: "/training",
-              },
-          ],
-      },
-
-      {
-          name: "Store",
-          path: "/store",
-          icon: "ri-store-line",
-          subMenu: [
-              {
-                  name: "Inventory Management",
-                  path: "/inventory",
-              },
-              {
-                  name: "Advertisement",
-                  path: "/advertisement",
-              },
-          ],
-      },
-
-      {
-          name: "Blog & News",
-          path: "/blog",
-          icon: "ri-newspaper-line",
-          subMenu: [
-            {
-              name: "Blogs",
-              path: "/blogs",
-            },
-            {
-              name: "News",
-              path: "/news"
-            }
-          ]
-      },
-
-      {
-          name: "FAQ",
-          path: "/faq",
-          icon: "ri-questionnaire-line",
-      },
-  ];
-
-    const vetmenu = [
-        
-      {
-          name: "Home",
-          path: "/",
-          icon: "ri-home-3-line",
-      },
-      {
-        name: "Appointments",
-        path: "/ViewAllAppointments",
-        icon: "ri-calendar-schedule-fill",
-    },
-      {
-          name: "Services",
-          path: "/",
-          icon: "ri-settings-3-line",
-          subMenu: [
-              {
-                  name: "Vet Services",
-                  path: "/Vetservices",
-              },
-              {
-                  name: "Groom Services",
-                  path: "/Groomservices",
-              },
-              {
-                  name: "Training Services",
-                  path: "/training",
-              },
-          ],
-      },
-
-      {
-          name: "Store",
-          path: "/store",
-          icon: "ri-store-line",
-          subMenu: [
-              {
-                  name: "Inventory Management",
-                  path: "/inventory",
-              },
-              {
-                  name: "Advertisement",
-                  path: "/advertisement",
-              },
-          ],
-      },
-
-      {
-          name: "Blog & News",
-          path: "/blog",
-          icon: "ri-newspaper-line",
-          subMenu: [
-            {
-              name: "Blogs",
-              path: "/blogs",
-            },
-            {
-              name: "News",
-              path: "/news"
-            }
-          ]
-      },
-
-      {
-          name: "FAQ",
-          path: "/faq",
-          icon: "ri-questionnaire-line",
-      },
-  ];
-
-  const groommenu = [
-        
-    {
-        name: "Home",
-        path: "/",
-        icon: "ri-home-3-line",
-    },
-    {
-      name: "Appointments",
-      path: "/ViewAllAppointments",
-      icon: "ri-calendar-schedule-fill",
-  },
-    {
-        name: "Services",
-        path: "/",
-        icon: "ri-settings-3-line",
-        subMenu: [
-            {
-                name: "Vet Services",
-                path: "/Vetservices",
-            },
-            {
-                name: "Groom Services",
-                path: "/Groomservices",
-            },
-            {
-                name: "Training Services",
-                path: "/training",
-            },
-        ],
-    },
-
-    {
-        name: "Store",
-        path: "/store",
-        icon: "ri-store-line",
-        subMenu: [
-            {
-                name: "Inventory Management",
-                path: "/inventory",
-            },
-            {
-                name: "Advertisement",
-                path: "/advertisement",
-            },
-        ],
-    },
-
-    {
-        name: "Blog & News",
-        path: "/blog",
-        icon: "ri-newspaper-line",
-        subMenu: [
-          {
-            name: "Blogs",
-            path: "/blogs",
-          },
-          {
-            name: "News",
-            path: "/news"
-          }
-        ]
-    },
-
-    {
-        name: "FAQ",
-        path: "/faq",
-        icon: "ri-questionnaire-line",
-    },
-    ];
-
-
-    const trainermenu = [
-        
-      {
-          name: "Home",
-          path: "/",
-          icon: "ri-home-3-line",
-      },
-      {
-        name: "All courses",
-        path: "/AllCourses",
-        icon: "ri-list-line",
-    },
-      {
-          name: "Services",
-          path: "/",
-          icon: "ri-settings-3-line",
-          subMenu: [
-              {
-                  name: "Vet Services",
-                  path: "/Vetservices",
-              },
-              {
-                  name: "Groom Services",
-                  path: "/Groomservices",
-              },
-              {
-                  name: "Training Services",
-                  path: "/training",
-              },
-          ],
-      },
-
-      {
-          name: "Store",
-          path: "/store",
-          icon: "ri-store-line",
-          subMenu: [
-              {
-                  name: "Inventory Management",
-                  path: "/inventory",
-              },
-              {
-                  name: "Advertisement",
-                  path: "/advertisement",
-              },
-          ],
-      },
-
-      {
-          name: "Blog & News",
-          path: "/blog",
-          icon: "ri-newspaper-line",
-          subMenu: [
-            {
-              name: "Blogs",
-              path: "/blogs",
-            },
-            {
-              name: "News",
-              path: "/news"
-            }
-          ]
-      },
-
-      {
-          name: "FAQ",
-          path: "/faq",
-          icon: "ri-questionnaire-line",
-      },
-  ];
-
-
   return (
     <div>
       <div className="menu">
-      <Menu mode="horizontal" style={{ textAlign: 'left' }}>
+        <Menu mode="horizontal">
           {userMenu.map((item) => {
+            
             if (item.subMenu) {
               return (
                 <SubMenu key={item.name} title={item.name} icon={<i className={item.icon} />}>

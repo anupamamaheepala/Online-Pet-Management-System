@@ -1,60 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
-import '../cssfiles/advertisement.css';
+import '../css/advertisement.css';
 
-const Advertisement = () => {
-    const [advertisements, setAdvertisements] = useState([]);
+const CheckAdvertisementDetails = () => {
+    const [advertisements, setAdvertisements] = useState([
+        {
+            id: 'advertisement1',
+            type: 'Pets for sale',
+            title: 'Ad Title',
+            description: 'Description of the pet for sale.',
+            price: 'LKRXXX',
+            contact: 'Contact details',
+            // Add image URL for the pet
+            image: 'pet1.jpg'
+        },
+        {
+            id: 'advertisement2',
+            type: 'Lost & found',
+            title: 'Lost Pet Title',
+            description: 'Description of the lost pet.',
+            contact: 'Contact details',
+            // Add image URL for the lost pet
+            image: 'lostpet1.jpg'
+        },
+        {
+            id: 'advertisement1',
+            type: 'Pets for sale',
+            title: 'Ad Title',
+            description: 'Description of the pet for sale.',
+            price: 'LKRXXX',
+            contact: 'Contact details',
+            // Add image URL for the pet
+            image: 'pet1.jpg'
+        },
+        {
+            id: 'advertisement2',
+            type: 'Lost & found',
+            title: 'Lost Pet Title',
+            description: 'Description of the lost pet.',
+            contact: 'Contact details',
+            // Add image URL for the lost pet
+            image: 'lostpet1.jpg'
+        },
+        // Add more advertisement data as needed
+    ]);
 
-    useEffect(() => {
-        fetchAdvertisements();
-    }, []);
+    const handleConfirm = (advertisementId) => {
+        // Implement confirmation logic here
+    };
 
-    const fetchAdvertisements = async () => {
-        try {
-            // Mocking advertisement data
-            const data = [
-                {
-                    id: 1,
-                    type: "Pets for sale",
-                    title: "Ad Title 1",
-                    description: "Description of the pet for sale.",
-                    price: "LKRXXX",
-                    contact: "Contact details"
-                },
-                {
-                    id: 2,
-                    type: "Lost & found",
-                    title: "Lost Pet Title 1",
-                    description: "Description of the lost pet.",
-                    contact: "Contact details"
-                },
-                {
-                    id: 3,
-                    type: "Pets for sale",
-                    title: "Ad Title 1",
-                    description: "Description of the pet for sale.",
-                    price: "LKRXXX",
-                    contact: "Contact details"
-                },
-                {
-                    id: 4,
-                    type: "Lost & found",
-                    title: "Lost Pet Title 1",
-                    description: "Description of the lost pet.",
-                    contact: "Contact details"
-                },
-                // Add more advertisement data as needed
-            ];
-            setAdvertisements(data);
-        } catch (error) {
-            console.error('Error fetching advertisements:', error);
-        }
+    const handleReject = (advertisementId) => {
+        // Implement rejection logic here
     };
 
     return (
         <Layout>
-            <div className="button-container">
+             <div className="button-container">
                 <div className="advertisement-buttons">
                     <Link to="/AddAdvertisement" className="add_button">Add a new advertisement</Link>
                 </div>
@@ -67,13 +69,23 @@ const Advertisement = () => {
                     <div key={advertisement.id} className="advertisement-column">
                         <h3>{advertisement.type}</h3>
                         <div className="advertisement-box">
-                            {/* You can conditionally render an image if available */}
+                            <input
+                                type="checkbox"
+                                id={advertisement.id}
+                                // Implement checked state management here
+                            />
+                            <label htmlFor={advertisement.id}>{advertisement.title}</label>
                             {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="advertisement-photo" />}
-                            <div className="advertisement-details">
-                                <h4>{advertisement.title}</h4>
-                                <p>{advertisement.description}</p>
-                                {advertisement.price && <p>Price: {advertisement.price}</p>}
-                                <p>Contact details: {advertisement.contact}</p>
+                            <p>{advertisement.description}</p>
+                            {advertisement.price && <p>Price: {advertisement.price}</p>}
+                            <p>Contact details: {advertisement.contact}</p>
+                            <div className="advertisement-buttons">
+                                <div className="button-container">
+                                    <button onClick={() => handleConfirm(advertisement.id)} className="add_button confirm_button">Confirm</button>
+                                </div>
+                                <div className="button-container">
+                                    <button onClick={() => handleReject(advertisement.id)} className="add_button reject_button">Reject</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,4 +95,4 @@ const Advertisement = () => {
     );
 }
 
-export default Advertisement;
+export default CheckAdvertisementDetails;

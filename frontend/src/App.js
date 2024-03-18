@@ -2,10 +2,11 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-
-import Traininga from "./pages/Traininga";
+import Feedback from "./pages/Feedback";
+import Traininga from './pages/Traininga';
 import Trainingb from './pages/Trainingb';
 import Privatea from './pages/Privatea';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
@@ -18,10 +19,16 @@ import AddAdvertisement from './pages/AddAdvertisement';
 import ConfirmAdvertisement from './pages/ConfirmAdvertisement';
 import MyAdvertisements from './pages/MyAdvertisements';
 import AllAdvertisements from './pages/AllAdvertisements';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout } from 'antd';
 import CheckAdvertisementDetails from './pages/CheckAdvertisementDetails';
+<<<<<<< HEAD
 import Register from './pages/Register';
+=======
+import Payerinfo from './pages/Payerinfo';
+import Cardpay from './pages/Cardpay'
+>>>>>>> 576536c5a1755884401801658db11fd506433d7c
 
 function App() {
 
@@ -32,9 +39,13 @@ function App() {
     <Layout />
       <Routes>
         <Route path="/" element={<Home/>} ></Route> 
-        <Route path= "/services/training" element={<Traininga />}></Route>
-        <Route path= "/pages/trainingb" element={<Trainingb />}></Route>
-        <Route path="/pages/privatea"  element={<Privatea/>}></Route>
+        <Route path= "/Traininga" element={<Traininga />}></Route>
+        <Route path= "/Trainingb" element={<Trainingb />}></Route>
+        <Route path="/Privatea"  element={<Privatea/>}></Route>
+
+        <Route path="/" element={<Home/>} ></Route>
+        <Route path="/Feedback" element={<Feedback/>} ></Route>    
+
 
         <Route path="/" element={<Home/>} ></Route>   
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
@@ -52,9 +63,16 @@ function App() {
         <Route path="/MyAdvertisements" element={<MyAdvertisements/>} ></Route>
         <Route path='/AllAdvertisements' element={<AllAdvertisements/>}></Route>
 
+<<<<<<< HEAD
 
         <Route path="/Register" element={<Register/>} ></Route>
         </Routes>
+=======
+        <Route path="/Payerinfo" element={<Payerinfo/>} ></Route>
+        <Route path="/Cardpay" element={<Cardpay/>} ></Route>
+
+       </Routes>
+>>>>>>> 576536c5a1755884401801658db11fd506433d7c
         
     </BrowserRouter>
     </div>

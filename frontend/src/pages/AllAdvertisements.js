@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
-import '../cssfiles/advertisement.css';
+import '../css/advertisement.css';
 
 const AllAdvertisements = () => {
     const [advertisements, setAdvertisements] = useState([]);

@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import '../cssfiles/advertisement.css';
+import '../css/advertisement.css';
 import { Link } from 'react-router-dom';
 
 const MyAdvertisements = () => {
@@ -17,8 +17,8 @@ const MyAdvertisements = () => {
                             <p>Price: LKRXXX</p>
                             <p>Contact details</p>
                             <div className="advertisement-buttons">
-        <div className="button-container">
-        <Link to="/AddAdvertisement" className="add_button confirm_button1">Edit</Link>
+                         <div className="button-container">
+        <Link to="/AddAdvertisement" className="add_button confirm_button">Edit</Link>
             
         </div>
         <div className="button-container">
