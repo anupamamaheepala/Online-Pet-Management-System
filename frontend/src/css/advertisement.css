@@ -142,7 +142,7 @@
     width: 700px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #cec8c8;
+    background-color: #ffffff;;
     border: 5px solid #858080;
     border-radius: 8px;
 }
@@ -204,9 +204,10 @@
 }
 
 .submit-button:hover {
-    background-color: rgb(255, 255, 255);
+    background-color: #214267;
+      };
     
-}
+
 
 
 
