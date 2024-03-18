@@ -1,5 +1,5 @@
 .signinform {
-<<<<<<< HEAD
+
   
     margin-top: 10px;
     max-width: 450px;
@@ -46,7 +46,7 @@
 
   
   }
-=======
+
   margin-top: 10px;
   max-width: 450px;
   margin: 0 auto;
@@ -59,7 +59,7 @@
   backdrop-filter: blur(10px);
   font-family: 'Times New Roman', Times, serif;
 }
->>>>>>> ee016eef82473b47a45ee1a0b682278e0ccf2fac
+
 
 .form-group {
   margin-top: 20px;
