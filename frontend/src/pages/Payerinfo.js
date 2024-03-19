@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import '../css/payerinfo.css';
-import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 
 const Payerinfo = ({ onNext }) => {
   const [userInfo, setUserInfo] = useState({
@@ -25,7 +27,8 @@ const Payerinfo = ({ onNext }) => {
   };
 
   return (
-    <Layout>
+    <>
+    <Header/>
     <div className="user-info-container">
       <div className="tile"><h1 className='topic'>Payer's Information</h1></div>
       <form className="user-info-form" onSubmit={handleSubmit}>
@@ -65,7 +68,8 @@ const Payerinfo = ({ onNext }) => {
         </center>
       </form>
     </div>
-    </Layout>
+    <Footer/>
+    </>
   );
 };
 
