@@ -1,5 +1,6 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header.js';
+import Footer from '../components/Footer.js';
 import '../css/Trainingprogram.css';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +31,8 @@ const PrivateTrainingPrograms = () => {
     ];
 
     return (
-        <Layout>
+        <div>
+        <Header/>
             <div className="product-grid">
                 {products.map(product => (
                     <div key={product.id} className="product-item">
@@ -56,7 +58,8 @@ const PrivateTrainingPrograms = () => {
                     </div>
                 ))}
             </div>
-        </Layout>
+        <Footer/>
+        </div>
     );
 }
 

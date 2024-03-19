@@ -1,13 +1,29 @@
+<<<<<<< HEAD
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../css/vetservices.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer'; 
+=======
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/vetservices.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+>>>>>>> df1b24568452cef9f33761599a9ef7e6cdec631e
 
 function Vetservices() {
   const images = ['vetback1.jpg', 'vetback2.jpg', 'vetback3.jpg', 'vetback4.jpg', 'vetback5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
 
+<<<<<<< HEAD
+  const handleLeftClick = () => {
+    setCurrentImage(currentImage === 0 ? images.length - 1 : currentImage - 1);
+  };
+
+  const handleRightClick = () => {
+    setCurrentImage(currentImage === images.length - 1 ? 0 : currentImage + 1);
+=======
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
   };
@@ -23,12 +39,20 @@ function Vetservices() {
 
   const handleDotClick = (index) => {
     setCurrentImage(index);
+>>>>>>> df1b24568452cef9f33761599a9ef7e6cdec631e
   };
 
   return (
     <>
       <Header /> 
       <div className="image-slider">
+<<<<<<< HEAD
+        <button className="arrow left" onClick={handleLeftClick}>◀</button>
+        <img className="slider-image" src={`/images/${images[currentImage]}`} alt="Veterinary Service" />
+        <button className="arrow right" onClick={handleRightClick}>▶</button>
+      </div>
+      {/* ... rest of your code ... */}
+=======
         <div className="upper-text">
           <p className="welcome-text">
             Welcome to Pet Zone Hospital Veterinary Services! Where every paw is treated with love, care, and expertise. Let's keep your pet healthy!
@@ -95,6 +119,7 @@ function Vetservices() {
           </li>
         </ul>
       </div>
+>>>>>>> df1b24568452cef9f33761599a9ef7e6cdec631e
       <Footer /> 
     </>
   );
