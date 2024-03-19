@@ -63,10 +63,10 @@ image: "images/Drools.png"
     <><Header/>
     
       <div className="product-catalog">
-        <div className="search-bar">
+        <div className="search-bar-O">
           <input type="text" placeholder="Search products" />
-          <button className="search-button">Search</button>
-          <button className="cart-button">Cart</button>
+          <button className="search-button-O">Search</button>
+          <button className="cart-button-O">Cart</button>
         </div>
 
         <div className="product-grid">
