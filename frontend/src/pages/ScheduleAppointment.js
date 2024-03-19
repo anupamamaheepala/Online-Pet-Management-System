@@ -23,7 +23,7 @@ function ScheduleAppointments() {
   return (
     <>
       <Header />
-      <div className="container my-5">
+    {/*  <div className="container my-5">
         <Form onSubmit={handleSubmit} className="p-5 bg-light border rounded">
           <Row className="g-3">
             <Col>
@@ -83,7 +83,7 @@ function ScheduleAppointments() {
             </Button>
           </div>
         </Form>
-      </div>
+  </div>*/}
       <Footer /> 
     </>
   );
