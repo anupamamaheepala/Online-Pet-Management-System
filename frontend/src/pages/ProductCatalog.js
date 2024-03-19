@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
 import '../css/ProductCatalog.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ProductCatalog = () => {
   const products = [
@@ -65,7 +66,8 @@ const ProductCatalog = () => {
 
 
   return (
-    <Layout>
+    <>
+    <Header/>
       <div className="product-catalog">
         <div className="search-bar">
           <input type="text" placeholder="Search products" />
@@ -89,7 +91,8 @@ const ProductCatalog = () => {
           ))}
         </div>
       </div>
-    </Layout>
+      <Footer/>
+    </>
   );
 };
 
