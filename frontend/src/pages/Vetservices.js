@@ -1,19 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/vetservices.css';
-import Header from '../components/Header'; // Importing the Header component
-import Footer from '../components/Footer'; // Importing the Footer component
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Vetservices() {
+  const images = ['vetback1.jpg', 'vetback2.jpg', 'vetback3.jpg', 'vetback4.jpg', 'vetback5.jpg'];
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImage((currentImage + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImage((currentImage + images.length - 1) % images.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextImage, 3000); // Change image every 3 seconds
+    return () => clearInterval(interval);
+  }, [currentImage]);
+
+  const handleDotClick = (index) => {
+    setCurrentImage(index);
+  };
+
   return (
     <>
-      <Header /> {/* Rendering the Header component */}
-      <div className="appointment-container">
-        <Link to="/ScheduleAppointment">
-          <button className="appointment-button">Make an Appointment</button>
-        </Link>
+      <Header /> 
+      <div className="image-slider">
+        <div className="upper-text">
+          <p className="welcome-text">
+            Welcome to Pet Zone Hospital Veterinary Services! Where every paw is treated with love, care, and expertise. Let's keep your pet healthy!
+          </p>
+          <Link to="/ScheduleAppointment" className="appointment-button">Make an appointment</Link>
+        </div>
+        <button className="arrow left" onClick={prevImage}>◀</button>
+        <img className="slider-image" src={`/images/${images[currentImage]}`} alt="Veterinary Service" />
+        <button className="arrow right" onClick={nextImage}>▶</button>
+        <div className="dots-container">
+          {images.map((_, index) => (
+            <span
+              key={index}
+              className={index === currentImage ? "dot active" : "dot"}
+              onClick={() => handleDotClick(index)}
+            ></span>
+          ))}
+        </div>
       </div>
-
       <div className="vet-services-container">
         <h1>Available Veterinary Services</h1>
         <ul className="service-list">
@@ -61,7 +95,7 @@ function Vetservices() {
           </li>
         </ul>
       </div>
-      <Footer /> {/* Adding the Footer component */}
+      <Footer /> 
     </>
   );
 }
