@@ -1,5 +1,6 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 
@@ -59,7 +60,8 @@ image: "images/Drools.png"
   ];
 
   return (
-    <Layout>
+    <><Header/>
+    
       <div className="product-catalog">
         <div className="search-bar">
           <input type="text" placeholder="Search products" />
@@ -81,7 +83,7 @@ image: "images/Drools.png"
           ))}
         </div>
       </div>
-    </Layout>
+      <Footer/>    </>
   );
 };
 
