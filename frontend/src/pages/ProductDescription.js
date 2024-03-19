@@ -1,6 +1,10 @@
-import { Layout } from 'antd';
+
 import React from 'react';
 import '../css/ProductCatalog.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../css/ProductDescription.css';
+
 
 
 
@@ -20,7 +24,7 @@ const ProductDescription = () => {
 
    
     return (
-        <Layout>
+        <><Header/>
         <div className="product-description">
         <div className="search-bar">
             <input type="text" placeholder="Search products" />
@@ -43,7 +47,8 @@ const ProductDescription = () => {
         ))}
 </div>
 </div>
-        </Layout>
+<Footer/>
+        </>
     );
 }
 
