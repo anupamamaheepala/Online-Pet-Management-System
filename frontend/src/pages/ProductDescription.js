@@ -1,6 +1,5 @@
 
 import React from 'react';
-import '../css/ProductCatalog.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/ProductDescription.css';
@@ -25,13 +24,13 @@ const ProductDescription = () => {
    
     return (
         <><Header/>
-        <div className="product-description">
-        <div className="search-bar">
-            <input type="text" placeholder="Search products" />
-            <button className="search-button">Search</button>
-            <button className="cart-button">Cart</button>
+
+<div className="product-catalog">
+        <div className="search-bar-O">
+          <input type="text" placeholder="Search products" />
+          <button className="search-button-O">Search</button>
+          <button className="cart-button-O">Cart</button>
         </div>
-       
         <div className="product-grid">
         {products.map(product => (
             <div key={product.id} className="product-item">

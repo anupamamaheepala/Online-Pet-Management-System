@@ -1,35 +1,45 @@
 /* Reset default padding and margin */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 
 /* Main container */
 .product-catalog {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  position: relative; 
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
-/* Search bar */
-.search-bar1{
+.search-bar-O {
   position: absolute;
   top: 20px;
   right: 20px; /* Align to top right corner */
   display: flex;
-  align-items: center;
+  align-items: center; /* Center vertically */
+}
+#placeholder
+{
+  width: 1500px;
 }
 
-.search-bar1 input[type="text"] {
-  padding: 10px;
-  border: 1px solid #ddd;
+.search-bar-O input[type="text"] {
+  padding: 15px; /* Increase padding */
+  width: 250px; /* Set width */
+  border: 1px solid #007bff; /* Blue border */
   border-radius: 5px;
   margin-right: 10px;
+  transition: border-color 0.3s ease; /* Smooth transition */
 }
 
-.search-button1 {
+
+
+.search-bar-O input[type="text"]:focus {
+  border-color: #0056b3; /* Darker blue on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+.search-button-O {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -39,21 +49,21 @@
   transition: background-color 0.3s ease;
 }
 
-.search-button1:hover {
+.search-button-O:hover {
   background-color: #0056b3;
 }
+
 
 /* Product grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  padding-top: 100px;
   padding-left: 100px;
   padding-right: 100px;
-  padding-top: 100px;
   padding-bottom: 100px;
 }
-
 /* Individual product item */
 .product-item {
   border: 1px solid #ddd;
@@ -97,11 +107,10 @@
 }
 
 /* Add to cart button */
-.add-to-cart-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+.cart-button-O {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745; /* Green color */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -109,6 +118,6 @@
   transition: background-color 0.3s ease;
 }
 
-.add-to-cart-button:hover {
-  background-color: #0056b3;
+.cart-button-O:hover {
+  background-color: #218838; /* Darker green on hover */
 }
