@@ -52,7 +52,104 @@
   
   .service-list li:hover {
     background-color: #f0f0f0 !important;
+    transform: scale(1.05) !important; 
   }
 
+  .image-slider {
+    position: relative;
+    width: 100%;
+    height: 80vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .arrow {
+    position: absolute;
+    background: none;
+    font-size: 2rem; 
+    color: #fff;
+    cursor: pointer;
+    top: 50%;
+  }
+  
+  .arrow:hover {
+ 
+   background: none;
+   transform: scale(1.05) !important; 
+  }
+
+  .arrow.left {
+    margin-right: 1480px; 
+  }
+  
+  .arrow.right {
+    margin-left: 1480px;
+  }
+  
+  .dots-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  
+  .dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: #333;
+  }
+  
+  .upper-text {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  
+  .welcome-text {
+    color: white;
+    font-size: 45px;
+    text-align: center;
+  }
+  
+  
+  
+  .appointment-button {
+    width: 250px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #0b5ed7;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .appointment-button:hover {
+    background-color: #084da5;
+  }
   
   
