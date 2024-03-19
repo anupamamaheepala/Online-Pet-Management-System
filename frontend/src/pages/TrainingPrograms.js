@@ -1,12 +1,15 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header.js';
+import Footer from '../components/Footer.js';
 import '../css/Trainingprogram.css';
 import { Link } from 'react-router-dom';
 
 
+
 const TrainingPrograms = () => {
     return (
-        <Layout>
+        <div>
+        <Header/>
 
             <div className="product-catalog">
                 <div className="search-bar">
@@ -85,7 +88,8 @@ const TrainingPrograms = () => {
                 </div>
             </div>
             </div>
-        </Layout>
+        <Footer/>
+        </div>
     );
 }
 

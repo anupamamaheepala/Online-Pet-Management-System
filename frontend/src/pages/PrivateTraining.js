@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../css/Trainingapp.css';
 
 const PrivateTraining = () => {
@@ -37,7 +38,8 @@ const PrivateTraining = () => {
   };
 
   return (
-    <Layout>
+    <div>
+    <Header/>
       <div className="background-container">
         <img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />
         <div className="container">
@@ -80,7 +82,9 @@ const PrivateTraining = () => {
           </div>
         </div>
       </div>
-    </Layout>
+      
+        <Footer/>
+      </div>
   );
 };
 
