@@ -13,7 +13,6 @@ function Vetservices() {
           <button className="appointment-button">Make an Appointment</button>
         </Link>
       </div>
-      <hr />
 
       <div className="vet-services-container">
         <h1>Available Veterinary Services</h1>

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/groomeservices.css';
-import Header from '../components/Header'; // Import the Header component
-import Footer from '../components/Footer'; // Import the Footer component
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
 
 function Groomservices() {
   return (
     <>
-      <Header /> {/* Rendering the Header component */}
+      <Header /> 
       <div className="appointment-container">
         <Link to="/ScheduleAppointment">
           <button className="appointment-button">Make an Appointment</button>
         </Link>
       </div>
-      <hr />
+      
 
       <div className="groom-services-container">
         <h1>Available Pet Grooming Services</h1>
@@ -67,7 +67,7 @@ function Groomservices() {
           </li>
         </ul>
       </div>
-      <Footer /> {/* Adding the Footer component */}
+      <Footer /> 
     </>
   );
 }

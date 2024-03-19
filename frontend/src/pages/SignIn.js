@@ -5,9 +5,12 @@ import '../css/signin.css';
 
 function SignIn() {
   return (
+
+  
     <Layout>
       <div className="container" style={{ marginTop: '100px', width: '600px', maxWidth: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: 'rgba(46, 119, 107, 0.397)' }}>
         <h2><center>Sign In To PetZone</center></h2>
+
 
         <div>
           <br />
