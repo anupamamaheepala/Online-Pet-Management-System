@@ -1,16 +1,15 @@
 
-import Layout from '../components/Layout';
 import '../css/advertisement.css'; 
-
 import React from 'react';
-import '../css/advertisement.css'; // Import the CSS file
-import Header from '../components/Header'; // Import the Header component
+import '../css/advertisement.css'; 
+import Header from '../components/Header'; 
+import Footer from '../components/Footer';
 
 
 const AddAdvertisement = () => {
     return (
         <>
-            <Header /> {/* Rendering the Header component */}
+            <Header /> 
             
                 <form className="advertisement-form">
                     <h2>Add your advertisement details here. </h2>
@@ -51,7 +50,7 @@ const AddAdvertisement = () => {
                     
                     <button style={{width:'150px'}} type="submit" className="submit-button">Submit</button>
                 </form>
-            
+                <Footer />
         </>
     );
 }
