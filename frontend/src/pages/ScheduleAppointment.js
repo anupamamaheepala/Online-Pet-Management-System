@@ -15,10 +15,44 @@ function ScheduleAppointments() {
   const [startTime, setStartTime] = useState('');
   const [veterinarian, setVeterinarian] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // handle form submission here
+  
+    try {
+      // Construct form data object
+      const formData = {
+        name,
+        email,
+        contactNumber,
+        petType,
+        service,
+        date,
+        startTime,
+        veterinarian
+      };
+  
+      // Send form data to backend
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+  
+      if (response.ok) {
+        // Form submission successful
+        alert('Appointment scheduled successfully!');
+      } else {
+        // Form submission failed
+        alert('Failed to schedule appointment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    }
   };
+  
 
   return (
     <>
