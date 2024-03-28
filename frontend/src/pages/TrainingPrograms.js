@@ -1,21 +1,16 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header.js';
+import Footer from '../components/Footer.js';
 import '../css/Trainingprogram.css';
 import { Link } from 'react-router-dom';
 
 
+
 const TrainingPrograms = () => {
     return (
-        <Layout>
-
-            <div className="product-catalog">
-                <div className="search-bar">
-                    <input type="text" placeholder="Search products" />
-                    <button className="search-button">Search</button>
-                   
-                </div>
-                 
-            <div style={{ position: "relative" }}>
+        <>
+        <Header/>
+              <div style={{ position: "relative" }}>
                 <img src="/images/tp1.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />
 
                 <div style={{ position: "absolute", top: "25%", left: "20%", transform: "translate(-50%, -50%)" }}>
@@ -84,8 +79,9 @@ const TrainingPrograms = () => {
                     </div>
                 </div>
             </div>
-            </div>
-        </Layout>
+        
+        <Footer/>
+        </>
     );
 }
 

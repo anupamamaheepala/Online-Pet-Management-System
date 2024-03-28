@@ -1,42 +1,89 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header'; // Import the Header component
-import Footer from '../components/Footer'; // Import the Footer component
-import '../css/ProductCatalog.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+
 
 const ProductCatalog = () => {
   const products = [
-    // Product data
+    {
+      id: 1,
+      name: "Dog Food",
+      description: "Premium quality dog food for all breeds and sizes.",
+      price: "$25",
+      image: "images/Drools.png"
+  },
+  {
+      id: 2,
+      name: "Cat Toy Set",
+      description: "A set of interactive toys to keep your cat entertained.",
+      price: "$15",
+      image: "images/Drools.png"
+  },
+  {
+      id: 3,
+      name: "Bird Cage",
+      description: "Spacious cage suitable for small to medium-sized birds.",
+      price: "$40",
+      image: "images/Drools.png"
+  },
+  {
+      id: 4,
+      name: "Fish Tank",
+      description: "Glass fish tank with built-in LED lighting.",
+      price: "$50",
+      image: "images/Drools.png"
+  },
+  {
+    id: 4,
+    name: "Fish Tank",
+    description: "Glass fish tank with built-in LED lighting.",
+    price: "$50",
+    image: "images/Drools.png"
+},
+{
+  id: 5,
+  name: "Dog Food",
+  description: "Premium quality dog food for all breeds and sizes.",
+  price: "$25",
+  image: "images/Drools.png"
+},
+{
+id: 5,
+name: "Dog Food",
+description: "Premium quality dog food for all breeds and sizes.",
+price: "$25",
+image: "images/Drools.png"
+
+    },
+    // Add more products here if needed
   ];
 
   return (
-    <>
-      <Header /> {/* Add the Header component */}
+    <><Header/>
+    
       <div className="product-catalog">
-        <div className="search-bar">
+        <div className="search-bar-O">
           <input type="text" placeholder="Search products" />
-          <button className="search-button">Search</button>
-          <Link to="/cart" className="cart-button">Cart</Link>
+          <button className="search-button-O">Search</button>
+          <button className="cart-button-O">Cart</button>
         </div>
 
         <div className="product-grid">
           {products.map(product => (
-            <Link key={product.id} to={`/product/${product.id}`} className="product-item-link">
-              <div className="product-item">
-                <img src={product.image} alt={product.name} className="product-image" />
-                <div className="product-details">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-description">{product.description}</p>
-                  <p className="product-price">Price: {product.price}</p>
-                  <button className="add-to-cart-button">Add to Cart</button>
-                </div>
+            <Link key={product.id} to={`/product/${product.id}`} className="product-item">
+              <img src={product.image} alt={product.name} className="product-image" />
+              <div className="product-details">
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+                <p className="product-price">Price: {product.price}</p>
+                <button className="add-to-cart-button">Add to Cart</button>
               </div>
             </Link>
           ))}
         </div>
       </div>
-      <Footer /> {/* Add the Footer component */}
-    </>
+      <Footer/>    </>
   );
 };
 
