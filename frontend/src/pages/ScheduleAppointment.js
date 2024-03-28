@@ -51,7 +51,7 @@ function ScheduleAppointments() {
               <Form.Group controlId="formService">
                 <Form.Label className="scheduleappointments-label">Select Service</Form.Label>
                 <Form.Control as="select" value={service} onChange={e => setService(e.target.value)} className="scheduleappointments-select">
-                  <option value="">None</option>
+                  <option value="">--select--</option>
                   <option value="veterinary">Veterinary Services</option>
                   <option value="grooming">Grooming Services</option>
                 </Form.Control>
@@ -70,7 +70,7 @@ function ScheduleAppointments() {
               <Form.Group controlId="formVeterinarian">
                 <Form.Label className="scheduleappointments-label">Select Veterinarian/Groomer</Form.Label>
                 <Form.Control as="select" value={veterinarian} onChange={e => setVeterinarian(e.target.value)} className="scheduleappointments-select">
-                  <option value="">None</option>
+                  <option value="">--select--</option>
                   <option value="veterinarian1">Veterinarian 1</option>
                   <option value="groomer1">Groomer 1</option>
                 </Form.Control>
