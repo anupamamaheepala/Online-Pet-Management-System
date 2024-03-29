@@ -1,10 +1,10 @@
-.advertisement-column {
+.ma_advertisement-column {
     width: 48%; /* Adjust width to fit two columns */
     float: none; /* Remove float to allow for proper alignment */
     margin: 0 auto; /* Center align columns */
 }
 
-.add_button {
+.ma_add_button {
     background-color: rgba(46, 119, 107, 0.397); 
     border: 2px solid rgb(39, 20, 9);
     color: rgb(39, 20, 9);
@@ -21,24 +21,24 @@
     outline: none;
 }
 
-.add_button:hover {
+.ma_add_button:hover {
     background-color: rgb(255, 255, 255);
 }
 
-.button-container {
+.ma_button-container {
     display: flex;
     justify-content: flex-end; /* Align buttons to the right */
     margin-top: 10px; 
 }
 
-.advertisement-container {
+.ma_advertisement-container {
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap */
     justify-content: space-between; /* Add space between items */
     margin-bottom: 20px;
 }
 
-.advertisement-box {
+.ma_advertisement-box {
     position: relative; /* Ensure relative positioning for the checkbox */
     background-color: #f9f9f9;
     border: 5px solid #ddd;
@@ -47,7 +47,7 @@
     margin-bottom: 20px;
 }
 
-.advertisement-box input[type="checkbox"] {
+.ma_advertisement-box input[type="checkbox"] {
     position:absolute;
     top: 20px;
     transform: scale(1.5); 
@@ -55,42 +55,42 @@
     left: 200px;
 }
 
-.confirm_button {
+.ma_confirm_button {
     background-color: green;
     border: 2px solid green;
     color: white;
 }
 
-.reject_button {
+.ma_reject_button {
     background-color: red;
     border: 2px solid red;
     color: white;
 }
 
-.advertisement-buttons {
+.ma_advertisement-buttons {
     display: flex;
     justify-content: flex-end; /* Align buttons to the right */
 }
 
-.button-container {
+.ma_button-container {
     margin: 0;
 }
 
 
-.advertisement-column {
+.ma_advertisement-column {
     width: 50%;
     float: right;
 }
 
-.left-column {
+.ma_left-column {
     text-align: justify;
 }
 
-.right-column {
+.ma_right-column {
     text-align: justify;
 }
 
-.add_button {
+.ma_add_button {
     background-color: rgba(44, 82, 75, 0.397); 
     border: 2px solid rgb(39, 20, 9);
     color: rgb(39, 20, 9);
@@ -107,26 +107,26 @@
     outline: none;
 }
 
-.add_button:hover {
+.ma_add_button:hover {
     background-color: rgba(0, 0, 0, 0.397);
 }
-.button-container {
+.ma_button-container {
     display: flex;
     justify-content: flex-end;
     margin-top: 10px; 
 }
 
-.advertisement-container {
+.ma_advertisement-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.advertisement-column {
+.ma_advertisement-column {
     width: 48%; 
 }
 
-.advertisement-box {
+.ma_advertisement-box {
     background-color: #f9f9f9;
     border: 5px solid #ddd;
     border-radius: 8px;
@@ -134,11 +134,11 @@
     margin-bottom: 20px;
 }
 
-.advertisement-box h3 {
+.ma_advertisement-box h3 {
     margin-top: 10px;
 }
 
-.advertisement-form {
+.ma_advertisement-form {
     width: 700px;
     margin: 0 auto;
     padding: 20px;
@@ -147,15 +147,15 @@
     border-radius: 8px;
 }
 
-.advertisement-form h2 {
+.ma_advertisement-form h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.form-group {
+.ma_form-group {
     margin-bottom: 20px;
 }
-.form-group select {
+.ma_form-group select {
     width: 100%;
     padding: 15px; /* Adjust padding to match other input fields */
     border: 1px solid #ddd;
@@ -165,25 +165,25 @@
     color: #000000;
     cursor: pointer;
 }
-.form-group label {
+.ma_form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.form-group input[type="text"],
-.form-group textarea {
+.ma_form-group input[type="text"],
+.ma_form-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-.form-group textarea {
+.ma_form-group textarea {
     height: 100px; 
 }
 
-.submit-button {
+.ma_submit-button {
     background-color: rgba(44, 82, 75, 0.397); 
     border: 2px solid rgb(39, 20, 9);
     color: rgb(39, 20, 9);
@@ -200,52 +200,45 @@
     transition-duration: 0.4s;
     display: block;
 
-    
 }
 
-.submit-button:hover {
+.ma_submit-button:hover {
     background-color: #214267;
       };
-    
-
-
-
-
-
 
 
 /* Style confirm button */
-.confirm_button {
+.ma_confirm_button {
     background-color: green;
     border: 2px solid green;
     color: white;
 }
 
-.confirm_button1 {
+.ma_confirm_button1 {
     background-color: rgb(67, 64, 240);
     border: 2px solid rgb(67, 64, 240);
     color: white;
 }
 
 /* Style reject button */
-.reject_button {
+.ma_reject_button {
     background-color: red;
     border: 2px solid red;
     color: white;
 }
 
 /* Adjust button container to align buttons in one line */
-.advertisement-buttons {
+.ma_advertisement-buttons {
     display: flex;
     justify-content:last baseline;
 }
 
 /* Remove extra margin from the button containers */
-.button-container {
+.ma_button-container {
     margin: 0;
 }
 
-.advertisement-box {
+.ma_advertisement-box {
     position: relative; /* Ensure relative positioning for the checkbox */
     background-color: #f9f9f9;
     border: 5px solid #ddd;
@@ -254,7 +247,7 @@
     margin-bottom: 20px;
 }
 
-.advertisement-box input[type="checkbox"] {
+.ma_advertisement-box input[type="checkbox"] {
     position:absolute;
     top: 20px;
     left: 750px;
