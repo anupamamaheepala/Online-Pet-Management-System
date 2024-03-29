@@ -1,5 +1,5 @@
 .signinform {
-<<<<<<< HEAD
+
   
     margin-top: 10px;
     max-width: 450px;
@@ -46,21 +46,8 @@
 
   
   }
-=======
-  margin-top: 10px;
-  max-width: 450px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  background-color: rgba(180, 186, 185, 0.244);
-  color: #000000;
-  font-weight: bold;
-  backdrop-filter: blur(10px);
-  font-family: 'Times New Roman', Times, serif;
-}
->>>>>>> ee016eef82473b47a45ee1a0b682278e0ccf2fac
 
+ 
 .form-group {
   margin-top: 20px;
   margin-bottom: 15px;
@@ -97,4 +84,5 @@ button:hover {
 
 p {
   margin-top: 0;
+}
 }
