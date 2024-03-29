@@ -52,9 +52,10 @@
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 .anupfbutton[type="submit"]:hover {
-  background-color: #000000;
+  background-color: #060056;
   color: #ffffff;
 }
