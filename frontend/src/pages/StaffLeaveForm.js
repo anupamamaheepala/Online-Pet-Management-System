@@ -1,14 +1,16 @@
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import React from 'react';
 import '../css/StaffLeaveForm.css';
 
 function StaffLeaveForm() {
     return (
-        <Layout>
-        <div className="wrap">
-            <div className="StaffLeaveForm">
+        <>
+        <Header />
+        
+        <form>
                 <h2>Staff Leave Form</h2>
-                <form>
+               
                     <div className="input_box">
                         <label>Name:</label>
                         <input type="text" name="name" required />
@@ -36,9 +38,8 @@ function StaffLeaveForm() {
                     </div>
                     <button type="submit">Submit</button>
                 </form>
-            </div>
-        </div>
-        </Layout>
+        <Footer />
+        </>
     );
 }
 
