@@ -2,22 +2,26 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const studentSchema = new Schema({
+const paymentSchema = new Schema({
     name : {
         type : String,
         require: true
     },
-    age : {
+    email : {
+        type : String,
+        require: true
+    },
+    phonenumber : {
         type : Number,
         require: true
     },
-    gender : {
+    address : {
         type : String,
         require: true
     },
 
 })
 
-const Student = mongoose.model("Student",studentSchema);
+const Payment = mongoose.model("Payment",paymentSchema);
 
-module.exports = Student;
+module.exports = Payment;
