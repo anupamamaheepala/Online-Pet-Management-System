@@ -1,17 +1,19 @@
 .anupayer-info {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   border: 2px solid #000000;
   border-radius: 10px;
   background-color: #ffffff;
-  margin-top: 20px;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .anupayer-info h2 {
   font-size: 1.5rem;
   margin-bottom: 20px;
   font-weight: bold;
+  text-align: center;
 }
 
 .anuform-group {
@@ -39,20 +41,20 @@
   height: 100px;
 }
 
-.anupfbutton[type="submit"] {
+.anupfbutton {
   display: block;
-  width: 100%;
+  width: 50%;
   padding: 10px;
   font-size: 1rem;
   color: #fff;
   background-color: #000000;
-  border: none;
-  border-radius: 5px;
+  border: 1px solid #000000;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.anupfbutton[type="submit"]:hover {
-  background-color: #000000;
-  color: #ffffff;
+.anupfbutton:hover {
+  background-color: #ffffff;
+  color: #000000;
 }
