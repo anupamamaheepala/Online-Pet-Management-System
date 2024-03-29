@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 //const authMiddleware = require("../middlewares/authMiddleware");
  
-
+/*
 router.post('/get-user-info-by-id', async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.body.userId });
@@ -23,7 +23,7 @@ router.post('/get-user-info-by-id', async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error getting user info...", success: false, error });
   }
-});
+});*/
 
 
 
