@@ -1,43 +1,44 @@
-import React from 'react';
-import Layout from '../components/Layout';
+// SignIn.js
 
+import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../css/signin.css';
 
 function SignIn() {
   return (
-
-  
-    <Layout>
+    <>
+    <Header />
       <div> 
-
-
         <div>
           <br />
-          <div className="signinform">
+          <div className="signin-signinform">
             <h2><center>Sign In To PetZone</center></h2>
             <form>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" />
+              <div className="signin-form-group">
+                <label className="signin-label" htmlFor="email">Email</label>
+                <input className="signin-input" type="email" id="email" name="email" />
               </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" />
+              <div className="signin-form-group">
+                <label className="signin-label" htmlFor="password">Password</label>
+                <input className="signin-input" type="password" id="password" name="password" />
               </div>
-              <div className="form-group">
+              <div className="signin-form-group">
                 <a href="#">Forgot Password?</a>
               </div>
-              <div className="form-group" style={{ textAlign: 'center' }}>
-                <button style={{ width: '150px' }} type="submit">Sign In</button>
+              <div className="signin-form-group" style={{ textAlign: 'center' }}>
+                <button className="signin-button" style={{ width: '150px' }} type="submit">Sign In</button>
               </div>
-              <div className="form-group">
-                <p>Don't have an account? <a href="#">Sign Up</a></p>
+              <div className="signin-form-group">
+                <p className="signin-p">Don't have an account? <a href="#">Sign Up</a></p>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </Layout>
+      <br></br>
+    <Footer />
+    </>
   );
 }
 
