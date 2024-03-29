@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../components/Layout';
-
+import Layout from '../components/Header';
+import Footer from '../components/Footer';
 import '../css/signin.css';
 
 function SignIn() {
