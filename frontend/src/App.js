@@ -3,9 +3,8 @@ import { BrowserRouter , Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Sidebar from './components/Sidebar';
 import Home from "./pages/Home";
-import Feedback from './pages/Feedback'
+import Feedback from './pages/Feedback';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import ScheduleAppointment from './pages/ScheduleAppointment';
