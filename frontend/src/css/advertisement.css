@@ -2,27 +2,30 @@
     width: 48%; /* Adjust width to fit two columns */
     float: none; /* Remove float to allow for proper alignment */
     margin: 0 auto; /* Center align columns */
+    
 }
 
 .ma_add_button {
-    background-color: rgba(46, 119, 107, 0.397); 
-    border: 2px solid rgb(39, 20, 9);
-    color: rgb(39, 20, 9);
-    padding: 15px 32px;
+    background-color: rgb(0, 0, 0); 
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 25px;
     text-align: center;
-    font-weight: bold;
+    
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 16 px t;
+    margin: 2px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 19px;
+    border-radius: 3px;
     outline: none;
 }
 
 .ma_add_button:hover {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
 }
 
 .ma_button-container {
@@ -58,7 +61,7 @@
 .ma_confirm_button {
     background-color: green;
     border: 2px solid green;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .ma_reject_button {
@@ -70,11 +73,9 @@
 .ma_advertisement-buttons {
     display: flex;
     justify-content: flex-end; /* Align buttons to the right */
+    
 }
 
-.ma_button-container {
-    margin: 0;
-}
 
 
 .ma_advertisement-column {
@@ -90,7 +91,7 @@
     text-align: justify;
 }
 
-.ma_add_button {
+/*.ma_add_button {
     background-color: rgba(44, 82, 75, 0.397); 
     border: 2px solid rgb(39, 20, 9);
     color: rgb(39, 20, 9);
@@ -121,7 +122,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
-
+*/
 .ma_advertisement-column {
     width: 48%; 
 }

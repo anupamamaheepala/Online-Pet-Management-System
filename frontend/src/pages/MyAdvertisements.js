@@ -20,13 +20,15 @@ const MyAdvertisements = () => {
                             <p>Price: LKRXXX</p>
                             <p>Contact details</p>
                             <div className="ma_advertisement-buttons">
+                            <div className="ma_button-container">
+                           <Link to="/Payerinfo" className="ma_add_button ma_confirm_button">Pay</Link>   
+                        </div> 
                          <div className="ma_button-container">
-        <Link to="/AddAdvertisement" className="ma_add_button ma_confirm_button">Edit</Link>
-            
-        </div>
-        <div className="ma_button-container">
-            <Link to="/MyAdvertisements" className="ma_add_button ma_reject_button">Delete</Link>
-        </div>
+                           <Link to="/AddAdvertisement" className="ma_add_button ma_confirm_button">Edit</Link>   
+                        </div>
+                          <div className="ma_button-container">
+                           <Link to="/MyAdvertisements" className="ma_add_button ma_reject_button">Delete</Link>
+                            </div>
     </div>
                         </div>
                     </div>
