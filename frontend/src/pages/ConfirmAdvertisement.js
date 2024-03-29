@@ -21,7 +21,7 @@ const ConfirmAdvertisement = () => {
                         <p>Contact details</p>
                         <div className="ma_advertisement-buttons">
     <div className="ma_button-container">
-        <Link to="/Payerinfo" className="ma_add_button ma_confirm_button1">Calculate payment</Link>
+        <Link to="/Payerinfo" className="ma_add_button ma_confirm_button1">Confirm</Link>
     </div>
 
     <div className="ma_button-container">

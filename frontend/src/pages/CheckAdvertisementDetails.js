@@ -51,11 +51,9 @@ const CheckAdvertisementDetails = () => {
                             {advertisement.price && <p>Price: {advertisement.price}</p>}
                             <p>Contact details: {advertisement.contact}</p>
                             <div className="ma_advertisement-buttons">
+                                
                                 <div className="ma_button-container">
-                                    <button onClick={() => handleConfirm(advertisement.id)} className="ma_add_button ma_confirm_button">Confirm</button>
-                                </div>
-                                <div className="ma_button-container">
-                                    <button onClick={() => handleReject(advertisement.id)} className="ma_add_button ma_reject_button">Reject</button>
+                                    <button onClick={() => handleReject(advertisement.id)} className="ma_add_button ma_reject_button">Delete</button>
                                 </div>
                             </div>
                         </div>
