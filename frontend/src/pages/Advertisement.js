@@ -59,35 +59,35 @@ const CheckAdvertisementDetails = () => {
     return (
         <>
         <Header/>
-             <div className="button-container">
-                <div className="advertisement-buttons">
-                    <Link to="/AddAdvertisement" className="add_button">Add a new advertisement</Link>
+             <div className="ma_button-container">
+                <div className="ma_advertisement-buttons">
+                    <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
                 </div>
-                <div className="advertisement-buttons">
-                    <Link to="/MyAdvertisements" className="add_button">My advertisements</Link>
+                <div className="ma_advertisement-buttons">
+                    <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
                 </div>
             </div>
-            <div className="advertisement-container">
+            <div className="ma_advertisement-container">
                 {advertisements.map(advertisement => (
-                    <div key={advertisement.id} className="advertisement-column">
+                    <div key={advertisement.id} className="ma_advertisement-column">
                         <h3>{advertisement.type}</h3>
-                        <div className="advertisement-box">
+                        <div className="ma_advertisement-box">
                             <input
                                 type="checkbox"
                                 id={advertisement.id}
                                 // Implement checked state management here
                             />
                             <label htmlFor={advertisement.id}>{advertisement.title}</label>
-                            {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="advertisement-photo" />}
+                            {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="ma_advertisement-photo" />}
                             <p>{advertisement.description}</p>
                             {advertisement.price && <p>Price: {advertisement.price}</p>}
                             <p>Contact details: {advertisement.contact}</p>
-                            <div className="advertisement-buttons">
-                                <div className="button-container">
-                                    <button onClick={() => handleConfirm(advertisement.id)} className="add_button confirm_button">Confirm</button>
+                            <div className="ma_advertisement-buttons">
+                                <div className="ma_button-container">
+                                    <button onClick={() => handleConfirm(advertisement.id)} className="ma_add_button ma_confirm_button">Confirm</button>
                                 </div>
-                                <div className="button-container">
-                                    <button onClick={() => handleReject(advertisement.id)} className="add_button reject_button">Reject</button>
+                                <div className="ma_button-container">
+                                    <button onClick={() => handleReject(advertisement.id)} className="ma_add_button ma_reject_button">Reject</button>
                                 </div>
                             </div>
                         </div>

@@ -9,32 +9,32 @@ const AddAdvertisement = () => {
         <>
             <Header /> 
             
-            <form className="advertisement-form">
+            <form className="ma_advertisement-form">
                 <h2>Add your advertisement details here. </h2>
                 <p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
                 <b> If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="ownerName">Owner Name:</label>
                     <input type="text" id="ownerName" name="ownerName" />
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="email" name="email" />
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="title">Title:</label>
                     <input type="text" id="title" name="title" />
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="Breed">Breed:</label>
                     <input type="text" id="Breed" name="Breed" />
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="purpose">Purpose of the advertisement:</label>
                     <select id="purpose" name="purpose">
                         <option value="" disabled selected>Select Purpose</option>
@@ -43,27 +43,27 @@ const AddAdvertisement = () => {
                     </select>
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="description">Description:</label>
                     <textarea id="description" name="description"></textarea>
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="picture">Upload Picture:</label>
                     <input type="file" id="picture" name="picture" accept="image/*" />
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="price">Price(LKR):</label>
                     <input type="text" id="price" name="price" />
                 </div>
                 
-                <div className="form-group">
+                <div className="ma_form-group">
                     <label htmlFor="contact">Contact:</label>
                     <input type="text" id="contact" name="contact" />
                 </div>
                 
-                <button style={{width:'150px'}} type="submit" className="submit-button">Submit</button>
+                <button style={{width:'150px'}} type="submit" className="ma_submit-button">Submit</button>
             </form>
             <Footer />
         </>
