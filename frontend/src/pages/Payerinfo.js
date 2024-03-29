@@ -4,74 +4,67 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+const Payerinfo = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
 
-const Payerinfo = ({ onNext }) => {
-  const [userInfo, setUserInfo] = useState({
-    name: '',
-    email: '',
-    phoneNumber: '',
-    address: ''
-  });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission (e.g., send data to backend)
+        console.log('Form submitted:', { name, email, phone, address });
+    };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserInfo(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onNext(userInfo);
-  };
-
-  return (
-    <>
-    <Header/>
-    <div className="user-info-container">
-      <div className="tile"><h1 className='topic'>Payer's Information</h1></div>
-      <form className="user-info-form" onSubmit={handleSubmit}>
-        <center><input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={userInfo.name}
-          onChange={handleChange}
-          required
-        />
-        <input 
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={userInfo.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="tel"
-          name="phoneNumber"
-          placeholder="Phone Number"
-          value={userInfo.phoneNumber}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="address"
-          placeholder="Address"
-          value={userInfo.address}
-          onChange={handleChange}
-          required
-        ></textarea>
-        <Link to="/Cardpay" className='link'>Card Payment</Link>
-        <Link to="/Banktrans" className='link'>Bank Transfer</Link>
-        </center>
-      </form>
-    </div>
-    <Footer/>
-    </>
-  );
+    return (
+      <>
+      <Header />
+        <div className="anupayer-info">
+            <h2>Payer's Information</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="anuform-group">
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="anuform-group">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="anuform-group">
+                    <label htmlFor="phone">Phone Number:</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    />
+                </div>
+                <div className="anuform-group">
+                    <label htmlFor="address">Address:</label>
+                    <textarea
+                        id="address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </div>
+                <button className='anupfbutton' type="submit">Submit</button>
+            </form>
+        </div>
+        <Footer />
+        </>
+    );
 };
 
 export default Payerinfo;
+
 

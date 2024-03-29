@@ -79,14 +79,15 @@
   width: 250px;
   margin: 0 auto 20px; 
   padding: 15px 20px;
-  background-color: transparent;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Black color with reduced opacity */
+  color: rgba(255, 255, 255, 0.8); /* White color with reduced opacity */
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   border: 2px solid white;
   border-radius: 5px;
 }
+
 
 .appointment-button:hover {
   background-color: white;
