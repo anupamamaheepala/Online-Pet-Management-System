@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import Home from "./pages/Home";
-import Feedback from './pages/Feedback'
+import Feedback from './pages/Feedback';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import ScheduleAppointment from './pages/ScheduleAppointment';
