@@ -46,6 +46,8 @@
 
   
   }
+<<<<<<< HEAD
+=======
 
   margin-top: 10px;
   max-width: 450px;
@@ -60,7 +62,9 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+>>>>>>> ebb1f2d0f6465a9903e1b2175295edc3ec930443
 
+ 
 .form-group {
   margin-top: 20px;
   margin-bottom: 15px;
@@ -97,4 +101,5 @@ button:hover {
 
 p {
   margin-top: 0;
+}
 }

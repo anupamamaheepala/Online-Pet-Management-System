@@ -15,10 +15,44 @@ function ScheduleAppointments() {
   const [startTime, setStartTime] = useState('');
   const [veterinarian, setVeterinarian] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // handle form submission here
+  
+    try {
+      // Construct form data object
+      const formData = {
+        name,
+        email,
+        contactNumber,
+        petType,
+        service,
+        date,
+        startTime,
+        veterinarian
+      };
+  
+      // Send form data to backend
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+  
+      if (response.ok) {
+        // Form submission successful
+        alert('Appointment scheduled successfully!');
+      } else {
+        // Form submission failed
+        alert('Failed to schedule appointment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    }
   };
+  
 
   return (
     <>
@@ -51,7 +85,7 @@ function ScheduleAppointments() {
               <Form.Group controlId="formService">
                 <Form.Label className="scheduleappointments-label">Select Service</Form.Label>
                 <Form.Control as="select" value={service} onChange={e => setService(e.target.value)} className="scheduleappointments-select">
-                  <option value="">None</option>
+                  <option value="">--select--</option>
                   <option value="veterinary">Veterinary Services</option>
                   <option value="grooming">Grooming Services</option>
                 </Form.Control>
@@ -70,7 +104,7 @@ function ScheduleAppointments() {
               <Form.Group controlId="formVeterinarian">
                 <Form.Label className="scheduleappointments-label">Select Veterinarian/Groomer</Form.Label>
                 <Form.Control as="select" value={veterinarian} onChange={e => setVeterinarian(e.target.value)} className="scheduleappointments-select">
-                  <option value="">None</option>
+                  <option value="">--select--</option>
                   <option value="veterinarian1">Veterinarian 1</option>
                   <option value="groomer1">Groomer 1</option>
                 </Form.Control>
