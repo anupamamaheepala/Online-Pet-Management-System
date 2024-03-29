@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import '../css/advertisement.css';
 
@@ -53,26 +54,26 @@ const AllAdvertisements = () => {
     };
 
     return (
-        <Layout>
-            
-            <div className="advertisement-container">
+        <>
+        <Header/>
+            <div className="ma_advertisement-container">
                 {advertisements.map(advertisement => (
-                    <div key={advertisement.id} className="advertisement-column">
+                    <div key={advertisement.id} className="ma_advertisement-column">
                         <h3>{advertisement.type}</h3>
-                        <div className="advertisement-box">
+                        <div className="ma_advertisement-box">
                             {/* You can conditionally render an image if available */}
-                            {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="advertisement-photo" />}
-                            <div className="advertisement-details">
+                            {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="ma_advertisement-photo" />}
+                            <div className="ma_advertisement-details">
                                 <h4>{advertisement.title}</h4>
                                 <p>{advertisement.description}</p>
                                 {advertisement.price && <p>Price: {advertisement.price}</p>}
                                 <p>Contact details: {advertisement.contact}</p>
-                                <div className="advertisement-buttons">
-                                    <div className="button-container">
-                                        <Link to="/ConfirmAdvertisement" className="add_button confirm_button1">Edit</Link>
+                                <div className="ma_advertisement-buttons">
+                                    <div className="ma_button-container">
+                                        <Link to="/ConfirmAdvertisement" className="ma_add_button ma_confirm_button1">Edit</Link>
                                     </div>
-                                    <div className="button-container">
-                                        <Link to="/AllAdvertisements" className="add_button reject_button">Delete</Link>
+                                    <div className="ma_button-container">
+                                        <Link to="/AllAdvertisements" className="ma_add_button ma_reject_button">Delete</Link>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +81,8 @@ const AllAdvertisements = () => {
                     </div>
                 ))}
             </div>
-        </Layout>
+            <Footer />
+            </>
     );
 }
 

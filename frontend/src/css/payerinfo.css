@@ -1,90 +1,58 @@
-/* UserInfoForm.css */
-.user-info-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    background-color: rgb(172, 201, 196);
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
+.anupayer-info {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 20px;
+}
 
-  form {
-    width: 400px;
-    margin: auto;
-    border: 2px solid rgb(172, 201, 196);
-    border-radius: 10px;
-    padding: 20px;
-  }
-  
-  .tile {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .user-info-form input,
-  .user-info-form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: calc(100% - 16px);
-    border: 1px solid #000000;
-    border-radius: 5px;
-    color: #000000;
-  }
+.anupayer-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
 
-  .topic{
-    text-align: center;
-    color: #000000;
-  }
-  
-  .user-info-form button {
-    padding: 10px 20px;
-    font-size: 16px; /* Increased text size */
-    font-weight: bold; /* Bold text */
-    background-color: rgba(46, 119, 107, 0.397);
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: calc(100% - 16px);
-    border: 1px solid #000000;
-    margin-bottom: 10px;
-  }
-  
-  .link:hover {
-    background-color: rgba(46, 119, 107, 0.397);
-    text-decoration: none;
-    color: rgb(0, 0, 0); /* Change text color on hover */
-  }
-  
-  .user-info-form textarea {
-    height: 100px;
-  }
-  
-  .user-info-form input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-  
-  .user-info-form input[type="submit"]:hover {
-    background-color: #45a049;
-  }
+.anuform-group {
+  margin-bottom: 20px;
+}
 
-  .link{
-    padding: 10px 20px;
-    font-size: 16px; /* Increased text size */
-    font-weight: bold; /* Bold text */
-    background-color: rgba(46, 119, 107, 0.397);
-    color: #000000;
-    border: none;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: calc(100% - 16px);
-    border: 1px solid #000000;
-    
-  }
-  
+.anuform-group label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #000000;
+  font-weight:bold ;
+}
+
+.anuform-group input,
+.anuform-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.anuform-group textarea {
+  height: 100px;
+}
+
+.anupfbutton[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.anupfbutton[type="submit"]:hover {
+  background-color: #000000;
+  color: #ffffff;
+}

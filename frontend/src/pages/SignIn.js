@@ -1,44 +1,44 @@
-import React from 'react';
-import Layout from '../components/Layout';
+// SignIn.js
 
+import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../css/signin.css';
 
 function SignIn() {
   return (
-    <Layout>
-    <body>
-
-    <div className="container" style={{ marginTop: '100px', width: '600px', maxWidth: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: 'rgba(46, 119, 107, 0.397)'}}>
-
-      <h2><center>Sign In To PetZone</center></h2>
-
+    <>
+    <Header />
+      <div> 
+        <div>
+          <br />
+          <div className="signin-signinform">
+            <h2><center>Sign In To PetZone</center></h2>
+            <form>
+              <div className="signin-form-group">
+                <label className="signin-label" htmlFor="email">Email</label>
+                <input className="signin-input" type="email" id="email" name="email" />
+              </div>
+              <div className="signin-form-group">
+                <label className="signin-label" htmlFor="password">Password</label>
+                <input className="signin-input" type="password" id="password" name="password" />
+              </div>
+              <div className="signin-form-group">
+                <a href="#">Forgot Password?</a>
+              </div>
+              <div className="signin-form-group" style={{ textAlign: 'center' }}>
+                <button className="signin-button" style={{ width: '150px' }} type="submit">Sign In</button>
+              </div>
+              <div className="signin-form-group">
+                <p className="signin-p">Don't have an account? <a href="#">Sign Up</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <br></br>
-    <div className="signinform">
-      <h2><center>Sign In To PetZone</center></h2>
-      <form>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" />
-        </div>
-        <div className="form-group">
-          <a href="#">Forgot Password?</a>
-        </div>
-        <div className="form-group">
-         <center> <button style={{width:'150px'}} type="submit">Sign In</button></center>
-        </div>
-        <div className="form-group">
-          <p>Don't have an account? <a href="#">Sign Up</a></p>
-        </div>
-      </form>
-    </div>
-    </div>
-    <br></br>
-    </body>
-    </Layout>
+    <Footer />
+    </>
   );
 }
 

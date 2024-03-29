@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../css/register.css';
-import Layout from '../components/Layout';
+import Layout from '../components/Header';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 function Register() {
@@ -59,7 +60,7 @@ function Register() {
           <label>Confirm Password:</label>
           <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
         </div>
-        <center><button style={{width:'200px'}} type="submit">Register</button></center>
+        <center><button style={{width:'200px', backgroundColor: 'black', color: 'white', borderRadius: '19px'}} type="submit">Register</button></center>
       </form>
       <br></br>
 

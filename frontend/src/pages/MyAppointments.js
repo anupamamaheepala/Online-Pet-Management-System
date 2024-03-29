@@ -1,9 +1,12 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function MyAppointments() {
   return (
-    <Layout>
+    <>
+      <Header />
+      <div>
         <h1>My Appointments</h1>
         <h1>My Appointments</h1>
         <h1>My Appointments</h1>
@@ -14,8 +17,10 @@ function MyAppointments() {
         <h1>My Appointments</h1>
         <h1>My Appointments</h1>
         <h1>My Appointments</h1>
-    </Layout>
+      </div>
+      <Footer />
+    </>
   )
 }
 
-export default MyAppointments
+export default MyAppointments;
