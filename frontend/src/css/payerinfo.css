@@ -41,21 +41,20 @@
   height: 100px;
 }
 
-.anupfbutton[type="submit"] {
+.anupfbutton {
   display: block;
   width: 50%;
   padding: 10px;
   font-size: 1rem;
   color: #fff;
   background-color: #000000;
-  border: none;
+  border: 1px solid #000000;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-weight: bold;
 }
 
-.anupfbutton[type="submit"]:hover {
-  background-color: #060056;
-  color: #ffffff;
+.anupfbutton:hover {
+  background-color: #ffffff;
+  color: #000000;
 }

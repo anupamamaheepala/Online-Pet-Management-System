@@ -57,7 +57,7 @@ const Payerinfo = () => {
                         onChange={(e) => setAddress(e.target.value)}
                     />
                 </div>
-                <center><button className='anupfbutton' type="submit">Submit</button></center>
+                <center><button className="anupfbutton" type="View Status">View Status</button></center>
             </form>
         </div>
         <Footer />
