@@ -78,6 +78,9 @@ const Header = () => {
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                                     <li><a className="dropdown-item" href="#">My Profile</a></li>
+                                    <li><a className="dropdown-item" href="/MyAppointments">My Appointments</a></li>
+                                    <li><a className="dropdown-item" href="#">My Cart</a></li>
+                                    <li><a className="dropdown-item" href="#">Settings</a></li>
                                     <li><a className="dropdown-item" href="#">Sign Out</a></li>
                                 </ul>
                             </div>

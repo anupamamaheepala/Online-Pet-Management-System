@@ -1,42 +1,53 @@
-/* ScheduleAppointments.css */
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: auto;
-    border: 2px solid #4CAF50;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
-  }
-  
-  label {
-    margin: 10px 0;
-    font-weight: bold;
-  }
-  
-  input, select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  input:focus, select:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px #4CAF50;
-  }
-  
-  input[type="submit"] {
-    background-color: rgba(46, 119, 107, 0.397); 
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-top: 20px;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: rgba(46, 119, 107, 0.397); 
-  }
+.scheduleappointments-container {
+  margin-top: 100px !important;
+  margin-bottom: 200px !important;
+}
+
+.scheduleappointments-form {
+  display: flex;
+  flex-direction: column;
+  width: 1000px!important;
+  height: 500px;
+  margin: auto;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+}
+
+.scheduleappointments-label {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.scheduleappointments-input, .scheduleappointments-select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px !important;
+  margin-right: 25px !important;
+}
+
+.scheduleappointments-input:focus, .scheduleappointments-select:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px #4CAF50;
+}
+
+.scheduleappointments-submit-btn {
+  background-color: rgba(46, 119, 107, 0.397);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px !important;
+}
+
+.scheduleappointments-submit-btn:hover {
+  background-color: rgba(46, 119, 107, 0.397);
+}
+
+.scheduleappointments-custom-submit-btn {
+  width: 150px;
+}
 

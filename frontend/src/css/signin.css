@@ -46,6 +46,23 @@
 
   
   }
+<<<<<<< HEAD
+=======
+
+  margin-top: 10px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: rgba(180, 186, 185, 0.244);
+  color: #000000;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+>>>>>>> ebb1f2d0f6465a9903e1b2175295edc3ec930443
 
  
 .form-group {

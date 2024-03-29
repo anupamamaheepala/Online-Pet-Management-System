@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../css/advertisement.css';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,8 @@ import { Link } from 'react-router-dom';
 const ConfirmAdvertisement = () => {
     
     return (
-        <Layout>
+        <>
+        <Header/>
             <div className="advertisement-container">
                 <div className="advertisement-column">
                     <h3>Pets for sale</h3>
@@ -32,7 +34,8 @@ const ConfirmAdvertisement = () => {
 </div>
                 </div>
             
-        </Layout>
+                <Footer />
+            </>
     );
 }
 
