@@ -60,12 +60,12 @@ const CheckAdvertisementDetails = () => {
         <>
         <Header/>
              <div className="ma_button-container">
-                <div className="ma_advertisement-buttons">
+                
                     <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
-                </div>
-                <div className="ma_advertisement-buttons">
+                
+                
                     <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
-                </div>
+                
             </div>
             <div className="ma_advertisement-container">
                 {advertisements.map(advertisement => (
@@ -82,14 +82,7 @@ const CheckAdvertisementDetails = () => {
                             <p>{advertisement.description}</p>
                             {advertisement.price && <p>Price: {advertisement.price}</p>}
                             <p>Contact details: {advertisement.contact}</p>
-                            <div className="ma_advertisement-buttons">
-                                <div className="ma_button-container">
-                                    <button onClick={() => handleConfirm(advertisement.id)} className="ma_add_button ma_confirm_button">Confirm</button>
-                                </div>
-                                <div className="ma_button-container">
-                                    <button onClick={() => handleReject(advertisement.id)} className="ma_add_button ma_reject_button">Reject</button>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 ))}

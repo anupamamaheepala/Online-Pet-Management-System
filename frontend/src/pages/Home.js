@@ -72,19 +72,20 @@ const Home = () => {
       </div>
 
       <section className="about top" style={{marginTop:'40px'}}>
-        <div className="container flex">
+        <div className="home-container flex">
           <div className="left">
             <div className="heading">
               <h1>WELCOME</h1>
               <h2>Pet Zone</h2>
             </div>
             <p>
-              Pet Zone Hospital is a multifaceted platform dedicated to providing holistic pet care solutions, encompassing veterinary services, professional grooming, expert training programs, efficient inventory management, lost and found advertisement postings, streamlined staff management tools, easy registration processes, and convenient payment methods. Our integrated approach ensures that pets receive comprehensive care while offering pet owners a seamless experience, from accessing essential services to managing their pets' well-being and administrative needs
+              Pet Zone Hospital is a multifaceted platform dedicated to providing holistic pet care solutions, encompassing veterinary services, professional grooming, expert training programs, 
+              efficient inventory management, lost and found advertisement postings, streamlined staff management tools, easy registration processes, and convenient payment methods. Our integrated approach ensures that pets receive comprehensive care while offering pet owners a seamless experience, from accessing essential services to managing their pets' well-being and administrative needs
             </p>
-            <button className="primary-btn" style={{width: '110px'}}>ABOUT US</button>
+            <button className="primary-btn" style={{width: '130px'}}>ABOUT US</button>
           </div>
           <div className="right">
-            <img style={{ height: "300px",paddingRight:'10px'}} src="/images/tp1.jpg" alt="Info Image" />
+            <img style={{ height: "300px",paddingRight:'100px'}} src="/images/tp1.jpg" alt="Info Image" />
           </div>
         </div>
       </section>
@@ -93,7 +94,7 @@ const Home = () => {
       <h3>info about pet zone hospital</h3>
 
 
-      <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '400px' }}>
+      <div className="home-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '400px' }}>
         <div className="row">
           <div className="image-column">
             <img src="/images/tp2.jpg" alt="Image" style={{ height: "300px",paddingRight:'200px' }} />
@@ -118,7 +119,7 @@ const Home = () => {
       </div>
 
       <section className="counter top" style={counterStyle}>
-        <div className="container grid" style={containerStyle}>
+        <div className="home-container grid" style={containerStyle}>
           <div className="box" style={{paddingBottom:'50px'}}>
             <h1>2500</h1>
             <hr />

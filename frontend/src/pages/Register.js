@@ -35,6 +35,9 @@ function Register() {
     <br></br>
       <div className="registration-registration-form">
         <h2>Sign Up To PetZone</h2>
+        <br></br>
+        <div className="register-content">
+
         <form onSubmit={handleSubmit}>
           <div className="registration-form-group">
             <label>Username:</label>
@@ -62,11 +65,13 @@ function Register() {
           </div>
           <center><button className="registration-button" type="submit">Register</button></center>
         </form>
+        
         <br />
         <center>
           <label className="registration-staff">Register for staff:</label>
           <button className="registration-staff-registration-btn" onClick={() => console.log('Redirect to staff registration')}>Staff Registration</button>
         </center>
+      </div>
       </div>
       <br></br>
       <Footer />

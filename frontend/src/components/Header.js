@@ -68,9 +68,12 @@ const Header = () => {
                             </li>
                         </ul>
                         <div className="d-flex align-items-center">
-                            <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px' }}>Sign In</button>
+                        <a href="/SignIn">
+                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px' }}>Sign In</button>
+                        </a>
+
                             <div style={{ marginRight: '10px' }}>
-                                <button className="btn btn-primary me-2" style={{ fontSize: '16px' }}>Signup</button>
+                                <a href="/Register"><button className="btn btn-primary me-2" style={{ fontSize: '16px' }}>Sign Up</button></a>
                             </div>
                             <div className="dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

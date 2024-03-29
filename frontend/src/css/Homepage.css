@@ -1,6 +1,15 @@
 /* Homepage.css */
 
 /* Styles for the slide container */
+
+.home-container {
+  position: relative; /* Ensure the container is positioned relative to the parent */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; 
+  margin-left: 50px;
+  margin-right: 50px;/* Space items evenly */
+}
+
 .homepage-container {
   position: relative;
 }
