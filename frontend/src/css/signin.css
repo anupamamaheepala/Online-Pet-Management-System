@@ -1,4 +1,4 @@
-.signinform {
+/*.signinform {
 
   
     margin-top: 10px;
@@ -47,6 +47,7 @@
   
   }
 
+
   margin-top: 10px;
   max-width: 450px;
   margin: 0 auto;
@@ -59,8 +60,7 @@
   backdrop-filter: blur(10px);
   font-family: 'Times New Roman', Times, serif;
 }
-
-
+ 
 .form-group {
   margin-top: 20px;
   margin-bottom: 15px;
@@ -98,3 +98,4 @@ button:hover {
 p {
   margin-top: 0;
 }
+*/
