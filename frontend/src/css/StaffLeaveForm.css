@@ -1,53 +1,60 @@
 /* StaffLeaveForm.css */
 
-/* Center the form */
-.wrap {
-    max-width: 500px;
+/* Style the form container */
+.StaffLeave-Form {
+    margin-top: 10px;
+    max-width: 450px;
     margin: 0 auto;
     padding: 20px;
-}
-
-/* Style the form container */
-.StaffLeaveForm {
-    width: 500px;
-    background-color: #f2f2f2;
-    padding: 20px;
+    border: 1px solid #000000;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    color: #000000;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
 }
 
 /* Style form headings */
-.StaffLeaveForm h2 {
+.StaffLeave-Form h2 {
     margin-bottom: 20px;
     text-align: center;
     color: #333;
 }
 
-/* Style input fields and labels */
-.input_box {
+/* Style input fields and labels*/ 
+.StaffLeave-form-group {
     margin-bottom: 15px;
 }
 
-.input_box label {
+.StaffLeave-form-group label {
     display: block;
     margin-bottom: 5px;
     color: #555;
 }
 
-.input_box input[type="text"],
-.input_box input[type="date"],
-.input_box select,
-.input_box textarea {
+.input[name="sname"],
+.input[name="StleaveFromDate"],
+.input[name="StleaveToDate"],
+.select[name="StleaveType"],
+.textarea[name="streason"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
+    padding: 8px;
     font-size: 16px;
+    border-radius: 5px;
+    border-color: azure;
+}
+
+.select[name="StleaveType"] {
+
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: azure;
 }
 
 /* Style the submit button */
-.StaffLeaveForm button[type="submit"] {
+.staffLeaveButton {
     background-color: #393b39;
     color: white;
     padding: 10px 20px;
@@ -60,6 +67,6 @@
     margin-top: 10px;
 }
 
-.StaffLeaveForm button[type="submit"]:hover {
+.staffLeaveButton:hover {
     background-color: #676464;
 }
