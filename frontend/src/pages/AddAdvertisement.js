@@ -1,10 +1,34 @@
-import React from 'react';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer';
 import '../css/advertisement.css'; 
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const AddAdvertisement = () => {
 
+        const [formData, setFormData] = useState({
+          title: '',
+          description: ''
+        });
+      
+        const { title, description } = formData;
+      
+        const onChange = e =>
+          setFormData({ ...formData, [e.target.name]: e.target.value });
+      
+        const onSubmit = async e => {
+          e.preventDefault();
+          try {
+            const res = await axios.post('/api/advertisement/add', formData);
+            console.log(res.data); // Assuming you want to log the response
+            // You can redirect or show a success message here
+          } catch (err) {
+            console.error(err.response.data);
+            // Handle errors, show error messages, etc.
+          }
+        };
+
+        
     return (
         <>
             <Header /> 
