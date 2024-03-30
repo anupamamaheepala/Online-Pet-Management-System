@@ -172,6 +172,7 @@
 }
 
 .ma_form-group input[type="text"],
+.ma_form-group input[type="email"],
 .ma_form-group textarea {
     width: 100%;
     padding: 10px;
