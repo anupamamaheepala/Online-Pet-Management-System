@@ -13,7 +13,7 @@ function StaffLeaveForm() {
                
                     <div className="StaffLeave-form-group">
                         <label>Name:</label>
-                        <input type="text" name="sname" required />
+                        <input type="text" name="staffname" required />
                     </div>
 
                     <div className="StaffLeave-form-group">
