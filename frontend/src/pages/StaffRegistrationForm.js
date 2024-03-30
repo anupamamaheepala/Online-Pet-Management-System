@@ -48,7 +48,7 @@ function StaffRegister() {
         </div>
         <div className="staffregister-form-group">
           <label>Contact Number:</label>
-          <input type="text" name="scontactNumber" value={formData.scontactNumber} onChange={handleChange} />
+          <input type="tel" name="scontactNumber" value={formData.scontactNumber} onChange={handleChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Address:</label>

@@ -8,36 +8,42 @@ function StaffLeaveForm() {
         <>
         <Header />
         
-        <form>
+        <form className='StaffLeave-Form'>
                 <h2>Staff Leave Form</h2>
                
-                    <div className="input_box">
+                    <div className="StaffLeave-form-group">
                         <label>Name:</label>
-                        <input type="text" name="name" required />
+                        <input type="text" name="staffname" required />
                     </div>
-                    <div className="input_box">
+
+                    <div className="StaffLeave-form-group">
                         <label>Leave Date From:</label>
-                        <input type="date" name="leaveFromDate" required />
+                        <input type="date" name="StleaveFromDate" required />
                     </div>
-                    <div className="input_box">
+
+                    <div className="StaffLeave-form-group">
                         <label>Leave Date To:</label>
-                        <input type="date" name="leaveToDate" required />
+                        <input type="date" name="StleaveToDate" required />
                     </div>
-                    <div className="input_box">
+
+                    <div className="StaffLeave-form-group">
                         <label>Leave Type:</label>
-                        <select name="leaveType" required>
+                        <select name="StleaveType" required>
                             <option value="">Select Leave Type</option>
                             <option value="Sick Leave">Sick Leave</option>
                             <option value="Vacation Leave">Vacation Leave</option>
                             <option value="Personal Leave">Personal Leave</option>
                         </select>
                     </div>
-                    <div className="input_box">
+
+                    <div className="StaffLeave-form-group">
                         <label>Reason:</label>
-                        <textarea name="reason" required />
+                        <textarea name="streason" required />
                     </div>
-                    <button type="submit">Submit</button>
+
+                    <center><button type="submit" className='staffLeaveButton'>Submit</button></center>
                 </form>
+                <br></br>
         <Footer />
         </>
     );

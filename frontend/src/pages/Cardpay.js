@@ -1,72 +1,69 @@
 import React, { useState } from 'react';
 import '../css/cardpay.css';
-import Layout from '../components/Layout';
+import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-const Cardpay = ({ onNext }) => {
-  const [paymentInfo, setPaymentInfo] = useState({
-    nameOnCard: '',
-    cardNumber: '',
-    cvv: '',
-    expireDate: ''
-  });
+const Cardpay = () => {
+    const [nameOnCard, setNameOnCard] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
+    const [cvv, setCvv] = useState('');
+    const [expireDate, setExpireDate] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentInfo(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission (e.g., send data to backend)
+        console.log('Form submitted:', { nameOnCard, cardNumber, cvv, expireDate });
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onNext(paymentInfo);
-  };
-
-  return (
-    <Layout>
-    <div className="card-payment-container">
-    <div className="tile"><h1 className='topic'>Card Payment</h1></div>
-      <form className="card-payment-form" onSubmit={handleSubmit}>
-      
-        
-        <center><input
-          type="text"
-          name="nameOnCard"
-          placeholder="Name on Card"
-          value={paymentInfo.nameOnCard}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="cardNumber"
-          placeholder="Card Number"
-          value={paymentInfo.cardNumber}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="cvv"
-          placeholder="CVV"
-          value={paymentInfo.cvv}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="expireDate"
-          placeholder="Expire Date"
-          value={paymentInfo.expireDate}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Confirm Payment</button></center>
-      </form>
-    </div>
-    </Layout>
-  );
+    return (
+      <>
+      <Header />
+        <div className="anucard-payment">
+            <h2>Card Payment</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="anucpform-group">
+                    <label htmlFor="nameOnCard">Name on Card:</label>
+                    <input
+                        type="text"
+                        id="nameOnCard"
+                        value={nameOnCard}
+                        onChange={(e) => setNameOnCard(e.target.value)}
+                    />
+                </div>
+                <div className="anucpform-group">
+                    <label htmlFor="cardNumber">Card Number:</label>
+                    <input
+                        type="text"
+                        id="cardNumber"
+                        value={cardNumber}
+                        onChange={(e) => setCardNumber(e.target.value)}
+                    />
+                </div>
+                <div className="anucpform-group">
+                    <label htmlFor="cvv">CVV:</label>
+                    <input
+                        type="text"
+                        id="cvv"
+                        value={cvv}
+                        onChange={(e) => setCvv(e.target.value)}
+                    />
+                </div>
+                <div className="anucpform-group">
+                    <label htmlFor="expireDate">Expiration Date:</label>
+                    <input
+                        type="text"
+                        id="expireDate"
+                        value={expireDate}
+                        onChange={(e) => setExpireDate(e.target.value)}
+                    />
+                </div>
+                <center><button className="anucpbutton" type="submit">Confirm Payment</button></center>
+            </form>
+        </div>
+        <Footer />
+        </>
+    );
 };
 
 export default Cardpay;
