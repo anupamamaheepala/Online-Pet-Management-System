@@ -37,7 +37,8 @@
     margin-bottom: 10px;
 }
 
-label {
+.private
+{
     display: block;
     font-weight: bold;
 }
