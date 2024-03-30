@@ -1,62 +1,57 @@
-.bank-transfer-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    background-color: rgb(172, 201, 196);
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
+.anubank-transfer {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 
+.anubank-transfer h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
 
-  .tile {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .bank-transfer-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .bank-transfer-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .bank-transfer-form input[type="text"],
-  .bank-transfer-form input[type="file"] {
-    padding: 8px;
-    width: calc(100% - 16px);
-    border: 1px solid #000000;
-    border-radius: 5px;
-  }
+.anubtform-group {
+  margin-bottom: 20px;
+}
 
-  .up{
-    text-align: left;
-    color: #000000;
-  }
+.anubtform-group label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #000000;
+  font-weight:bold ;
+}
 
-  .bt{
-    color: #000000;
-  }
-  
-  .bank-transfer-form button {
-    padding: 10px 20px;
-    font-size: 16px; /* Increased text size */
-    font-weight: bold; /* Bold text */
-    background-color: rgba(46, 119, 107, 0.397);
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    width: calc(100% - 16px);
-  }
-  
-  .bank-transfer-form button:hover {
-    background-color: rgba(46, 119, 107, 0.397);
-    color: #000000; /* Change text color on hover */
-  }
-  
+.anubtform-group input[type="text"],
+.anubtform-group input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.anubtbutton {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.anubtbutton:hover {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}

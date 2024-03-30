@@ -11,7 +11,6 @@
     color: rgb(255, 255, 255);
     padding: 10px 25px;
     text-align: center;
-    
     text-decoration: none;
     display: inline-block;
     font-size: 16 px t;
@@ -144,7 +143,7 @@
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;;
-    border: 5px solid #858080;
+    border: 5px solid #000000;
     border-radius: 8px;
 }
 
@@ -185,26 +184,27 @@
 }
 
 .ma_submit-button {
-    background-color: rgba(44, 82, 75, 0.397); 
-    border: 2px solid rgb(39, 20, 9);
-    color: rgb(39, 20, 9);
-    padding: 15px 32px;
+    background-color: rgb(0, 0, 0); 
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 25px;
     text-align: center;
-    font-weight: bold;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 0 auto;
-    border-radius: 19px;
-    outline: none;
-    cursor: pointer;
+    font-size: 16 px t;
+    margin: 2px 2px;
     transition-duration: 0.4s;
-    display: block;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+    margin-left: 250px;
 
 }
 
 .ma_submit-button:hover {
-    background-color: #214267;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
       };
 
 
