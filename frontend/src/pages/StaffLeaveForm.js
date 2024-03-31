@@ -12,22 +12,22 @@ function StaffLeaveForm() {
                 <h2>Staff Leave Form</h2>
                
                     <div className="StaffLeave-form-group">
-                        <label>Name:</label>
+                        <label className='StaffLeave-form-group label'>Name:</label>
                         <input type="text" name="staffname" required />
                     </div>
 
                     <div className="StaffLeave-form-group">
-                        <label>Leave Date From:</label>
+                        <label className='StaffLeave-form-group label'>Leave Date From:</label>
                         <input type="date" name="StleaveFromDate" required />
                     </div>
 
                     <div className="StaffLeave-form-group">
-                        <label>Leave Date To:</label>
+                        <label className='StaffLeave-form-group label'>Leave Date To:</label>
                         <input type="date" name="StleaveToDate" required />
                     </div>
 
                     <div className="StaffLeave-form-group">
-                        <label>Leave Type:</label>
+                        <label className='StaffLeave-form-group label'>Leave Type:</label>
                         <select name="StleaveType" required>
                             <option value="">Select Leave Type</option>
                             <option value="Sick Leave">Sick Leave</option>
@@ -37,7 +37,7 @@ function StaffLeaveForm() {
                     </div>
 
                     <div className="StaffLeave-form-group">
-                        <label>Reason:</label>
+                        <label className='StaffLeave-form-group label'>Reason:</label>
                         <textarea name="streason" required />
                     </div>
 
