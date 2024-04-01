@@ -6,13 +6,13 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
-<<<<<<< HEAD
-=======
+
+
 
 //const registerRoute = require('./routes/registerRoute');
 
 //const userRoute = require("./routes/userRoute");
->>>>>>> 98bda11ae68754af4cf2ea1a7ca7b4ee0bfc65f0
+
 
 
 const adsRoute = require("./routes/adverisementRoute");
@@ -23,10 +23,9 @@ const payerinfoRoute = require("./routes/paymentRoute");
 
 app.use(cors());
 app.use(bodyParser.json());
-<<<<<<< HEAD
-=======
 
->>>>>>> 98bda11ae68754af4cf2ea1a7ca7b4ee0bfc65f0
+
+
 
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
