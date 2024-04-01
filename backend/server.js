@@ -9,7 +9,10 @@ app.use(express.json());
 
 //const registerRoute = require('./routes/registerRoute');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a4cff5767993e286b1aeeffaf769fb4fe72e1aa8
 //const userRoute = require("./routes/userRoute");
 
 
