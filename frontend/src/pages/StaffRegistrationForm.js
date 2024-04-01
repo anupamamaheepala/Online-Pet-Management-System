@@ -15,7 +15,7 @@ const StaffRegister = () => {
     designation: ''
   });
 
-  const { sname, semail, scontactNumber, saddress, designation } = formData;
+  const { sfirstname, slastname, snic,semail, scontactNumber, saddress, designation } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,15 +54,15 @@ const StaffRegister = () => {
       <form onSubmit={onSubmit} className='staffregister-form'>
         <div className="staffregister-form-group">
           <label>First Name:</label>
-          <input type="text" name="sfirstname" id='sfirstname' value={formData.sname} onChange={onChange} />
+          <input type="text" name="sfirstname" id='sfirstname' value={formData.sfirstname} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Last Name:</label>
-          <input type="text" name="slastname" id='slastname' value={formData.sname} onChange={onChange} />
+          <input type="text" name="slastname" id='slastname' value={formData.slastname} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>NIC No:</label>
-          <input type="text" name="snic" id='snic' value={formData.sname} onChange={onChange} />
+          <input type="text" name="snic" id='snic' value={formData.snic} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Email:</label>
