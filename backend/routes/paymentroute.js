@@ -27,7 +27,8 @@ router.post("/pay", async (req, res) => {
             phonenumber,
             address,
         });
-
+        
+        await income.save();
         res.status(200).json({ message: "Add added" });
     } catch (error) {
         res.status(500).json({ message: "Server Error" });

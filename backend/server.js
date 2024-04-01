@@ -16,7 +16,13 @@ const adsRoute = require("./routes/adverisementRoute");
 
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
+<<<<<<< HEAD
 const trainingRoute = require("./routes/trainingRoutes");
+=======
+const trainingRoutes = require("./routes/trainingRoutes");
+
+
+>>>>>>> a0e46deed61b6b2a6d660fe1967b28498fa50cc7
 
 const staffRoute = require("./routes/staffRoute");
 
@@ -35,11 +41,21 @@ app.use("/ads", adsRoute);
 
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
+<<<<<<< HEAD
 app.use("/training", trainingRoute);
+=======
+app.use("/training", trainingRoutes);
+>>>>>>> a0e46deed61b6b2a6d660fe1967b28498fa50cc7
 
 app.use("/staff", staffRoute);
 
 
+<<<<<<< HEAD
+=======
+app.use("/staff", staffRoute);
+
+
+>>>>>>> a0e46deed61b6b2a6d660fe1967b28498fa50cc7
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });
 });
