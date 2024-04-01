@@ -6,12 +6,11 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
-<<<<<<< HEAD
+
 //const registerRoute = require('./routes/registerRoute');
 
-=======
 //const userRoute = require("./routes/userRoute");
->>>>>>> 8c17fafa749c1d290ed8b6cb66a27db97b368fe8
+
 
 const adsRoute = require("./routes/adverisementRoute");
 
