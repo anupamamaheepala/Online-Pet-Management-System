@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from "./pages/Home";
 import Feedback from './pages/Feedback';
+import FeedbackDisplay from './pages/FeedbackDisplay';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import ScheduleAppointment from './pages/ScheduleAppointment';
@@ -49,7 +50,8 @@ function App() {
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
         <Route path='/TrainingUpdate' element={<TrainingUpdate/>}></Route>
-        <Route path="/Feedback" element={<Feedback/>} ></Route>    
+        <Route path="/Feedback" element={<Feedback/>} ></Route> 
+        <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
         <Route path="/Groomservices" element={<Groomservices/>} ></Route>
         <Route path="/ScheduleAppointment" element={<ScheduleAppointment/>} ></Route>   
