@@ -6,16 +6,33 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function ScheduleAppointments() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
-  const [petType, setPetType] = useState('');
-  const [service, setService] = useState('');
-  const [date, setDate] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [veterinarian, setVeterinarian] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [petType, setPetType] = useState("");
+  const [service, setService] = useState("");
+  const [date, setDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [veterinarian, setVeterinarian] = useState("");
 
-  const handleSubmit = async (event) => {
+  function sendData(e){
+    e.preventDefault();
+    alert ("insert");
+
+    const appointments ={
+      name,
+      email,
+      contactNumber,
+      petType,
+      service,
+      date,
+      startTime,
+      veterinarian
+  }
+  console.log(appointments); 
+}
+
+  /*const handleSubmit = async (event) => {
     event.preventDefault();
   
     try {
@@ -51,14 +68,14 @@ function ScheduleAppointments() {
       console.error('Error submitting form:', error);
       alert('An unexpected error occurred. Please try again later.');
     }
-  };
+  };*/
   
 
   return (
     <>
       <Header />
       <div className="scheduleappointments-container my-5">
-        <Form onSubmit={handleSubmit} className="scheduleappointments-form p-5 bg-light border rounded">
+        <Form  onSubmit={sendData} className="scheduleappointments-form p-5 bg-light border rounded">
           <Row className="g-3">
             <Col>
               <Form.Group controlId="formName">
