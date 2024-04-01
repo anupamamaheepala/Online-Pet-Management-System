@@ -15,11 +15,18 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 9000;
 console.log(process.env.MONGO_URL)
 
+/*app.use(req, res, next),() => {
+  console.log(req.path, req.method)
+  next()
+}*/
 const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("mongodb Connection success!");
 })
 
+//const paymentrouter = require("./routes/paymentRoute.js")
+//app.use("/paymentRoute",paymentrouter)
+  
 app.listen(port, () => {
   console.log(`Server started on port ${port},`);
 });
