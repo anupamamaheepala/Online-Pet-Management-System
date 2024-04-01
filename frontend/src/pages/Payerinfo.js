@@ -41,36 +41,36 @@ const Payerinfo = () => {
             <h2>Payer's Information</h2>
             <form onSubmit={onSubmit}>
                 <div className="anuform-group">
-                    <label htmlFor="name">Name:</label>
+                    <label>Name:</label>
                     <input  
                         type="text"
-                        id="name"
+                        name="name"
                         value={name}
                         onChange={onChange}
                     />
                 </div>
                 <div className="anuform-group">
-                    <label htmlFor="email">Email:</label>
+                    <label>Email:</label>
                     <input
                         type="email"
-                        id="email"
+                        name="email"
                         value={email}
                         onChange={onChange}
                     />
                 </div>
                 <div className="anuform-group">
-                    <label htmlFor="phonenumber">Phone Number:</label>
+                    <label>Phone Number:</label>
                     <input
                         type="text"
-                        id="phonenumber"
+                        name="phonenumber"
                         value={phonenumber}
                         onChange={onChange}
                     />
                 </div>
                 <div className="anuform-group">
-                    <label htmlFor="address">Address:</label>
+                    <label>Address:</label>
                     <textarea
-                        id="address"
+                        name="address"
                         value={address}
                         onChange={onChange}
                     />
