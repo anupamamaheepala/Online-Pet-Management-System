@@ -1,18 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
 const Training = require('../models/trainingModel');
 
-// Multer configuration for file upload
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-// Middleware to parse form data
-router.use(express.urlencoded({ extended: true }));
-router.use(express.json());
-
-// POST route for submitting training application
-router.post('/api/training', upload.single('report'), async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const {
       ownerName,
@@ -50,7 +40,7 @@ router.post('/api/training', upload.single('report'), async (req, res) => {
       bringToCenter,
       additionalPayment,
       report: {
-        data: req.file.buffer,
+        data: req.file.buffer, // Assuming you're using multer for file upload
         contentType: req.file.mimetype,
       },
       date: parsedDate,

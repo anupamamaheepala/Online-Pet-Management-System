@@ -44,11 +44,25 @@ const PrivateTraining = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    formData.append('report', report); // Append the report file
+    const formData = new FormData();
+    formData.append('ownerName', e.target.ownerName.value);
+    formData.append('address', e.target.address.value);
+    formData.append('contact', e.target.contact.value);
+    formData.append('dogName', e.target.dogName.value);
+    formData.append('breed', e.target.breed.value);
+    formData.append('age', e.target.age.value);
+    formData.append('lastVaccinatedDate', e.target.lastVaccinatedDate.value);
+    formData.append('vaccinationName', e.target.vaccinationName.value);
+    formData.append('firstTime', firstTime);
+    formData.append('trainingCenter', trainingCenter);
+    formData.append('trainingType', trainingType);
+    formData.append('bringToCenter', bringToCenter);
+    formData.append('additionalPayment', additionalPayment);
+    formData.append('report', report);
+    formData.append('date', date);
 
     try {
-      const response = await fetch('http://localhost:9000/api/training', {
+      const response = await fetch("http://localhost:9000/training/add", {
         method: 'POST',
         body: formData,
       });
@@ -62,7 +76,6 @@ const PrivateTraining = () => {
       console.error('Error submitting training application:', error);
     }
   };
-
   return (
     <div>
     <Header />
