@@ -33,7 +33,6 @@ import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import AdminTrainingApplication from './pages/AdminTrainingApplication';
-import TrainingUpdate from './pages/TrainingUpdate';
 
 function App() {
   console.log(global);
@@ -49,9 +48,11 @@ function App() {
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
-        <Route path='/TrainingUpdate' element={<TrainingUpdate/>}></Route>
+    
+        <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
+
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
         <Route path="/Groomservices" element={<Groomservices/>} ></Route>
         <Route path="/ScheduleAppointment" element={<ScheduleAppointment/>} ></Route>   

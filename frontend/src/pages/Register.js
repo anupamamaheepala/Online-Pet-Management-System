@@ -1,11 +1,12 @@
 // Register.js
 
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../css/register.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-function Register() {
+const Register =  () =>{
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -15,19 +16,33 @@ function Register() {
     confirmPassword: ''
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+  const { username, email, contactNumber, address, password, confirmPassword } = formData;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can add your registration logic here
-    console.log(formData);
-  };
+    const onChange = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const onSubmit = async e => {
+        e.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:9000/customer/register", formData);
+            console.log(res.data);
+            // Optionally, you can clear the form fields after successful submission
+            setFormData({
+              username: '',
+              email: '',
+              contactNumber: '',
+              address: '',
+              password: '',
+              confirmPassword: '',
+                
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+  
 
   return (
     <>
@@ -38,30 +53,30 @@ function Register() {
         <br></br>
         <div className="register-content">
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="registration-form-group">
             <label>Username:</label>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} />
+            <input type="text" name="username" value={username} onChange={onChange} />
           </div>
           <div className="registration-form-group">
             <label>Email:</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} />
+            <input type="email" name="email" value={email} onChange={onChange} />
           </div>
           <div className="registration-form-group">
             <label>Contact Number:</label>
-            <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
+            <input type="text" name="contactNumber" value={contactNumber} onChange={onChange} />
           </div>
           <div className="registration-form-group">
             <label>Address:</label>
-            <input type="text" name="address" value={formData.address} onChange={handleChange} />
+            <input type="text" name="address" value={address} onChange={onChange} />
           </div>
           <div className="registration-form-group">
             <label>Password:</label>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} />
+            <input type="password" name="password" value={password} onChange={onChange} />
           </div>
           <div className="registration-form-group">
             <label>Confirm Password:</label>
-            <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+            <input type="password" name="confirmPassword" value={confirmPassword} onChange={onChange} />
           </div>
           <center><button className="registration-button" type="submit">Register</button></center>
         </form>

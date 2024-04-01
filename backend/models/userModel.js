@@ -16,21 +16,6 @@ const userSchema = new mongoose.Schema({
         required : true
      },
 
-     isDoctor:{
-      type: Boolean,
-      default: false
-     },
-
-     isAdmin: {
-      type: Boolean,
-      default: false
-     },
-
-     isGroomer:{
-      type: Boolean,
-      default: false
-     },
-
      SeenNotification :{
       type: Array,
       default: [],
