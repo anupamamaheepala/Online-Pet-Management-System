@@ -13,11 +13,10 @@ app.use(express.json());
 
 
 const adsRoute = require("./routes/adverisementRoute");
-<<<<<<< HEAD
+
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoute = require("./routes/trainingRoutes");
-=======
 const staffRoute = require("./routes/staffRoute");
 
 //middleware
@@ -26,20 +25,18 @@ const staffRoute = require("./routes/staffRoute");
 //   next();
 // });
 
->>>>>>> 87de948645985543506291abd5f61d6634260e2e
+ 
 
 app.use(cors());
 app.use(bodyParser.json());
 //app.use('/api/register', registerRoute);
 
 app.use("/ads", adsRoute);
-<<<<<<< HEAD
+
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
 app.use("/training", trainingRoute);
-=======
 app.use("/staff", staffRoute);
->>>>>>> 87de948645985543506291abd5f61d6634260e2e
 
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });
