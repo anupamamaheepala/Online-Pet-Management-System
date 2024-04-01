@@ -10,13 +10,15 @@ const Payerinfo = () => {
         email: '',
         phonenumber: '',
         address: ''
-    })
+
+    });
+
 
     const {name, email, phonenumber, address} = formData;
 
     const onChange = e => {
         setFormData({...formData, [e.target.name]: e.target.value});
-    }
+    };
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -32,7 +34,7 @@ const Payerinfo = () => {
         } catch (err) {
             console.error(err);
         }
-    }
+    };
 
     return (
       <>
@@ -81,7 +83,7 @@ const Payerinfo = () => {
         <Footer />
         </>
     );
-};
+}
 
 export default Payerinfo;
 
