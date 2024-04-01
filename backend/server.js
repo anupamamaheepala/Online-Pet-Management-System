@@ -6,14 +6,16 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
-<<<<<<< HEAD
+
 //const registerRoute = require('./routes/registerRoute');
 
-=======
+
 //const userRoute = require("./routes/userRoute");
->>>>>>> 8c17fafa749c1d290ed8b6cb66a27db97b368fe8
+
 
 const adsRoute = require("./routes/adverisementRoute");
+const customerRoute = require("./routes/registerRoute");
+
 
 //middleware
 // app.use((req, res, next) => {
@@ -24,9 +26,10 @@ const adsRoute = require("./routes/adverisementRoute");
 
 app.use(cors());
 app.use(bodyParser.json());
-//app.use('/api/register', registerRoute);
+
 
 app.use("/ads", adsRoute);
+app.use("/customer", customerRoute);
 
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });
