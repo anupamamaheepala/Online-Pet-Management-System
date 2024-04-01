@@ -24,7 +24,7 @@ const Payerinfo = () => {
             <form onSubmit={handleSubmit}>
                 <div className="anuform-group">
                     <label htmlFor="name">Name:</label>
-                    <input
+                    <input  
                         type="text"
                         id="name"
                         value={name}
@@ -57,7 +57,7 @@ const Payerinfo = () => {
                         onChange={(e) => setAddress(e.target.value)}
                     />
                 </div>
-                <center><button className="anupfbutton" type="View Status">View Status</button></center>
+                <center><button className="anupfbutton" type="submit">View Status</button></center>
             </form>
         </div>
         <Footer />
