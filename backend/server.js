@@ -21,6 +21,7 @@ app.use(express.json());
 const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
+const trainingRoute = require("./routes/trainingRoutes");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
+app.use("/training", trainingRoute);
 
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });

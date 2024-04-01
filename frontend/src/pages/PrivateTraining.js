@@ -46,8 +46,9 @@ const PrivateTraining = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append('report', report); // Append the report file
+
     try {
-      const response = await fetch('/api/training', {
+      const response = await fetch('http://localhost:9000/api/training', {
         method: 'POST',
         body: formData,
       });
