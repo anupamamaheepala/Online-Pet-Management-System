@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 let paymentRoute = require("../models/paymentModel");
 
-router.post("/add", async (req, res) => {
+router.post("/pay", async (req, res) => {
     console.log("OK");
     const {
         name,

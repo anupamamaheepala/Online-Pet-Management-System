@@ -10,7 +10,11 @@ const Payerinfo = () => {
         email: '',
         phonenumber: '',
         address: ''
+<<<<<<< HEAD
     });
+=======
+    })
+>>>>>>> 689d9c1a15bef84d7bf34df78d088dd78f17a76a
 
     const {name, email, phonenumber, address} = formData;
 
@@ -27,7 +31,7 @@ const Payerinfo = () => {
                 name: '',
                 email: '',
                 phonenumber: '',
-                address: '',
+                address: ''
             });
         } catch (err) {
             console.error(err);
@@ -61,8 +65,13 @@ const Payerinfo = () => {
                 <div className="anuform-group">
                     <label htmlFor="phonenumber">Phone Number:</label>
                     <input
+<<<<<<< HEAD
                         type="tel"
                         phonenumber="phonenumber"
+=======
+                        type="text"
+                        id="phonenumber"
+>>>>>>> 689d9c1a15bef84d7bf34df78d088dd78f17a76a
                         value={phonenumber}
                         onChange={onChange}
                     />
