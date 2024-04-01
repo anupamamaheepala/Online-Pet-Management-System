@@ -9,14 +9,14 @@ const Payerinfo = () => {
         name: '',
         email: '',
         phonenumber: '',
-        address: '',
-    })
+        address: ''
+    });
 
     const {name, email, phonenumber, address} = formData;
 
     const onChange = e => {
         setFormData({...formData, [e.target.name]: e.target.value});
-    }
+    };
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -32,7 +32,7 @@ const Payerinfo = () => {
         } catch (err) {
             console.error(err);
         }
-    }
+    };
 
     return (
       <>
@@ -44,7 +44,7 @@ const Payerinfo = () => {
                     <label htmlFor="name">Name:</label>
                     <input  
                         type="text"
-                        id="name"
+                        name="name"
                         value={name}
                         onChange={onChange}
                     />
@@ -53,7 +53,7 @@ const Payerinfo = () => {
                     <label htmlFor="email">Email:</label>
                     <input
                         type="email"
-                        id="email"
+                        email="email"
                         value={email}
                         onChange={onChange}
                     />
@@ -62,7 +62,7 @@ const Payerinfo = () => {
                     <label htmlFor="phonenumber">Phone Number:</label>
                     <input
                         type="tel"
-                        id="phonenumber"
+                        phonenumber="phonenumber"
                         value={phonenumber}
                         onChange={onChange}
                     />
@@ -70,7 +70,7 @@ const Payerinfo = () => {
                 <div className="anuform-group">
                     <label htmlFor="address">Address:</label>
                     <textarea
-                        id="address"
+                        address="address"
                         value={address}
                         onChange={onChange}
                     />
@@ -81,7 +81,7 @@ const Payerinfo = () => {
         <Footer />
         </>
     );
-};
+}
 
 export default Payerinfo;
 
