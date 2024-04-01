@@ -20,4 +20,4 @@ const payerinfoSchema = new mongoose.Schema({
 
 }, {timestamps: false})
 
-module.exports = mongoose.model('Payerinfo', payerinfoSchema)
+module.exports = mongoose.model('payerinfo', payerinfoSchema)
