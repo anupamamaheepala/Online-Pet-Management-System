@@ -32,13 +32,13 @@
     
   }
   
-  .sname,.semail, .scontactNumber, .saddress, .designation {
+  .sfirstname,.slastname,.snic,.semail, .scontactNumber, .saddress, .designation {
     width: 100%;
-    padding: 8px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #000000;
     border-radius: 5px;
-    border-color: azure;
-  }
+    }
   
   .staffRegisterButton {
     width: 80%;
@@ -56,7 +56,8 @@
   }
   
   .staffRegisterButton:hover {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #ffffff;
+    color: hsl(0, 0%, 0%);
+    text-decoration: none;
   }
   

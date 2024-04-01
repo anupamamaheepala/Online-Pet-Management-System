@@ -13,6 +13,7 @@ app.use(express.json());
 
 
 const adsRoute = require("./routes/adverisementRoute");
+const staffRoute = require("./routes/staffRoute");
 
 //middleware
 // app.use((req, res, next) => {
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 //app.use('/api/register', registerRoute);
 
 app.use("/ads", adsRoute);
+app.use("/staff", staffRoute);
 
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });
