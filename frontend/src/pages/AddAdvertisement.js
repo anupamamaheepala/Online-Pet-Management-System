@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import '../css/advertisement.css'; 
+import '../css/advertisement.css';
 
 const AddAdvertisement = () => {
     const [formData, setFormData] = useState({
@@ -25,44 +25,52 @@ const AddAdvertisement = () => {
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post('/api/advertisement/add', formData);
+            const res = await axios.post("http://localhost:9000/ads/add", formData);
             console.log(res.data);
-            // Assuming you want to redirect after successful submission
-            // You can add your redirect logic here
+            // Optionally, you can clear the form fields after successful submission
+            setFormData({
+                ownerName: '',
+                email: '',
+                title: '',
+                Breed: '',
+                purpose: '',
+                description: '',
+                price: '',
+                contact: ''
+            });
         } catch (err) {
-            console.error(err.response.data);
-            // Handle errors, show error messages, etc.
+            console.error(err);
         }
     };
 
     return (
         <>
-            <Header /> 
+            <Header />
             <form className="ma_advertisement-form" onSubmit={onSubmit}>
                 <h2>Add your advertisement details here. </h2>
                 <p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
-                <b> If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
-                
+                    <b> If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
+
                 <div className="ma_form-group">
                     <label htmlFor="ownerName">Owner Name:</label>
                     <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={onChange} />
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="email" name="email" value={email} onChange={onChange} />
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="title">Title:</label>
                     <input type="text" id="title" name="title" value={title} onChange={onChange} />
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="Breed">Breed:</label>
                     <input type="text" id="Breed" name="Breed" value={Breed} onChange={onChange} />
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="purpose">Purpose of the advertisement:</label>
                     <select id="purpose" name="purpose" value={purpose} onChange={onChange}>
@@ -71,23 +79,23 @@ const AddAdvertisement = () => {
                         <option value="lost_my_pet">Lost my pet</option>
                     </select>
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="description">Description:</label>
                     <textarea id="description" name="description" value={description} onChange={onChange}></textarea>
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="price">Price(LKR):</label>
                     <input type="text" id="price" name="price" value={price} onChange={onChange} />
                 </div>
-                
+
                 <div className="ma_form-group">
                     <label htmlFor="contact">Contact:</label>
                     <input type="text" id="contact" name="contact" value={contact} onChange={onChange} />
                 </div>
-                
-                <button style={{width:'150px'}} type="submit" className="ma_submit-button">Submit</button>
+
+                <button style={{ width: '150px' }} type="submit" className="ma_submit-button">Submit</button>
             </form>
             <Footer />
         </>
