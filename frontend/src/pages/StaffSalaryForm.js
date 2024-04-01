@@ -1,50 +1,54 @@
-import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import React from 'react';
 import '../css/StaffSalary.css';
 
 function SalaryCalculator(){
     return(
-        <Layout>
+      <>
+      <Header />
+       
 
-        <div className="wrap">
-      <div className="StaffRegister">
+      <div className="StaffSalary">
         <h2>Salary Calculation Form</h2>
-        <form>
-          <div className="input_box">
-            <label>Staff Name:</label>
-            <input type="text" required/>
+
+        <form className='StaffSalary-form'>
+
+          <div className="StaffSalary-form-group">
+            <label className='StaffSalary-form-group label'>Staff Name:</label>
+            <input type="text" className='staffname' required/>
           </div>
 
-          <div className="input_box">
-            <label>Staff ID:</label>
+          <div className="StaffSalary-form-group">
+            <label className='StaffSalary-form-group label'>Staff ID:</label>
             <input
-              type="text"  required  />
+              type="text" className='staffid'  required  />
           </div>
 
-          <div className="input_box">
-            <label>Basic Salary:</label>
-            <input type="number" required />
+          <div className="StaffSalary-form-group">
+            <label className='StaffSalary-form-group label'>Basic Salary:</label>
+            <input type="number" className='basicSalary' required />
           </div>
 
-          <div className="input_box">
-            <label>OT Hours:</label>
-            <input type="number" required />
+          <div className="StaffSalary-form-group">
+            <label className=''>OT Hours:</label>
+            <input type="number" className='otHours'required />
           </div>
 
-          <div className="input_box">
-            <label>OT Amount:</label>
+          <div className="StaffSalary-form-group">
+            <label className='StaffSalary-form-group label'>OT Amount:</label>
             <input
-              type="number" required />
+              type="number" className='otAmount' required />
           </div>
 
-          <div className="input_box">
-            <label>Bonus Amount:</label>
+          <div className="StaffSalary-form-group">
+            <label className='StaffSalary-form-group label'>Bonus Amount:</label>
             <input
-              type="number" required />
+              type="number"  className='bonusAmount' required />
           </div>
 
 
-          <button type="submit">Calculate</button>
+          <button type="submit" className='StaffCalculate'>Calculate</button>
         </form>
         <div>
           <h3>Total Salary:</h3>
@@ -52,8 +56,11 @@ function SalaryCalculator(){
 
 
       </div>
-    </div>
-    </Layout>
+
+      <br></br>
+    
+    <Footer />
+    </>
   );
 };
 

@@ -54,7 +54,7 @@ const Banktrans = () => {
                       onChange={handleFileChange}
                   />
               </div>
-              <center><button className="anubtbutton" type="submit">Submit</button></center>
+              <center><button className="anubtbutton" type="submit">Confirm Payment</button></center>
           </form>
       </div>
       <Footer />
