@@ -1,23 +1,57 @@
-const { default: AddAdvertisement } = require('../../frontend/src/pages/AddAdvertisement');
-const { ownerName, email, title, Breed, purpose, description, price, contact} = require('../controller/advertisementController');
+const express = require("express");
+const router = express.Router();
+const AdsSchema = require("../models/advertisementModel");
 
-const router = require('express').Router();
+//add a single income
+router.post("/add", async (req, res) => {
+  //destructuring request body into its components
+  console.log("okkkk");
+  const {
+    ownerName,
+    email,
+    title,
+    Breed,
+    purpose,
+    description,
+    price,
+    contact,
+  } = req.body;
 
+  //validations
+  try {
+    if (
+      !ownerName ||
+      !email ||
+      !title ||
+      !Breed ||
+      !purpose ||
+      !description ||
+      !price ||
+      !contact
+    ) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
 
+    const income = AdsSchema({
+      ownerName,
+      email,
+      title,
+      Breed,
+      purpose,
+      description,
+      price,
+      contact,
+    });
 
-router.post('/addAds', AddAdvertisement)
-      // .get('/get-incomes', getIncomes)
-      // .get('/get-income/:id', getIncome)
-      // .put('/update-income/:id', updateIncome)
-      // .delete('/delete-income/:id', deleteIncome)
-      // .post('/add-expense', addExpense)
-      // .get('/get-expenses', getExpenses)
-      // .get('/get-expense/:id', getExpense)
-      // .put('/update-expense/:id', updateExpense)
-      // .delete('/delete-expense/:id', deleteExpense)
-      // .post('/export')
-module.exports = router
+    //saving data into the database
+    await income.save();
+    res.status(200).json({ message: "Add added" });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 
+module.exports = router;
 
 
 

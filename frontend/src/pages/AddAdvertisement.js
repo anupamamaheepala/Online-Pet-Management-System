@@ -25,7 +25,7 @@ const AddAdvertisement = () => {
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/AddAdvertisement", formData);
+            const res = await axios.post("http://localhost:9000/ads/add", formData);
             console.log(res.data);
             // Optionally, you can clear the form fields after successful submission
             setFormData({
@@ -39,7 +39,7 @@ const AddAdvertisement = () => {
                 contact: ''
             });
         } catch (err) {
-            console.error(err.response.data);
+            console.error(err);
         }
     };
 

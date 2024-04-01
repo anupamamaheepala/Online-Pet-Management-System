@@ -42,7 +42,7 @@ const AddsSchema = new mongoose.Schema({
 
 },{timestamps: false})
 
-module.exports = mongoose.model('Income', IncomeSchema)
+module.exports = mongoose.model('Ads', AddsSchema)
 
 
 
