@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/payerinfo.css';
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -22,7 +21,7 @@ const Payerinfo = () => {
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:9000/payerinfo/add", formData);
+            const res = await axios.post("http://localhost:9000/payerinfo/pay", formData);
             console.log(res.data);
             setFormData({
                 name: '',

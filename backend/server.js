@@ -9,6 +9,9 @@ app.use(express.json());
 
 
 
+
+
+
 //const registerRoute = require('./routes/registerRoute');
 
 //const userRoute = require("./routes/userRoute");
@@ -17,8 +20,6 @@ app.use(express.json());
 
 const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
-
-
 const payerinfoRoute = require("./routes/paymentRoute");
 
 app.use(cors());
@@ -27,9 +28,11 @@ app.use(bodyParser.json());
 
 
 
+
+
+
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
-
 app.use("/payerinfo", payerinfoRoute);
 
 app.get("/", (req, res) => {
