@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-const payerinfoSchema = new Schema({
+const payerinfoSchema = new mongoose.Schema({
     name : {
         type : String,
         require: true
@@ -20,8 +18,6 @@ const payerinfoSchema = new Schema({
         require: true
     },
 
-})
+}, {timestamps: false})
 
-const Payment = mongoose.model("payment",paymentSchema);
-
-module.exports = paymentModel;
+module.exports = mongoose.model('Payerinfo', payerinfoSchema)
