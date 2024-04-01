@@ -1,22 +1,99 @@
-// advertisementModel.js
 
 const mongoose = require('mongoose');
 
-const advertisementSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+const AddsSchema = new mongoose.Schema({
+  ownerName: {
+        type: String,
+        required: true
+      },
+      email: {
+        type: String,
+        required: true
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      Breed: {
+        type: String,
+        required: true
+      },
+      purpose: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+      price: {
+        type: String,
+        required: true
+      },
+      contact: {
+        type: String,
+        required: true
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now
+      }
+        
 
-const Advertisement = mongoose.model('Advertisement', advertisementSchema);
+},{timestamps: false})
 
-module.exports = Advertisement;
+module.exports = mongoose.model('Income', IncomeSchema)
+
+
+
+
+
+
+
+// // advertisementModel.js
+
+// const mongoose = require('mongoose');
+
+// const advertisementSchema = new mongoose.Schema({
+//   ownerName: {
+//     type: String,
+//     required: true
+//   },
+//   email: {
+//     type: String,
+//     required: true
+//   },
+//   title: {
+//     type: String,
+//     required: true
+//   },
+//   Breed: {
+//     type: String,
+//     required: true
+//   },
+//   purpose: {
+//     type: String,
+//     required: true
+//   },
+//   description: {
+//     type: String,
+//     required: true
+//   },
+//   price: {
+//     type: String,
+//     required: true
+//   },
+//   contact: {
+//     type: String,
+//     required: true
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now
+//   }
+// });
+
+
+// const Advertisement = mongoose.model('Advertisement', advertisementSchema);
+
+// module.exports = Advertisement;

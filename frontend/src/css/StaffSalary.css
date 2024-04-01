@@ -1,55 +1,61 @@
-.wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .StaffRegister {
-    width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .StaffRegister h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .input_box {
-    margin-bottom: 15px;
-  }
-  
-  .input_box label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  .input_box input {
+/* StaffSalary.css */
+
+.StaffSalary {
+  margin-top: 10px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: white;
+  color: #000000;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+}
+
+.StaffSalary-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.StaffSalary-form-group {
+  margin-bottom: 15px;
+}
+
+.StaffSalary-form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.staffname,.staffid, .basicSalary, .otHours, .otAmount, .bonusAmount {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: azure;
+}
+
+.StaffCalculate {
+    align-items: center;
+    background-color: #393b39;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  h3 {
-    text-align: center;
-  }
-  
+    font-size: 16px;
+    display: block;
+    width: 80%;
+    margin-top: 10px;
+}
+.StaffCalculate:hover{
+  background-color: #676464;
+}
+
+.SalaryCalculator-result {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Additional styling can be added as needed */

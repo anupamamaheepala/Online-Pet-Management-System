@@ -8,6 +8,19 @@ const dbconfig = require("./config/dbconfig");
 app.use(express.json());
 //const userRoute = require("./routes/userRoute"); 
 
+
+//middleware
+app.use((req, res, next) =>{
+  console.log(req.path, req.method)
+  next()
+})
+
+app.get('/', (req,res) => {
+  res.json({mssg: 'Welcome to the app'})
+})
+app.listen(process.env.PORT, () => {
+  console.log('listening on port', process.env.PORT)
+})
 app.use(cors()); 
 app.use(bodyParser.json());
 //app.use('/api/user', userRoute);

@@ -79,39 +79,39 @@ const PrivateTraining = () => {
             <h2>Fill the Application</h2>
             <form onSubmit={handleSubmit}>
               <div className="alo-form-group">
-                <label htmlFor="ownerName">Owner's Name:</label>
+                <label className="private" htmlFor="ownerName">Owner's Name:</label>
                 <input type="text" id="ownerName" name="ownerName" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="address">Address:</label>
+                <label className="private" htmlFor="address">Address:</label>
                 <textarea id="address" name="address"></textarea>
               </div>
               <div className="alo-form-group">
-                <label htmlFor="contact">Contact Number:</label>
+                <label className="private" htmlFor="contact">Contact Number:</label>
                 <input type="tel" id="contact" name="contact" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="dogName">Dog's Name:</label>
+                <label className="private" htmlFor="dogName">Dog's Name:</label>
                 <input type="text" id="dogName" name="dogName" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="breed">Breed:</label>
+                <label className="private" htmlFor="breed">Breed:</label>
                 <input type="text" id="breed" name="breed" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="age">Age:</label>
+                <label className="private" htmlFor="age">Age:</label>
                 <input type="number" id="age" name="age" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="lastVaccinatedDate">Last Vaccinated Date:</label>
+                <label className="private" htmlFor="lastVaccinatedDate">Last Vaccinated Date:</label>
                 <input type="date" id="lastVaccinatedDate" name="lastVaccinatedDate" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="vaccinationName">Vaccination Name:</label>
+                <label className="private" htmlFor="vaccinationName">Vaccination Name:</label>
                 <input type="text" id="vaccinationName" name="vaccinationName" />
               </div>
               <div className="alo-form-group">
-                <label htmlFor="firstTime">Is this your first time for training program?</label>
+                <label className="private" htmlFor="firstTime">Is this your first time for training program?</label>
                 <select id="firstTime" name="firstTime" onChange={handleFirstTimeChange}>
                   <option value="no">No</option>
                   <option value="yes">Yes</option>
@@ -119,19 +119,19 @@ const PrivateTraining = () => {
               </div>
               {firstTime && (
                 <div className="alo-form-group">
-                  <label htmlFor="trainingCenter">Training Center Name:</label>
+                  <label className="private" htmlFor="trainingCenter">Training Center Name:</label>
                   <input type="text" id="trainingCenter" name="trainingCenter" onChange={handleTrainingCenterChange} />
                 </div>
               )}
               {firstTime && (
                 <div className="alo-form-group">
-                  <label htmlFor="trainingType">Training Type:</label>
+                  <label className="private" htmlFor="trainingType">Training Type:</label>
                   <input type="text" id="trainingType" name="trainingType" onChange={handleTrainingTypeChange} />
                 </div>
               )}
                 {/* other form fields */}
                 <div className="alo-form-group">
-  <label htmlFor="bringToCenter">Will you bring your dog to the training center on the training day?</label>
+  <label className="private" htmlFor="bringToCenter">Will you bring your dog to the training center on the training day?</label>
   <select id="bringToCenter" name="bringToCenter" onChange={handleBringToCenterChange}>
     <option value="bring">Yes</option>
     <option value="keep">No, I'll keep my dog with you during the training period</option>
@@ -144,7 +144,7 @@ const PrivateTraining = () => {
       
     <input type="checkbox" id="additionalPayment" name="additionalPayment" onChange={handleAdditionalPaymentChange} />
     </div>
-    <label htmlFor="additionalPayment">I understand that an additional payment will apply for keeping my dog with you.</label>
+    <label className="private" htmlFor="additionalPayment">I understand that an additional payment will apply for keeping my dog with you.</label>
     </div>
     <p>Additional charges apply for:</p>
     <ul>
@@ -160,7 +160,7 @@ const PrivateTraining = () => {
                   <input type="file" id="report" name="report" accept=".pdf,.jpg,.jpeg" onChange={handleReportUpload} />
                 </div>
                 <div className="alo-form-group">
-                  <label htmlFor="date">Report Date:</label>
+                  <label className="private" htmlFor="date">Report Date:</label>
                   <input type="date" id="date" name="date" value={date} onChange={handleDateChange} />
                 </div>
                 <div className="alo-form-group">
