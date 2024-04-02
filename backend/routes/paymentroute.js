@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
-<<<<<<< HEAD
 const payerinfoSchema = require("../models/paymentModel");
 const cardpaySchema = require("../models/paymentModel");
-=======
-let paymentRoute = require("../models/paymentModel");
->>>>>>> 047f9e6823e859790f3bcc0a6a2dc7905828ce1b
 
 //payer information
 router.post("/pay", async (req, res) => {
