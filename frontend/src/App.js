@@ -8,7 +8,6 @@ import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
-import ScheduleAppointment from './pages/ScheduleAppointment';
 import AllVetAppointments from './pages/AllVetAppointments';     
 import AllGroomeAppointments from './pages/AllGroomeAppointments';  
 import MyAppointments from './pages/MyAppointments';
@@ -49,14 +48,11 @@ function App() {
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
-    
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
-
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
-        <Route path="/Groomservices" element={<Groomservices/>} ></Route>
-        <Route path="/ScheduleAppointment" element={<ScheduleAppointment/>} ></Route>   
+        <Route path="/Groomservices" element={<Groomservices/>} ></Route>  
         <Route path="/MyAppointments" element={<MyAppointments/>} ></Route> 
         <Route path="/AllVetAppointments" element={<AllVetAppointments/>} ></Route> 
         <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route>
@@ -77,8 +73,6 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
-        <Route exact path="/schedule" component={<ScheduleAppointment/>} />
-        {/* <Route path="AddAdvertisement" element={<AddAdvertisement/>} /> */}
        </Routes>
 
         
