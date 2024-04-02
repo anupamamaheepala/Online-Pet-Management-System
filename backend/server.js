@@ -15,10 +15,7 @@ const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoutes = require("./routes/trainingRoutes");
-<<<<<<< HEAD
 
-=======
->>>>>>> 4d90bacbb9946e0cf494009679a713bec2278f06
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/paymentRoute")
