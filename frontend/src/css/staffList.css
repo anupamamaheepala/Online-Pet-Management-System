@@ -1,0 +1,32 @@
+/* Unique CSS for StaffList component */
+.staffListcontainer1 {
+    text-align: center;
+    margin: 0 auto; 
+    max-width: 900px; 
+  } 
+
+  .staffList-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .staffList-table th, .staffList-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .staffList-table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .staffList-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .staffList-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  

@@ -28,16 +28,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 const mongoose = require('mongoose');
 
 const TrSchema = new mongoose.Schema({
