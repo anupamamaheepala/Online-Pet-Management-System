@@ -21,10 +21,8 @@ const payerinfoRoute = require("./routes/paymentRoute");
 
 const trainingRoutes = require("./routes/trainingRoutes");
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f9eaa4a4da6967e199568ff342cbd50357f94c45
+
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/paymentRoute")
@@ -53,12 +51,7 @@ app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 
 app.use("/staffLeave", staffLeaveRoute);
-
-
-
 app.use("/staff", staffRoute);
-
-
 
 
 app.get("/", (req, res) => {
