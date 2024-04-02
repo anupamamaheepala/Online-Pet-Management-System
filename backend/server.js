@@ -25,10 +25,6 @@ const trainingRoutes = require("./routes/trainingRoutes");
 
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
-
-
-
-const staffRoute = require("./routes/staffRoute");
 const cardpayRoute = require("./routes/paymentRoute")
 //middleware
 // app.use((req, res, next) => {
