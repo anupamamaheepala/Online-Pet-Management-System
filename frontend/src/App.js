@@ -33,6 +33,7 @@ import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import TrainingDashboard from './pages/TrainingDashboard';
+import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
 
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
+        <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
+
+
     
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
