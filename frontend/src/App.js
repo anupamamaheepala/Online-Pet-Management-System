@@ -48,12 +48,12 @@ function App() {
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
-<<<<<<< HEAD
+
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
-=======
+
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
     
->>>>>>> a2ea8e63f28da674348bece03cf7c5fe66dbd07a
+
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
