@@ -27,6 +27,7 @@
 .registration-form-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .registration-form-group input {
@@ -59,6 +60,8 @@
 
 .registration-staff {
   text-align: left;
+  font-weight: bold;
+
 }
 
 .registration-staff-registration-btn {

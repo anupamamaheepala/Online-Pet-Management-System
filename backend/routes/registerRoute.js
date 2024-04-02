@@ -4,15 +4,6 @@ const express = require('express');
 const router = express.Router();
 const customerSchema = require("../models/registerModel");
 
-/*// Create a new registration
-router.post('/register', async (req, res) => {
-  try {
-    const register = await register.create(req.body);
-    res.status(201).json(register);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});*/
 
 //add a single income
 router.post("/register", async (req, res) => {
@@ -40,6 +31,11 @@ router.post("/register", async (req, res) => {
     ) {
       return res.status(400).json({ message: "All fields are required!" });
     }
+     // Check if password and confirm password match
+     if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Password and confirm password should be the same" });
+    }
+    
 
     const income = customerSchema({
       username,
@@ -51,6 +47,7 @@ router.post("/register", async (req, res) => {
       
     });
 
+    
     //saving data into the database
     await income.save();
     res.status(200).json({ message: "register customer" });
