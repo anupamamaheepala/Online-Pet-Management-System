@@ -21,7 +21,7 @@ const payerinfoSchema = new mongoose.Schema({
 
 }, {timestamps: false})
 
-<<<<<<< HEAD
+
 //card payment
 const cardpaySchema = new mongoose.Schema({
     nameOnCard : {
@@ -45,6 +45,3 @@ const cardpaySchema = new mongoose.Schema({
 
 module.exports = mongoose.model('payerinfo', payerinfoSchema)
 module.exports = mongoose.model('cardpay', cardpaySchema)
-=======
-module.exports = mongoose.model('Payerinfo', payerinfoSchema)
->>>>>>> 047f9e6823e859790f3bcc0a6a2dc7905828ce1b
