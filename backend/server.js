@@ -17,13 +17,21 @@ const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 
+<<<<<<< HEAD
 const trainingRoute = require("./routes/trainingRoutes");
+=======
+>>>>>>> 107e76e766496eaca828fe0c4ab9fe20a22358d2
 
 const trainingRoutes = require("./routes/trainingRoutes");
 
 
-const staffRoute = require("./routes/staffRoute");
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> 107e76e766496eaca828fe0c4ab9fe20a22358d2
+const staffRoute = require("./routes/staffRoute");
+const cardpayRoute = require("./routes/paymentRoute")
 //middleware
 // app.use((req, res, next) => {
 //   console.log(req.path, req.method);
@@ -40,17 +48,30 @@ app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
 
+<<<<<<< HEAD
 app.use("/training", trainingRoute);
 
 app.use("/training", trainingRoutes);
+=======
+
+app.use("/training", trainingRoutes);
+
+
+app.use("/staff", staffRoute);
+app.use("/cardpay", cardpayRoute)
+>>>>>>> 107e76e766496eaca828fe0c4ab9fe20a22358d2
 
 app.use("/staff", staffRoute);
 
 
+<<<<<<< HEAD
 
 app.use("/staff", staffRoute);
 
 
+=======
+
+>>>>>>> 107e76e766496eaca828fe0c4ab9fe20a22358d2
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });
 });

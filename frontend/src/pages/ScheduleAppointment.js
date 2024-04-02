@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import '../css/scheduleappointments.css';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer';
+import axios from "axios";
 
 function ScheduleAppointments() {
   const [name, setName] = useState("");
@@ -15,29 +16,10 @@ function ScheduleAppointments() {
   const [startTime, setStartTime] = useState("");
   const [veterinarian, setVeterinarian] = useState("");
 
-  function sendData(e){
+  const sendData = async (e) => {
     e.preventDefault();
-    alert ("insert");
-
-    const appointments ={
-      name,
-      email,
-      contactNumber,
-      petType,
-      service,
-      date,
-      startTime,
-      veterinarian
-  }
-  console.log(appointments); 
-}
-
-  /*const handleSubmit = async (event) => {
-    event.preventDefault();
-  
     try {
-      // Construct form data object
-      const formData = {
+      const appointmentData = {
         name,
         email,
         contactNumber,
@@ -47,35 +29,19 @@ function ScheduleAppointments() {
         startTime,
         veterinarian
       };
-  
-      // Send form data to backend
-      const response = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-  
-      if (response.ok) {
-        // Form submission successful
-        alert('Appointment scheduled successfully!');
-      } else {
-        // Form submission failed
-        alert('Failed to schedule appointment. Please try again.');
-      }
+      await axios.post("http://localhost:9000/appointments/insertappointments", appointmentData);
+      alert("Appointment requested successfully!");
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('An unexpected error occurred. Please try again later.');
+      console.error("Error sending appointment data:", error);
+      alert("Failed to request appointment. Please try again later.");
     }
-  };*/
-  
+  };
 
   return (
     <>
       <Header />
       <div className="scheduleappointments-container my-5">
-        <Form  onSubmit={sendData} className="scheduleappointments-form p-5 bg-light border rounded">
+        <Form onSubmit={sendData} className="scheduleappointments-form p-5 bg-light border rounded">
           <Row className="g-3">
             <Col>
               <Form.Group controlId="formName">
@@ -134,9 +100,8 @@ function ScheduleAppointments() {
             </Button>
           </div>
         </Form>
-  </div>
-
-      <Footer /> 
+      </div>
+      <Footer />
     </>
   );
 }

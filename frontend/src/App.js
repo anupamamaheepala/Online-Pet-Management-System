@@ -34,6 +34,7 @@ import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import AdminTrainingApplication from './pages/AdminTrainingApplication';
 
+
 function App() {
   console.log(global);
   return (
@@ -76,6 +77,7 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
+        <Route exact path="/schedule" component={<ScheduleAppointment/>} />
         {/* <Route path="AddAdvertisement" element={<AddAdvertisement/>} /> */}
        </Routes>
 
