@@ -23,6 +23,7 @@ import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
 import Banktrans from './pages/Banktrans';
 import StaffRegistrationForm from './pages/StaffRegistrationForm';
+import StaffList from './pages/StaffList';
 import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import SignIn from './pages/SignIn';
@@ -73,6 +74,7 @@ function App() {
         <Route path="/Cardpay" element={<Cardpay/>} ></Route>
         <Route path="/Banktrans" element={<Banktrans/>}></Route>
         <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
+        <Route path="/StaffList" element={<StaffList/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
