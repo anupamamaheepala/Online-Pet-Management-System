@@ -255,3 +255,29 @@
     left: 750px;
     transform: scale(1.5); 
 }
+
+/* CSS for the advertisement table */
+.ma_advertisement-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ma_advertisement-table th,
+.ma_advertisement-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.ma_advertisement-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.ma_advertisement-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.ma_advertisement-table tbody tr:hover {
+    background-color: #ddd;
+}
