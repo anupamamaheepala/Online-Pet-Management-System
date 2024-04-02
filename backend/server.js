@@ -18,7 +18,7 @@ const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoute = require("./routes/trainingRoutes");
 const staffRoute = require("./routes/staffRoute");
-
+const cardpayRoute = require("./routes/paymentRoute")
 //middleware
 // app.use((req, res, next) => {
 //   console.log(req.path, req.method);
@@ -37,6 +37,7 @@ app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
 app.use("/training", trainingRoute);
 app.use("/staff", staffRoute);
+app.use("/cardpay", cardpayRoute)
 
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });

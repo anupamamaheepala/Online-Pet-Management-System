@@ -46,35 +46,43 @@ const Payerinfo = () => {
                     <label>Name:</label>
                     <input  
                         type="text"
+                        id="name"
                         name="name"
                         value={name}
                         onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="anuform-group">
                     <label>Email:</label>
                     <input
                         type="email"
+                        id="email"
                         name="email"
                         value={email}
                         onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="anuform-group">
                     <label>Phone Number:</label>
                     <input
                         type="text"
+                        id="phonenumber"
                         name="phonenumber"
                         value={phonenumber}
                         onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="anuform-group">
                     <label>Address:</label>
                     <textarea
                         name="address"
+                        id="address"
                         value={address}
                         onChange={onChange}
+                        required
                     />
                 </div>
                 <center><button className="anupfbutton" type="submit">View Status</button></center>
