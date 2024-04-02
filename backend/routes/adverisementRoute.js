@@ -51,6 +51,23 @@ router.post("/add", async (req, res) => {
   }
 });
 
+
+router.route("/").get((req,res)=>{
+    
+  AdsSchema.find().then((ads)=>{
+      res.json(ads)
+  }) .catch((err)=>{
+      console.log(err);
+  })
+
+})
+
+
+
+
+
+
+
 module.exports = router;
 
 

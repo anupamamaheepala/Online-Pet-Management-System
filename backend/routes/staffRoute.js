@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const StaffSchema = require("../models/staffModel");
 
-//add a single income
+
 router.post("/add", async (req, res) => {
   //destructuring request body into its components
   console.log("inserted");
@@ -47,6 +47,17 @@ router.post("/add", async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
+router.route("/").get((req,res)=>{
+    
+  StaffSchema.find().then((staff)=>{
+      res.json(staff)
+  }) .catch((err)=>{
+      console.log(err);
+  })
+
+})
+
 
 module.exports = router;
 

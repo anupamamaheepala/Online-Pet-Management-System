@@ -22,6 +22,7 @@ import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
 import Banktrans from './pages/Banktrans';
 import StaffRegistrationForm from './pages/StaffRegistrationForm';
+import StaffList from './pages/StaffList';
 import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import SignIn from './pages/SignIn';
@@ -31,7 +32,7 @@ import ProductDescription from './pages/ProductDescription';
 import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
-import AdminTrainingApplication from './pages/AdminTrainingApplication';
+import TrainingDashboard from './pages/TrainingDashboard';
 
 
 function App() {
@@ -47,7 +48,12 @@ function App() {
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
+<<<<<<< HEAD
         <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
+=======
+        <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
+    
+>>>>>>> a2ea8e63f28da674348bece03cf7c5fe66dbd07a
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
@@ -69,6 +75,7 @@ function App() {
         <Route path="/Cardpay" element={<Cardpay/>} ></Route>
         <Route path="/Banktrans" element={<Banktrans/>}></Route>
         <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
+        <Route path="/StaffList" element={<StaffList/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
