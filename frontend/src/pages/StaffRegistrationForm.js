@@ -53,32 +53,32 @@ const StaffRegister = () => {
 
       <form onSubmit={onSubmit} className='staffregister-form'>
         <div className="staffregister-form-group">
-          <label>First Name:</label>
-          <input type="text" name="sfirstname" id='sfirstname' value={formData.sfirstname} onChange={onChange} />
+          <label className='staffregister-form-label'>First Name:</label>
+          <input type="text" name="sfirstname" id='sfirstname' value={formData.sfirstname} onChange={onChange} required />
         </div>
         <div className="staffregister-form-group">
-          <label>Last Name:</label>
-          <input type="text" name="slastname" id='slastname' value={formData.slastname} onChange={onChange} />
+          <label className='staffregister-form-label'>Last Name:</label>
+          <input type="text" name="slastname" id='slastname' value={formData.slastname} onChange={onChange} required />
         </div>
         <div className="staffregister-form-group">
-          <label>NIC No:</label>
-          <input type="text" name="snic" id='snic' value={formData.snic} onChange={onChange} />
+          <label className='staffregister-form-label'>NIC No:</label>
+          <input type="text" name="snic" id='snic' value={formData.snic} onChange={onChange} required />
         </div>
         <div className="staffregister-form-group">
-          <label>Email:</label>
-          <input type="email" name="semail" id='semail' value={formData.semail} onChange={onChange} />
+          <label className='staffregister-form-label'>Email:</label>
+          <input type="email" name="semail" id='semail' value={formData.semail} onChange={onChange} required />
         </div>
         <div className="staffregister-form-group">
-          <label>Contact Number:</label>
-          <input type="tel" name="scontactNumber" id='scontactNumber' value={formData.scontactNumber} onChange={onChange} />
+          <label className='staffregister-form-label'>Contact Number:</label>
+          <input type="tel" name="scontactNumber" id='scontactNumber' value={formData.scontactNumber} onChange={onChange} required />
         </div>
         <div className="staffregister-form-group">
-          <label>Address:</label>
-          <input type="text" name="saddress" id='saddress' value={formData.saddress} onChange={onChange} />
+          <label className='staffregister-form-label'>Address:</label>
+          <input type="text" name="saddress" id='saddress' value={formData.saddress} onChange={onChange}required />
         </div>
         <div className="staffregister-form-group">
-          <label>Designation:</label>
-          <input type="text" name="designation" id='designation' value={formData.designation} onChange={onChange} />
+          <label className='staffregister-form-label'>Designation:</label>
+          <input type="text" name="designation" id='designation' value={formData.designation} onChange={onChange}required />
         </div>
         <br></br>
         <center><button type="submit" className='staffRegisterButton'>Submit</button></center>
