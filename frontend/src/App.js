@@ -32,7 +32,8 @@ import ProductDescription from './pages/ProductDescription';
 import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
-import AdminTrainingApplication from './pages/AdminTrainingApplication';
+import TrainingDashboard from './pages/TrainingDashboard';
+
 
 function App() {
   console.log(global);
@@ -47,7 +48,7 @@ function App() {
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
-        <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
+        <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
     
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
@@ -76,6 +77,7 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
+        <Route exact path="/schedule" component={<ScheduleAppointment/>} />
         {/* <Route path="AddAdvertisement" element={<AddAdvertisement/>} /> */}
        </Routes>
 

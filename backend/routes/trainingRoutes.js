@@ -1,29 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Training = require('../models/trainingModel');
+const Training = require("../models/trainingModel");
 
-router.post("/add", async (req, res) => {
+router.post("/insert", async (req, res) => {
+  const {
+    ownerName,
+    address,
+    contact,
+    dogName,
+    breed,
+    age
+  } = req.body;
+
   try {
-    const {
-      ownerName,
-      address,
-      contact,
-      dogName,
-      breed,
-      age,
-      lastVaccinatedDate,
-      vaccinationName,
-      firstTime,
-      trainingCenter,
-      trainingType,
-      bringToCenter,
-      additionalPayment,
-      date,
-    } = req.body;
-
-    // Parse date strings into Date objects
-    const parsedLastVaccinatedDate = new Date(lastVaccinatedDate);
-    const parsedDate = new Date(date);
+    if (!address || !contact || !dogName || !breed || !age) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
 
     const newTraining = new Training({
       ownerName,
@@ -31,26 +23,25 @@ router.post("/add", async (req, res) => {
       contact,
       dogName,
       breed,
-      age,
-      lastVaccinatedDate: parsedLastVaccinatedDate,
-      vaccinationName,
-      firstTime,
-      trainingCenter,
-      trainingType,
-      bringToCenter,
-      additionalPayment,
-      report: {
-        data: req.file.buffer, // Assuming you're using multer for file upload
-        contentType: req.file.mimetype,
-      },
-      date: parsedDate,
+      age
     });
 
     await newTraining.save();
-    res.status(201).json({ message: 'Training application submitted successfully.' });
+    res.status(200).json({ message: "Data added" });
   } catch (error) {
-    console.error('Error submitting training application:', error);
-    res.status(500).json({ error: 'Failed to submit training application.' });
+    console.error("Error adding data:", error);
+    res.status(500).json({ message: "Failed to add data" });
+  }
+});
+
+
+router.get('/all', async (req, res) => {
+  try {
+    const trainings = await Training.find();
+    res.json(trainings);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ message: 'Failed to fetch data' });
   }
 });
 

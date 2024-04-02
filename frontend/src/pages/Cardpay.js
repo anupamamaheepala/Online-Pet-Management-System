@@ -1,19 +1,37 @@
 import React, { useState } from 'react';
 import '../css/cardpay.css';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Cardpay = () => {
-    const [nameOnCard, setNameOnCard] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [cvv, setCvv] = useState('');
-    const [expireDate, setExpireDate] = useState('');
+    const [formData, setFormData] = useState({
+        nameOnCard: '',
+        cardNumber: '',
+        cvv: '',
+        expireDate: ''
+    });
 
-    const handleSubmit = (e) => {
+    const {nameOnCard, cardNumber, cvv, expireDate} = formData;
+
+    const onChange = e => {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    };
+
+    const onSubmit = async e => {
         e.preventDefault();
-        // Handle form submission (e.g., send data to backend)
-        console.log('Form submitted:', { nameOnCard, cardNumber, cvv, expireDate });
+        try {
+            const res = await axios.post("http://localhost:9000/cardpay/cpay", formData);
+            console.log(res.data);
+            setFormData({
+                nameOnCard: '',
+                cardNumber: '',
+                cvv: '',
+                expireDate: ''
+            });
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -21,41 +39,49 @@ const Cardpay = () => {
       <Header />
         <div className="anucard-payment">
             <h2>Card Payment</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
                 <div className="anucpform-group">
-                    <label htmlFor="nameOnCard">Name on Card:</label>
+                    <label>Name on Card:</label>
                     <input
                         type="text"
+                        name="nameOnCard"
                         id="nameOnCard"
                         value={nameOnCard}
-                        onChange={(e) => setNameOnCard(e.target.value)}
+                        onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="anucpform-group">
                     <label htmlFor="cardNumber">Card Number:</label>
                     <input
                         type="text"
+                        name="cardNumber"
                         id="cardNumber"
                         value={cardNumber}
-                        onChange={(e) => setCardNumber(e.target.value)}
+                        onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="anucpform-group">
                     <label htmlFor="cvv">CVV:</label>
                     <input
                         type="text"
+                        name="cvv"
                         id="cvv"
                         value={cvv}
-                        onChange={(e) => setCvv(e.target.value)}
+                        onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="anucpform-group">
                     <label htmlFor="expireDate">Expiration Date:</label>
                     <input
                         type="text"
+                        name="expireDate"
                         id="expireDate"
                         value={expireDate}
-                        onChange={(e) => setExpireDate(e.target.value)}
+                        onChange={onChange}
+                        required
                     />
                 </div>
                 <center><button className="anucpbutton" type="submit">Confirm Payment</button></center>

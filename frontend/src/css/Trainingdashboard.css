@@ -1,0 +1,26 @@
+
+
+.alo1-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .alo1-table th,
+  .alo1-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .alo1-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .alo1-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .alo1-table tr:hover {
+    background-color: #ddd;
+  }
+  
