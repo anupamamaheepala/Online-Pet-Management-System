@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 const customerSchema = require("../models/registerModel");
 
 
@@ -35,6 +36,9 @@ router.post("/register", async (req, res) => {
      if (password !== confirmPassword) {
       return res.status(400).json({ message: "Password and confirm password should be the same" });
     }
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password with a salt of 10 rounds
+
     
 
     const income = customerSchema({
@@ -42,8 +46,7 @@ router.post("/register", async (req, res) => {
       email,
       contactNumber,
       address,
-      password,
-      confirmPassword,
+      password: hashedPassword,
       
     });
 

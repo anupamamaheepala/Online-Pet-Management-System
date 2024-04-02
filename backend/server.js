@@ -7,6 +7,7 @@ require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
 
+
 //const registerRoute = require('./routes/registerRoute');
 
 //const userRoute = require("./routes/userRoute");
@@ -21,10 +22,7 @@ const payerinfoRoute = require("./routes/paymentRoute");
 
 const trainingRoutes = require("./routes/trainingRoutes");
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f9eaa4a4da6967e199568ff342cbd50357f94c45
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/paymentRoute")
