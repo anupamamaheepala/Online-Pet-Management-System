@@ -24,6 +24,7 @@ const trainingRoutes = require("./routes/trainingRoutes");
 
 
 const staffRoute = require("./routes/staffRoute");
+const staffLeaveRoute = require("./routes/staffLeaveRoute");
 
 //middleware
 // app.use((req, res, next) => {
@@ -47,7 +48,7 @@ app.use("/training", trainingRoutes);
 
 app.use("/staff", staffRoute);
 
-app.use("/staff", staffRoute);
+app.use("/staffLeave", staffLeaveRoute);
 
 
 
