@@ -2,61 +2,83 @@ import React, { useState } from 'react';
 import '../css/StaffRegister.css';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function StaffRegister() {
+const StaffRegister = () => {
   const [formData, setFormData] = useState({
-    sname: '',
+    sfirstname: '',
+    slastname: '',
+    snic: '',
     semail: '',
     scontactNumber: '',
     saddress: '',
     designation: ''
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+  const { sname, semail, scontactNumber, saddress, designation } = formData;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can add your registration logic here
-    console.log(formData);
-  };
+  const onChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+  const onSubmit = async e => {
+  e.preventDefault();
+  try {
+      const res = await axios.post("http://localhost:9000/staff/add", formData);
+      console.log(res.data);
+      // Optionally, you can clear the form fields after successful submission
+      setFormData({
+        sfirstname: '',
+        slastname: '',
+        snic: '',
+        semail: '',
+        scontactNumber: '',
+        saddress: '',
+        designation: '',
+      });
+  } catch (err) {
+      console.error(err);
+  }
+};
 
   return (
     <>
     <Header />
-    <body>
+    
       <br></br>
 
     <div className="staffRegistration-form">
       <h2>Register As Staff</h2>
       <br></br>
 
-      <form onSubmit={handleSubmit} className='staffregister-form'>
+      <form onSubmit={onSubmit} className='staffregister-form'>
         <div className="staffregister-form-group">
-          <label>Name:</label>
-          <input type="text" name="sname" value={formData.sname} onChange={handleChange} />
+          <label>First Name:</label>
+          <input type="text" name="sfirstname" id='sfirstname' value={formData.sname} onChange={onChange} />
+        </div>
+        <div className="staffregister-form-group">
+          <label>Last Name:</label>
+          <input type="text" name="slastname" id='slastname' value={formData.sname} onChange={onChange} />
+        </div>
+        <div className="staffregister-form-group">
+          <label>NIC No:</label>
+          <input type="text" name="snic" id='snic' value={formData.sname} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Email:</label>
-          <input type="email" name="semail" value={formData.semail} onChange={handleChange} />
+          <input type="email" name="semail" id='semail' value={formData.semail} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Contact Number:</label>
-          <input type="tel" name="scontactNumber" value={formData.scontactNumber} onChange={handleChange} />
+          <input type="tel" name="scontactNumber" id='scontactNumber' value={formData.scontactNumber} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Address:</label>
-          <input type="text" name="saddress" value={formData.saddress} onChange={handleChange} />
+          <input type="text" name="saddress" id='saddress' value={formData.saddress} onChange={onChange} />
         </div>
         <div className="staffregister-form-group">
           <label>Designation:</label>
-          <input type="text" name="designation" value={formData.designation} onChange={handleChange} />
+          <input type="text" name="designation" id='designation' value={formData.designation} onChange={onChange} />
         </div>
         <br></br>
         <center><button type="submit" className='staffRegisterButton'>Submit</button></center>
@@ -65,7 +87,7 @@ function StaffRegister() {
 
     </div>
     <br></br>
-    </body>
+    
     <Footer />
     </>
   );

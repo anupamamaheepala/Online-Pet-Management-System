@@ -1,19 +1,39 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../css/payerinfo.css';
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Payerinfo = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phonenumber: '',
+        address: ''
 
-    const handleSubmit = (e) => {
+    });
+
+
+    const {name, email, phonenumber, address} = formData;
+
+    const onChange = e => {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    };
+
+    const onSubmit = async e => {
         e.preventDefault();
-        // Handle form submission (e.g., send data to backend)
-        console.log('Form submitted:', { name, email, phone, address });
+        try {
+            const res = await axios.post("http://localhost:9000/payerinfo/pay", formData);
+            console.log(res.data);
+            setFormData({
+                name: '',
+                email: '',
+                phonenumber: '',
+                address: ''
+            });
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -21,40 +41,40 @@ const Payerinfo = () => {
       <Header />
         <div className="anupayer-info">
             <h2>Payer's Information</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
                 <div className="anuform-group">
-                    <label htmlFor="name">Name:</label>
+                    <label>Name:</label>
                     <input  
                         type="text"
-                        id="name"
+                        name="name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="anuform-group">
-                    <label htmlFor="email">Email:</label>
+                    <label>Email:</label>
                     <input
                         type="email"
-                        id="email"
+                        name="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="anuform-group">
-                    <label htmlFor="phone">Phone Number:</label>
+                    <label>Phone Number:</label>
                     <input
-                        type="tel"
-                        id="phone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        type="text"
+                        name="phonenumber"
+                        value={phonenumber}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="anuform-group">
-                    <label htmlFor="address">Address:</label>
+                    <label>Address:</label>
                     <textarea
-                        id="address"
+                        name="address"
                         value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                        onChange={onChange}
                     />
                 </div>
                 <center><button className="anupfbutton" type="submit">View Status</button></center>
@@ -63,7 +83,7 @@ const Payerinfo = () => {
         <Footer />
         </>
     );
-};
+}
 
 export default Payerinfo;
 

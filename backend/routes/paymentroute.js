@@ -1,23 +1,39 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 let paymentRoute = require("../models/paymentModel");
 
-router.route("/add").post((req,res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const phonenumber = req.body.phonenumber;
-    const address = req.body.address;
-
-    const newpayer = new paymentModel({
+router.post("/pay", async (req, res) => {
+    console.log("OK");
+    const {
         name,
         email,
         phonenumber,
-        address
-    })
+        address,
+    } = req.body;
 
-    newStudent.save().then(() =>{
-        res.json("payer information added")
-    }).catch((err) => {
-        console.log(err);
-    })
+    try{
+        if(
+            !name ||
+            !email ||
+            !phonenumber ||
+            !address
+        ) {
+            return res.status(400).json({message: "All fields are required!"});
+        }
 
-})
+        const income = payerinfoSchema({
+            name,
+            email,
+            phonenumber,
+            address,
+        });
+        
+        await income.save();
+        res.status(200).json({ message: "Add added" });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error" });
+    }
+        
+});
+
+module.exports = router;

@@ -3,65 +3,101 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/Trainingapp.css';
+import axios from 'axios';
 
 const PrivateTraining = () => {
-  const [report, setReport] = useState(null);
-  const [date, setDate] = useState('');
-  const [firstTime, setFirstTime] = useState(false);
-  const [trainingCenter, setTrainingCenter] = useState('');
-  const [trainingType, setTrainingType] = useState('');
-  const [bringToCenter, setBringToCenter] = useState(false);
-  const [additionalPayment, setAdditionalPayment] = useState(false);
+  const [formData, setFormData] = useState({
+    ownerName: '',
+    address: '',
+    contact: '',
+    dogName: '',
+    breed: '',
+    age: ''
+  });
 
-  const handleReportUpload = (e) => {
-    const file = e.target.files[0];
-    setReport(file);
+  const { ownerName, address, contact, dogName, breed, age} = formData;
+
+  const onChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-
-  const handleFirstTimeChange = (e) => {
-    setFirstTime(e.target.value === 'yes');
-  };
-
-  const handleTrainingCenterChange = (e) => {
-    setTrainingCenter(e.target.value);
-  };
-
-  const handleTrainingTypeChange = (e) => {
-    setTrainingType(e.target.value);
-  };
-
-  const handleBringToCenterChange = (e) => {
-    setBringToCenter(e.target.value === 'bring');
-  };
-
-  const handleAdditionalPaymentChange = (e) => {
-    setAdditionalPayment(e.target.checked);
-  };
-
-  const handleSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    formData.append('report', report); // Append the report file
     try {
-      const response = await fetch('/api/training', {
-        method: 'POST',
-        body: formData,
+      const res = await axios.post("http://localhost:9000/training/insert", formData);
+      console.log(res.data);
+      // Optionally, you can clear the form fields after successful submission
+      setFormData({
+        ownerName: '',
+        address: '',
+        contact: '',
+        dogName: '',
+        breed: '',
+        age: ''
       });
-      if (response.ok) {
-        console.log('Training application submitted successfully.');
-        // Redirect or show success message
-      } else {
-        console.error('Failed to submit training application.');
-      }
-    } catch (error) {
-      console.error('Error submitting training application:', error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
+  return (
+    <div>
+      <Header />
+      <div className="alo-background-container">
+        <img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />
+        <div className="alo-container">
+          <div className="alo-right-side">
+            <div className="alo-info-container">
+              <h2>Training Program</h2>
+              <p>Training Program information...</p>
+            </div>
+          </div>
+          <div className="alo-left-side">
+            <div className="alo-form-container">
+              <h2>Fill the Application</h2>
+              <form onSubmit={onSubmit}>
+                <div className="alo-form-group">
+                  <label className="private" htmlFor="ownerName">Owner's Name:</label>
+                  <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={onChange} />
+                </div>
+                <div className="alo-form-group">
+                  <label className="private" htmlFor="address">Address:</label>
+                  <textarea id="address" name="address" value={address} onChange={onChange}></textarea>
+                </div>
+                <div className="alo-form-group">
+                  <label className="private" htmlFor="contact">Contact Number:</label>
+                  <input type="text" id="contact" name="contact" value={contact} onChange={onChange} />
+                </div>
+                <div className="alo-form-group">
+                  <label className="private" htmlFor="dogName">Dog's Name:</label>
+                  <input type="text" id="dogName" name="dogName" value={dogName} onChange={onChange} />
+                </div>
+                <div className="alo-form-group">
+                  <label className="private" htmlFor="breed">Breed:</label>
+                  <input type="text" id="breed" name="breed" value={breed} onChange={onChange} />
+                </div>
+                <div className="alo-form-group">
+                  <label className="private" htmlFor="age">Age:</label>
+                  <input type="number" id="age" name="age" value={age} onChange={onChange} />
+                </div>
+                <div className="alo-form-group">
+                  <Link to="/schedule-appointment">Schedule Appointment</Link>
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default PrivateTraining;
+
+
+/*
   return (
     <div>
     <Header />
@@ -129,7 +165,7 @@ const PrivateTraining = () => {
                   <input type="text" id="trainingType" name="trainingType" onChange={handleTrainingTypeChange} />
                 </div>
               )}
-                {/* other form fields */}
+              other form fields 
                 <div className="alo-form-group">
   <label className="private" htmlFor="bringToCenter">Will you bring your dog to the training center on the training day?</label>
   <select id="bringToCenter" name="bringToCenter" onChange={handleBringToCenterChange}>
@@ -181,4 +217,4 @@ const PrivateTraining = () => {
   );
 };
 
-export default PrivateTraining;
+export default PrivateTraining;*/
