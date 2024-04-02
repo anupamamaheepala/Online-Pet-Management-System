@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const payerinfoSchema = require("../models/paymentModel");
+let paymentRoute = require("../models/paymentModel");
 
 router.post("/pay", async (req, res) => {
     console.log("OK");
