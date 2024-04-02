@@ -18,13 +18,8 @@ const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 
 
-const trainingRoute = require("./routes/trainingRoutes");
 
 const trainingRoutes = require("./routes/trainingRoutes");
-
-
-
-
 
 const staffRoute = require("./routes/staffRoute");
 const cardpayRoute = require("./routes/paymentRoute")
@@ -44,10 +39,6 @@ app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
 
-
-app.use("/training", trainingRoute);
-
-app.use("/training", trainingRoutes);
 
 
 app.use("/training", trainingRoutes);
