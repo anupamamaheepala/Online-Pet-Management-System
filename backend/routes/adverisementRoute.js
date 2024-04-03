@@ -63,6 +63,17 @@ router.route("/").get((req,res)=>{
 })
 
 
+router.route("/_id").delete(async (req,res)=>{
+  let userId = req.params.id;
+
+  await AdsSchema.findByIdAndDelete(userId).then(()=>{
+      res.status(200).send({status:"User deleted"});
+      console.log(userId);
+  }) .catch((err) =>{
+      console.log(err.message);
+      res.status(500).send({status: "Error with delete user ", error: err.message});
+  })
+})
 
 
 

@@ -18,6 +18,19 @@ const ConfirmAdvertisement = () => {
                 alert(err.message);
             });
     }, []);
+
+    // Function to delete a student
+    const deleteAdvertisement = (id) => {
+        axios.delete(`http://localhost:9000/ads/${id}`)
+            .then((res) => {
+                console.log("Advertisement deleted successfully");
+                // Remove the deleted advertisement from the ads state
+                setAds(ads.filter(ad => ad._id !== id));
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
     
     return (
         <>
@@ -33,6 +46,7 @@ const ConfirmAdvertisement = () => {
                         <th>Purpose</th>
                         <th>Description</th>
                         <th>Contact</th>
+                        <th>Manage</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +59,14 @@ const ConfirmAdvertisement = () => {
                             <td>{ad.purpose}</td>
                             <td>{ad.description}</td>
                             <td>{ad.contact}</td>
-                            <td></td>
+                            <td>
+                                <div className="ma_advertisement-buttons">
+                                    <div className="ma_button-container">
+                                        <Link to="/AllAdvertisements" className="ma_add_button ma_confirm_button1">Confirm</Link>
+                                    </div>
+                                    <button className="ma_add_button ma_reject_button" onClick={() => deleteAdvertisement(ad._id)}>Reject</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
