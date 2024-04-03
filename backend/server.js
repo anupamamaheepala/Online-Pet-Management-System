@@ -18,19 +18,26 @@ const trainingRoutes = require("./routes/training.routes");
 
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
-const cardpayRoute = require("./routes/paymentRoute")
+const cardpayRoute = require("./routes/paymentRoute");
+const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 //middleware
 // app.use((req, res, next) => {
 //   console.log(req.path, req.method);
 //   next();
 // });
-
+ 
 
 app.use(cors());
 app.use(bodyParser.json());
+
+
+
+
 //app.use('/api/register', registerRoute);
+
 app.use("/ads", adsRoute);
+app.use('/api', makeAppointmentRoute);
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
 app.use("/training", trainingRoutes);
@@ -51,10 +58,7 @@ console.log(process.env.MONGO_URL);
   console.log(req.path, req.method)
   next()
 }*/
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MONGODB CONNECTED !");
-});
+
 
 //const paymentrouter = require("./routes/paymentRoute.js")
 //app.use("/paymentRoute",paymentrouter)

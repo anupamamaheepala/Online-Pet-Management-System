@@ -59,6 +59,61 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Get all registrations
+router.route("/").get((req,res)=>{
+    
+  customerSchema.find().then((customer)=>{
+      res.json(customer)
+  }) .catch((err)=>{
+      console.log(err);
+  })
+
+})
+
+// Delete a customer by ID
+router.delete("/:id", async (req, res) => {
+  try {
+      await customerSchema.findByIdAndDelete(req.params.id);
+      res.status(200).json({ message: "Customer deleted successfully" });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to delete customer" });
+  }
+});
+
+// Get a customer by ID
+router.get("/:id", async (req, res) => {
+  try {
+      const customer = await customerSchema.findById(req.params.id);
+      if (!customer) {
+          return res.status(404).json({ message: "Customer not found" });
+      }
+      res.status(200).json(customer);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to fetch customer details" });
+  }
+});
+
+// Update a customer by ID
+router.put("/:id", async (req, res) => {
+  try {
+      await customerSchema.findByIdAndUpdate(req.params.id, req.body);
+      res.status(200).json({ message: "Customer updated successfully" });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to update customer" });
+  }
+});
+
+
+
+
+
+
+
+
+
 /*// Get all registrations
 router.get('/add', async (req, res) => {
   try {
