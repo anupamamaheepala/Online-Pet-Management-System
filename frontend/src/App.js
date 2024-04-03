@@ -8,6 +8,7 @@ import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
+import Makeappointment from './pages/Makeappointment';
 import AllVetAppointments from './pages/AllVetAppointments';     
 import AllGroomeAppointments from './pages/AllGroomeAppointments';  
 import MyAppointments from './pages/MyAppointments';
@@ -52,13 +53,12 @@ function App() {
         {/*<Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>*/}
 
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
-    
-
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
-        <Route path="/Groomservices" element={<Groomservices/>} ></Route>  
+        <Route path="/Groomservices" element={<Groomservices/>} ></Route> 
+        <Route path="/Makeappointment" element={<Makeappointment/>} ></Route> 
         <Route path="/MyAppointments" element={<MyAppointments/>} ></Route> 
         <Route path="/AllVetAppointments" element={<AllVetAppointments/>} ></Route> 
         <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route>
