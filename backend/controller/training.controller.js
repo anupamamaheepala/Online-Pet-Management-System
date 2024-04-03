@@ -1,9 +1,13 @@
 const trainingModel = require("../models/trainingModel");
 
 // Add Training Program
+// Inside addTrainingprogram controller
 const addTrainingprogram = async (req, res) => {
     try {
         const { ownerName, address, contact, dogName, breed, age } = req.body;
+
+        // Capture current date and time
+        const submissionDateTime = new Date();
 
         const trainingData = {
             ownerName: ownerName,
@@ -12,6 +16,7 @@ const addTrainingprogram = async (req, res) => {
             dogName: dogName,
             breed: breed,
             age: age,
+            submissionDateTime: submissionDateTime // Include submission date and time
         };
 
         const newTrainingObj = new trainingModel(trainingData);
@@ -26,6 +31,7 @@ const addTrainingprogram = async (req, res) => {
         res.status(500).json({ message: "Failed to add data" });
     }
 };
+
 
 // Get all trainings
 const getalltrainings = async (req, res) => {
