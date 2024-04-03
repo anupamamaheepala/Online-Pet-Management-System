@@ -37,7 +37,8 @@ import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
 import Shop from './pages/Shop';
 import AllCustomers from './pages/AllCustomers';
 import EditCustomer from './pages/EditCustomer';
-
+import banner from './components/Assests/banner.png'
+import ShopCategory from './pages/ShopCategory';
 
 
 function App() {
@@ -91,6 +92,10 @@ function App() {
         <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
         <Route path="/EditCustomer" element={<EditCustomer/>}></Route>
         <Route path="/Store" element={<Shop/>}></Route>
+        <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
+          <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
+          <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
+      
 
        </Routes>
 
