@@ -53,10 +53,10 @@ function App() {
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
-
+        
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
-
         <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
+        
 
 
     

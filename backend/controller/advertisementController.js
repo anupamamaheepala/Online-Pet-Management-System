@@ -4,7 +4,7 @@ const { confirmAdvertisement, rejectAdvertisement } = require('../controller/adv
 const AdsSchema = require("../models/advertisementModel");
 
 // Function to handle adding a new advertisement
-const addAdvertisement = async (req, res) => {
+ exports.addAdvertisement = async (req, res) => {
   try {
     const {
       ownerName,
@@ -106,4 +106,3 @@ exports.getAllAdvertisements = async (req, res) => {
 //   deleteAdvertisementById,
 //   confirmAdvertisement,
 //   rejectAdvertisement,
-

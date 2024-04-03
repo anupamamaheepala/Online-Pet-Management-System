@@ -1,4 +1,8 @@
-
+.alo1-button{
+  width: 400px;
+  margin-left: 1250px;
+  margin-bottom: 20px;
+}
 
 .alo1-table {
     width: 100%;
@@ -23,4 +27,4 @@
   .alo1-table tr:hover {
     background-color: #ddd;
   }
-  
+ 
