@@ -30,21 +30,14 @@ import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile'; 
 import ProductCatalog from './pages/ProductCatalog';
 import ProductDescription from './pages/ProductDescription';
-<<<<<<< HEAD
-import TrainingPrograms from './pages/TrainingPrograms';
-import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
-import PrivateTraining from './pages/PrivateTraining';
-import TrainingDashboard from './pages/TrainingDashboard';
-import AllCustomers from './pages/AllCustomers';
-import EditCustomer from './pages/EditCustomer';
-
-=======
 import TrainingPrograms from './components/TrainingPrograms';
 import PrivateTrainingPrograms from './components/PrivateTrainingPrograms';
 import PrivateTraining from './components/PrivateTraining';
 import TrainingDashboard from './components/TrainingDashboard';
 import PrivateTrainingDetails from './components/PrivateTrainingDetails';
->>>>>>> 5fdd7ad18b405930ea7f609f317a67f49c5bbbdd
+import AllCustomers from './pages/AllCustomers';
+import EditCustomer from './pages/EditCustomer';
+
 
 
 function App() {
@@ -96,14 +89,9 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
-<<<<<<< HEAD
-        <Route exact path="/schedule" component={<ScheduleAppointment/>} />
         <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
         <Route path="/EditCustomer" element={<EditCustomer/>}></Route>
 
-        {/* <Route path="AddAdvertisement" element={<AddAdvertisement/>} /> */}
-=======
->>>>>>> 5fdd7ad18b405930ea7f609f317a67f49c5bbbdd
        </Routes>
 
         
