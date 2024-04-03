@@ -8,6 +8,7 @@ import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
+import Makeappointment from './pages/Makeappointment';
 import AllVetAppointments from './pages/AllVetAppointments';     
 import AllGroomeAppointments from './pages/AllGroomeAppointments';  
 import MyAppointments from './pages/MyAppointments';
@@ -29,11 +30,11 @@ import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile'; 
 import ProductCatalog from './pages/ProductCatalog';
 import ProductDescription from './pages/ProductDescription';
-import TrainingPrograms from './pages/TrainingPrograms';
-import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
-import PrivateTraining from './pages/PrivateTraining';
-import TrainingDashboard from './pages/TrainingDashboard';
-import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
+import TrainingPrograms from './components/TrainingPrograms';
+import PrivateTrainingPrograms from './components/PrivateTrainingPrograms';
+import PrivateTraining from './components/PrivateTraining';
+import TrainingDashboard from './components/TrainingDashboard';
+import PrivateTrainingDetails from './components/PrivateTrainingDetails';
 
 
 function App() {
@@ -51,16 +52,19 @@ function App() {
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
 
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
+
         <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
 
 
     
 
+
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
-        <Route path="/Groomservices" element={<Groomservices/>} ></Route>  
+        <Route path="/Groomservices" element={<Groomservices/>} ></Route> 
+        <Route path="/Makeappointment" element={<Makeappointment/>} ></Route> 
         <Route path="/MyAppointments" element={<MyAppointments/>} ></Route> 
         <Route path="/AllVetAppointments" element={<AllVetAppointments/>} ></Route> 
         <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route>
