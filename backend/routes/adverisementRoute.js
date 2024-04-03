@@ -11,6 +11,6 @@ router.post("/add", advertisementController.addAdvertisement);
 router.get("/", advertisementController.getAllAdvertisements);
 
 // Route to delete an advertisement by ID
-router.delete("/:_id", advertisementController.deleteAdvertisementById);
+//router.delete("/:_id", advertisementController.deleteAdvertisementById);
 
 module.exports = router;
