@@ -58,7 +58,7 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${activeMenuItem === 'Store' ? 'active' : ''}`} to="/ProductCatalog" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'Store' ? 'bold' : 'normal' }}>Store</Link>
+                                <Link className={`nav-link ${activeMenuItem === 'Store' ? 'active' : ''}`} to="/Store" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'Store' ? 'bold' : 'normal' }}>Store</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className={`nav-link ${activeMenuItem === 'Advertisements' ? 'active' : ''}`} to="/Advertisement" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'Advertisements' ? 'bold' : 'normal' }}>Advertisements</Link>

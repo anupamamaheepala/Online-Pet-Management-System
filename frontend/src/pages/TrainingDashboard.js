@@ -40,6 +40,9 @@ const TrainingDashboard = () => {
     return (
         <div>
             <h2>Training Manager Dashboard</h2>
+            <a href='PrivateTrainingPrograms'>
+            <button className='alo1-button' > + Add Dog Detals for PrivateTraining</button>
+            </a>
             <table className="alo1-table"> {/* Add className="alo1-table" */}
                 <thead>
                     <tr>

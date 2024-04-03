@@ -156,3 +156,25 @@ justify-content: space-between;
   padding-top: 40px;
 }
 
+
+.rec-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.row {
+  width: 100%;
+  display: flex; /* Use Flexbox */
+}
+
+.text-column {
+  flex: 1; /* Take up remaining space */
+  padding: 0 20px; /* Add padding for spacing */
+}
+
+.image-column {
+  flex: 1; /* Take up remaining space */
+  text-align: right; /* Align content to the right */
+}
+
