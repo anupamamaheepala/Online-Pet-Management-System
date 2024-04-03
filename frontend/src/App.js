@@ -8,7 +8,6 @@ import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
-import ScheduleAppointment from './pages/ScheduleAppointment';
 import AllVetAppointments from './pages/AllVetAppointments';     
 import AllGroomeAppointments from './pages/AllGroomeAppointments';  
 import MyAppointments from './pages/MyAppointments';
@@ -23,6 +22,7 @@ import Payerinfo from './pages/Payerinfo';
 import Cardpay from './pages/Cardpay'
 import Banktrans from './pages/Banktrans';
 import StaffRegistrationForm from './pages/StaffRegistrationForm';
+import StaffList from './pages/StaffList';
 import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import SignIn from './pages/SignIn';
@@ -32,7 +32,8 @@ import ProductDescription from './pages/ProductDescription';
 import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
-import AdminTrainingApplication from './pages/AdminTrainingApplication';
+import TrainingDashboard from './pages/TrainingDashboard';
+import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
 
 
 function App() {
@@ -48,15 +49,18 @@ function App() {
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
-        <Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>
+
+        <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
+        <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
+
+
     
+
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
-
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
-        <Route path="/Groomservices" element={<Groomservices/>} ></Route>
-        <Route path="/ScheduleAppointment" element={<ScheduleAppointment/>} ></Route>   
+        <Route path="/Groomservices" element={<Groomservices/>} ></Route>  
         <Route path="/MyAppointments" element={<MyAppointments/>} ></Route> 
         <Route path="/AllVetAppointments" element={<AllVetAppointments/>} ></Route> 
         <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments/>} ></Route>
@@ -73,12 +77,11 @@ function App() {
         <Route path="/Cardpay" element={<Cardpay/>} ></Route>
         <Route path="/Banktrans" element={<Banktrans/>}></Route>
         <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm/>}></Route>
+        <Route path="/StaffList" element={<StaffList/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
-        <Route exact path="/schedule" component={<ScheduleAppointment/>} />
-        {/* <Route path="AddAdvertisement" element={<AddAdvertisement/>} /> */}
        </Routes>
 
         
