@@ -33,7 +33,7 @@ function Vetservices() {
           <p className="welcome-text">
             Welcome to Pet Zone Veterinary Clinic, where we provide compassionate care for your beloved pets. Your pet's health is our top priority!
           </p>
-          <Link to="/ScheduleAppointment" className="appointment-button">Make an appointment</Link>
+          <Link to="/Makeappointment" className="appointment-button">Make an appointment</Link>
         </div>
         <button className="arrow left" onClick={prevImage}>◀</button>
         <img className="slider-image" src={`/images/${images[currentImage]}`} alt="Veterinary Service" />

@@ -1,0 +1,66 @@
+/* makeappointment.css */
+
+.makeappointment_container {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .makeappointment_heading {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .makeappointment_form {
+    width: 100%;
+    padding: 40px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .makeappointment_input_container {
+    margin-bottom: 10px;
+    width: 48%; /* Adjusted width */
+    display: inline-block; /* Adjusted display */
+  }
+  
+  .makeappointment_label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .makeappointment_input_text,
+  .makeappointment_input_email,
+  .makeappointment_input_tel,
+  .makeappointment_select,
+  .makeappointment_input_date,
+  .makeappointment_input_time {
+    width: calc(100% - 16px); /* Adjusted width */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+/* makeappointment.css */
+
+.makeappointment_button {
+    background-color: black; /* Set background color to black */
+    color: white; /* Set text color to white */
+    padding: 10px 20px;
+    width: 150px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto 0; /* Add more margin from the top and center horizontally */
+    display: block; /* Ensures button takes full width */
+    margin-left: 450px; /* Align slightly to the left */
+  }
+  
+  .makeappointment_button:hover {
+    background-color: #ffffff; 
+    color: black;
+    border: 1px solid black;
+  }
+  
+  
+  
