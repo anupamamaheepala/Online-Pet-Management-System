@@ -1,13 +1,5 @@
 // // ConfirmAdvertisement.js
 
-<<<<<<< HEAD
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-// import '../css/advertisement.css';
-// import { Link } from 'react-router-dom';
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-=======
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
@@ -15,22 +7,22 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
->>>>>>> af711f052822bfc14daa202058ce79c032ca5e8a
 
 
-// const ConfirmAdvertisement = () => {
-//     const [ads, setAds] = useState([]);
 
-//     useEffect(() => {
-//         axios.get("http://localhost:9000/ads/")
-//             .then((res) => {
-//                 console.log(res.data);
-//                 setAds(res.data);
-//             })
-//             .catch((err) => {
-//                 alert(err.message);
-//             });
-//     }, []);
+const ConfirmAdvertisement = () => {
+    const [ads, setAds] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:9000/ads/")
+            .then((res) => {
+                console.log(res.data);
+                setAds(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    }, []);
 
 //     // const confirmAd = async (id) => {
 //     //     try {
@@ -41,7 +33,7 @@ import axios from 'axios';
 //     //     }
 //     // };
 
-<<<<<<< HEAD
+
 //     // const rejectAd = async (id) => {
 //     //     try {
 //     //         await rejectAdvertisement(id);
@@ -50,7 +42,7 @@ import axios from 'axios';
 //     //         alert(error.message);
 //     //     }
 //     // };
-=======
+
     return (
         <>
             <Header />
@@ -98,7 +90,8 @@ import axios from 'axios';
         </>
     );
 }
->>>>>>> af711f052822bfc14daa202058ce79c032ca5e8a
+export default ConfirmAdvertisement;
+
 
 //     return (
 //         <>
