@@ -1,9 +1,12 @@
+// ConfirmAdvertisement.js
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { confirmAdvertisement, rejectAdvertisement } from '../controller/advertisementController';
 
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
@@ -11,27 +14,32 @@ const ConfirmAdvertisement = () => {
     useEffect(() => {
         axios.get("http://localhost:9000/ads/")
             .then((res) => {
-                console.log(res.data); // Log the data received from the API
-                setAds(res.data); // Set the ads data to the state
+                console.log(res.data);
+                setAds(res.data);
             })
             .catch((err) => {
                 alert(err.message);
             });
     }, []);
 
-    // Function to delete a student
-    const deleteAdvertisement = (id) => {
-        axios.delete(`http://localhost:9000/ads/${id}`)
-            .then((res) => {
-                console.log("Advertisement deleted successfully");
-                // Remove the deleted advertisement from the ads state
-                setAds(ads.filter(ad => ad._id !== id));
-            })
-            .catch((err) => {
-                alert(err.message);
-            });
-    };
-    
+    // const confirmAd = async (id) => {
+    //     try {
+    //         await confirmAdvertisement(id);
+    //         setAds(ads.map(ad => ad._id === id ? { ...ad, confirmed: true } : ad));
+    //     } catch (error) {
+    //         alert(error.message);
+    //     }
+    // };
+
+    // const rejectAd = async (id) => {
+    //     try {
+    //         await rejectAdvertisement(id);
+    //         setAds(ads.map(ad => ad._id === id ? { ...ad, rejected: true } : ad));
+    //     } catch (error) {
+    //         alert(error.message);
+    //     }
+    // };
+
     return (
         <>
             <Header />
@@ -62,9 +70,13 @@ const ConfirmAdvertisement = () => {
                             <td>
                                 <div className="ma_advertisement-buttons">
                                     <div className="ma_button-container">
-                                        <Link to="/AllAdvertisements" className="ma_add_button ma_confirm_button1">Confirm</Link>
+                                        { !ad.confirmed && !ad.rejected &&
+                                            <button className="ma_add_button ma_confirm_button1" onClick={() => confirmAd(ad._id)}>Confirm</button>
+                                        }
                                     </div>
-                                    <button className="ma_add_button ma_reject_button" onClick={() => deleteAdvertisement(ad._id)}>Reject</button>
+                                    { !ad.confirmed && !ad.rejected &&
+                                        <button className="ma_add_button ma_reject_button" onClick={() => rejectAd(ad._id)}>Reject</button>
+                                    }
                                 </div>
                             </td>
                         </tr>

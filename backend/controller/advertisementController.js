@@ -1,4 +1,5 @@
 // advertisementController.js
+const { confirmAdvertisement, rejectAdvertisement } = require('../controller/advertisementController');
 
 const AdsSchema = require("../models/advertisementModel");
 
@@ -75,8 +76,34 @@ const deleteAdvertisementById = async (req, res) => {
   }
 };
 
+// Function to confirm an advertisement by ID
+const confirmAdvertisement = async (req, res) => {
+  try {
+    const adId = req.params.id;
+    await AdsSchema.findByIdAndUpdate(adId, { confirmed: true });
+    res.status(200).send({ status: "Advertisement confirmed" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send({ status: "Error with confirming advertisement", error: error.message });
+  }
+};
+
+// Function to reject an advertisement by ID
+const rejectAdvertisement = async (req, res) => {
+  try {
+    const adId = req.params.id;
+    await AdsSchema.findByIdAndUpdate(adId, { rejected: true });
+    res.status(200).send({ status: "Advertisement rejected" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send({ status: "Error with rejecting advertisement", error: error.message });
+  }
+};
+
 module.exports = {
   addAdvertisement,
   getAllAdvertisements,
   deleteAdvertisementById,
+  confirmAdvertisement,
+  rejectAdvertisement,
 };
