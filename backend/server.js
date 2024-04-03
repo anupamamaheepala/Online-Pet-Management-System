@@ -30,7 +30,12 @@ const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 app.use(cors());
 app.use(bodyParser.json());
+
+
+
+
 //app.use('/api/register', registerRoute);
+
 app.use("/ads", adsRoute);
 app.use('/api', makeAppointmentRoute);
 app.use("/customer", customerRoute);
