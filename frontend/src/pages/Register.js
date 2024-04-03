@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
 import '../css/register.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -52,19 +51,14 @@ const Register =  () =>{
           
         }
     };
-    
-
-    
-
-  
+      
 
   return (
     <>
     <Header />
     <br></br>
       <div className="registration-registration-form">
-      <Toaster position='top-center' reverseOrder={false}></Toaster>
-
+      
         <h2>Sign Up To PetZone</h2>
         <br></br>
         <div className="register-content">
