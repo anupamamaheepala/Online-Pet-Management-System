@@ -211,7 +211,7 @@
 
 /* Style confirm button */
 .ma_confirm_button {
-    background-color: green;
+    background-color: green ;
     border: 2px solid green;
     color: white;
 }

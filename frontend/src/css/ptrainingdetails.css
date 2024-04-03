@@ -1,0 +1,55 @@
+
+
+.alo2 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .alo2 h2 {
+    margin-bottom: 20px;
+  }
+  
+  .alo2 div {
+    margin-bottom: 10px;
+  }
+  
+  .alo2 label {
+    font-weight: bold;
+  }
+  
+  .alo2 input[type="text"],
+  .alo2 input[type="number"],
+  .alo2 textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  
+  .alo2 input[type="text"]:focus,
+  .alo2 input[type="number"]:focus,
+  .alo2 textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
+  .alo2 button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .alo2 button:hover {
+    background-color: #45a049;
+  }
+  

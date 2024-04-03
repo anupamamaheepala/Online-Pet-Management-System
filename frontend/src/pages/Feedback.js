@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import '../css/Feedback.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import '../css/Feedback.css';
 
-function Feedback() {
+function FeedbackForm() {
   const [feedback, setFeedback] = useState('');
   const [rating, setRating] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -28,32 +28,32 @@ function Feedback() {
 
   return (
     <>
-      <Header />
-      <div className="feedback-form">
-        <h2>Give Us Feedback</h2>
-        {submitted && <div className="success-message">Feedback submitted successfully!</div>}
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={feedback}
-            onChange={(event) => setFeedback(event.target.value)}
-            placeholder="Enter your feedback here"
-            required
-          />
-          <div className="rating">
-            <p>Rate us:</p>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                selected={star <= rating}
-                onClick={() => handleRatingChange(star)}
-              />
-            ))}
-          </div>
-          <button type="submit">Submit Feedback</button>
-        </form>
-      </div>
-      <Footer />
-    </>
+    <Header/>
+    <div className="feedback-form">
+      <h2>Give Us Feedback</h2>
+      {submitted && <div className="success-message">Feedback submitted successfully!</div>}
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={feedback}
+          onChange={(event) => setFeedback(event.target.value)}
+          placeholder="Enter your feedback here"
+          required
+        />
+        <div className="rating">
+          <p>Rate us:</p>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star
+              key={star}
+              selected={star <= rating}
+              onClick={() => handleRatingChange(star)}
+            />
+          ))}
+        </div>
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+    <Footer />
+        </>
   );
 }
 
@@ -63,4 +63,4 @@ const Star = ({ selected = false, onClick }) => (
   </span>
 );
 
-export default Feedback;
+export default FeedbackForm;
