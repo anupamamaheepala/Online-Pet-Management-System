@@ -18,7 +18,7 @@ const trainingRoutes = require("./routes/training.routes");
 
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
-const cardpayRoute = require("./routes/paymentRoute");
+const cardpayRoute = require("./routes/cardpayRoute");
 const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 
@@ -43,9 +43,8 @@ app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
 app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
-app.use("/cardpay", cardpayRoute)
+app.use("/cardpay", cardpayRoute);
 app.use("/staffLeave", staffLeaveRoute);
-app.use("/staff", staffRoute);
 
 
 app.get("/", (req, res) => {
