@@ -24,6 +24,11 @@ const TrSchema = new mongoose.Schema({
       age: {
         type: String,
         required: true
+      },
+      submissionDateTime: { // New field for submission date and time
+          type: Date,
+          required: true,
+          default: Date.now
       }
         
 
