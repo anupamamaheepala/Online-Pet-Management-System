@@ -52,14 +52,13 @@ function App() {
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
 
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
-<<<<<<< HEAD
-=======
+
         <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
 
 
     
 
->>>>>>> a8cd756f8fd167bdad62e275cb43fdda8469acae
+
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
