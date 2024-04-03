@@ -43,6 +43,7 @@ const TrainingDashboard = () => {
             <table className="alo1-table"> {/* Add className="alo1-table" */}
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Owner's Name</th>
                         <th>Address</th>
                         <th>Contact Number</th>
@@ -55,8 +56,9 @@ const TrainingDashboard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {trainings.map(training => (
+                    {trainings.map((training, index) => (
                         <tr key={training._id}>
+                            <td>{index + 1}</td>
                             <td>{training.ownerName}</td>
                             <td>{training.address}</td>
                             <td>{training.contact}</td>
@@ -71,11 +73,10 @@ const TrainingDashboard = () => {
                                 </select>
                             </td>
                             <td>
-                                
                                 <Link to={`/training/${training._id}`}>View Details</Link>
                             </td>
                             <td>
-                            <button onClick={() => handleDelete(training._id)}>Delete</button>
+                                <button onClick={() => handleDelete(training._id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

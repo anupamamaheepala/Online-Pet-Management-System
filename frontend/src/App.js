@@ -29,11 +29,11 @@ import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile'; 
 import ProductCatalog from './pages/ProductCatalog';
 import ProductDescription from './pages/ProductDescription';
-import TrainingPrograms from './pages/TrainingPrograms';
-import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
-import PrivateTraining from './pages/PrivateTraining';
-import TrainingDashboard from './pages/TrainingDashboard';
-import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
+import TrainingPrograms from './components/TrainingPrograms';
+import PrivateTrainingPrograms from './components/PrivateTrainingPrograms';
+import PrivateTraining from './components/PrivateTraining';
+import TrainingDashboard from './components/TrainingDashboard';
+import PrivateTrainingDetails from './components/PrivateTrainingDetails';
 
 
 function App() {
