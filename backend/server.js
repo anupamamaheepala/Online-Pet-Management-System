@@ -36,7 +36,7 @@ const cardpayRoute = require("./routes/paymentRoute")
 
 app.use(cors());
 app.use(bodyParser.json());
-//app.use('/api/register', registerRoute);
+
 
 app.use("/ads", adsRoute);
 

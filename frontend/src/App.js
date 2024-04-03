@@ -34,6 +34,9 @@ import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import TrainingDashboard from './pages/TrainingDashboard';
+import AllCustomers from './pages/AllCustomers';
+import EditCustomer from './pages/EditCustomer';
+
 
 
 function App() {
@@ -80,6 +83,9 @@ function App() {
         <Route path="/ProductCatalog" element={<ProductCatalog />} />
         <Route path="/product/:id" element={<ProductDescription />} />
         <Route exact path="/schedule" component={<ScheduleAppointment/>} />
+        <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
+        <Route path="/EditCustomer" element={<EditCustomer/>}></Route>
+
         {/* <Route path="AddAdvertisement" element={<AddAdvertisement/>} /> */}
        </Routes>
 
