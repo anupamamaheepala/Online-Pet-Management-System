@@ -18,6 +18,16 @@ const StaffList = () => {
                 alert(err.message);
             });
     }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:9000/staff/${id}`);
+            setStaff(staff.filter(item => item._id !== id));
+            alert("Delete Staff?");
+        } catch (error) {
+            alert("Failed to delete staff");
+        }
+    };
     
     return (
         <>
@@ -36,6 +46,7 @@ const StaffList = () => {
                         <th>Contact Number</th>
                         <th>Address</th>
                         <th>Designation</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,13 +59,16 @@ const StaffList = () => {
                             <td>{staff.scontactNumber}</td>
                             <td>{staff.saddress}</td>
                             <td>{staff.designation}</td>
-                            <td></td>
+                            <td>
+                                    <button className="staffList-delete-btn" onClick={() => handleDelete(staff._id)}>Delete</button>
+                                    <Link to={`/update/${staff._id}`}><button className="staffList-update-btn">Update</button></Link> {/* Assuming the update route is "/update/:id" */}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
-        <br></br>
+        <br></br><br></br>
          
             <Footer />
         </>
