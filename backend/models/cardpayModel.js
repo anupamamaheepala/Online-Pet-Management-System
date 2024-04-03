@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
 
-//payer information
-const payerinfoSchema = new mongoose.Schema({
-    name : {
+//card payment
+const cardpaySchema = new mongoose.Schema({
+    nameOnCard : {
         type : String,
         require: true
     },
-    email : {
+    cardNumber : {
         type : String,
         require: true
     },
-    phonenumber : {
+    cvv : {
         type : Number,
         require: true
     },
-    address : {
+    expireDate : {
         type : String,
         require: true
     },
 
 }, {timestamps: false})
 
-
-
-module.exports = mongoose.model('payerinfo', payerinfoSchema)
+module.exports = mongoose.model('cardpay', cardpaySchema)

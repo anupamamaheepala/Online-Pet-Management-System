@@ -1,110 +1,135 @@
 // routes/registerRoute.js
 
+// const express = require('express');
+// const router = express.Router();
+// const bcrypt = require('bcrypt');
+// const customerSchema = require("../models/registerModel");
+
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const customerSchema = require("../models/registerModel");
+const registerController = require("../controller/registerController");
 
+// Register a new customer
+router.post("/register", registerController.registerCustomer);
 
-//add a single income
-router.post("/register", async (req, res) => {
-  //destructuring request body into its components
-  console.log("okkkkk");
-  const {
-    username,
-    email,
-    contactNumber,
-    address,
-    password,
-    confirmPassword,
-  } = req.body;
+// Get all customers
 
-  //validations
-  try {
-    if (
-      !username ||
-      !email ||
-      !contactNumber ||
-      !address ||
-      !password ||
-      !confirmPassword
-      
-    ) {
-      return res.status(400).json({ message: "All fields are required!" });
-    }
-     // Check if password and confirm password match
-     if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Password and confirm password should be the same" });
-    }
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password with a salt of 10 rounds
-
-    
-
-    const income = customerSchema({
-      username,
-      email,
-      contactNumber,
-      address,
-      password: hashedPassword,
-      
-    });
-
-    
-    //saving data into the database
-    await income.save();
-    res.status(200).json({ message: "register customer" });
-  } catch (error) {
-    res.status(500).json({ message: "Server Error" });
-  }
-});
-
-// Get all registrations
-router.route("/").get((req,res)=>{
-    
-  customerSchema.find().then((customer)=>{
-      res.json(customer)
-  }) .catch((err)=>{
-      console.log(err);
-  })
-
-})
+//router.get("/", registerController.getAllCustomers);
 
 // Delete a customer by ID
-router.delete("/:id", async (req, res) => {
-  try {
-      await customerSchema.findByIdAndDelete(req.params.id);
-      res.status(200).json({ message: "Customer deleted successfully" });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Failed to delete customer" });
-  }
-});
+//router.delete("/:id", registerController.deleteCustomerById);
 
-// Get a customer by ID
-router.get("/:id", async (req, res) => {
-  try {
-      const customer = await customerSchema.findById(req.params.id);
-      if (!customer) {
-          return res.status(404).json({ message: "Customer not found" });
-      }
-      res.status(200).json(customer);
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Failed to fetch customer details" });
-  }
-});
+router.get("/", registerController.getAllCustomers);
 
-// Update a customer by ID
-router.put("/:id", async (req, res) => {
-  try {
-      await customerSchema.findByIdAndUpdate(req.params.id, req.body);
-      res.status(200).json({ message: "Customer updated successfully" });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Failed to update customer" });
-  }
-});
+// Delete a customer by ID
+router.delete("/:id", registerController.deleteCustomerById);
+
+
+
+
+module.exports = router;
+
+
+
+// //add a single income
+// router.post("/register", async (req, res) => {
+//   //destructuring request body into its components
+//   console.log("okkkkk");
+//   const {
+//     username,
+//     email,
+//     contactNumber,
+//     address,
+//     password,
+//     confirmPassword,
+//   } = req.body;
+
+//   //validations
+//   try {
+//     if (
+//       !username ||
+//       !email ||
+//       !contactNumber ||
+//       !address ||
+//       !password ||
+//       !confirmPassword
+      
+//     ) {
+//       return res.status(400).json({ message: "All fields are required!" });
+//     }
+//      // Check if password and confirm password match
+//      if (password !== confirmPassword) {
+//       return res.status(400).json({ message: "Password and confirm password should be the same" });
+//     }
+//     // Hash password
+//     const hashedPassword = await bcrypt.hash(password, 10); // Hash the password with a salt of 10 rounds
+
+    
+
+//     const income = customerSchema({
+//       username,
+//       email,
+//       contactNumber,
+//       address,
+//       password: hashedPassword,
+      
+//     });
+
+    
+//     //saving data into the database
+//     await income.save();
+//     res.status(200).json({ message: "register customer" });
+//   } catch (error) {
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// });
+
+// // Get all registrations
+// router.route("/").get((req,res)=>{
+    
+//   customerSchema.find().then((customer)=>{
+//       res.json(customer)
+//   }) .catch((err)=>{
+//       console.log(err);
+//   })
+
+// })
+
+// // Delete a customer by ID
+// router.delete("/:id", async (req, res) => {
+//   try {
+//       await customerSchema.findByIdAndDelete(req.params.id);
+//       res.status(200).json({ message: "Customer deleted successfully" });
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: "Failed to delete customer" });
+//   }
+// });
+
+// // Get a customer by ID
+// router.get("/:id", async (req, res) => {
+//   try {
+//       const customer = await customerSchema.findById(req.params.id);
+//       if (!customer) {
+//           return res.status(404).json({ message: "Customer not found" });
+//       }
+//       res.status(200).json(customer);
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: "Failed to fetch customer details" });
+//   }
+// });
+
+// // Update a customer by ID
+// router.put("/:id", async (req, res) => {
+//   try {
+//       await customerSchema.findByIdAndUpdate(req.params.id, req.body);
+//       res.status(200).json({ message: "Customer updated successfully" });
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: "Failed to update customer" });
+//   }
+// });
 
 
 
