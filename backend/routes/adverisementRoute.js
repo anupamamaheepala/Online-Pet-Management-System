@@ -10,7 +10,12 @@ router.post("/add", advertisementController.addAdvertisement);
 // Route to retrieve all advertisements
 router.get("/", advertisementController.getAllAdvertisements);
 
+
 // Route to delete an advertisement by ID
-router.delete("/:_id", advertisementController.deleteAdvertisementById);
+//router.delete("/:_id", advertisementController.deleteAdvertisementById);
+
+// Route to delete an advertisement by ID
+// router.delete("/:_id", advertisementController.deleteAdvertisementById);
+
 
 module.exports = router;
