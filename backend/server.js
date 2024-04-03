@@ -14,7 +14,8 @@ app.use(express.json());
 const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
-const trainingRoutes = require("./routes/trainingRoutes");
+const trainingRoutes = require("./routes/training.routes");
+
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/paymentRoute");

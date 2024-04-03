@@ -30,10 +30,11 @@ import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile'; 
 import ProductCatalog from './pages/ProductCatalog';
 import ProductDescription from './pages/ProductDescription';
-import TrainingPrograms from './pages/TrainingPrograms';
-import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
-import PrivateTraining from './pages/PrivateTraining';
-import TrainingDashboard from './pages/TrainingDashboard';
+import TrainingPrograms from './components/TrainingPrograms';
+import PrivateTrainingPrograms from './components/PrivateTrainingPrograms';
+import PrivateTraining from './components/PrivateTraining';
+import TrainingDashboard from './components/TrainingDashboard';
+import PrivateTrainingDetails from './components/PrivateTrainingDetails';
 
 
 function App() {
@@ -50,9 +51,15 @@ function App() {
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
 
-        {/*<Route path="/AdminTrainingApplication" element={<AdminTrainingApplication/>}></Route>*/}
-
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
+<<<<<<< HEAD
+=======
+        <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
+
+
+    
+
+>>>>>>> a8cd756f8fd167bdad62e275cb43fdda8469acae
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
