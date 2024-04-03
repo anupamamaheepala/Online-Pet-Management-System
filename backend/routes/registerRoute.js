@@ -13,10 +13,17 @@ const registerController = require("../controller/registerController");
 router.post("/register", registerController.registerCustomer);
 
 // Get all customers
+<<<<<<< HEAD
 //router.get("/", registerController.getAllCustomers);
 
 // Delete a customer by ID
 //router.delete("/:id", registerController.deleteCustomerById);
+=======
+router.get("/", registerController.getAllCustomers);
+
+// Delete a customer by ID
+router.delete("/:id", registerController.deleteCustomerById);
+>>>>>>> af711f052822bfc14daa202058ce79c032ca5e8a
 
 
 
