@@ -6,7 +6,7 @@ import '../css/advertisement.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { confirmAdvertisement, rejectAdvertisement } from '../controller/advertisementController';
+
 
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
@@ -67,7 +67,7 @@ const ConfirmAdvertisement = () => {
                             <td>{ad.purpose}</td>
                             <td>{ad.description}</td>
                             <td>{ad.contact}</td>
-                            <td>
+                            {/* <td>
                                 <div className="ma_advertisement-buttons">
                                     <div className="ma_button-container">
                                         { !ad.confirmed && !ad.rejected &&
@@ -78,7 +78,7 @@ const ConfirmAdvertisement = () => {
                                         <button className="ma_add_button ma_reject_button" onClick={() => rejectAd(ad._id)}>Reject</button>
                                     }
                                 </div>
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                 </tbody>

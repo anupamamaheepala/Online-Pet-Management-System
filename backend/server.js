@@ -21,6 +21,7 @@ const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/paymentRoute");
 const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
+
 //middleware
 // app.use((req, res, next) => {
 //   console.log(req.path, req.method);

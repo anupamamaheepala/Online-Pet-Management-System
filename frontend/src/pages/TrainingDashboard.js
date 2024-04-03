@@ -39,17 +39,15 @@ const TrainingDashboard = () => {
 
     return (
         <div>
-            <h2>Admin Dashboard</h2>
+            <h2>Training Manager Dashboard</h2>
             <table className="alo1-table"> {/* Add className="alo1-table" */}
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Owner's Name</th>
-                        <th>Address</th>
-                        <th>Contact Number</th>
                         <th>Dog's Name</th>
-                        <th>Breed</th>
-                        <th>Age</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Status</th>
                         <th>Actions</th>
                         <th>Action</th>
@@ -60,11 +58,13 @@ const TrainingDashboard = () => {
                         <tr key={training._id}>
                             <td>{index + 1}</td>
                             <td>{training.ownerName}</td>
-                            <td>{training.address}</td>
-                            <td>{training.contact}</td>
                             <td>{training.dogName}</td>
-                            <td>{training.breed}</td>
-                            <td>{training.age}</td>
+                            {/*Fixed date & time*/}
+                           <td>{new Date(training.submissionDateTime).toLocaleDateString()}</td> {/* Display date */}
+                           <td>{new Date(training.submissionDateTime).toLocaleTimeString()}</td> {/* Display time */}
+ 
+                            
+
                             <td>
                                 <select onChange={(e) => handleStatusChange(training._id, e.target.value)} value={training.status}>
                                     <option value="pending">Pending</option>
