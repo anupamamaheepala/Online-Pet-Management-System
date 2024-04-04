@@ -63,18 +63,15 @@ exports.getAllAdvertisements = async (req, res) => {
 };
 
 // // Function to delete an advertisement by ID
-// const deleteAdvertisementById = async (req, res) => {
-//   try {
-//     const userId = req.params.id;
-//     await AdsSchema.findByIdAndDelete(userId);
-//     res.status(200).send({ status: "Advertisement deleted" });
-//   } catch (error) {
-//     console.error(error.message);
-//     res
-//       .status(500)
-//       .send({ status: "Error with deleting advertisement", error: error.message });
-//   }
-// };
+exports.deleteAdById= async (req, res) => {
+  try {
+    await Customer.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "As deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to delete ad" });
+  }
+};
 
 // // Function to confirm an advertisement by ID
 // const confirmAdvertisement = async (req, res) => {
