@@ -18,7 +18,7 @@ const cardPaymentController = {
         cardNumber,
         cvv,
         expireDate,
-      });
+      });   
 
       await cardPayment.save();
       res.status(200).json({ message: "Card payment processed successfully" });
