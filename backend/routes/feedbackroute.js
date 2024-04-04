@@ -1,18 +1,8 @@
-// feedbackroute.js
-
 const express = require("express");
 const router = express.Router();
-const feedbackController = require("../controller/feedbackController"); // Update this path
+const feedbackController = require("../controllers/feedbackController");
 
-// Route to add a new feedback
-router.post("/add", feedbackController.feedback);
-
-// Route to retrieve all feedback
-router.get("/", feedbackController.getfeedback);
-
-
-// Route to delete an feedback by ID
-//router.delete("/:_id", feedbackController.deletefeedbackById);
-
+// Route for adding feedback
+router.post("/feed", feedbackController.addFeedback);
 
 module.exports = router;
