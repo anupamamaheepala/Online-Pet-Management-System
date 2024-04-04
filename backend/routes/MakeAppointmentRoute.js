@@ -6,6 +6,7 @@ const router = express.Router();
 const MakeAppointmentController = require('../controller/MakeAppointmentController');
 const{
   createAppointment,
+  
 }=require('../controller/MakeAppointmentController');
 
 // Define a route to handle appointment submissions
