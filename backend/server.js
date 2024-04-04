@@ -15,16 +15,14 @@ const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoutes = require("./routes/training.routes");
-<<<<<<< HEAD
 
-=======
->>>>>>> 9697c5c2a2dc653fea93263ac11170a97b48b75d
+
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/cardpayRoute");
 const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 const productRoute = require ("./routes/Productroutes");
-<<<<<<< HEAD
+
 
 const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 
@@ -34,9 +32,9 @@ const staffLeaveRoute = require("./routes/staffLeaveRoute");
 
 const cardpayRoute = require("./routes/cardpayRoute");
 
-=======
+
 const appointmentRoutes = require("./routes/MakeAppointmentRoute");
->>>>>>> 9697c5c2a2dc653fea93263ac11170a97b48b75d
+
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 
@@ -57,22 +55,19 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
-<<<<<<< HEAD
 
 app.use("/product", productRoute);
 
 
-=======
+
 app.use("/product", productRoute);
->>>>>>> 9697c5c2a2dc653fea93263ac11170a97b48b75d
+
 app.use("/banktrans", banktransRoute);
 
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
-<<<<<<< HEAD
 
-=======
->>>>>>> 9697c5c2a2dc653fea93263ac11170a97b48b75d
+
 
 
 app.get("/", (req, res) => {
