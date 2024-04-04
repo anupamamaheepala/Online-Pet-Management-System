@@ -15,6 +15,7 @@ const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoutes = require("./routes/training.routes");
+const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
@@ -40,6 +41,7 @@ app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
 app.use("/staff", staffRoute);
 app.use("/feedback", feedbacks);
+app.use("/appointment", appointmentRoutes);
 
 
 app.get("/", (req, res) => {

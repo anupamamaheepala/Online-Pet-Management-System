@@ -15,7 +15,7 @@ const MakeAppointment = () => {
 
     try {
       // Send form data to server using Axios POST request
-      await axios.post('http://localhost:9000/api/appointments', {
+      await axios.post('http://localhost:9000/appointment/appointments', {
         ownerName,
         ownerEmail,
         ownerContact,
