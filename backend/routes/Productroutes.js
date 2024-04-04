@@ -31,18 +31,15 @@ router.post('/add', async (req, res) => {
 });
 
 // Read all products
-router.get('/get', async (req, res) => {
+exports.getAddedProduct = async (req, res) => {
     try {
-        // Retrieve all products from the database
-        const products = await Product.find();
-
-        // Send the products as the response
-        res.send(products);
+      const product = await Product.find();
+      res.json(product);
     } catch (error) {
-        console.error('Error fetching products:', error);
-        res.status(500).send('Internal Server Error');
+      console.error(error);
+      res.status(500).json({ error: "Server error" });
     }
-});
+  }
 
 // Read one product by ID
 router.get('/:id', async (req, res) => {
