@@ -90,16 +90,16 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
 
         <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
-<<<<<<< HEAD
+
         <Route path="/edit/:id" element={<EditCustomer/>}></Route>
-=======
+
         <Route path="/EditCustomer" element={<EditCustomer/>}></Route>
         <Route path="/Store" element={<Shop/>}></Route>
         <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
       
->>>>>>> d38e65c64386841442ca5b82baa8393377263b2d
+
 
        </Routes>
 
