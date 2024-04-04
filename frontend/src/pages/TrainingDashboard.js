@@ -5,20 +5,35 @@ import '../css/Trainingdashboard.css'; // Import the CSS file
 
 const TrainingDashboard = () => {
     const [trainings, setTrainings] = useState([]);
-
-    const fetchTrainings = async () => {
-        try {
-            const response = await axios.get('http://localhost:9000/training/all');
-            setTrainings(response.data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-
+  
     useEffect(() => {
-        fetchTrainings();
+      fetchTrainings();
     }, []);
-
+  
+    const fetchTrainings = async () => {
+      try {
+        const response = await axios.get('http://localhost:9000/training/all');
+        setTrainings(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    const downloadFile = async (filePath) => {
+      try {
+        const response = await axios.get(`http://localhost:9000/${filePath}`, {
+          responseType: 'blob'
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', filePath.split('/').pop());
+        document.body.appendChild(link);
+        link.click();
+      } catch (error) {
+        console.error('Error downloading file:', error);
+      }
+    };
     const handleStatusChange = async (id, status) => {
         try {
             await axios.put(`http://localhost:9000/training/updateStatus/${id}`, { status });
@@ -49,6 +64,7 @@ const TrainingDashboard = () => {
                         <th>Id</th>
                         <th>Owner's Name</th>
                         <th>Dog's Name</th>
+                        <th>file</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Status</th>
@@ -62,6 +78,10 @@ const TrainingDashboard = () => {
                             <td>{index + 1}</td>
                             <td>{training.ownerName}</td>
                             <td>{training.dogName}</td>
+                            <td>
+                <a href="#" onClick={() => downloadFile(training.filePath)}>Download</a>
+              </td> 
+              
                             {/*Fixed date & time*/}
                            <td>{new Date(training.submissionDateTime).toLocaleDateString()}</td> {/* Display date */}
                            <td>{new Date(training.submissionDateTime).toLocaleTimeString()}</td> {/* Display time */}
