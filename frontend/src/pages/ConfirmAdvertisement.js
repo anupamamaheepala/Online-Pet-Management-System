@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 
+
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
 
@@ -24,13 +25,26 @@ const ConfirmAdvertisement = () => {
 
     }, []);
 
+    // const handleDelete = async (id) => {
+    //     try {
+    //         await axios.delete(`http://localhost:9000/ads/${id}`);
+    //         setAds(ads.filter((add) => add._id !== id));
+    //         alert('Ad deleted successfully');
+    //     } catch (error) {
+    //         alert('Failed to delete ad');
+    //     }
+    // };
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:9000/ads/${id}`);
-            setAds(ads.filter((add) => add._id !== id));
-            alert('Ad deleted successfully');
-        } catch (error) {
-            alert('Failed to delete ad');
+        if (window.confirm("Are you sure you want to delete this Advertisement?")) {
+            try {
+                await axios.delete(`http://localhost:9000/ads/${id}`);
+                setAds(ads.filter((ad) => ad._id !== id));
+                alert('Advertisement deleted successfully');
+            } catch (error) {
+                alert('Failed to delete Advertisement');
+            }
+        } else {
+            alert('Deletion cancelled.');
         }
     };
 
@@ -67,7 +81,7 @@ const ConfirmAdvertisement = () => {
                    &nbsp;Confirm
                 </a>
                 &nbsp;
-                <button className= "btn btn-danger" onClick={() => handleDelete(ads._id)}>Delete</button>
+                <button className= "btn btn-danger" onClick={() => handleDelete(ad._id)}>Delete</button>
                 </div>
               </td>
                         </tr>
