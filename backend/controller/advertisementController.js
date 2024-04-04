@@ -106,4 +106,3 @@ exports.getAllAdvertisements = async (req, res) => {
 //   deleteAdvertisementById,
 //   confirmAdvertisement,
 //   rejectAdvertisement,
-

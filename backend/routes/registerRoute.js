@@ -15,8 +15,15 @@ router.post("/register", registerController.registerCustomer);
 // Get all customers
 router.get("/", registerController.getAllCustomers);
 
+// Get customer by ID
+router.get("/:id", registerController.getCustomerById);
+
+// Update customer by ID
+router.put("/:id", registerController.updateCustomer);
+
 // Delete a customer by ID
 router.delete("/:id", registerController.deleteCustomerById);
+
 
 
 

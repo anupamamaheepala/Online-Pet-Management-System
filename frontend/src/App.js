@@ -28,18 +28,17 @@ import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile'; 
-import ProductCatalog from './pages/ProductCatalog';
-import ProductDescription from './pages/ProductDescription';
 
 import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import TrainingDashboard from './pages/TrainingDashboard';
 import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
-
+import Shop from './pages/Shop';
 import AllCustomers from './pages/AllCustomers';
 import EditCustomer from './pages/EditCustomer';
-
+import banner from './components/Assests/banner.png'
+import ShopCategory from './pages/ShopCategory';
 
 
 function App() {
@@ -55,10 +54,10 @@ function App() {
         <Route path= "/TrainingPrograms" element={<TrainingPrograms />}></Route>
         <Route path= "/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />}></Route>
         <Route path="/PrivateTraining"  element={<PrivateTraining/>}></Route>
-
+        
         <Route path="/TrainingDashboard" element={<TrainingDashboard/>}></Route>
-
         <Route path="/training/:id" element={<PrivateTrainingDetails />}></Route>
+        
 
 
     
@@ -89,10 +88,18 @@ function App() {
         <Route path="/StaffList" element={<StaffList/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
-        <Route path="/ProductCatalog" element={<ProductCatalog />} />
-        <Route path="/product/:id" element={<ProductDescription />} />
+
         <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
+
+        <Route path="/edit/:id" element={<EditCustomer/>}></Route>
+
         <Route path="/EditCustomer" element={<EditCustomer/>}></Route>
+        <Route path="/Store" element={<Shop/>}></Route>
+        <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
+          <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
+          <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
+      
+
 
        </Routes>
 
