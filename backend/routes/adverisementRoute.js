@@ -12,7 +12,7 @@ router.get("/", advertisementController.getAllAdvertisements);
 
 
 // Route to delete an advertisement by ID
-router.delete("/:_id", advertisementController.deleteAdById);
+router.delete("/:id", advertisementController.deleteAdById);
 
 
 module.exports = router;
