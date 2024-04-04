@@ -1,7 +1,7 @@
 // advertisementController.js
-const { confirmAdvertisement, rejectAdvertisement } = require('../controller/advertisementController');
+//const { confirmAdvertisement, rejectAdvertisement } = require('../controller/advertisementController');
 
-const AdsSchema = require("../models/advertisementModel");
+const Ads = require("../models/advertisementModel");
 
 // Function to handle adding a new advertisement
  exports.addAdvertisement = async (req, res) => {
@@ -65,7 +65,7 @@ exports.getAllAdvertisements = async (req, res) => {
 // // Function to delete an advertisement by ID
 exports.deleteAdById= async (req, res) => {
   try {
-    await Customer.findByIdAndDelete(req.params.id);
+    await Ads.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "As deleted successfully" });
   } catch (error) {
     console.error(error);
