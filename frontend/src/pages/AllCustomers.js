@@ -56,7 +56,8 @@ const AllCustomers = () => {
                             <td>{cus.contactNumber}</td>
                             <td>{cus.address}</td>
                             <td>
-                                <Link to={`/edit/${cus._id}`}>Edit</Link> {/* Link to edit page */}
+                               
+                                <Link to={`/edit/${cus._id}`}>Edit</Link>
                                 <button onClick={() => handleDelete(cus._id)}>Delete</button> {/* Delete button */}
                                 
 
