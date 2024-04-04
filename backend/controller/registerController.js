@@ -1,12 +1,38 @@
 const Customer = require("../models/registerModel");
 const bcrypt = require('bcrypt');
+const passwordValidator = require('password-validator');
+
+// Schema for password validation
+const schema = new passwordValidator();
+schema
+  .is().min(8) // Minimum length 8 characters
+  .is().max(100) // Maximum length 100 characters
+  .has().uppercase() // Must have at least one uppercase letter
+  .has().lowercase() // Must have at least one lowercase letter
+  .has().digits() // Must have at least one digit
+  .has().symbols(); // Must have at least one special character
+
 
 // Register a new customer
 exports.registerCustomer = async (req, res) => {
   const { username, email, contactNumber, address, password, confirmPassword } = req.body;
 
-  //validations
+   // Validate password
+   if (!schema.validate(password)) {
+    return res.status(400).json({ message: "Password does not meet the requirements." });
+  }
+
+  // Check if the email already exists in the database
   try {
+    const existingCustomer = await Customer.findOne({ email });
+    if (existingCustomer) {
+      return res.status(400).json({ message: "Email already exists. Please use a different email." });
+    }
+
+
+
+  //validations
+  
     if (!username || !email || !contactNumber || !address || !password || !confirmPassword) {
       return res.status(400).json({ message: "All fields are required!" });
     }

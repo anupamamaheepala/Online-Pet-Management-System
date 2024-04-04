@@ -41,6 +41,8 @@ import AllCustomers from './pages/AllCustomers';
 import EditCustomer from './pages/EditCustomer';
 import banner from './components/Assests/banner.png'
 import ShopCategory from './pages/ShopCategory';
+import AddedProduct from './pages/AddedProduct';
+import AddingProduct from './pages/AddingProduct';
 
 
 function App() {
@@ -100,6 +102,12 @@ function App() {
         <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
+          
+       
+     
+          <Route path="/AddingProduct" element={<AddingProduct/>} ></Route>
+          <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
+      
       
 
 

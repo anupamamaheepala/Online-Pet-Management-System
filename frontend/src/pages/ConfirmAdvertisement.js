@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 
+
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
 
@@ -34,13 +35,13 @@ const ConfirmAdvertisement = () => {
     //     }
     // };
     const handleDelete = async (id) => {
-        if (window.confirm("Are you sure you want to delete this customer?")) {
+        if (window.confirm("Are you sure you want to delete this Advertisement?")) {
             try {
                 await axios.delete(`http://localhost:9000/ads/${id}`);
                 setAds(ads.filter((ad) => ad._id !== id));
-                alert('Add deleted successfully');
+                alert('Advertisement deleted successfully');
             } catch (error) {
-                alert('Failed to delete add');
+                alert('Failed to delete Advertisement');
             }
         } else {
             alert('Deletion cancelled.');

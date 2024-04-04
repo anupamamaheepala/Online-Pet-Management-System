@@ -1,7 +1,22 @@
-const trainingModel = require("../models/trainingModel");
+const express = require('express');
+
+const multer = require('multer'); // Import multer
+const trainingModel = require('../models/trainingModel');
 
 // Add Training Program
-// Inside addTrainingprogram controller
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
+// Add Training Program with file upload
 const addTrainingprogram = async (req, res) => {
     try {
         const { ownerName, address, contact, dogName, breed, age } = req.body;
@@ -20,6 +35,11 @@ const addTrainingprogram = async (req, res) => {
         };
 
         const newTrainingObj = new trainingModel(trainingData);
+
+        if (req.file) {
+            newTrainingObj.filePath = req.file.path; // Add file path to training object
+        }
+
         await newTrainingObj.save();
 
         return res.status(200).send({
@@ -50,7 +70,7 @@ const getalltrainingdetails = async (req, res) => {
 
     try {
         const training = await trainingModel.findById(trainingId);
-        
+
         if (!training) {
             return res.status(404).json({ message: "Training not found" });
         }
@@ -62,28 +82,21 @@ const getalltrainingdetails = async (req, res) => {
     }
 };
 
-// Update instructor for a training
-const updateinstructor = async (req, res) => {
-    const trainingId = req.params.id;
-    const { instructor } = req.body;
-
+/* Update instructor for a training
+const updateInstructorById = async (req, res) => {
     try {
-        if (!instructor) {
-            return res.status(400).json({ message: "Instructor name is required" });
+        const { id } = req.params;
+        const { instructor } = req.body;
+        const training = await trainingModel.findByIdAndUpdate(id, { instructor }, { new: true });
+        if (!training) {
+            return res.status(404).json({ message: 'Training not found' });
         }
-
-        const updatedTraining = await trainingModel.findByIdAndUpdate(trainingId, { instructor }, { new: true });
-
-        if (!updatedTraining) {
-            return res.status(404).json({ message: "Training not found" });
-        }
-        
-        res.status(200).json({ message: "Instructor updated successfully", updatedTraining });
+        res.json(training);
     } catch (error) {
         console.error('Error updating instructor:', error);
-        res.status(500).json({ message: 'Failed to update instructor' });
+        res.status(500).json({ message: 'Internal server error' });
     }
-};
+};*/
 
 // Delete training by ID
 const deleteprogram = async (req, res) => {
@@ -91,7 +104,7 @@ const deleteprogram = async (req, res) => {
 
     try {
         const deletedTraining = await trainingModel.findByIdAndDelete(trainingId);
-        
+
         if (!deletedTraining) {
             return res.status(404).json({ message: "Training not found" });
         }
@@ -103,10 +116,28 @@ const deleteprogram = async (req, res) => {
     }
 };
 
+/* Update training status
+const updateTrainingStatusById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const training = await trainingModel.findByIdAndUpdate(id, { status }, { new: true });
+        if (!training) {
+            return res.status(404).json({ message: 'Training not found' });
+        }
+        res.json(training);
+    } catch (error) {
+        console.error('Error updating training status:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};*/
+
 module.exports = {
     addTrainingprogram,
     getalltrainings,
     getalltrainingdetails,
-    updateinstructor,
-    deleteprogram
+    /*npm start updateInstructor*/
+    deleteprogram,
+    /*updateTrainingStatus*/
+
 };

@@ -1,20 +1,18 @@
-// PrivateTrainingDetails.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams hook
+import { useParams } from 'react-router-dom';
 import '../css/ptrainingdetails.css'; // Ensure correct path to your CSS file
 
 const PrivateTrainingDetails = () => {
   const [training, setTraining] = useState(null);
-  const [instructor, setInstructor] = useState(''); // Add state for instructor
-const { id } = useParams(); // Get the id from useParams hook
+  const [instructor, setInstructor] = useState('');
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchTrainingDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:9000/training/${id}`);
         setTraining(response.data);
-        // Set instructor state when component mounts
         setInstructor(response.data.instructor || '');
       } catch (error) {
         console.error('Error fetching training details:', error);
@@ -22,14 +20,30 @@ const { id } = useParams(); // Get the id from useParams hook
     };
 
     fetchTrainingDetails();
-  }, [id]); // Include id in the dependency array
+  }, [id]);
 
   const handleUpdateInstructor = async () => {
     try {
       await axios.put(`http://localhost:9000/training/updateInstructor/${id}`, { instructor });
       // Optionally, provide feedback to the user
+      console.log('Instructor updated successfully');
     } catch (error) {
       console.error('Error updating instructor:', error);
+    }
+  };
+
+  const handleApproveTraining = async () => {
+    try {
+      await axios.put(`http://localhost:9000/training/status/${id}`, { status: 'approved' });
+      // Update the training status locally
+      setTraining(prevTraining => ({
+        ...prevTraining,
+        status: 'approved'
+      }));
+      // Optionally, provide feedback to the user
+      console.log('Training approved successfully');
+    } catch (error) {
+      console.error('Error approving training:', error);
     }
   };
 
@@ -57,8 +71,11 @@ const { id } = useParams(); // Get the id from useParams hook
           placeholder="Enter new instructor's name"
           id='instructor'
         />
-        {/* Add update button */}
         <button onClick={handleUpdateInstructor}>Update Instructor</button>
+      </div>
+      <div>
+        <h3>Actions</h3>
+        <button onClick={handleApproveTraining}>Approve Training</button>
       </div>
     </div>
   );

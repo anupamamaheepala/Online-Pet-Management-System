@@ -15,10 +15,13 @@ const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoutes = require("./routes/training.routes");
-
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
-const cardpayRoute = require("./routes/paymentRoute")
+const cardpayRoute = require("./routes/cardpayRoute");
+const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
+const productRoute = require ("./routes/Productroutes");
+const appointmentRoutes = require("./routes/MakeAppointmentRoute");
+const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 
 //middleware
@@ -38,8 +41,11 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
-app.use("/staff", staffRoute);
+app.use("/product", productRoute);
+app.use("/banktrans", banktransRoute);
+
 app.use("/feedback", feedbacks);
+app.use("/appointment", appointmentRoutes);
 
 
 app.get("/", (req, res) => {

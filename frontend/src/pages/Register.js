@@ -28,6 +28,7 @@ const Register =  () =>{
         e.preventDefault();
         
         try {
+          
             const res = await axios.post("http://localhost:9000/customer/register", formData);
             console.log(res.data);
             // Optionally, you can clear the form fields after successful submission
@@ -83,6 +84,8 @@ const Register =  () =>{
           <div className="registration-form-group">
             <label>Password:</label>
             <input type="password" name="password" id= 'password' value={password} onChange={onChange} required/>
+            <p className="password-requirements">Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
+
           </div>
           <div className="registration-form-group">
             <label>Confirm Password:</label>
