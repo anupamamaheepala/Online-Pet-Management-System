@@ -20,12 +20,16 @@ const AllCustomers = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:9000/customer/${id}`);
-            setCustomer(customer.filter((cus) => cus._id !== id));
-            alert('Customer deleted successfully');
-        } catch (error) {
-            alert('Failed to delete customer');
+        if (window.confirm("Are you sure you want to delete this customer?")) {
+            try {
+                await axios.delete(`http://localhost:9000/customer/${id}`);
+                setCustomer(customer.filter((cus) => cus._id !== id));
+                alert('Customer deleted successfully');
+            } catch (error) {
+                alert('Failed to delete customer');
+            }
+        } else {
+            alert('Deletion cancelled.');
         }
     };
     

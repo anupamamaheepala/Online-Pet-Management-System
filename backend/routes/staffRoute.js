@@ -1,64 +1,58 @@
-const express = require("express");
+/*const express = require("express");
 const router = express.Router();
-const StaffSchema = require("../models/staffModel");
+const staffController = require("../controller/staffController");
 
 
-router.post("/add", async (req, res) => {
-  //destructuring request body into its components
-  console.log("inserted");
-  const {
-    sfirstname,
-    slastname,
-    snic,
-    semail,
-    scontactNumber,
-    saddress,
-    designation,
-  } = req.body;
+router.post("/addStaff",staffController); 
+ try {
+    // Extract form data from the request body
+    const { ownerName, ownerEmail, ownerContact, petType } = req.body;
 
-  //validations
-  try {
-    if (
-      !sfirstname ||
-      !slastname ||
-      !snic ||
-      !semail ||
-      !scontactNumber ||
-      !saddress ||
-      !designation 
-    ) {
-      return res.status(400).json({ message: "All fields are required!" });
-    }
-
-    const income = StaffSchema({
+    // Create a new appointment object
+    const newStaff = new StaffSchema({
       sfirstname,
       slastname,
       snic,
       semail,
       scontactNumber,
       saddress,
-      designation,
+      designation
     });
 
-    //saving data into the database
-    await income.save();
-    res.status(200).json({ message: "Staff added" });
+    // Save the appointment to the database
+    await newStaff.save();
+
+    // Send a success response
+    res.status(201).json({ message: 'Staff Added successfully' });
   } catch (error) {
-    res.status(500).json({ message: "Server Error" });
+    // If an error occurs, send an error response
+    console.error('Error adding staff:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-router.route("/").get((req,res)=>{
-    
-  StaffSchema.find().then((staff)=>{
-      res.json(staff)
-  }) .catch((err)=>{
-      console.log(err);
-  })
+// Export the router 
+module.exports = router; */
 
-})
+const express = require('express');
+const router = express.Router();
+const { addStaff, getAllStaff, deleteStaff, updateStaff } = require('../controller/staffController');
 
+// Route to handle adding new staff
+router.post('/add', addStaff);
+
+// Route to get all staff members
+router.get('/all', getAllStaff);
+
+// Route to delete a staff member
+router.delete('/:id', deleteStaff);
+
+// Route to update a staff member
+// router.put('/:id', updateStaff);
 
 module.exports = router;
+
+
+ 
 
 
