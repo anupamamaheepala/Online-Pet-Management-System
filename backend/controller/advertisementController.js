@@ -62,7 +62,7 @@ exports.getAllAdvertisements = async (req, res) => {
   }
 };
 
-// Function to delete an advertisement by ID
+// // Function to delete an advertisement by ID
 exports.deleteAdById= async (req, res) => {
   try {
     await Ads.findByIdAndDelete(req.params.id);
@@ -72,8 +72,6 @@ exports.deleteAdById= async (req, res) => {
     res.status(500).json({ message: "Failed to delete ad" });
   }
 };
-
-
 
 // // Function to confirm an advertisement by ID
 // const confirmAdvertisement = async (req, res) => {
