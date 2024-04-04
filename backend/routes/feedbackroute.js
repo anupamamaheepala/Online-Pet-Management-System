@@ -1,46 +1,18 @@
+// feedbackroute.js
+
 const express = require("express");
 const router = express.Router();
-const feedbackSchema = require("../models/feedbackmodel");
+const feedbackController = require("../controller/feedbackController"); // Update this path
 
-router.post("/feed", async (req, res) => {
-//destructuring request body into its components
-console.log("okkkk");
-const {
-    feedback,
-    email,
-    name,
-    rating,
- 
-} = req.body;
+// Route to add a new feedback
+router.post("/add", feedbackController.feedback);
 
-//validations
-try {
-  if (
-    !feedback ||
-    !email || 
-    !name ||
-    !rating
-  ) {
-    return res.status(400).json({ message: "All fields are required!" });
-  }
+// Route to retrieve all feedback
+router.get("/", feedbackController.getfeedback);
 
-  const income = feedbackSchema({
-    feedback,
-    email,
-    name,
-    rating,
-    
-    
-  });
 
-  //saving data into the database
-  await income.save();
-  res.status(200).json({ message: "Add added" });
-} catch (error) {
-  res.status(500).json({ message: "Server Error" });
-}
-});
-
+// Route to delete an feedback by ID
+//router.delete("/:_id", feedbackController.deletefeedbackById);
 
 
 module.exports = router;
