@@ -30,11 +30,6 @@ const StaffList = () => {
         }
     };
     
-   /* const handleUpdate = (id) => {
-        // Redirect to the update page for the selected staff member
-        window.location.href = `/update/${id}`;
-    }; */
-    
     return (
         <>
             <Header />
