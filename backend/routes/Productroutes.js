@@ -31,7 +31,7 @@ router.post('/add', async (req, res) => {
 });
 
 // Read all products
-router.get('/', async (req, res) => {
+router.get('/get', async (req, res) => {
     try {
         // Retrieve all products from the database
         const products = await Product.find();

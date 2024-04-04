@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String, // Assuming storing image URL
+    type: String,
     required: true
   },
   price: {
@@ -38,6 +38,4 @@ function validateProduct(product) {
   return schema.validate(product);
 }
 
-exports.validateProduct = validateProduct;
-exports.Product = Product;
-exports.productSchema = productSchema;
+module.exports = { validateProduct, Product };

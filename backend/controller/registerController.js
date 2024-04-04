@@ -56,3 +56,33 @@ exports.getAllCustomers = async (req, res) => {
     }
   };
 
+  // Get customer by ID
+exports.getCustomerById = async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.json(customer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch customer details" });
+  }
+};
+
+// Update customer details
+exports.updateCustomer = async (req, res) => {
+  try {
+    await Customer.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({ message: "Customer updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to update customer" });
+  }
+};
+
+
+
+
+
+
+
+
+

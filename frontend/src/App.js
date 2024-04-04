@@ -92,6 +92,9 @@ function App() {
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
 
         <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
+
+        <Route path="/edit/:id" element={<EditCustomer/>}></Route>
+
         <Route path="/EditCustomer" element={<EditCustomer/>}></Route>
         <Route path="/Store" element={<Shop/>}></Route>
         <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
@@ -104,6 +107,7 @@ function App() {
           <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
       
       
+
 
        </Routes>
 

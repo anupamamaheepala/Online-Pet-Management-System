@@ -20,12 +20,16 @@ const AllCustomers = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:9000/customer/${id}`);
-            setCustomer(customer.filter((cus) => cus._id !== id));
-            alert('Customer deleted successfully');
-        } catch (error) {
-            alert('Failed to delete customer');
+        if (window.confirm("Are you sure you want to delete this customer?")) {
+            try {
+                await axios.delete(`http://localhost:9000/customer/${id}`);
+                setCustomer(customer.filter((cus) => cus._id !== id));
+                alert('Customer deleted successfully');
+            } catch (error) {
+                alert('Failed to delete customer');
+            }
+        } else {
+            alert('Deletion cancelled.');
         }
     };
     
@@ -52,8 +56,10 @@ const AllCustomers = () => {
                             <td>{cus.contactNumber}</td>
                             <td>{cus.address}</td>
                             <td>
-                                <Link to={`/edit/${cus._id}`}>Edit</Link> {/* Link to edit page */}
-                                <button onClick={() => handleDelete(cus._id)}>Delete</button> {/* Delete button */}
+                               
+                                <Link className="btn btn-warning" to={`/edit/${cus._id}`}>Edit</Link>
+                                &nbsp;
+                                <button className= "btn btn-danger" onClick={() => handleDelete(cus._id)}>Delete</button> {/* Delete button */}
                                 
 
                             </td>

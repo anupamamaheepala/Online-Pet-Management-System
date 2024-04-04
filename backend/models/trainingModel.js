@@ -29,7 +29,22 @@ const TrSchema = new mongoose.Schema({
           type: Date,
           required: true,
           default: Date.now
-      }
+      },
+      instructor: {
+        type: String,
+      },
+      status: {
+         type: String, 
+         enum: ['pending', 'approved', 'rejected'], 
+         default: 'pending'
+     },
+           // Field for storing file path
+           filePath: {
+            type: String,
+            required: true
+           }
+        
+
         
 
 },{timestamps: false})

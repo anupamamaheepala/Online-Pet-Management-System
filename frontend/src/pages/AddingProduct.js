@@ -4,10 +4,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/addingproduct.css';
 
-const AddProduct = () => {
+const AddingProduct = () => {
     const [formData, setFormData] = useState({
         itemName: '',
-        category: '',
+        category: 'Foods', // Default category
         description: '',
         image: '',
         price: ''
@@ -27,7 +27,7 @@ const AddProduct = () => {
             // Optionally, you can clear the form fields after successful submission
             setFormData({
                 itemName: '',
-                category: '',
+                category: 'Foods', // Reset to default category
                 description: '',
                 image: '',
                 price: ''
@@ -47,9 +47,13 @@ const AddProduct = () => {
                     <input type="text" id="itemName" name="itemName" value={itemName} onChange={onChange} />
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="category">Category:</label>
-                    <input type="text" id="category" name="category" value={category} onChange={onChange} />
+                <div className="form">
+                    <p>Product category</p>
+                    <select value={category} name="category" className="add-product-selector" onChange={onChange}>
+                        <option value="Foods">Foods</option>
+                        <option value="Medicines">Medicines</option>
+                        <option value="Toys and Accessories">Toys and Accessories</option>
+                    </select>
                 </div>
 
                 <div className="form-group">
@@ -74,4 +78,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default AddingProduct;
