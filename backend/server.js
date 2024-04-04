@@ -18,15 +18,11 @@ const trainingRoutes = require("./routes/training.routes");
 
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
-<<<<<<< HEAD
+
 const cardpayRoute = require("./routes/cardpayRoute");
 const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
-
-=======
-const cardpayRoute = require("./routes/paymentRoute")
 const feedbacks = require('./routes/feedbackroute');
->>>>>>> 038fb8ae6c293b81f525a03360403ae47db1de0e
 
 //middleware
 // app.use((req, res, next) => {
@@ -45,12 +41,9 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
-<<<<<<< HEAD
 app.use("/banktrans", banktransRoute);
-=======
 app.use("/staff", staffRoute);
 app.use("/feedback", feedbacks);
->>>>>>> 038fb8ae6c293b81f525a03360403ae47db1de0e
 
 
 app.get("/", (req, res) => {
