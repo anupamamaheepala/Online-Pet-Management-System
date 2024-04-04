@@ -31,7 +31,7 @@ const Ads = require("../models/advertisementModel");
       return res.status(400).json({ message: "All fields are required!" });
     }
 
-    const newAdvertisement = new AdsSchema({
+    const newAdvertisement = new Ads({
       ownerName,
       email,
       title,
@@ -54,7 +54,7 @@ const Ads = require("../models/advertisementModel");
 // Function to retrieve all advertisements
 exports.getAllAdvertisements = async (req, res) => {
   try {
-    const ads = await AdsSchema.find();
+    const ads = await Ads.find();
     res.json(ads);
   } catch (error) {
     console.error(error);
