@@ -6,6 +6,8 @@ import '../css/ptrainingdetails.css'; // Ensure correct path to your CSS file
 const PrivateTrainingDetails = () => {
   const [training, setTraining] = useState(null);
   const [instructor, setInstructor] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [modalImageUrl, setModalImageUrl] = useState(''); // State to store modal image URL
   const { id } = useParams();
 
   useEffect(() => {
@@ -46,6 +48,11 @@ const PrivateTrainingDetails = () => {
       console.error('Error approving training:', error);
     }
   };
+  const handleOpenModal = (imageUrl) => {
+    setModalImageUrl(imageUrl);
+    setIsModalOpen(true);
+  };
+
 
   if (!training) {
     return <div>Loading...</div>;
@@ -61,6 +68,31 @@ const PrivateTrainingDetails = () => {
         <p><strong>Dog's Name:</strong> {training.dogName}</p>
         <p><strong>Breed:</strong> {training.breed}</p>
         <p><strong>Age:</strong> {training.age}</p>
+        {training.filePath && (
+  <div>
+    <h3>Other Details</h3>
+    {/* Check file extension to determine the type */}
+    {training.filePath.endsWith('.pdf') ? (
+      <embed src={`http://localhost:9000/${training.filePath}`} type="application/pdf" width="600" height="400" />
+    ) : (
+      <div>
+        <img
+          src={`http://localhost:9000/${training.filePath}`}
+          alt="Uploaded File"
+          onClick={() => handleOpenModal(`http://localhost:9000/${training.filePath}`)}
+          style={{ cursor: 'pointer' }}
+        />
+        {/* Add modal */}
+        {isModalOpen && (
+          <div className="modal">
+            <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+            <img src={modalImageUrl} alt="Full Image" />
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+)}
       </div>
       <div>
         <h3>Update Instructor</h3>
