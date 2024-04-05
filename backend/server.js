@@ -21,6 +21,7 @@ const productRoute = require ("./routes/Productroutes");
 const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
+const orderRoute = require("./routes/orderRoute");
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 //const staffRoute = require("./routes/staffRoute");
 //const staffLeaveRoute = require("./routes/staffLeaveRoute");
@@ -41,6 +42,9 @@ app.use("/product", productRoute);
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
+app.use("/order", orderRoute);
+
+
 
 app.get("/", (req, res) => {
   res.json({ mssg: "Welcome to the app" });

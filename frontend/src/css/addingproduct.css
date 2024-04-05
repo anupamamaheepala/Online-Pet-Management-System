@@ -93,3 +93,10 @@
 .button-container {
   margin: 0;
 }
+
+.category-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black; /* Example color change */
+}
