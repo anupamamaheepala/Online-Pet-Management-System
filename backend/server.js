@@ -22,11 +22,6 @@ const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
-//const appointmentRoutes = require("./routes/MakeAppointmentRoute");
-//const staffRoute = require("./routes/staffRoute");
-//const staffLeaveRoute = require("./routes/staffLeaveRoute");
-//const cardpayRoute = require("./routes/cardpayRoute");
-//const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 app.use(cors());
 app.use(bodyParser.json());
