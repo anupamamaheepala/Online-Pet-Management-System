@@ -8,16 +8,31 @@ import '../css/addedproduct.css';
 const AddedProduct = () => {
     const [products, setProducts] = useState([]);
 
+
+
     useEffect(() => {
-        fetchProducts();
+        axios.get("http://localhost:9000/products/")
+            .then((res) => {
+                console.log(res.data);
+                setProducts(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+
     }, []);
 
-    const fetchProducts = async () => {
-        try {
-            const response = await axios.get("http://localhost:9000/product/get");
-            setProducts(response.data);
-        } catch (error) {
-            console.error('Error fetching products:', error);
+    const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this Product?")) {
+            try {
+                await axios.delete(`http://localhost:9000/products/${id}`);
+                setProducts(products.filter((item) => item._id !== id));
+                alert('Advertisement deleted successfully');
+            } catch (error) {
+                alert('Failed to delete Advertisement');
+            }
+        } else {
+            alert('Deletion cancelled.');
         }
     };
 
@@ -31,8 +46,8 @@ const AddedProduct = () => {
             <th>Item Name</th>
             <th>Category</th>
             <th>Description</th>
-            <th>Image</th>
             <th>Price</th>
+            <th>Image</th>
             <th>Manage</th>
         </tr>
     </thead>
@@ -42,41 +57,25 @@ const AddedProduct = () => {
                 <td>{product.itemName}</td>
                 <td>{product.category}</td>
                 <td>{product.description}</td>
-                <td><img src={product.image} alt={product.itemName} /></td>
                 <td>{product.price}</td>
+                <td><img src={product.image} alt={product.itemName} /></td>
                 <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <div className="ma_button-container">
+                        <a className="btn btn-warning" >
+                           &nbsp;Edit
+                        </a>
+                        &nbsp;
+                        <button className= "btn btn-danger" onClick={() => handleDelete(product._id)}>Delete</button>
+                    </div>
                 </td>
             </tr>
         ))}
     </tbody>
 </table>
 
-            <div className="product-container">
-                {products.map(product => (
-                    <div key={product._id} className="product-column">
-                        <h3>{product.category}</h3>
-                        <div className="product-box">
-                            {/* Render an image if available */}
-                            {product.image && <img src={product.image} alt={product.itemName} className="product-photo" />}
-                            <div className="product-details">
-                                <h4>{product.itemName}</h4>
-                                <p>{product.description}</p>
-                                <p>Price: {product.price}</p>
-                                <div className="product-buttons">
-                                    <div className="button-container">
-                                        <Link to={`/edit/${product._id}`} className="add_button confirm_button">Edit</Link>
-                                    </div>
-                                    <div className="button-container">
-                                        <Link to={`/delete/${product._id}`} className="add_button reject_button">Delete</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+
+          
+    
             <Footer />
         </>
     );
