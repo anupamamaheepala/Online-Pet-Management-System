@@ -1,5 +1,5 @@
 const express = require("express");
-import AllOrders from './../frontend/src/pages/AllOrders';
+//import AllOrders from './../frontend/src/pages/AllOrders';
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
