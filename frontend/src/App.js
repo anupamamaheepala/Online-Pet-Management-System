@@ -41,6 +41,7 @@ import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import OrderForm from './pages/OrderForm';
+import AllOrders from './pages/AllOrders';
 function App() {
   console.log(global);
   return (
@@ -89,6 +90,7 @@ function App() {
           <Route path="/AddingProduct" element={<AddingProduct/>} />
           <Route path="/AddedProduct" element={<AddedProduct/>} />
           <Route path="/OrderForm" element={<OrderForm/>} />
+          <Route path="/AllOrders" element={<AllOrders/>} />
         </Routes>
       </BrowserRouter>
     </div>
