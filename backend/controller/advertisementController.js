@@ -13,6 +13,7 @@ const Ads = require("../models/advertisementModel");
       Breed,
       purpose,
       description,
+      file,
       price,
       contact,
     } = req.body;
@@ -25,6 +26,7 @@ const Ads = require("../models/advertisementModel");
       !Breed ||
       !purpose ||
       !description ||
+      !file||
       !price ||
       !contact
     ) {
@@ -38,9 +40,18 @@ const Ads = require("../models/advertisementModel");
       Breed,
       purpose,
       description,
+      file,
       price,
       contact,
     });
+
+    const addObj = new addModel(addData);
+
+        if (req.file) {
+          addObj.filePath = req.file.path; // Add file path to training object
+        }
+
+        await addObj.save();
 
     // Saving data into the database
     await newAdvertisement.save();

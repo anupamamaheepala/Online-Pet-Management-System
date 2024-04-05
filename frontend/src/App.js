@@ -46,6 +46,11 @@ import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
 
 
+
+
+import Paystatus from './pages/Paystatus';
+
+
 function App() {
   console.log(global);
   return (
@@ -92,11 +97,30 @@ function App() {
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
 
+ 
+
+
+          <Route path="/AddingProduct" element={<AddingProduct/>} ></Route>
+          <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
+          <Route path="/Paystatus" element={<Paystatus/>} ></Route>
+          <Route path="/OrderForm" element={<OrderForm />} ></Route>
+
           <Route path="/AddingProduct" element={<AddingProduct/>} />
           <Route path="/AddedProduct" element={<AddedProduct/>} />
           <Route path="/OrderForm" element={<OrderForm/>} />
           <Route path="/AllOrders" element={<AllOrders/>} />
 
+
+          <Route path="/AddingProduct" element={<AddingProduct />} />
+          <Route path="/AddedProduct" element={<AddedProduct />} />
+          <Route path="/OrderForm" element={<OrderForm />} />
+
+
+          <Route path="/AddingProduct" element={<AddingProduct />} />
+          <Route path="/AddedProduct" element={<AddedProduct />} />
+          <Route path="/OrderForm" element={<OrderForm />} />
+
+=======
           <Route path="/AddingProduct" element={<AddingProduct />} />
           <Route path="/AddedProduct" element={<AddedProduct />} />
           <Route path="/OrderForm" element={<OrderForm />} />
