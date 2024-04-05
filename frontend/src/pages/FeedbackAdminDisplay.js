@@ -29,6 +29,11 @@ const FeedbackAdminDisplay = () => {
         }
     };
 
+    const handleUpdate = (id) => {
+        // Implement your update logic here
+        alert(`Update feedback with ID: ${id}`);
+    };
+
     return (
         <>
             <Header />
@@ -55,6 +60,7 @@ const FeedbackAdminDisplay = () => {
                                 <td>{feedback.name}</td>
                                 <td>{feedback.rating}</td>
                                 <td>
+                                    <button className="feedbackList-update-btn" onClick={() => handleUpdate(feedback._id)}>Update</button>
                                     <button className="feedbackList-delete-btn" onClick={() => handleDelete(feedback._id)}>Delete</button>
                                 </td>
                             </tr>

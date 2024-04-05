@@ -57,6 +57,7 @@ function App() {
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
+          <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
