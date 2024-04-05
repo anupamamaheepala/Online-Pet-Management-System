@@ -62,7 +62,7 @@ const StaffRegister = () => {
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>NIC No:</label>
-          <input type="text" name="snic" id='snic' value={formData.snic} onChange={onChange} required />
+          <input type="text" name="snic" id='snic' value={formData.snic} onChange={onChange} maxLength={12} required />
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Email:</label>
@@ -70,7 +70,7 @@ const StaffRegister = () => {
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Contact Number:</label>
-          <input type="tel" name="scontactNumber" id='scontactNumber' value={formData.scontactNumber} onChange={onChange} required />
+          <input type="tel" name="scontactNumber" id='scontactNumber' value={formData.scontactNumber} onChange={onChange} maxLength={10} required />
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Address:</label>
