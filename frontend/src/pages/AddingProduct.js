@@ -7,29 +7,44 @@ import '../css/addingproduct.css';
 const AddingProduct = () => {
     const [formData, setFormData] = useState({
         itemName: '',
-        category: 'Foods', // Default category
+        category: 'Foods',
         description: '',
-        image: '',
+        image: null,
         price: ''
     });
 
     const { itemName, category, description, image, price } = formData;
 
     const onChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (e.target.name === "image" && e.target.files.length > 0) {
+            setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
     };
 
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:9000/product/add", formData);
+            const formDataToSend = new FormData();
+            formDataToSend.append('itemName', itemName);
+            formDataToSend.append('category', category);
+            formDataToSend.append('description', description);
+            formDataToSend.append('image', image);
+            formDataToSend.append('price', price);
+
+            const res = await axios.post("http://localhost:9000/products/add", formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             console.log(res.data);
             // Optionally, you can clear the form fields after successful submission
             setFormData({
                 itemName: '',
-                category: 'Foods', // Reset to default category
+                category: 'Foods',
                 description: '',
-                image: '',
+                image: null,
                 price: ''
             });
         } catch (err) {
@@ -47,8 +62,8 @@ const AddingProduct = () => {
                     <input type="text" id="itemName" name="itemName" value={itemName} onChange={onChange} />
                 </div>
 
-                <div className="form">
-                    <p>Product category</p>
+                <div className="form-group">
+                    <label htmlFor="category" className="category-label">Product category:</label>
                     <select value={category} name="category" className="add-product-selector" onChange={onChange}>
                         <option value="Foods">Foods</option>
                         <option value="Medicines">Medicines</option>
@@ -62,8 +77,8 @@ const AddingProduct = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="image">Image URL:</label>
-                    <input type="text" id="image" name="image" value={image} onChange={onChange} />
+                    <label htmlFor="image">Image:</label>
+                    <input type="file" id="image" name="image" onChange={onChange} />
                 </div>
 
                 <div className="form-group">

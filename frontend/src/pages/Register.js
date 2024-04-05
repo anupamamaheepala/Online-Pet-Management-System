@@ -23,6 +23,7 @@ const Register =  () =>{
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+    
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -31,6 +32,11 @@ const Register =  () =>{
           
             const res = await axios.post("http://localhost:9000/customer/register", formData);
             console.log(res.data);
+
+           // Redirect to sign-in page after successful registration
+      window.location.href = '/SignIn';
+
+              
             // Optionally, you can clear the form fields after successful submission
             setFormData({
               username: '',

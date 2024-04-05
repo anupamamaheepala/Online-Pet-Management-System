@@ -12,21 +12,28 @@ const AddAdvertisement = () => {
         Breed: '',
         purpose: '',
         description: '',
+        file: null,
         price: '',
         contact: ''
+        
     });
 
-    const { ownerName, email, title, Breed, purpose, description, price, contact } = formData;
+    const { ownerName, email, title, Breed, purpose, description, file, price, contact } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+    const onFileChange = e => {
+        setFormData({ ...formData, file: e.target.files[0] });
+      };
 
     const onSubmit = async e => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:9000/ads/add", formData);
             console.log(res.data);
+            
             // Optionally, you can clear the form fields after successful submission
             setFormData({
                 ownerName: '',
@@ -35,6 +42,7 @@ const AddAdvertisement = () => {
                 Breed: '',
                 purpose: '',
                 description: '',
+                file: null,
                 price: '',
                 contact: ''
             });
@@ -46,7 +54,9 @@ const AddAdvertisement = () => {
     return (
         <>
             <Header />
-            <form className="ma_advertisement-form" onSubmit={onSubmit}>
+            
+            <form className="ma_advertisement-form" onSubmit={onSubmit} enctype="multipart/form-data">
+
                 <h2>Add your advertisement details here. </h2>
                 <p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
                     <b> If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
@@ -83,6 +93,13 @@ const AddAdvertisement = () => {
                 <div className="ma_form-group">
                     <label htmlFor="description">Description:</label>
                     <textarea id="description" name="description" value={description} onChange={onChange}></textarea>
+                </div>
+
+                <div className="ma_form-group">
+                <div>
+                  <label>Upload your pet's image:</label>
+                  <input type="file" name="file" onChange={onFileChange} />
+                </div>
                 </div>
 
                 <div className="ma_form-group">

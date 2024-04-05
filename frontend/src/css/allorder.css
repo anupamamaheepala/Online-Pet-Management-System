@@ -1,0 +1,52 @@
+.ma_order-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+}
+
+.ma_order-table thead th {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+}
+
+.ma_order-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.ma_order-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.ma_order-table tbody td {
+  padding: 10px;
+}
+
+.ma_order-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ma_order-buttons button:hover {
+  opacity: 0.8;
+}
+
+.ma_delete_button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.ma_delete_button:hover {
+  background-color: #c82333;
+}
+
+.ma_button-container {
+  display: flex;
+  justify-content: center;
+}
