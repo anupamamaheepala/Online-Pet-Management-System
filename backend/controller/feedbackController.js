@@ -29,6 +29,27 @@ const addFeedback = async (req, res) => {
   }
 };
 
+const getAllFeedback = async (req, res) => {
+    try {
+        const feedbackList = await Feedback.find();
+        res.status(200).json(feedbackList);
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};
+
+const deleteFeedback = async (req, res) => {
+    const feedbackId = req.params.id;
+    try {
+        await Feedback.findByIdAndDelete(feedbackId);
+        res.status(200).json({ message: 'Feedback deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};
+
 module.exports = {
-  addFeedback
+  addFeedback,
+  getAllFeedback,
+  deleteFeedback
 };

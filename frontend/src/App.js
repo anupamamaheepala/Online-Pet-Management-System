@@ -6,6 +6,7 @@ import './App.css';
 import Home from "./pages/Home";
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
+import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -66,6 +67,7 @@ function App() {
         <Route path="/Feedback" element={<Feedback/>} ></Route>    
         <Route path="/Feedback" element={<Feedback/>} ></Route> 
         <Route path="/FeedbackDisplay" element={<FeedbackDisplay/>}></Route>
+        <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay/>}></Route>
         <Route path="/Vetservices" element={<Vetservices/>} ></Route>  
         <Route path="/Groomservices" element={<Groomservices/>} ></Route> 
         <Route path="/Makeappointment" element={<Makeappointment/>} ></Route> 
