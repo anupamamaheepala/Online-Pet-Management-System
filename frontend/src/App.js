@@ -41,12 +41,10 @@ import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
-<<<<<<< HEAD
 import Paystatus from './pages/Paystatus';
 
-=======
 import OrderForm from './pages/OrderForm';
->>>>>>> 28fcd8586e73f49a6b05e06fdc945cf845e9d58f
+
 
 function App() {
   console.log(global);
@@ -93,15 +91,10 @@ function App() {
           <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
-<<<<<<< HEAD
-          
-       
-     
           <Route path="/AddingProduct" element={<AddingProduct/>} ></Route>
           <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
-      
-        <Route path="/Paystatus" element={<Paystatus/>} ></Route>
-
+          <Route path="/Paystatus" element={<Paystatus/>} ></Route>
+          <Route path="/OrderForm" element={<OrderForm />} ></Route>
 
        </Routes>
 
@@ -109,13 +102,8 @@ function App() {
     </BrowserRouter>
 
 
-=======
-          <Route path="/AddingProduct" element={<AddingProduct />} />
-          <Route path="/AddedProduct" element={<AddedProduct />} />
-          <Route path="/OrderForm" element={<OrderForm />} />
-        </Routes>
-      </BrowserRouter>
->>>>>>> 28fcd8586e73f49a6b05e06fdc945cf845e9d58f
+
+          
     </div>
   );
 }
