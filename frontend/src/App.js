@@ -41,6 +41,7 @@ import banner from './components/Assests/banner.png'
 import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
+import Paystatus from './pages/Paystatus';
 
 
 function App() {
@@ -106,7 +107,7 @@ function App() {
           <Route path="/AddingProduct" element={<AddingProduct/>} ></Route>
           <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
       
-      
+        <Route path="/Paystatus" element={<Paystatus/>} ></Route>
 
 
        </Routes>
