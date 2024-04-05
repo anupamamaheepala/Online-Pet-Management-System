@@ -1,4 +1,5 @@
 const express = require("express");
+import AllOrders from './../frontend/src/pages/AllOrders';
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
@@ -21,11 +22,6 @@ const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
-//const appointmentRoutes = require("./routes/MakeAppointmentRoute");
-//const staffRoute = require("./routes/staffRoute");
-//const staffLeaveRoute = require("./routes/staffLeaveRoute");
-//const cardpayRoute = require("./routes/cardpayRoute");
-//const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,7 +39,8 @@ app.use("/product", productRoute);
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
-app.use("/order", orderRoute);
+app.use("/orders", orderRoute);
+app.use("/AllOrders", orderRoute);
 
 
 
