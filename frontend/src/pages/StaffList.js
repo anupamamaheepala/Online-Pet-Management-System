@@ -7,12 +7,12 @@ import axios from 'axios';
 
 const StaffList = () => {
     const [staff, setStaff] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:9000/staff/all") // Corrected endpoint
+        axios.get("http://localhost:9000/staff/all")
             .then((res) => {
-                console.log(res.data); // Log the data received from the API
-                setStaff(res.data); // Set the staff data to the state
+                setStaff(res.data);
             })
             .catch((err) => {
                 alert(err.message);
@@ -20,12 +20,11 @@ const StaffList = () => {
     }, []);
 
     const handleDelete = async (id) => {
-
         if (window.confirm("Are you sure you want to delete this Staff Member?")) {
             try {
                 await axios.delete(`http://localhost:9000/staff/${id}`);
-                setStaff(prevStaff => prevStaff.filter(staffMember => staffMember._id !== id)); // Update state after successful deletion
-                alert("Are you sure you want to delete?");
+                setStaff(prevStaff => prevStaff.filter(staffMember => staffMember._id !== id));
+                alert("Staff member deleted successfully.");
             } catch (error) {
                 console.error("Error deleting staff:", error);
                 alert("Failed to delete staff");
@@ -34,13 +33,29 @@ const StaffList = () => {
             alert('Deletion cancelled.');
         }
     };
-    
+
+    const filteredStaff = staff.filter((staffMember) => {
+        return (
+            staffMember.sfirstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            staffMember.slastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            staffMember.snic.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    });
+
     return (
         <>
             <Header />
             <h1><center>Staff List</center></h1>
-
             <div className='staffListcontainer1'>
+            <div className='staffList-SearchBar-container'>
+                    <input
+                        className='staffList-SearchBar'
+                        type="text"
+                        placeholder="Search by name or NIC"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}/>
+                    
+            </div>
 
                 <table className="staffList-table">
                     <thead>
@@ -57,7 +72,7 @@ const StaffList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {staff.map((staffMember, index) => ( // Changed variable name to avoid confusion
+                        {filteredStaff.map((staffMember, index) => (
                             <tr key={staffMember._id}>
                                 <td>{index + 1}</td>
                                 <td>{staffMember.sfirstname}</td>
@@ -76,7 +91,7 @@ const StaffList = () => {
                     </tbody>
                 </table>
             </div>
-            <br></br><br></br>
+            <br /><br />
             <Footer />
         </>
     );
