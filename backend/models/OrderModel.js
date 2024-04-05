@@ -1,24 +1,18 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    orderName: {
-        type: String,
-        required: true
-    },
-    orderContactNo: {
-        type: String,
-        required: true
-    },
-    orderAddress: {
-        type: String,
-        required: true
-    },
-    orderDate: {
-        type: Date,
-        default: Date.now
-    }
-});
+  orderName: {
+    type: String,
+    required: true
+  },
+  orderContactNo: {
+    type: String,
+    required: true
+  },
+  orderAddress: {
+    type: String,
+    required: true
+  }
+}, { timestamps: true }); // Add timestamps for createdAt and updatedAt
 
-const Order = mongoose.model('Order', orderSchema);
-
-module.exports = Order;
+module.exports = mongoose.model('Order', orderSchema);

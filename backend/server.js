@@ -1,4 +1,5 @@
 const express = require("express");
+import AllOrders from './../frontend/src/pages/AllOrders';
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
@@ -43,7 +44,8 @@ app.use("/product", productRoute);
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
-app.use("/order", orderRoute);
+app.use("/orders", orderRoute);
+app.use("/AllOrders", orderRoute);
 
 
 

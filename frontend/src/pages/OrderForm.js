@@ -22,7 +22,7 @@ const OrderForm = () => {
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:9000/orders/od", formData);
+            const res = await axios.post("http://localhost:9000/orders/add", formData);
             console.log(res.data);
             // Optionally, you can clear the form fields after successful submission
             setFormData({
@@ -44,6 +44,8 @@ const OrderForm = () => {
             }
         }
     };
+    
+    
     
 
     return (
