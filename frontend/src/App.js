@@ -26,6 +26,8 @@ import StaffRegistrationForm from './pages/StaffRegistrationForm';
 import StaffList from './pages/StaffList';
 import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
+import StaffLeaveList from './pages/StaffLeaveList';
+
 import SignIn from './pages/SignIn';
 import UserProfile from './pages/UserProfile'; 
 
@@ -90,7 +92,7 @@ function App() {
         <Route path="/StaffList" element={<StaffList/>}></Route>
         <Route path="/StaffLeaveForm" element={<StaffLeaveForm/>}></Route>
         <Route path="/StaffSalaryForm" element={<StaffSalaryForm/>}></Route>
-
+        <Route path="/StaffLeaveList" element={<StaffLeaveList/>}></Route>
         <Route path="/AllCustomers" element={<AllCustomers/>}></Route>
 
         <Route path="/edit/:id" element={<EditCustomer/>}></Route>
