@@ -20,13 +20,18 @@ const StaffList = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:9000/staff/${id}`);
-            setStaff(prevStaff => prevStaff.filter(staffMember => staffMember._id !== id)); // Update state after successful deletion
-            alert("Are you sure you want to delete?");
-        } catch (error) {
-            console.error("Error deleting staff:", error);
-            alert("Failed to delete staff");
+
+        if (window.confirm("Are you sure you want to delete this Staff Member?")) {
+            try {
+                await axios.delete(`http://localhost:9000/staff/${id}`);
+                setStaff(prevStaff => prevStaff.filter(staffMember => staffMember._id !== id)); // Update state after successful deletion
+                alert("Are you sure you want to delete?");
+            } catch (error) {
+                console.error("Error deleting staff:", error);
+                alert("Failed to delete staff");
+            }
+        } else {
+            alert('Deletion cancelled.');
         }
     };
     

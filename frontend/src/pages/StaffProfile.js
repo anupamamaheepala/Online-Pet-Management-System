@@ -1,82 +1,53 @@
-// /// UserProfile.js
+import React from 'react';
+import '../css/staffProfile.css'; 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-// import React, { useState } from 'react';
-// import './userprofile.css';
+const StaffProfile = ({ profile }) => {
+  // Destructure profile data with default values
+  const {
+    profilePic = '',
+    firstName = '',
+    lastName = '',
+    contactNumber = '',
+    nic = '',
+    email = '',
+    designation = '',
+    address = '',
+    dateJoined = '',
+  } = profile || {};
 
-// function UserProfile() {
-//   const [profileData, setProfileData] = useState({
-//     userName: 'John Doe',
-//     email: 'johndoe@example.com',
-//     contactNumber: '123-456-7890',
-//     address: '123 Main St, City, Country',
-//     profilePhoto: 'default-profile-photo.jpg'
-//   });
+  return (
+    <>
+      <Header/>
+      <div className='staffProfileContainer'>
+      <div className="staff-profile">
+        {/* Render profile picture */}
+        <img src={profilePic} alt="Profile" />
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setProfileData(prevState => ({
-//       ...prevState,
-//       [name]: value
-//     }));
-//   };
+        {/* Render profile details */}
+        <div>
+          <h2>{firstName} {lastName}</h2>
+          <p>Contact Number: {contactNumber}</p>
+          <p>NIC: {nic}</p>
+          <p>Email: {email}</p>
+          <p>Designation: {designation}</p>
+          <p>Address: {address}</p>
+          <p>Date Joined: {dateJoined}</p>
+        </div>
 
-//   const handleProfilePhotoChange = (e) => {
-//     // Implement logic to handle profile photo upload
-//     const file = e.target.files[0];
-//     // Set profile photo to the uploaded file
-//     setProfileData(prevState => ({
-//       ...prevState,
-//       profilePhoto: URL.createObjectURL(file)
-//     }));
-//   };
+        <div className="action-buttons">
+            {/* Apply for Leave button with anchor tag */}
+            <a href="/staffLeaveForm" className="apply-leave-button">Apply for Leave</a>
+            <button className="edit-profile-button">Edit Profile</button>
+            <button className="delete-profile-button">Delete Profile</button>
+          </div>
+      </div>
 
-//   const handleUpdateProfile = () => {
-//     // Implement logic to update user profile
-//     console.log('Updating user profile:', profileData);
-//   };
+      </div>
+      <Footer />
+    </>
+  );
+};
 
-//   const handleDeleteProfile = () => {
-//     // Implement logic to delete user profile
-//     console.log('Deleting user profile:', profileData);
-//   };
-
-//   const handleLeave = () => {
-//     // Implement logic to navigate to pet profile creation page
-//     console.log('Request Leave');
-//   };
-
-//   return (
-//     <div className="StaffProfile">
-//       <div className="profilePhotoContainer">
-//         <img src={profileData.profilePhoto} alt="Profile" />
-//         <input type="file" accept="image/*" onChange={handleProfilePhotoChange} />
-//       </div>
-//       <div className="profileInfo">
-//         <label htmlFor="Name">Name:</label>
-//         <input type="text" id="Name" name="Name" value={profileData.Name} onChange={handleChange} />
-
-//         <label htmlFor="designation">Designation:</label>
-//         <input type="text" id="designation" name="designation" value={profileData.designation} onChange={handleChange} />
-
-//         <label htmlFor="email">Email:</label>
-//         <input type="email" id="email" name="email" value={profileData.email} onChange={handleChange} />
-
-//         <label htmlFor="contactNumber">Contact Number:</label>
-//         <input type="text" id="contactNumber" name="contactNumber" value={profileData.contactNumber} onChange={handleChange} />
-
-//         <label htmlFor="address">Address:</label>
-//         <textarea id="address" name="address" value={profileData.address} onChange={handleChange} />
-
-//         <label htmlFor="qualifications">Educational Qualifications:</label>
-//         <textarea id="qualifications" name="qualifications" value={profileData.qualifications} onChange={handleChange} />
-
-
-//         <button onClick={handleUpdateProfile}>Update Profile</button>
-//         <button onClick={handleDeleteProfile}>Delete Profile</button>
-//         <button onClick={handleLeave}>Request Leave </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default UserProfile;
+export default StaffProfile;
