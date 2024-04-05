@@ -1,4 +1,5 @@
 const express = require("express");
+import AllOrders from './../frontend/src/pages/AllOrders';
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
@@ -7,33 +8,31 @@ require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
 
-
-//const registerRoute = require('./routes/registerRoute');
-//const userRoute = require("./routes/userRoute");
+// Importing route handlers for various endpoints
 
 const adsRoute = require("./routes/adverisementRoute");
 const customerRoute = require("./routes/registerRoute");
 const payerinfoRoute = require("./routes/paymentRoute");
 const trainingRoutes = require("./routes/training.routes");
-
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
-
 const cardpayRoute = require("./routes/cardpayRoute");
-const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
+const productRoute = require ("./routes/Productroutes");
+const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
-
-//middleware
-// app.use((req, res, next) => {
-//   console.log(req.path, req.method);
-//   next();
-// });
-
+const orderRoute = require("./routes/orderRoute");
+//const appointmentRoutes = require("./routes/MakeAppointmentRoute");
+//const staffRoute = require("./routes/staffRoute");
+//const staffLeaveRoute = require("./routes/staffLeaveRoute");
+//const cardpayRoute = require("./routes/cardpayRoute");
+//const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 app.use(cors());
 app.use(bodyParser.json());
-//app.use('/api/register', registerRoute);
+
+// Mounting routes for various endpoints
+
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);
@@ -41,30 +40,32 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
+app.use("/product", productRoute);
 app.use("/banktrans", banktransRoute);
-app.use("/staff", staffRoute);
 app.use("/feedback", feedbacks);
+app.use("/appointment", appointmentRoutes);
+app.use("/orders", orderRoute);
+app.use("/AllOrders", orderRoute);
 
 
+
+// Route to handle requests to the root URL
 app.get("/", (req, res) => {
+// Respond with a JSON object containing a welcome message
   res.json({ mssg: "Welcome to the app" });
 });
 
+// Set the port for the server. If not defined, use 9000.
 const port = process.env.PORT || 9000;
+
+// Log the MongoDB URL from environment variables.
 console.log(process.env.MONGO_URL);
 
-/*app.use(req, res, next),() => {
-  console.log(req.path, req.method)
-  next()
-}*/
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MONGODB CONNECTED !");
-});
-
-//const paymentrouter = require("./routes/paymentRoute.js")
-//app.use("/paymentRoute",paymentrouter)
-  
+// Start the server listening on the determined port.
 app.listen(port, () => {
+// Log a message indicating the server has started, including the port number.
   console.log(`Server started on port ${port},`);
 });
+
+  
+

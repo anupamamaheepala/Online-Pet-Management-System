@@ -204,4 +204,4 @@ async function getRegister(req, res, next) {
   }
 }
 */
-module.exports = router;
+
