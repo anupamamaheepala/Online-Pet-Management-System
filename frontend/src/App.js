@@ -94,7 +94,7 @@ function App() {
           <Route path="/StaffSalaryForm" element={<StaffSalaryForm />} />
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
-          <Route path="/edit/:id" element={<EditCustomer />} />
+          <Route path="/edit/:customerId" element={<EditCustomer />} />
           <Route path="/EditCustomer" element={<EditCustomer />} />
           <Route path="/Store" element={<Shop />} />
           <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
