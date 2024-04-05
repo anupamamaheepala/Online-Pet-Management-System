@@ -56,8 +56,10 @@ const AllCustomers = () => {
                             <td>{cus.contactNumber}</td>
                             <td>{cus.address}</td>
                             <td>
-                                <Link to={`/edit/${cus._id}`}>Edit</Link> {/* Link to edit page */}
-                                <button onClick={() => handleDelete(cus._id)}>Delete</button> {/* Delete button */}
+                               
+                                <Link className="btn btn-warning" to={`/edit/${cus._id}`}>Edit</Link>
+                                &nbsp;
+                                <button className= "btn btn-danger" onClick={() => handleDelete(cus._id)}>Delete</button> {/* Delete button */}
                                 
 
                             </td>

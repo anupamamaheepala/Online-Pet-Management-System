@@ -30,14 +30,7 @@ const customerSchema = new mongoose.Schema({
 
 },{timestamps: false})
 
- /* username: String,
-  email: String,
-  contactNumber: String,
-  address: String,
-  password: String
-});
-*/
+ 
 
 module.exports= mongoose.model('customer', customerSchema)
 
-//module.exports = Register;

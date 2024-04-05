@@ -5,6 +5,7 @@ import cart_icon from '../Assests/cart_icon.png';
 import drop_down from '../Assests/dropdown_icon.png';
 
 
+
 const Navbar = () => {
   const [menu, setMenu] = useState("Shop");
   const [searchTerm, setSearchTerm] = useState("");

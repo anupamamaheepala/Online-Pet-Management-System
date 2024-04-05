@@ -1,7 +1,7 @@
 // advertisementController.js
-const { confirmAdvertisement, rejectAdvertisement } = require('../controller/advertisementController');
+//const { confirmAdvertisement, rejectAdvertisement } = require('../controller/advertisementController');
 
-const AdsSchema = require("../models/advertisementModel");
+const Ads = require("../models/advertisementModel");
 
 // Function to handle adding a new advertisement
  exports.addAdvertisement = async (req, res) => {
@@ -31,7 +31,7 @@ const AdsSchema = require("../models/advertisementModel");
       return res.status(400).json({ message: "All fields are required!" });
     }
 
-    const newAdvertisement = new AdsSchema({
+    const newAdvertisement = new Ads({
       ownerName,
       email,
       title,
@@ -54,7 +54,7 @@ const AdsSchema = require("../models/advertisementModel");
 // Function to retrieve all advertisements
 exports.getAllAdvertisements = async (req, res) => {
   try {
-    const ads = await AdsSchema.find();
+    const ads = await Ads.find();
     res.json(ads);
   } catch (error) {
     console.error(error);
@@ -63,18 +63,15 @@ exports.getAllAdvertisements = async (req, res) => {
 };
 
 // // Function to delete an advertisement by ID
-// const deleteAdvertisementById = async (req, res) => {
-//   try {
-//     const userId = req.params.id;
-//     await AdsSchema.findByIdAndDelete(userId);
-//     res.status(200).send({ status: "Advertisement deleted" });
-//   } catch (error) {
-//     console.error(error.message);
-//     res
-//       .status(500)
-//       .send({ status: "Error with deleting advertisement", error: error.message });
-//   }
-// };
+exports.deleteAdById= async (req, res) => {
+  try {
+    await Ads.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "As deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to delete ad" });
+  }
+};
 
 // // Function to confirm an advertisement by ID
 // const confirmAdvertisement = async (req, res) => {

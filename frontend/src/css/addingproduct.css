@@ -1,0 +1,102 @@
+
+.product-form {
+  width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 5px solid #000000;
+  border-radius: 8px;
+}
+
+.product-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.submit-button {
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  margin-left: 250px;
+}
+
+.submit-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+
+/* Style confirm button */
+.confirm_button {
+  background-color: green;
+  border: 2px solid green;
+  color: white;
+}
+
+/* Style reject button */
+.reject_button {
+  background-color: red;
+  border: 2px solid red;
+  color: white;
+}
+
+/* Adjust button container to align buttons in one line */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Remove extra margin from the button containers */
+.button-container {
+  margin: 0;
+}
+
+.category-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black; /* Example color change */
+}
