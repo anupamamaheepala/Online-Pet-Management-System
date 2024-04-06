@@ -48,6 +48,8 @@ const FeedbackAdminDisplay = () => {
                             <th>Email</th>
                             <th>Name</th>
                             <th>Rating</th>
+                            <th>Likes</th>
+                            <th>Dislikes</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -59,6 +61,8 @@ const FeedbackAdminDisplay = () => {
                                 <td>{feedback.email}</td>
                                 <td>{feedback.name}</td>
                                 <td>{feedback.rating}</td>
+                                <td>{feedback.likes}</td>
+                                <td>{feedback.dislikes}</td>
                                 <td>
                                     <button className="feedbackList-update-btn" onClick={() => handleUpdate(feedback._id)}>Update</button>
                                     <button className="feedbackList-delete-btn" onClick={() => handleDelete(feedback._id)}>Delete</button>
