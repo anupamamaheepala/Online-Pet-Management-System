@@ -71,7 +71,7 @@ const FeedbackAdminDisplay = () => {
 
             {/* Link to Feedback page */}
             <div>
-                <Link to="/feedback">Give Feedback</Link>
+                <Link to="/feedbackDisplay">View Feedback</Link>
             </div>
 
             <Footer />

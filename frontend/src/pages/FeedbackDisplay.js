@@ -30,17 +30,19 @@ const FeedbackDisplay = () => {
 
     const handleLike = async (id) => {
         try {
-            await axios.post(`http://localhost:9000/feedback/${id}/like`);
-            // Update the state to reflect the change in likes
-            setFeedbackList(prevFeedbackList => prevFeedbackList.map(feedback => {
-                if (feedback._id === id) {
-                    return { ...feedback, likes: feedback.likes + 1 };
-                }
-                return feedback;
-            }));
+            // Implement like functionality here
         } catch (error) {
             console.error("Error liking feedback:", error);
             alert("Failed to like feedback");
+        }
+    };
+
+    const handleDislike = async (id) => {
+        try {
+            // Implement dislike functionality here
+        } catch (error) {
+            console.error("Error disliking feedback:", error);
+            alert("Failed to dislike feedback");
         }
     };
 
@@ -64,6 +66,7 @@ const FeedbackDisplay = () => {
                         </div>
                         <div className="actionButtons">
                             <button onClick={() => handleLike(feedback._id)}>Like ({feedback.likes || 0})</button>
+                            <button onClick={() => handleDislike(feedback._id)}>Dislike ({feedback.dislikes || 0})</button>
                             <button onClick={() => handleReply(feedback._id, feedback.feedback)}>Reply</button>
                         </div>
                     </div>
