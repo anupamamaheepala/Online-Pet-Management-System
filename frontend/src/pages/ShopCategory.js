@@ -10,6 +10,8 @@ import Navbar from "../components/Navbar/Navbar";
 const ShopCategory = (props) => {
     const [allProducts, setAllProducts] = useState([]);
 
+    
+
     useEffect(() => {
         const fetchInfo = async () => {
             try {
