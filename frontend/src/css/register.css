@@ -83,8 +83,71 @@
 
 
 }
+/*css for all customers*/
+.customer_details_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
-/* CSS for the advertisement table */
+.customer_details_table th,
+.customer_details_table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.customer_details_table th {
+  background-color: #f2f2f2;
+}
+
+.customer_details_table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.customer_details_table tr:hover {
+  background-color: #ddd;
+}
+
+.customer_details_table td button,
+.customer_details_table td a {
+  padding: 6px 12px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.customer_details_table td button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.customer_details_table td button:hover,
+.customer_details_table td a:hover {
+  background-color: #c82333;
+}
+
+.customer_details_table th,
+.customer_details_table td:first-child {
+  width: 20%;
+}
+
+.customer_details_table td:nth-child(2),
+.customer_details_table td:nth-child(3) {
+  width: 20%;
+}
+
+.customer_details_table td:nth-child(4) {
+  width: 30%;
+}
+
+.customer_details_table td:nth-child(5) {
+  width: 10%;
+  text-align: center;
+}
+
+
+/* CSS for the all customers table */
 .edit-customer-container {
   max-width: 400px;
   margin: 0 auto;
@@ -140,4 +203,27 @@
 
 .edit-customer-link-button:hover {
   text-decoration: underline;
+}
+
+/*css for customer search bar*/
+.customer-SearchBar-container {
+  width: 20%;
+  margin-bottom: 20px;
+  margin-left: 3%; /* Align to the left */
+
+}
+
+.customer-SearchBar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b8b7b7;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 12px;
+;
+}
+
+.customer-SearchBar:focus {
+  outline: none;
+  border-color: #007bff; /* Change to desired focus color */
 }

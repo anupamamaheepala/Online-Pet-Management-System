@@ -48,7 +48,18 @@ const AddingProduct = () => {
                 price: ''
             });
         } catch (err) {
-            console.error(err);
+            if (err.response) {
+                // The request was made and the server responded with a status code
+                console.log('Server responded with status:', err.response.status);
+                console.log('Response data:', err.response.data); // Log response data for debugging
+                // You can handle different types of errors here
+            } else if (err.request) {
+                // The request was made but no response was received
+                console.log('No response received from server');
+            } else {
+                // Something happened in setting up the request that triggered an error
+                console.log('Error setting up the request:', err.message);
+            }
         }
     };
 

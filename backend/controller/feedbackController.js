@@ -63,9 +63,45 @@ const updateFeedback = async (req, res) => {
     }
 };
 
+// feedbackcontroller.js
+
+const getCustomerFeedback = async (req, res) => {
+  try {
+    const feedbackList = await Feedback.find({}, 'name feedback rating'); // Fetching only name, feedback, and rating fields
+    res.status(200).json(feedbackList);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+
+const likeFeedback = async (req, res) => {
+  const feedbackId = req.params.id;
+  try {
+      const updatedFeedback = await Feedback.findByIdAndUpdate(feedbackId, { $inc: { likes: 1 } }, { new: true });
+      res.status(200).json(updatedFeedback);
+  } catch (error) {
+      res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+
+const replyToFeedback = async (req, res) => {
+  const feedbackId = req.params.id;
+  const { user, reply } = req.body;
+  try {
+      const updatedFeedback = await Feedback.findByIdAndUpdate(feedbackId, { $push: { replies: { user, reply } } }, { new: true });
+      res.status(200).json(updatedFeedback);
+  } catch (error) {
+      res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+
 module.exports = {
   addFeedback,
   getAllFeedback,
   deleteFeedback,
-  updateFeedback
+  updateFeedback,
+  likeFeedback,
+  replyToFeedback,
+  getCustomerFeedback
 };
+
