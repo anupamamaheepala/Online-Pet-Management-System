@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const customerSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -29,7 +28,6 @@ const customerSchema = new mongoose.Schema({
     
 
 },{timestamps: false})
-
  
 
 module.exports= mongoose.model('customer', customerSchema)
