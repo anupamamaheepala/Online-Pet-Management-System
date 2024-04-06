@@ -37,7 +37,8 @@ const addTrainingprogram = async (req, res) => {
         const newTrainingObj = new trainingModel(trainingData);
 
         if (req.file) {
-            newTrainingObj.filePath = req.file.path; // Add file path to training object
+            newTrainingObj.filePath = path.basename(req.file.path); // Add file path to training object
+            
         }
 
         await newTrainingObj.save();
@@ -83,6 +84,7 @@ const getalltrainingdetails = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch training details' });
     }
 };
+
 
 /* Update instructor for a training
 const updateInstructorById = async (req, res) => {
