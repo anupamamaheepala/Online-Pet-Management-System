@@ -24,7 +24,8 @@ const Payerinfo = () => {
             const res = await axios.post("http://localhost:9000/payerinfo/pay", formData);
             console.log(res.data);
             // Redirect to PayStatus page after successful form submission
-            window.location.href = '/Paystatus'; // Redirect using window.location.href
+            window.location.href = `/Paystatus?name=${name}&email=${email}&phonenumber=${phonenumber}&address=${address}`;
+ // Redirect using window.location.href
         } catch (err) {
             console.error(err);
         }
