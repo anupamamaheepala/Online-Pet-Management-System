@@ -52,6 +52,7 @@ import AllOrders from './pages/AllOrders';
 
 
 import Paystatus from './pages/Paystatus';
+import UpdateStaff from './pages/UpdateStaff';
 
 
 
@@ -108,6 +109,7 @@ function App() {
           <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
 
           <Route path="/StaffProfile" element={<StaffProfile/>} ></Route>
+          <Route path="/update/:staffId" element={<UpdateStaff/>} ></Route>
       
 
           <Route path="/Paystatus" element={<Paystatus/>} ></Route>
