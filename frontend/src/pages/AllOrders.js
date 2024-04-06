@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/allorder.css'
 
-
 const AllOrders = () => {
     const [orders, setOrders] = useState([]);
 
@@ -12,7 +11,7 @@ const AllOrders = () => {
         axios.get("http://localhost:9000/orders/all")
             .then((res) => {
                 console.log(res.data);
-                setOrders(res.data);
+                setOrders(res.data.map(order => ({ ...order, status: 'Pending' })));
             })
             .catch((err) => {
                 alert(err.message);
@@ -30,6 +29,28 @@ const AllOrders = () => {
             }
         } else {
             alert('Deletion cancelled.');
+        }
+    };
+
+    const handleAvailability = async (id) => {
+        // Find the order index
+        const index = orders.findIndex(order => order._id === id);
+        if (index !== -1) {
+            // Update the order's status
+            const updatedOrders = [...orders];
+            updatedOrders[index].status = 'Confirmed';
+            setOrders(updatedOrders);
+        }
+    };
+
+    const handleDecline = async (id) => {
+        // Find the order index
+        const index = orders.findIndex(order => order._id === id);
+        if (index !== -1) {
+            // Update the order's status
+            const updatedOrders = [...orders];
+            updatedOrders[index].status = 'Declined';
+            setOrders(updatedOrders);
         }
     };
 
@@ -54,8 +75,14 @@ const AllOrders = () => {
                             <td>{order.orderAddress}</td>
                             <td>
                                 <div className="ma_button-container">
-                                    {/* Add Edit functionality if needed */}
-                                    <button className="btn btn-danger" onClick={() => handleDelete(order._id)}>Delete</button>
+                                    {order.status === 'Confirmed' ? (
+                                        <span>Confirmed</span>
+                                    ) : (
+                                        <button className="btn btn-danger" onClick={() => handleDecline(order._id)}>Not Available</button>
+                                    )}
+                                    {order.status === 'Confirmed' || order.status === 'Declined' ? null : (
+                                        <button className="btn btn-success" onClick={() => handleAvailability(order._id)}>Available</button>
+                                    )}
                                 </div>
                             </td>
                         </tr>
