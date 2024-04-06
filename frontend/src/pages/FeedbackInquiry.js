@@ -97,78 +97,79 @@ function FeedbackInquiry() {
 
   return (
     <>
-            <Header />
-    <div style={{ border: '2px black solid' }} className="container mt-5">
-      <h1>Customer Inquiry Portal</h1>
-      <ToastContainer />
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-group">
-          <label htmlFor="customerName" style={{ color: 'black' }}>Name:</label>
+      <Header />
+      <div className="custom-container mt-5">
+        <h1 className="custom-h1">Customer Inquiry Portal</h1>
+        <ToastContainer className="custom-toast-container" />
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="custom-form-group">
+            <label htmlFor="customerName" className="custom-label">Name:</label>
+            <input
+              type="text"
+              className="custom-input"
+              placeholder="Enter Name"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+              id="customerName"
+            />
+          </div>
+          <div className="custom-form-group">
+            <label htmlFor="customerEmail" className="custom-label">Email:</label>
+            <input
+              type="text"
+              className="custom-input"
+              autoComplete="off"
+              placeholder="Enter Email"
+              onChange={(e) => handleChange(e)}
+              id="customerEmail"
+            />
+          </div>
+          <div className="custom-form-group">
+            <label htmlFor="customerContactNumber" className="custom-label">Phone:</label>
+            <input
+              type="tel"
+              className="custom-input"
+              autoComplete="off"
+              placeholder="Enter Phone Number"
+              onChange={(e) => handleChange(e)}
+              id="customerContactNumber"
+            />
+          </div>
+          <label htmlFor="inquiryType" className="custom-label">Inquiry Type:</label>
+          <select
+            name="inquiry-type"
+            onChange={(e) => handleChange(e)}
+            id="inquiryType"
+            className="custom-select"
+            required
+          >
+            <option value="">Select Inquiry Type</option>
+            <option value="Problem with Purchased Goods or Services">Problem with Purchased Goods or Services</option>
+            <option value="Delivery Problem">Delivery Problem</option>
+            <option value="Invoicing Problem">Invoicing Problem</option>
+            <option value="Other">Other</option>
+          </select>
+          <div className="custom-form-group">
+            <label htmlFor="inquiryDescription" className="custom-label">Inquiry:</label>
+            <textarea
+              className="custom-textarea"
+              placeholder="Enter Inquiry"
+              onChange={(e) => handleChange(e)}
+              id="inquiryDescription"
+              rows="15"
+            />
+            <p id="inquiry-status" className="status" />
+          </div>
           <input
-            type="text"
-            className="form-control"
-            placeholder="Enter Name"
-            autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            id="customerName"
+            type="submit"
+            id="submit-button"
+            value="Submit"
+            className="custom-button"
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="customerEmail" style={{ color: 'black' }}>Email:</label>
-          <input
-            type="text"
-            className="form-control"
-            autoComplete="off"
-            placeholder="Enter Email"
-            onChange={(e) => handleChange(e)}
-            id="customerEmail"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="customerContactNumber" style={{ color: 'black' }}>Phone:</label>
-          <input
-            type="tel"
-            className="form-control"
-            autoComplete="off"
-            placeholder="Enter Phone Number"
-            onChange={(e) => handleChange(e)}
-            id="customerContactNumber"
-          />
-        </div>
-        <label htmlFor="inquiryType" style={{ color: 'black' }}>Inquiry Type:</label>
-        <select
-          name="inquiry-type"
-          onChange={(e) => handleChange(e)}
-          id="inquiryType"
-          required
-        >
-          <option value="">Select Inquiry Type</option>
-          <option value="Problem with Purchased Goods or Services">Problem with Purchased Goods or Services</option>
-          <option value="Delivery Problem">Delivery Problem</option>
-          <option value="Invoicing Problem">Invoicing Problem</option>
-          <option value="Other">Other</option>
-        </select>
-        <div className="form-group">
-          <label htmlFor="inquiryDescription" style={{ color: 'black' }}>Inquiry:</label>
-          <textarea
-            className="form-control"
-            placeholder="Enter Inquiry"
-            onChange={(e) => handleChange(e)}
-            id="inquiryDescription"
-            rows="15"
-          />
-          <p id="inquiry-status" className="status" />
-        </div>
-        <input
-          type="submit"
-          id="submit-button"
-          value="Submit"
-          className="btn btn-primary"
-        />
-      </form>
-    </div>
-    <Footer />
-        </>
+        </form>
+      </div>
+      <Footer />
+    </>
   );
 }
 
