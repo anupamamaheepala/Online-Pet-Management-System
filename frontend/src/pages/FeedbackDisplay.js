@@ -1,49 +1,78 @@
-import React from 'react';
+// FeedbackDisplay.js
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/feedbackdisplay.css';
 
-function FeedbackDisplay() {
-  // Mock data for feedback
-  const feedbackData = [
-    { id: 1, feedback: 'Great app, loved it!', rating: 5 },
-    { id: 2, feedback: 'Needs some improvements', rating: 3 },
-    { id: 3, feedback: 'Good work!', rating: 4 },
-  ];
+const FeedbackDisplay = () => {
+    const [feedbackList, setFeedbackList] = useState([]);
 
-  // Function to handle updating feedback
-  const handleUpdateFeedback = (id) => {
-    // Implement your update feedback logic here
-    console.log('Updating feedback with id:', id);
-  };
+    useEffect(() => {
+        axios.get("http://localhost:9000/feedback/all")
+            .then((res) => {
+                setFeedbackList(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    }, []);
 
-  // Function to handle deleting feedback
-  const handleDeleteFeedback = (id) => {
-    // Implement your delete feedback logic here
-    console.log('Deleting feedback with id:', id);
-  };
+    // Function to render star ratings
+    const renderStarRating = (rating) => {
+        const stars = [];
+        for (let i = 0; i < rating; i++) {
+            stars.push(<span key={i} className="star">★</span>);
+        }
+        return stars;
+    };
 
-  return (
-    <>
-      <Header />
-    <div className="feedback-display">
-      <h2>Feedback Display</h2>
-      <div className="feedback-list">
-        {feedbackData.map((feedback) => (
-          <div key={feedback.id} className="feedback-item">
-            <p>{feedback.feedback}</p>
-            <p>Rating: {feedback.rating}</p>
-            <div className="feedback-buttons">
-              <button onClick={() => handleUpdateFeedback(feedback.id)}>Update</button>
-              <button onClick={() => handleDeleteFeedback(feedback.id)}>Delete</button>
+    const handleLike = async (id) => {
+        try {
+            await axios.post(`http://localhost:9000/feedback/${id}/like`);
+            // Update the state to reflect the change in likes
+            setFeedbackList(prevFeedbackList => prevFeedbackList.map(feedback => {
+                if (feedback._id === id) {
+                    return { ...feedback, likes: feedback.likes + 1 };
+                }
+                return feedback;
+            }));
+        } catch (error) {
+            console.error("Error liking feedback:", error);
+            alert("Failed to like feedback");
+        }
+    };
+
+    const handleReply = (id, message) => {
+        // Implement reply functionality here
+        alert(`Reply to feedback with ID ${id}: ${message}`);
+    };
+
+    return (
+        <>
+            <Header />
+            <h1><center>Customer Feedback</center></h1>
+
+            <div className='feedbackListContainer'>
+                {feedbackList.map((feedback, index) => (
+                    <div key={index} className="feedbackItem">
+                        <h3>{feedback.name}</h3>
+                        <p>{feedback.feedback}</p>
+                        <div className="starRating">
+                            {renderStarRating(feedback.rating)}
+                        </div>
+                        <div className="actionButtons">
+                            <button onClick={() => handleLike(feedback._id)}>Like ({feedback.likes || 0})</button>
+                            <button onClick={() => handleReply(feedback._id, feedback.feedback)}>Reply</button>
+                        </div>
+                    </div>
+                ))}
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-    <Footer />
-    </>
-  );
+
+            <Footer />
+        </>
+    );
 }
 
 export default FeedbackDisplay;
