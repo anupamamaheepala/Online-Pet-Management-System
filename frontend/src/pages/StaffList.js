@@ -83,8 +83,9 @@ const StaffList = () => {
                                 <td>{staffMember.saddress}</td>
                                 <td>{staffMember.designation}</td>
                                 <td>
-                                    <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button>
-                                    <button className="staffList-update-btn">Update</button>
+                                <Link className="btn btn-warning" to={`/update/${staffMember._id}`}>Edit</Link>
+                                &nbsp;
+                                <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
                                 </td>
                             </tr>
                         ))}
