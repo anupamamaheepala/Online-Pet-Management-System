@@ -20,11 +20,12 @@ const trainingRoutes = require("./routes/training.routes");
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/cardpayRoute");
-const productRoute = require ("./routes/Productroutes");
 const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
+const productsRouter = require('./routes/products');
+
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -45,11 +46,12 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
-app.use("/product", productRoute);
+
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
 app.use("/orders", orderRoute);
+app.use('/products', productsRouter);
 
 
 

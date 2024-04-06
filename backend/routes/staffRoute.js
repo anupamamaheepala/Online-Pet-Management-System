@@ -36,19 +36,25 @@ module.exports = router; */
 
 const express = require('express');
 const router = express.Router();
-const { addStaff, getAllStaff, deleteStaff, updateStaff } = require('../controller/staffController');
+const StaffSchema = require ('../models/staffModel');
+const staffController = require('../controller/staffController');
 
 // Route to handle adding new staff
-router.post('/add', addStaff);
+router.post('/add', staffController.addStaff);
 
 // Route to get all staff members
-router.get('/all', getAllStaff);
+router.get('/all',staffController.getAllStaff );
+
+// Get staff by ID
+router.get('/:id',staffController.getStaffById );
 
 // Route to delete a staff member
-router.delete('/:id', deleteStaff);
+router.delete('/:id', staffController.deleteStaff);
 
 // Route to update a staff member
-// router.put('/:id', updateStaff);
+// Route to update a staff member
+router.put('/:id', staffController.updateStaff);
+
 
 module.exports = router;
 

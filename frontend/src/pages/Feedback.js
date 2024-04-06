@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import '../css/Feedback.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import '../css/Feedback.css';
 
 const Feedback = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ const Feedback = () => {
   const [submitted, setSubmitted] = useState(false); // State for tracking successful submission
 
   const { feedback, email, name, rating } = formData;
+
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,6 +47,10 @@ const Feedback = () => {
     setFormData({ ...formData, rating: newRating });
   };
 
+  const goToFeedbackDisplay = () => {
+    navigate('/feedbackDisplay'); // Navigate to feedbackDisplay page
+  };
+
   return (
     <>
       <Header />
@@ -53,11 +60,11 @@ const Feedback = () => {
         <form onSubmit={onSubmit}>
           
           <div className="email">
-            <label className='staffregister-form-label'>Email:</label>
+            <label>Email:</label>
             <input type="email" name="email" value={email} onChange={onChange} required />
           </div>
           <div className="name">
-            <label className='staffregister-form-label'>Name:</label>
+            <label>Name:</label>
             <input type="text" name="name" value={name} onChange={onChange} required />
           </div>
           <textarea
@@ -81,6 +88,9 @@ const Feedback = () => {
 
           <button type="submit">Submit Feedback</button>
         </form>
+      </div>
+      <div className="view-feedback">
+        <button onClick={goToFeedbackDisplay}>View Feedback</button>
       </div>
       <Footer />
     </>

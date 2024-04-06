@@ -64,9 +64,9 @@ const getalltrainings = async (req, res) => {
     }
 };
 
-//getalltrainingdetails
-const path = require('path');
+const path=require('path');
 
+//getalltrainingdetails
 const getalltrainingdetails = async (req, res) => {
     const trainingId = req.params.id;
 
@@ -77,37 +77,20 @@ const getalltrainingdetails = async (req, res) => {
             return res.status(404).json({ message: "Training not found" });
         }
 
-        // If the training has a file path, send the file as a response
+        // Check if the training has a file path
         if (training.filePath) {
-            // Get the file extension
-            const fileExtension = path.extname(training.filePath).toLowerCase();
-            
-            // Set the appropriate content type based on file extension
-            let contentType;
-            if (fileExtension === '.pdf') {
-                contentType = 'application/pdf';
-            } else if (fileExtension === '.jpg' || fileExtension === '.jpeg' || fileExtension === '.png') {
-                contentType = 'image/jpeg'; // You can add support for other image types as well
-            } else {
-                // Unsupported file type
-                return res.status(400).json({ message: "Unsupported file type" });
-            }
-
             // Send the file as a response
-            res.sendFile(path.join(__dirname, '..', training.filePath), {
-                headers: {
-                    'Content-Type': contentType
-                }
-            });
+            return res.sendFile(training.filePath);
         } else {
             // If no file path is associated with the training, simply send the training details
-            res.json(training);
+            return res.json(training);
         }
     } catch (error) {
         console.error('Error fetching training details:', error);
-        res.status(500).json({ message: 'Failed to fetch training details' });
+        return res.status(500).json({ message: 'Failed to fetch training details' });
     }
 };
+
 
 /* Update instructor for a training
 const updateInstructorById = async (req, res) => {
