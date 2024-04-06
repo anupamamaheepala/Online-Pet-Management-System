@@ -1,16 +1,16 @@
-// PayStatus.js
-
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-const Paystatus = ({ payerInfo, billAmount }) => {
+const Paystatus = () => {
+  const { name, email, phonenumber, address } = useParams();
+
   return (
     <div>
       <h2>Payment Status</h2>
-      <p><strong>Name:</strong> {payerInfo.name}</p>
-      <p><strong>Email:</strong> {payerInfo.email}</p>
-      <p><strong>Phone Number:</strong> {payerInfo.phonenumber}</p>
-      <p><strong>Address:</strong> {payerInfo.address}</p>
-      <p><strong>Bill Amount:</strong> ${billAmount}</p>
+      <p><strong>Name:</strong> {name}</p>
+      <p><strong>Email:</strong> {email}</p>
+      <p><strong>Phone Number:</strong> {phonenumber}</p>
+      <p><strong>Address:</strong> {address}</p>
     </div>
   );
 }
