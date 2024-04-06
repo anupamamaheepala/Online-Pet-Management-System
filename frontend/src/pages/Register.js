@@ -6,8 +6,6 @@ import '../css/register.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-
-
 const Register =  () =>{
   const [formData, setFormData] = useState({
     username: '',

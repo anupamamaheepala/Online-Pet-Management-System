@@ -1,5 +1,3 @@
-
-
 // export default AllCustomers;
 import Header from '../components/Header';
 import Footer from '../components/Footer';
