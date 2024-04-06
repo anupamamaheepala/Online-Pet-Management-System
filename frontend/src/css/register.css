@@ -85,28 +85,59 @@
 }
 
 /* CSS for the advertisement table */
-.customer_details_table {
-  width: 100%;
-  border-collapse: collapse;
+.edit-customer-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-.customer_details_table th,
-.customer_details_table td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.edit-customer-form-group {
+  margin-bottom: 15px;
 }
 
-.customer_details_table th {
-  background-color: #f2f2f2;
+.edit-customer-label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
-.customer_details_table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+.edit-customer-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.customer_details_table tbody tr:hover {
-  background-color: #ddd;
+.edit-customer-button {
+  padding: 10px 20px;
+  background-color: black; /* Changed background color to black */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Added transition */
 }
 
+.edit-customer-button:hover {
+  background-color: white; /* Changed hover color to white */
+  color: black; /* Changed hover text color to black */
+  border: 1px solid black; /* Added border on hover */
+}
+
+.edit-customer-link-button {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: black; /* Changed text color to black */
+}
+
+.edit-customer-link-button:hover {
+  text-decoration: underline;
+}
+
+.edit-customer-link-button:hover {
+  text-decoration: underline;
+}

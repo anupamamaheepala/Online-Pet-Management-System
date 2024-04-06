@@ -49,7 +49,7 @@ router.post('/signin', async (req, res) => {
     }
 
     // Compare the provided password with the hashed password in the database
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, Customer.password);
 
     if (!isPasswordValid) {
       return res.status(400).json({ message: 'Invalid credentials' });
@@ -63,7 +63,12 @@ router.post('/signin', async (req, res) => {
   }
 });
 
+
 module.exports = router;
+
+
+
+// //add a single income
 // router.post("/register", async (req, res) => {
 //   //destructuring request body into its components
 //   console.log("okkkkk");
