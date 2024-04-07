@@ -8,8 +8,6 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: rgba(180, 186, 185, 0.244);
   margin-bottom: 40px;
-  
-  
 }
 
 .feedback-form h2 {
@@ -18,7 +16,6 @@
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
   max-width: 400px;
-  
 }
 
 .email,
@@ -35,10 +32,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-family: 'Times New Roman', Times, serif;
-  
-  
 }
-
 
 .feedback-form textarea {
   width: calc(100% - 20px); /* Adjusted width to accommodate padding */
@@ -96,4 +90,28 @@
   border-radius: 5px;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.view-feedback {
+  margin-top: 20px; /* Adjust margin top to create space between button and other elements */
+}
+
+.view-feedback button {
+  display: block;
+  width: 200px; /* Adjust button width as needed */
+  margin: 0 auto; /* Center the button */
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.view-feedback button:hover {
+  background-color: #214267;
 }

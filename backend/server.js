@@ -20,12 +20,16 @@ const trainingRoutes = require("./routes/training.routes");
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/cardpayRoute");
-const productRoute = require ("./routes/Productroutes");
 const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
+<<<<<<< HEAD
 const uploadRoute =require("./routes/uploadRoute");
+=======
+const productsRouter = require('./routes/products');
+
+>>>>>>> d3e2406e046e2c8e50e56ef751b6a16ca961cf21
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -47,11 +51,12 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
-app.use("/product", productRoute);
+
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
 app.use("/orders", orderRoute);
+app.use('/products', productsRouter);
 
 
 

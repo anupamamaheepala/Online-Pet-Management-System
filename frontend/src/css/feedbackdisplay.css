@@ -30,12 +30,11 @@
 .starRating {
   display: flex;
   align-items: center;
-}
-
-.star {
   font-size: 20px;
   color: #ffd700; /* Set the color of stars */
 }
+
+
 
 .actionButtons {
   margin-top: 10px;
