@@ -70,27 +70,30 @@ const PrivateTrainingDetails = () => {
         <p><strong>Age:</strong> {training.age}</p>
         {training.filePath && (
   <div>
-    <h3>Health Checkup File</h3>
-    {/* Check file extension to determine the type */}
-    {training.filePath.endsWith('.pdf') ? (
-      <embed src={`http://localhost:9000/uploads/${id}`} type="application/pdf" width="60" height="40" />
-    ) : (
-      <div>
-        <img
-          src={`http://localhost:9000/uploads/${id}`}
-          alt="Uploaded File"
-          onClick={() => handleOpenModal(`http://localhost:9000/uploads/${id}`)}
-          style={{ cursor: 'pointer', height:"20px" ,width:"20px"}}
-        />
-        {/* Add modal */}
-        {isModalOpen && (
-          <div className="modal">
-            <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
-            <img src={modalImageUrl} alt="Full Image"  />
-          </div>
+   <h3>Health Checkup File</h3>
+{/* Check file extension to determine the type */}
+{training.filePath ? (
+  <>
+    <button onClick={() => handleOpenModal(`http://localhost:9000/uploads/${id}`)}>View Health Checkup Report</button>
+    {isModalOpen && (
+      <div className="modal">
+        <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+        {training.filePath.endsWith('.pdf') ? (
+          <embed src={`http://localhost:9000/uploads/${id}`} type="application/pdf" width="100%" height="100%" />
+        ) : (
+          <img
+            src={`http://localhost:9000/uploads/${id}`}
+            alt="Uploaded File"
+            
+          />
         )}
       </div>
     )}
+  </>
+) : (
+  <p>No health checkup file available</p>
+)}
+
   </div>
 )}
       </div>

@@ -24,12 +24,9 @@ const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
-<<<<<<< HEAD
 const uploadRoute =require("./routes/uploadRoute");
-=======
-const productsRouter = require('./routes/products');
 
->>>>>>> d3e2406e046e2c8e50e56ef751b6a16ca961cf21
+const productsRouter = require('./routes/products');
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
