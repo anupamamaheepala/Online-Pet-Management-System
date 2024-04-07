@@ -40,9 +40,9 @@ const paymentController = {
   // Method for adding payer information
   addPayerInfo: async (req, res) => {
     try {
-      const { name, email, phonenumber, address } = req.body;
+      const { name, email, phonenumber, address, purpose, amount } = req.body;
 
-      if (!name || !email || !phonenumber || !address) {
+      if (!name || !email || !phonenumber || !address || !purpose || !amount) {
         return res.status(400).json({ message: "All fields are required!" });
       }
 
@@ -51,6 +51,8 @@ const paymentController = {
         email,
         phonenumber,
         address,
+        purpose,
+        amount,
       });
 
       await payerInfo.save();

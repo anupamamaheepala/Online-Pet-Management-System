@@ -9,10 +9,12 @@ const Payerinfo = () => {
         name: '',
         email: '',
         phonenumber: '',
-        address: ''
+        address: '',
+        purpose: '',
+        amount: ''
     });
 
-    const { name, email, phonenumber, address } = formData;
+    const { name, email, phonenumber, address, purpose, amount} = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -76,6 +78,28 @@ const Payerinfo = () => {
                             name="address"
                             id="address"
                             value={address}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+                    <div className="anuform-group">
+                        <label>Purpose:</label>
+                        <input
+                            type="text"
+                            id="purpose"
+                            name="purpose"
+                            value={purpose}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+                    <div className="anuform-group">
+                        <label>Amount:</label>
+                        <input
+                            type="text"
+                            id="amount"
+                            name="amount"
+                            value={amount}
                             onChange={onChange}
                             required
                         />

@@ -18,6 +18,14 @@ const payerinfoSchema = new mongoose.Schema({
         type : String,
         require: true
     },
+    purpose : {
+        type : String,
+        require: true
+    },
+    amount : {
+        type : Number,
+        require: true
+    },
 
 }, {timestamps: false})
 
