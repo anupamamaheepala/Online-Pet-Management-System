@@ -1,0 +1,49 @@
+/* CSS for Paystatus component */
+
+/* Container styles */
+.paystatus-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 2px solid #000000;
+  }
+  
+  /* Heading styles */
+  .paystatus-heading {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  /* Loading message styles */
+  .loading-message {
+    font-size: 16px;
+    color: #888;
+  }
+  
+  /* Payer info styles */
+  .payer-info {
+    margin-top: 20px;
+  }
+  
+  /* Payer info item styles */
+  .payer-info-item {
+    margin-bottom: 10px;
+  }
+  
+  /* Label styles */
+  .label {
+    font-weight: bold;
+  }
+  
+  /* Value styles */
+  .value {
+    margin-left: 10px;
+  }
+  

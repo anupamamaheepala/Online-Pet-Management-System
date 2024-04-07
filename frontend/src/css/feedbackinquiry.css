@@ -1,0 +1,91 @@
+.custom-container {
+    border: 2px solid black;
+    padding: 8px;
+    border-radius: 10px;
+    margin-top: 0px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .custom-h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .custom-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .custom-label {
+    color: black;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .custom-input,
+  .custom-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .custom-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .custom-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    background-color: #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+    align-items: center;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .custom-error-message {
+    color: red;
+    font-size: 14px;
+  }
+  
+  .custom-success-message {
+    color: green;
+    font-size: 14px;
+  }
+  
+  /* Toast styles */
+  .custom-toast-container {
+    z-index: 9999;
+  }
+  
+  .custom-toast-error {
+    background-color: #dc3545;
+  }
+  
+  .custom-toast-success {
+    background-color: #28a745;
+  }
+  

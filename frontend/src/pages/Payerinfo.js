@@ -9,10 +9,12 @@ const Payerinfo = () => {
         name: '',
         email: '',
         phonenumber: '',
-        address: ''
+        address: '',
+        purpose: '', // corrected from purposee
+        amount: ''   // corrected from emout
     });
 
-    const { name, email, phonenumber, address } = formData;
+    const { name, email, phonenumber, address, purpose, amount } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +26,20 @@ const Payerinfo = () => {
             const res = await axios.post("http://localhost:9000/payerinfo/pay", formData);
             console.log(res.data);
             // Redirect to PayStatus page after successful form submission
-            window.location.href = `/Paystatus?name=${name}&email=${email}&phonenumber=${phonenumber}&address=${address}`;
- // Redirect using window.location.href
+            window.location.href = `/Paystatus?id=${res.data._id}`;
+
+              
+            // Optionally, you can clear the form fields after successful submission
+            setFormData({
+                name: '',
+                email: '',
+                phonenumber: '',
+                address: '',
+                purpose: '',
+                amount: '',
+            });
+
+
         } catch (err) {
             console.error(err);
         }
@@ -80,6 +94,28 @@ const Payerinfo = () => {
                             required
                         />
                     </div>
+                    <div className="anuform-group">
+                        <label>Purpose:</label>
+                        <select id="purpose" name="purpose" value={purpose} onChange={onChange}>
+                        <option value="" disabled>Select Purpose</option>
+                        <option value="Buy products">Buy products</option>
+                        <option value="Verterinary appointment">Verterinary appointment</option>
+                        <option value="Grooming appointment">Grooming appointment</option>
+                        <option value="Pet training appointment">Pet training appointment</option>
+                        <option value="Advertisement">Advertisement</option>
+                        </select>
+                    </div>
+                    <div className="anuform-group">
+                        <label>Amount:</label>
+                        <input
+                            type="text"
+                            id="amount"
+                            name="amount"
+                            value={amount}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
                     <center><button className="anupfbutton" type="submit">View Status</button></center>
                 </form>
             </div>
@@ -89,3 +125,4 @@ const Payerinfo = () => {
 }
 
 export default Payerinfo;
+

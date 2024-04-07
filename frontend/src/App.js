@@ -3,9 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from "./pages/Home";
+
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
+import FeedbackInquiry from './pages/FeedbackInquiry';
+
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -74,7 +77,10 @@ function App() {
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
+          <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
+
+
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
@@ -96,7 +102,7 @@ function App() {
           <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm />} />
           <Route path="/StaffList" element={<StaffList />} />
           <Route path="/StaffLeaveForm" element={<StaffLeaveForm />} />
-          <Route path="/StaffSalaryForm" element={<StaffSalaryForm />} />
+          <Route path="/salary/:staffId" element={<StaffSalaryForm />} />
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
           <Route path="/edit/:customerId" element={<EditCustomer />} />

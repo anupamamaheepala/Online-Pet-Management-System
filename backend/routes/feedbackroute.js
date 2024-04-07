@@ -26,4 +26,9 @@ router.post("/:id/reply", feedbackController.replyToFeedback);
 // Route for getting customer feedback (with limited fields)
 router.get("/customer", feedbackController.getCustomerFeedback);
 
+// Route for storing customer inquiry
+router.post('/api/v1/store-feedback-inquiry', feedbackController.storeFeedbackInquiry);
+
+
+
 module.exports = router;
