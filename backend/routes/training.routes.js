@@ -20,7 +20,11 @@ const {
     getalltrainings,
     getalltrainingdetails,
     /* updateInstructor,*/
+    updateInstructor,
     deleteprogram,
+    rejectTraining,
+    approveTraining,
+    getapplicationdisplay,
     //updateTrainingStatus
 } = require("../controller/training.controller");
 
@@ -28,7 +32,16 @@ router.post('/insert', upload.single('file'), addTrainingprogram);
 router.get('/all', getalltrainings);
 router.get('/:id', getalltrainingdetails);
 //router.put('/updateInstructor/:id', updateInstructor); // Ensure the path includes ':id' parameter
+router.put('/updateInstructor/:id', trainingController.updateInstructor);
 router.delete('/delete/:id', deleteprogram); // Ensure the path includes ':id' parameter
 //router.put('/status/:id', updateTrainingStatus);
+
+//reject
+router.put('/reject/:id', trainingController.rejectTraining);
+router.put('/approve/:id', trainingController.approveTraining);
+
+router.get('/application/:id',trainingController.getapplicationdisplay);
+
+
 
 module.exports = router;
