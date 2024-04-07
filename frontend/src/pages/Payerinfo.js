@@ -143,6 +143,19 @@ const Payerinfo = () => {
             console.log(res.data);
             // Redirect to PayStatus page after successful form submission
             window.location.href = `/Paystatus?id=${res.data._id}`;
+
+              
+            // Optionally, you can clear the form fields after successful submission
+            setFormData({
+                name: '',
+                email: '',
+                phonenumber: '',
+                address: '',
+                purpose: '',
+                amount: '',
+            });
+
+
         } catch (err) {
             console.error(err);
         }
