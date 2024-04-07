@@ -97,7 +97,6 @@ const getCustomerFeedback = async (req, res) => {
   }
 };
 
-// Function to store customer inquiry
 const storeFeedbackInquiry = async (req, res) => {
   try {
     // Logic to store customer inquiry
@@ -116,5 +115,5 @@ module.exports = {
   dislikeFeedback,
   replyToFeedback,
   getCustomerFeedback,
-  storeFeedbackInquiry // Add the new function here
+  storeFeedbackInquiry
 };

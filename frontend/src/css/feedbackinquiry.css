@@ -1,6 +1,7 @@
 .custom-container {
     border: 2px solid black;
     padding: 8px;
+    border-radius: 10px;
     margin-top: 0px;
     max-width: 500px;
     margin-left: auto;

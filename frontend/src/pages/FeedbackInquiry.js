@@ -15,14 +15,16 @@ function FeedbackInquiry() {
     inquiryDescription: '',
   });
 
+  // Function to handle changes in form fields
   const handleChange = (event) => {
     const newData = { ...values };
     newData[event.target.id] = event.target.value;
     setValues(newData);
   };
 
+  // Function to send form data to the backend
   const sendDataToDB = () => {
-    Axios.post('http://localhost:5000/api/v1/store-customer-inquiry', {
+    Axios.post('http://localhost:9000/api/v1/store-customer-inquiry', {
       inquiryType: values.inquiryType,
       inquiryDescription: values.inquiryDescription,
       customerContactNumber: values.customerContactNumber,
@@ -37,14 +39,17 @@ function FeedbackInquiry() {
       });
   };
 
+  // Function to validate phone number format
   const validatePhoneNumber = (phoneNumber) => {
     const regex = /^\d{10}$/;
     return regex.test(phoneNumber);
   };
 
+  // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Form field validation
     if (values.customerName === '') {
       toast.error('Please Enter Your Name!!!', {
         position: 'top-center',
@@ -87,6 +92,7 @@ function FeedbackInquiry() {
       return;
     }
 
+    // Confirmation dialog for form submission
     if (window.confirm('Confirm Inquiry Submission')) {
       sendDataToDB();
       toast.success('Successfully submitted Inquiry!!!!', {
@@ -102,6 +108,7 @@ function FeedbackInquiry() {
         <h1 className="custom-h1">Customer Inquiry Portal</h1>
         <ToastContainer className="custom-toast-container" />
         <form onSubmit={(e) => handleSubmit(e)}>
+          {/* Name field */}
           <div className="custom-form-group">
             <label htmlFor="customerName" className="custom-label">Name:</label>
             <input
@@ -113,6 +120,7 @@ function FeedbackInquiry() {
               id="customerName"
             />
           </div>
+          {/* Email field */}
           <div className="custom-form-group">
             <label htmlFor="customerEmail" className="custom-label">Email:</label>
             <input
@@ -124,6 +132,7 @@ function FeedbackInquiry() {
               id="customerEmail"
             />
           </div>
+          {/* Phone number field */}
           <div className="custom-form-group">
             <label htmlFor="customerContactNumber" className="custom-label">Phone:</label>
             <input
@@ -135,6 +144,7 @@ function FeedbackInquiry() {
               id="customerContactNumber"
             />
           </div>
+          {/* Inquiry type field */}
           <label htmlFor="inquiryType" className="custom-label">Inquiry Type:</label>
           <select
             name="inquiry-type"
@@ -149,6 +159,7 @@ function FeedbackInquiry() {
             <option value="Invoicing Problem">Invoicing Problem</option>
             <option value="Other">Other</option>
           </select>
+          {/* Inquiry description field */}
           <div className="custom-form-group">
             <label htmlFor="inquiryDescription" className="custom-label">Inquiry:</label>
             <textarea
@@ -160,6 +171,7 @@ function FeedbackInquiry() {
             />
             <p id="inquiry-status" className="status" />
           </div>
+          {/* Submit button */}
           <input
             type="submit"
             id="submit-button"
