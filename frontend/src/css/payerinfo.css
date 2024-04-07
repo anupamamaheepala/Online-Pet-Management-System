@@ -29,6 +29,7 @@
 }
 
 .anuform-group input,
+.anuform-group select,
 .anuform-group textarea {
   width: 100%;
   padding: 10px;
