@@ -60,7 +60,7 @@ const StaffList = () => {
                 <table className="staffList-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th> </th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>NIC No</th>
@@ -83,9 +83,10 @@ const StaffList = () => {
                                 <td>{staffMember.saddress}</td>
                                 <td>{staffMember.designation}</td>
                                 <td>
-                                <Link className="btn btn-warning" to={`/update/${staffMember._id}`}>Edit</Link>
+                                <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
                                 &nbsp;
                                 <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
+                                <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}`}>Salary</Link>
                                 </td>
                             </tr>
                         ))}
