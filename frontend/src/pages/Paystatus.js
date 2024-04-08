@@ -31,18 +31,18 @@ const Paystatus = () => {
     return (
         <>
         <Header/>
-        <div className="paystatus-container">
-            <h2 className="paystatus-heading">Payment Status</h2>
+        <div className="anupstcontainer">
+            <h2 className="anupstheading">Payment Status</h2>
             {loading ? (
-                <p className="loading-message">Loading...</p>
+                <p className="anupstmessage">Loading...</p>
             ) : (
-                <div className="payer-info">
-                    <p className="payer-info-item"><span className="label">Name :</span><span className="value">{payerInfo.name}</span></p>
-                    <p className="payer-info-item"><span className="label">Email :</span><span className="value">{payerInfo.email}</span></p>
-                    <p className="payer-info-item"><span className="label">Phone Number :</span><span className="value">{payerInfo.phonenumber}</span></p>
-                    <p className="payer-info-item"><span className="label">Address :</span><span className="value">{payerInfo.address}</span></p>
-                    <p className="payer-info-item"><span className="label">Purpose :</span><span className="value">{payerInfo.purpose}</span></p>
-                    <p className="payer-info-item"><span className="label">Amount :</span><span className="value">{payerInfo.amount}</span></p>
+                <div className="anupstpayerstatus">
+                    <p className="anupstitem"><span className="anupstlabel">Name :</span><span className="anupstvalue">{payerInfo.name}</span></p>
+                    <p className="anupstitem"><span className="anupstlabel">Email :</span><span className="anupstvalue">{payerInfo.email}</span></p>
+                    <p className="anupstitem"><span className="anupstlabel">Phone Number :</span><span className="anupstvalue">{payerInfo.phonenumber}</span></p>
+                    <p className="anupstitem"><span className="anupstlabel">Address :</span><span className="anupstvalue">{payerInfo.address}</span></p>
+                    <p className="anupstitem"><span className="anupstlabel">Purpose :</span><span className="anupstvalue">{payerInfo.purpose}</span></p>
+                    <p className="anupstitem"><span className="anupstlabel">Amount :</span><span className="anupstvalue">{payerInfo.amount}</span></p>
                 </div>
             )}
         </div>

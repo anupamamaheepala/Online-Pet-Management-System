@@ -1,7 +1,7 @@
 /* CSS for Paystatus component */
 
 /* Container styles */
-.paystatus-container {
+.anupstcontainer {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -14,36 +14,38 @@
   }
   
   /* Heading styles */
-  .paystatus-heading {
+  .anupstheading {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
+    color: #000000;
   }
   
   /* Loading message styles */
-  .loading-message {
+  .anupstmessage {
     font-size: 16px;
     color: #888;
   }
   
   /* Payer info styles */
-  .payer-info {
+  .anupstpayerstatus {
     margin-top: 20px;
   }
   
   /* Payer info item styles */
-  .payer-info-item {
+  .anupstitem {
     margin-bottom: 10px;
   }
   
   /* Label styles */
-  .label {
+  .anupstlabel {
     font-weight: bold;
+    color: #000000;
   }
   
   /* Value styles */
-  .value {
+  .anupstvalue {
     margin-left: 10px;
   }
   
