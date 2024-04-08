@@ -50,14 +50,13 @@ import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
-<<<<<<< HEAD
-=======
+
 import ViewApplication from './pages/ViewApplication';
 
 
 
 
->>>>>>> 5fe79bb16e862ac21c3eefce4ed80cdbd97af4e3
+
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
