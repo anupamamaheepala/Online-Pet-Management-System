@@ -86,7 +86,8 @@ const StaffList = () => {
                                 <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
                                 &nbsp;
                                 <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
-                                <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}`}>Salary</Link>
+                                <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}`}>Salary</Link>
+
                                 </td>
                             </tr>
                         ))}
