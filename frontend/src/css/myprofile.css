@@ -92,4 +92,8 @@
     /* Remove focus outline */
     outline: none;
   }
+
+  .MyProfileTitle{
+    text-align: center;
+  }
   

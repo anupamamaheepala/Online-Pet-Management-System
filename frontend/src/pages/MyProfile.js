@@ -74,7 +74,7 @@ const MyProfile = () => {
               
             </div>
             <div>
-            <h2>My Profile</h2>
+            <h2 className='MyProfileTitle'>My Profile</h2>
             <p>Username: {customerData.username}</p>
             <p>Email: {customerData.email}</p>
             <p>Contact Number: {customerData.contactNumber}</p>
