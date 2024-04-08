@@ -33,7 +33,7 @@ import StaffLeaveForm from './pages/StaffLeaveForm';
 import StaffSalaryForm from './pages/StaffSalaryForm';
 import StaffLeaveList from './pages/StaffLeaveList';
 import SignIn from './pages/SignIn';
-import UserProfile from './pages/UserProfile';
+import MyProfile from './pages/MyProfile';
 import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
@@ -102,7 +102,7 @@ function App() {
           <Route path="/AllAdvertisements" element={<AllAdvertisements />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/UserProfile" element={<UserProfile />} />
+          <Route path="/MyProfile/:customerId" element={<MyProfile />} />
           <Route path="/Payerinfo" element={<Payerinfo />} />
           <Route path="/Cardpay" element={<Cardpay />} />
           <Route path="/Banktrans" element={<Banktrans />} />

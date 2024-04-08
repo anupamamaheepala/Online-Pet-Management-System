@@ -35,8 +35,16 @@ const Paystatus = () => {
     };
 
     // Function to handle delete button click
-    const handleDelete = () => {
-        // Implement delete functionality here
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:9000/payerinfo/${payerInfo._id}`);
+            // Handle success
+            console.log(response.data); // or any other action upon success
+            window.location.href = '/Payerinfo';
+        } catch (error) {
+            console.error('Error deleting data:', error);
+            // Handle error
+        }
     };
 
     return (
@@ -57,7 +65,7 @@ const Paystatus = () => {
 
                     <div className="anupstbuttoncontainer">
                         <button onClick={handleEdit} className="btn btn-warning">Edit</button>
-                        <button onClick={handleDelete} className="btn btn-danger">Delete</button>
+                        <button onClick={() => handleDelete(payerInfo._id)} className="btn btn-danger">Delete</button>
                     </div>
                     <div className="anupstbuttoncontainer">
                     <Link to="/cardpay" className="anupstpaymentlink">Card Payment</Link>

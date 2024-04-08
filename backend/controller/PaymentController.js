@@ -73,6 +73,20 @@ const paymentController = {
       res.status(500).json({ message: "Failed to fetch payer details" });
     }
   },
+
+  deletePayerInfo: async (req, res) => {
+    try {
+      const payerId = req.params.id;
+      const deletedPayerInfo = await Payerinfo.findByIdAndDelete(payerId);
+      if (!deletedPayerInfo) {
+        return res.status(404).json({ message: "Payer information not found" });
+      }
+      res.status(200).json({ message: "Payer information deleted successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  },
 };
 
 module.exports = paymentController;

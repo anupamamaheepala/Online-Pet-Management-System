@@ -80,7 +80,7 @@ const Header = () => {
                                     <BsPersonFill size={40} style={{ border: '1px solid #ccc', borderRadius: '50%', padding: '2px' }} />
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                    <li><a className="dropdown-item" href="#">My Profile</a></li>
+                                    <li><a className="dropdown-item" href="/MyProfile">My Profile</a></li>
                                     <li><a className="dropdown-item" href="/MyAppointments">My Appointments</a></li>
                                     <li><a className="dropdown-item" href="#">My Cart</a></li>
                                     <li><a className="dropdown-item" href="#">Settings</a></li>
