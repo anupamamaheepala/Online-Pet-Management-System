@@ -1,5 +1,3 @@
-// models/Product.js
-
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
@@ -22,6 +20,10 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    quantity: {
+        type: Number,
+        default: 0  // Assuming initial quantity is zero
     }
 });
 

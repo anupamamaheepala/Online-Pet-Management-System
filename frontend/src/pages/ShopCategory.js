@@ -39,8 +39,16 @@ const ShopCategory = (props) => {
                 </div>
                 <div className="shopcategory-products">
                     {allProducts.map((item) => (
-                        (props.category === item.category) && // Filter products by category
-                        <Item key={item._id} id={item._id} name={item.itemName} image={item.image} price={item.price} />
+                        (props.category === item.category) &&
+                        <Item
+                            key={item._id}
+                            id={item._id}
+                            name={item.itemName}
+                            image={item.image}
+                            price={item.price}
+                            // Check if quantity is greater than 0, if not, display "Out of Stock" message
+                            quantity={item.quantity > 0 ? item.quantity : "Out of Stock"}
+                        />
                     ))}
                 </div>
                 <div className="shopcategory-loadmore">
