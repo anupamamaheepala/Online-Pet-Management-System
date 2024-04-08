@@ -1,33 +1,33 @@
-const MakeAppointmentAppointment = require('../models/MakeAppointmentModel');
-const express = require('express');
+const Appointment = require('../models/MakeAppointmentModel');
 
-// Controller function to handle appointment submissions
-const createAppointment = async (req, res) => {
+// Create a new appointment
+exports.createAppointment = async (req, res) => {
   try {
-    // Extract form data from the request body
-    const { ownerName, ownerEmail, ownerContact, petType } = req.body;
+    const { ownerName, ownerEmail, ownerContact, petType, selectService, selectDate, selectTime, selectProfession } = req.body;
 
-    // Create a new appointment object
+    // Check if required fields are provided
+    if (!ownerName || !ownerEmail || !ownerContact || !petType || !selectService || !selectDate || !selectTime || !selectProfession) {
+      return res.status(400).json({ error: 'Please provide all required fields' });
+    }
+
+    // Create a new appointment
     const newAppointment = new Appointment({
       ownerName,
       ownerEmail,
       ownerContact,
-      petType
+      petType,
+      selectService,
+      selectDate,
+      selectTime,
+      selectProfession
     });
 
     // Save the appointment to the database
     await newAppointment.save();
 
-    // Send a success response
     res.status(201).json({ message: 'Appointment created successfully' });
   } catch (error) {
-    // If an error occurs, send an error response
-    console.error('Error creating appointment:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
   }
-};
-
-// Export the controller function
-module.exports = {
-  createAppointment,
 };

@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+//import { Toaster } from "react-hot-toast";
+
 import './App.css';
 import Home from "./pages/Home";
-
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
-
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -47,9 +49,10 @@ import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
-
 import AllOrders from './pages/AllOrders';
+
 import ViewApplication from './pages/ViewApplication';
+
 
 
 
@@ -64,8 +67,12 @@ function App() {
   console.log(global);
   return (
     <div>
+      
       <BrowserRouter>
+      {/*<Toaster position="top-center" reverseOrder={false} />*/}
+      
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
@@ -134,6 +141,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+      <ToastContainer position="top-center" />
     </div>
   );
 }
