@@ -20,7 +20,7 @@ const trainingRoutes = require("./routes/training.routes");
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/cardpayRoute");
-const appointmentRoutes = require("./routes/MakeAppointmentRoute");
+const makeAppointmentRoute = require('./routes/MakeAppointmentRoute');
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
@@ -49,7 +49,7 @@ app.use("/staffLeave", staffLeaveRoute);
 
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
-app.use("/appointment", appointmentRoutes);
+app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productsRouter);
 
