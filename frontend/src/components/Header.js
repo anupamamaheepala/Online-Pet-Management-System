@@ -69,11 +69,11 @@ const Header = () => {
                         </ul>
                         <div className="d-flex align-items-center">
                         <a href="/SignIn">
-                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px', backgroundColor: 'black', }}>Sign In</button>
+                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px', backgroundColor: 'black', color:'white', border:'1px solid black'}}>Sign In</button>
                         </a>
 
                             <div style={{ marginRight: '10px' }}>
-                                <a href="/Register"><button className="btn btn-primary me-2" style={{ fontSize: '16px',backgroundColor: 'black' }}>Sign Up</button></a>
+                                <a href="/Register"><button className="btn btn-primary me-2" style={{ fontSize: '16px',backgroundColor: 'white' , color:'black', border:'1px solid black'}}>Sign Up</button></a>
                             </div>
                             <div className="dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
