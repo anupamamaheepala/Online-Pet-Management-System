@@ -8,14 +8,13 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar/Navbar";
 
 const ShopCategory = (props) => {
+  
     const [allProducts, setAllProducts] = useState([]);
 
-    
-
     useEffect(() => {
-        const fetchInfo = async () => {
+        const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:9000/allproducts');
+                const response = await fetch('http://localhost:9000/products');
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
@@ -25,7 +24,7 @@ const ShopCategory = (props) => {
                 console.error('Error fetching products:', error);
             }
         };
-        fetchInfo();
+        fetchProducts();
     }, []);
 
     return (
@@ -35,13 +34,13 @@ const ShopCategory = (props) => {
                 <Navbar/>
                 <img src={props.banner} className="shopcategory-banner" alt="" />
                 <div className="shopcategory-indexSort">
-                    <p><span>Showing 1 - 12</span> out of 54 Products</p>
+                    <p><span>Showing 1 - {allProducts.length}</span> out of {allProducts.length} Products</p>
                     <div className="shopcategory-sort">Sort by  <img src={dropdown_icon} alt="" /></div>
                 </div>
                 <div className="shopcategory-products">
                     {allProducts.map((item) => (
                         (props.category === item.category) && // Filter products by category
-                        <Item key={item.id} id={item.id} name={item.name} image={item.image} price={item.price} />
+                        <Item key={item._id} id={item._id} name={item.itemName} image={item.image} price={item.price} />
                     ))}
                 </div>
                 <div className="shopcategory-loadmore">

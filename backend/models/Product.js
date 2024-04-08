@@ -1,3 +1,5 @@
+// models/Product.js
+
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
@@ -14,16 +16,12 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String, // Assuming you store the path to the image
+        type: String,
         required: true
     },
     price: {
         type: Number,
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
     }
 });
 

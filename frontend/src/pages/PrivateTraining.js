@@ -15,6 +15,7 @@ const PrivateTraining = () => {
     age: '',
     file: null
   });
+  const [isSubmitted, setIsSubmitted] = useState(false); // State to track submission status
 
   const { ownerName, address, contact, dogName, breed, age, file } = formData;
 
@@ -28,6 +29,8 @@ const PrivateTraining = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
+
+    
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('file', file);
@@ -54,6 +57,9 @@ const PrivateTraining = () => {
         age: '',
         file: null
       });
+
+      // Set submission status to true
+      setIsSubmitted(true);
     } catch (err) {
       console.error(err);
     }
@@ -107,6 +113,13 @@ const PrivateTraining = () => {
                   <Link to="/schedule-appointment">Schedule Appointment</Link>
                 </div>
                 <button type="submit">Submit</button>
+                {/* Display success message if submission is successful */}
+                {isSubmitted && (
+                  <div>
+                    <p>Your application has been successfully submitted.</p>
+                    <Link to="/view-application">View Application</Link>
+                  </div>
+                )}
               </form>
             </div>
           </div>
