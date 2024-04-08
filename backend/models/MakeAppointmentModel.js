@@ -21,10 +21,11 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  selectDate: {
-    type: Date,
-    required: true
+  selectDate: { 
+    type: Date, 
+    required: true 
   },
+
   selectTime: {
     type: String,
     required: true
@@ -33,6 +34,15 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  IsAccept: { 
+    type: Boolean,
+     default: false 
+    },
+      
+  IsPaid: {
+     type: Boolean,
+     default: false 
+    },
   
   createdAt: {
     type: Date,

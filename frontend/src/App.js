@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-//import { Toaster } from "react-hot-toast";
+
 
 import './App.css';
 import Home from "./pages/Home";
@@ -69,7 +69,7 @@ function App() {
     <div>
       
       <BrowserRouter>
-      {/*<Toaster position="top-center" reverseOrder={false} />*/}
+    
       
         <Routes>
           
