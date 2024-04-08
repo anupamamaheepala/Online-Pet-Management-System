@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import '../css/makeappointment.css';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
+
 
 const MakeAppointment = () => {
   // State variables to store form data
@@ -30,6 +34,8 @@ const MakeAppointment = () => {
         selectProfession
       });
 
+      toast.success('Appointment created successfully');
+
       // Clear form fields after successful submission
       setOwnerName('');
       setOwnerEmail('');
@@ -40,14 +46,17 @@ const MakeAppointment = () => {
       setSelectTime('');
       setSelectProfession('');
     } catch (error) {
+      toast.error('Failed to create appointment');
       // Handle any errors
       console.error('Error submitting form:', error);
     }
   };
 
   return (
+    <>
+    <Header />
     <div className="makeappointment_container">
-      <h1 className="makeappointment_heading">Appointment Form</h1>
+      <h1 className="makeappointment_heading">Schedule Your Appointment</h1>
       <form className="makeappointment_form" onSubmit={handleSubmit}>
         <div className="left_inputs">
           <div className="makeappointment_input_container">
@@ -97,7 +106,10 @@ const MakeAppointment = () => {
         </div>
         <button className="makeappointment_button" type="submit">Submit</button>
       </form>
+     
     </div>
+    <Footer /> 
+    </>
   );
 };
 
