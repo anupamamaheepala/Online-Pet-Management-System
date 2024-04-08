@@ -56,6 +56,8 @@ const router = express.Router();
 const registerController = require("../controller/registerController");
 const Customer = require('../models/registerModel');
 const bcrypt = require('bcrypt');
+const authMiddleware = require('../middleware/authMiddleware'); // Import your authentication middleware
+
 
 // Register a new customer
 router.post("/register", registerController.registerCustomer);
@@ -104,6 +106,34 @@ router.post('/signin', async (req, res) => {
 
     // If the credentials are valid, return a success message
     res.status(200).json({ message: 'Sign-in successful', user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+// Reset password endpoint
+router.post('/reset-password', async (req, res) => {
+  const { currentPassword, newPassword, confirmPassword } = req.body;
+  const customerId = req.user.id; // Assuming the user ID is attached to the request object by the authentication middleware
+
+  try {
+    // Fetch the customer from the database
+    const customer = await Customer.findById(customerId);
+
+    // Check if the current password provided matches the password in the database
+    const isPasswordValid = await bcrypt.compare(currentPassword, customer.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the customer's password in the database
+    await Customer.findByIdAndUpdate(customerId, { password: hashedNewPassword });
+
+    res.status(200).json({ message: 'Password reset successful' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
