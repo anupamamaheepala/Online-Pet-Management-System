@@ -97,6 +97,15 @@ const getCustomerFeedback = async (req, res) => {
   }
 };
 
+const storeFeedbackInquiry = async (req, res) => {
+  try {
+    // Logic to store customer inquiry
+    res.status(201).json({ message: 'Customer inquiry stored successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+
 module.exports = {
   addFeedback,
   getAllFeedback,
@@ -105,5 +114,6 @@ module.exports = {
   likeFeedback,
   dislikeFeedback,
   replyToFeedback,
-  getCustomerFeedback
+  getCustomerFeedback,
+  storeFeedbackInquiry
 };

@@ -37,7 +37,8 @@ const addTrainingprogram = async (req, res) => {
         const newTrainingObj = new trainingModel(trainingData);
 
         if (req.file) {
-            newTrainingObj.filePath = req.file.path; // Add file path to training object
+            newTrainingObj.filePath = path.basename(req.file.path); // Add file path to training object
+            
         }
 
         await newTrainingObj.save();
@@ -77,36 +78,30 @@ const getalltrainingdetails = async (req, res) => {
             return res.status(404).json({ message: "Training not found" });
         }
 
-        // Check if the training has a file path
-        if (training.filePath) {
-            // Send the file as a response
-            return res.sendFile(training.filePath);
-        } else {
-            // If no file path is associated with the training, simply send the training details
-            return res.json(training);
-        }
+        res.json(training);
     } catch (error) {
         console.error('Error fetching training details:', error);
-        return res.status(500).json({ message: 'Failed to fetch training details' });
+        res.status(500).json({ message: 'Failed to fetch training details' });
     }
 };
 
 
-/* Update instructor for a training
-const updateInstructorById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { instructor } = req.body;
-        const training = await trainingModel.findByIdAndUpdate(id, { instructor }, { new: true });
-        if (!training) {
-            return res.status(404).json({ message: 'Training not found' });
-        }
-        res.json(training);
-    } catch (error) {
-        console.error('Error updating instructor:', error);
-        res.status(500).json({ message: 'Internal server error' });
+/* Update instructor for a training*/
+// Update controller function to add instructor
+const updateInstructor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { instructor } = req.body;
+    const training = await trainingModel.findByIdAndUpdate(id, { instructor }, { new: true });
+    if (!training) {
+      return res.status(404).json({ message: 'Training not found' });
     }
-};*/
+    res.json(training);
+  } catch (error) {
+    console.error('Error updating instructor:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 // Delete training by ID
 const deleteprogram = async (req, res) => {
@@ -142,6 +137,57 @@ const updateTrainingStatusById = async (req, res) => {
     }
 };
 
+// Update training status to "rejected"
+const approveTraining = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const training = await trainingModel.findByIdAndUpdate(id, { status: 'approved' }, { new: true });
+        if (!training) {
+            return res.status(404).json({ message: 'Training not found' });
+        }
+        res.json({ message: 'Training approved successfully' });
+    } catch (error) {
+        console.error('Error approving training:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+const rejectTraining = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const training = await trainingModel.findByIdAndUpdate(id, { status: 'rejected' }, { new: true });
+        if (!training) {
+            return res.status(404).json({ message: 'Training not found' });
+        }
+        res.json({ message: 'Training rejected successfully' });
+    } catch (error) {
+        console.error('Error rejecting training:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+const path=require('path');
+
+//getalltrainingdetails
+const getapplicationdisplay = async (req, res) => {
+    const trainingId = req.params.id;
+
+    try {
+        const training = await trainingModel.findById(trainingId);
+
+        if (!training) {
+            return res.status(404).json({ message: "Training not found" });
+        }
+
+        res.json(training);
+    } catch (error) {
+        console.error('Error fetching training details:', error);
+        res.status(500).json({ message: 'Failed to fetch training details' });
+    }
+};
+
+
+
 module.exports = {
     addTrainingprogram,
     getalltrainings,
@@ -149,5 +195,11 @@ module.exports = {
     /*npm start updateInstructor*/
     deleteprogram,
     /*updateTrainingStatus*/
+    updateInstructor,
+
+    //reject updation
+    rejectTraining,
+    approveTraining,
+    getapplicationdisplay,
 
 };

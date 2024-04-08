@@ -33,7 +33,7 @@ function Groomservices() {
           <p className="welcome-text">
             Welcome to Pet Zone Grooming Salon, where pampering your furry friend is our passion. Let's make your pet look and feel their best!
           </p>
-          <Link to="/ScheduleAppointment" className="appointment-button">Make an appointment</Link>
+          <Link to="/Makeappointment" className="appointment-button">Make an appointment</Link>
         </div>
         <button className="arrow left" onClick={prevImage}>◀</button>
         <img className="slider-image" src={`/images/${images[currentImage]}`} alt="Grooming Service" />

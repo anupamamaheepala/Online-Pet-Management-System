@@ -1,5 +1,3 @@
-// FeedbackDisplay.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -30,7 +28,15 @@ const FeedbackDisplay = () => {
 
     const handleLike = async (id) => {
         try {
-            // Implement like functionality here
+            const response = await axios.post(`http://localhost:9000/feedback/${id}/like`);
+            if (response.data.success) {
+                // Update feedback list with the new like count
+                setFeedbackList(prevFeedbackList =>
+                    prevFeedbackList.map(feedback =>
+                        feedback._id === id ? { ...feedback, likes: feedback.likes + 1 } : feedback
+                    )
+                );
+            }
         } catch (error) {
             console.error("Error liking feedback:", error);
             alert("Failed to like feedback");
@@ -39,7 +45,15 @@ const FeedbackDisplay = () => {
 
     const handleDislike = async (id) => {
         try {
-            // Implement dislike functionality here
+            const response = await axios.post(`http://localhost:9000/feedback/${id}/dislike`);
+            if (response.data.success) {
+                // Update feedback list with the new dislike count
+                setFeedbackList(prevFeedbackList =>
+                    prevFeedbackList.map(feedback =>
+                        feedback._id === id ? { ...feedback, dislikes: feedback.dislikes + 1 } : feedback
+                    )
+                );
+            }
         } catch (error) {
             console.error("Error disliking feedback:", error);
             alert("Failed to dislike feedback");

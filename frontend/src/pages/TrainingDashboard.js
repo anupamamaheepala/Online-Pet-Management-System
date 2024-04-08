@@ -19,29 +19,6 @@ const TrainingDashboard = () => {
       }
     };
   
-    const downloadFile = async (filePath) => {
-      try {
-        const response = await axios.get(`http://localhost:9000/${filePath}`, {
-          responseType: 'blob'
-        });
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', filePath.split('/').pop());
-        document.body.appendChild(link);
-        link.click();
-      } catch (error) {
-        console.error('Error downloading file:', error);
-      }
-    };
-    const handleStatusChange = async (id, status) => {
-        try {
-            await axios.put(`http://localhost:9000/training/updateStatus/${id}`, { status });
-            fetchTrainings();
-        } catch (error) {
-            console.error('Error updating status:', error);
-        }
-    };
 
     const handleDelete = async (id) => {
         try {
@@ -51,6 +28,17 @@ const TrainingDashboard = () => {
             console.error('Error deleting training:', error);
         }
     };
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'approved':
+                return 'green';
+            case 'rejected':
+                return 'red';
+            default:
+                return 'black';
+        }
+    };
+
 
     return (
         <div>
@@ -64,7 +52,6 @@ const TrainingDashboard = () => {
                         <th>Id</th>
                         <th>Owner's Name</th>
                         <th>Dog's Name</th>
-                        <th>file</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Status</th>
@@ -78,22 +65,15 @@ const TrainingDashboard = () => {
                             <td>{index + 1}</td>
                             <td>{training.ownerName}</td>
                             <td>{training.dogName}</td>
-                            <td>
-                <a href="#" onClick={() => downloadFile(training.filePath)}>Download</a>
-              </td> 
+                          
               
                             {/*Fixed date & time*/}
                            <td>{new Date(training.submissionDateTime).toLocaleDateString()}</td> {/* Display date */}
                            <td>{new Date(training.submissionDateTime).toLocaleTimeString()}</td> {/* Display time */}
  
                             
-
-                            <td>
-                                <select onChange={(e) => handleStatusChange(training._id, e.target.value)} value={training.status}>
-                                    <option value="pending">Pending</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
+                           <td style={{ color: getStatusColor(training.status) }}>
+                                {training.status === 'pending' ? 'Pending' : training.status === 'approved' ? 'Approved' : 'Rejected'}
                             </td>
                             <td>
                                 <Link to={`/training/${training._id}`}>View Details</Link>

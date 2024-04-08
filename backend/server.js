@@ -24,7 +24,13 @@ const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
+<<<<<<< HEAD
 const productRoutes = require('./routes/products');
+=======
+const uploadRoute =require("./routes/uploadRoute");
+
+const productsRouter = require('./routes/products');
+>>>>>>> dfa8e83261067bf8c26c6cbf55745d0d462c361e
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -38,6 +44,7 @@ app.use(bodyParser.json());
 
 // Mounting routes for various endpoints
 
+app.use("/uploads" ,uploadRoute);
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
 app.use("/payerinfo", payerinfoRoute);

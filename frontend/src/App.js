@@ -3,9 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from "./pages/Home";
+
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
+import FeedbackInquiry from './pages/FeedbackInquiry';
+
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -44,7 +47,17 @@ import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
+<<<<<<< HEAD
 import AllOrders from './pages/AllOrders'
+=======
+
+import AllOrders from './pages/AllOrders';
+import ViewApplication from './pages/ViewApplication';
+
+
+
+
+>>>>>>> dfa8e83261067bf8c26c6cbf55745d0d462c361e
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
@@ -63,11 +76,15 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
+          <Route path="/training/application:id" element={<ViewApplication/>}/>
 
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
+          <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
+
+
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
@@ -89,7 +106,7 @@ function App() {
           <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm />} />
           <Route path="/StaffList" element={<StaffList />} />
           <Route path="/StaffLeaveForm" element={<StaffLeaveForm />} />
-          <Route path="/StaffSalaryForm" element={<StaffSalaryForm />} />
+          <Route path="/salary/:staffId" element={<StaffSalaryForm />} />
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
           <Route path="/edit/:customerId" element={<EditCustomer />} />
