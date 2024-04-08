@@ -87,6 +87,28 @@ const paymentController = {
       res.status(500).json({ message: "Server Error" });
     }
   },
+
+  updatePayerInfo: async (req, res) => {
+    try {
+      const { name, email, phonenumber, address, purpose, amount } = req.body;
+      const payerId = req.params.id;
+
+      if (!name || !email || !phonenumber || !address || !purpose || !amount) {
+        return res.status(400).json({ message: "All fields are required!" });
+      }
+
+      const updatedPayerInfo = await Payerinfo.findByIdAndUpdate(
+        payerId,
+        { name, email, phonenumber, address, purpose, amount },
+        { new: true }
+      );
+
+      res.status(200).json(updatedPayerInfo);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  },
 };
 
 module.exports = paymentController;

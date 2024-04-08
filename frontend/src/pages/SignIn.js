@@ -31,6 +31,8 @@ const SignIn = () => {
       //window.location.href = '/';
           // Redirect to MyProfile page if sign-in successful
     //window.location.href = `/MyProfile/${res.data.user._id}`;
+    // Store the user ID in localStorage upon successful sign-in
+    localStorage.setItem('userId', res.data.user._id);
     // Redirect to MyProfile page if sign-in successful
      window.location.href = `/MyProfile/${res.data.user._id}`;
   
