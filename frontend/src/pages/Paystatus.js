@@ -31,7 +31,7 @@ const Paystatus = () => {
 
     // Function to handle edit button click
     const handleEdit = () => {
-        // Implement edit functionality here
+        window.location.href = `/Editpayinfo?id=${payerInfo._id}`;
     };
 
     // Function to handle delete button click

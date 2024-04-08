@@ -53,13 +53,10 @@ import AllOrders from './pages/AllOrders';
 
 import ViewApplication from './pages/ViewApplication';
 
-
-
-
-
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
+import Editpayinfo from './pages/Editpayinfo';
 
 
 
@@ -135,6 +132,7 @@ function App() {
           <Route path="/Paystatus" element={<Paystatus/>} ></Route>
           <Route path="/OrderForm" element={<OrderForm />} ></Route>
           <Route path="/AllOrders" element={<AllOrders/>}></Route>
+          <Route path="Editpayinfo" element={<Editpayinfo/>}></Route>
 
         
 
