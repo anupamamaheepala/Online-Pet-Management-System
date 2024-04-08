@@ -79,11 +79,13 @@ const MyProfile = () => {
             <p>Email: {customerData.email}</p>
             <p>Contact Number: {customerData.contactNumber}</p>
             <p>Address: {customerData.address}</p>
+            <div className='editreset_container'>
             <button onClick={handlePasswordReset} className="ResetPasswordButton_custom">Reset Password</button>
-            </div>
-            <br></br>
-            <div>
             <button onClick={handleEditProfile} className="EditButton_custom">Edit Profile</button>
+            </div>
+            </div>
+            
+            <div>
             <button onClick={handleDeleteProfile} className="DeleteButton_custom">Delete Profile</button>
             </div>
           </div>

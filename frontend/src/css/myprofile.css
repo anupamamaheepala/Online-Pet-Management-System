@@ -1,7 +1,7 @@
 /* myprofile.css */
 
 .MyProfileContainer_custom {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
   }
@@ -95,5 +95,18 @@
 
   .MyProfileTitle{
     text-align: center;
+    margin-bottom: 40px;
   }
+
+  .editreset_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .editreset_container button{
+    margin-right: 20px;
+  }
+
+
   
