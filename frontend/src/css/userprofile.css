@@ -1,4 +1,4 @@
-.UserProfile {
+/* .UserProfile {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -64,4 +64,80 @@
     margin-left: 10px;
   }
   
-  
+   */
+
+   /* myprofile.css */
+
+.MyProfileContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.ProfileCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.ProfileHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ProfilePhoto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.ProfileHeader input[type="file"] {
+  margin-left: auto;
+}
+
+.ProfileHeader input[type="file"]::-webkit-file-upload-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ProfileHeader input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #0056b3;
+}
+
+.ProfileHeader input[type="file"]::-webkit-file-upload-button:active {
+  background-color: #004a9b;
+}
+
+.ProfileHeader input[type="file"]::-webkit-file-upload-button:focus {
+  outline: none;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  background-color: #004a9b;
+}
+
+button:focus {
+  outline: none;
+}

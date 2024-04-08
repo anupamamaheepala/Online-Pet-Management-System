@@ -30,7 +30,10 @@ const SignIn = () => {
       // Redirect to home page if sign-in successful
       //window.location.href = '/';
           // Redirect to MyProfile page if sign-in successful
-    window.location.href = `/MyProfile/${res.data.user._id}`;
+    //window.location.href = `/MyProfile/${res.data.user._id}`;
+    // Redirect to MyProfile page if sign-in successful
+     window.location.href = `/MyProfile/${res.data.user._id}`;
+  
 
     } catch (err) {
       console.error(err);

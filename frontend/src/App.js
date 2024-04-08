@@ -93,7 +93,7 @@ function App() {
           <Route path="/AllAdvertisements" element={<AllAdvertisements />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/MyProfile/:customerId" component={<MyProfile/>} />
+          <Route path="/MyProfile/:customerId" element={<MyProfile />} />
           <Route path="/Payerinfo" element={<Payerinfo />} />
           <Route path="/Cardpay" element={<Cardpay />} />
           <Route path="/Banktrans" element={<Banktrans />} />
