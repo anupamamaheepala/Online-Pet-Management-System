@@ -8,7 +8,19 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar/Navbar";
 
 const ShopCategory = (props) => {
-    const [allProducts, setAllProducts] = useState([]);
+  
+    const [allProducts, setAllProducts] = useState([
+        { id: 1, name: "Product 1", category: "Foods", image: "../components/Assests/PR (1).png", price: 10.99 },
+        { id: 2, name: "Product 2", category: "Foods", image: "../components/Assests/PR (2).png", price: 20.99 },
+        { id: 3, name: "Product 3", category: "Foods", image: "../components/Assests/PR (3).png", price: 15.99 },
+        { id: 4, name: "Product 4 ", category: "Medicines", image: "../components/Assests/PR (18).png", price: 10.99 },
+        { id: 5, name: "Product 5", category: "Medicines", image: "../components/Assests/PR (19).png", price: 20.99 },
+        { id: 6, name: "Product 6", category: "Medicines", image: "../components/Assests/PR (20).png", price: 15.99 },
+        { id: 7, name: "Product 7", category: "Toys and Accessories", image: "../components/Assests/PR (31).png", price: 10.99 },
+        { id: 8, name: "Product 8", category: "Toys and Accessories", image: "../components/Assests/PR (32).png", price: 20.99 },
+        { id: 9, name: "Product 9", category: "Toys and Accessories", image: "../components/Assests/PR (30).png", price: 15.99 },
+        // Add more dummy data as needed
+    ]);
 
     
 
