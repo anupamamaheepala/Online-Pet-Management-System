@@ -8,6 +8,10 @@ const MakeAppointment = () => {
   const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
   const [petType, setPetType] = useState('');
+  const [selectService, setSelectService] = useState('');
+  const [selectDate, setSelectDate] = useState('');
+  const [selectTime, setSelectTime] = useState('');
+  const [selectProfession, setSelectProfession] = useState('');
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -19,7 +23,11 @@ const MakeAppointment = () => {
         ownerName,
         ownerEmail,
         ownerContact,
-        petType
+        petType,
+        selectService,
+        selectDate,
+        selectTime,
+        selectProfession
       });
 
       // Clear form fields after successful submission
@@ -27,6 +35,10 @@ const MakeAppointment = () => {
       setOwnerEmail('');
       setOwnerContact('');
       setPetType('');
+      setSelectService('');
+      setSelectDate('');
+      setSelectTime('');
+      setSelectProfession('');
     } catch (error) {
       // Handle any errors
       console.error('Error submitting form:', error);
@@ -55,23 +67,7 @@ const MakeAppointment = () => {
             <input className="makeappointment_input_text" type="text" id="petType" value={petType} onChange={(e) => setPetType(e.target.value)} required />
           </div>
         </div>
-        <button className="makeappointment_button" type="submit">Submit</button>
-      </form>
-    </div>
-  );
-};
-
-export default MakeAppointment;
-
-
-
-
-
-
-
-
-
-       {/* <div className="right_inputs">
+        <div className="right_inputs">
           <div className="makeappointment_input_container">
             <label className="makeappointment_label" htmlFor="selectService">Select Service:</label>
             <select className="makeappointment_select" id="selectService" value={selectService} onChange={(e) => setSelectService(e.target.value)} required>
@@ -98,4 +94,11 @@ export default MakeAppointment;
               <option value="Pet Sitter">Pet Sitter</option>
             </select>
           </div>
-  </div>*/}
+        </div>
+        <button className="makeappointment_button" type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default MakeAppointment;
