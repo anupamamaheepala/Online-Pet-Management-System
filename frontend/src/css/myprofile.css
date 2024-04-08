@@ -109,5 +109,11 @@
     margin-right: 20px;
   }
 
+  .mypdel_container{
+    display: flex;
+    justify-content: right;
+    margin-top: 50px;
+  }
+
 
   

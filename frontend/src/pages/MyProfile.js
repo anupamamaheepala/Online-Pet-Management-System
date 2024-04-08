@@ -85,7 +85,7 @@ const MyProfile = () => {
             </div>
             </div>
             
-            <div>
+            <div className='mypdel_container'>
             <button onClick={handleDeleteProfile} className="DeleteButton_custom">Delete Profile</button>
             </div>
           </div>
