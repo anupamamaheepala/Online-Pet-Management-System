@@ -1,26 +1,19 @@
-const jwt = require('jsonwebtoken');
-
 const authMiddleware = (req, res, next) => {
-  // Get the token from the request headers or query parameters
-  const token = req.headers.authorization || req.query.token;
-
-  if (!token) {
-    return res.status(401).json({ message: 'Unauthorized: Missing token' });
+  // Implement your authentication logic here to verify the user's identity
+  // For example, you can check if the user is logged in using session or other mechanisms
+  
+  // Assuming you have fetched the user ID from the authentication mechanism
+  const userId = getUserIdFromAuthentication(); // Implement this function to get the user ID
+  
+  if (!userId) {
+    return res.status(401).json({ message: 'Unauthorized: Missing user ID' });
   }
 
-  try {
-    // Verify the token
-    const decoded = jwt.verify(token, 'your_secret_key'); // Replace 'your_secret_key' with your actual secret key
+  // Attach the user ID to the request object
+  req.user = { id: userId };
 
-    // Attach user information to the request object
-    req.user = decoded.user;
-
-    // Proceed to the next middleware or route handler
-    next();
-  } catch (error) {
-    console.error(error);
-    return res.status(401).json({ message: 'Unauthorized: Invalid token' });
-  }
+  // Proceed to the next middleware or route handler
+  next();
 };
 
 module.exports = authMiddleware;

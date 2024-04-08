@@ -56,7 +56,6 @@ const router = express.Router();
 const registerController = require("../controller/registerController");
 const Customer = require('../models/registerModel');
 const bcrypt = require('bcrypt');
-const authMiddleware = require('../middleware/authMiddleware'); // Import your authentication middleware
 
 
 // Register a new customer
@@ -112,33 +111,37 @@ router.post('/signin', async (req, res) => {
   }
 });
 
-// Reset password endpoint
-router.post('/reset-password', async (req, res) => {
-  const { currentPassword, newPassword, confirmPassword } = req.body;
-  const customerId = req.user.id; // Assuming the user ID is attached to the request object by the authentication middleware
+// Route for resetting password
+router.put('/reset-password', async (req, res) => {
+  const { customerId, oldPassword, newPassword } = req.body; // Extract customerId from req.body
 
   try {
-    // Fetch the customer from the database
-    const customer = await Customer.findById(customerId);
+    // Fetch the user using the customer ID
+    const user = await Customer.findById(customerId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-    // Check if the current password provided matches the password in the database
-    const isPasswordValid = await bcrypt.compare(currentPassword, customer.password);
+    // Verify if the old password matches
+    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
     if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Current password is incorrect' });
+      return res.status(400).json({ message: 'Old password is incorrect' });
     }
 
     // Hash the new password
     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update the customer's password in the database
+    // Update the user's password
     await Customer.findByIdAndUpdate(customerId, { password: hashedNewPassword });
 
-    res.status(200).json({ message: 'Password reset successful' });
+    // Send success response
+    res.status(200).json({ message: 'Password updated successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
 
 module.exports = router;
 

@@ -195,6 +195,9 @@ const MyProfile = () => {
             <div className='editreset_container'>
             {/* Link to reset password page */}
             <Link to="/reset-password" className="ResetPasswordButton_custom">Reset Password</Link>
+            &nbsp;
+            &nbsp;
+            &nbsp;
             <button onClick={handleEditProfile} className="EditButton_custom">Edit Profile</button>
             
             </div>
