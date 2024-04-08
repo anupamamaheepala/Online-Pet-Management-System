@@ -42,10 +42,13 @@ const Paystatus = () => {
                 // Handle success
                 console.log(response.data); // or any other action upon success
                 window.location.href = '/Payerinfo';
+                alert('Payer information deleted successfully');
             } catch (error) {
                 console.error('Error deleting data:', error);
                 // Handle error
             }
+        } else {
+            alert('Deletion cancelled.');
         }
     };
 
