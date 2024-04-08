@@ -114,9 +114,9 @@ import { useParams } from 'react-router-dom';
 import '../css/myprofile.css'; // Import the CSS file
 
 const MyProfile = () => {
+  const { customerId } = useParams();
   const [customerData, setCustomerData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { customerId } = useParams(); // Extract customerId from URL parameters
 
   useEffect(() => {
     const fetchCustomerData = async () => {
@@ -138,9 +138,24 @@ const MyProfile = () => {
     console.log('Editing profile...');
   };
 
-  const handleDeleteProfile = () => {
-    // Implement delete profile logic here
-    console.log('Deleting profile...');
+  const handleDeleteProfile = async () => {
+    // Prompt the user for confirmation
+    const confirmed = window.confirm('Are you sure you want to delete this profile?');
+  
+    if (confirmed) {
+      try {
+        await axios.delete(`http://localhost:9000/customer/${customerId}`);
+        // Show alert message indicating successful deletion
+        alert('Profile deleted successfully');
+        // Redirect to the signup page
+        window.location.href = '/Register';
+      } catch (error) {
+        alert('Failed to delete customer');;
+        // Handle error
+      }
+    } else {
+      alert('Deletion cancelled.');
+    }
   };
 
   const handlePasswordReset = () => {
@@ -198,7 +213,7 @@ const MyProfile = () => {
             &nbsp;
             &nbsp;
             &nbsp;
-            <button onClick={handleEditProfile} className="EditButton_custom">Edit Profile</button>
+            <Link to={`/edit-profile/${customerId}`} className="EditButton_custom">Edit Profile</Link>
             
             </div>
             </div>

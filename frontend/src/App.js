@@ -53,7 +53,7 @@ import AllOrders from './pages/AllOrders';
 
 import ViewApplication from './pages/ViewApplication';
 import ResetPassword from './pages/ResetPassword';
-
+import EditProfile from './pages/EditProfile';
 
 
 
@@ -137,7 +137,7 @@ function App() {
           <Route path="/OrderForm" element={<OrderForm />} ></Route>
           <Route path="/AllOrders" element={<AllOrders/>}></Route>
           <Route path="/reset-password" element={<ResetPassword />} />
-
+          <Route path="/edit-profile/:customerId" element={<EditProfile />} />
         
 
 
