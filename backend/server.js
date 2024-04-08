@@ -24,8 +24,7 @@ const appointmentRoutes = require("./routes/MakeAppointmentRoute");
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
-const productsRouter = require('./routes/products');
-
+const productRoutes = require('./routes/products');
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -51,7 +50,7 @@ app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
 app.use("/appointment", appointmentRoutes);
 app.use("/orders", orderRoute);
-app.use('/products', productsRouter);
+app.use('/products', productRoutes);
 
 
 
