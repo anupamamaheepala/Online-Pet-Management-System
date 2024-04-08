@@ -57,7 +57,7 @@ const AddAdvertisement = () => {
             
             <form className="ma_advertisement-form" onSubmit={onSubmit} enctype="multipart/form-data">
 
-                <h2>Add your advertisement details here. </h2>
+                <h2>Add Your Aadvertisement Details Here. </h2>
                 <p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
                     <b> If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
 
