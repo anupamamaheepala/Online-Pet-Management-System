@@ -63,27 +63,35 @@ const MyProfile = () => {
         {loading ? (
           <p className="LoadingIndicator">Loading...</p>
         ) : (
+          
           <div className="ProfileCard_custom">
+            <h2 className='MyProfileTitle'>My Profile</h2>
+            <center>
             <div className="ProfileHeader_custom">
              <button onClick={handleAddPet} className="MyPetsButton_custom">My Pets</button>
              <br></br>
              </div>
+            
              <div>
-              <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" />
+              <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" /></div>
+              <div>
               <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />
               
             </div>
             <div>
-            <h2 className='MyProfileTitle'>My Profile</h2>
+            
             <p>Username: {customerData.username}</p>
             <p>Email: {customerData.email}</p>
             <p>Contact Number: {customerData.contactNumber}</p>
             <p>Address: {customerData.address}</p>
+            
             <div className='editreset_container'>
             <button onClick={handlePasswordReset} className="ResetPasswordButton_custom">Reset Password</button>
             <button onClick={handleEditProfile} className="EditButton_custom">Edit Profile</button>
+            
             </div>
             </div>
+            </center>
             
             <div className='mypdel_container'>
             <button onClick={handleDeleteProfile} className="DeleteButton_custom">Delete Profile</button>
