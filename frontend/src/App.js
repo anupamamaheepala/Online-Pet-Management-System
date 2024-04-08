@@ -47,9 +47,6 @@ import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
-<<<<<<< HEAD
-import AllOrders from './pages/AllOrders'
-=======
 
 import AllOrders from './pages/AllOrders';
 import ViewApplication from './pages/ViewApplication';
@@ -57,7 +54,6 @@ import ViewApplication from './pages/ViewApplication';
 
 
 
->>>>>>> dfa8e83261067bf8c26c6cbf55745d0d462c361e
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
