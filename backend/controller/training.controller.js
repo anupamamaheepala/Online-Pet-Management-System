@@ -166,7 +166,6 @@ const rejectTraining = async (req, res) => {
     }
 };
 
-const path=require('path');
 
 //getalltrainingdetails
 const getapplicationdisplay = async (req, res) => {
