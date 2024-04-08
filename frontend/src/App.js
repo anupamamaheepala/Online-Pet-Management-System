@@ -53,6 +53,10 @@ import AllOrders from './pages/AllOrders';
 
 import ViewApplication from './pages/ViewApplication';
 
+import ResetPassword from './pages/ResetPassword';
+import EditProfile from './pages/EditProfile';
+
+
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
@@ -132,7 +136,12 @@ function App() {
           <Route path="/Paystatus" element={<Paystatus/>} ></Route>
           <Route path="/OrderForm" element={<OrderForm />} ></Route>
           <Route path="/AllOrders" element={<AllOrders/>}></Route>
+
           <Route path="Editpayinfo" element={<Editpayinfo/>}></Route>
+
+
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/edit-profile/:customerId" element={<EditProfile />} />
 
         
 
