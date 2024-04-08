@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import '../css/paystatus.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -28,6 +29,16 @@ const Paystatus = () => {
         fetchData();
     }, []);
 
+    // Function to handle edit button click
+    const handleEdit = () => {
+        // Implement edit functionality here
+    };
+
+    // Function to handle delete button click
+    const handleDelete = () => {
+        // Implement delete functionality here
+    };
+
     return (
         <>
         <Header/>
@@ -43,7 +54,17 @@ const Paystatus = () => {
                     <p className="anupstitem"><span className="anupstlabel">Address :</span><span className="anupstvalue">{payerInfo.address}</span></p>
                     <p className="anupstitem"><span className="anupstlabel">Purpose :</span><span className="anupstvalue">{payerInfo.purpose}</span></p>
                     <p className="anupstitem"><span className="anupstlabel">Amount :</span><span className="anupstvalue">{payerInfo.amount}</span></p>
+
+                    <div className="anupstbuttoncontainer">
+                        <button onClick={handleEdit} className="btn btn-warning">Edit</button>
+                        <button onClick={handleDelete} className="btn btn-danger">Delete</button>
+                    </div>
+                    <div className="anupstbuttoncontainer">
+                    <Link to="/cardpay" className="anupstpaymentlink">Card Payment</Link>
+                    <Link to="/banktrans" className="anupstpaymentlink">Bank Transfer</Link>
+                    </div>
                 </div>
+                
             )}
         </div>
         <Footer/>
