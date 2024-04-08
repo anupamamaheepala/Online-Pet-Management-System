@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/vetservices.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ShowLoading from '../components/ShowLoading';
 
 function Vetservices() {
   const images = ['vetback1.jpg', 'vetback2.jpg', 'vetback3.jpg', 'vetback4.jpg', 'vetback5.jpg'];
@@ -44,7 +45,9 @@ function Vetservices() {
   ];
 
   return (
+    
     <>
+    <ShowLoading />
       <Header />
       <div className="image-slider">
         <div className="upper-text">

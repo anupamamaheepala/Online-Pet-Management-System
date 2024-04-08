@@ -4,6 +4,8 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
+import ShowLoading from '../components/ShowLoading';
+
 
 
 const MakeAppointment = () => {
@@ -54,6 +56,7 @@ const MakeAppointment = () => {
 
   return (
     <>
+     <ShowLoading />
     <Header />
     <div className="makeappointment_container">
       <h1 className="makeappointment_heading">Schedule Your Appointment</h1>
