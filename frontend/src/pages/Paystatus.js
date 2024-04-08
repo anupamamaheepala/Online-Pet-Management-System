@@ -36,14 +36,16 @@ const Paystatus = () => {
 
     // Function to handle delete button click
     const handleDelete = async () => {
-        try {
-            const response = await axios.delete(`http://localhost:9000/payerinfo/${payerInfo._id}`);
-            // Handle success
-            console.log(response.data); // or any other action upon success
-            window.location.href = '/Payerinfo';
-        } catch (error) {
-            console.error('Error deleting data:', error);
-            // Handle error
+        if (window.confirm("Are you sure you want to stop the payment?")) {
+            try {
+                const response = await axios.delete(`http://localhost:9000/payerinfo/${payerInfo._id}`);
+                // Handle success
+                console.log(response.data); // or any other action upon success
+                window.location.href = '/Payerinfo';
+            } catch (error) {
+                console.error('Error deleting data:', error);
+                // Handle error
+            }
         }
     };
 
