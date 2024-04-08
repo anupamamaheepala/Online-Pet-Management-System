@@ -39,10 +39,14 @@ const TrSchema = new mongoose.Schema({
          default: 'pending'
      },
            // Field for storing file path
-           filePath: {
-            type: String,
-            required: true
-           }
+     filePath: {
+         type: String,
+         required: true
+     },
+
+     instructor: {
+         type: String
+      } 
         
 
         

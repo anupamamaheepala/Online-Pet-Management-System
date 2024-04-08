@@ -16,8 +16,8 @@ const AddingProduct = () => {
     const { itemName, category, description, image, price } = formData;
 
     const onChange = e => {
-        if (e.target.name === "image" && e.target.files.length > 0) {
-            setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+        if (e.target.name === "image") {
+            setFormData({ ...formData, image: e.target.files[0] });
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value });
         }
@@ -51,7 +51,6 @@ const AddingProduct = () => {
             if (err.response) {
                 // The request was made and the server responded with a status code
                 console.log('Server responded with status:', err.response.status);
-                console.log('Response data:', err.response.data); // Log response data for debugging
                 // You can handle different types of errors here
             } else if (err.request) {
                 // The request was made but no response was received

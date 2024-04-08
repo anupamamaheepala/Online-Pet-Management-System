@@ -42,20 +42,21 @@ import AllCustomers from './pages/AllCustomers';
 import EditCustomer from './pages/EditCustomer';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
+
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
-
 import StaffProfile from './pages/StaffProfile';
-
 import OrderForm from './pages/OrderForm';
 
 import AllOrders from './pages/AllOrders';
+import ViewApplication from './pages/ViewApplication';
 
 
 
 
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
+import Product from './pages/Product';
 
 
 
@@ -71,6 +72,7 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
+          <Route path="/training/application:id" element={<ViewApplication/>}/>
 
 
           <Route path="/Feedback" element={<Feedback />} />
@@ -115,6 +117,9 @@ function App() {
 
           <Route path="/AddingProduct" element={<AddingProduct/>} ></Route>
           <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
+          <Route path='/product' element={<ShopCategory />}>
+            <Route path=':productId' element={<Product />} />
+          </Route>
 
           <Route path="/StaffProfile" element={<StaffProfile/>} ></Route>
           <Route path="/update/:staffId" element={<UpdateStaff/>} ></Route>
@@ -122,27 +127,10 @@ function App() {
 
           <Route path="/Paystatus" element={<Paystatus/>} ></Route>
           <Route path="/OrderForm" element={<OrderForm />} ></Route>
+          <Route path="/AllOrders" element={<AllOrders/>}></Route>
 
-          <Route path="/AddingProduct" element={<AddingProduct/>} />
-          <Route path="/AddedProduct" element={<AddedProduct/>} />
-          <Route path="/OrderForm" element={<OrderForm/>} />
-          <Route path="/AllOrders" element={<AllOrders/>} />
+        
 
-
-
-          <Route path="/AddingProduct" element={<AddingProduct />} />
-          <Route path="/AddedProduct" element={<AddedProduct />} />
-          <Route path="/OrderForm" element={<OrderForm />} />
-
-
-          <Route path="/AddingProduct" element={<AddingProduct />} />
-          <Route path="/AddedProduct" element={<AddedProduct />} />
-          <Route path="/OrderForm" element={<OrderForm />} />
-
-
-          <Route path="/AddingProduct" element={<AddingProduct />} />
-          <Route path="/AddedProduct" element={<AddedProduct />} />
-          <Route path="/OrderForm" element={<OrderForm />} />
 
         </Routes>
       </BrowserRouter>
