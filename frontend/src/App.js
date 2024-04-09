@@ -14,6 +14,7 @@ import FeedbackInquiry from './pages/FeedbackInquiry';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
+import VetDashboard from './pages/VetDashboard';
 import AllVetAppointments from './pages/AllVetAppointments';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
@@ -44,19 +45,12 @@ import AllCustomers from './pages/AllCustomers';
 import EditCustomer from './pages/EditCustomer';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
-
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
-
 import ViewApplication from './pages/ViewApplication';
-
-
-
-
-
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
@@ -92,6 +86,7 @@ function App() {
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
           <Route path="/MyAppointments" element={<MyAppointments />} />
+          <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
