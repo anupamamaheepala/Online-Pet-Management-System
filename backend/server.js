@@ -28,7 +28,7 @@ const productRoutes = require('./routes/products');
 const uploadRoute =require("./routes/uploadRoute");
 const salaryRoute =require("./routes/salaryRoute");
 const productsRouter = require('./routes/products');
-
+const banktransadminRoute = require('./routes/banktransadminRoute');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -49,6 +49,7 @@ app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
 app.use('/salary', salaryRoute);
+app.use('/banktransadmin', banktransadminRoute);
 
 
 // Route to handle requests to the root URL
