@@ -66,7 +66,10 @@ app.use('/pets', petRoute);
 
 app.use('/salary', salaryRoute);
 //app.use('/banktransadmin', banktransadminRoute);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 30754cb53b4407a438e7f634751367b5da3836ab
 
 
 // Route to handle requests to the root URL
