@@ -28,7 +28,7 @@ const productRoutes = require('./routes/products');
 const uploadRoute =require("./routes/uploadRoute");
 const salaryRoute =require("./routes/salaryRoute");
 const productsRouter = require('./routes/products');
-<<<<<<< HEAD
+
 const petRoute = require("./routes/petRoute"); 
 
 
@@ -37,9 +37,9 @@ const petRoute = require("./routes/petRoute");
 //const staffLeaveRoute = require("./routes/staffLeaveRoute");
 //const cardpayRoute = require("./routes/cardpayRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
-=======
+
 const banktransadminRoute = require('./routes/banktransadminRoute');
->>>>>>> 22e109d7db772c70ad8c70c610af9d5de31f009a
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -59,14 +59,14 @@ app.use("/feedback", feedbacks);
 app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
-<<<<<<< HEAD
+
 app.use('/pets', petRoute);
 
 
-=======
+
 app.use('/salary', salaryRoute);
-app.use('/banktransadmin', banktransadminRoute);
->>>>>>> 22e109d7db772c70ad8c70c610af9d5de31f009a
+//app.use('/banktransadmin', banktransadminRoute);
+
 
 
 // Route to handle requests to the root URL

@@ -61,15 +61,14 @@ import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
-<<<<<<< HEAD
+
 import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
-=======
+
 import Banktransadmin from './pages/Banktransadmin';
 
 
->>>>>>> 22e109d7db772c70ad8c70c610af9d5de31f009a
 
 function App() {
   console.log(global);
@@ -150,14 +149,13 @@ function App() {
 
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
-<<<<<<< HEAD
+
           <Route path="/my-pets/:customerId" element={<MyPets />} />
           <Route path="/pet/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
-=======
+
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
 
->>>>>>> 22e109d7db772c70ad8c70c610af9d5de31f009a
         
 
 
