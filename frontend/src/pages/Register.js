@@ -31,6 +31,8 @@ const Register =  () =>{
             const res = await axios.post("http://localhost:9000/customer/register", formData);
             console.log(res.data);
 
+            
+
            // Redirect to sign-in page after successful registration
       window.location.href = '/SignIn';
 

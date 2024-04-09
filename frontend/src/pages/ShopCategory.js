@@ -27,11 +27,17 @@ const ShopCategory = (props) => {
         fetchProducts();
     }, []);
 
+    // Function to handle adding a product to the cart
+    const addToCart = (productId) => {
+        // Add logic to add product to cart here
+        console.log(`Product with ID ${productId} added to cart`);
+    };
+
     return (
         <>
             <Header/>
             <div className="shopcategory">
-                <Navbar/>
+                <Navbar products={allProducts} />
                 <img src={props.banner} className="shopcategory-banner" alt="" />
                 <div className="shopcategory-indexSort">
                     <p><span>Showing 1 - {allProducts.length}</span> out of {allProducts.length} Products</p>
@@ -40,15 +46,18 @@ const ShopCategory = (props) => {
                 <div className="shopcategory-products">
                     {allProducts.map((item) => (
                         (props.category === item.category) &&
-                        <Item
-                            key={item._id}
-                            id={item._id}
-                            name={item.itemName}
-                            image={item.image}
-                            price={item.price}
-                            // Check if quantity is greater than 0, if not, display "Out of Stock" message
-                            quantity={item.quantity > 0 ? item.quantity : "Out of Stock"}
-                        />
+                        <div key={item._id}>
+                            <Link to={`/product/${item._id}`}>
+                                <Item
+                                    name={item.itemName}
+                                    image={item.image}
+                                    price={item.price}
+                                    // Check if quantity is greater than 0, if not, display "Out of Stock" message
+                                    quantity={item.quantity > 0 ? item.quantity : "Out of Stock"}
+                                />
+                            </Link>
+                            <button onClick={() => addToCart(item._id)}>Add to Cart</button>
+                        </div>
                     ))}
                 </div>
                 <div className="shopcategory-loadmore">

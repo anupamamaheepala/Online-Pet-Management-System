@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 import cart_icon from '../Assests/cart_icon.png';
 import drop_down from '../Assests/dropdown_icon.png';
 
-
-
-const Navbar = () => {
+const Navbar = ({ products }) => {
   const [menu, setMenu] = useState("Shop");
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const menuRef = useRef();
 
@@ -19,6 +18,11 @@ const Navbar = () => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+    // Filter products based on search term
+    const results = products.filter(product =>
+      product.itemName.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setSearchResults(results);
   }
 
   const handleSearch = () => {
