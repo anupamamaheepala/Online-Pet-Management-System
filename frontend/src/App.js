@@ -61,6 +61,7 @@ import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
+import Banktransadmin from './pages/Banktransadmin';
 
 
 
@@ -142,6 +143,7 @@ function App() {
 
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
+          <Route path="/Banktransadmin" element={<Banktransadmin />} />
 
         
 
