@@ -14,6 +14,7 @@ import FeedbackInquiry from './pages/FeedbackInquiry';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
+import VetDashboard from './pages/VetDashboard';
 import AllVetAppointments from './pages/AllVetAppointments';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
@@ -44,14 +45,13 @@ import AllCustomers from './pages/AllCustomers';
 import EditCustomer from './pages/EditCustomer';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
-
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
-
 import ViewApplication from './pages/ViewApplication';
+
 
 import ResetPassword from './pages/ResetPassword';
 import EditProfile from './pages/EditProfile';
@@ -61,9 +61,15 @@ import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
+<<<<<<< HEAD
 import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
+=======
+import Banktransadmin from './pages/Banktransadmin';
+
+
+>>>>>>> 22e109d7db772c70ad8c70c610af9d5de31f009a
 
 function App() {
   console.log(global);
@@ -94,6 +100,7 @@ function App() {
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
           <Route path="/MyAppointments" element={<MyAppointments />} />
+          <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
@@ -143,9 +150,14 @@ function App() {
 
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
+<<<<<<< HEAD
           <Route path="/my-pets/:customerId" element={<MyPets />} />
           <Route path="/pet/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
+=======
+          <Route path="/Banktransadmin" element={<Banktransadmin />} />
+
+>>>>>>> 22e109d7db772c70ad8c70c610af9d5de31f009a
         
 
 

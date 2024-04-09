@@ -82,14 +82,22 @@ const Banktrans = ({ submitted, data }) => {
         <form onSubmit={onSubmit}>
           <div className="anubtform-group">
             <label>Bank Name:</label>
-            <input
-              type="text"
+            <select type="text"
               id="bankName"
               name="bankName"
               value={bankName}
               onChange={(e) => setBankName(e.target.value)}
-              required
-            />
+              required>
+              <option value="" disabled>Select Bank Name</option>
+              <option value="Bank of Ceylon">Bank of Ceylon (BOC)</option>
+              <option value="People's Bank">People's Bank</option>
+              <option value="National Savings Bank">National Savings Bank (NSB)</option>
+              <option value="Hatton National Bank PLC">Hatton National Bank PLC (HNB)</option>
+              <option value="Commercial Bank of Ceylon PLC">Commercial Bank of Ceylon PLC</option>
+              <option value="Sampath Bank PLC">Sampath Bank PLC</option>
+              <option value="Seylan Bank PLC">Seylan Bank PLC</option>
+              <option value="Amana Bank PLC">Amana Bank PLC</option>
+            </select>
           </div>
           <div className="anubtform-group">
             <label>Branch Name:</label>

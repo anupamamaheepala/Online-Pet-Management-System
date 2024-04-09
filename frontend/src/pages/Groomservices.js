@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/groomeservices.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ShowLoading from '../components/ShowLoading';
 
 function Groomservices() {
   const images = ['groome1.jpg', 'groome2.jpg', 'groome3.jpg', 'groome4.jpg', 'groome5.jpg']; 
@@ -27,6 +28,7 @@ function Groomservices() {
 
   return (
     <>
+     <ShowLoading />
       <Header /> 
       <div className="image-slider">
         <div className="upper-text">
