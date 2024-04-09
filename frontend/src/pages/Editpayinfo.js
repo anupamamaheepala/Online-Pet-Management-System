@@ -65,14 +65,15 @@ const Paystatus = () => {
   return (
     <>
     <Header />
-    <div>
+    <div className="upanupayer-info">
+      <h2>Update Payer's Information</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div>
           {showUpdateForm ? (
             <form onSubmit={onSubmit}>
-              <div className="anuform-group">
+              <div className="upanuform-group">
                 <label>Name:</label>
                 <input
                   type="text"
@@ -82,7 +83,7 @@ const Paystatus = () => {
                   required
                 />
               </div>
-              <div className="anuform-group">
+              <div className="upanuform-group">
                 <label>Email:</label>
                 <input
                   type="email"
@@ -92,7 +93,7 @@ const Paystatus = () => {
                   required
                 />
               </div>
-              <div className="anuform-group">
+              <div className="upanuform-group">
                 <label>Phone Number:</label>
                 <input
                   type="text"
@@ -102,7 +103,7 @@ const Paystatus = () => {
                   required
                 />
               </div>
-              <div className="anuform-group">
+              <div className="upanuform-group">
                 <label>Address:</label>
                 <textarea
                   name="address"
@@ -111,17 +112,18 @@ const Paystatus = () => {
                   required
                 ></textarea>
               </div>
-              <div className="anuform-group">
+              <div className="upanuform-group">
                 <label>Purpose:</label>
-                <input
-                  type="text"
-                  name="purpose"
-                  value={formData.purpose}
-                  onChange={onChange}
-                  required
-                />
+                <select id="purpose" name="purpose" value={formData.purpose} onChange={onChange} required> 
+                        <option value="" disabled>Select Purpose</option>
+                        <option value="Buy products">Buy products</option>
+                        <option value="Verterinary appointment">Verterinary appointment</option>
+                        <option value="Grooming appointment">Grooming appointment</option>
+                        <option value="Pet training appointment">Pet training appointment</option>
+                        <option value="Advertisement">Advertisement</option>
+                </select>
               </div>
-              <div className="anuform-group">
+              <div className="upanuform-group">
                 <label>Amount:</label>
                 <input
                   type="text"
@@ -131,7 +133,7 @@ const Paystatus = () => {
                   required
                 />
               </div>
-              <button type="submit">Update</button>
+              <center><button className="anuupbutton" type="submit">Update</button></center>
             </form>
           ) : null}
         </div>
