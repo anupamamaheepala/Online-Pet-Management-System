@@ -27,6 +27,7 @@ const orderRoute = require("./routes/orderRoute");
 
 const productRoutes = require('./routes/products');
 const uploadRoute =require("./routes/uploadRoute");
+const salaryRoute =require("./routes/salaryRoute");
 
 const productsRouter = require('./routes/products');
 
@@ -57,6 +58,7 @@ app.use("/feedback", feedbacks);
 app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
+app.use('/salary', salaryRoute);
 
 
 

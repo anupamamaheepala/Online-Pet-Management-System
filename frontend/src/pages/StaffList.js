@@ -42,6 +42,8 @@ const StaffList = () => {
         );
     });
 
+    
+
     return (
         <>
             <Header />
@@ -68,6 +70,7 @@ const StaffList = () => {
                             <th>Contact Number</th>
                             <th>Address</th>
                             <th>Designation</th>
+                            <th>Total Salary</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -82,6 +85,7 @@ const StaffList = () => {
                                 <td>{staffMember.scontactNumber}</td>
                                 <td>{staffMember.saddress}</td>
                                 <td>{staffMember.designation}</td>
+                                <td>{staffMember.totalSalary}</td> {/* Display total salary */}
                                 <td>
                                 <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
                                 &nbsp;
