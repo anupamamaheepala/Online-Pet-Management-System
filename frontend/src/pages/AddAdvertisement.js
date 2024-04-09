@@ -15,7 +15,6 @@ const AddAdvertisement = () => {
         file: null,
         price: '',
         contact: ''
-        
     });
 
     const { ownerName, email, title, Breed, purpose, description, file, price, contact } = formData;
@@ -26,15 +25,29 @@ const AddAdvertisement = () => {
 
     const onFileChange = e => {
         setFormData({ ...formData, file: e.target.files[0] });
-      };
+    };
 
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:9000/ads/add", formData);
+            const formDataToSend = new FormData();
+            formDataToSend.append('ownerName', ownerName);
+            formDataToSend.append('email', email);
+            formDataToSend.append('title', title);
+            formDataToSend.append('Breed', Breed);
+            formDataToSend.append('purpose', purpose);
+            formDataToSend.append('description', description);
+            formDataToSend.append('file', file);
+            formDataToSend.append('price', price);
+            formDataToSend.append('contact', contact);
+
+            const res = await axios.post("http://localhost:9000/ads/add", formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             console.log(res.data);
-            
-            // Optionally, you can clear the form fields after successful submission
+
             setFormData({
                 ownerName: '',
                 email: '',
@@ -54,12 +67,10 @@ const AddAdvertisement = () => {
     return (
         <>
             <Header />
-            
-            <form className="ma_advertisement-form" onSubmit={onSubmit} enctype="multipart/form-data">
-
-                <h2>Add Your Aadvertisement Details Here. </h2>
+            <form className="ma_advertisement-form" onSubmit={onSubmit} encType="multipart/form-data">
+                <h2>Add Your Advertisement Details Here.</h2>
                 <p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
-                    <b> If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
+                    <b>If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
 
                 <div className="ma_form-group">
                     <label htmlFor="ownerName">Owner Name:</label>
@@ -96,10 +107,10 @@ const AddAdvertisement = () => {
                 </div>
 
                 <div className="ma_form-group">
-                <div>
-                  <label>Upload your pet's image:</label>
-                  <input type="file" name="file" onChange={onFileChange} />
-                </div>
+                    <div>
+                        <label>Upload your pet's image:</label>
+                        <input type="file" name="file" onChange={onFileChange} />
+                    </div>
                 </div>
 
                 <div className="ma_form-group">
@@ -118,5 +129,5 @@ const AddAdvertisement = () => {
         </>
     );
 };
-//add
+
 export default AddAdvertisement;
