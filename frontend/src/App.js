@@ -51,14 +51,12 @@ import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
 import ViewApplication from './pages/ViewApplication';
-<<<<<<< HEAD
-=======
+
 
 import ResetPassword from './pages/ResetPassword';
 import EditProfile from './pages/EditProfile';
 
 
->>>>>>> 709acd581f911e4816325cd7050df0acbeea051f
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
