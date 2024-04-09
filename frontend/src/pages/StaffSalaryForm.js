@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import axios from 'axios';
 import '../css/StaffSalary.css';
 
 function SalaryCalculator(props) {
@@ -42,6 +43,29 @@ function SalaryCalculator(props) {
         setBonusAmount(parseInt(e.target.value));
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:9000/salary/add", {
+                firstName,
+                lastName,
+                basicSalary,
+                otHours,
+                otAmount,
+                bonusAmount,
+                totalSalary
+            });
+            console.log(res.data);
+            // Optionally, you can reset the form after successful submission
+            setBasicSalary(0);
+            setOtHours(0);
+            setBonusAmount(0);
+            setTotalSalary(0);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <>
             <Header />
@@ -49,7 +73,7 @@ function SalaryCalculator(props) {
             <div className="StaffSalary">
                 <h2>Salary Calculation Form</h2>
 
-                <form className='StaffSalary-form'>
+                <form onSubmit={handleSubmit} className='StaffSalary-form'>
 
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>First Name:</label>

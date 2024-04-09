@@ -88,7 +88,7 @@ const Banktrans = ({ submitted, data }) => {
               value={bankName}
               onChange={(e) => setBankName(e.target.value)}
               required>
-              <option value="" disabled>Select bank name</option>
+              <option value="" disabled>Select Bank Name</option>
               <option value="Bank of Ceylon">Bank of Ceylon (BOC)</option>
               <option value="People's Bank">People's Bank</option>
               <option value="National Savings Bank">National Savings Bank (NSB)</option>
