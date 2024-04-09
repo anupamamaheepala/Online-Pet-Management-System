@@ -17,7 +17,14 @@ const Payerinfo = () => {
     const { name, email, phonenumber, address, purpose, amount } = formData;
 
     const onChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        if (name === 'phonenumber') {
+            if (/^\d*$/.test(value) && value.length <= 10) {
+                setFormData({ ...formData, [name]: value });
+            }
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const onSubmit = async e => {
@@ -96,7 +103,7 @@ const Payerinfo = () => {
                     </div>
                     <div className="anuform-group">
                         <label>Purpose:</label>
-                        <select id="purpose" name="purpose" value={purpose} onChange={onChange}>
+                        <select id="purpose" name="purpose" value={purpose} onChange={onChange} required> 
                         <option value="" disabled>Select Purpose</option>
                         <option value="Buy products">Buy products</option>
                         <option value="Verterinary appointment">Verterinary appointment</option>
