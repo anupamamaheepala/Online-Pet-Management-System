@@ -61,8 +61,9 @@ import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
-
-
+import PetProfile from './pages/PetProfile';
+import MyPets from './pages/MyPets';
+import AddPet from './pages/AddPet';
 
 function App() {
   console.log(global);
@@ -142,7 +143,9 @@ function App() {
 
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
-
+          <Route path="/my-pets/:customerId" element={<MyPets />} />
+          <Route path="/pet/:petId" element={<PetProfile />} />
+          <Route path="/addpet/:customerId" element={<AddPet />} />
         
 
 
