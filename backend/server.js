@@ -49,7 +49,7 @@ app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
 app.use('/salary', salaryRoute);
-app.use('/banktransadmin', banktransadminRoute);
+//app.use('/banktransadmin', banktransadminRoute);
 
 
 // Route to handle requests to the root URL
