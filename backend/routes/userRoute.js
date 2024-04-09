@@ -91,34 +91,5 @@ router.post('/get-user-info-by-id', async (req, res) => {
   }
 });*/
 
-// Route to handle appointment submissions
-router.post('/appointments', async (req, res) => {
-  try {
-    // Create a new appointment instance using the data from the request body
-    const newAppointment = new Appointment({
-      petOwnerName: req.body.petOwnerName,
-      email: req.body.email,
-      contactNumber: req.body.contactNumber,
-      petType: req.body.petType,
-      service: req.body.service,
-      appointmentDate: req.body.appointmentDate,
-      appointmentTime: req.body.appointmentTime,
-      veterinarian: req.body.veterinarian
-    });
-
-    // Save the appointment to the database
-    const savedAppointment = await newAppointment.save();
-
-    res.status(201).json(savedAppointment);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-
-
-
-
-
 
 module.exports = router;
