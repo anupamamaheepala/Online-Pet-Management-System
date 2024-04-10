@@ -118,6 +118,7 @@ const MyProfile = () => {
   const [customerData, setCustomerData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
@@ -157,6 +158,9 @@ const MyProfile = () => {
       alert('Deletion cancelled.');
     }
   };
+  // const handleImageClick = (imageURL) => {
+  //       setSelectedImage(imageURL);
+  //   };
 
   const handlePasswordReset = () => {
     // Navigate to reset password page
@@ -169,7 +173,7 @@ const MyProfile = () => {
   };
 
 // Inside the handleProfilePhotoChange function
-const handleProfilePhotoChange = async (e) => {
+const onFileChange = async (e) => {
   const file = e.target.files[0];
   const formData = new FormData();
   formData.append('profilePhoto', file);
@@ -180,12 +184,14 @@ const handleProfilePhotoChange = async (e) => {
         'Content-Type': 'multipart/form-data'
       }
     });
+    // Update the profile photo URL in the state after successful upload
     setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
   } catch (error) {
     console.error(error);
     // Handle error
   }
 };
+
 
 
   return (
@@ -210,7 +216,9 @@ const handleProfilePhotoChange = async (e) => {
       <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" />
     </div>
     <div className='mypinfoimg'>
-      <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />
+      <input type="file" name="image" onChange={onFileChange} className="ProfilePhotoInput_custom" />
+  
+      
     </div>
     <div class='editreset_container'>
       <Link to="/reset-password" class="ResetPasswordButton_custom">Reset Password</Link>

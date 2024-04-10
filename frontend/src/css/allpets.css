@@ -1,0 +1,39 @@
+.all-pets-container {
+    margin: 20px;
+  }
+  
+  .pets-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .pets-table th,
+  .pets-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .pets-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .pets-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .update-btn,
+  .delete-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+  }
+  

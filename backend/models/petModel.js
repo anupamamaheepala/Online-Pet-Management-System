@@ -1,27 +1,4 @@
-// // petModel.js
-// const mongoose = require('mongoose');
-
-// const petSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: true
-//   },
-//   breed: {
-//     type: String
-//   },
-//   age: {
-//     type: Number
-//   },
-//   ownerId: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'Customer', // Assuming your customer model is named 'Customer'
-//     required: true
-//   }
-// });
-
-// module.exports = mongoose.model('Pet', petSchema);
 // petModel.js
-
 const mongoose = require('mongoose');
 
 const petSchema = new mongoose.Schema({
@@ -48,6 +25,10 @@ const petSchema = new mongoose.Schema({
   weight: {
     type: Number,
     required: true
+  },
+  profilePhoto: {
+    type: String, // Assuming the profile photo will be stored as a URL
+    default: '' // Default empty string for profile photo
   },
 
   owner: {
