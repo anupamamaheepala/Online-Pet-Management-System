@@ -12,6 +12,7 @@ const AddsSchema = new mongoose.Schema({
         required: true
       },
       title: {
+
         type: String,
         required: true
       },
@@ -31,10 +32,6 @@ const AddsSchema = new mongoose.Schema({
         type: String,
         required: true
        },
-      price: {
-        type: String,
-        required: true
-      },
       contact: {
         type: String,
         required: true

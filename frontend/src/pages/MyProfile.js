@@ -168,15 +168,25 @@ const MyProfile = () => {
     console.log('Adding pet...');
   };
 
-  const handleProfilePhotoChange = (e) => {
-    // Implement logic to handle profile photo upload
-    const file = e.target.files[0];
-    // Set profile photo to the uploaded file
-    setCustomerData((prevData) => ({
-      ...prevData,
-      profilePhoto: URL.createObjectURL(file)
-    }));
-  };
+// Inside the handleProfilePhotoChange function
+const handleProfilePhotoChange = async (e) => {
+  const file = e.target.files[0];
+  const formData = new FormData();
+  formData.append('profilePhoto', file);
+
+  try {
+    const res = await axios.put(`http://localhost:9000/customer/${customerId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
+  } catch (error) {
+    console.error(error);
+    // Handle error
+  }
+};
+
 
   return (
     <>
@@ -187,42 +197,47 @@ const MyProfile = () => {
         ) : (
           
           <div className="ProfileCard_custom">
-            <h2 className='MyProfileTitle'>My Profile</h2>
+            <div><h2 className='MyProfileTitle'>My Profile</h2></div>
             
             <div className="ProfileHeader_custom">
-            <Link to={`/addpet/${customerId}`}>Add Pet</Link>
-            <Link to={`/my-pets/${customerId}`}>My Pet</Link>
+            <Link className="mypetbutton" to={`/addpet/${customerId}`}>Add Pet</Link>
+            <Link className="mypetbutton"to={`/my-pets/${customerId}`}>My Pets</Link>
              <br></br>
              </div>
-            <center>
-             <div>
-              <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" /></div>
-              <div>
-              <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />
-              
-            </div></center>
-            <div>
-            
-            <div className='mypinfo'><p>Username: {customerData.username}</p>
-            <p>Email: {customerData.email}</p>
-            <p>Contact Number: {customerData.contactNumber}</p>
-            <p>Address: {customerData.address}</p></div>
-            <br></br>
-            
-            <div className='editreset_container'>
-            {/* Link to reset password page */}
-            <Link to="/reset-password" className="ResetPasswordButton_custom">Reset Password</Link>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <Link to={`/edit-profile/${customerId}`} className="EditButton_custom">Edit Profile</Link>
-            
-            </div>
-            </div>
+             <div class="mypmaindiv">
+  <div class="mypdivleft">
+    <div className='smypinfoimg'>
+      <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" />
+    </div>
+    <div className='mypinfoimg'>
+      <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />
+    </div>
+    <div class='editreset_container'>
+      <Link to="/reset-password" class="ResetPasswordButton_custom">Reset Password</Link>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <Link to={`/edit-profile/${customerId}`} class="btn btn-warning">Edit Profile</Link> 
+    </div>
+  </div> 
+
+  <div class="mypdivright">
+    <br/>
+    <br/>
+    <div class='mypinfo'>
+      <p>Username: {customerData.username}</p>
+      <p>Email: {customerData.email}</p>
+      <p>Contact Number: {customerData.contactNumber}</p>
+      <p>Address: {customerData.address}</p>
+    </div>
+    <br/>
+  </div>
+</div> 
+ 
             
             
             <div className='mypdel_container'>
-            <button onClick={handleDeleteProfile} className="DeleteButton_custom">Delete Profile</button>
+            <button onClick={handleDeleteProfile} className="btn btn-danger">Delete Profile</button>
             </div>
           </div>
         )}

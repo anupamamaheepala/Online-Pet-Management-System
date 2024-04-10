@@ -28,35 +28,10 @@ const CheckAdvertisementDetails = () => {
             // Add image URL for the lost pet
             image: 'lostpet1.jpg'
         },
-        {
-            id: 'advertisement1',
-            type: 'Pets for sale',
-            title: 'Ad Title',
-            description: 'Description of the pet for sale.',
-            price: 'LKRXXX',
-            contact: 'Contact details',
-            // Add image URL for the pet
-            image: 'pet1.jpg'
-        },
-        {
-            id: 'advertisement2',
-            type: 'Lost & found',
-            title: 'Lost Pet Title',
-            description: 'Description of the lost pet.',
-            contact: 'Contact details',
-            // Add image URL for the lost pet
-            image: 'lostpet1.jpg'
-        },
-        // Add more advertisement data as needed
+        
     ]);
 
-    const handleConfirm = (advertisementId) => {
-        // Implement confirmation logic here
-    };
-
-    const handleReject = (advertisementId) => {
-        // Implement rejection logic here
-    };
+    
 
     return (
         <>
