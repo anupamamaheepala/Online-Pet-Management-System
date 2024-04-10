@@ -1,7 +1,7 @@
 /* myprofile.css */
 
 .MyProfileContainer_custom {
-    max-width: 450px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
   }
@@ -103,8 +103,8 @@
 
   .MyProfileTitle{
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-bottom: 20px;
   }
 
   .editreset_container{
@@ -127,4 +127,38 @@
     margin-left: 15%;
     font-size: 17px;
   }
+
+  .mypetbutton{
+    display: block;
+    width: 15%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    margin-right: 10px;
+    text-align: center;
+  }
+
+  .mypetbutton:hover {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .ProfileHeader_custom{
+    justify-content: right;
+  }
+
+.mypdivleft{
+  justify-content: left;
+}  
+
+.mypdivright{
+  justify-content: right;
+}
   

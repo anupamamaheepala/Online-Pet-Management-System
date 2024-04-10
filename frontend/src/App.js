@@ -131,7 +131,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
           <Route path="/my-pets/:customerId" element={<MyPets />} />
-          <Route path="/pet/:petId" element={<PetProfile />} />
+          <Route path="/pet-profile/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
           <Route path="/AddToCart" element={<AddToCart />} />

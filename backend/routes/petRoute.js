@@ -7,6 +7,11 @@ const petController = require('../controller/petController');
 // Route to add a new pet
 router.post('/add', petController.addPet);
 
+// Route to fetch all pets of a customer
+router.get('/my-pets/:customerId', petController.getCustomerPets);
+
+// Route to fetch pet profile
+router.get('/:petId', petController.getPetById);
 
 
 module.exports = router;
