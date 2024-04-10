@@ -89,3 +89,30 @@ exports.addPet = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+    // Controller function to fetch all pets of a customer
+    exports.getCustomerPets = async (req, res) => {
+      try {
+        const customerId = req.params.customerId;
+        const pets = await Pet.find({ owner: customerId });
+        res.status(200).json(pets);
+      } catch (error) {
+        console.error('Error fetching customer pets:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    };
+    exports.getPetById = async (req, res) => {
+      try {
+        const petId = req.params.petId;
+        console.log('Pet ID:', petId);
+        const pet = await Pet.findById(petId);
+        if (!pet) {
+          return res.status(404).json({ message: 'Pet not found' });
+        }
+        res.status(200).json(pet);
+      } catch (error) {
+        console.error('Error fetching pet by ID:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    };
+    
