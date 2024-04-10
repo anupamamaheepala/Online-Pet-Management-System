@@ -62,7 +62,7 @@ const StaffList = () => {
                 <table className="staffList-table">
                     <thead>
                         <tr>
-                            <th> </th>
+                            <th>Staff ID </th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>NIC No</th>
@@ -77,7 +77,7 @@ const StaffList = () => {
                     <tbody>
                         {filteredStaff.map((staffMember, index) => (
                             <tr key={staffMember._id}>
-                                <td>{index + 1}</td>
+                                <td>{staffMember.staffId}</td>
                                 <td>{staffMember.sfirstname}</td>
                                 <td>{staffMember.slastname}</td>
                                 <td>{staffMember.snic}</td>
@@ -90,7 +90,7 @@ const StaffList = () => {
                                 <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
                                 &nbsp;
                                 <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
-                                <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}`}>Salary</Link>
+                                <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}&staffId=${staffMember.staffId}`}>Salary</Link>
 
                                 </td>
                             </tr>

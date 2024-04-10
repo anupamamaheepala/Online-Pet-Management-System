@@ -1,16 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-
 import './App.css';
 import Home from "./pages/Home";
+
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
+import FAQselect from './pages/FAQselect';
+
+
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -51,35 +54,23 @@ import StaffProfile from './pages/StaffProfile';
 import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
 import ViewApplication from './pages/ViewApplication';
-
-
 import ResetPassword from './pages/ResetPassword';
 import EditProfile from './pages/EditProfile';
-
-
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
 import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
-
 import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
-
 import Banktransadmin from './pages/Banktransadmin';
-
-
+import AddToCart from './pages/AddToCart';
 
 function App() {
-  console.log(global);
   return (
     <div>
-      
-      <BrowserRouter>
-    
-      
+      <Router>
         <Routes>
-          
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
@@ -88,13 +79,13 @@ function App() {
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
           <Route path="/training/application:id" element={<ViewApplication/>}/>
 
-
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
-
-
+          <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
+          <Route path="/FAQselect" element={<FAQselect />} />
+          
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
@@ -125,42 +116,27 @@ function App() {
           <Route path="/Store" element={<Shop />} />
           <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
-          <Route path="/Toys and Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
-
- 
-
-
-          <Route path="/AddingProduct" element={<AddingProduct/>} ></Route>
-          <Route path="/AddedProduct" element={<AddedProduct/>} ></Route>
-          <Route path='/product' element={<ShopCategory />}>
-            <Route path=':productId' element={<Product />} />
+          <Route path="/Toys_and_Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
+          <Route path="/AddingProduct" element={<AddingProduct />} />
+          <Route path="/AddedProduct" element={<AddedProduct />} />
+          <Route path="/product" element={<ShopCategory />}>
+            <Route path=":productId" element={<Product />} />
           </Route>
-
-          <Route path="/StaffProfile" element={<StaffProfile/>} ></Route>
-          <Route path="/update/:staffId" element={<UpdateStaff/>} ></Route>
-      
-
-          <Route path="/Paystatus" element={<Paystatus/>} ></Route>
-          <Route path="/OrderForm" element={<OrderForm />} ></Route>
-          <Route path="/AllOrders" element={<AllOrders/>}></Route>
-
-          <Route path="Editpayinfo" element={<Editpayinfo/>}></Route>
-
-
+          <Route path="/StaffProfile" element={<StaffProfile />} />
+          <Route path="/update/:staffId" element={<UpdateStaff />} />
+          <Route path="/Paystatus" element={<Paystatus />} />
+          <Route path="/OrderForm" element={<OrderForm />} />
+          <Route path="/AllOrders" element={<AllOrders />} />
+          <Route path="/Editpayinfo" element={<Editpayinfo />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
-
           <Route path="/my-pets/:customerId" element={<MyPets />} />
           <Route path="/pet/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
-
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
-
-        
-
-
+          <Route path="/AddToCart" element={<AddToCart />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
       <ToastContainer position="top-center" />
     </div>
   );

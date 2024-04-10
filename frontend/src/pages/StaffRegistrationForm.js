@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const StaffRegister = () => {
   const [formData, setFormData] = useState({
+    staffId: generateStaffId(), // Custom ID for staff member
     sfirstname: '',
     slastname: '',
     snic: '',
@@ -15,19 +16,20 @@ const StaffRegister = () => {
     designation: ''
   });
 
-  const { sfirstname, slastname, snic,semail, scontactNumber, saddress, designation } = formData;
+  const { staffId, sfirstname, slastname, snic, semail, scontactNumber, saddress, designation } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-};
+  };
 
   const onSubmit = async e => {
-  e.preventDefault();
-  try {
+    e.preventDefault();
+    try {
       const res = await axios.post("http://localhost:9000/staff/add", formData);
       console.log(res.data);
       // Optionally, you can clear the form fields after successful submission
       setFormData({
+        staffId: generateStaffId(), // Generate a new staff ID
         sfirstname: '',
         slastname: '',
         snic: '',
@@ -36,11 +38,20 @@ const StaffRegister = () => {
         saddress: '',
         designation: '',
       });
-  } catch (err) {
+    } catch (err) {
       console.error(err);
-  }
-};
+    }
+  };
 
+  // Function to generate a unique staff ID
+  function generateStaffId() {
+    // Generate a random number (you can use any custom logic here)
+    const randomNumber = Math.floor(Math.random() * 1000000);
+    // Concatenate with a prefix to ensure uniqueness
+    return 'STAFF_' + randomNumber;
+  }
+
+  
   return (
     <>
     <Header />
@@ -52,6 +63,10 @@ const StaffRegister = () => {
       <br></br>
 
       <form onSubmit={onSubmit} className='staffregister-form'>
+        <div className="staffregister-form-group">
+            <label className='staffregister-form-label'>Staff ID:</label>
+            <input type="text" name="staffId" id='staffId' value={staffId} onChange={onChange} readOnly />
+          </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>First Name:</label>
           <input type="text" name="sfirstname" id='sfirstname' value={formData.sfirstname} onChange={onChange} required />

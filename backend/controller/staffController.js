@@ -4,6 +4,7 @@ const Staff = require('../models/staffModel');
 exports.addStaff = async (req, res) => {
   try {
     const {
+      staffId, // Include staffId in the request body
       sfirstname,
       slastname,
       snic,
@@ -15,6 +16,7 @@ exports.addStaff = async (req, res) => {
 
     // Create a new staff object
     const newStaff = new Staff({
+      staffId, // Include staffId in the new staff object
       sfirstname,
       slastname,
       snic,
@@ -30,6 +32,9 @@ exports.addStaff = async (req, res) => {
     res.status(201).json(savedStaff); // Send back the saved staff data
   } catch (error) {
     console.error(error);
+    if (error.code === 11000) { // Duplicate key error code
+      return res.status(400).json({ error: 'Duplicate staffId or email' });
+    }
     res.status(500).json({ error: 'Server error' });
   }
 };
