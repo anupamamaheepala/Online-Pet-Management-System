@@ -80,14 +80,8 @@ function App() {
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
-<<<<<<< HEAD
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
-=======
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
-          
-
-
->>>>>>> 543d14079560e1702750076769b69835644eaca7
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
