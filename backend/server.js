@@ -29,6 +29,17 @@ const uploadRoute =require("./routes/uploadRoute");
 const salaryRoute =require("./routes/salaryRoute");
 const productsRouter = require('./routes/products');
 
+const petRoute = require("./routes/petRoute"); 
+
+
+//const appointmentRoutes = require("./routes/MakeAppointmentRoute");
+//const staffRoute = require("./routes/staffRoute");
+//const staffLeaveRoute = require("./routes/staffLeaveRoute");
+//const cardpayRoute = require("./routes/cardpayRoute");
+//const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
+
+const banktransadminRoute = require('./routes/banktransadminRoute');
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -48,7 +59,17 @@ app.use("/feedback", feedbacks);
 app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
+
+app.use('/pets', petRoute);
+
+
+
 app.use('/salary', salaryRoute);
+//app.use('/banktransadmin', banktransadminRoute);
+
+
+
+
 
 
 // Route to handle requests to the root URL

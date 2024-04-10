@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const StaffSchema = new mongoose.Schema({
+  staffId: {
+    type: String,
+    required: true,
+    unique: true // Ensures staffId is unique
+  },
   sfirstname: {
     type: String,
     required: true
@@ -32,4 +37,4 @@ const StaffSchema = new mongoose.Schema({
   }
 },{timestamps: false});
 
-module.exports = mongoose.model('staff', StaffSchema);
+module.exports = mongoose.model('Staff', StaffSchema); // Changed model name to 'Staff'

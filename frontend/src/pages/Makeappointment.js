@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../css/makeappointment.css';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
 import ShowLoading from '../components/ShowLoading';

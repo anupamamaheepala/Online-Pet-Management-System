@@ -190,7 +190,8 @@ const MyProfile = () => {
             <h2 className='MyProfileTitle'>My Profile</h2>
             
             <div className="ProfileHeader_custom">
-             <button onClick={handleAddPet} className="MyPetsButton_custom">My Pets</button>
+            <Link to={`/addpet/${customerId}`}>Add Pet</Link>
+            <Link to={`/my-pets/${customerId}`}>My Pet</Link>
              <br></br>
              </div>
             <center>
@@ -206,6 +207,7 @@ const MyProfile = () => {
             <p>Email: {customerData.email}</p>
             <p>Contact Number: {customerData.contactNumber}</p>
             <p>Address: {customerData.address}</p></div>
+            <br></br>
             
             <div className='editreset_container'>
             {/* Link to reset password page */}
