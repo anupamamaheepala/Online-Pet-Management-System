@@ -13,7 +13,8 @@
   
   /* Style for the "Give Feedback" button */
   .faq-button-feedback,
-  .faq-button-inquiry {
+  .faq-button-inquiry,
+  .faq-button-display{
     display: block; /* Make the buttons block-level elements */
     width: 200px; /* Adjust button width as needed */
     margin: 0 auto 10px; /* Center the button and add bottom margin for spacing */
