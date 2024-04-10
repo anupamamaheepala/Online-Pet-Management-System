@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
+
 
 // Importing route handlers for various endpoints
 

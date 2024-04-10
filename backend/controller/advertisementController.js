@@ -11,7 +11,6 @@ exports.addAdvertisement = async (req, res) => {
             Breed,
             purpose,
             description,
-            price,
             contact,
         } = req.body;
 
@@ -28,7 +27,6 @@ exports.addAdvertisement = async (req, res) => {
             purpose,
             description,
             filePath,
-            price,
             contact,
         });
 
