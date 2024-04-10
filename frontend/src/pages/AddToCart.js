@@ -1,10 +1,16 @@
 import React from 'react';
+import { useCart } from '../Context/CartContext';
 
-const AddToCartPage = ({ cart, removeFromCart, calculateTotal }) => {
+const AddToCartPage = () => {
+  const cartContext = useCart();
+
   // If cart data is not available or empty, display a loading message
-  if (!cart || cart.length === 0) {
+  if (!cartContext || !cartContext.cart || cartContext.cart.length === 0) {
     return <div>Loading...</div>;
   }
+
+  // Destructure cart and other properties from cartContext
+  const { cart, removeFromCart, calculateTotal } = cartContext;
 
   // Calculate total cost of items in the cart
   const total = calculateTotal();
@@ -12,11 +18,11 @@ const AddToCartPage = ({ cart, removeFromCart, calculateTotal }) => {
   return (
     <div>
       {cart.map((item) => (
-        <div key={item.id}>
-          <h3>{item.name}</h3>
+        <div key={item._id}>
+          <h3>{item.itemName}</h3>
           <p>Price: ${item.price}</p>
           <p>Quantity: {item.quantity}</p>
-          <button onClick={() => removeFromCart(item.id)}>Remove from Cart</button>
+          <button onClick={() => removeFromCart(item._id)}>Remove from Cart</button>
         </div>
       ))}
       <p>Total: ${total}</p>

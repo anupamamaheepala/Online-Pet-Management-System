@@ -204,36 +204,40 @@ const handleProfilePhotoChange = async (e) => {
             <Link className="mypetbutton"to={`/my-pets/${customerId}`}>My Pets</Link>
              <br></br>
              </div>
-          <div>
-          <div className="mypdivleft">
-             <div>
-              <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" /></div>
-              <div>
-              <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />              
-            </div>
-             <div className='editreset_container'>
-              {/* Link to reset password page */}
-              <Link to="/reset-password" className="ResetPasswordButton_custom">Reset Password</Link>
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              <Link to={`/edit-profile/${customerId}`} className="EditButton_custom">Edit Profile</Link> 
-              </div>
-                  
-          </div> 
+             <div class="mypmaindiv">
+  <div class="mypdivleft">
+    <div className='smypinfoimg'>
+      <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" />
+    </div>
+    <div className='mypinfoimg'>
+      <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />
+    </div>
+    <div class='editreset_container'>
+      <Link to="/reset-password" class="ResetPasswordButton_custom">Reset Password</Link>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <Link to={`/edit-profile/${customerId}`} class="btn btn-warning">Edit Profile</Link> 
+    </div>
+  </div> 
 
-          <div className="mypdivright">
-            <div className='mypinfo'><p>Username: {customerData.username}</p>
-            <p>Email: {customerData.email}</p>
-            <p>Contact Number: {customerData.contactNumber}</p>
-            <p>Address: {customerData.address}</p></div>
-            <br></br>
-                 
-          </div></div> 
+  <div class="mypdivright">
+    <br/>
+    <br/>
+    <div class='mypinfo'>
+      <p>Username: {customerData.username}</p>
+      <p>Email: {customerData.email}</p>
+      <p>Contact Number: {customerData.contactNumber}</p>
+      <p>Address: {customerData.address}</p>
+    </div>
+    <br/>
+  </div>
+</div> 
+ 
             
             
             <div className='mypdel_container'>
-            <button onClick={handleDeleteProfile} className="DeleteButton_custom">Delete Profile</button>
+            <button onClick={handleDeleteProfile} className="btn btn-danger">Delete Profile</button>
             </div>
           </div>
         )}

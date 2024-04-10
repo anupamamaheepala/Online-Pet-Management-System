@@ -1,13 +1,12 @@
-//ConfirmAdvertisement.js
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         axios.get("http://localhost:9000/ads/")
@@ -33,6 +32,12 @@ const ConfirmAdvertisement = () => {
             alert('Deletion cancelled.');
         }
     };
+
+    const handleImageClick = (imageURL) => {
+        setSelectedImage(imageURL);
+    };
+
+    
 
     return (
         <>
@@ -61,11 +66,18 @@ const ConfirmAdvertisement = () => {
                             <td>{ad.Breed}</td>
                             <td>{ad.purpose}</td>
                             <td>{ad.description}</td>
-                            <td><img src={`http://localhost:9000/${ad.filePath}`} alt="Pet" style={{ width: '80px' }} /></td>
+                            <td>
+                                <img 
+                                    src={`http://localhost:9000/${ad.filePath.replace(/\\/g, '/')}`} 
+                                    alt="Pet" 
+                                    style={{ width: '130px', height: '130px', cursor: 'pointer' }}
+                                    onClick={() => handleImageClick(`http://localhost:9000/${ad.filePath.replace(/\\/g, '/')}`)}
+                                />
+                            </td>
                             <td>{ad.contact}</td>
                             <td>
                                 <div className="ma_button-container">
-                                    <button className="btn btn-warning">Confirm</button>
+                                    <button className="btn btn-warning" style={{ marginRight: '5px' }}>Confirm</button>
                                     <button className="btn btn-danger" onClick={() => handleDelete(ad._id)}>Delete</button>
                                 </div>
                             </td>
@@ -73,6 +85,7 @@ const ConfirmAdvertisement = () => {
                     ))}
                 </tbody>
             </table>
+            
             <Footer />
         </>
     );
