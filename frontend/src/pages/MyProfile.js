@@ -209,9 +209,7 @@ const MyProfile = () => {
               &nbsp;
               <Link to={`/edit-profile/${customerId}`} className="EditButton_custom">Edit Profile</Link> 
               </div>
-              <div className='mypdel_container'>
-              <button onClick={handleDeleteProfile} className="DeleteButton_custom">Delete Profile</button>
-              </div>      
+                  
           </div> 
 
           <div className="mypdivright">
