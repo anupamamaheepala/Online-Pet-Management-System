@@ -187,38 +187,39 @@ const MyProfile = () => {
         ) : (
           
           <div className="ProfileCard_custom">
-            <h2 className='MyProfileTitle'>My Profile</h2>
+            <div><h2 className='MyProfileTitle'>My Profile</h2></div>
             
             <div className="ProfileHeader_custom">
-            <Link to={`/addpet/${customerId}`}>Add Pet</Link>
-            <Link to={`/my-pets/${customerId}`}>My Pet</Link>
+            <Link className="mypetbutton" to={`/addpet/${customerId}`}>Add Pet</Link>
+            <Link className="mypetbutton"to={`/my-pets/${customerId}`}>My Pets</Link>
              <br></br>
              </div>
-            <center>
+          <div>
+          <div className="mypdivleft">
              <div>
               <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" /></div>
               <div>
-              <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />
-              
-            </div></center>
-            <div>
-            
+              <input type="file" accept="image/*" onChange={handleProfilePhotoChange} className="ProfilePhotoInput_custom" />              
+            </div>
+             <div className='editreset_container'>
+              {/* Link to reset password page */}
+              <Link to="/reset-password" className="ResetPasswordButton_custom">Reset Password</Link>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <Link to={`/edit-profile/${customerId}`} className="EditButton_custom">Edit Profile</Link> 
+              </div>
+                  
+          </div> 
+
+          <div className="mypdivright">
             <div className='mypinfo'><p>Username: {customerData.username}</p>
             <p>Email: {customerData.email}</p>
             <p>Contact Number: {customerData.contactNumber}</p>
             <p>Address: {customerData.address}</p></div>
             <br></br>
-            
-            <div className='editreset_container'>
-            {/* Link to reset password page */}
-            <Link to="/reset-password" className="ResetPasswordButton_custom">Reset Password</Link>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <Link to={`/edit-profile/${customerId}`} className="EditButton_custom">Edit Profile</Link>
-            
-            </div>
-            </div>
+                 
+          </div></div> 
             
             
             <div className='mypdel_container'>
