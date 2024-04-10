@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../css/StaffSalary.css';
 
 function SalaryCalculator(props) {
+    const [staffId, setStaffId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [basicSalary, setBasicSalary] = useState(0);
@@ -14,13 +15,15 @@ function SalaryCalculator(props) {
     const [totalSalary, setTotalSalary] = useState(0);
 
     useEffect(() => {
-        // Retrieve first name and last name from URL parameters
+        // Retrieve first name, last name, and staff ID from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const firstname = urlParams.get('firstname');
         const lastname = urlParams.get('lastname');
+        const id = urlParams.get('staffId');
 
         setFirstName(firstname);
         setLastName(lastname);
+        setStaffId(id);
     }, []);
 
     // Calculate total salary when any input changes
@@ -47,6 +50,7 @@ function SalaryCalculator(props) {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:9000/salary/add", {
+                staffId,
                 firstName,
                 lastName,
                 basicSalary,
@@ -74,6 +78,11 @@ function SalaryCalculator(props) {
                 <h2>Salary Calculation Form</h2>
 
                 <form onSubmit={handleSubmit} className='StaffSalary-form'>
+
+                    <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>Staff ID:</label>
+                        <input type="text" id='staffId' className='staffId' value={staffId} readOnly />
+                    </div>
 
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>First Name:</label>
