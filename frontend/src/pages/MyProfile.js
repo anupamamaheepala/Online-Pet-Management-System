@@ -168,15 +168,25 @@ const MyProfile = () => {
     console.log('Adding pet...');
   };
 
-  const handleProfilePhotoChange = (e) => {
-    // Implement logic to handle profile photo upload
-    const file = e.target.files[0];
-    // Set profile photo to the uploaded file
-    setCustomerData((prevData) => ({
-      ...prevData,
-      profilePhoto: URL.createObjectURL(file)
-    }));
-  };
+// Inside the handleProfilePhotoChange function
+const handleProfilePhotoChange = async (e) => {
+  const file = e.target.files[0];
+  const formData = new FormData();
+  formData.append('profilePhoto', file);
+
+  try {
+    const res = await axios.put(`http://localhost:9000/customer/${customerId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
+  } catch (error) {
+    console.error(error);
+    // Handle error
+  }
+};
+
 
   return (
     <>

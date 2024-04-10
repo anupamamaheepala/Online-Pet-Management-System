@@ -21,6 +21,10 @@ const customerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profilePhoto: {
+    type: String, // Assuming the profile photo will be stored as a URL
+    default: '' // Default empty string for profile photo
+  },
   createdAt: {
     type: Date,
     default: Date.now
