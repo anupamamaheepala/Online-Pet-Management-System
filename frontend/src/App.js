@@ -12,6 +12,7 @@ import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
+import FAQselect from './pages/FAQselect';
 
 
 import Vetservices from './pages/Vetservices';
@@ -96,6 +97,7 @@ function App() {
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
+          <Route path="/FAQselect" element={<FAQselect />} />
           
 
 

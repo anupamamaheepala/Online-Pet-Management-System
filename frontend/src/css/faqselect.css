@@ -1,0 +1,35 @@
+/* Assuming you have a CSS file named FAQselect.css */
+
+/* Style for the container */
+.faq-container {
+  text-align: center; /* Center align the content */
+  border-radius: 10px;
+  border: 1px solid #000000;
+  padding: 10px; /* Add padding for spacing */
+  max-width: 400px; /* Set the maximum width of the container */
+  margin: 0 auto; 
+  margin-bottom: 10px;
+  }
+  
+  /* Style for the "Give Feedback" button */
+  .faq-button-feedback,
+  .faq-button-inquiry {
+    display: block; /* Make the buttons block-level elements */
+    width: 200px; /* Adjust button width as needed */
+    margin: 0 auto 10px; /* Center the button and add bottom margin for spacing */
+    padding: 15px; /* Add padding to the buttons */
+    background-color: #000000; /* Set background color */
+    color: #fff; /* Set text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 18px; /* Set the font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  /* Hover effect for the buttons */
+  .faq-button-feedback:hover,
+  .faq-button-inquiry:hover {
+    background-color: #333; /* Darken the background color on hover */
+  }
+  
