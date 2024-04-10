@@ -101,6 +101,8 @@ exports.addPet = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
       }
     };
+
+    // Controller function to fetch pet profile
     exports.getPetById = async (req, res) => {
       try {
         const petId = req.params.petId;
