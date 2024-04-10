@@ -106,6 +106,7 @@ const storeFeedbackInquiry = async (req, res) => {
   }
 };
 
+
 module.exports = {
   addFeedback,
   getAllFeedback,
