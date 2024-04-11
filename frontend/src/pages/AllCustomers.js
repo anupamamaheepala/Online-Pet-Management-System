@@ -5,6 +5,8 @@ import '../css/register.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const AllCustomers = () => {
     const [customers, setCustomers] = useState([]);
@@ -44,6 +46,46 @@ const AllCustomers = () => {
         );
     });
 
+  
+const generatePDFReport = () => {
+    // Create a new instance of jsPDF
+    const doc = new jsPDF();
+
+    // Path to your system logo
+    const logoURL = '/images/logo.png'; // Specify the URL or path to your logo image
+
+    // Add the logo to the PDF at the top left corner
+    doc.addImage(logoURL, 'PNG', 10, 10, 20, 20);
+
+    // Add your system name as a header
+    doc.text('PetZone', 40, 20); // Specify the x, y coordinates
+
+    // Add a title to the PDF below the header
+    doc.text('Customer Report', 20, 50);
+
+    // Add headers for the table
+    const headers = ['User Name', 'Email', 'Contact', 'Address'];
+
+    // Add rows to the table
+    const rows = filteredCustomers.map((customer, index) => [
+        customer.username,
+        customer.email,
+        customer.contactNumber,
+        customer.address,
+    ]);
+
+    // Add a table to the PDF
+    doc.autoTable({
+        startY: 60, // Start the table below the title
+        head: [headers],
+        body: rows,
+    });
+
+    // Save the PDF
+    doc.save('customer_report.pdf');
+};
+
+
     return (
         <>
             <Header />
@@ -58,6 +100,7 @@ const AllCustomers = () => {
                 
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
+            <button onClick={generatePDFReport}>Download PDF Report</button>
             </div>
             <table className="customer_details_table">
                 <thead>

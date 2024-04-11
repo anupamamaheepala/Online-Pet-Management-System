@@ -26,6 +26,26 @@ const petSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  dateAdopted: {
+    type: Date,
+    required: true
+  },
+  additionalNotes: {
+    type: String,
+    required: true
+  },
+  vaccinations: [
+    {
+      vaccineType: {
+        type: String,
+        required: true,
+      },
+      dateAdministered: {
+        type: Date,
+        required: true,
+      },
+    },
+  ],
   profilePhoto: {
     type: String, // Assuming the profile photo will be stored as a URL
     default: '' // Default empty string for profile photo

@@ -5,7 +5,7 @@ const customer = require('../models/registerModel');
 // Controller function for adding a new pet
 exports.addPet = async (req, res) => {
   try {
-    const { petName, species, breed, age,gender,weight, owner } = req.body;
+    const { petName, species, breed, age,gender,weight,dateAdopted,additionalNotes,vaccinations, owner } = req.body;
     console.log('Request body:',req.body); // Log the request body to check if it's received correctly
 
     // Create a new pet instance
@@ -16,6 +16,9 @@ exports.addPet = async (req, res) => {
       age,
       gender,
       weight,
+      dateAdopted,
+      additionalNotes,
+      vaccinations,
       owner
     });    
 
