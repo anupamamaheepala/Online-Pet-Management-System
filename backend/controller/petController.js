@@ -149,7 +149,7 @@ exports.updatePetById = async (req, res) => {
   }
 };
 
-
+// Controller function to get all pet details with owner
 exports.getAllPets = async (req, res) => {
   try {
     // Fetch all pets

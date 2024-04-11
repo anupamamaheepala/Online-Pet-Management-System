@@ -141,7 +141,7 @@ function App() {
           <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
-          <Route path="/update-pet/:petId" component={<UpdatePet/>} />
+          <Route path="/pets/update/:petId" element={<UpdatePet/>} />
 
         </Routes>
       </Router>
