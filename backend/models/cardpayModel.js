@@ -7,7 +7,7 @@ const cardpaySchema = new mongoose.Schema({
         require: true
     },
     cardNumber : {
-        type : String,
+        type : Number,
         require: true
     },
     cvv : {

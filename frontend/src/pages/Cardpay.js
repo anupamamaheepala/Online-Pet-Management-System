@@ -40,6 +40,16 @@ const Cardpay = () => {
         <div className="anucard-payment">
             <h2>Card Payment</h2>
             <form onSubmit={onSubmit}>
+            <div class="payment-method">
+                            <input type="radio" name="payment-method" id="method-1" checked/>
+                            <label for="method-1" class="payment-method-item">
+                                <img src="images/visa.png" alt=""/>
+                            </label>
+                            <input type="radio" name="payment-method" id="method-2"/>
+                            <label for="method-2" class="payment-method-item">
+                                <img src="images/mastercard.png" alt=""/>
+                            </label>
+                        </div>
                 <div className="anucpform-group">
                     <label>Name on Card:</label>
                     <input
