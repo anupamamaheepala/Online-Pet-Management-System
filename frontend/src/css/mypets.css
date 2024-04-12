@@ -1,0 +1,46 @@
+.MyPetsPage {
+    text-align: center;
+    margin: 20px auto;
+  }
+  
+  .MyPetsContainer {
+    display: flex;
+    flex-direction: column; /* Display cards in a column */
+    align-items: center; /* Center cards horizontally */
+  }
+  
+  .PetCard {
+    width: 300px; /* Set a fixed width for the card */
+    margin: 10px 0; /* Add margin to separate cards */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .PetCard:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .PetImage {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .PetDetails {
+    padding: 20px;
+  }
+  
+  .PetName {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .PetSpecies {
+    font-size: 16px;
+    color: #666;
+  }
+  

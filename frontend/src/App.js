@@ -65,6 +65,10 @@ import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
 import Banktransadmin from './pages/Banktransadmin';
 import AddToCart from './pages/AddToCart';
+import EditPetProfile from './pages/EditPetProfile';
+import AllPets from './pages/AllPets';
+import UpdatePet from './pages/UpdatePet';
+
 
 function App() {
   return (
@@ -135,6 +139,10 @@ function App() {
           <Route path="/addpet/:customerId" element={<AddPet />} />
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
           <Route path="/AddToCart" element={<AddToCart />} />
+          <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
+          <Route path="/all-pets" element={<AllPets />} />
+          <Route path="/pets/update/:petId" element={<UpdatePet/>} />
+
         </Routes>
       </Router>
       <ToastContainer position="top-center" />
