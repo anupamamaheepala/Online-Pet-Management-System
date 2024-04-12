@@ -1,7 +1,7 @@
 /* myprofile.css */
 
 .MyProfileContainer_custom {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     margin-top: 5%;
@@ -54,6 +54,7 @@
     transition: background-color 0.3s;
     text-decoration: none;
     text-align: center;
+    
   }
   
   .ResetPasswordButton_custom:hover {
@@ -77,6 +78,7 @@
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    
   }
 
   .editreset_container button{
@@ -133,7 +135,9 @@
   
   .mypdivright {
     flex: 1;
+    
   }
+  
   
   .smypinfoimg{
     display: flex;

@@ -12,14 +12,29 @@ schema
   .has().digits() // Must have at least one digit
   .has().symbols(); // Must have at least one special character
 
+  // Validate contact numbers
+const validateContactNumbers = (contactNumbers) => {
+  for (const contact of contactNumbers) {
+      if (!/^\d{10}$/.test(contact)) {
+          return false;
+      }
+  }
+  return true;
+};
+
 // Register a new customer
 exports.registerCustomer = async (req, res) => {
-  const { username, email, contactNumber, address, password, confirmPassword } = req.body;
+  const { username, email, contactNumbers, address, password, confirmPassword } = req.body;
 
   // Validate password
   if (!schema.validate(password)) {
     return res.status(400).json({ message: "Password does not meet the requirements." });
   }
+
+  // Validate contact numbers
+  if (!validateContactNumbers(contactNumbers)) {
+    return res.status(400).json({ message: "Contact numbers must be exactly 10 digits long and contain only numbers." });
+}
 
   // Check if the email already exists in the database
   try {
@@ -29,7 +44,7 @@ exports.registerCustomer = async (req, res) => {
     }
 
     // Validations
-    if (!username || !email || !contactNumber || !address || !password || !confirmPassword) {
+    if (!username || !email || !contactNumbers || !address || !password || !confirmPassword) {
       return res.status(400).json({ message: "All fields are required!" });
     }
 
@@ -44,7 +59,7 @@ exports.registerCustomer = async (req, res) => {
     const customer = new Customer({
       username,
       email,
-      contactNumber,
+      contactNumbers,
       address,
       password: hashedPassword,
     });

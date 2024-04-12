@@ -17,6 +17,7 @@
   .edit-profile-container form label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
   }
   
   .edit-profile-container form input {
@@ -26,8 +27,16 @@
     border-radius: 5px;
   }
   
-  .edit-profile-container form button {
-    padding: 10px 20px;
+  .edit-profile-addContact-button {
+    padding: 5px 8px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .edit-profile-remove-button {
+    padding: 5px 5px;
     background-color: #000;
     color: #fff;
     border: none;
@@ -40,6 +49,7 @@
     color: black;
     border: 1px solid black;
   }
+
   
   .back-to-profile-button {
     display: block;
@@ -57,4 +67,15 @@
     color: black;
     border: 1px solid black;
   }
+  .save-profile-button {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
   

@@ -1,4 +1,3 @@
-// export default AllCustomers;
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/register.css';
@@ -41,50 +40,48 @@ const AllCustomers = () => {
         return (
             customer.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
             customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            customer.contactNumber.includes(searchTerm) ||
+            customer.contactNumbers.join(', ').includes(searchTerm) ||
             customer.address.toLowerCase().includes(searchTerm.toLowerCase())
         );
     });
 
-  
-const generatePDFReport = () => {
-    // Create a new instance of jsPDF
-    const doc = new jsPDF();
+    const generatePDFReport = () => {
+        // Create a new instance of jsPDF
+        const doc = new jsPDF();
 
-    // Path to your system logo
-    const logoURL = '/images/logo.png'; // Specify the URL or path to your logo image
+        // Path to your system logo
+        const logoURL = '/images/logo.png'; // Specify the URL or path to your logo image
 
-    // Add the logo to the PDF at the top left corner
-    doc.addImage(logoURL, 'PNG', 10, 10, 20, 20);
+        // Add the logo to the PDF at the top left corner
+        doc.addImage(logoURL, 'PNG', 10, 10, 20, 20);
 
-    // Add your system name as a header
-    doc.text('PetZone', 40, 20); // Specify the x, y coordinates
+        // Add your system name as a header
+        doc.text('PetZone', 40, 20); // Specify the x, y coordinates
 
-    // Add a title to the PDF below the header
-    doc.text('Customer Report', 20, 50);
+        // Add a title to the PDF below the header
+        doc.text('Customer Report', 20, 50);
 
-    // Add headers for the table
-    const headers = ['User Name', 'Email', 'Contact', 'Address'];
+        // Add headers for the table
+        const headers = ['User Name', 'Email', 'Contact', 'Address'];
 
-    // Add rows to the table
-    const rows = filteredCustomers.map((customer, index) => [
-        customer.username,
-        customer.email,
-        customer.contactNumber,
-        customer.address,
-    ]);
+        // Add rows to the table
+        const rows = filteredCustomers.map((customer) => [
+            customer.username,
+            customer.email,
+            customer.contactNumbers.join(', '),
+            customer.address,
+        ]);
 
-    // Add a table to the PDF
-    doc.autoTable({
-        startY: 60, // Start the table below the title
-        head: [headers],
-        body: rows,
-    });
+        // Add a table to the PDF
+        doc.autoTable({
+            startY: 60, // Start the table below the title
+            head: [headers],
+            body: rows,
+        });
 
-    // Save the PDF
-    doc.save('customer_report.pdf');
-};
-
+        // Save the PDF
+        doc.save('customer_report.pdf');
+    };
 
     return (
         <>
@@ -92,16 +89,16 @@ const generatePDFReport = () => {
             <h1><center>All Customer Details</center></h1>
 
             <div className='customer-SearchBar-container'>
-            <input
-                className='customer-SearchBar'
-                type="text"
-                placeholder="Search by Name, Email, Contact, or Address"
-                value={searchTerm}
-                
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button onClick={generatePDFReport}>Download PDF Report</button>
+                <input
+                    className='customer-SearchBar'
+                    type="text"
+                    placeholder="Search by Name, Email, Contact, or Address"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button onClick={generatePDFReport}>Download PDF Report</button>
             </div>
+
             <table className="customer_details_table">
                 <thead>
                     <tr>
@@ -117,7 +114,14 @@ const generatePDFReport = () => {
                         <tr key={customer._id}>
                             <td>{customer.username}</td>
                             <td>{customer.email}</td>
-                            <td>{customer.contactNumber}</td>
+                            <td>
+                                {/* Display each contact number on its own line */}
+                                {customer.contactNumbers.map((contactNumber, index) => (
+                                    <div key={index}>
+                                        {contactNumber}
+                                    </div>
+                                ))}
+                            </td>
                             <td>{customer.address}</td>
                             <td>
                                 <Link className="btn btn-warning" to={`/edit/${customer._id}`}>Edit</Link>
@@ -128,10 +132,12 @@ const generatePDFReport = () => {
                     ))}
                 </tbody>
             </table>
-            <br></br>
+
+            <br />
+
             <Footer />
         </>
     );
-}
+};
 
 export default AllCustomers;

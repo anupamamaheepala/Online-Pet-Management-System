@@ -9,9 +9,15 @@ const customerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  contactNumber: {
-    type: String,
-    required: true
+  contactNumbers: {
+    type: [String], // Changed to an array of strings
+    required: true,
+    validate: {
+      validator: function(arr) {
+        return arr.length > 0;
+      },
+      message: 'At least one contact number is required.'
+    }
   },
   address: {
     type: String,
