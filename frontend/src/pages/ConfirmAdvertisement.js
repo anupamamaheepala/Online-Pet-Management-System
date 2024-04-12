@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
@@ -7,6 +8,7 @@ import '../css/advertisement.css';
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
     useEffect(() => {
         axios.get("http://localhost:9000/ads/")
@@ -37,7 +39,10 @@ const ConfirmAdvertisement = () => {
         setSelectedImage(imageURL);
     };
 
-    
+    // Function to navigate to Advertisement component with advertisement details
+    const handleConfirm = (adId) => {
+        navigate(`/Advertisement/${adId}`);
+    };
 
     return (
         <>
@@ -77,7 +82,7 @@ const ConfirmAdvertisement = () => {
                             <td>{ad.contact}</td>
                             <td>
                                 <div className="ma_button-container">
-                                    <button className="btn btn-warning" style={{ marginRight: '5px' }}>Confirm</button>
+                                    <button className="btn btn-warning" style={{ marginRight: '5px' }} onClick={() => handleConfirm(ad._id)}>Confirm</button>
                                     <button className="btn btn-danger" onClick={() => handleDelete(ad._id)}>Delete</button>
                                 </div>
                             </td>

@@ -57,3 +57,13 @@ exports.deleteAdById = async (req, res) => {
         res.status(500).json({ message: "Failed to delete ad" });
     }
 };
+
+exports.getConfirmedAdvertisements = async (req, res) => {
+    try {
+        const confirmedAds = await Ads.find({ confirmed: true }); // Assuming there's a "confirmed" field in your advertisement schema
+        res.json(confirmedAds);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+};
