@@ -1,6 +1,22 @@
 const bcrypt = require('bcrypt');
 const Customer = require("../models/registerModel");
 const passwordValidator = require('password-validator');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Set the destination directory for file uploads
+  },
+  filename: (req, file, cb) => {
+      const customerId = req.params.customerId;
+      const fileName = `${customerId}_${Date.now()}_${file.originalname}`;
+      cb(null, fileName); // Create a unique file name for each uploaded file
+  }
+});
+
+const upload = multer({ storage });
+
+
 
 // Schema for password validation
 const schema = new passwordValidator();
@@ -25,6 +41,7 @@ const validateContactNumbers = (contactNumbers) => {
 // Register a new customer
 exports.registerCustomer = async (req, res) => {
   const { username, email, contactNumbers, address, password, confirmPassword } = req.body;
+  
 
   // Validate password
   if (!schema.validate(password)) {
@@ -62,6 +79,7 @@ exports.registerCustomer = async (req, res) => {
       contactNumbers,
       address,
       password: hashedPassword,
+      profilePhoto,
     });
 
     // Saving data into the database
@@ -179,6 +197,80 @@ exports.resetPassword = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+// exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
+//   try {
+//       const { customerId } = req.params;
+//       const profilePhotoPath = req.file.path.replace(/\\/g, '/'); // Normalize the file path
+
+//       // Update the customer's profile photo URL
+//       const updatedCustomer = await Customer.findByIdAndUpdate(
+//           customerId,
+//           { profilePhoto: profilePhotoPath },
+//           { new: true } // Return the updated document
+//       );
+
+//       if (!updatedCustomer) {
+//           return res.status(404).json({ message: 'Customer not found' });
+//       }
+
+//       // Send the new profile photo URL in the response
+//       res.status(200).json({ profilePhoto: updatedCustomer.profilePhoto });
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: 'Server error' });
+//   }
+// }];
+// exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
+//   try {
+//       const { customerId } = req.params;
+//       const profilePhotoPath = req.file.path.replace(/\\/g, '/'); // Normalize the file path
+
+//       // Update the customer's profile photo URL
+//       const updatedCustomer = await Customer.findByIdAndUpdate(
+//           customerId,
+//           { profilePhoto: profilePhotoPath },
+//           { new: true } // Return the updated document
+//       );
+
+//       if (!updatedCustomer) {
+//           return res.status(404).json({ message: 'Customer not found' });
+//       }
+
+//       // Send the updated customer data in the response
+//       res.status(200).json(updatedCustomer);
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: 'Server error' });
+//   }
+// }];
+exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
+  try {
+      const { customerId } = req.params;
+      const profilePhotoPath = req.file.path.replace(/\\/g, '/'); // Normalize the file path
+
+      // Update the customer's profile photo URL
+      const updatedCustomer = await Customer.findByIdAndUpdate(
+          customerId,
+          { profilePhoto: profilePhotoPath },
+          { new: true } // Return the updated document
+      );
+
+      if (!updatedCustomer) {
+          return res.status(404).json({ message: 'Customer not found' });
+      }
+
+      // Create the full URL for the profile photo
+      const profilePhotoURL = `${req.protocol}://${req.get('host')}/${profilePhotoPath}`;
+      
+      // Send the new profile photo URL in the response
+      res.status(200).json({ profilePhoto: profilePhotoURL });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+  }
+}];
+
 
 
 

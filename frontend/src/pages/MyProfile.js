@@ -301,23 +301,55 @@ const MyProfile = () => {
     }
   };
 
-  const onFileChange = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('profilePhoto', file);
+//   const onFileChange = async (e) => {
+//     const file = e.target.files[0];
+//     const formData = new FormData();
+//     formData.append('profilePhoto', file);
 
-    try {
-      const res = await axios.put(`http://localhost:9000/customer/${customerId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+//     try {
+//         const res = await axios.put(`http://localhost:9000/customer/profile-photo/${customerId}`, formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data'
+//             }
+//         });
+
+//         // Log the profile photo URL returned from the server
+//         //console.log(res.data.profilePhoto);
+        
+//         // Update the profile photo URL in the state
+//         const profilePhotoURL = `http://localhost:9000/${res.data.profilePhoto}`;
+//         setCustomerData({ ...customerData, profilePhoto: profilePhotoURL });
+
+//         // Show a success message
+//         alert('Profile photo uploaded successfully');
+//     } catch (error) {
+//         console.error(error);
+//         alert('Failed to upload profile photo');
+//     }
+// };
+const onFileChange = async (e) => {
+  const file = e.target.files[0];
+  const formData = new FormData();
+  formData.append('profilePhoto', file);
+
+  try {
+      const res = await axios.put(`http://localhost:9000/customer/profile-photo/${customerId}`, formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
       });
+
+      // Update the profile photo URL in the state with the URL returned by the server
       setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
-    } catch (error) {
+
+      // Show a success message
+      alert('Profile photo uploaded successfully');
+  } catch (error) {
       console.error(error);
-      // Handle error
-    }
-  };
+      alert('Failed to upload profile photo');
+  }
+};
+
 
   return (
     <>

@@ -19,6 +19,7 @@ const upload = multer({ storage: storage });
 
 router.post('/add', upload.single('file'), advertisementController.addAdvertisement);
 router.get("/", advertisementController.getAllAdvertisements);
+router.get("/confirmed", advertisementController.getConfirmedAdvertisements); // New endpoint for confirmed advertisements
 router.delete("/:id", advertisementController.deleteAdById);
 
 module.exports = router;
