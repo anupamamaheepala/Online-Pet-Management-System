@@ -3,6 +3,11 @@
 const mongoose = require('mongoose');
 
 const SalarySchema = new mongoose.Schema({
+
+  staffId: {
+    type: String, // or whatever type your staffId is
+    required: true// Not required
+  },
     
   firstName: {
     type: String,
