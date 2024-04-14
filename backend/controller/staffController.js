@@ -4,7 +4,7 @@ const Staff = require('../models/staffModel');
 exports.addStaff = async (req, res) => {
   try {
     const {
-      staffId, // Include staffId in the request body
+      staffId,
       sfirstname,
       slastname,
       snic,
@@ -16,7 +16,7 @@ exports.addStaff = async (req, res) => {
 
     // Create a new staff object
     const newStaff = new Staff({
-      staffId, // Include staffId in the new staff object
+      staffId,
       sfirstname,
       slastname,
       snic,
@@ -40,7 +40,7 @@ exports.addStaff = async (req, res) => {
 };
 
 // Controller function to handle getting all staff members
- exports.getAllStaff = async (req, res) => {
+exports.getAllStaff = async (req, res) => {
   try {
     // Fetch all staff members from the database
     const allStaff = await Staff.find();
@@ -56,8 +56,8 @@ exports.deleteStaff = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Find the staff member by ID and delete it
-    await Staff.findByIdAndDelete(id);
+    // Find the staff member by custom ID and delete it
+    await Staff.findOneAndDelete({ staffId: id });
 
     res.status(200).json({ message: 'Staff member deleted successfully' });
   } catch (error) {
@@ -66,10 +66,10 @@ exports.deleteStaff = async (req, res) => {
   }
 };
 
-// Get staff by ID
+// Get staff by custom ID
 exports.getStaffById = async (req, res) => {
   try {
-    const staff = await Staff.findById(req.params.id);
+    const staff = await Staff.findOne({ staffId: req.params.id });
     if (!staff) {
       return res.status(404).json({ message: 'Staff member not found' });
     }
@@ -81,7 +81,6 @@ exports.getStaffById = async (req, res) => {
 };
 
 // Update staff details
-// Controller function to handle updating a staff member
 exports.updateStaff = async (req, res) => {
   try {
     const { id } = req.params;
@@ -95,8 +94,8 @@ exports.updateStaff = async (req, res) => {
       designation
     } = req.body;
 
-    // Find the staff member by ID and update its details
-    const updatedStaff = await Staff.findByIdAndUpdate(id, {
+    // Find the staff member by custom ID and update its details
+    const updatedStaff = await Staff.findOneAndUpdate({ staffId: id }, {
       sfirstname,
       slastname,
       snic,
@@ -112,36 +111,3 @@ exports.updateStaff = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
-
-
-// Controller function to handle updating a staff member
-/*const updateStaff = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const {
-        sfirstname,
-        slastname,
-        snic,
-        semail,
-        scontactNumber,
-        saddress,
-        designation
-      } = req.body;
-  
-      // Find the staff member by ID and update its details
-      const updatedStaff = await Staff.findByIdAndUpdate(id, {
-        sfirstname,
-        slastname,
-        snic,
-        semail,
-        scontactNumber,
-        saddress,
-        designation
-      }, { new: true });
-  
-      res.status(200).json(updatedStaff);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server error' });
-    }
-  };*/

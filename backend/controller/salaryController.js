@@ -1,55 +1,53 @@
-// controllers/salaryController.js
-const Staff = require('../models/staffModel');
 const Salary = require('../models/salaryModel');
+const Staff = require('../models/staffModel');
 
-// Controller for adding a new salary document
-// In the addSalary controller function, include staffId in the request body
+// Controller for adding salary details
 exports.addSalary = async (req, res) => {
   try {
-      const { staffId, firstName, lastName, basicSalary, otHours, otAmount, bonusAmount, totalSalary } = req.body;
-      const newSalary = new Salary({
-          staffId, // Include staffId in the new Salary document
-          firstName,
-          lastName,
-          basicSalary,
-          otHours,
-          otAmount,
-          bonusAmount,
-          totalSalary
-      });
-      await newSalary.save();
-      res.status(201).json(newSalary);
+    const { staffId, firstName, lastName, basicSalary, otHours, otAmount, bonusAmount, totalSalary } = req.body;
+    const newSalary = new Salary({
+      staffId,
+      firstName,
+      lastName,
+      basicSalary,
+      otHours,
+      otAmount,
+      bonusAmount,
+      totalSalary
+    });
+    await newSalary.save();
+    res.status(201).json(newSalary);
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
   }
 };
 
-// Controller for fetching salary details by staff ID
+// Controller for fetching salary details by custom staff ID
 exports.getSalary = async (req, res) => {
   try {
     const { id } = req.params;
     const salary = await Salary.findOne({ staffId: id });
-    if (!salary) {
-      // If no salary record is found, fetch the staff details
+
+    if (!salary || !salary.basicSalary) {
+      // If no salary record is found or basic salary is not assigned, fetch the staff details
       const staff = await Staff.findOne({ staffId: id });
+
       if (!staff) {
         // If no staff record is found either, return an error
         return res.status(404).json({ message: 'Staff not found' });
       }
-      // Return the staff details with default values for salary-related fields
+
+      // Return the staff details
       return res.status(200).json({
         staffId: staff.staffId,
         firstName: staff.sfirstname,
-        lastName: staff.slastname,
-        basicSalary: 0,
-        otHours: 0,
-        otAmount: 0,
-        bonusAmount: 0,
-        totalSalary: 0
+        lastName: staff.sfirstname,
+        message: 'Salary not assigned'
       });
     }
-    // If a salary record is found, return it
+
+    // If a salary record is found and basic salary is assigned, return it
     res.status(200).json(salary);
   } catch (error) {
     console.error(error);

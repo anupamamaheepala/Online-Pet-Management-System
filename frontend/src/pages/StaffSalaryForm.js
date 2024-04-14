@@ -21,7 +21,7 @@ function SalaryCalculator(props) {
     
         axios.get(`http://localhost:9000/salary/${id}`)
             .then(response => {
-                if (response.data) {
+                if (response.data && response.data.basicSalary !== undefined) {
                     // Salary is assigned
                     setIsSalaryAssigned(true);
                     const { staffId, firstName, lastName, basicSalary, otHours, otAmount, bonusAmount, totalSalary } = response.data;
@@ -43,12 +43,6 @@ function SalaryCalculator(props) {
                             setStaffId(staffId);
                             setFirstName(sfirstname);
                             setLastName(slastname);
-                            // Set default values for salary-related fields
-                            setBasicSalary(0);
-                            setOtHours(0);
-                            setOtAmount(0);
-                            setBonusAmount(0);
-                            setTotalSalary(0);
                         })
                         .catch(error => {
                             console.error('Error fetching staff details:', error);
@@ -59,8 +53,7 @@ function SalaryCalculator(props) {
                 console.error('Error fetching salary:', error);
             });
     }, []);
-    
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
