@@ -18,16 +18,15 @@ const UpdateStaff = () => {
   });
 
   useEffect(() => {
-    // Fetch staff data by ID
     axios.get(`http://localhost:9000/staff/${staffId}`)
       .then((res) => {
-        setFormData(res.data); // Set fetched staff data to state
+        setFormData(res.data);
       })
       .catch((err) => {
         console.error(err);
         alert('Failed to fetch staff data');
       });
-  }, [staffId]); // Include 'staffId' in the dependency array
+  }, [staffId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,13 +35,11 @@ const UpdateStaff = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Update staff data
     axios.put(`http://localhost:9000/staff/${staffId}`, formData)
       .then((res) => {
         console.log(res.data);
         alert('Staff updated successfully');
-         // Redirect to StaffList page
-         window.location.href = '/StaffList';
+        window.location.href = '/StaffList';
       })
       .catch((err) => {
         console.error(err);

@@ -33,21 +33,26 @@ function SalaryCalculator(props) {
                     setOtAmount(otAmount);
                     setBonusAmount(bonusAmount);
                     setTotalSalary(totalSalary);
-                } else {
-                    // Salary is not assigned
-                    setIsSalaryAssigned(false);
-                    // Fetch staff details
-                    axios.get(`http://localhost:9000/staff/${id}`)
-                        .then(response => {
-                            const { staffId, sfirstname, slastname } = response.data;
-                            setStaffId(staffId);
-                            setFirstName(sfirstname);
-                            setLastName(slastname);
-                        })
-                        .catch(error => {
-                            console.error('Error fetching staff details:', error);
-                        });
-                }
+                } // Inside the else block of the useEffect in SalaryCalculator.js
+                // Inside the else block of the useEffect in SalaryCalculator.js
+                    else {
+                        // Salary is not assigned
+                        setIsSalaryAssigned(false);
+                        // Fetch staff details for salary calculation
+                        axios.get(`http://localhost:9000/staff/salary/${id}`)
+                            .then(response => {
+                                console.log('Staff details response:', response.data); // Add this line for debugging
+                                const { staffId, sfirstname, slastname } = response.data;
+                                setStaffId(staffId);
+                                setFirstName(sfirstname);
+                                setLastName(slastname);
+                            })
+                            .catch(error => {
+                                console.error('Error fetching staff details:', error);
+                            });
+                    }
+
+                
             })
             .catch(error => {
                 console.error('Error fetching salary:', error);
