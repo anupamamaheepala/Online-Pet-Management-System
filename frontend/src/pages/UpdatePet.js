@@ -1,488 +1,361 @@
-// // // UpdatePet.js
-
-// // import React, { useState, useEffect } from 'react';
-// // import { useParams, useNavigate } from 'react-router-dom';
-// // import axios from 'axios';
-// // import '../css/updatepet.css';
-
-// // const UpdatePet = () => {
-// //   const { petId } = useParams();
-// //   const navigate = useNavigate();
-// //   const [updateData, setUpdateData] = useState({
-// //     petName: '',
-// //     species: '',
-// //     breed: '',
-// //     age: '',
-// //     gender: '',
-// //     weight: ''
-// //   });
-
-// //   useEffect(() => {
-// //     // Fetch pet data from the server using the pet ID
-// //     const fetchPetData = async () => {
-// //       try {
-// //         const response = await axios.get(`http://localhost:9000/pets/${petId}`);
-// //         setUpdateData(response.data);
-// //       } catch (error) {
-// //         console.error('Error fetching pet data:', error);
-// //       }
-// //     };
-// //     fetchPetData();
-// //   }, [petId]);
-
-// //   const handleChange = (e) => {
-// //     const { name, value } = e.target;
-// //     setUpdateData({ ...updateData, [name]: value });
-// //   };
-
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-// //     try {
-// //       await axios.put(`http://localhost:9000/pets/${petId}`, updateData);
-// //       alert('Update successful');
-// //       // After showing the success message, navigate to the "all-pets" page
-// //       navigate('/all-pets');
-// //     } catch (error) {
-// //       console.error('Error updating pet:', error);
-// //     }
-// //   };
-
-// //   const handleCancel = () => {
-// //     alert('Update cancelled');
-// //     // Navigate to the "all-pets" page after showing cancellation message
-// //     navigate('/all-pets');
-// //   };
-
-// //   return (
-// //     <div className="update-pet-form-container">
-// //       <h2 className="update-pet-form-header">Update Pet</h2>
-// //       <form onSubmit={handleSubmit} className="update-pet-form">
-// //         <label>
-// //           Pet Name:
-// //           <input
-// //             type="text"
-// //             name="petName"
-// //             value={updateData.petName}
-// //             onChange={handleChange}
-// //           />
-// //         </label>
-// //         <label>
-// //           Species:
-// //           <input
-// //             type="text"
-// //             name="species"
-// //             value={updateData.species}
-// //             onChange={handleChange}
-// //           />
-// //         </label>
-// //         <label>
-// //           Breed:
-// //           <input
-// //             type="text"
-// //             name="breed"
-// //             value={updateData.breed}
-// //             onChange={handleChange}
-// //           />
-// //         </label>
-// //         <label>
-// //           Age:
-// //           <input
-// //             type="number"
-// //             name="age"
-// //             value={updateData.age}
-// //             onChange={handleChange}
-// //           />
-// //         </label>
-// //         <label>
-// //           Gender:
-// //           <input
-// //             type="text"
-// //             name="gender"
-// //             value={updateData.gender}
-// //             onChange={handleChange}
-// //           />
-// //         </label>
-// //         <label>
-// //           Weight:
-// //           <input
-// //             type="number"
-// //             name="weight"
-// //             value={updateData.weight}
-// //             onChange={handleChange}
-// //           />
-// //         </label>
-// //         <div>
-// //           <button type="submit">Save</button>
-// //           <button type="button" onClick={handleCancel}>Cancel</button>
-// //         </div>
-// //       </form>
-// //     </div>
-// //   );
-// // };
-
-// // export default UpdatePet;
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { useNavigate, useParams } from 'react-router-dom'; // Importing useParams
-// import '../css/updatepet.css'; // Assuming you have a CSS file for styling
-
-// const UpdatePet = () => {
-//   const { petId } = useParams();
-//   const navigate = useNavigate();
-//   const [updateData, setUpdateData] = useState({
-//     petName: '',
-//     species: '',
-//     breed: '',
-//     age: '',
-//     gender: '',
-//     weight: '',
-//     additionalNotes: '', // Include additionalNotes
-//     vaccinations: [] // Include vaccinations array
-//   });
-
-//   useEffect(() => {
-//     // Fetch pet data from the server using the pet ID
-//     const fetchPetData = async () => {
-//       try {
-//         const response = await axios.get(`http://localhost:9000/pets/${petId}`);
-//         setUpdateData(response.data);
-//       } catch (error) {
-//         console.error('Error fetching pet data:', error);
-//       }
-//     };
-//     fetchPetData();
-//   }, [petId]);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setUpdateData({ ...updateData, [name]: value });
-//   };
-
-//   const handleVaccinationChange = (index, field, value) => {
-//     const updatedVaccinations = [...updateData.vaccinations];
-//     updatedVaccinations[index][field] = value;
-//     setUpdateData({ ...updateData, vaccinations: updatedVaccinations });
-//   };
-
-//   const handleAddVaccination = () => {
-//     setUpdateData({
-//       ...updateData,
-//       vaccinations: [...updateData.vaccinations, { vaccineType: '', dateAdministered: '' }]
-//     });
-//   };
-
-//   const handleRemoveVaccination = (index) => {
-//     const updatedVaccinations = updateData.vaccinations.filter((_, i) => i !== index);
-//     setUpdateData({ ...updateData, vaccinations: updatedVaccinations });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await axios.put(`http://localhost:9000/pets/${petId}`, updateData);
-//       alert('Update successful');
-//       navigate('/all-pets'); // Navigate to the "all-pets" page after updating
-//     } catch (error) {
-//       console.error('Error updating pet:', error);
-//     }
-//   };
-
-//   const handleCancel = () => {
-//     alert('Update cancelled');
-//     navigate('/all-pets'); // Navigate to the "all-pets" page after cancellation
-//   };
-
-//   return (
-//     <div className="update-pet-form-container">
-//       <h2 className="update-pet-form-header">Update Pet</h2>
-//       <form onSubmit={handleSubmit} className="update-pet-form">
-//         {/* Pet details form inputs */}
-//         <label>
-//           Pet Name:
-//           <input
-//             type="text"
-//             name="petName"
-//             value={updateData.petName}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <label>
-//           Species:
-//           <input
-//             type="text"
-//             name="species"
-//             value={updateData.species}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <label>
-//           Breed:
-//           <input
-//             type="text"
-//             name="breed"
-//             value={updateData.breed}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <label>
-//           Age:
-//           <input
-//             type="number"
-//             name="age"
-//             value={updateData.age}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <label>
-//           Gender:
-//           <input
-//             type="text"
-//             name="gender"
-//             value={updateData.gender}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <label>
-//           Weight:
-//           <input
-//             type="number"
-//             name="weight"
-//             value={updateData.weight}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <label>
-//           Additional Notes:
-//           <textarea
-//             name="additionalNotes"
-//             value={updateData.additionalNotes}
-//             onChange={handleChange}
-//           />
-//         </label>
-
-//         {/* Vaccinations form inputs */}
-//         <h3>Vaccinations</h3>
-//         {updateData.vaccinations.map((vaccine, index) => (
-//           <div key={index} className="vaccination-entry">
-//             <label>
-//               Vaccine Type:
-//               <input
-//                 type="text"
-//                 value={vaccine.vaccineType}
-//                 onChange={(e) => handleVaccinationChange(index, 'vaccineType', e.target.value)}
-//               />
-//             </label>
-//             <label>
-//               Date Administered:
-//               <input
-//                 type="date"
-//                 value={new Date(vaccine.dateAdministered).toISOString().substring(0, 10)}
-//                 onChange={(e) => handleVaccinationChange(index, 'dateAdministered', e.target.value)}
-//               />
-//             </label>
-//             <button type="button" onClick={() => handleRemoveVaccination(index)}>
-//               Remove
-//             </button>
-//           </div>
-//         ))}
-//         <button type="button" onClick={handleAddVaccination}>
-//           Add Vaccination
-//         </button>
-
-//         {/* Form action buttons */}
-//         <div>
-//           <button type="submit">Save</button>
-//           <button type="button" onClick={handleCancel}>Cancel</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default UpdatePet;
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../css/updatepet.css'; // Importing useParams
+import '../css/editpetprofile.css';
 
 const UpdatePet = () => {
-  const { petId } = useParams();
-  const navigate = useNavigate();
-  const [updateData, setUpdateData] = useState({
-    petName: '',
-    species: '',
-    breed: '',
-    age: '',
-    gender: '',
-    weight: '',
-    additionalNotes: '', // Include additionalNotes
-    vaccinations: [] // Include vaccinations array
-  });
-
-  useEffect(() => {
-    // Fetch pet data from the server using the pet ID
-    const fetchPetData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:9000/pets/${petId}`);
-        setUpdateData(response.data);
-      } catch (error) {
-        console.error('Error fetching pet data:', error);
-      }
-    };
-    fetchPetData();
-  }, [petId]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdateData({ ...updateData, [name]: value });
-  };
-
-  const handleVaccinationChange = (index, field, value) => {
-    const updatedVaccinations = [...updateData.vaccinations];
-    updatedVaccinations[index][field] = value;
-    setUpdateData({ ...updateData, vaccinations: updatedVaccinations });
-  };
-
-  const handleAddVaccination = () => {
-    setUpdateData({
-      ...updateData,
-      vaccinations: [...updateData.vaccinations, { vaccineType: '', dateAdministered: '' }]
+    const { petId } = useParams();
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        petName: '',
+        species: '',
+        breed: '',
+        age: { value: '', unit: 'years' },
+        gender: '',
+        weight: '',
+        dateAdopted: '',
+        additionalNotes: '',
+        vaccinations: [],
+        profilePhoto: null, 
     });
-  };
-
-  const handleRemoveVaccination = (index) => {
-    // Display a confirmation prompt to the user
-    const confirmDelete = window.confirm('Are you sure you want to delete this vaccination?');
     
-    // If the user confirms, remove the vaccination from the array
-    if (confirmDelete) {
-      const updatedVaccinations = updateData.vaccinations.filter((_, i) => i !== index);
-      setUpdateData({ ...updateData, vaccinations: updatedVaccinations });
-    }
-  };
-  
+    const [ageError, setAgeError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`http://localhost:9000/pets/${petId}`, updateData);
-      alert('Update successful');
-      navigate('/all-pets'); // Navigate to the "all-pets" page after updating
-    } catch (error) {
-      console.error('Error updating pet:', error);
-    }
-  };
+    useEffect(() => {
+        // Fetch pet data from the server using the pet ID
+        const fetchPetData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:9000/pets/${petId}`);
+                const petData = response.data;
 
-  const handleCancel = () => {
-    alert('Update cancelled');
-    navigate('/all-pets'); // Navigate to the "all-pets" page after cancellation
-  };
+                // Ensure the age field is an object with `value` and `unit` properties
+                const { age } = petData;
+                const ageData = age && typeof age === 'object' ? age : { value: '', unit: 'years' };
+                
+                setFormData({
+                    ...petData,
+                    age: ageData,
+                });
+            } catch (error) {
+                console.error('Error fetching pet data:', error);
+            }
+        };
 
-  return (
-    <div className="update-pet-form-container">
-      <h2 className="update-pet-form-header">Update Pet</h2>
-      <form onSubmit={handleSubmit} className="update-pet-form">
-        {/* Pet details form inputs */}
-        <label>
-          Pet Name:
-          <input
-            type="text"
-            name="petName"
-            value={updateData.petName}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Species:
-          <input
-            type="text"
-            name="species"
-            value={updateData.species}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Breed:
-          <input
-            type="text"
-            name="breed"
-            value={updateData.breed}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Age:
-          <input
-            type="number"
-            name="age"
-            value={updateData.age}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Gender:
-          <input
-            type="text"
-            name="gender"
-            value={updateData.gender}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Weight:
-          <input
-            type="number"
-            name="weight"
-            value={updateData.weight}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Additional Notes:
-          <textarea
-            name="additionalNotes"
-            value={updateData.additionalNotes}
-            onChange={handleChange}
-          />
-        </label>
+        fetchPetData();
+    }, [petId]);
 
-        {/* Vaccinations form inputs */}
-        <h3>Vaccinations</h3>
-        {updateData.vaccinations.map((vaccine, index) => (
-          <div key={index} className="vaccination-entry">
-            <label>
-              Vaccine Type:
-              <input
-                type="text"
-                value={vaccine.vaccineType}
-                onChange={(e) => handleVaccinationChange(index, 'vaccineType', e.target.value)}
-              />
-            </label>
-            <label>
-              Date Administered:
-              <input
-                type="date"
-                value={vaccine.dateAdministered ? new Date(vaccine.dateAdministered).toISOString().substring(0, 10) : ''}
-                onChange={(e) => handleVaccinationChange(index, 'dateAdministered', e.target.value)}
-              />
-            </label>
-            <button type="button" onClick={() => handleRemoveVaccination(index)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={handleAddVaccination}>
-          Add Vaccination
-        </button>
+    const handlePhotoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFormData((prevState) => ({
+                ...prevState,
+                profilePhoto: file,
+            }));
+        }
+    };
+    
 
-        {/* Form action buttons */}
-        <div>
-          <button type="submit">Save</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
+    // Handle form input changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        // Check for nested properties in formData
+        if (name.includes('.')) {
+            const [mainProp, subProp] = name.split('.');
+            setFormData((prevState) => ({
+                ...prevState,
+                [mainProp]: {
+                    ...prevState[mainProp],
+                    [subProp]: value,
+                },
+            }));
+        } else {
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
+
+        // Validate age when either value or unit changes
+        if (name === 'age.value' || name === 'age.unit') {
+            validateAge(formData.age.value, formData.age.unit);
+        }
+    };
+
+    // Function to validate age
+    const validateAge = (value, unit) => {
+        let valid = false;
+
+        if (unit === 'years') {
+            valid = value >= 0 && value <= 30;
+        } else if (unit === 'months') {
+            valid = value >= 0 && value <= 360;
+        } else if (unit === 'days') {
+            valid = value >= 0 && value <= 10950;
+        }
+
+        if (!valid) {
+            setAgeError(`Invalid age range for ${unit}.`);
+        } else {
+            setAgeError('');
+        }
+    };
+
+    // Handle vaccination changes
+    const handleVaccinationChange = (index, field, value) => {
+        const updatedVaccinations = [...formData.vaccinations];
+        updatedVaccinations[index][field] = value;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            vaccinations: updatedVaccinations,
+        }));
+    };
+
+    // Add a new vaccination entry
+    const addVaccination = () => {
+        const newVaccination = {
+            vaccineType: '',
+            dateAdministered: '',
+        };
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            vaccinations: [...prevFormData.vaccinations, newVaccination],
+        }));
+    };
+
+    // Remove a vaccination entry
+    const removeVaccination = (index) => {
+        const confirmed = window.confirm('Are you sure you want to delete this vaccination?');
+        if (confirmed) {
+            const updatedVaccinations = [...formData.vaccinations];
+            updatedVaccinations.splice(index, 1);
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                vaccinations: updatedVaccinations,
+            }));
+        }
+    };
+
+    // // Handle form submission
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     // Validate age before submitting
+    //     validateAge(formData.age.value, formData.age.unit);
+    //     if (ageError) {
+    //         alert(ageError);
+    //         return;
+    //     }
+
+    //     try {
+    //         // Send a PUT request to update the pet profile
+    //         await axios.put(`http://localhost:9000/pets/${petId}`, formData);
+    //         alert('Pet profile updated successfully.');
+    //         navigate('/all-pets'); // Redirect to the all-pets page
+    //     } catch (error) {
+    //         console.error('Error updating pet profile:', error);
+    //         alert('Failed to update pet profile.');
+    //     }
+    // };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Validate age before submitting
+        validateAge(formData.age.value, formData.age.unit);
+        if (ageError) {
+            alert(ageError);
+            return;
+        }
+    
+        // Create a FormData object to handle file uploads
+        const formDataObj = new FormData();
+        formDataObj.append('petName', formData.petName);
+        formDataObj.append('species', formData.species);
+        formDataObj.append('breed', formData.breed);
+        formDataObj.append('age', JSON.stringify(formData.age));
+        formDataObj.append('gender', formData.gender);
+        formDataObj.append('weight', formData.weight);
+        formDataObj.append('dateAdopted', formData.dateAdopted);
+        formDataObj.append('additionalNotes', formData.additionalNotes);
+        
+        // Append the profile photo if it exists
+        if (formData.profilePhoto) {
+            formDataObj.append('profilePhoto', formData.profilePhoto);
+        }
+        
+        // Append the vaccinations array
+        formDataObj.append('vaccinations', JSON.stringify(formData.vaccinations));
+    
+        try {
+            // Send a PUT request to update the pet profile
+            await axios.put(`http://localhost:9000/pets/${petId}`, formDataObj, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', // Needed for file uploads
+                },
+            });
+            alert('Pet profile updated successfully.');
+            navigate('/all-pets'); // Redirect to the all-pets page
+        } catch (error) {
+            console.error('Error updating pet profile:', error);
+            alert('Failed to update pet profile.');
+        }
+    };
+    
+
+    return (
+        <div className="editPetProfileContainer">
+            <h2>Update Pet</h2>
+            <form onSubmit={handleSubmit} className="editPetProfileForm">
+                {/* Form fields for pet information */}
+                <label htmlFor="petName" className="editPetProfileLabel">Pet Name:</label>
+                <input
+                    type="text"
+                    id="petName"
+                    name="petName"
+                    value={formData.petName}
+                    onChange={handleChange}
+                    className="editPetProfileInput"
+                />
+                <label htmlFor="profilePhoto" className="editPetProfileLabel">Profile Photo:</label>
+<input
+    type="file"
+    id="profilePhoto"
+    name="profilePhoto"
+    onChange={(e) => handlePhotoChange(e)}
+    className="editPetProfileInput"
+/>
+
+                <label htmlFor="species" className="editPetProfileLabel">Species:</label>
+                <input
+                    type="text"
+                    id="species"
+                    name="species"
+                    value={formData.species}
+                    onChange={handleChange}
+                    className="editPetProfileInput"
+                />
+
+                <label htmlFor="breed" className="editPetProfileLabel">Breed:</label>
+                <input
+                    type="text"
+                    id="breed"
+                    name="breed"
+                    value={formData.breed}
+                    onChange={handleChange}
+                    className="editPetProfileInput"
+                />
+
+                {/* Age section */}
+                <div className="ageInputContainer">
+                    <label htmlFor="ageValue" className="editPetProfileLabel">Age:</label>
+                    <input
+                        type="number"
+                        id="ageValue"
+                        name="age.value"
+                        value={formData.age.value}
+                        onChange={handleChange}
+                        className="editPetProfileInput"
+                    />
+                    <select
+                        id="ageUnit"
+                        name="age.unit"
+                        value={formData.age.unit}
+                        onChange={handleChange}
+                        className="editPetProfileSelect"
+                    >
+                        <option value="years">Years</option>
+                        <option value="months">Months</option>
+                        <option value="days">Days</option>
+                    </select>
+                    {/* Display age error if there is one */}
+                    {ageError && <span className="ageErrorText">{ageError}</span>}
+                </div>
+
+                <label htmlFor="gender" className="editPetProfileLabel">Gender:</label>
+                <select
+                    id="gender"
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    className="editPetProfileSelect"
+                >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <label htmlFor="weight" className="editPetProfileLabel">Weight:</label>
+                <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    value={formData.weight}
+                    onChange={handleChange}
+                    className="editPetProfileInput"
+                />
+
+                <label htmlFor="dateAdopted" className="editPetProfileLabel">Date Adopted:</label>
+                <input
+                    type="date"
+                    id="dateAdopted"
+                    name="dateAdopted"
+                    value={formData.dateAdopted}
+                    onChange={handleChange}
+                    className="editPetProfileInput"
+                />
+
+                <label htmlFor="additionalNotes" className="editPetProfileLabel">Additional Notes:</label>
+                <textarea
+                    id="additionalNotes"
+                    name="additionalNotes"
+                    value={formData.additionalNotes}
+                    onChange={handleChange}
+                    className="editPetProfileTextarea"
+                />
+
+                {/* Vaccination entries */}
+                <h3>Vaccinations:</h3>
+                {formData.vaccinations.map((vaccination, index) => (
+                    <div key={index} className="vaccinationEntry">
+                        <label htmlFor={`vaccineType-${index}`} className="editPetProfileLabel">Vaccine Type:</label>
+                        <input
+                            type="text"
+                            id={`vaccineType-${index}`}
+                            name={`vaccineType-${index}`}
+                            value={vaccination.vaccineType}
+                            onChange={(e) => handleVaccinationChange(index, 'vaccineType', e.target.value)}
+                            className="editPetProfileInput"
+                        />
+
+                        <label htmlFor={`dateAdministered-${index}`} className="editPetProfileLabel">Date Administered:</label>
+                        <input
+                            type="date"
+                            id={`dateAdministered-${index}`}
+                            name={`dateAdministered-${index}`}
+                            value={vaccination.dateAdministered}
+                            onChange={(e) => handleVaccinationChange(index, 'dateAdministered', e.target.value)}
+                            className="editPetProfileInput"
+                        />
+
+                        <button
+                            type="button"
+                            onClick={() => removeVaccination(index)}
+                            className="removeVaccinationButton"
+                        >
+                            Remove
+                        </button>
+                    </div>
+                ))}
+
+                <button type="button" onClick={addVaccination} className="addVaccinationButton">
+                    Add Vaccination
+                </button>
+
+                {/* Submit button */}
+                <button type="submit" className="submitButton">Update Pet</button>
+            </form>
         </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default UpdatePet;
