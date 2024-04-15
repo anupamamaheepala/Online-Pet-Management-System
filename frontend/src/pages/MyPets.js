@@ -94,12 +94,13 @@ const MyPets = () => {
             {customerPets.map(pet => (
               <div className="PetCard" key={pet._id}>
                 <Link to={`/pet-profile/${pet._id}`}>
-                  <img src={pet.profileImage} alt={pet.petName} className="PetImage" />
-                  <div className="PetDetails">
-                    <h3 className="PetName">{pet.petName}</h3>
-                    <p className="PetSpecies">Species: {pet.species}</p>
-                  </div>
+                      <img src={pet.profilePhoto} alt={pet.petName} className="PetImage" />
+                      <div className="PetDetails">
+                        <h3 className="PetName">{pet.petName}</h3>
+                        <p className="PetSpecies">Species: {pet.species}</p>
+                      </div>
                 </Link>
+
               </div>
             ))}
           </div>

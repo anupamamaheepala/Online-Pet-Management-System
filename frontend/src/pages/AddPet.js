@@ -1,251 +1,139 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useParams,Link } from 'react-router-dom';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-// import '../css/addpet.css'; // Import CSS file
 
-// const AddPet = () => {
-//   const { customerId } = useParams();
-
-//   const [formData, setFormData] = useState({
-//     petName: '',
-//     species: '',
-//     breed: '',
-//     age: '',
-//     gender: '',
-//     weight: ''
-//   });
-
-//   const { petName, species, breed, age, gender, weight } = formData;
-
-//   const onChange = e => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const res = await axios.post('http://localhost:9000/pets/add', {
-//         ...formData,
-//         owner: customerId
-//       });
-//       console.log('Response from server:', res.data);
-//       window.location.href = '/my-pets/${customerId}';
-//     } catch (error) {
-//       console.error('Error:', error);
-
-//       // Check if the error has a response property
-//       if (error.response) {
-//         // Server responded with a status code other than 2xx
-//         const serverMessage = error.response.data.message || 'Unknown error from server';
-//         alert(`Error saving pet: ${serverMessage}`);
-//     } else {
-//         // No response received from server
-//         alert('Error: Unable to connect to server.');
-//     }
-//     }
-//   };
-
-//   return (
-//     <>
-// <Header />
-//     <div className="add-pet-container"> {/* Use unique class name */}
-//     <center><h2>Add a Pet</h2></center>
-//       <form onSubmit={onSubmit}>
-//         <div className="add-pet-form-group"> {/* Use unique class name */}
-//           <label htmlFor="petName">Pet Name:</label>
-//           <input type="text" id="petName" name="petName" value={petName} onChange={onChange} required />
-//         </div>
-//         <div className="add-pet-form-group"> {/* Use unique class name */}
-//           <label htmlFor="species">Species:</label>
-//           <input type="text" id="species" name="species" value={species} onChange={onChange} required />
-//         </div>
-//         <div className="add-pet-form-group"> {/* Use unique class name */}
-//           <label htmlFor="breed">Breed:</label>
-//           <input type="text" id="breed" name="breed" value={breed} onChange={onChange} required />
-//         </div>
-//         <div className="add-pet-form-group"> {/* Use unique class name */}
-//           <label htmlFor="age">Age:</label>
-//           <input type="text" id="age" name="age" value={age} onChange={onChange} required />
-//         </div>
-//         <div className="add-pet-form-group"> {/* Use unique class name */}
-//           <label htmlFor="gender">Gender:</label>
-//           <input type="text" id="gender" name="gender" value={gender} onChange={onChange} required />
-//         </div>
-//         <div className="add-pet-form-group"> {/* Use unique class name */}
-//           <label htmlFor="weight">Weight:</label>
-//           <input type="text" id="weight" name="weight" value={weight} onChange={onChange} required />
-//         </div>
-//                 <center><button type="submit" className="add-pet-button">Add Pet</button></center> {/* Use unique class name */}
-        
-//       </form>
-//     </div>
-//     <br></br>
-// <Footer />
-// </>
-//   );
-// };
-
-// export default AddPet;
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useParams } from 'react-router-dom';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-// import '../css/addpet.css'; // Import CSS file
-
-// const AddPet = () => {
-//     const { customerId } = useParams();
-
-//     const [formData, setFormData] = useState({
-//         petName: '',
-//         species: '',
-//         breed: '',
-//         age: '',
-//         gender: '',
-//         weight: '',
-//         dateAdopted: '',
-//         additionalNotes: '',
-//         profileImage: '' // Include profileImage if the API expects it
-//     });
-
-//     const { petName, species, breed, age, gender, weight, dateAdopted, additionalNotes, profileImage } = formData;
-
-//     const onChange = e => {
-//         setFormData({ ...formData, [e.target.name]: e.target.value });
-//     };
-
-//     const onSubmit = async e => {
-//         e.preventDefault();
-
-//         try {
-//             // Include all necessary fields in the request payload
-//             const res = await axios.post('http://localhost:9000/pets/add', {
-//                 petName,
-//                 species,
-//                 breed,
-//                 age,
-//                 gender,
-//                 weight,
-//                 dateAdopted,
-//                 additionalNotes,
-//                 profileImage,
-//                 owner: customerId
-//             });
-//             console.log('Response from server:', res.data);
-            
-//             // Redirect back to the my-pets page
-//             window.location.href = `/my-pets/${customerId}`;
-//         } catch (error) {
-//             console.error('Error:', error);
-//             alert('Error saving pet. Please try again.');
-//         }
-//     };
-
-//     return (
-//         <>
-//             <Header />
-//             <div className="add-pet-container">
-//                 <center><h2>Add a Pet</h2></center>
-//                 <form onSubmit={onSubmit}>
-//                     {/* Form fields */}
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="petName">Pet Name:</label>
-//                         <input type="text" id="petName" name="petName" value={petName} onChange={onChange} required />
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="species">Species:</label>
-//                         <input type="text" id="species" name="species" value={species} onChange={onChange} required />
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="breed">Breed:</label>
-//                         <input type="text" id="breed" name="breed" value={breed} onChange={onChange}  />
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="age">Age:</label>
-//                         <input type="number" id="age" name="age" value={age} onChange={onChange} required />
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="gender">Gender:</label>
-//                         <select id="gender" name="gender" value={gender} onChange={onChange} required>
-//                             <option value="">Select Gender</option>
-//                             <option value="Male">Male</option>
-//                             <option value="Female">Female</option>
-//                         </select>
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="weight">Weight:</label>
-//                         <input type="number" id="weight" name="weight" value={weight} onChange={onChange} required />
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="dateAdopted">Date Adopted:</label>
-//                         <input type="date" id="dateAdopted" name="dateAdopted" value={dateAdopted} onChange={onChange}  />
-//                     </div>
-//                     <div className="add-pet-form-group">
-//                         <label htmlFor="additionalNotes">Additional Notes:</label>
-//                         <textarea id="additionalNotes" name="additionalNotes" value={additionalNotes} onChange={onChange} ></textarea>
-//                     </div>
-//                     <center><button type="submit" className="add-pet-button">Add Pet</button></center>
-//                 </form>
-//             </div>
-//             <Footer />
-//         </>
-//     );
-// };
-
-// export default AddPet;
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import '../css/addpet.css'; // Import CSS file
+import '../css/addpet.css';
 
 const AddPet = () => {
     const { customerId } = useParams();
 
-    // Initialize form data with null or empty values for optional fields
+    // Initialize form data with default values
     const [formData, setFormData] = useState({
         petName: '',
         species: '',
-        breed: null, // Optional field initialized to null
-        age: null, // Optional field initialized to null
+        breed: '',
+        ageValue: '', // Add this key to initialize ageValue separately
+        ageUnit: 'years', // Initialize ageUnit as 'years'
         gender: '',
-        weight: null, // Optional field initialized to null
-        dateAdopted: null, // Optional field initialized to null
-        additionalNotes: null, // Optional field initialized to null
-        profileImage: null // Optional field initialized to null
+        weight: '',
+        dateAdopted: '',
+        additionalNotes: '',
+        profileImage: '' // Initialize as an empty string
     });
 
-    const { petName, species, breed, age, gender, weight, dateAdopted, additionalNotes, profileImage } = formData;
+    // Initialize error state for age validation
+    const [ageError, setAgeError] = useState('');
 
-    const onChange = e => {
-        // Handle empty string values as `null` for optional fields
-        const value = e.target.value === '' ? null : e.target.value;
-        setFormData({ ...formData, [e.target.name]: value });
+    // Handle form field changes
+    // Handle form field changes
+const onChange = (e) => {
+    const { name, value } = e.target;
+
+    // Update form data state
+    setFormData((prevData) => ({
+        ...prevData,
+        [name]: value
+    }));
+
+    // Validate age input when the ageValue or ageUnit changes
+    if (name === 'ageValue' || name === 'ageUnit') {
+        validateAge(value, formData.ageUnit);
+    }
+};
+
+    const validateAge = (ageValue, ageUnit) => {
+        let error = '';
+    
+        // Convert ageValue to a number
+        const value = parseFloat(ageValue);
+        
+        // Check the age value range based on the age unit
+        if (isNaN(value)) {
+            error = 'Age value must be a valid number.';
+        } else {
+            switch (ageUnit) {
+                case 'years':
+                    if (value < 0 || value > 30) {
+                        error = 'Age in years must be between 0 and 30.';
+                    }
+                    break;
+                case 'months':
+                    if (value < 0 || value > 360) {
+                        error = 'Age in months must be between 0 and 360.';
+                    }
+                    break;
+                case 'days':
+                    if (value < 0 || value > 10950) {
+                        error = 'Age in days must be between 0 and 10,950.';
+                    }
+                    break;
+                default:
+                    error = 'Invalid age unit.';
+            }
+        }
+    
+        // Update the state with the error message
+        setAgeError(error);
+    
+        return error === ''; // Return true if no error, false otherwise
     };
+    
+    
 
-    const onSubmit = async e => {
+    // Handle form submission
+    const onSubmit = async (e) => {
         e.preventDefault();
 
+        // First, validate the age input
+    if (!validateAge(formData.ageValue, formData.ageUnit)) {
+        alert('Please correct the age value before submitting the form.');
+        return;
+    }
+        
+    // Convert and validate weight
+    const parsedWeight = parseFloat(formData.weight);
+    if (isNaN(parsedWeight) || parsedWeight < 0) {
+        alert('Please enter a valid non-negative weight.');
+        return;
+    }
+    
+        // Convert ageValue to a number
+        const ageValueNumber = parseFloat(formData.ageValue);
+    
+        // Check if ageValue is a valid non-negative number
+        if (isNaN(ageValueNumber) || ageValueNumber < 0) {
+            alert('Please enter a valid non-negative age value.');
+            return;
+        }
+    
+        // Validate the age unit
+        const validAgeUnits = ['years', 'months', 'days'];
+        if (!validAgeUnits.includes(formData.ageUnit)) {
+            alert('Please select a valid age unit.');
+            return;
+        }
+    
+        // Prepare the request payload
+        const payload = {
+            petName: formData.petName,
+            species: formData.species,
+            breed: formData.breed,
+            ageValue: ageValueNumber, // Convert ageValue to a number
+            ageUnit: formData.ageUnit,
+            gender: formData.gender,
+            weight: parseFloat(formData.weight),
+            dateAdopted: formData.dateAdopted,
+            additionalNotes: formData.additionalNotes,
+            owner: customerId,
+        };
+    
         try {
-            // Send the form data as payload
-            const res = await axios.post('http://localhost:9000/pets/add', {
-                petName,
-                species,
-                breed,
-                age,
-                gender,
-                weight,
-                dateAdopted,
-                additionalNotes,
-                profileImage,
-                owner: customerId
-            });
+            // Send the request payload to the server
+            const res = await axios.post(`http://localhost:9000/pets/add`, payload);
             console.log('Response from server:', res.data);
-            
+    
             // Redirect back to the my-pets page
             window.location.href = `/my-pets/${customerId}`;
         } catch (error) {
@@ -253,7 +141,7 @@ const AddPet = () => {
             alert('Error saving pet. Please try again.');
         }
     };
-
+    
     return (
         <>
             <Header />
@@ -263,23 +151,36 @@ const AddPet = () => {
                     {/* Form fields */}
                     <div className="add-pet-form-group">
                         <label htmlFor="petName">Pet Name:</label>
-                        <input type="text" id="petName" name="petName" value={petName} onChange={onChange} required />
+                        <input type="text" id="petName" name="petName" value={formData.petName} onChange={onChange} required />
                     </div>
                     <div className="add-pet-form-group">
                         <label htmlFor="species">Species:</label>
-                        <input type="text" id="species" name="species" value={species} onChange={onChange} required />
+                        <input type="text" id="species" name="species" value={formData.species} onChange={onChange} required />
                     </div>
                     <div className="add-pet-form-group">
                         <label htmlFor="breed">Breed:</label>
-                        <input type="text" id="breed" name="breed" value={breed} onChange={onChange} />
+                        <input type="text" id="breed" name="breed" value={formData.breed} onChange={onChange} />
                     </div>
                     <div className="add-pet-form-group">
-                        <label htmlFor="age">Age:</label>
-                        <input type="number" id="age" name="age" value={age} onChange={onChange} />
+                        <label htmlFor="ageValue">Age:</label>
+                        <input type="number" id="ageValue" name="ageValue" value={formData.ageValue} onChange={onChange} required />
+                        <select id="ageUnit" name="ageUnit" value={formData.ageUnit} onChange={onChange} required>
+                            <option value="years">Years</option>
+                            <option value="months">Months</option>
+                            <option value="days">Days</option>
+                        </select>
                     </div>
+
+                    {/* Display error message for invalid age */}
+                    {ageError && (
+                        <div className="age-error">
+                            {ageError}
+                        </div>
+                    )}
+
                     <div className="add-pet-form-group">
                         <label htmlFor="gender">Gender:</label>
-                        <select id="gender" name="gender" value={gender} onChange={onChange} required>
+                        <select id="gender" name="gender" value={formData.gender} onChange={onChange} required>
                             <option value="">Select Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -287,17 +188,20 @@ const AddPet = () => {
                     </div>
                     <div className="add-pet-form-group">
                         <label htmlFor="weight">Weight:</label>
-                        <input type="number" id="weight" name="weight" value={weight} onChange={onChange} />
+                        <input type="number" id="weight" name="weight" value={formData.weight} onChange={onChange} />
                     </div>
+
                     <div className="add-pet-form-group">
                         <label htmlFor="dateAdopted">Date Adopted:</label>
-                        <input type="date" id="dateAdopted" name="dateAdopted" value={dateAdopted} onChange={onChange} />
+                        <input type="date" id="dateAdopted" name="dateAdopted" value={formData.dateAdopted} onChange={onChange} />
                     </div>
                     <div className="add-pet-form-group">
                         <label htmlFor="additionalNotes">Additional Notes:</label>
-                        <textarea id="additionalNotes" name="additionalNotes" value={additionalNotes} onChange={onChange}></textarea>
+                        <textarea id="additionalNotes" name="additionalNotes" value={formData.additionalNotes} onChange={onChange}></textarea>
                     </div>
-                    <center><button type="submit" className="add-pet-button">Add Pet</button></center>
+                    <center>
+                        <button type="submit" className="add-pet-button">Add Pet</button>
+                    </center>
                 </form>
             </div>
             <Footer />

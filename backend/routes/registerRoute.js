@@ -11,6 +11,10 @@ router.post("/register", registerController.registerCustomer);
 // Route for uploading profile photo
 router.put('/profile-photo/:customerId', registerController.uploadProfilePhoto);
 
+// Add this route for deleting a customer's profile photo
+router.delete('/profile-photo/:customerId', registerController.deleteProfilePhoto);
+
+
 
 // Get all customers
 router.get("/", registerController.getAllCustomers);
