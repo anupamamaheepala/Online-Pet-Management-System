@@ -68,6 +68,19 @@ function SalaryCalculator(props) {
                 totalSalary
             });
             console.log(res.data);
+    
+            // Fetch updated staff details after submitting the form
+            axios.get(`http://localhost:9000/staff/salary/${staffId}`)
+                .then(response => {
+                    console.log("Updated staff details:", response.data);
+                    const { staffId, sfirstname, slastname } = response.data;
+                    setFirstName(sfirstname);
+                    setLastName(slastname);
+                })
+                .catch(error => {
+                    console.error('Error fetching staff details:', error);
+                });
+    
             setBasicSalary(0);
             setOtHours(0);
             setBonusAmount(0);
@@ -76,6 +89,8 @@ function SalaryCalculator(props) {
             console.error(err);
         }
     };
+    
+    
 
     // Function to calculate OT Amount and Total Salary
     const calculateSalary = () => {
@@ -141,10 +156,10 @@ function SalaryCalculator(props) {
                     </div>
                    <center> 
                        {isSalaryAssigned ? (
-                           <Link className='StaffCalculate' to={`/update-salary?staffId=${staffId}` }>Update Salary</Link>
+                           <Link className='StaffCalculate1' to={`/update-salary?staffId=${staffId}` }>Update Salary</Link>
 
                        ) : (
-                           <button type="submit" className='StaffCalculate' disabled={isSalaryAssigned}>Assign Salary</button>
+                           <button type="submit" className='StaffCalculate2' disabled={isSalaryAssigned}>Assign Salary</button>
                        )}
                    </center>
                 </form>
