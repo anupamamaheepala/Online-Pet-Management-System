@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 // Controller function to handle adding new staff
 exports.addStaff = async (req, res) => {
   try {
-    const { sfirstname, slastname, snic, semail, scontactNumber, saddress, designation } = req.body;
-    const newStaff = new Staff({ sfirstname, slastname, snic, semail, scontactNumber, saddress, designation });
+    const { staffId,sfirstname, slastname, snic, semail, scontactNumber, saddress, designation } = req.body;
+    const newStaff = new Staff({ staffId,sfirstname, slastname, snic, semail, scontactNumber, saddress, designation });
     const savedStaff = await newStaff.save();
     res.status(201).json(savedStaff);
   } catch (error) {
@@ -16,6 +16,7 @@ exports.addStaff = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 // Controller function to handle getting all staff members
 exports.getAllStaff = async (req, res) => {
