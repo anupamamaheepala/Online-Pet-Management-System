@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import '../css/StaffRegister.css';
 
 const UpdateStaff = () => {
+  
   const { staffId } = useParams();
   const [formData, setFormData] = useState({
     sfirstname: '',

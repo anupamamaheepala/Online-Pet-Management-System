@@ -34,7 +34,8 @@
   box-sizing: border-box;
 }
 
-.StaffCalculate {
+.StaffCalculate,
+.UpdateStaffCalculate {
   display: block;
   width: 70%;
   padding: 10px;
@@ -44,10 +45,12 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none; 
 }
 
-.StaffCalculate:hover {
+.UpdateStaffCalculate:hover {
   background-color: #0056b3;
+  text-decoration: none; 
 }
 
 .StaffSalary-form-group input[type="number"]::-webkit-inner-spin-button,

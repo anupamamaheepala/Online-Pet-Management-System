@@ -60,9 +60,9 @@ exports.getStaffById = async (req, res) => {
 // Update staff details
 exports.updateStaff = async (req, res) => {
   try {
-    const { staffId } = req.params; // Assuming the parameter is named staffId
+    const { id } = req.params; // Assuming the parameter is named id
     const updates = req.body;
-    const updatedStaff = await Staff.findOneAndUpdate({ staffId }, updates, { new: true }); // Use findOneAndUpdate with staffId
+    const updatedStaff = await Staff.findByIdAndUpdate(id, updates, { new: true });
     if (!updatedStaff) {
       return res.status(404).json({ message: 'Staff member not found' });
     }

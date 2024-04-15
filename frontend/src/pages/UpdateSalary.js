@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'; // Import Link component
 import '../css/StaffSalary.css';
 
-function SalaryCalculator(props) {
+function UpdateSalary(props) {
     const [staffId, setStaffId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -14,17 +14,13 @@ function SalaryCalculator(props) {
     const [otAmount, setOtAmount] = useState(0);
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
-    const [isSalaryAssigned, setIsSalaryAssigned] = useState(false);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('staffId');
-    
+        
         axios.get(`http://localhost:9000/salary/${id}`)
             .then(response => {
-                if (response.data && response.data.basicSalary !== undefined) {
-                    // Salary is assigned
-                    setIsSalaryAssigned(true);
                     const { staffId, firstName, lastName, basicSalary, otHours, otAmount, bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
@@ -34,33 +30,56 @@ function SalaryCalculator(props) {
                     setOtAmount(otAmount);
                     setBonusAmount(bonusAmount);
                     setTotalSalary(totalSalary);
-                } else {
-                    // Salary is not assigned
-                    setIsSalaryAssigned(false);
-                    axios.get(`http://localhost:9000/staff/salary/${id}`)
-                        .then(response => {
-                            const { staffId, sfirstname, slastname } = response.data;
-                            setStaffId(staffId);
-                            setFirstName(sfirstname);
-                            setLastName(slastname);
-                        })
-                        .catch(error => {
-                            console.error('Error fetching staff details:', error);
-                        });
-                }
+                
             })
             .catch(error => {
-                console.error('Error fetching salary:', error);
+                console.error('Error fetching salary details:', error);
             });
     }, []);
+const otRate = 500; // Assuming a fixed OT rate of 500 per hour
+
+const calculateOTAmount = () => {
+        const otAmount = otHours * otRate;
+        setOtAmount(otAmount);
+    };
+    
+
+const calculateTotalSalary = () => {
+    const total = basicSalary + otAmount + bonusAmount;
+    setTotalSalary(total);
+};
+
+useEffect(() => {
+    calculateOTAmount();
+    calculateTotalSalary();
+}, [basicSalary, otHours, otAmount, bonusAmount]);
+
+const handleBasicSalaryChange = (e) => {
+    const value = parseInt(e.target.value);
+    setBasicSalary(value);
+    calculateOTAmount(); // Recalculate OT Amount when Basic Salary changes
+    calculateTotalSalary(); // Recalculate Total Salary when Basic Salary changes
+};
+
+const handleOTHoursChange = (e) => {
+    const value = parseInt(e.target.value);
+    setOtHours(value);
+    calculateOTAmount(); // Recalculate OT Amount when OT Hours changes
+    calculateTotalSalary(); // Recalculate Total Salary when OT Hours changes
+};
+
+const handleBonusAmountChange = (e) => {
+    const value = parseInt(e.target.value);
+    setBonusAmount(value);
+    calculateTotalSalary(); // Recalculate Total Salary when Bonus Amount changes
+};
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:9000/salary/add", {
+            const res = await axios.post("http://localhost:9000/salary/update", {
                 staffId,
-                firstName,
-                lastName,
                 basicSalary,
                 otHours,
                 otAmount,
@@ -68,44 +87,16 @@ function SalaryCalculator(props) {
                 totalSalary
             });
             console.log(res.data);
-            setBasicSalary(0);
-            setOtHours(0);
-            setBonusAmount(0);
-            setTotalSalary(0);
         } catch (err) {
             console.error(err);
         }
     };
 
-    // Function to calculate OT Amount and Total Salary
-    const calculateSalary = () => {
-        const otRate = 500; // OT Rate, you can change this value as needed
-        const calculatedOtAmount = otHours * otRate;
-        const calculatedTotalSalary = basicSalary + calculatedOtAmount + bonusAmount;
-        setOtAmount(calculatedOtAmount);
-        setTotalSalary(calculatedTotalSalary);
-    };
-
-    // useEffect to recalculate salary whenever inputs change
-    useEffect(() => {
-        calculateSalary(); // Add calculateSalary as a dependency
-    }, [basicSalary, otHours, bonusAmount, calculateSalary]);
-    
-    
-    useEffect(() => {
-        calculateSalary(); // Add calculateSalary as a dependency
-    }, []);
-
     return (
         <>
             <Header />
             <div className="StaffSalary">
-                <h2>Salary Calculation Form</h2>
-                {isSalaryAssigned ? (
-                    <p>Salary is already assigned</p>
-                ) : (
-                    <p>Salary is not assigned</p>
-                )}
+                <h2>Update Salary</h2>
                 <form onSubmit={handleSubmit} className='StaffSalary-form'>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Staff ID:</label>
@@ -121,32 +112,32 @@ function SalaryCalculator(props) {
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
-                        <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
+                        <input type="number" className='basicSalary' value={basicSalary} onChange={handleBasicSalaryChange} />  
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className=''>OT Hours:</label>
-                        <input type="number" className='otHours' value={otHours} onChange={(e) => setOtHours(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
-                    </div>
+                        <input type="number" className='otHours' value={otHours} onChange={handleOTHoursChange} />        
+                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Amount:</label>
                         <input type="number" className='otAmount' value={otAmount} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Bonus Amount:</label>
-                        <input type="number" className='bonusAmount' value={bonusAmount} onChange={(e) => setBonusAmount(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
+                        <input type="number" className='bonusAmount' value={bonusAmount} onChange={handleBonusAmountChange} />                    
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className=''>Total Salary:</label>
                         <input type="number" className='totalSalary' value={totalSalary} readOnly />
                     </div>
                    <center> 
-                       {isSalaryAssigned ? (
-                           <Link className='StaffCalculate' to={`/update-salary?staffId=${staffId}` }>Update Salary</Link>
+                    <button type="submit" className='UpdateStaffCalculate'>Update Salary</button>
+                    <Link to="/StaffList" className="edit-staff-link-button">
+                    <button className="edit-staff-button">Back to All Staff List</button>
+                    </Link>
+                    </center>
 
-                       ) : (
-                           <button type="submit" className='StaffCalculate' disabled={isSalaryAssigned}>Assign Salary</button>
-                       )}
-                   </center>
+
                 </form>
             </div>
             <br />
@@ -155,4 +146,4 @@ function SalaryCalculator(props) {
     );
 };
 
-export default SalaryCalculator;
+export default UpdateSalary;
