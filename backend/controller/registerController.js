@@ -43,7 +43,7 @@ const validateContactNumbers = (contactNumbers) => {
 
 // Register a new customer
 exports.registerCustomer = async (req, res) => {
-  const { username, email, contactNumbers, address, password, confirmPassword } = req.body;
+  const { username, email, contactNumbers, address, password, confirmPassword,profilePhoto } = req.body;
   
 
   // Validate password
@@ -140,6 +140,7 @@ exports.updateCustomer = async (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body; // New customer data
+    
 
     // Update the customer in the database
     await Customer.findByIdAndUpdate(id, updates);

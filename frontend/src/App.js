@@ -45,7 +45,6 @@ import TrainingDashboard from './pages/TrainingDashboard';
 import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
 import Shop from './pages/Shop';
 import AllCustomers from './pages/AllCustomers';
-import EditCustomer from './pages/EditCustomer';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
@@ -67,7 +66,7 @@ import Banktransadmin from './pages/Banktransadmin';
 import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
-import UpdatePet from './pages/UpdatePet';
+
 
 
 function App() {
@@ -115,8 +114,6 @@ function App() {
           <Route path="/salary/:staffId" element={<StaffSalaryForm />} />
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
-          <Route path="/edit/:customerId" element={<EditCustomer />} />
-          <Route path="/EditCustomer" element={<EditCustomer />} />
           <Route path="/Store" element={<Shop />} />
           <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
@@ -141,7 +138,7 @@ function App() {
           <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
-          <Route path="/pets/update/:petId" element={<UpdatePet/>} />
+          
 
         </Routes>
       </Router>
