@@ -1,5 +1,5 @@
 .anucard-payment {
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 2px solid #000000;
@@ -47,6 +47,8 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
 }
 
 .anucpbutton:hover {
@@ -105,4 +107,14 @@
   background-size: 12px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.anucpbuttoncon{
+  display: flex;
+  justify-content: center;
+}
+
+.anucpbuttoncon button{
+  margin-right: 5px;
+  margin-left: 5px;
 }
