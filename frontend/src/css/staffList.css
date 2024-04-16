@@ -1,0 +1,84 @@
+/* Unique CSS for StaffList component */
+.staffListcontainer1 {
+  text-align: center;
+  margin: 0 auto; 
+} 
+
+.staffList-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.staffList-table th, .staffList-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.staffList-table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.staffList-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.staffList-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.staffList-delete-btn,
+.staffList-update-btn,
+.staffList-salary-btn{
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.staffList-delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.staffList-update-btn {
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+}
+
+
+.staffList-salary-btn {
+  background-color: #054ca8;
+  color: white;
+  text-decoration: none;
+}
+.staffList-delete-btn:hover,
+.staffList-update-btn:hover,
+.staffList-salary-btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+.staffList-SearchBar-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the left */
+  margin-bottom: 20px;
+}
+
+.staffList-SearchBar {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.staffList-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

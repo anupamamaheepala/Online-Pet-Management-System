@@ -1,0 +1,92 @@
+/* UpdatePet form container */
+.update-pet-form-container {
+  max-width: 800px; /* Adjust the width according to your preference */
+  margin: 0 auto; /* Center the form in the parent container */
+  padding: 20px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light gray background */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Form header */
+.update-pet-form-header {
+  font-size: 24px; /* Larger font size */
+  margin-bottom: 20px; /* Space between header and form */
+  color: #333; /* Dark gray color */
+  text-align: center; /* Centered header text */
+}
+
+/* Form inputs */
+.update-pet-form label {
+  display: block; /* Each label on a new line */
+  margin-bottom: 10px; /* Space between each label */
+  font-weight: bold; /* Bold labels */
+  color: #555; /* Dark gray color */
+}
+
+/* Input fields */
+.update-pet-form input,
+.update-pet-form textarea {
+  width: 100%; /* Full width */
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding and border in width */
+  outline: none; /* Remove focus outline */
+}
+
+/* Focus styles for inputs */
+.update-pet-form input:focus,
+.update-pet-form textarea:focus {
+  border-color: #007bff; /* Light blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle focus shadow */
+}
+
+/* Form buttons */
+.update-pet-form button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  background-color: #007bff; /* Light blue background */
+  color: #fff; /* White text */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Button hover effects */
+.update-pet-form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Vaccination entry container */
+.vaccination-entry {
+  margin-bottom: 15px; /* Space between each vaccination entry */
+}
+
+/* Remove button for vaccinations */
+.vaccination-entry button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: #dc3545; /* Red background */
+}
+
+/* Remove button hover effects */
+.vaccination-entry button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Add Vaccination button */
+.update-pet-form button[type="button"] {
+  margin-top: 15px;
+  background-color: #28a745; /* Green background for add button */
+}
+
+/* Add Vaccination button hover effects */
+.update-pet-form button[type="button"]:hover {
+  background-color: #218838; /* Darker green on hover */
+}

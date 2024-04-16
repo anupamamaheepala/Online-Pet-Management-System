@@ -1,0 +1,255 @@
+/* General styling for the registration form */
+.registration-form {
+  margin-top: 10px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.registration-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-content {
+  font-size: 14px;
+}
+
+/* Styling for form groups */
+.registration-form-group {
+  margin-bottom: 15px;
+}
+
+.registration-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.registration-form-group input,
+.registration-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.registration-form-group input:focus,
+.registration-form-group textarea:focus {
+  outline: none;
+  border-color: #007bff; /* Focus color */
+}
+
+/* Styling for the contact number section */
+.registration-contact-number-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.registration-contact-number-group input {
+  flex-grow: 1; /* Allow input to grow in width */
+}
+
+.registration-contact-number-group button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.registration-contact-number-group button:hover {
+  background-color: #e53935;
+}
+
+/* Styling for add contact number button */
+.add-contact-number-button {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  background-color: black; /* Set background color to black */
+  color: white; /* Text color is white */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transitions for smooth color changes */
+}
+
+.add-contact-number-button:hover {
+  background-color: white; /* Change background color to white on hover */
+  color: black; /* Change text color to black on hover */
+  border: 1px solid black; /* Optional: Add a black border for consistency */
+}
+
+
+/* Styling for the register button */
+.registration-button {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.registration-button:hover {
+  background-color: #fff;
+  color: #000000;
+  border: 1px solid black;;
+}
+
+/*css for all customers*/
+.customer_details_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.customer_details_table th,
+.customer_details_table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.customer_details_table th {
+  background-color: #f2f2f2;
+}
+
+.customer_details_table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.customer_details_table tr:hover {
+  background-color: #ddd;
+}
+
+.customer_details_table td button,
+.customer_details_table td a {
+  padding: 6px 12px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.customer_details_table td button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.customer_details_table td button:hover,
+.customer_details_table td a:hover {
+  background-color: #c82333;
+}
+
+.customer_details_table th,
+.customer_details_table td:first-child {
+  width: 20%;
+}
+
+.customer_details_table td:nth-child(2),
+.customer_details_table td:nth-child(3) {
+  width: 20%;
+}
+
+.customer_details_table td:nth-child(4) {
+  width: 30%;
+}
+
+.customer_details_table td:nth-child(5) {
+  width: 10%;
+  text-align: center;
+}
+
+
+/* CSS for the all customers table */
+.edit-customer-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.edit-customer-form-group {
+  margin-bottom: 15px;
+}
+
+.edit-customer-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.edit-customer-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-customer-button {
+  padding: 10px 20px;
+  background-color: black; /* Changed background color to black */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Added transition */
+}
+
+.edit-customer-button:hover {
+  background-color: white; /* Changed hover color to white */
+  color: black; /* Changed hover text color to black */
+  border: 1px solid black; /* Added border on hover */
+}
+
+.edit-customer-link-button {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: black; /* Changed text color to black */
+}
+
+.edit-customer-link-button:hover {
+  text-decoration: underline;
+}
+
+.edit-customer-link-button:hover {
+  text-decoration: underline;
+}
+
+/*css for customer search bar*/
+.customer-SearchBar-container {
+  width: 20%;
+  margin-bottom: 20px;
+  margin-left: 3%; /* Align to the left */
+
+}
+
+.customer-SearchBar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b8b7b7;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 12px;
+;
+}
+
+.customer-SearchBar:focus {
+  outline: none;
+  border-color: #007bff; /* Change to desired focus color */
+}

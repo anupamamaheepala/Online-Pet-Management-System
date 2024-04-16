@@ -1,0 +1,64 @@
+.anupayer-info {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.anupayer-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.anuform-group {
+  margin-bottom: 20px;
+}
+
+.anuform-group label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #000000;
+  font-weight:bold ;
+}
+
+.anuform-group input,
+.anuform-group select,
+.anuform-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.anuform-group textarea {
+  height: 100px;
+}
+
+.anupfbutton {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.anupfbutton:hover {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+

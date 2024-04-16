@@ -1,0 +1,72 @@
+/* StaffLeaveForm.css */
+
+/* Style the form container */
+.StaffLeave-Form {
+    margin-top: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: white;
+    color: #000000;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+/* Style form headings */
+.StaffLeave-Form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Style input fields and labels*/ 
+.StaffLeave-form-group {
+    margin-bottom: 15px;
+}
+
+.StaffLeave-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.sname,
+.StleaveFromDate,
+.StleaveToDate,
+.StleaveType
+.streason {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: azure;
+}
+
+.select[name="StleaveType"] {
+
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: azure;
+}
+
+/* Style the submit button */
+.staffLeaveButton {
+    background-color: #393b39;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 80%;
+    margin-top: 10px;
+}
+
+.staffLeaveButton:hover {
+    background-color: #676464;
+}

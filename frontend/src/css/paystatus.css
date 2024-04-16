@@ -1,0 +1,86 @@
+/* CSS for Paystatus component */
+
+/* Container styles */
+.anupstcontainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 2px solid #000000;
+  }
+  
+  /* Heading styles */
+  .anupstheading {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  /* Loading message styles */
+  .anupstmessage {
+    font-size: 16px;
+    color: #888;
+  }
+  
+  /* Payer info styles */
+  .anupstpayerstatus {
+    margin-top: 20px;
+  }
+  
+  /* Payer info item styles */
+  .anupstitem {
+    margin-bottom: 10px;
+  }
+  
+  /* Label styles */
+  .anupstlabel {
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  /* Value styles */
+  .anupstvalue {
+    margin-left: 10px;
+  }
+
+  .anupstbuttoncontainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .anupstbuttoncontainer button {
+    margin-right: 10px;
+  }
+
+  .anupstbuttoncontainer a {
+    margin-right: 10px;
+  }
+  
+  .anupstpaymentlink {
+    display: block;
+    width: 50%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  
+  .anupstpaymentlink:hover {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+  }

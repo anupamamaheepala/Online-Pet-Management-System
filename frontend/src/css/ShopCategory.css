@@ -1,0 +1,118 @@
+/* ShopCategory.css */
+
+/* Overall container */
+.shopcategory {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Banner image */
+.shopcategory-banner {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Index and sort section */
+.shopcategory-indexSort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shopcategory-indexSort p {
+    font-size: 16px;
+    color: #333;
+}
+
+.shopcategory-sort {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+
+.shopcategory-sort img {
+    width: 20px;
+    margin-left: 5px;
+}
+
+/* Product item */
+.shopcategory-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Individual item */
+.shopcategory-products div {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    justify-content: space-between; /* Align items vertically */
+}
+
+.shopcategory-products div:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Product image */
+.shopcategory-products div img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Product details */
+.shopcategory-products div p {
+    margin-top: 10px;
+    overflow: hidden; /* Prevents text from overflowing */
+    text-overflow: ellipsis; /* Truncate text with ellipsis if it overflows */
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Add to cart button */
+.shopcategory-products div button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.shopcategory-products div button:hover {
+    background-color: #0056b3;
+}
+
+/* Load more button */
+.shopcategory-loadmore {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.shopcategory-loadmore a {
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 1px solid #007bff;
+    transition: color 0.3s ease;
+}
+
+.shopcategory-loadmore a:hover {
+    color: #0056b3;
+    border-bottom-color: #0056b3;
+}
+
+/* Footer */
+.footer {
+    margin-top: 50px;
+}

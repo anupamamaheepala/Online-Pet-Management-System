@@ -1,0 +1,107 @@
+/* Assuming this is your Trainingprogram.css file */
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+}
+
+.training-topic{
+  text-align: center;
+  
+}
+
+.privatetraining-step{
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Main container */
+.privatetraining-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three items in one row */
+  gap: 20px; /* Gap between items */
+  
+}
+
+/* Product item */
+.privatetraining-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 350px;
+  margin-top: 20px;
+  margin-left: 50px;
+  height: 580px;
+  margin-bottom: 20px;
+}
+
+/* Product image */
+.privatetraining-image {
+  width: 90%;
+  height: auto;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+/* Product details */
+.privatetraining-details {
+  padding: 10px;
+}
+
+/* Product name */
+.privatetraining-name {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: larger;
+  text-align: center;
+}
+
+/* Product description */
+.privatetraining-description {
+  color: #555;
+  text-align: center;
+}
+
+/* Product price */
+.privatetraining-price {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Button */
+.add-button {
+  display: block;
+  width: 80%;
+  background-color: rgba(119, 16, 124, 0.876);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  
+}
+
+.add-button:hover {
+  background-color: #0d100d;
+}
+.trainingadd-button{
+  display: block;
+  width: 20%;
+  padding: 10px;
+  background-color: rgba(119, 16, 124, 0.876);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 600px;
+  margin-bottom: 50px;
+}

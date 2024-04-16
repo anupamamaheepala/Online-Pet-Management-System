@@ -1,0 +1,190 @@
+/*.staffRegistration-form {
+    margin-top: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: white;
+    color: #000000;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+  
+  }
+  
+  .staffregister-form{
+    border-style:none;
+    border: none;
+  }
+  
+    
+  
+  }
+  
+  .staffregister-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .staffregister-form-label {
+    display: block;
+    margin-bottom: 5px;
+    
+  }
+  
+  .sfirstname,.slastname,.snic,.semail, .scontactNumber, .saddress, .designation {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    }
+  
+  .staffRegisterButton {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    background-color:#000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 19px;
+    
+  
+  }
+  
+  .staffRegisterButton:hover {
+    background-color: #ffffff;
+    color: hsl(0, 0%, 0%);
+    text-decoration: none;
+  }
+
+  */
+
+  /* StaffRegister.css */
+
+.staffRegistration-form {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.staffRegistration-form h2 {
+  text-align: center;
+}
+.staffregister-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.staffregister-form-group {
+  margin-bottom: 15px;
+}
+
+.staffregister-form-label {
+  font-weight: bold;
+}
+
+.staffregister-form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.staffregister-form-group input[type="submit"] {
+  width: auto;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.staffregister-form-group input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.staffRegisterButton {
+  width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    background-color:#000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 19px;
+}
+
+.staffRegisterButton:hover {
+    background-color: #ffffff;
+    color: hsl(0, 0%, 0%);
+    text-decoration: none;
+}
+/* UpdateStaff component styles */
+.Update-staffRegistration-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.Update-staffRegistration-form h2 {
+  text-align: center;
+}
+
+.UpadateStaffregister-form {
+  margin-top: 20px;
+}
+
+.UpadateStaffregister-form-group {
+  margin-bottom: 15px;
+}
+
+.UpadateStaffregister-form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.UpadateStaffregister-form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.UpadateStaff-button {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-staff-link-button {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.edit-staff-button {
+  padding: 10px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  
