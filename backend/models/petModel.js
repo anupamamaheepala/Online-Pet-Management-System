@@ -12,27 +12,41 @@ const petSchema = new mongoose.Schema({
   },
   breed: {
     type: String,
-    required: true
+    default: null
   },
+  // age: {
+  //   type: Number,
+  //   required: true
+  // },
   age: {
-    type: Number,
+    type: {
+        value: {
+            type: Number,
+            required: true
+        },
+        unit: {
+            type: String,
+            enum: ['years', 'months', 'days'], // Allowed age units
+            required: true
+        }
+    },
     required: true
-  },
+},
   gender: {
     type: String,
     required: true
   },
   weight: {
     type: Number,
-    required: true
+    default: null
   },
   dateAdopted: {
     type: Date,
-    required: true
+    default: null
   },
   additionalNotes: {
     type: String,
-    required: true
+    default: null
   },
   vaccinations: [
     {

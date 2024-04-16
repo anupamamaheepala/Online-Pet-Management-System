@@ -2,57 +2,95 @@
 
 const Pet = require('../models/petModel');
 const customer = require('../models/registerModel');
-// Controller function for adding a new pet
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Set the destination directory for file uploads
+  },
+  filename: (req, file, cb) => {
+    const petId = req.params.petId;
+    const fileName = `${petId}_${Date.now()}_${file.originalname}`;
+    cb(null, fileName);
+  }
+});
+
+const upload = multer({ storage });
+
+
 exports.addPet = async (req, res) => {
   try {
-    const { petName, species, breed, age,gender,weight,dateAdopted,additionalNotes,vaccinations, owner } = req.body;
-    console.log('Request body:',req.body); // Log the request body to check if it's received correctly
+      // Destructure the required fields from the request body
+      const { petName, species, breed, ageValue, ageUnit, gender, weight, dateAdopted, additionalNotes, vaccinations, owner } = req.body;
 
-    // Create a new pet instance
-    const newPet = new Pet({
-      petName,
-      species,
-      breed,
-      age,
-      gender,
-      weight,
-      dateAdopted,
-      additionalNotes,
-      vaccinations,
-      owner
-    });    
+      // Ensure ageValue and ageUnit are provided
+      if (ageValue === undefined || ageUnit === undefined) {
+          return res.status(400).json({ message: 'ageValue and ageUnit are required.' });
+      }
 
-    // Save the new pet to the database
-    await newPet.save();
-    console.log('Pet saved successfully:', newPet); 
+      // Create a new pet instance using the request body values
+      const newPet = new Pet({
+          petName,
+          species,
+          breed,
+          age: {
+              value: parseFloat(ageValue), // Convert ageValue to number
+              unit: ageUnit, // Save ageUnit as it is
+          },
+          gender,
+          weight: parseFloat(weight),
+          dateAdopted,
+          additionalNotes,
+          vaccinations,
+          owner,
+      });
 
-    res.status(201).json({ message: 'Pet added successfully' });
+      // Save the new pet to the database
+      await newPet.save();
+      console.log('Pet saved successfully:', newPet);
+
+      res.status(201).json({ message: 'Pet added successfully' });
   } catch (error) {
-    console.error('Error saving pet:', error);
-    res.status(500).json({ message: 'Internal server error' });
+      console.error('Error saving pet:', error);
+      res.status(500).json({ message: 'Internal server error' });
   }
 };
 
-    // Controller function to fetch all pets of a customer
+
     exports.getCustomerPets = async (req, res) => {
       try {
         const customerId = req.params.customerId;
         const pets = await Pet.find({ owner: customerId });
-        res.status(200).json(pets);
+    
+        // Format profile photo URLs to include protocol and host
+        const formattedPets = pets.map(pet => {
+          if (pet.profilePhoto) {
+            pet.profilePhoto = `${req.protocol}://${req.get('host')}/${pet.profilePhoto}`;
+          }
+          return pet;
+        });
+    
+        res.status(200).json(formattedPets);
       } catch (error) {
         console.error('Error fetching customer pets:', error);
         res.status(500).json({ message: 'Internal server error' });
       }
     };
+    
 
-    // Controller function to fetch pet profile
     exports.getPetById = async (req, res) => {
       try {
         const petId = req.params.petId;
-        console.log('Pet ID:', petId);
         const pet = await Pet.findById(petId);
         if (!pet) {
           return res.status(404).json({ message: 'Pet not found' });
+        }
+        // Construct the full URL for the profile photo
+        if (pet.profilePhoto) {
+          pet.profilePhoto = `${req.protocol}://${req.get('host')}/${pet.profilePhoto}`;
         }
         res.status(200).json(pet);
       } catch (error) {
@@ -60,6 +98,7 @@ exports.addPet = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
       }
     };
+    
 
     // Controller function to delete a pet profile
 exports.deletePetById = async (req, res) => {
@@ -69,6 +108,7 @@ exports.deletePetById = async (req, res) => {
     if (!deletedPet) {
       return res.status(404).json({ message: 'Pet not found' });
     }
+    
     res.status(200).json({ message: 'Pet deleted successfully' });
   } catch (error) {
     console.error('Error deleting pet:', error);
@@ -108,7 +148,9 @@ exports.getAllPets = async (req, res) => {
         owner: {
           name: owner.username,
           email: owner.email
-        }
+        },
+        // Add the full URL for the profile photo
+        profilePhoto: pet.profilePhoto ? `${req.protocol}://${req.get('host')}/${pet.profilePhoto}` : ''
       };
     }));
 
@@ -119,3 +161,64 @@ exports.getAllPets = async (req, res) => {
   }
 };
 
+
+exports.uploadPetProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
+  try {
+    const { petId } = req.params;
+    const profilePhotoPath = req.file.path.replace(/\\/g, '/'); // Normalize the file path
+
+    // Update the pet's profile photo URL
+    const updatedPet = await Pet.findByIdAndUpdate(
+      petId,
+      { profilePhoto: profilePhotoPath },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedPet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    // Create the full URL for the profile photo
+    const profilePhotoURL = `${req.protocol}://${req.get('host')}/${profilePhotoPath}`;
+    
+    // Send the new profile photo URL in the response
+    res.status(200).json({ profilePhoto: profilePhotoURL });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}];
+
+exports.deletePetProfilePhoto = async (req, res) => {
+  try {
+    const { petId } = req.params;
+
+    // Fetch the pet from the database
+    const pet = await Pet.findById(petId);
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    // Get the profile photo path
+    const profilePhotoPath = pet.profilePhoto;
+
+    // If there is a profile photo, delete it from the file system
+    if (profilePhotoPath) {
+      const filePath = path.join(__dirname, '..', profilePhotoPath);
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting profile photo:', err);
+        }
+      });
+    }
+
+    // Update the pet's profile photo to an empty string
+    pet.profilePhoto = '';
+    await pet.save();
+
+    res.status(200).json({ message: 'Profile photo deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
