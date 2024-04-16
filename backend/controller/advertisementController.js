@@ -1,6 +1,5 @@
-// advertisementController.js
-
 const Ads = require("../models/advertisementModel");
+const ConfirmedAds = require("../models/advertisementModel");
 
 exports.addAdvertisement = async (req, res) => {
     try {
@@ -58,10 +57,35 @@ exports.deleteAdById = async (req, res) => {
     }
 };
 
-exports.getConfirmedAdvertisements = async (req, res) => {
+exports.confirmAdvertisement = async (req, res) => {
     try {
-        const confirmedAds = await Ads.find({ confirmed: true }); // Assuming there's a "confirmed" field in your advertisement schema
-        res.json(confirmedAds);
+        const adId = req.params.id;
+        const ad = await Ads.findById(adId);
+        
+        if (!ad) {
+            return res.status(404).json({ message: "Advertisement not found" });
+        }
+
+        // Create a new confirmed advertisement document
+        const confirmedAd = new ConfirmedAds({
+            ownerName: ad.ownerName,
+            email: ad.email,
+            title: ad.title,
+            Breed: ad.Breed,
+            purpose: ad.purpose,
+            description: ad.description,
+            filePath: ad.filePath,
+            contact: ad.contact,
+            createdAt: ad.createdAt // Optionally, copy creation date from the original advertisement
+        });
+
+        // Save the confirmed advertisement to the database
+        await confirmedAd.save();
+
+        // Delete the advertisement from the original collection
+        await Ads.findByIdAndDelete(adId);
+
+        res.status(200).json({ message: "Advertisement confirmed and moved successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });

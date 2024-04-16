@@ -47,7 +47,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Mounting routes for various endpoints
-
+app.use("/confirmedads", adsRoute);
 app.use("/uploads" ,uploadRoute);
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);

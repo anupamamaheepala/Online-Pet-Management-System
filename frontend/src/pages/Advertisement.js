@@ -8,16 +8,7 @@ import '../css/advertisement.css';
 const Advertisement = () => {
     const [advertisements, setAdvertisements] = useState([]);
 
-    useEffect(() => {
-        axios.get("http://localhost:9000/confirmedAds")
-            .then((res) => {
-                setAdvertisements(res.data);
-            })
-            .catch((err) => {
-                alert(err.message);
-            });
-
-    }, []);
+   
 
     return (
         <>
