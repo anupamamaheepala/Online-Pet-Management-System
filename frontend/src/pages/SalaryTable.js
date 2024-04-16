@@ -72,6 +72,7 @@ const SalaryTable = () => {
               <th>Last Name</th>
               <th>Basic Salary</th>
               <th>OT Hours</th>
+              <th>OT Rate</th>
               <th>OT Amount</th>
               <th>Bonus Amount</th>
               <th>Total Salary</th>
@@ -85,6 +86,7 @@ const SalaryTable = () => {
                 <td>{salary.lastName}</td>
                 <td>{salary.basicSalary}</td>
                 <td>{salary.otHours}</td>
+                <td>{salary.otRate}</td>
                 <td>{salary.otAmount}</td>
                 <td>{salary.bonusAmount}</td>
                 <td>{salary.totalSalary}</td>

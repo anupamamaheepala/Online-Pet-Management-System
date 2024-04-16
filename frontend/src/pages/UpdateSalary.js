@@ -11,7 +11,7 @@ function UpdateSalary(props) {
     const [lastName, setLastName] = useState('');
     const [basicSalary, setBasicSalary] = useState(0);
     const [otHours, setOtHours] = useState(0);
-    const [otAmount, setOtAmount] = useState(0);
+    const [otRate, setOtRate] = useState(0);
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
 
@@ -21,13 +21,12 @@ function UpdateSalary(props) {
         
         axios.get(`http://localhost:9000/salary/${id}`)
             .then(response => {
-                    const { staffId, firstName, lastName, basicSalary, otHours, otAmount, bonusAmount, totalSalary } = response.data;
+                    const { staffId, firstName, lastName, basicSalary, otHours, bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
                     setLastName(lastName);
                     setBasicSalary(basicSalary);
                     setOtHours(otHours);
-                    setOtAmount(otAmount);
                     setBonusAmount(bonusAmount);
                     setTotalSalary(totalSalary);
                 
@@ -36,44 +35,45 @@ function UpdateSalary(props) {
                 console.error('Error fetching salary details:', error);
             });
     }, []);
-const otRate = 500; // Assuming a fixed OT rate of 500 per hour
 
-const calculateOTAmount = () => {
+    const calculateOTAmount = () => {
         const otAmount = otHours * otRate;
-        setOtAmount(otAmount);
+        return otAmount;
     };
-    
 
-const calculateTotalSalary = () => {
-    const total = basicSalary + otAmount + bonusAmount;
-    setTotalSalary(total);
-};
+    const calculateTotalSalary = () => {
+        const otAmount = calculateOTAmount();
+        const total = basicSalary + otAmount + bonusAmount;
+        setTotalSalary(total);
+    };
 
-useEffect(() => {
-    calculateOTAmount();
-    calculateTotalSalary();
-}, [basicSalary, otHours, otAmount, bonusAmount]);
+    useEffect(() => {
+        calculateTotalSalary();
+    }, [basicSalary, otHours, otRate, bonusAmount]);
 
-const handleBasicSalaryChange = (e) => {
-    const value = parseInt(e.target.value);
-    setBasicSalary(value);
-    calculateOTAmount(); // Recalculate OT Amount when Basic Salary changes
-    calculateTotalSalary(); // Recalculate Total Salary when Basic Salary changes
-};
+    const handleBasicSalaryChange = (e) => {
+        const value = parseInt(e.target.value);
+        setBasicSalary(value);
+        calculateTotalSalary(); // Recalculate Total Salary when Basic Salary changes
+    };
 
-const handleOTHoursChange = (e) => {
-    const value = parseInt(e.target.value);
-    setOtHours(value);
-    calculateOTAmount(); // Recalculate OT Amount when OT Hours changes
-    calculateTotalSalary(); // Recalculate Total Salary when OT Hours changes
-};
+    const handleOTHoursChange = (e) => {
+        const value = parseInt(e.target.value);
+        setOtHours(value);
+        calculateTotalSalary(); // Recalculate Total Salary when OT Hours changes
+    };
 
-const handleBonusAmountChange = (e) => {
-    const value = parseInt(e.target.value);
-    setBonusAmount(value);
-    calculateTotalSalary(); // Recalculate Total Salary when Bonus Amount changes
-};
+    const handleOtRateChange = (e) => {
+        const value = parseInt(e.target.value);
+        setOtRate(value);
+        calculateTotalSalary(); // Recalculate Total Salary when OT Rate changes
+    };
 
+    const handleBonusAmountChange = (e) => {
+        const value = parseInt(e.target.value);
+        setBonusAmount(value);
+        calculateTotalSalary(); // Recalculate Total Salary when Bonus Amount changes
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -82,7 +82,8 @@ const handleBonusAmountChange = (e) => {
                 staffId,
                 basicSalary,
                 otHours,
-                otAmount,
+                otRate,
+                otAmount: calculateOTAmount(), // Calculate OT Amount before submitting
                 bonusAmount,
                 totalSalary
             });
@@ -119,8 +120,12 @@ const handleBonusAmountChange = (e) => {
                         <input type="number" className='otHours' value={otHours} onChange={handleOTHoursChange} />        
                      </div>
                     <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>OT Rate:</label>
+                        <input type="number" className='otRate' value={otRate} onChange={handleOtRateChange} />        
+                     </div>
+                    <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Amount:</label>
-                        <input type="number" className='otAmount' value={otAmount} readOnly />
+                        <input type="number" className='otAmount' value={calculateOTAmount()} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Bonus Amount:</label>

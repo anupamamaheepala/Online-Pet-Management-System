@@ -25,6 +25,10 @@ const SalarySchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  otRate: {
+    type: Number,
+    required: true
+  },
   otAmount: {
     type: Number,
     required: true
