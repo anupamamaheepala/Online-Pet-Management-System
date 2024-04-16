@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom';
 import '../css/StaffSalary.css';
 
 function SalaryCalculator(props) {
@@ -11,10 +13,12 @@ function SalaryCalculator(props) {
     const [lastName, setLastName] = useState('');
     const [basicSalary, setBasicSalary] = useState(0);
     const [otHours, setOtHours] = useState(0);
+    const [otRate, setOtRate] = useState(0); 
     const [otAmount, setOtAmount] = useState(0);
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
     const [isSalaryAssigned, setIsSalaryAssigned] = useState(false);
+    const [selectedMonth, setSelectedMonth] = useState(new Date());
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -25,12 +29,14 @@ function SalaryCalculator(props) {
                 if (response.data && response.data.basicSalary !== undefined) {
                     // Salary is assigned
                     setIsSalaryAssigned(true);
-                    const { staffId, firstName, lastName, basicSalary, otHours, otAmount, bonusAmount, totalSalary } = response.data;
+                    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
                     setLastName(lastName);
+                    setSelectedMonth(selectedMonth);
                     setBasicSalary(basicSalary);
                     setOtHours(otHours);
+                    setOtRate(otRate);
                     setOtAmount(otAmount);
                     setBonusAmount(bonusAmount);
                     setTotalSalary(totalSalary);
@@ -61,8 +67,10 @@ function SalaryCalculator(props) {
                 staffId,
                 firstName,
                 lastName,
+                selectedMonth,
                 basicSalary,
                 otHours,
+                otRate,
                 otAmount,
                 bonusAmount,
                 totalSalary
@@ -80,8 +88,10 @@ function SalaryCalculator(props) {
                 .catch(error => {
                     console.error('Error fetching staff details:', error);
                 });
-    
+            
+            setSelectedMonth(0);
             setBasicSalary(0);
+            setOtHours(0);
             setOtHours(0);
             setBonusAmount(0);
             setTotalSalary(0);
@@ -94,7 +104,7 @@ function SalaryCalculator(props) {
 
     // Function to calculate OT Amount and Total Salary
     const calculateSalary = () => {
-        const otRate = 500; // OT Rate, you can change this value as needed
+        // Calculate OT amount based on OT rate and hours
         const calculatedOtAmount = otHours * otRate;
         const calculatedTotalSalary = basicSalary + calculatedOtAmount + bonusAmount;
         setOtAmount(calculatedOtAmount);
@@ -103,13 +113,13 @@ function SalaryCalculator(props) {
 
     // useEffect to recalculate salary whenever inputs change
     useEffect(() => {
-        calculateSalary(); // Add calculateSalary as a dependency
-    }, [basicSalary, otHours, bonusAmount, calculateSalary]);
-    
-    
+        calculateSalary();
+    }, [basicSalary, otHours, bonusAmount, otRate]); // Include otRate in the dependency array
+
     useEffect(() => {
-        calculateSalary(); // Add calculateSalary as a dependency
+        calculateSalary();
     }, []);
+
 
     return (
         <>
@@ -135,12 +145,28 @@ function SalaryCalculator(props) {
                         <input type="text" id='slastname' className='staffname' value={lastName} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>Select Month:</label>
+                        <DatePicker
+                            className='selectedMonth'
+                            selected={selectedMonth}
+                            onChange={date => setSelectedMonth(date)}
+                            showMonthYearPicker
+                            dateFormat="MM/yyyy"
+                            readOnly={isSalaryAssigned}
+                        />
+                    </div>
+
+                    <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
                         <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className=''>OT Hours:</label>
                         <input type="number" className='otHours' value={otHours} onChange={(e) => setOtHours(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
+                    </div>
+                    <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>OT Rate:</label> {/* New input field for OT Rate */}
+                        <input type="number" className='otRate' value={otRate} onChange={(e) => setOtRate(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Amount:</label>

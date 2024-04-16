@@ -10,6 +10,7 @@
     "jspdf-autotable": "^3.8.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
+    "react-datepicker": "^6.8.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icon": "^1.0.0",
