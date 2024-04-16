@@ -13,7 +13,6 @@ const storage = multer.diskStorage({
         const timestamp = new Date().toISOString().replace(/:/g, '-'); // Replace colons with dashes
         cb(null, timestamp + '-' + file.originalname);
     }
-    
 });
 
 // Check file type
@@ -38,21 +37,19 @@ const upload = multer({
     }
 });
 
-
-
 // Route to handle product addition
 router.post('/add', upload.single('image'), async (req, res) => {
     try {
-        const { itemName, category, description, price } = req.body;
+        const { itemName, category, price, quantity } = req.body;
         const image = req.file.path;
 
         // Create new product instance
         const newProduct = new Product({
             itemName,
             category,
-            description,
             image,
-            price
+            price,
+            quantity
         });
 
         // Save the product to the database
@@ -62,6 +59,7 @@ router.post('/add', upload.single('image'), async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 // Route to get all products
 router.get('/', async (req, res) => {
     try {
@@ -72,18 +70,20 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+// Route to update product details
 router.put('/:id', upload.single('image'), async (req, res) => {
     try {
-        const { itemName, category, description, price } = req.body;
+        const { itemName, category, price, quantity } = req.body;
         let image = req.file ? req.file.path : req.body.image; // Use the new image if provided, otherwise keep the old one
 
         // Find the product by ID and update its details
         const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
             itemName,
             category,
-            description,
             image,
-            price
+            price,
+            quantity
         }, { new: true });
 
         res.json(updatedProduct);
@@ -91,6 +91,8 @@ router.put('/:id', upload.single('image'), async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+// Route to delete a product
 router.delete('/:id', async (req, res) => {
     const productId = req.params.id;
 
@@ -107,9 +109,5 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: 'Failed to delete product' });
     }
 });
-
-
-
-
 
 module.exports = router;
