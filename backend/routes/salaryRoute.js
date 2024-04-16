@@ -10,4 +10,7 @@ router.post('/add', salaryController.addSalary);
 // Route for fetching salary details
 router.get('/:id', salaryController.getSalary);
 
+// Route for fetching all salary details
+router.get('/', salaryController.getAllSalaries);
+
 module.exports = router;
