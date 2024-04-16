@@ -69,6 +69,7 @@ import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
 import UpdatePet from './pages/UpdatePet';
 import UpdateSalary from './pages/UpdateSalary';
+import SalaryTable from './pages/SalaryTable';
 
 
 
@@ -145,6 +146,7 @@ function App() {
           <Route path="/all-pets" element={<AllPets />} />
           <Route path="/pets/update/:petId" element={<UpdatePet/>} />
           <Route path="/update-salary"  element={<UpdateSalary/>} />
+          <Route path="/SalaryTable"  element={<SalaryTable/>} />
 
         </Routes>
       </Router>
