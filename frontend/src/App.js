@@ -66,12 +66,12 @@ import Banktransadmin from './pages/Banktransadmin';
 import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
-<<<<<<< HEAD
-=======
-import UpdatePet from './pages/UpdatePet';
+
+
+
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
->>>>>>> 8bad5907ca5055e1f46e56307d70185df6dfe33c
+
 
 
 
@@ -144,13 +144,13 @@ function App() {
           <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
-<<<<<<< HEAD
+
           
-=======
-          <Route path="/pets/update/:petId" element={<UpdatePet/>} />
+
+          
           <Route path="/update-salary"  element={<UpdateSalary/>} />
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
->>>>>>> 8bad5907ca5055e1f46e56307d70185df6dfe33c
+
 
         </Routes>
       </Router>
