@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; // Import Link component
 import '../css/StaffSalary.css';
@@ -9,6 +11,7 @@ function UpdateSalary(props) {
     const [staffId, setStaffId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState(new Date());
     const [basicSalary, setBasicSalary] = useState(0);
     const [otHours, setOtHours] = useState(0);
     const [otRate, setOtRate] = useState(0);
@@ -21,10 +24,11 @@ function UpdateSalary(props) {
         
         axios.get(`http://localhost:9000/salary/${id}`)
             .then(response => {
-                    const { staffId, firstName, lastName, basicSalary, otHours, bonusAmount, totalSalary } = response.data;
+                    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
                     setLastName(lastName);
+                    setSelectedMonth(selectedMonth);
                     setBasicSalary(basicSalary);
                     setOtHours(otHours);
                     setBonusAmount(bonusAmount);
@@ -80,6 +84,7 @@ function UpdateSalary(props) {
         try {
             const res = await axios.post("http://localhost:9000/salary/update", {
                 staffId,
+                selectedMonth,
                 basicSalary,
                 otHours,
                 otRate,
@@ -110,6 +115,16 @@ function UpdateSalary(props) {
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Last Name:</label>
                         <input type="text" id='slastname' className='staffname' value={lastName} readOnly />
+                    </div>
+                    <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>Select Month:</label>
+                        <DatePicker
+                            className='selectedMonth'
+                            selected={selectedMonth}
+                            onChange={date => setSelectedMonth(date)}
+                            showMonthYearPicker
+                            dateFormat="MM/yyyy"
+                        />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>

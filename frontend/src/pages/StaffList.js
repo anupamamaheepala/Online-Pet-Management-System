@@ -1,13 +1,14 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/staffList.css';
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const StaffList = () => {
     const [staff, setStaff] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchCriteria, setSearchCriteria] = useState('sfirstname'); // Default search criteria
 
     useEffect(() => {
         axios.get("http://localhost:9000/staff/all")
@@ -34,30 +35,41 @@ const StaffList = () => {
         }
     };
 
+    const handleSearchCriteriaChange = event => {
+        setSearchCriteria(event.target.value);
+    };
+
     const filteredStaff = staff.filter((staffMember) => {
         return (
-            staffMember.sfirstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            staffMember.slastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            staffMember.snic.toLowerCase().includes(searchTerm.toLowerCase())
+            staffMember[searchCriteria].toLowerCase().includes(searchTerm.toLowerCase())
         );
     });
-
-    
 
     return (
         <>
             <Header />
             <h1><center>Staff List</center></h1>
             <div className='staffListcontainer1'>
-            <div className='staffList-SearchBar-container'>
-                    <input
-                        className='staffList-SearchBar'
-                        type="text"
-                        placeholder="Search by name or NIC"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}/>
-                    
-            </div>
+
+               <div className='staffList-SearchBar-container'>
+                <input
+                    className='staffList-SearchBar'
+                    type="text"
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <select value={searchCriteria} onChange={handleSearchCriteriaChange} className='staffList-select'>
+                    <option value="staffId">Staff ID</option>
+                    <option value="sfirstname">First Name</option>
+                    <option value="slastname">Last Name</option>
+                    <option value="snic">NIC No</option>
+                    <option value="semail">Email</option>
+                    <option value="scontactNumber">Contact Number</option>
+                    <option value="saddress">Address</option>
+                    <option value="designation">Designation</option>
+                </select>
+                </div>
 
                 <table className="staffList-table">
                     <thead>
@@ -85,11 +97,10 @@ const StaffList = () => {
                                 <td>{staffMember.saddress}</td>
                                 <td>{staffMember.designation}</td>
                                 <td>
-                                <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
-                                &nbsp;
-                                <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
-                                <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}&staffId=${staffMember.staffId}`}>Salary</Link>
-
+                                    <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
+                                    &nbsp;
+                                    <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
+                                    <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}&staffId=${staffMember.staffId}`}>Salary</Link>
                                 </td>
                             </tr>
                         ))}

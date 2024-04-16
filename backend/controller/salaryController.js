@@ -4,11 +4,12 @@ const Staff = require('../models/staffModel');
 // Controller for adding salary details
 exports.addSalary = async (req, res) => {
   try {
-    const { staffId, firstName, lastName, basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = req.body;
+    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = req.body;
     const newSalary = new Salary({
       staffId,
       firstName,
       lastName,
+      selectedMonth,
       basicSalary,
       otHours,
       otRate,
