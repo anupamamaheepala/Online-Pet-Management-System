@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../css/cardpay.css';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -62,8 +63,14 @@ const Cardpay = () => {
     };
 
     const onSubmit = async e => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission behavior
         try {
+            // Basic form validation
+            if (!nameOnCard || !cardNumber || !cvv || !expireDate) {
+                console.error("All fields are required!");
+                return;
+            }
+
             const res = await axios.post("http://localhost:9000/cardpay/cpay", formData);
             console.log(res.data);
             setFormData({
@@ -72,9 +79,26 @@ const Cardpay = () => {
                 cvv: '',
                 expireDate: ''
             });
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your Payment was Successful",
+                showConfirmButton: false,
+                timer: 3000
+              });
         } catch (err) {
             console.error(err);
         }
+    };
+
+    const handleConfirmPayment = async (e) => {
+        e.preventDefault(); // Prevent default button behavior
+        onSubmit(e); // Call onSubmit function to handle form submission
+    };
+
+    const handleNext = () => {
+        // Redirect to Cardpaysuccess.js file
+        window.location.href = '/cardpaysuccess';
     };
 
     return (
@@ -136,12 +160,15 @@ const Cardpay = () => {
                             id="expireDate"
                             value={expireDate}
                             onChange={onChange}
-                            maxLength={5} // Max length of 7 characters (MM/YYYY)
+                            maxLength={5} // Max length of 5 characters (MM/YY)
                             placeholder="MM/YY"
                             required
                         />
                     </div>
-                    <center><button className="anucpbutton" type="submit">Confirm Payment</button></center>
+                    <div className="carddivbutton">
+                        <button className="anucpbutton" type="button" onClick={e => handleConfirmPayment(e)}>Confirm Payment</button>
+                        <button className="anucpbutton" type="button" onClick={handleNext}>Next</button>
+                    </div>
                 </form>
             </div>
             <Footer />

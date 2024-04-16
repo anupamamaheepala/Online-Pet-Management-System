@@ -81,3 +81,19 @@
   background-color: #eee;
   cursor: not-allowed;
 }
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.selectedMonth.react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.selectedMonth.react-datepicker__input-container input:focus {
+  outline: none;
+}

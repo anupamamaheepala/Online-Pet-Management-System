@@ -1,7 +1,8 @@
+// ShopCategory.jsx
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Import Link component
-import '../css/ShopCategory.css'; // Ensure correct CSS file path
-import dropdown_icon from '../components/Assests/dropdown_icon.png'; // Ensure correct image path
+import { Link } from "react-router-dom";
+import '../css/ShopCategory.css';
+import dropdown_icon from '../components/Assests/dropdown_icon.png';
 import Item from "../components/Item/Item";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,7 +10,6 @@ import Navbar from "../components/Navbar/Navbar";
 import AddToCart from "./AddToCart";
 
 const ShopCategory = (props) => {
-
     const [allProducts, setAllProducts] = useState([]);
     const [cart, setCart] = useState([]);
 
@@ -30,20 +30,18 @@ const ShopCategory = (props) => {
     }, []);
 
     const addToCart = (productId) => {
-        if (props.allProducts) {
-            const product = props.allProducts.find(product => product._id === productId);
-            if (product) {
-                props.setCart([...props.cart, product]);
-            }
+        const product = allProducts.find(product => product._id === productId); // Changed props.allProducts to allProducts
+        if (product) {
+            setCart([...cart, product]); // Changed props.cart to cart
         }
     };
 
     const removeFromCart = (productId) => {
-        setCart(cart.filter(item => item._id!== productId));
+        setCart(cart.filter(item => item._id !== productId));
     };
 
     const updateQuantity = (productId, quantity) => {
-        setCart(cart.map(item => (item._id === productId? {...item, quantity } : item)));
+        setCart(cart.map(item => (item._id === productId ? { ...item, quantity } : item)));
     };
 
     const calculateTotal = () => {
@@ -52,7 +50,7 @@ const ShopCategory = (props) => {
 
     return (
         <>
-            <Header/>
+            <Header />
             <div className="shopcategory">
                 <Navbar products={allProducts} />
                 <img src={props.banner} className="shopcategory-banner" alt="" />
@@ -61,20 +59,18 @@ const ShopCategory = (props) => {
                     <div className="shopcategory-sort">Sort by  <img src={dropdown_icon} alt="" /></div>
                 </div>
                 <div className="shopcategory-products">
-                    {allProducts && allProducts.length > 0? (
+                    {allProducts && allProducts.length > 0 ? (
                         allProducts.map(item => (
                             (props.category === item.category) &&
                             <div key={item._id}>
-                                    <Item
-                                        name={item.itemName}
-                                        image={item.image}
-                                        price={item.price}
-                                        // Check if quantity is greater than 0, if not, display "Out of Stock" message
-                                        quantity={item.quantity > 0? item.quantity : "Out of Stock"}
-                                    />
-                               <Link to="/AddToCart">
-                                        <button onClick={() => addToCart(item._id)}>Add to Cart</button>
-                                </Link>
+                                <Item
+                                    id={item._id} 
+                                    name={item.itemName}
+                                    image={item.image}
+                                    price={item.price}
+                                    quantity={item.quantity > 0 ? item.quantity : "Out of Stock"}
+                                />
+                                <button onClick={() => addToCart(item._id)}>Add to Cart</button> {/* Moved the button outside of Link */}
                             </div>
                         ))
                     ) : (
@@ -86,7 +82,7 @@ const ShopCategory = (props) => {
                 </div>
             </div>
             <AddToCart cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} calculateTotal={calculateTotal} />
-            <Footer/>
+            <Footer />
         </>
     );
 };

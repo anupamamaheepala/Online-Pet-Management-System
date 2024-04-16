@@ -56,4 +56,26 @@
   .SalaryTable1 .SalaryTable2 tbody tr:hover {
     background-color: #ddd;
   }
+
+
+.SalaryUpdate {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.SalaryUpdate:hover {
+  background-color: #45a049;
+  text-decoration: none;
+}
+
   
