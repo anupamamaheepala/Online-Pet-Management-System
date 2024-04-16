@@ -68,6 +68,8 @@ import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
 import UpdatePet from './pages/UpdatePet';
+import UpdateSalary from './pages/UpdateSalary';
+
 
 
 function App() {
@@ -142,6 +144,7 @@ function App() {
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
           <Route path="/pets/update/:petId" element={<UpdatePet/>} />
+          <Route path="/update-salary"  element={<UpdateSalary/>} />
 
         </Routes>
       </Router>

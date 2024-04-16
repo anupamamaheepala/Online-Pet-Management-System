@@ -2,9 +2,19 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const registerController = require('../controller/registerController');
+const multer = require('multer');
+
 
 // Register a new customer
 router.post("/register", registerController.registerCustomer);
+
+// Route for uploading profile photo
+router.put('/profile-photo/:customerId', registerController.uploadProfilePhoto);
+
+// Add this route for deleting a customer's profile photo
+router.delete('/profile-photo/:customerId', registerController.deleteProfilePhoto);
+
+
 
 // Get all customers
 router.get("/", registerController.getAllCustomers);

@@ -301,23 +301,49 @@ const MyProfile = () => {
     }
   };
 
-  const onFileChange = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('profilePhoto', file);
 
-    try {
-      const res = await axios.put(`http://localhost:9000/customer/${customerId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+const onFileChange = async (e) => {
+  const file = e.target.files[0];
+  const formData = new FormData();
+  formData.append('profilePhoto', file);
+
+  try {
+      const res = await axios.put(`http://localhost:9000/customer/profile-photo/${customerId}`, formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
       });
+
+      // Update the profile photo URL in the state with the URL returned by the server
       setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
+
+      // Show a success message
+      alert('Profile photo uploaded successfully');
+  } catch (error) {
+      console.error(error);
+      alert('Failed to upload profile photo');
+  }
+};
+
+const handleDeleteProfilePhoto = async () => {
+  const confirmed = window.confirm('Are you sure you want to delete the profile photo?');
+
+  if (confirmed) {
+    try {
+      await axios.delete(`http://localhost:9000/customer/profile-photo/${customerId}`);
+      // After successful deletion, update the customer data state
+      setCustomerData({ ...customerData, profilePhoto: '' });
+      alert('Profile photo deleted successfully');
     } catch (error) {
       console.error(error);
-      // Handle error
+      alert('Failed to delete profile photo');
     }
-  };
+  } else {
+    alert('Deletion cancelled.');
+  }
+};
+
+
 
   return (
     <>
@@ -336,6 +362,7 @@ const MyProfile = () => {
               <div className="mypdivleft">
                 <div className="smypinfoimg">
                   <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" />
+                  <button onClick={handleDeleteProfilePhoto} className="ProfilePhotoDeleteButton_custom">Delete Photo</button>
                 </div>
                 <div className="mypinfoimg">
                   <input type="file" name="image" onChange={onFileChange} className="ProfilePhotoInput_custom" />

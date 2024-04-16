@@ -1,6 +1,25 @@
 const bcrypt = require('bcrypt');
 const Customer = require("../models/registerModel");
 const passwordValidator = require('password-validator');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Set the destination directory for file uploads
+  },
+  filename: (req, file, cb) => {
+      const customerId = req.params.customerId;
+      const fileName = `${customerId}_${Date.now()}_${file.originalname}`;
+      cb(null, fileName); // Create a unique file name for each uploaded file
+  }
+});
+
+const upload = multer({ storage });
+
+
 
 // Schema for password validation
 const schema = new passwordValidator();
@@ -25,6 +44,7 @@ const validateContactNumbers = (contactNumbers) => {
 // Register a new customer
 exports.registerCustomer = async (req, res) => {
   const { username, email, contactNumbers, address, password, confirmPassword } = req.body;
+  
 
   // Validate password
   if (!schema.validate(password)) {
@@ -62,6 +82,7 @@ exports.registerCustomer = async (req, res) => {
       contactNumbers,
       address,
       password: hashedPassword,
+      profilePhoto,
     });
 
     // Saving data into the database
@@ -84,16 +105,35 @@ exports.getAllCustomers = async (req, res) => {
   }
 };
 
-// Get customer by ID
+// // Get customer by ID
+// exports.getCustomerById = async (req, res) => {
+//   try {
+//     const customer = await Customer.findById(req.params.id);
+//     res.json(customer);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Failed to fetch customer details" });
+//   }
+// };
 exports.getCustomerById = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
+    if (!customer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    // Construct the full URL for the profile photo
+    if (customer.profilePhoto) {
+      customer.profilePhoto = `${req.protocol}://${req.get('host')}/${customer.profilePhoto}`;
+    }
+
     res.json(customer);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to fetch customer details" });
   }
 };
+
 
 // Update customer details
 exports.updateCustomer = async (req, res) => {
@@ -180,8 +220,70 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
+//function to upload profile photo
+exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
+  try {
+      const { customerId } = req.params;
+      const profilePhotoPath = req.file.path.replace(/\\/g, '/'); // Normalize the file path
+
+      // Update the customer's profile photo URL
+      const updatedCustomer = await Customer.findByIdAndUpdate(
+          customerId,
+          { profilePhoto: profilePhotoPath },
+          { new: true } // Return the updated document
+      );
+
+      if (!updatedCustomer) {
+          return res.status(404).json({ message: 'Customer not found' });
+      }
+
+      // Create the full URL for the profile photo
+      const profilePhotoURL = `${req.protocol}://${req.get('host')}/${profilePhotoPath}`;
+      
+      // Send the new profile photo URL in the response
+      res.status(200).json({ profilePhoto: profilePhotoURL });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+  }
+}];
 
 
+
+// Function to delete profile photo
+exports.deleteProfilePhoto = async (req, res) => {
+  try {
+    const { customerId } = req.params;
+
+    // Fetch the customer from the database
+    const customer = await Customer.findById(customerId);
+    if (!customer) {
+      return res.status(404).json({ message: 'Customer not found' });
+    }
+
+    // Get the profile photo path
+    const profilePhotoPath = customer.profilePhoto;
+
+    // If there is a profile photo, delete it from the file system
+    if (profilePhotoPath) {
+      const filePath = path.join(__dirname, '..', profilePhotoPath);
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting profile photo:', err);
+        }
+      });
+    }
+
+    // Update the customer's profile photo to an empty string
+    customer.profilePhoto = '';
+    await customer.save();
+
+    res.status(200).json({ message: 'Profile photo deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 
 

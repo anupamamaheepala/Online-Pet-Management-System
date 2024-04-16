@@ -522,36 +522,43 @@ const AllPets = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredPets.map((pet, index) => (
-              <tr key={pet._id}>
-                <td>{index + 1}</td>
-                <td>{pet.petName}</td>
-                <td>{pet.species}</td>
-                <td>{pet.breed}</td>
-                <td>{pet.age}</td>
-                <td>{pet.gender}</td>
-                <td>{pet.weight}</td>
-                <td>{pet.owner.name}</td>
-                <td>{pet.owner.email}</td>
-                <td>{new Date(pet.dateAdopted).toLocaleDateString()}</td>
-                <td>{pet.additionalNotes}</td>
-                <td>
-                  {pet.vaccinations.map((vaccine, index) => (
+    {filteredPets.map((pet, index) => (
+        <tr key={pet._id}>
+            <td>{index + 1}</td>
+            <td>{pet.petName}</td>
+            <td>{pet.species}</td>
+            <td>{pet.breed}</td>
+            {/* Display age as 'value unit' */}
+                        <td>
+                {/* Display age with optional chaining and fallback to 'Unknown' if age is not available */}
+                {pet.age ? `${pet.age.value ?? 'Unknown'} ${pet.age.unit ?? ''}` : 'Unknown'}
+            </td>
+
+            <td>{pet.gender}</td>
+            <td>{pet.weight}</td>
+            <td>{pet.owner.name}</td>
+            <td>{pet.owner.email}</td>
+            <td>{new Date(pet.dateAdopted).toLocaleDateString()}</td>
+            <td>{pet.additionalNotes}</td>
+            <td>
+                {pet.vaccinations.map((vaccine, index) => (
                     <div key={index}>
-                      <strong>{vaccine.vaccineType}:</strong> {new Date(vaccine.dateAdministered).toLocaleDateString()}
+                        <strong>{vaccine.vaccineType}:</strong> {new Date(vaccine.dateAdministered).toLocaleDateString()}
                     </div>
-                  ))}
-                </td>
-                <td>
-                  <img src={pet.profilePhoto} alt={`${pet.petName}'s profile`} className='profile-photo' />
-                </td>
-                <td>
-                  <button className='update-btn' onClick={() => handleUpdate(pet._id)}>Update</button>
-                  <button className='delete-btn' onClick={() => handleDelete(pet._id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                ))}
+            </td>
+            <td>
+                <img src={pet.profilePhoto} alt={`${pet.petName}'s profile`} style={{ width: '100px', height: '100px' }} />
+            </td>
+
+            <td>
+                <button className='update-btn' onClick={() => handleUpdate(pet._id)}>Update</button>
+                <button className='delete-btn' onClick={() => handleDelete(pet._id)}>Delete</button>
+            </td>
+        </tr>
+    ))}
+</tbody>
+
         </table>
       </div>
       <Footer />

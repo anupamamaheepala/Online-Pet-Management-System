@@ -12,6 +12,7 @@ const EditProfile = () => {
       email: '',
       contactNumbers: [''], // Initialize with an empty string in the array
       address: '',
+      profilePhoto:'',
     });
   
     useEffect(() => {
@@ -52,7 +53,23 @@ const EditProfile = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        await axios.put(`http://localhost:9000/customer/${customerId}`, customerData);
+        // // Create a copy of customerData to include all existing fields
+        // const updatedData = { ...customerData };
+    
+        // // Include the profilePhoto URL in the update data if it exists
+        // if (customerData.profilePhoto) {
+        //   updatedData.profilePhoto = customerData.profilePhoto;
+        // }
+        // Use axios.patch to send only the updated fields
+        const updatedData = {
+          username: customerData.username,
+          email: customerData.email,
+          contactNumbers: customerData.contactNumbers,
+          address: customerData.address
+      };
+    
+        // Send a PUT request with updated data to update the customer's profile
+        await axios.put(`http://localhost:9000/customer/${customerId}`, updatedData);
         alert('Profile updated successfully');
       } catch (error) {
         console.error(error);
