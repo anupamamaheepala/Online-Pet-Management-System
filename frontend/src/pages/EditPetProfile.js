@@ -71,9 +71,18 @@ const EditPetProfile = () => {
         }
     };
 
+    
+
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Validate weight
+    const parsedWeight = parseFloat(formData.weight);
+    if (isNaN(parsedWeight) || parsedWeight <= 0 || parsedWeight >= 150) {
+        alert('Please enter a valid weight between 0 and 150.');
+        return;
+    }
         if (ageError) {
             alert(ageError);
             return;
@@ -216,7 +225,7 @@ const EditPetProfile = () => {
                     <option value="female">Female</option>
                 </select>
 
-                <label htmlFor="weight" className="editPetProfileLabel">Weight:</label>
+                <label htmlFor="weight" className="editPetProfileLabel">Weight(In Kg):</label>
                 <input
                     type="number"
                     id="weight"

@@ -124,7 +124,7 @@ const AllCustomers = () => {
                             </td>
                             <td>{customer.address}</td>
                             <td>
-                                <Link className="btn btn-warning" to={`/edit/${customer._id}`}>Edit</Link>
+                                <Link className="btn btn-warning" to={`/edit-profile/${customer._id}`}>Edit</Link>
                                 &nbsp;
                                 <button className="btn btn-danger" onClick={() => handleDelete(customer._id)}>Delete</button>
                             </td>

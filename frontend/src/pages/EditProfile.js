@@ -79,11 +79,16 @@ const EditProfile = () => {
 
     // Function to add a new contact number field
     const handleAddContactNumber = () => {
-      setCustomerData({
-        ...customerData,
-        contactNumbers: [...customerData.contactNumbers, ''],
-      });
-    };
+  if (customerData.contactNumbers.length < 3) {
+    setCustomerData({
+      ...customerData,
+      contactNumbers: [...customerData.contactNumbers, ''],
+    });
+  } else {
+    alert("You can only add up to three contact numbers.");
+  }
+};
+
 
     // Function to remove a contact number field
     const handleRemoveContactNumber = (index) => {
