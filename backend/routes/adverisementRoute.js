@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/add', upload.single('file'), advertisementController.addAdvertisement);cd
+router.post('/add', upload.single('file'), advertisementController.addAdvertisement);
 router.get("/", advertisementController.getAllAdvertisements);
 router.post("/:id/confirm", advertisementController.confirmAdvertisement); // New endpoint for confirming advertisements
 router.delete("/:id", advertisementController.deleteAdById);
