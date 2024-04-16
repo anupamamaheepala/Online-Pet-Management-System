@@ -49,7 +49,6 @@ const AddedProduct = () => {
                     <tr>
                         <th>Item Name</th>
                         <th>Category</th>
-                        <th>Description</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Image</th>
@@ -61,9 +60,8 @@ const AddedProduct = () => {
                         <tr key={product._id}>
                             <td>{product.itemName}</td>
                             <td>{product.category}</td>
-                            <td>{product.description}</td>
                             <td>{product.price}</td>
-                            <td>{product.qty}</td> {/* Added Quantity */}
+                            <td>{product.quantity}</td>
                             <td><img src={product.image} alt={product.itemName} /></td>
                             <td>
                                 <div className="ma_button-container">
