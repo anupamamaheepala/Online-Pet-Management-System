@@ -40,7 +40,7 @@ router.delete('/delete/:id', deleteprogram); // Ensure the path includes ':id' p
 router.put('/reject/:id', trainingController.rejectTraining);
 router.put('/approve/:id', trainingController.approveTraining);
 
-router.get('/application/:id',trainingController.getapplicationdisplay);
+router.get('/:id',trainingController.getapplicationdisplay);
 
 
 

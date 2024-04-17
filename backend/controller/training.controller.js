@@ -52,6 +52,26 @@ const addTrainingprogram = async (req, res) => {
         res.status(500).json({ message: "Failed to add data" });
     }
 };
+//display details after submission
+
+const getapplicationdisplay = async (req, res) => {
+    const trainingId = req.params.id;
+
+    try {
+        const training = await trainingModel.findById(trainingId);
+
+        if (!training) {
+            return res.status(404).json({ message: "Training not found" });
+        }
+
+        res.json(training);
+    } catch (error) {
+        console.error('Error fetching training details:', error);
+        res.status(500).json({ message: 'Failed to fetch training details' });
+    }
+};
+
+
 
 
 // Get all trainings
@@ -167,23 +187,6 @@ const rejectTraining = async (req, res) => {
 };
 
 
-//getalltrainingdetails
-const getapplicationdisplay = async (req, res) => {
-    const trainingId = req.params.id;
-
-    try {
-        const training = await trainingModel.findById(trainingId);
-
-        if (!training) {
-            return res.status(404).json({ message: "Training not found" });
-        }
-
-        res.json(training);
-    } catch (error) {
-        console.error('Error fetching training details:', error);
-        res.status(500).json({ message: 'Failed to fetch training details' });
-    }
-};
 
 
 
