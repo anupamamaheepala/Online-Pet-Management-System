@@ -3,21 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
 import './App.css';
 import Home from "./pages/Home";
-
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
-
-
+import FeedbackRating from './pages/FeedbackRating';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
 import VetDashboard from './pages/VetDashboard';
+import VetNotifications from './pages/VetNotifications';
 import AllVetAppointments from './pages/AllVetAppointments';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
@@ -66,8 +64,6 @@ import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
-
-
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
 import Cardpayadmin from './pages/Cardpayadmin';
@@ -94,12 +90,14 @@ function App() {
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
           <Route path="/FAQselect" element={<FAQselect />} />
+          <Route path="/FeedbackRating" element={<FeedbackRating />} />
           
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
           <Route path="/MyAppointments" element={<MyAppointments />} />
           <Route path="/VetDashboard" element={<VetDashboard />} />
+          <Route path="/VetNotifications" element={<VetNotifications />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
