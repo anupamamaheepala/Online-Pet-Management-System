@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom';
 import '../css/StaffSalary.css';
 
 function SalaryCalculator(props) {
@@ -16,6 +18,7 @@ function SalaryCalculator(props) {
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
     const [isSalaryAssigned, setIsSalaryAssigned] = useState(false);
+    const [selectedMonth, setSelectedMonth] = useState(new Date());
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -26,10 +29,11 @@ function SalaryCalculator(props) {
                 if (response.data && response.data.basicSalary !== undefined) {
                     // Salary is assigned
                     setIsSalaryAssigned(true);
-                    const { staffId, firstName, lastName, basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = response.data;
+                    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
                     setLastName(lastName);
+                    setSelectedMonth(selectedMonth);
                     setBasicSalary(basicSalary);
                     setOtHours(otHours);
                     setOtRate(otRate);
@@ -63,6 +67,7 @@ function SalaryCalculator(props) {
                 staffId,
                 firstName,
                 lastName,
+                selectedMonth,
                 basicSalary,
                 otHours,
                 otRate,
@@ -83,7 +88,8 @@ function SalaryCalculator(props) {
                 .catch(error => {
                     console.error('Error fetching staff details:', error);
                 });
-    
+            
+            setSelectedMonth(0);
             setBasicSalary(0);
             setOtHours(0);
             setOtHours(0);
@@ -138,6 +144,18 @@ function SalaryCalculator(props) {
                         <label className='StaffSalary-form-group label'>Last Name:</label>
                         <input type="text" id='slastname' className='staffname' value={lastName} readOnly />
                     </div>
+                    <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>Select Month:</label>
+                        <DatePicker
+                            className='selectedMonth'
+                            selected={selectedMonth}
+                            onChange={date => setSelectedMonth(date)}
+                            showMonthYearPicker
+                            dateFormat="MM/yyyy"
+                            readOnly={isSalaryAssigned}
+                        />
+                    </div>
+
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
                         <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly={isSalaryAssigned} />

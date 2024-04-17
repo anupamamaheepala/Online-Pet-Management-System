@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link component
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/salaryTable.css';
@@ -31,21 +32,16 @@ const SalaryTable = () => {
     setSearchCriteria(event.target.value);
   };
 
-  const filteredSalaries = salaries.filter(salary => {
-    if (searchCriteria === 'staffId') {
-      return salary.staffId.toLowerCase().includes(searchValue.toLowerCase());
-    } else if (searchCriteria === 'firstName') {
-      return salary.firstName.toLowerCase().includes(searchValue.toLowerCase());
-    } else if (searchCriteria === 'lastName') {
-      return salary.lastName.toLowerCase().includes(searchValue.toLowerCase());
-    }
-  });
+  const formatDate = date => {
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    return new Date(date).toLocaleDateString(undefined, options);
+  };
 
   return (
     <>
       <Header />
 
-      <br></br>
+      <br />
       <div className='SalaryTable1'>
         <center><h2>Salary Details</h2></center>
         <br />
@@ -76,10 +72,12 @@ const SalaryTable = () => {
               <th>OT Amount</th>
               <th>Bonus Amount</th>
               <th>Total Salary</th>
+              <th>Created Date</th>
+              <th>Update Details</th> {/* New column for updating details */}
             </tr>
           </thead>
           <tbody>
-            {filteredSalaries.map(salary => (
+            {salaries.map(salary => (
               <tr key={salary._id}>
                 <td>{salary.staffId}</td>
                 <td>{salary.firstName}</td>
@@ -90,6 +88,10 @@ const SalaryTable = () => {
                 <td>{salary.otAmount}</td>
                 <td>{salary.bonusAmount}</td>
                 <td>{salary.totalSalary}</td>
+                <td>{formatDate(salary.createdAt)}</td>
+                <td>
+                  <Link className='SalaryUpdate' to={`/update-salary?staffId=${salary.staffId}`}>Update</Link>
+                </td> {/* Link to update page */}
               </tr>
             ))}
           </tbody>

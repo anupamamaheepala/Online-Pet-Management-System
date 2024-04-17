@@ -109,12 +109,12 @@
   background-repeat: no-repeat;
 }
 
-.anucpbuttoncon{
+.carddivbutton{
   display: flex;
   justify-content: center;
 }
 
-.anucpbuttoncon button{
+.carddivbutton button{
   margin-right: 5px;
   margin-left: 5px;
 }
