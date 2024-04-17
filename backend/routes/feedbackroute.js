@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const feedbackController = require("../controller/feedbackController");
-const feedbackinquiryController = require("../controller/feedbackinquiryController");
+
 
 // Routes for feedback
 router.post("/feed", feedbackController.addFeedback);
