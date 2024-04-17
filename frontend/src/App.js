@@ -10,12 +10,7 @@ import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
-<<<<<<< HEAD
-=======
 import FeedbackRating from './pages/FeedbackRating';
-
-
->>>>>>> be7ceb4dd47f04739015b889e6eafe161f5e978b
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
