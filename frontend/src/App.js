@@ -72,7 +72,7 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-          <Route path="/training/application:id" element={<ViewApplication/>}/>
+          <Route path="/:id" element={<ViewApplication/>}/>
 
 
           <Route path="/Feedback" element={<Feedback />} />

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/ptrainingdetails.css'; // Ensure correct path to your CSS file
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const PrivateTrainingDetails = () => {
   const [training, setTraining] = useState(null);
@@ -101,8 +103,12 @@ const PrivateTrainingDetails = () => {
   if (!training) {
     return <div>Loading...</div>;
   }
+  
 
   return (
+    <div>
+      <Header/>
+ 
     <div className="alo2">
       <h2>Private Training Details</h2>
       <div>
@@ -153,6 +159,8 @@ const PrivateTrainingDetails = () => {
         <h3>Application status</h3>
         {renderActionButtons()}
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

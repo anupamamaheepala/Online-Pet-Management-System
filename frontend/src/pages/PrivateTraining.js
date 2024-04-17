@@ -41,11 +41,15 @@ const PrivateTraining = () => {
       formDataToSend.append('breed', breed);
       formDataToSend.append('age', age);
 
-      await axios.post("http://localhost:9000/training/insert", formDataToSend, {
+      const res = await axios.post("http://localhost:9000/training/insert",
+       formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+       
       });
+      console.log("Response data:",res.data);
+      window.location.href = `/ViewApplication?id=${res.data._id}`;
 
       // Clear form fields after successful submission
       setFormData({
@@ -57,7 +61,7 @@ const PrivateTraining = () => {
         age: '',
         file: null
       });
-
+      
       // Set submission status to true
       setIsSubmitted(true);
     } catch (err) {
@@ -117,7 +121,7 @@ const PrivateTraining = () => {
                 {isSubmitted && (
                   <div>
                     <p>Your application has been successfully submitted.</p>
-                    <Link to="/view-application">View Application</Link>
+
                   </div>
                 )}
               </form>
