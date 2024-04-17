@@ -70,6 +70,7 @@ import Cardpaysuccess from './pages/Cardpaysuccess';
 
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
+import Cardpayadmin from './pages/Cardpayadmin';
 
 
 
@@ -85,7 +86,7 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-          <Route path="/:id" element={<ViewApplication/>}/>
+          <Route path="/training/application:id" element={<ViewApplication/>}/>
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
@@ -97,7 +98,7 @@ function App() {
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
-          <Route path="/MyAppointments/" element={<MyAppointments />} />
+          <Route path="/MyAppointments" element={<MyAppointments />} />
           <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
@@ -149,6 +150,7 @@ function App() {
           
           <Route path="/update-salary"  element={<UpdateSalary/>} />
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
+          <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
 
 
         </Routes>

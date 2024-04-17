@@ -1,0 +1,33 @@
+/* CardPayAdmin.css */
+
+.card-pay-admin-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .card-pay-admin-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .card-pay-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .card-pay-admin-table-header,
+  .card-pay-admin-table-data {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .card-pay-admin-table-header {
+    font-weight: bold;
+  }
+  
+  .card-pay-admin-table-row:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
