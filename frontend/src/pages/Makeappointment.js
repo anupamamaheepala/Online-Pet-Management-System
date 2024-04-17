@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import '../css/makeappointment.css';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
 import ShowLoading from '../components/ShowLoading';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -36,7 +38,9 @@ const MakeAppointment = () => {
         selectProfession
       });
 
-      toast.success('Appointment created successfully');
+    // Show SweetAlert message
+    Swal.fire({ icon: 'success', title: 'Appointment Created Successfully', showConfirmButton: false, timer: 1500 });
+      /*toast.success('Appointment created successfully');*/
 
       // Clear form fields after successful submission
       setOwnerName('');
@@ -48,7 +52,9 @@ const MakeAppointment = () => {
       setSelectTime('');
       setSelectProfession('');
     } catch (error) {
-      toast.error('Failed to create appointment');
+       // Show error message
+    Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to create appointment. Please try again later.', confirmButtonText: 'OK' });
+      /*toast.error('Failed to create appointment');*/
       // Handle any errors
       console.error('Error submitting form:', error);
     }

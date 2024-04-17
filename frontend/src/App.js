@@ -98,7 +98,7 @@ function App() {
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
-          <Route path="/MyAppointments" element={<MyAppointments />} />
+          <Route path="/MyAppointments/" element={<MyAppointments />} />
           <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
