@@ -62,25 +62,23 @@
   opacity: 0.8;
   text-decoration: none;
 }
-
 .staffList-SearchBar-container {
-  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the left */
   margin-bottom: 20px;
-  margin-left: 3%; /* Align to the left */
-
 }
 
 .staffList-SearchBar {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #b8b7b7;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-;
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
 }
 
-.staffList-SearchBar:focus {
-  outline: none;
-  border-color: #007bff; /* Change to desired focus color */
+.staffList-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

@@ -8,6 +8,8 @@ import '../css/addedproduct.css';
 const AddedProduct = () => {
     const [products, setProducts] = useState([]);
     const [editProductId, setEditProductId] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+
 
     useEffect(() => {
         fetchProducts();
@@ -38,6 +40,10 @@ const AddedProduct = () => {
             }
         }
     };
+    const handleImageClick = (imageURL) => {
+        setSelectedImage(imageURL);
+    };
+
    
     
     return (
@@ -49,7 +55,6 @@ const AddedProduct = () => {
                     <tr>
                         <th>Item Name</th>
                         <th>Category</th>
-                        <th>Description</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Image</th>
@@ -61,10 +66,14 @@ const AddedProduct = () => {
                         <tr key={product._id}>
                             <td>{product.itemName}</td>
                             <td>{product.category}</td>
-                            <td>{product.description}</td>
                             <td>{product.price}</td>
-                            <td>{product.qty}</td> {/* Added Quantity */}
-                            <td><img src={product.image} alt={product.itemName} /></td>
+                            <td>{product.quantity}</td>
+                            <td> <img 
+                                    src={`http://localhost:9000/${product.image.replace(/\\/g, '/')}`} 
+                                    alt="Pet" 
+                                    style={{ width: '130px', height: '130px', cursor: 'pointer' }}
+                                    onClick={() => handleImageClick(`http://localhost:9000/${product.image.replace(/\\/g, '/')}`)}
+                                /></td>
                             <td>
                                 <div className="ma_button-container">
                                     <button className="btn btn-warning" onClick={() => handleEdit(product._id)}>Edit</button>

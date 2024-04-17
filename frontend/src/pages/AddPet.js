@@ -17,7 +17,7 @@ const AddPet = () => {
         ageValue: '', // Add this key to initialize ageValue separately
         ageUnit: 'years', // Initialize ageUnit as 'years'
         gender: '',
-        weight: '',
+        weight: 'kg',
         dateAdopted: '',
         additionalNotes: '',
         profileImage: '' // Initialize as an empty string
@@ -92,12 +92,13 @@ const onChange = (e) => {
         return;
     }
         
-    // Convert and validate weight
-    const parsedWeight = parseFloat(formData.weight);
-    if (isNaN(parsedWeight) || parsedWeight < 0) {
-        alert('Please enter a valid non-negative weight.');
-        return;
-    }
+   // Convert and validate weight
+const parsedWeight = parseFloat(formData.weight);
+if (isNaN(parsedWeight) || parsedWeight <= 0 || parsedWeight >= 150) {
+    alert('Please enter a valid weight between 0 and 150.');
+    return;
+}
+
     
         // Convert ageValue to a number
         const ageValueNumber = parseFloat(formData.ageValue);
@@ -187,13 +188,13 @@ const onChange = (e) => {
                         </select>
                     </div>
                     <div className="add-pet-form-group">
-                        <label htmlFor="weight">Weight:</label>
+                        <label htmlFor="weight">Weight(In Kg):</label>
                         <input type="number" id="weight" name="weight" value={formData.weight} onChange={onChange} />
                     </div>
 
                     <div className="add-pet-form-group">
                         <label htmlFor="dateAdopted">Date Adopted:</label>
-                        <input type="date" id="dateAdopted" name="dateAdopted" value={formData.dateAdopted} onChange={onChange} />
+                        <input type="date" id="dateAdopted" name="dateAdopted" value={formData.dateAdopted ? formData.dateAdopted : ''}  onChange={onChange} />
                     </div>
                     <div className="add-pet-form-group">
                         <label htmlFor="additionalNotes">Additional Notes:</label>

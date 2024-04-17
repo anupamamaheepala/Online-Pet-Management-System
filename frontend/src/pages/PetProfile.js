@@ -251,8 +251,8 @@ const PetProfile = () => {
         <p className="pet-profile-info">Breed: {petData.breed}</p>
         <p className="pet-profile-info">Age: {petData.age ? `${petData.age.value} ${petData.age.unit}` : 'N/A'}</p>
         <p className="pet-profile-info">Gender: {petData.gender}</p>
-        <p className="pet-profile-info">Weight: {petData.weight}</p>
-        <p className="pet-profile-info">Date Adopted: {new Date(petData.dateAdopted).toLocaleDateString()}</p>
+        <p className="pet-profile-info">Weight(In Kg): {petData.weight}kg</p>
+        <p className="pet-profile-info">Date Adopted: {petData.dateAdopted ? new Date(petData.dateAdopted).toLocaleDateString() : 'N/A'}</p>
         <p className="pet-profile-info">Additional Notes: {petData.additionalNotes}</p>
         
         <div className="pet-profile-vaccine-section">

@@ -41,12 +41,16 @@ const Register = () => {
   };
   
 
-    const addContactNumberField = () => {
+  const addContactNumberField = () => {
+    if (contactNumbers.length < 3) {
         setFormData({
             ...formData,
             contactNumbers: [...contactNumbers, ''], // Add a new empty contact number
         });
-    };
+    } else {
+        alert("You can only add up to three contact numbers.");
+    }
+};
 
     const removeContactNumberField = (index) => {
         if (contactNumbers.length > 1) {
@@ -137,7 +141,7 @@ const Register = () => {
                                     <button type="button"  onClick={() => removeContactNumberField(index)}>Remove</button>
                                 </div>
                             ))}
-                            <button type="button" className="add-contact-number-button" onClick={addContactNumberField}>
+                            <button type="button" className="add-contact-number-button" onClick={addContactNumberField} >
                                 Add Contact Number
                             </button>
                         </div>
