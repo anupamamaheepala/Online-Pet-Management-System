@@ -57,7 +57,6 @@ import ResetPassword from './pages/ResetPassword';
 import EditProfile from './pages/EditProfile';
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
-import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
 import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
@@ -127,7 +126,6 @@ function App() {
           <Route path="/AddingProduct" element={<AddingProduct />} />
           <Route path="/AddedProduct" element={<AddedProduct />} />
           <Route path="/product" element={<ShopCategory />}>
-            <Route path=":productId" element={<Product />} />
           </Route>
           <Route path="/StaffProfile" element={<StaffProfile />} />
           <Route path="/update/:staffId" element={<UpdateStaff />} />
