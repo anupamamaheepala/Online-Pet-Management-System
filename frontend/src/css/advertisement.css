@@ -143,7 +143,7 @@
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;;
-    border: 5px solid #000000;
+    border: 1px solid #000000;
     border-radius: 8px;
 }
 
@@ -281,3 +281,25 @@
 .ma_advertisement-table tbody tr:hover {
     background-color: #ddd;
 }
+
+.ma_advertisement-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .ma_advertisement-table th,
+  .ma_advertisement-table td {
+    border: 1px solid #dddddd; /* Add borders to cells */
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .ma_advertisement-table th {
+    background-color: #f2f2f2; /* Light gray background for header cells */
+  }
+  
+  .ma_button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  

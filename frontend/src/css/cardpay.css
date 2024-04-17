@@ -1,5 +1,5 @@
 .anucard-payment {
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 2px solid #000000;
@@ -47,10 +47,74 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
 }
 
 .anucpbutton:hover {
   background-color: #ffffff;
   color: #000000;
   text-decoration: none;
+}
+
+.anuvisamaster{
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 6px 0;
+  margin-bottom: 12px;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.payment-method input {
+  display: none;
+}
+
+.payment-method-item {
+  width: 60px;
+  height: 60px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  margin-right: 12px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.payment-method-item > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
+.payment-method input:checked + .payment-method-item {
+  border-color:#000000;
+}
+
+.payment-method input:checked + .payment-method-item::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgb(0, 0, 0);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwxKSI+PHBhdGggZD0iTTkuOTk5NyAxNS4xNzA5TDE5LjE5MjEgNS45Nzg1MkwyMC42MDYzIDcuMzkyNzNMOS45OTk3IDE3Ljk5OTNMMy42MzU3NCAxMS42MzU0TDUuMDQ5OTYgMTAuMjIxMkw5Ljk5OTcgMTUuMTcwOVoiPjwvcGF0aD48L3N2Zz4=");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.carddivbutton{
+  display: flex;
+  justify-content: center;
+}
+
+.carddivbutton button{
+  margin-right: 5px;
+  margin-left: 5px;
 }

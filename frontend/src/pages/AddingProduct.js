@@ -8,12 +8,12 @@ const AddingProduct = () => {
     const [formData, setFormData] = useState({
         itemName: '',
         category: 'Foods',
-        description: '',
         image: null,
-        price: ''
+        price: '',
+        quantity: 0  // Add quantity field to formData
     });
 
-    const { itemName, category, description, image, price } = formData;
+    const { itemName, category, image, price, quantity } = formData;
 
     const onChange = e => {
         if (e.target.name === "image") {
@@ -29,9 +29,9 @@ const AddingProduct = () => {
             const formDataToSend = new FormData();
             formDataToSend.append('itemName', itemName);
             formDataToSend.append('category', category);
-            formDataToSend.append('description', description);
             formDataToSend.append('image', image);
             formDataToSend.append('price', price);
+            formDataToSend.append('quantity', quantity);  // Include quantity in FormData
 
             const res = await axios.post("http://localhost:9000/products/add", formDataToSend, {
                 headers: {
@@ -39,26 +39,15 @@ const AddingProduct = () => {
                 }
             });
             console.log(res.data);
-            // Optionally, you can clear the form fields after successful submission
             setFormData({
                 itemName: '',
                 category: 'Foods',
-                description: '',
                 image: null,
-                price: ''
+                price: '',
+                quantity: 0  // Reset quantity after submission
             });
         } catch (err) {
-            if (err.response) {
-                // The request was made and the server responded with a status code
-                console.log('Server responded with status:', err.response.status);
-                // You can handle different types of errors here
-            } else if (err.request) {
-                // The request was made but no response was received
-                console.log('No response received from server');
-            } else {
-                // Something happened in setting up the request that triggered an error
-                console.log('Error setting up the request:', err.message);
-            }
+            // Error handling
         }
     };
 
@@ -80,12 +69,6 @@ const AddingProduct = () => {
                         <option value="Toys and Accessories">Toys and Accessories</option>
                     </select>
                 </div>
-
-                <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" value={description} onChange={onChange}></textarea>
-                </div>
-
                 <div className="form-group">
                     <label htmlFor="image">Image:</label>
                     <input type="file" id="image" name="image" onChange={onChange} />
@@ -94,6 +77,11 @@ const AddingProduct = () => {
                 <div className="form-group">
                     <label htmlFor="price">Price:</label>
                     <input type="number" id="price" name="price" value={price} onChange={onChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value={quantity} onChange={onChange} />
                 </div>
 
                 <button type="submit" className="submit-button">Submit</button>

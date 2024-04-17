@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import '../css/makeappointment.css';
 import axios from 'axios';
+//import { toast } from 'react-toastify';
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
+import ShowLoading from '../components/ShowLoading';
+import Swal from 'sweetalert2';
+
+
+
 
 const MakeAppointment = () => {
   // State variables to store form data
@@ -8,6 +16,10 @@ const MakeAppointment = () => {
   const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
   const [petType, setPetType] = useState('');
+  const [selectService, setSelectService] = useState('');
+  const [selectDate, setSelectDate] = useState('');
+  const [selectTime, setSelectTime] = useState('');
+  const [selectProfession, setSelectProfession] = useState('');
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -19,23 +31,41 @@ const MakeAppointment = () => {
         ownerName,
         ownerEmail,
         ownerContact,
-        petType
+        petType,
+        selectService,
+        selectDate,
+        selectTime,
+        selectProfession
       });
+
+    // Show SweetAlert message
+    Swal.fire({ icon: 'success', title: 'Appointment Created Successfully', showConfirmButton: false, timer: 1500 });
+      /*toast.success('Appointment created successfully');*/
 
       // Clear form fields after successful submission
       setOwnerName('');
       setOwnerEmail('');
       setOwnerContact('');
       setPetType('');
+      setSelectService('');
+      setSelectDate('');
+      setSelectTime('');
+      setSelectProfession('');
     } catch (error) {
+       // Show error message
+    Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to create appointment. Please try again later.', confirmButtonText: 'OK' });
+      /*toast.error('Failed to create appointment');*/
       // Handle any errors
       console.error('Error submitting form:', error);
     }
   };
 
   return (
+    <>
+     <ShowLoading />
+    <Header />
     <div className="makeappointment_container">
-      <h1 className="makeappointment_heading">Appointment Form</h1>
+      <h1 className="makeappointment_heading">Schedule Your Appointment</h1>
       <form className="makeappointment_form" onSubmit={handleSubmit}>
         <div className="left_inputs">
           <div className="makeappointment_input_container">
@@ -55,23 +85,7 @@ const MakeAppointment = () => {
             <input className="makeappointment_input_text" type="text" id="petType" value={petType} onChange={(e) => setPetType(e.target.value)} required />
           </div>
         </div>
-        <button className="makeappointment_button" type="submit">Submit</button>
-      </form>
-    </div>
-  );
-};
-
-export default MakeAppointment;
-
-
-
-
-
-
-
-
-
-       {/* <div className="right_inputs">
+        <div className="right_inputs">
           <div className="makeappointment_input_container">
             <label className="makeappointment_label" htmlFor="selectService">Select Service:</label>
             <select className="makeappointment_select" id="selectService" value={selectService} onChange={(e) => setSelectService(e.target.value)} required>
@@ -98,4 +112,14 @@ export default MakeAppointment;
               <option value="Pet Sitter">Pet Sitter</option>
             </select>
           </div>
-  </div>*/}
+        </div>
+        <button className="makeappointment_button" type="submit">Submit</button>
+      </form>
+     
+    </div>
+    <Footer /> 
+    </>
+  );
+};
+
+export default MakeAppointment;

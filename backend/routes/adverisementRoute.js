@@ -4,10 +4,9 @@ const multer = require('multer');
 const path = require('path');
 const advertisementController = require("../controller/advertisementController");
 
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../uploads/')); // Adjusted destination path
+        cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
@@ -16,13 +15,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Route to add a new advertisement with file upload
 router.post('/add', upload.single('file'), advertisementController.addAdvertisement);
-
-// Route to retrieve all advertisements
 router.get("/", advertisementController.getAllAdvertisements);
-
-// Route to delete an advertisement by ID
+router.put("/:id/confirm", upload.single('file'),  advertisementController.confirmAdvertisement); // New endpoint for confirming advertisements
 router.delete("/:id", advertisementController.deleteAdById);
+//router.get("/confirmed", advertisementController.getConfirmedAdvertisements);
+router.get("/:id/confirm", advertisementController.confirmAdvertisement); // GET endpoint for confirming advertisements
 
 module.exports = router;
+

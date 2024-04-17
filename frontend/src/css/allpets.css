@@ -1,0 +1,136 @@
+/* allpets.css */
+
+/* Page Layout */
+.all-pets-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Page Title */
+.pets-page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Search Container */
+.pets-search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pets-search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.pets-filter-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Select Columns Container */
+.pets-select-columns-container {
+  margin-bottom: 20px;
+}
+
+.pets-column-checkbox {
+  margin-bottom: 10px;
+}
+
+.pets-column-checkbox label {
+  display: flex;
+  align-items: center;
+}
+
+.pets-column-checkbox-input {
+  margin-right: 5px;
+}
+
+/* Download Button */
+.pets-download-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pets-download-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Pets Table */
+.pets-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pets-table th,
+.pets-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.pets-table th {
+  background-color: #f2f2f2;
+}
+
+/* Profile Photo */
+.pets-profile-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Actions Buttons */
+.pets-actions-btns button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pets-actions-btns button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Update Button */
+.pets-update-btn {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.pets-update-btn:hover {
+  background-color: #218838;
+  border-color: #218838;
+  color: #fff;
+}
+
+/* Delete Button */
+.pets-alldelete-btn {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.pets-delete-btn:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+  color: #fff;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Homepage from '../css/Homepage.css'; // Import your CSS file for styling
 import Header from '../components/Header';
 import Footer from '../components/Footer'; // Import the Footer component
-import Layout from '../components/Layout';
+import ShowLoading from '../components/ShowLoading';
 
 const Home = () => {
   // State variable to track the current slide index
@@ -47,6 +47,7 @@ const Home = () => {
 
   return (
     <div>
+      <ShowLoading />
       <Header />
       <div className="homepage-container">
         <div className="slide-container">

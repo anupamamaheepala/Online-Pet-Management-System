@@ -64,23 +64,23 @@ const Header = () => {
                                 <Link className={`nav-link ${activeMenuItem === 'Advertisements' ? 'active' : ''}`} to="/Advertisement" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'Advertisements' ? 'bold' : 'normal' }}>Advertisements</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${activeMenuItem === 'Feedback' ? 'active' : ''}`} to="/Feedback" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'Feedback' ? 'bold' : 'normal' }}>FAQ</Link>
+                                <Link className={`nav-link ${activeMenuItem === 'FAQselect' ? 'active' : ''}`} to="/FAQselect" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'FAQselect' ? 'bold' : 'normal' }}>FAQ</Link>
                             </li>
                         </ul>
                         <div className="d-flex align-items-center">
                         <a href="/SignIn">
-                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px', backgroundColor: 'black', }}>Sign In</button>
+                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px', backgroundColor: 'black', color:'white', border:'1px solid black'}}>Sign In</button>
                         </a>
 
                             <div style={{ marginRight: '10px' }}>
-                                <a href="/Register"><button className="btn btn-primary me-2" style={{ fontSize: '16px',backgroundColor: 'black' }}>Sign Up</button></a>
+                                <a href="/Register"><button className="btn btn-primary me-2" style={{ fontSize: '16px',backgroundColor: 'white' , color:'black', border:'1px solid black'}}>Sign Up</button></a>
                             </div>
                             <div className="dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     <BsPersonFill size={40} style={{ border: '1px solid #ccc', borderRadius: '50%', padding: '2px' }} />
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                    <li><a className="dropdown-item" href="#">My Profile</a></li>
+                                    <li><a className="dropdown-item" href="/MyProfile">My Profile</a></li>
                                     <li><a className="dropdown-item" href="/MyAppointments">My Appointments</a></li>
                                     <li><a className="dropdown-item" href="#">My Cart</a></li>
                                     <li><a className="dropdown-item" href="#">Settings</a></li>

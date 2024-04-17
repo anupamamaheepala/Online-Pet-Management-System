@@ -1,116 +1,94 @@
-// advertisementController.js
-//const { confirmAdvertisement, rejectAdvertisement } = require('../controller/advertisementController');
-
 const Ads = require("../models/advertisementModel");
+const ConfirmedAds = require("../models/advertisementModel");
 
-// Function to handle adding a new advertisement
- exports.addAdvertisement = async (req, res) => {
-  try {
-    const {
-      ownerName,
-      email,
-      title,
-      Breed,
-      purpose,
-      description,
-      file,
-      price,
-      contact,
-    } = req.body;
+exports.addAdvertisement = async (req, res) => {
+    try {
+        const {
+            ownerName,
+            email,
+            title,
+            Breed,
+            purpose,
+            description,
+            contact,
+        } = req.body;
 
-    // Validations
-    if (
-      !ownerName ||
-      !email ||
-      !title ||
-      !Breed ||
-      !purpose ||
-      !description ||
-      !file||
-      !price ||
-      !contact
-    ) {
-      return res.status(400).json({ message: "All fields are required!" });
-    }
-
-    const newAdvertisement = new Ads({
-      ownerName,
-      email,
-      title,
-      Breed,
-      purpose,
-      description,
-      file,
-      price,
-      contact,
-    });
-
-    const addObj = new addModel(addData);
-
+        let filePath = null;
         if (req.file) {
-          addObj.filePath = req.file.path; // Add file path to training object
+            filePath = req.file.path;
         }
 
-        await addObj.save();
+        const newAdvertisement = new Ads({
+            ownerName,
+            email,
+            title,
+            Breed,
+            purpose,
+            description,
+            filePath,
+            contact,
+        });
 
-    // Saving data into the database
-    await newAdvertisement.save();
-    res.status(201).json({ message: "Advertisement added successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
-  }
+        await newAdvertisement.save();
+        res.status(201).json({ message: "Advertisement added successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
 };
 
-// Function to retrieve all advertisements
 exports.getAllAdvertisements = async (req, res) => {
-  try {
-    const ads = await Ads.find();
-    res.json(ads);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
-  }
+    try {
+        const ads = await Ads.find();
+        res.json(ads);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
 };
 
-// // Function to delete an advertisement by ID
-exports.deleteAdById= async (req, res) => {
-  try {
-    await Ads.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "As deleted successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Failed to delete ad" });
-  }
+exports.deleteAdById = async (req, res) => {
+    try {
+        await Ads.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "Ad deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Failed to delete ad" });
+    }
 };
 
-// // Function to confirm an advertisement by ID
-// const confirmAdvertisement = async (req, res) => {
-//   try {
-//     const adId = req.params.id;
-//     await AdsSchema.findByIdAndUpdate(adId, { confirmed: true });
-//     res.status(200).send({ status: "Advertisement confirmed" });
-//   } catch (error) {
-//     console.error(error.message);
-//     res.status(500).send({ status: "Error with confirming advertisement", error: error.message });
-//   }
-// };
+exports.confirmAdvertisement = async (req, res) => {
+    try {
+        const adId = req.params.id;
+        const ad = await Ads.findById(adId);
+        
+        if (!ad) {
+            return res.status(404).json({ message: "Advertisement not found" });
+        }
 
-// // Function to reject an advertisement by ID
-// const rejectAdvertisement = async (req, res) => {
-//   try {
-//     const adId = req.params.id;
-//     await AdsSchema.findByIdAndUpdate(adId, { rejected: true });
-//     res.status(200).send({ status: "Advertisement rejected" });
-//   } catch (error) {
-//     console.error(error.message);
-//     res.status(500).send({ status: "Error with rejecting advertisement", error: error.message });
-//   }
-// };
+        // Create a new confirmed advertisement document
+        const confirmedAd = new ConfirmedAds({
+            ownerName: ad.ownerName,
+            email: ad.email,
+            title: ad.title,
+            Breed: ad.Breed,
+            purpose: ad.purpose,
+            description: ad.description,
+            filePath: ad.filePath,
+            contact: ad.contact,
+            createdAt: ad.createdAt // Optionally, copy creation date from the original advertisement
+        });
 
-// module.exports = {
-//   addAdvertisement,
-//   getAllAdvertisements,
-//   deleteAdvertisementById,
-//   confirmAdvertisement,
-//   rejectAdvertisement,
+        // Save the confirmed advertisement to the database
+        await confirmedAd.save();
+
+        // Delete the advertisement from the original collection
+        await Ads.findByIdAndDelete(adId);
+
+        res.status(200).json({ message: "Advertisement confirmed and moved successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+};
+

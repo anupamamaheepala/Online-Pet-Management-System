@@ -28,7 +28,15 @@ const SignIn = () => {
       console.log(res.data); // Check the response from the server
 
       // Redirect to home page if sign-in successful
-      window.location.href = '/';
+      //window.location.href = '/';
+          // Redirect to MyProfile page if sign-in successful
+    //window.location.href = `/MyProfile/${res.data.user._id}`;
+    // Store the user ID in localStorage upon successful sign-in
+    localStorage.setItem('userId', res.data.user._id);
+    // Redirect to MyProfile page if sign-in successful
+     window.location.href = `/MyProfile/${res.data.user._id}`;
+  
+
     } catch (err) {
       console.error(err);
       alert('Invalid credentials'); // Display an error message

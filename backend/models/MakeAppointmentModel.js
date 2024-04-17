@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define schema for appointment
 const appointmentSchema = new mongoose.Schema({
   ownerName: {
     type: String,
@@ -18,11 +17,39 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  selectService: {
+    type: String,
+    required: true
+  },
+  selectDate: { 
+    type: Date, 
+    required: true 
+  },
+
+  selectTime: {
+    type: String,
+    required: true
+  },
+  selectProfession: {
+    type: String,
+    required: true
+  },
+  IsAccept: { 
+    type: Boolean,
+     default: false 
+    },
+      
+  IsPaid: {
+     type: Boolean,
+     default: false 
+    },
   
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-// Create Appointment model
-const Appointment = mongoose.model('appointment', appointmentSchema);
+const Appointment = mongoose.model('Appointment', appointmentSchema);
 
-// Export Appointment model
 module.exports = Appointment;

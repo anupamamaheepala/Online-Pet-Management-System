@@ -1,88 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/advertisement.css';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import '../css/advertisement.css';
 
+const Advertisement = () => {
+    const [advertisements, setAdvertisements] = useState([]);
 
-const CheckAdvertisementDetails = () => {
-    const [advertisements, setAdvertisements] = useState([
-        {
-            id: 'advertisement1',
-            type: 'Pets for sale',
-            title: 'Ad Title',
-            description: 'Description of the pet for sale.',
-            price: 'LKRXXX',
-            contact: 'Contact details',
-            // Add image URL for the pet
-            image: 'pet1.jpg'
-        },
-        {
-            id: 'advertisement2',
-            type: 'Lost & found',
-            title: 'Lost Pet Title',
-            description: 'Description of the lost pet.',
-            contact: 'Contact details',
-            // Add image URL for the lost pet
-            image: 'lostpet1.jpg'
-        },
-        {
-            id: 'advertisement1',
-            type: 'Pets for sale',
-            title: 'Ad Title',
-            description: 'Description of the pet for sale.',
-            price: 'LKRXXX',
-            contact: 'Contact details',
-            // Add image URL for the pet
-            image: 'pet1.jpg'
-        },
-        {
-            id: 'advertisement2',
-            type: 'Lost & found',
-            title: 'Lost Pet Title',
-            description: 'Description of the lost pet.',
-            contact: 'Contact details',
-            // Add image URL for the lost pet
-            image: 'lostpet1.jpg'
-        },
-        // Add more advertisement data as needed
-    ]);
-
-    const handleConfirm = (advertisementId) => {
-        // Implement confirmation logic here
-    };
-
-    const handleReject = (advertisementId) => {
-        // Implement rejection logic here
-    };
+   
 
     return (
         <>
-        <Header/>
-             <div className="ma_button-container">
-                
-                    <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
-                
-                
-                    <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
-                
+            <Header />
+            <div className="ma_button-container">
+                <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
+                <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
             </div>
             <div className="ma_advertisement-container">
                 {advertisements.map(advertisement => (
-                    <div key={advertisement.id} className="ma_advertisement-column">
+                    <div key={advertisement._id} className="ma_advertisement-column">
                         <h3>{advertisement.type}</h3>
                         <div className="ma_advertisement-box">
-                            <input
-                                type="checkbox"
-                                id={advertisement.id}
-                                // Implement checked state management here
-                            />
-                            <label htmlFor={advertisement.id}>{advertisement.title}</label>
-                            {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="ma_advertisement-photo" />}
+                            <label htmlFor={advertisement._id}>{advertisement.title}</label>
+                            {advertisement.image && <img src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} alt={advertisement.title} className="ma_advertisement-photo" />}
                             <p>{advertisement.description}</p>
                             {advertisement.price && <p>Price: {advertisement.price}</p>}
                             <p>Contact details: {advertisement.contact}</p>
-                            
                         </div>
                     </div>
                 ))}
@@ -92,4 +36,4 @@ const CheckAdvertisementDetails = () => {
     );
 }
 
-export default CheckAdvertisementDetails;
+export default Advertisement;

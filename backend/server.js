@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
+
 
 // Importing route handlers for various endpoints
 
@@ -20,15 +22,16 @@ const trainingRoutes = require("./routes/training.routes");
 const staffRoute = require("./routes/staffRoute");
 const staffLeaveRoute = require("./routes/staffLeaveRoute");
 const cardpayRoute = require("./routes/cardpayRoute");
-const appointmentRoutes = require("./routes/MakeAppointmentRoute");
+const makeAppointmentRoute = require('./routes/MakeAppointmentRoute');
 const banktransRoute = require("./routes/banktransRoute");
 const feedbacks = require('./routes/feedbackroute');
 const orderRoute = require("./routes/orderRoute");
-
 const productRoutes = require('./routes/products');
 const uploadRoute =require("./routes/uploadRoute");
-
+const salaryRoute =require("./routes/salaryRoute");
 const productsRouter = require('./routes/products');
+
+const petRoute = require("./routes/petRoute"); 
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -37,11 +40,14 @@ const productsRouter = require('./routes/products');
 //const cardpayRoute = require("./routes/cardpayRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
+const banktransadminRoute = require('./routes/banktransadminRoute');
+
+
 app.use(cors());
 app.use(bodyParser.json());
 
 // Mounting routes for various endpoints
-
+app.use("/confirmedads", adsRoute);
 app.use("/uploads" ,uploadRoute);
 app.use("/ads", adsRoute);
 app.use("/customer", customerRoute);
@@ -50,14 +56,18 @@ app.use("/training", trainingRoutes);
 app.use("/staff", staffRoute);
 app.use("/cardpay", cardpayRoute)
 app.use("/staffLeave", staffLeaveRoute);
-
 app.use("/banktrans", banktransRoute);
 app.use("/feedback", feedbacks);
-app.use("/appointment", appointmentRoutes);
+app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
 
+app.use('/pets', petRoute);
 
+
+
+app.use('/salary', salaryRoute);
+//app.use('/banktransadmin', banktransadminRoute);
 
 
 // Route to handle requests to the root URL

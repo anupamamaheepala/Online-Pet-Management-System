@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import '../css/groomeservices.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ShowLoading from '../components/ShowLoading';
 
 function Groomservices() {
   const images = ['groome1.jpg', 'groome2.jpg', 'groome3.jpg', 'groome4.jpg', 'groome5.jpg']; 
   const [currentImage, setCurrentImage] = useState(0);
+  const [showDescription, setShowDescription] = useState('');
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -25,8 +27,22 @@ function Groomservices() {
     setCurrentImage(index);
   };
 
+  const toggleDescription = (service) => {
+    setShowDescription(showDescription === service ? '' : service);
+  };
+
+  const services = [
+    { title: 'Bathing and Brushing', description: 'Regular bathing and brushing help keep your pet\'s coat clean and healthy, reducing shedding and preventing matting.' },
+    { title: 'Trimming and Styling', description: 'Professional grooming includes trimming your pet\'s fur to maintain a neat appearance and styling to your preferences.' },
+    { title: 'Nail Clipping', description: 'Trimming your pet\'s nails is essential to prevent overgrowth, which can lead to discomfort and difficulty walking.' },
+    { title: 'Ear Cleaning', description: 'Regular cleaning of your pet\'s ears helps prevent infections and keeps their ears healthy and free from wax buildup.' },
+    { title: 'Teeth Brushing', description: 'Dental hygiene is important for pets, and brushing their teeth helps prevent dental diseases and bad breath.' },
+    { title: 'Special Treatments', description: 'Some pets may require special treatments such as flea baths, skin conditioning, or medicated baths for specific skin conditions.' },
+  ];
+
   return (
     <>
+      <ShowLoading />
       <Header /> 
       <div className="image-slider">
         <div className="upper-text">
@@ -49,51 +65,18 @@ function Groomservices() {
         </div>
       </div>
       <div className="groom-services-container">
-        <h1>Available Grooming Services</h1>
-        <ul className="service-list">
-          <li>
-            <h3>Bathing and Brushing</h3>
-            <p>
-              Regular bathing and brushing help keep your pet's coat clean and healthy, 
-              reducing shedding and preventing matting.
-            </p>
-          </li>
-          <li>
-            <h3>Trimming and Styling</h3>
-            <p>
-              Professional grooming includes trimming your pet's fur to maintain a neat appearance 
-              and styling to your preferences.
-            </p>
-          </li>
-          <li>
-            <h3>Nail Clipping</h3>
-            <p>
-              Trimming your pet's nails is essential to prevent overgrowth, 
-              which can lead to discomfort and difficulty walking.
-            </p>
-          </li>
-          <li>
-            <h3>Ear Cleaning</h3>
-            <p>
-              Regular cleaning of your pet's ears helps prevent infections and 
-              keeps their ears healthy and free from wax buildup.
-            </p>
-          </li>
-          <li>
-            <h3>Teeth Brushing</h3>
-            <p>
-              Dental hygiene is important for pets, and brushing their teeth 
-              helps prevent dental diseases and bad breath.
-            </p>
-          </li>
-          <li>
-            <h3>Special Treatments</h3>
-            <p>
-              Some pets may require special treatments such as flea baths, 
-              skin conditioning, or medicated baths for specific skin conditions.
-            </p>
-          </li>
-        </ul>
+        <div className="service-list-container">
+          <h2>Available Grooming Services</h2>
+          <ul className="service-list">
+            {services.map((service) => (
+              <li key={service.title} onClick={() => toggleDescription(service.title)}>
+                <span className="toggle-icon">{showDescription === service.title ? '-' : '+'}</span>
+                <h3>{service.title}</h3>
+                {showDescription === service.title && <p>{service.description}</p>}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <Footer /> 
     </>

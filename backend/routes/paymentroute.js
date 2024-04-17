@@ -9,5 +9,10 @@ router.post("/pay", paymentController.addPayerInfo);
 // Route for fetching payer information by ID
 router.get("/:id", paymentController.getCustomerById);
 
+// Route for deleting payer information by ID
+router.delete("/:id", paymentController.deletePayerInfo);
+
+router.put("/:id", paymentController.updatePayerInfo);
+
 
 module.exports = router;

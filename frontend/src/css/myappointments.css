@@ -1,0 +1,120 @@
+.appointment-item {
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 500px;
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    margin-top: 10px;
+  }
+  
+  .myappointment_paynow_button{
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #002fff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .myappointment_modify_button{
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #22ff00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .myappointment_remove_button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .myappointment_paynow_button:hover{
+    background-color: #ffffff;
+    color:#002fff ;
+    border: 1px solid #002fff;
+  }
+  .myappointment_modify_button:hover{
+    background-color: #ffffff;
+    color: #22ff00;
+    border: 1px solid #22ff00;
+  }
+  .myappointment_remove_button:hover {
+    background-color: #ffffff;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+  }
+  .edit-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .edit-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .edit-form input[type="text"],
+  .edit-form input[type="email"],
+  .edit-form input[type="tel"],
+  .edit-form input[type="date"],
+  .edit-form input[type="time"],
+  .edit-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .edit-form select {
+    height: 40px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .button-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button-container button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .button-container button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .button-container button[type="button"] {
+    background-color: #e0e0e0;
+    color: black;
+  }
+  
+  .button-container button[type="button"]:hover {
+    background-color: #ddd;
+  }
+  

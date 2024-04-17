@@ -1,12 +1,20 @@
-// routes/registerRoute.js
 const express = require('express');
 const router = express.Router();
-const registerController = require("../controller/registerController");
-const customerSchema = require('../models/registerModel');
 const bcrypt = require('bcrypt');
+const registerController = require('../controller/registerController');
+const multer = require('multer');
+
 
 // Register a new customer
 router.post("/register", registerController.registerCustomer);
+
+// Route for uploading profile photo
+router.put('/profile-photo/:customerId', registerController.uploadProfilePhoto);
+
+// Add this route for deleting a customer's profile photo
+router.delete('/profile-photo/:customerId', registerController.deleteProfilePhoto);
+
+
 
 // Get all customers
 router.get("/", registerController.getAllCustomers);
@@ -21,36 +29,12 @@ router.put("/:id", registerController.updateCustomer);
 router.delete("/:id", registerController.deleteCustomerById);
 
 // Sign-in endpoint
-router.post('/signin', async (req, res) => {
-  const { email, password } = req.body;
+router.post('/signin', registerController.signIn);
 
-  try {
-    // Check if the user exists in the database
-    const user = await customerSchema.findOne({ email });
-
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
-
-    // Compare the provided password with the hashed password in the database
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
-
-    // If the credentials are valid, return a success message
-    res.status(200).json({ message: 'Sign-in successful', user });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
-});
-
+// Route for resetting password
+router.put('/reset-password', registerController.resetPassword);
 
 module.exports = router;
-
-
 
 
 
