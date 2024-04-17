@@ -10,6 +10,12 @@ import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
+<<<<<<< HEAD
+=======
+import FeedbackRating from './pages/FeedbackRating';
+
+
+>>>>>>> be7ceb4dd47f04739015b889e6eafe161f5e978b
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -80,7 +86,7 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-          <Route path="/training/application:id" element={<ViewApplication/>}/>
+          <Route path="/:id" element={<ViewApplication/>}/>
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
@@ -88,6 +94,7 @@ function App() {
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
           <Route path="/FAQselect" element={<FAQselect />} />
+          <Route path="/FeedbackRating" element={<FeedbackRating />} />
           
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />

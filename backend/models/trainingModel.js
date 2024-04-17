@@ -43,13 +43,7 @@ const TrSchema = new mongoose.Schema({
          type: String,
          required: true
      },
-
-     instructor: {
-         type: String
-      } 
-        
-
-        
+             
 
 },{timestamps: false})
 

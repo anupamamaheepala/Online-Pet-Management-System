@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@ant-design/icons": "^5.3.6",
+=======
+    "@emailjs/browser": "^4.3.3",
+>>>>>>> be7ceb4dd47f04739015b889e6eafe161f5e978b
     "antd": "^5.14.1",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
