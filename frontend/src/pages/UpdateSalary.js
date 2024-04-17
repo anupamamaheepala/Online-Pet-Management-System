@@ -82,7 +82,7 @@ function UpdateSalary(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:9000/salary/update", {
+            const res = await axios.put(`http://localhost:9000/salary/${staffId}/update`, {
                 staffId,
                 selectedMonth,
                 basicSalary,
@@ -93,10 +93,14 @@ function UpdateSalary(props) {
                 totalSalary
             });
             console.log(res.data);
-        } catch (err) {
-            console.error(err);
+                alert('Salary updated successfully'); // Show success alert
+                // Redirect to SalaryTable page
+                 window.location.href = '/SalaryTable';
+          } catch (err) {
+                console.error(err);
+                alert('Error updating salary'); // Show error alert
         }
-    };
+        };
 
     return (
         <>

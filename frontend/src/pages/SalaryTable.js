@@ -37,6 +37,19 @@ const SalaryTable = () => {
     return new Date(date).toLocaleDateString(undefined, options);
   };
 
+  const formatMonth = date => {
+    // Convert the date string to a Date object
+    const dateObj = new Date(date);
+  
+    // Extract the month and year from the date object
+    const month = dateObj.toLocaleString('default', { month: 'short' }); // Get the short month name
+    const year = dateObj.getFullYear();
+  
+    // Return the formatted string containing only month and year
+    return `${month} ${year}`;
+  };
+  
+
   return (
     <>
       <Header />
@@ -66,6 +79,7 @@ const SalaryTable = () => {
               <th>Staff ID</th>
               <th>First Name</th>
               <th>Last Name</th>
+              <th>Month</th>
               <th>Basic Salary</th>
               <th>OT Hours</th>
               <th>OT Rate</th>
@@ -73,7 +87,7 @@ const SalaryTable = () => {
               <th>Bonus Amount</th>
               <th>Total Salary</th>
               <th>Created Date</th>
-              <th>Update Details</th> {/* New column for updating details */}
+              <th>Update Details</th> 
             </tr>
           </thead>
           <tbody>
@@ -82,6 +96,7 @@ const SalaryTable = () => {
                 <td>{salary.staffId}</td>
                 <td>{salary.firstName}</td>
                 <td>{salary.lastName}</td>
+                <td>{formatMonth(salary.selectedMonth)}</td>
                 <td>{salary.basicSalary}</td>
                 <td>{salary.otHours}</td>
                 <td>{salary.otRate}</td>
