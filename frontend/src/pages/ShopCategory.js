@@ -1,4 +1,3 @@
-// ShopCategory.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../css/ShopCategory.css';
@@ -7,11 +6,9 @@ import Item from "../components/Item/Item";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import AddToCart from "./AddToCart";
 
 const ShopCategory = (props) => {
     const [allProducts, setAllProducts] = useState([]);
-    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -30,22 +27,8 @@ const ShopCategory = (props) => {
     }, []);
 
     const addToCart = (productId) => {
-        const product = allProducts.find(product => product._id === productId); // Changed props.allProducts to allProducts
-        if (product) {
-            setCart([...cart, product]); // Changed props.cart to cart
-        }
-    };
-
-    const removeFromCart = (productId) => {
-        setCart(cart.filter(item => item._id !== productId));
-    };
-
-    const updateQuantity = (productId, quantity) => {
-        setCart(cart.map(item => (item._id === productId ? { ...item, quantity } : item)));
-    };
-
-    const calculateTotal = () => {
-        return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        // Add your addToCart logic here
+        console.log(`Product added to cart with ID: ${productId}`);
     };
 
     return (
@@ -58,19 +41,23 @@ const ShopCategory = (props) => {
                     <p><span>Showing 1 - {allProducts.length}</span> out of {allProducts.length} Products</p>
                     <div className="shopcategory-sort">Sort by  <img src={dropdown_icon} alt="" /></div>
                 </div>
-                <div className="shopcategory-products">
+                <div className="row row-cols-1 row-cols-md-3 g-4">
                     {allProducts && allProducts.length > 0 ? (
                         allProducts.map(item => (
                             (props.category === item.category) &&
-                            <div key={item._id}>
-                                <Item
-                                    id={item._id} 
-                                    name={item.itemName}
-                                    image={item.image}
-                                    price={item.price}
-                                    quantity={item.quantity > 0 ? item.quantity : "Out of Stock"}
-                                />
-                                <button onClick={() => addToCart(item._id)}>Add to Cart</button> {/* Moved the button outside of Link */}
+                            <div key={item._id} className="col">
+                                <div className="card h-100">
+                                    <img src={`http://localhost:9000/${item.image}`} className="card-img-top" alt={item.itemName} />
+                                    <div className="card-body d-flex flex-column justify-content-between">
+                                        <h5 className="card-title">{item.itemName}</h5>
+                                        <p className="card-text">Price: LKR {item.price}</p>
+                                        {(item.quantity > 0) ? (
+                                            <button className="btn btn-primary" onClick={() => addToCart(item._id)}>Add to Cart</button>
+                                        ) : (
+                                            <p className="text-danger">Out of Stock</p>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         ))
                     ) : (
@@ -81,7 +68,6 @@ const ShopCategory = (props) => {
                     <Link to='/' style={{ textDecoration: 'none' }}>Explore More</Link>
                 </div>
             </div>
-            <AddToCart cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} calculateTotal={calculateTotal} />
             <Footer />
         </>
     );
