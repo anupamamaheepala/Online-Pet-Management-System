@@ -39,7 +39,7 @@ const ConfirmAdvertisement = () => {
     const handleConfirm = async (id) => {
         try {
             // Send a POST request to confirm the advertisement
-            await axios.post(`http://localhost:9000/confirmedads/${id}/confirm`);
+            await axios.put(`http://localhost:9000/confirmedads/${id}/confirm`);
             alert('Advertisement confirmed and moved successfully');
             
             // After confirmation, update the local state to remove the confirmed advertisement
