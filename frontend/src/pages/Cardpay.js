@@ -79,13 +79,35 @@ const Cardpay = () => {
                 cvv: '',
                 expireDate: ''
             });
+
+            // Show first alert
+            let timerInterval;
             Swal.fire({
+              title: "Please wait for process the payment",
+              html: "processing <b></b>",
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                  timer.textContent = `${Swal.getTimerLeft()}`;
+                }, 100);
+              },
+              willClose: () => {
+                clearInterval(timerInterval);
+              }
+            }).then(() => {
+              // Show second alert
+              Swal.fire({
                 position: "top-end",
                 icon: "success",
                 title: "Your Payment was Successful",
                 showConfirmButton: false,
                 timer: 3000
               });
+            });
+
         } catch (err) {
             console.error(err);
         }

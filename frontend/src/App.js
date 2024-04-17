@@ -66,7 +66,7 @@ import Banktransadmin from './pages/Banktransadmin';
 import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
-
+import Cardpaysuccess from './pages/Cardpaysuccess';
 
 
 import UpdateSalary from './pages/UpdateSalary';
@@ -144,6 +144,7 @@ function App() {
           <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
+          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} />
 
           
 
