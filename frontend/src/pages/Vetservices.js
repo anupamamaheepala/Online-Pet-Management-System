@@ -4,11 +4,13 @@ import '../css/vetservices.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ShowLoading from '../components/ShowLoading';
+import axios from 'axios';
 
 function Vetservices() {
   const images = ['vetback1.jpg', 'vetback2.jpg', 'vetback3.jpg', 'vetback4.jpg', 'vetback5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
   const [showDescription, setShowDescription] = useState('');
+
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -43,6 +45,8 @@ function Vetservices() {
     { title: 'Surgery', description: 'Veterinary surgeons perform various surgeries ranging from routine procedures like spaying/neutering to complex surgeries such as tumor removal or orthopedic surgery.' },
     { title: 'Emergency Care', description: 'In emergencies, quick access to veterinary care is vital. Emergency veterinary services provide immediate medical attention to pets in critical conditions.' },
   ];
+
+
 
   return (
     
