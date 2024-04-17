@@ -1,5 +1,5 @@
 const Ads = require("../models/advertisementModel");
-const ConfirmedAds = require("../models/advertisementModel");
+const ConfirmedAds = require("../models/confirmedAdsModel");
 
 exports.addAdvertisement = async (req, res) => {
     try {
@@ -60,7 +60,7 @@ exports.deleteAdById = async (req, res) => {
 exports.confirmAdvertisement = async (req, res) => {
     try {
         const adId = req.params.id;
-        const ad = await Ads.findById(adId);
+        const ad = await confirmedAds.findById(adId);
         
         if (!ad) {
             return res.status(404).json({ message: "Advertisement not found" });
@@ -85,10 +85,15 @@ exports.confirmAdvertisement = async (req, res) => {
         // Delete the advertisement from the original collection
         await Ads.findByIdAndDelete(adId);
 
-        res.status(200).json({ message: "Advertisement confirmed and moved successfully" });
+        // Fetch all confirmed advertisements and send them in response
+        const confirmedAds = await ConfirmedAds.find();
+        res.status(200).json({ message: "Advertisement confirmed and moved successfully", confirmedAds });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
     }
 };
+
+
+
 
