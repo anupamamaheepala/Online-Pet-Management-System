@@ -67,6 +67,7 @@ const AddingProduct = () => {
                         <option value="Foods">Foods</option>
                         <option value="Medicines">Medicines</option>
                         <option value="Toys and Accessories">Toys and Accessories</option>
+
                     </select>
                 </div>
                 <div className="form-group">
