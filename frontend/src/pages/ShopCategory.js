@@ -46,13 +46,15 @@ const ShopCategory = (props) => {
                         allProducts.map(item => (
                             (props.category === item.category) &&
                             <div key={item._id} className="col">
-                                <div className="card h-100">
-                                    <img src={`http://localhost:9000/${item.image}`} className="card-img-top" alt={item.itemName} />
-                                    <div className="card-body d-flex flex-column justify-content-between">
-                                        <h5 className="card-title">{item.itemName}</h5>
-                                        <p className="card-text">Price: LKR {item.price}</p>
-                                        {(item.quantity > 0) ? (
-                                            <button className="btn btn-primary" onClick={() => addToCart(item._id)}>Add to Cart</button>
+                                <div className="card h-100 d-flex flex-column justify-content-between">
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '190px' }}>
+                        <img src={`http://localhost:9000/${item.image}`} className="card-img-top" alt={item.itemName} style={{ width: '170px', height: 'auto', cursor: 'pointer' }} />
+                    </div>
+                    <div className="card-body text-center">
+                        <h5 className="card-title">{item.itemName}</h5>
+                        <p className="card-text">Price: LKR {item.price}</p>
+                        {(item.quantity > 0) ? (
+                                            <center><button className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</button></center>
                                         ) : (
                                             <p className="text-danger">Out of Stock</p>
                                         )}
