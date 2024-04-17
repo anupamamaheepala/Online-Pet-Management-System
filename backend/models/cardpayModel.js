@@ -11,7 +11,7 @@ const cardpaySchema = new mongoose.Schema({
         require: true
     },
     cvv : {
-        type : Number,
+        type : String,
         require: true
     },
     expireDate : {
