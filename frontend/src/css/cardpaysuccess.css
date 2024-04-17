@@ -1,0 +1,54 @@
+.cps-container{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.cps-container h2{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.cps-container p{
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.cps-buttoncon{
+    display: flex;
+    justify-content: center;
+}
+
+.cps-buttoncon button{
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.cps-button{
+    display: block;
+    width: 50%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.cps-button:hover{
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+}

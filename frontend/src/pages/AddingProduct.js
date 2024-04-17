@@ -67,9 +67,9 @@ const AddingProduct = () => {
                         <option value="Foods">Foods</option>
                         <option value="Medicines">Medicines</option>
                         <option value="Toys and Accessories">Toys and Accessories</option>
+
                     </select>
                 </div>
-
                 <div className="form-group">
                     <label htmlFor="image">Image:</label>
                     <input type="file" id="image" name="image" onChange={onChange} />

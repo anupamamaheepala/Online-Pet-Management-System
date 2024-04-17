@@ -73,10 +73,6 @@ app.use('/salary', salaryRoute);
 //app.use('/banktransadmin', banktransadminRoute);
 
 
-
-
-
-
 // Route to handle requests to the root URL
 app.get("/", (req, res) => {
 // Respond with a JSON object containing a welcome message

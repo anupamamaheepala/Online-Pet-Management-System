@@ -17,6 +17,10 @@ const SalarySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  selectedMonth: {
+    type: Date, 
+    required: true
+  },
   basicSalary: {
     type: Number,
     required: true

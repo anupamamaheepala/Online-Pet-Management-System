@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
 
-
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -26,7 +25,8 @@ const ConfirmAdvertisement = () => {
         if (window.confirm("Are you sure you want to delete this Advertisement?")) {
             try {
                 await axios.delete(`http://localhost:9000/ads/${id}`);
-                setAds(ads.filter((ad) => ad._id !== id));
+                setAds(prevAds => prevAds.filter((ad) => ad._id !== id));
+
                 alert('Advertisement deleted successfully');
             } catch (error) {
                 alert('Failed to delete Advertisement');
@@ -38,18 +38,17 @@ const ConfirmAdvertisement = () => {
 
     const handleConfirm = async (id) => {
         try {
-            // Send a POST request to confirm the advertisement
-            await axios.post(`http://localhost:9000/confirmedads/${id}/confirm`);
+            // Send a PUT request to confirm the advertisement
+            await axios.put(`http://localhost:9000/ads/${id}/confirm`);
             alert('Advertisement confirmed and moved successfully');
             
             // After confirmation, update the local state to remove the confirmed advertisement
-            setAds(ads.filter((ad) => ad._id !== id));
+            setAds(prevAds => prevAds.filter((ad) => ad._id !== id));
+
         } catch (error) {
             alert('Failed to confirm Advertisement');
         }
     };
-    
-    
 
     const handleImageClick = (imageURL) => {
         setSelectedImage(imageURL);
@@ -93,7 +92,7 @@ const ConfirmAdvertisement = () => {
                             <td>{ad.contact}</td>
                             <td>
                                 <div className="ma_button-container">
-                                <button className="btn btn-warning" style={{ marginRight: '5px' }} onClick={() => handleConfirm(ad._id)}>Confirm</button>
+                                    <button className="btn btn-warning" style={{ marginRight: '5px' }} onClick={() => handleConfirm(ad._id)}>Confirm</button>
                                     <button className="btn btn-danger" onClick={() => handleDelete(ad._id)}>Delete</button>
                                 </div>
                             </td>

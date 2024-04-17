@@ -8,7 +8,17 @@ import '../css/advertisement.css';
 const Advertisement = () => {
     const [advertisements, setAdvertisements] = useState([]);
 
-   
+    useEffect(() => {
+        // Fetch data from the confirmedads endpoint
+        axios.get('http://localhost:9000/confirmedads')
+            .then(response => {
+                // Set the fetched advertisements to state
+                setAdvertisements(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching advertisements:', error);
+            });
+    }, []);
 
     return (
         <>
@@ -19,14 +29,15 @@ const Advertisement = () => {
             </div>
             <div className="ma_advertisement-container">
                 {advertisements.map(advertisement => (
-                    <div key={advertisement._id} className="ma_advertisement-column">
-                        <h3>{advertisement.type}</h3>
-                        <div className="ma_advertisement-box">
-                            <label htmlFor={advertisement._id}>{advertisement.title}</label>
-                            {advertisement.image && <img src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} alt={advertisement.title} className="ma_advertisement-photo" />}
-                            <p>{advertisement.description}</p>
-                            {advertisement.price && <p>Price: {advertisement.price}</p>}
-                            <p>Contact details: {advertisement.contact}</p>
+                    <div key={advertisement._id} className="ma_advertisement-card">
+                        <img src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} alt={advertisement.title} 
+                        style={{ width: '290px', height: 'auto', cursor: 'pointer' }}
+                        className="ma_advertisement-image" />
+                        <div className="ma_advertisement-details">
+                            <h3 className="ma_advertisement-title">{advertisement.title}</h3>
+                            <p className="ma_advertisement-description">{advertisement.description}</p>
+                            <p className="ma_advertisement-contact">Contact: {advertisement.contact}</p>
+                            {advertisement.price && <p className="ma_advertisement-price">Price: {advertisement.price}</p>}
                         </div>
                     </div>
                 ))}

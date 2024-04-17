@@ -4,11 +4,12 @@ const Staff = require('../models/staffModel');
 // Controller for adding salary details
 exports.addSalary = async (req, res) => {
   try {
-    const { staffId, firstName, lastName, basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = req.body;
+    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = req.body;
     const newSalary = new Salary({
       staffId,
       firstName,
       lastName,
+      selectedMonth,
       basicSalary,
       otHours,
       otRate,
@@ -67,3 +68,45 @@ exports.getAllSalaries = async (req, res) => {
   }
 };
 
+// Controller for updating salary details by custom staff ID
+exports.updateSalary = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      selectedMonth,
+      basicSalary,
+      otHours,
+      otRate,
+      otAmount,
+      bonusAmount,
+      totalSalary
+    } = req.body;
+
+    const updateFields = {
+      selectedMonth,
+      basicSalary,
+      otHours,
+      otRate,
+      otAmount,
+      bonusAmount,
+      totalSalary
+    };
+
+    const salary = await Salary.findOneAndUpdate(
+      { staffId: id },
+      { $set: updateFields },
+      { new: true }
+    );
+
+    if (!salary) {
+      // If no salary record is found, return an error
+      return res.status(404).json({ message: 'Salary not found' });
+    }
+
+    // Return the updated salary details
+    res.status(200).json(salary);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

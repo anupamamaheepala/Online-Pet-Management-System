@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Import Link component
-import '../css/ShopCategory.css'; // Ensure correct CSS file path
-import dropdown_icon from '../components/Assests/dropdown_icon.png'; // Ensure correct image path
+import { Link } from "react-router-dom";
+import '../css/ShopCategory.css';
+import dropdown_icon from '../components/Assests/dropdown_icon.png';
 import Item from "../components/Item/Item";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import AddToCart from "./AddToCart";
 
 const ShopCategory = (props) => {
-
     const [allProducts, setAllProducts] = useState([]);
-    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -30,29 +27,13 @@ const ShopCategory = (props) => {
     }, []);
 
     const addToCart = (productId) => {
-        if (props.allProducts) {
-            const product = props.allProducts.find(product => product._id === productId);
-            if (product) {
-                props.setCart([...props.cart, product]);
-            }
-        }
-    };
-
-    const removeFromCart = (productId) => {
-        setCart(cart.filter(item => item._id!== productId));
-    };
-
-    const updateQuantity = (productId, quantity) => {
-        setCart(cart.map(item => (item._id === productId? {...item, quantity } : item)));
-    };
-
-    const calculateTotal = () => {
-        return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        // Add your addToCart logic here
+        console.log(`Product added to cart with ID: ${productId}`);
     };
 
     return (
         <>
-            <Header/>
+            <Header />
             <div className="shopcategory">
                 <Navbar products={allProducts} />
                 <img src={props.banner} className="shopcategory-banner" alt="" />
@@ -60,21 +41,25 @@ const ShopCategory = (props) => {
                     <p><span>Showing 1 - {allProducts.length}</span> out of {allProducts.length} Products</p>
                     <div className="shopcategory-sort">Sort by  <img src={dropdown_icon} alt="" /></div>
                 </div>
-                <div className="shopcategory-products">
-                    {allProducts && allProducts.length > 0? (
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                    {allProducts && allProducts.length > 0 ? (
                         allProducts.map(item => (
                             (props.category === item.category) &&
-                            <div key={item._id}>
-                                    <Item
-                                        name={item.itemName}
-                                        image={item.image}
-                                        price={item.price}
-                                        // Check if quantity is greater than 0, if not, display "Out of Stock" message
-                                        quantity={item.quantity > 0? item.quantity : "Out of Stock"}
-                                    />
-                               <Link to="/AddToCart">
-                                        <button onClick={() => addToCart(item._id)}>Add to Cart</button>
-                                </Link>
+                            <div key={item._id} className="col">
+                                <div className="card h-100 d-flex flex-column justify-content-between">
+                    <div className="d-flex justify-content-center align-items-center" style={{ height: '190px' }}>
+                        <img src={`http://localhost:9000/${item.image}`} className="card-img-top" alt={item.itemName} style={{ width: '170px', height: 'auto', cursor: 'pointer' }} />
+                    </div>
+                    <div className="card-body text-center">
+                        <h5 className="card-title">{item.itemName}</h5>
+                        <p className="card-text">Price: LKR {item.price}</p>
+                        {(item.quantity > 0) ? (
+                                            <center><button className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</button></center>
+                                        ) : (
+                                            <p className="text-danger">Out of Stock</p>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         ))
                     ) : (
@@ -85,8 +70,7 @@ const ShopCategory = (props) => {
                     <Link to='/' style={{ textDecoration: 'none' }}>Explore More</Link>
                 </div>
             </div>
-            <AddToCart cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} calculateTotal={calculateTotal} />
-            <Footer/>
+            <Footer />
         </>
     );
 };

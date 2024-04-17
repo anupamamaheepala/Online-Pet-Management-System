@@ -58,7 +58,6 @@ import ResetPassword from './pages/ResetPassword';
 import EditProfile from './pages/EditProfile';
 import Paystatus from './pages/Paystatus';
 import UpdateStaff from './pages/UpdateStaff';
-import Product from './pages/Product';
 import Editpayinfo from './pages/Editpayinfo';
 import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
@@ -67,7 +66,7 @@ import Banktransadmin from './pages/Banktransadmin';
 import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
-
+import Cardpaysuccess from './pages/Cardpaysuccess';
 
 
 import UpdateSalary from './pages/UpdateSalary';
@@ -87,7 +86,7 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-          <Route path="/training/application:id" element={<ViewApplication/>}/>
+          <Route path="/:id" element={<ViewApplication/>}/>
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
@@ -100,7 +99,7 @@ function App() {
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
-          <Route path="/MyAppointments" element={<MyAppointments />} />
+          <Route path="/MyAppointments/" element={<MyAppointments />} />
           <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
@@ -125,11 +124,10 @@ function App() {
           <Route path="/Store" element={<Shop />} />
           <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
-          <Route path="/Toys_and_Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
+          <Route path="/Toys And Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
           <Route path="/AddingProduct" element={<AddingProduct />} />
           <Route path="/AddedProduct" element={<AddedProduct />} />
           <Route path="/product" element={<ShopCategory />}>
-            <Route path=":productId" element={<Product />} />
           </Route>
           <Route path="/StaffProfile" element={<StaffProfile />} />
           <Route path="/update/:staffId" element={<UpdateStaff />} />
@@ -146,6 +144,7 @@ function App() {
           <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
+          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} />
 
           
 

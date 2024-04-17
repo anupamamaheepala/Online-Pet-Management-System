@@ -282,6 +282,7 @@
     background-color: #ddd;
 }
 
+
 .ma_advertisement-table {
     border-collapse: collapse;
     width: 100%;
@@ -302,4 +303,48 @@
     display: flex;
     justify-content: space-between;
   }
-  
+
+  .ma_advertisement-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .ma_advertisement-box {
+    background-color: #f9f9f9;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.ma_advertisement-card {
+    margin-bottom: 20px;
+}
+
+.ma_advertisement-details {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.ma_advertisement-title {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.ma_advertisement-description {
+    color: #555;
+}
+
+.ma_advertisement-contact {
+    margin-top: 5px;
+    color: #888;
+}
+
+.ma_advertisement-price {
+    font-weight: bold;
+    color: #333;
+}
