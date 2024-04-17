@@ -8,12 +8,13 @@ const AddingProduct = () => {
     const [formData, setFormData] = useState({
         itemName: '',
         category: 'Foods',
+        description: '',
         image: null,
         price: '',
         quantity: 0  // Add quantity field to formData
     });
 
-    const { itemName, category, image, price, quantity } = formData;
+    const { itemName, category, description, image, price, quantity } = formData;
 
     const onChange = e => {
         if (e.target.name === "image") {
@@ -29,6 +30,7 @@ const AddingProduct = () => {
             const formDataToSend = new FormData();
             formDataToSend.append('itemName', itemName);
             formDataToSend.append('category', category);
+            formDataToSend.append('description', description);
             formDataToSend.append('image', image);
             formDataToSend.append('price', price);
             formDataToSend.append('quantity', quantity);  // Include quantity in FormData
@@ -42,6 +44,7 @@ const AddingProduct = () => {
             setFormData({
                 itemName: '',
                 category: 'Foods',
+                description: '',
                 image: null,
                 price: '',
                 quantity: 0  // Reset quantity after submission
@@ -68,6 +71,11 @@ const AddingProduct = () => {
                         <option value="Medicines">Medicines</option>
                         <option value="Toys and Accessories">Toys and Accessories</option>
                     </select>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="description">Description:</label>
+                    <textarea id="description" name="description" value={description} onChange={onChange}></textarea>
                 </div>
 
                 <div className="form-group">
