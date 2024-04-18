@@ -1,5 +1,3 @@
-// Cart.js
-
 import React, { useEffect, useState } from "react";
 import '../css/Cart.css';
 import Header from "../components/Header";
@@ -16,9 +14,9 @@ const Cart = () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    // You need to replace 'user_id_here' with the actual user ID
-                    // You can retrieve the user ID from the authentication system or pass it as a prop from the parent component
-                    body: JSON.stringify({ userId: 'user_id_here' })
+                    // You need to replace 'customer_id_here' with the actual customer ID
+                    // You can retrieve the customer ID from the authentication system or pass it as a prop from the parent component
+                    body: JSON.stringify({ customerId: 'customer_id_here' })
                 });
 
                 if (!response.ok) {
@@ -43,11 +41,11 @@ const Cart = () => {
                 {cartItems.length > 0 ? (
                     <div className="cart-items">
                         {cartItems.map(item => (
-                            <div key={item.productId._id} className="cart-item">
-                                <img src={`http://localhost:9000/${item.productId.image}`} alt={item.productId.itemName} />
+                            <div key={item.productId} className="cart-item">
+                                <img src={`http://localhost:9000/${item.image}`} alt={item.itemName} />
                                 <div className="item-details">
-                                    <h3>{item.productId.itemName}</h3>
-                                    <p>Price: LKR {item.productId.price}</p>
+                                    <h3>{item.itemName}</h3>
+                                    <p>Price: LKR {item.price}</p>
                                     <p>Quantity: {item.quantity}</p>
                                 </div>
                             </div>
