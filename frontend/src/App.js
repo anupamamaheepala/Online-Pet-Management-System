@@ -91,12 +91,11 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-<<<<<<< HEAD
+
           <Route path="/:id" element={<ViewApplication/>}/>
           <Route path="/StepForm" element={<StepForm/>}/>
-=======
           <Route path="/training/application:id" element={<ViewApplication/>}/>
->>>>>>> 380fc4be22adf660a878407e5a8668a042f373cd
+
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
