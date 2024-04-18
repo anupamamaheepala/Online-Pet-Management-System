@@ -4,6 +4,7 @@ import '../css/vetnotifications.css';
 import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
+import VetHeader from '../components/Vet components/VetHeader';
 
 const VetNotifications = () => {
   // Initialize appointments from local storage or an empty array if it doesn't exist
@@ -72,6 +73,7 @@ const VetNotifications = () => {
   return (
     <>
       <AdminHeader/>
+      <VetHeader/>
       <div>
         <h1>Vet Notifications</h1>
         <ul>

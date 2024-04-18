@@ -1,21 +1,12 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import VetAppointmentList from '../components/Vet components/VetAppointmentList';
 
-function AllVetAppointments() {
+const AllVetAppointments = () => {
   return (
-    <Layout>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-        <h1>View All Appointments for Veterinarian</h1>
-    </Layout>
-  )
-}
+    <div>
+      <VetAppointmentList />
+    </div>
+  );
+};
 
-export default AllVetAppointments
+export default AllVetAppointments;
