@@ -4,6 +4,7 @@ import '../css/ShopCategory.css';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import axios from 'axios';
 
 const ShopCategory = (props) => {
     const [allProducts, setAllProducts] = useState([]);
@@ -26,13 +27,29 @@ const ShopCategory = (props) => {
         fetchProducts();
     }, []);
 
-    const addToCart = (productId) => {
-        // Add your addToCart logic here
-        console.log(`Product added to cart with ID: ${productId}`);
-        // Navigate to cart page
-        props.history.push('/cart');
-    };
-
+    const addToCart = async (productId) => {
+        try {
+          // Replace 'user_id_here' with the actual user ID
+          const customerId = 'user_id';
+      
+          const response = await axios.post('http://localhost:9000/cart', {
+            customerId,
+            productId,
+          });
+      
+          if (response.status === 200) {
+            // Cart item added successfully
+            console.log('Product added to cart');
+            // Navigate to the cart page
+            props.history.push('/cart');
+          } else {
+            // Handle error
+            console.error('Failed to add product to cart');
+          }
+        } catch (error) {
+          console.error('Error adding product to cart:', error);
+        }
+      };
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
     };
