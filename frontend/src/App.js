@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +14,6 @@ import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
-
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
@@ -75,89 +75,10 @@ import AddToCartPage from './pages/Cart';
 
 function App() {
   return (
-<<<<<<< HEAD
-    <CartProvider> {/* Wrap your entire application with CartProvider */}
-      <div>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
-            <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
-            <Route path="/PrivateTraining" element={<PrivateTraining />} />
-            <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
-            <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-            <Route path="/training/application:id" element={<ViewApplication/>}/>
-            <Route path="/Feedback" element={<Feedback />} />
-            <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
-            <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
-            <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
-            <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
-            <Route path="/FAQselect" element={<FAQselect />} />
-            <Route path="/FeedbackRating" element={<FeedbackRating />} />
-            <Route path="/Vetservices" element={<Vetservices />} />
-            <Route path="/Groomservices" element={<Groomservices />} />
-            <Route path="/Makeappointment" element={<Makeappointment />} />
-            <Route path="/MyAppointments" element={<MyAppointments />} />
-            <Route path="/VetDashboard" element={<VetDashboard />} />
-            <Route path="/VetNotifications" element={<VetNotifications />} />
-            <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
-            <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
-            <Route path="/Advertisement" element={<Advertisement />} />
-            <Route path="/AddAdvertisement" element={<AddAdvertisement />} />
-            <Route path="/CheckAdvertisementDetails" element={<CheckAdvertisementDetails />} />
-            <Route path="/ConfirmAdvertisement" element={<ConfirmAdvertisement />} />
-            <Route path="/MyAdvertisements" element={<MyAdvertisements />} />
-            <Route path="/AllAdvertisements" element={<AllAdvertisements />} />
-            <Route path="/Register" element={<Register />} />
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/MyProfile/:customerId" element={<MyProfile />} />
-            <Route path="/Payerinfo" element={<Payerinfo />} />
-            <Route path="/Cardpay" element={<Cardpay />} />
-            <Route path="/Banktrans" element={<Banktrans />} />
-            <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm />} />
-            <Route path="/StaffList" element={<StaffList />} />
-            <Route path="/StaffLeaveForm" element={<StaffLeaveForm />} />
-            <Route path="/salary/:staffId" element={<StaffSalaryForm />} />
-            <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
-            <Route path="/AllCustomers" element={<AllCustomers />} />
-            <Route path="/Store" element={<Shop />} />
-            <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
-            <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
-            <Route path="/Toys And Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
-            <Route path="/AddingProduct" element={<AddingProduct />} />
-            <Route path="/AddedProduct" element={<AddedProduct />} />
-            <Route path="/product" element={<ShopCategory />}>
-            </Route>
-            <Route path="/StaffProfile" element={<StaffProfile />} />
-            <Route path="/update/:staffId" element={<UpdateStaff />} />
-            <Route path="/Paystatus" element={<Paystatus />} />
-            <Route path="/OrderForm" element={<OrderForm />} />
-            <Route path="/AllOrders" element={<AllOrders />} />
-            <Route path="/Editpayinfo" element={<Editpayinfo />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/edit-profile/:customerId" element={<EditProfile />} />
-            <Route path="/my-pets/:customerId" element={<MyPets />} />
-            <Route path="/pet-profile/:petId" element={<PetProfile />} />
-            <Route path="/addpet/:customerId" element={<AddPet />} />
-            <Route path="/Banktransadmin" element={<Banktransadmin />} />
-            <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
-            <Route path="/all-pets" element={<AllPets />} />
-            <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} /> 
-            <Route path="/update-salary"  element={<UpdateSalary/>} />
-            <Route path="/SalaryTable"  element={<SalaryTable/>} />
-            <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
-            <Route path="/Cart"  element={<AddToCartPage/>} />
-          </Routes>
-        </Router>
-        <ToastContainer position="top-center" />
-      </div>
-    </CartProvider>
-=======
     <div>
-      <React.StrictMode>
       <Router>
-      <CartProvider>
-        <Routes>
+        <CartProvider>
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
@@ -228,15 +149,13 @@ function App() {
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
-
-        </Routes>
+          </Routes>
         </CartProvider>
       </Router>
-      </React.StrictMode>
       <ToastContainer position="top-center" />
     </div>
->>>>>>> 8f49f962854eec616094ebb7551916dca112434c
   );
 }
 
 export default App;
+
