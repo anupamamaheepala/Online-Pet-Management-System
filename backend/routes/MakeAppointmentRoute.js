@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const appointmentController = require('../controller/MakeAppointmentController');
+const staffController = require('../controller/staffController');
 
 // Route to handle appointment creation
 router.post('/appointments', appointmentController.createAppointment);
@@ -36,7 +37,10 @@ router.put('/appointments/:id', async (req, res) => {
       res.status(500).json({ error: 'Something went wrong' });
     }
   });
-  
+
+  // Route to get the count of appointments where IsAccept is false
+router.get('/appointments/count', appointmentController.getUnacceptedAppointmentsCount);
+
   
 
 module.exports = router;
