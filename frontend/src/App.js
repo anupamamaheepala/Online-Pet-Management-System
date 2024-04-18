@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +14,6 @@ import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
-
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
@@ -71,19 +71,14 @@ import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
 import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
-import Cart from './pages/AddToCart';
-import AddToCartPage from './pages/AddToCart';
-
-
-
+import AddToCartPage from './pages/Cart';
 
 function App() {
   return (
     <div>
-      <React.StrictMode>
       <Router>
-      <CartProvider>
-        <Routes>
+        <CartProvider>
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
@@ -154,14 +149,13 @@ function App() {
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
-
-        </Routes>
+          </Routes>
         </CartProvider>
       </Router>
-      </React.StrictMode>
       <ToastContainer position="top-center" />
     </div>
   );
 }
 
 export default App;
+

@@ -1,40 +1,49 @@
-// Assuming you're using Express.js for your backend
+// routes/cart.js
 
 const express = require('express');
-const bodyParser = require('body-parser');
+const router = express.Router();
+const Cart = require('../models/Cart');
 
-const app = express();
-const PORT = 9000;
+// Route to add an item to the cart
+router.post('/add/:productId', async (req, res) => {
+    const { userId } = req.body;
+    const productId = req.params.productId;
 
-// Sample products data
-const products = [
-    { _id: 1, itemName: "Product 1", price: 10, quantity: 5 },
-    { _id: 2, itemName: "Product 2", price: 20, quantity: 3 },
-    // Add more products as needed
-];
+    try {
+        let cart = await Cart.findOne({ userId });
 
-// Initialize an empty cart
-let cart = [];
+        if (!cart) {
+            // If the cart doesn't exist for the user, create a new cart
+            cart = new Cart({
+                userId,
+                items: []
+            });
+        }
 
-app.use(bodyParser.json());
+        // Check if the product already exists in the cart
+        const itemIndex = cart.items.findIndex(item => item.productId === productId);
 
-// Route to add items to the cart
-app.post('/Cart', (req, res) => {
-    const productId = req.body.productId;
+        if (itemIndex !== -1) {
+            // If the product exists in the cart, increase its quantity
+            cart.items[itemIndex].quantity += 1;
+        } else {
+            // If the product doesn't exist in the cart, add it with quantity 1
+            cart.items.push({ productId, quantity: 1 });
+        }
 
-    // Find the product in the products array
-    const productToAdd = products.find(product => product._id === productId);
+        // Calculate total price
+        cart.totalPrice = cart.items.reduce((total, item) => {
+            return total + (item.quantity * item.productId.price);
+        }, 0);
 
-    if (!productToAdd) {
-        return res.status(404).json({ message: "Product not found" });
+        // Save the updated cart
+        await cart.save();
+
+        res.status(200).json(cart);
+    } catch (error) {
+        console.error('Error adding item to cart:', error);
+        res.status(500).json({ message: 'Failed to add item to cart' });
     }
-
-    // Add the product to the cart
-    cart.push(productToAdd);
-
-    res.status(200).json({ message: "Product added to cart successfully", cart });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+module.exports = router;

@@ -56,22 +56,26 @@ exports.getAllCardPaymentsWithPayerInfo = async (req, res) => {
 
         const formattedCardPayments = cardPayments.map(cardPayment => {
             if (cardPayment.payer) {
-                const { name, email } = cardPayment.payer;
+                const { name, email, phonenumber, purpose, amount } = cardPayment.payer;
                 return {
                     payerName: name,
                     payerEmail: email,
+                    payerPhoneNumber: phonenumber,
+                    purpose,
+                    amount,
                     cardNumber: cardPayment.cardNumber,
-                    cvv: cardPayment.cvv,
-                    expireDate: cardPayment.expireDate
+                    
                 };
             } else {
                 // If payer information is not available, handle it accordingly
                 return {
                     payerName: 'Unknown',
                     payerEmail: 'Unknown',
+                    payerPhoneNumber: 'Unknown',
+                    purpose: 'Unknown',
+                    amount: 'Unknown',
                     cardNumber: cardPayment.cardNumber,
-                    cvv: cardPayment.cvv,
-                    expireDate: cardPayment.expireDate
+                    
                 };
             }
         });
