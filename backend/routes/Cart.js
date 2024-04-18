@@ -19,7 +19,7 @@ let cart = [];
 app.use(bodyParser.json());
 
 // Route to add items to the cart
-app.post('/add-to-cart', (req, res) => {
+app.post('/Cart', (req, res) => {
     const productId = req.body.productId;
 
     // Find the product in the products array

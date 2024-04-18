@@ -60,7 +60,6 @@ import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
 import Banktransadmin from './pages/Banktransadmin';
-import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
@@ -68,6 +67,8 @@ import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
 import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
+import Cart from './pages/AddToCart';
+import AddToCartPage from './pages/AddToCart';
 
 
 
@@ -139,13 +140,14 @@ function App() {
           <Route path="/pet-profile/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
-          <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
           <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} /> 
           <Route path="/update-salary"  element={<UpdateSalary/>} />
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
+          <Route path="/Cart"  element={<AddToCartPage/>} />
+
         </Routes>
         </CartProvider>
       </Router>

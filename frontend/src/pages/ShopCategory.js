@@ -56,7 +56,7 @@ const ShopCategory = (props) => {
                         <h5 className="card-title">{item.itemName}</h5>
                         <p className="card-text">Price: LKR {item.price}</p>
                         {(item.quantity > 0) ? (
-                                            <center><Link to="/add-to-cart" className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</Link>
+                                            <center><Link to="/Cart" className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</Link>
                                             </center>
                                         ) : (
                                             <p className="text-danger">Out of Stock</p>
