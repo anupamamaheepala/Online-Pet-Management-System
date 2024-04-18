@@ -43,6 +43,8 @@ const petRoute = require("./routes/petRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 const banktransadminRoute = require('./routes/banktransadminRoute');
+const cartRouter = require('./routes/cart');
+
 
 
 app.use(cors());
@@ -65,6 +67,7 @@ app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
 app.use('/pets', petRoute);
+app.use('/cart', cartRouter);
 
 
 
