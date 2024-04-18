@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/feedbackdisplay.css';
@@ -68,8 +69,10 @@ const FeedbackDisplay = () => {
     return (
         <>
             <Header />
+            <Link to="/feedback" className="faq-button faq-button-feedback">Give Feedback</Link>
+        <Link to="/feedbackinquiry" className="faq-button faq-button-inquiry">Make an Inquiry</Link>
             <h1><center>Customer Feedback</center></h1>
-
+        
             <div className='feedbackListContainer'>
                 {feedbackList.map((feedback, index) => (
                     <div key={index} className="feedbackItem">
