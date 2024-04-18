@@ -235,116 +235,71 @@
     justify-content:last baseline;
 }
 
-/* Remove extra margin from the button containers */
-.ma_button-container {
-    margin: 0;
+.ma_advertisement-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+    align-items: center; /* Center items vertically */
+    margin: 0 auto;
+    max-width: 1200px; /* Adjust max width based on your design */
 }
 
-.ma_advertisement-box {
-    position: relative; /* Ensure relative positioning for the checkbox */
-    background-color: #f9f9f9;
-    border: 5px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+.ma_advertisement-card {
+    width: calc(33.33% - 20px); /* Adjust width for three cards in a row with margin */
+    margin-bottom: 20px; /* Adjust margin as needed */
+    background-color: #f9f9f9; /* Background color for the card */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
+    border-radius: 8px; /* Rounded corners */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
 }
 
-.ma_advertisement-box input[type="checkbox"] {
-    position:absolute;
-    top: 20px;
-    left: 750px;
-    transform: scale(1.5); 
+.ma_advertisement-image {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
+    border-top-left-radius: 8px; /* Rounded corners for the image */
+    border-top-right-radius: 8px;
 }
 
-/* CSS for the advertisement table */
+.ma_advertisement-details {
+    padding: 20px; /* Padding for the details */
+    text-align: center; /* Center text */
+}
+
+.ma_advertisement-title {
+    margin-top: 0; /* Remove default margin */
+}
+
+.ma_advertisement-description {
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.ma_advertisement-contact {
+    font-weight: bold; /* Make contact text bold */
+}
+
 .ma_advertisement-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Collapse table borders */
+    margin-bottom: 20px; /* Add space between table and other elements */
 }
 
 .ma_advertisement-table th,
 .ma_advertisement-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd; /* Add border to cells */
+    padding: 8px; /* Add padding to cells */
+    text-align: center; /* Center align text */
 }
 
 .ma_advertisement-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #f2f2f2; /* Background color for table header */
 }
 
-.ma_advertisement-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+.ma_advertisement-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row background color */
 }
 
-.ma_advertisement-table tbody tr:hover {
-    background-color: #ddd;
-}
-
-
-.ma_advertisement-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .ma_advertisement-table th,
-  .ma_advertisement-table td {
-    border: 1px solid #dddddd; /* Add borders to cells */
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .ma_advertisement-table th {
-    background-color: #f2f2f2; /* Light gray background for header cells */
-  }
-  
-  .ma_button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .ma_advertisement-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .ma_advertisement-box {
-    background-color: #f9f9f9;
-    border: 5px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.ma_advertisement-card {
-    margin-bottom: 20px;
-}
-
-.ma_advertisement-details {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.ma_advertisement-title {
-    margin-top: 0;
-    font-size: 18px;
-    color: #333;
-}
-
-.ma_advertisement-description {
-    color: #555;
-}
-
-.ma_advertisement-contact {
-    margin-top: 5px;
-    color: #888;
-}
-
-.ma_advertisement-price {
-    font-weight: bold;
-    color: #333;
+.ma_advertisement-table tr:hover {
+    background-color: #ddd; /* Hover background color */
 }

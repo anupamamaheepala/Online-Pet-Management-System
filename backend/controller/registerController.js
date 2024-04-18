@@ -190,36 +190,41 @@ exports.signIn = async (req, res) => {
   }
 };
 
-// Route for resetting password
+
 exports.resetPassword = async (req, res) => {
-  const { customerId, oldPassword, newPassword } = req.body;
+  const { customerId } = req.params;
+  const { existingPassword, newPassword } = req.body;
 
   try {
-    // Fetch the user using the customer ID
-    const user = await Customer.findById(customerId);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+    // Fetch the customer from the database
+    const customer = await Customer.findById(customerId);
+    if (!customer) {
+      return res.status(404).json({ message: 'Customer not found' });
     }
 
-    // Verify if the old password matches
-    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+    // Compare the existing password with the hashed password in the database
+    const isPasswordValid = await bcrypt.compare(existingPassword, customer.password);
+
     if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Old password is incorrect' });
+      return res.status(400).json({ message: 'Incorrect existing password' });
     }
 
-    // Hash the new password
+    // Hash the new password before updating
     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update the user's password
-    await Customer.findByIdAndUpdate(customerId, { password: hashedNewPassword });
+    // Update the customer's password in the database with the hashed new password
+    customer.password = hashedNewPassword;
+    await customer.save();
 
-    // Send success response
-    res.status(200).json({ message: 'Password updated successfully' });
+    res.status(200).json({ message: 'Password reset successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
+
+
 
 //function to upload profile photo
 exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {

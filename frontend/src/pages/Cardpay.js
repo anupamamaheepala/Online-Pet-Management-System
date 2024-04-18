@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../css/cardpay.css';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Cardpay = () => {
+    const location = useLocation();
+    const [payerId, setPayerId] = useState('');
     const [formData, setFormData] = useState({
+        payerId: '',
         nameOnCard: '',
         cardNumber: '',
         cvv: '',
@@ -15,23 +19,23 @@ const Cardpay = () => {
 
     const { nameOnCard, cardNumber, cvv, expireDate } = formData;
 
+    useEffect(() => {
+        const searchParams = new URLSearchParams(location.search);
+        const id = searchParams.get('payerId');
+        setPayerId(id);
+    }, [location]);
+
     const onChange = e => {
         const { name, value } = e.target;
 
-        let updatedValue = value;
-
         if (name === 'cardNumber') {
-            // Remove any non-numeric characters
-            updatedValue = value.replace(/\D/g, '');
-            // Insert space after every four digits
-            updatedValue = updatedValue.replace(/(.{4})/g, '$1 ').trim();
-            // Limit to 16 characters
-            updatedValue = updatedValue.substring(0, 19); // 16 digits + 3 spaces
+            // Allow only numbers and add space after every 4 digits
+            const formattedValue = value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+            setFormData({ ...formData, [name]: formattedValue.slice(0, 19) });
         } else if (name === 'cvv') {
-            // Remove any non-numeric characters
-            updatedValue = value.replace(/\D/g, '');
-            // Limit to 3 characters
-            updatedValue = updatedValue.substring(0, 3);
+            // Allow only numbers and limit to 3 digits
+            const formattedValue = value.replace(/\D/g, '');
+            setFormData({ ...formData, [name]: formattedValue.slice(0, 3) });
         } else if (name === 'expireDate') {
             // Ensure format is MM/YYYY
             const parts = value.split('/');
@@ -51,41 +55,51 @@ const Cardpay = () => {
             }
 
             // Add "/" after typing two digits for the month
+            let updatedValue;
             if (month.length === 2 && !value.includes('/')) {
                 updatedValue = month + '/' + year;
             } else {
                 // Join month and year with "/"
                 updatedValue = `${month}${year ? '/' + year : ''}`;
             }
+            setFormData({ ...formData, [name]: updatedValue });
+        } else {
+            setFormData({ ...formData, [name]: value });
         }
-
-        setFormData({ ...formData, [name]: updatedValue });
     };
 
     const onSubmit = async e => {
-        e.preventDefault(); // Prevent default form submission behavior
+        e.preventDefault();
         try {
             // Basic form validation
-            if (!nameOnCard || !cardNumber || !cvv || !expireDate) {
+            if (!payerId || !nameOnCard || !cardNumber || !cvv || !expireDate) {
                 console.error("All fields are required!");
                 return;
             }
-
-            const res = await axios.post("http://localhost:9000/cardpay/cpay", formData);
+    
+            const res = await axios.post("http://localhost:9000/cardpay/cpay", {
+                payerId,
+                nameOnCard,
+                cardNumber,
+                cvv,
+                expireDate
+            });
+    
             console.log(res.data);
             setFormData({
+                payerId: '',
                 nameOnCard: '',
                 cardNumber: '',
                 cvv: '',
                 expireDate: ''
             });
-
+    
             // Show first alert
             let timerInterval;
             Swal.fire({
               title: "Please wait for process the payment",
               html: "processing <b></b>",
-              timer: 3000,
+              timer: 2000,
               timerProgressBar: true,
               didOpen: () => {
                 Swal.showLoading();
@@ -112,14 +126,13 @@ const Cardpay = () => {
             console.error(err);
         }
     };
-
+    
     const handleConfirmPayment = async (e) => {
-        e.preventDefault(); // Prevent default button behavior
-        onSubmit(e); // Call onSubmit function to handle form submission
+        e.preventDefault();
+        onSubmit(e);
     };
 
     const handleNext = () => {
-        // Redirect to Cardpaysuccess.js file
         window.location.href = '/cardpaysuccess';
     };
 
@@ -188,7 +201,7 @@ const Cardpay = () => {
                         />
                     </div>
                     <div className="carddivbutton">
-                        <button className="anucpbutton" type="button" onClick={e => handleConfirmPayment(e)}>Confirm Payment</button>
+                        <button className="anucpbutton" type="button" onClick={handleConfirmPayment}>Confirm Payment</button>
                         <button className="anucpbutton" type="button" onClick={handleNext}>Next</button>
                     </div>
                 </form>

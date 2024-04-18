@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
 import './App.css';
 import Home from "./pages/Home";
 
@@ -13,12 +13,13 @@ import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
-
+import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
 import VetDashboard from './pages/VetDashboard';
+import VetNotifications from './pages/VetNotifications';
 import AllVetAppointments from './pages/AllVetAppointments';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
@@ -67,23 +68,22 @@ import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
 import Banktransadmin from './pages/Banktransadmin';
-import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
-
-
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
-
-
-
+import { CartProvider } from './Context/CartContext';
+import Cardpayadmin from './pages/Cardpayadmin';
+import AddToCartPage from './pages/Cart';
+import EditProduct from './pages/EditProduct';
 
 function App() {
   return (
     <div>
       <Router>
-        <Routes>
+        <CartProvider>
+          <Routes>
           <Route path="/" element={<Home />} />
           
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
@@ -91,8 +91,12 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
+<<<<<<< HEAD
           <Route path="/:id" element={<ViewApplication/>}/>
           <Route path="/StepForm" element={<StepForm/>}/>
+=======
+          <Route path="/training/application:id" element={<ViewApplication/>}/>
+>>>>>>> 380fc4be22adf660a878407e5a8668a042f373cd
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
@@ -101,12 +105,14 @@ function App() {
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
           <Route path="/FAQselect" element={<FAQselect />} />
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
-          
+          <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
+
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
-          <Route path="/MyAppointments/" element={<MyAppointments />} />
+          <Route path="/MyAppointments" element={<MyAppointments />} />
           <Route path="/VetDashboard" element={<VetDashboard />} />
+          <Route path="/VetNotifications" element={<VetNotifications />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
@@ -141,25 +147,23 @@ function App() {
           <Route path="/OrderForm" element={<OrderForm />} />
           <Route path="/AllOrders" element={<AllOrders />} />
           <Route path="/Editpayinfo" element={<Editpayinfo />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password/:customerId" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
           <Route path="/my-pets/:customerId" element={<MyPets />} />
           <Route path="/pet-profile/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
-          <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
-          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} />
-
-          
-
-          
+          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} /> 
           <Route path="/update-salary"  element={<UpdateSalary/>} />
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
+          <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
+          <Route path="/Cart"  element={<AddToCartPage/>} />
+          <Route path="/editproduct/:productId" element={<EditProduct />} />
 
-
-        </Routes>
+          </Routes>
+        </CartProvider>
       </Router>
       <ToastContainer position="top-center" />
     </div>
@@ -167,3 +171,4 @@ function App() {
 }
 
 export default App;
+

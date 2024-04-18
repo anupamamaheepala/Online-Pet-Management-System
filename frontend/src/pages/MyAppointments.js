@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../css/myappointments.css'; 
 import Header from '../components/Header';
@@ -18,6 +18,7 @@ const MyAppointments = () => {
     selectTime: '',
     selectProfession: ''
   });
+  const updateFormRef = useRef(null); // Create a ref for the update form
 
   useEffect(() => {
     // Fetch appointments when the component mounts
@@ -41,7 +42,7 @@ const MyAppointments = () => {
       // After successful deletion, update the appointments state
       setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
       // Show success message
-      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', icon: 'success', confirmButtonText: 'OK' });
+      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', showConfirmButton: false, icon: 'success', timer:1500 });
     } catch (error) {
       console.error('Error deleting appointment:', error);
       Swal.fire({ title: 'Error', text: 'Failed to remove appointment', icon: 'error', confirmButtonText: 'OK' });
@@ -61,6 +62,8 @@ const MyAppointments = () => {
       selectTime: appointment.selectTime,
       selectProfession: appointment.selectProfession
     });
+    // Scroll to the update form
+    updateFormRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleInputChange = (e) => {
@@ -148,9 +151,10 @@ const MyAppointments = () => {
           ))}
         </ul>
       </div>
+      <div ref={updateFormRef}></div> 
       {editingAppointment && (
         <div className="edit-form">
-          <h2>Edit Appointment</h2>
+          <h2>Update Appointment</h2>
           <form onSubmit={handleSubmit}>
             <label>Owner Name:</label>
             <input type="text" name="ownerName" value={formData.ownerName} onChange={handleInputChange} required />
@@ -171,6 +175,7 @@ const MyAppointments = () => {
             <input type="date" name="selectDate" value={formData.selectDate} onChange={handleInputChange} required />
             <label>Appointment Time:</label>
             <input type="time" name="selectTime" value={formData.selectTime} onChange={handleInputChange} required />
+            <label>Select Service:</label>
             <select name="selectProfession" value={formData.selectProfession} onChange={handleInputChange} required>
               <option value="">--Please select--</option>
               <option value="Veterinarian">Veterinarian</option>

@@ -1,0 +1,71 @@
+/* CardPayAdmin.css */
+
+.card-pay-admin-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  
+  .card-pay-admin-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .card-pay-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .card-pay-admin-table-header,
+  .card-pay-admin-table-data {
+    padding: 10px;
+    border: 1px solid #7b7878;
+  }
+  
+  .card-pay-admin-table-header {
+    font-weight: bold;
+  }
+  
+  .card-pay-admin-table-row:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+.cardsearch-bar {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 40%;
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+/* Search bar focus */
+.search-bar:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.cardpdfdownload{
+  display: block;
+  width: 20%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cardpdfdownload:hover {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+  
