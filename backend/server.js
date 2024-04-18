@@ -69,10 +69,9 @@ app.use("/feedbackinquiry", feedbackinquiry);
 app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
-<<<<<<< HEAD
+
 app.use("/step",stepRoutes );
-=======
->>>>>>> 380fc4be22adf660a878407e5a8668a042f373cd
+
 app.use('/pets', petRoute);
 app.use('/cart', cartRouter);
 
