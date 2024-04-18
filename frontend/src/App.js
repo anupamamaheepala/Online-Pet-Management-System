@@ -70,6 +70,8 @@ import Cardpaysuccess from './pages/Cardpaysuccess';
 
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
+import { CartProvider } from './Context/CartContext';
+
 
 
 
@@ -77,7 +79,9 @@ import SalaryTable from './pages/SalaryTable';
 function App() {
   return (
     <div>
+      <React.StrictMode>
       <Router>
+      <CartProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
@@ -152,7 +156,9 @@ function App() {
 
 
         </Routes>
+        </CartProvider>
       </Router>
+      </React.StrictMode>
       <ToastContainer position="top-center" />
     </div>
   );
