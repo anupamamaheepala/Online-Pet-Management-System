@@ -72,6 +72,7 @@ import SalaryTable from './pages/SalaryTable';
 import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
+import EditProduct from './pages/EditProduct';
 
 function App() {
   return (
@@ -149,6 +150,8 @@ function App() {
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
+          <Route path="/editproduct/:productId" element={<EditProduct />} />
+
           </Routes>
         </CartProvider>
       </Router>
