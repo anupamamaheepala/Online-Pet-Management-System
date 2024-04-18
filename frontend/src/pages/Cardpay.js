@@ -99,7 +99,7 @@ const Cardpay = () => {
             Swal.fire({
               title: "Please wait for process the payment",
               html: "processing <b></b>",
-              timer: 3000,
+              timer: 2000,
               timerProgressBar: true,
               didOpen: () => {
                 Swal.showLoading();
