@@ -17,10 +17,12 @@ const upload = multer({ storage: storage });
 
 router.post('/add', upload.single('file'), advertisementController.addAdvertisement);
 router.get("/", advertisementController.getAllAdvertisements);
-router.put("/:id/confirm", upload.single('file'),  advertisementController.confirmAdvertisement); // New endpoint for confirming advertisements
+router.put("/:id/confirm", upload.single('file'), advertisementController.confirmAdvertisement);
 router.delete("/:id", advertisementController.deleteAdById);
 //router.get("/confirmed", advertisementController.getConfirmedAdvertisements);
-router.get("/:id/confirm", advertisementController.confirmAdvertisement); // GET endpoint for confirming advertisements
+//router.get("/:id/confirm", advertisementController.confirmAdvertisement); // GET endpoint for confirming advertisements
+
+router.get("/confirmedads", advertisementController.getAllConfirmedAdvertisements);
+
 
 module.exports = router;
-
