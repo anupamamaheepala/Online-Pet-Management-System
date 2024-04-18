@@ -190,7 +190,38 @@ exports.signIn = async (req, res) => {
   }
 };
 
-// Route for resetting password
+// // Route for resetting password
+// exports.resetPassword = async (req, res) => {
+//   const { customerId, oldPassword, newPassword } = req.body;
+
+//   try {
+//     // Fetch the user using the customer ID
+//     const user = await Customer.findById(customerId);
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found' });
+//     }
+
+//     // Verify if the old password matches
+//     const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+//     if (!isPasswordValid) {
+//       return res.status(400).json({ message: 'Old password is incorrect' });
+//     }
+
+//     // Hash the new password
+//     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+//     // Update the user's password
+//     await Customer.findByIdAndUpdate(customerId, { password: hashedNewPassword });
+
+//     // Send success response
+//     res.status(200).json({ message: 'Password updated successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
+
+// Function to reset password
 exports.resetPassword = async (req, res) => {
   const { customerId, oldPassword, newPassword } = req.body;
 
@@ -214,11 +245,11 @@ exports.resetPassword = async (req, res) => {
     await Customer.findByIdAndUpdate(customerId, { password: hashedNewPassword });
 
     // Send success response
-    res.status(200).json({ message: 'Password updated successfully' });
+    return res.status(200).json({ message: 'Password updated successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
+    return res.status(500).json({ message: 'Server Error' });
+  }
 };
 
 //function to upload profile photo
