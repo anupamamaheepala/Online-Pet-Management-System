@@ -31,8 +31,10 @@ router.delete("/:id", registerController.deleteCustomerById);
 // Sign-in endpoint
 router.post('/signin', registerController.signIn);
 
-// Route for resetting password
-router.put('/reset-password', registerController.resetPassword);
+// Add this route for resetting password
+router.post('/reset-password/:customerId', registerController.resetPassword);
+
+
 
 module.exports = router;
 
