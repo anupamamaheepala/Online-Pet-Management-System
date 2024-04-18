@@ -78,6 +78,7 @@ import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
+import Cardpayreport from './pages/Cardpayreport';
 
 function App() {
   return (
@@ -162,6 +163,7 @@ function App() {
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
+          <Route path="/Cardpayreport" element={<Cardpayreport />} />
 
           </Routes>
         </CartProvider>
