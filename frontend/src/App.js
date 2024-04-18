@@ -5,12 +5,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Home from "./pages/Home";
+
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
+import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
+
+
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -87,6 +91,7 @@ function App() {
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
           <Route path="/training/application:id" element={<ViewApplication/>}/>
+
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
@@ -94,6 +99,8 @@ function App() {
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
           <Route path="/FAQselect" element={<FAQselect />} />
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
+          <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
+
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />

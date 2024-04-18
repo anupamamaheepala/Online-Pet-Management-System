@@ -1,20 +1,33 @@
 /* feedbackdisplay.css */
 
+/* General page styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .feedbackListContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Align feedback items to the left */
 }
 
 .feedbackItem {
   margin-bottom: 20px;
   padding: 20px;
-  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 80%;
   max-width: 600px;
-  display: flex;
-  flex-direction: column;
 }
 
 .feedbackItem h3 {
@@ -34,16 +47,15 @@
   color: #ffd700; /* Set the color of stars */
 }
 
-
-
 .actionButtons {
   margin-top: 10px;
   display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
 }
 
 .actionButtons button {
-  margin-right: 10px;
-  padding: 6px 12px; /* Adjust button padding */
+  padding: 8px 16px; /* Adjust button padding */
+  margin-left: 10px; /* Add some space between buttons */
   background-color: #007bff; /* Change button color */
   color: #fff;
   border: none;
@@ -52,6 +64,25 @@
   transition: background-color 0.3s ease;
 }
 
+.actionButtons button:first-child {
+  margin-left: 0; /* Remove margin from the first button */
+}
+
 .actionButtons button:hover {
   background-color: #0056b3; /* Change hover color */
 }
+
+.faq-button-feedback,
+.faq-button-inquiry{
+    display: block; /* Make the buttons block-level elements */
+    width: 200px; /* Adjust button width as needed */
+    margin: 0 auto 10px; /* Center the button and add bottom margin for spacing */
+    padding: 15px; /* Add padding to the buttons */
+    background-color: #000000; /* Set background color */
+    color: #fff; /* Set text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 18px; /* Set the font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }

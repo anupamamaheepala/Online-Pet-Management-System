@@ -64,7 +64,7 @@ const Header = () => {
                                 <Link className={`nav-link ${activeMenuItem === 'Advertisements' ? 'active' : ''}`} to="/Advertisement" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'Advertisements' ? 'bold' : 'normal' }}>Advertisements</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${activeMenuItem === 'FAQselect' ? 'active' : ''}`} to="/FAQselect" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'FAQselect' ? 'bold' : 'normal' }}>FAQ</Link>
+                                <Link className={`nav-link ${activeMenuItem === 'FeedbackDisplay' ? 'active' : ''}`} to="/FeedbackDisplay" style={{ fontSize: '20px', fontWeight: activeMenuItem === 'FeedbackDisplay' ? 'bold' : 'normal' }}>FAQ</Link>
                             </li>
                         </ul>
                         <div className="d-flex align-items-center">
