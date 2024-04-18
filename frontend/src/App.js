@@ -66,12 +66,8 @@ import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
-<<<<<<< HEAD
 import { CartProvider } from './Context/CartContext';
-
-=======
 import Cardpayadmin from './pages/Cardpayadmin';
->>>>>>> b50febfe8c711bc307a3a2cffc9b6d421131c423
 
 
 
