@@ -114,7 +114,7 @@
 // };
 
 // export default FeedbackInquiry;
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import emailjs from '@emailjs/browser';
 import Header from '../components/Header';
@@ -122,6 +122,8 @@ import Footer from '../components/Footer';
 import '../css/feedbackinquiry.css';
 
 const FeedbackInquiry = () => {
+  const formRef = useRef(); // Create a reference to the form element
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -142,9 +144,8 @@ const FeedbackInquiry = () => {
       setFormData({
         name: '',
         email: '',
-        feedback: '',
-               
-    })
+        feedback: ''
+      });
       // Optionally, you can show a success message to the user
     } catch (error) {
       console.error('Failed to submit feedback:', error);
@@ -152,12 +153,25 @@ const FeedbackInquiry = () => {
     }
   };
 
+  const sendEmail = () => {
+    emailjs.sendForm('service_hs3xk19', 'template_vzgks8e', formRef.current, {
+      publicKey: 'J8nt0NYTxJsPNGwOp',
+    })
+      .then(
+        () => {
+          console.log('Email sent successfully!');
+        },
+        (error) => {
+          console.error('Failed to send email:', error);
+        },
+      );
+  };
+
   return (
     <>
       <Header />
       <div className="custom-form-container">
-        
-        <form onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={handleSubmit}>
           <label className="custom-form-label">Name</label>
           <input className="custom-form-input" type="text" name="name" value={formData.name} onChange={handleChange} />
           <label className="custom-form-label">Email</label>
