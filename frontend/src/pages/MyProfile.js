@@ -368,7 +368,7 @@ const handleDeleteProfilePhoto = async () => {
                   <input type="file" name="image" onChange={onFileChange} className="ProfilePhotoInput_custom" />
                 </div>
                 <div className="editreset_container">
-                  <Link to="/reset-password" className="ResetPasswordButton_custom">Reset Password</Link>
+                <Link to={`/reset-password/${customerId}`} className="ResetPasswordButton_custom">Reset Password</Link>
                   &nbsp;
                   &nbsp;
                   <Link to={`/edit-profile/${customerId}`} class="btn btn-warning">Edit Profile</Link>

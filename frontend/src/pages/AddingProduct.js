@@ -1,3 +1,5 @@
+// AddingProduct.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -10,7 +12,7 @@ const AddingProduct = () => {
         category: 'Foods',
         image: null,
         price: '',
-        quantity: 0  // Add quantity field to formData
+        quantity: 0
     });
 
     const { itemName, category, image, price, quantity } = formData;
@@ -31,7 +33,7 @@ const AddingProduct = () => {
             formDataToSend.append('category', category);
             formDataToSend.append('image', image);
             formDataToSend.append('price', price);
-            formDataToSend.append('quantity', quantity);  // Include quantity in FormData
+            formDataToSend.append('quantity', quantity);
 
             const res = await axios.post("http://localhost:9000/products/add", formDataToSend, {
                 headers: {
@@ -44,10 +46,10 @@ const AddingProduct = () => {
                 category: 'Foods',
                 image: null,
                 price: '',
-                quantity: 0  // Reset quantity after submission
+                quantity: 0
             });
         } catch (err) {
-            // Error handling
+            console.error('Error adding product:', err);
         }
     };
 
@@ -67,9 +69,9 @@ const AddingProduct = () => {
                         <option value="Foods">Foods</option>
                         <option value="Medicines">Medicines</option>
                         <option value="Toys and Accessories">Toys and Accessories</option>
-
                     </select>
                 </div>
+
                 <div className="form-group">
                     <label htmlFor="image">Image:</label>
                     <input type="file" id="image" name="image" onChange={onChange} />
