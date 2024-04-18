@@ -3,21 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
 import './App.css';
 import Home from "./pages/Home";
-
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
 import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
-
-
+import FeedbackRating from './pages/FeedbackRating';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
 import VetDashboard from './pages/VetDashboard';
+import VetNotifications from './pages/VetNotifications';
 import AllVetAppointments from './pages/AllVetAppointments';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
@@ -62,14 +60,15 @@ import PetProfile from './pages/PetProfile';
 import MyPets from './pages/MyPets';
 import AddPet from './pages/AddPet';
 import Banktransadmin from './pages/Banktransadmin';
-import AddToCart from './pages/AddToCart';
 import EditPetProfile from './pages/EditPetProfile';
 import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
-
-
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
+import { CartProvider } from './Context/CartContext';
+import Cardpayadmin from './pages/Cardpayadmin';
+import Cart from './pages/AddToCart';
+import AddToCartPage from './pages/AddToCart';
 
 
 
@@ -77,7 +76,9 @@ import SalaryTable from './pages/SalaryTable';
 function App() {
   return (
     <div>
+      <React.StrictMode>
       <Router>
+      <CartProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
@@ -85,20 +86,20 @@ function App() {
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-          <Route path="/:id" element={<ViewApplication/>}/>
-
+          <Route path="/training/application:id" element={<ViewApplication/>}/>
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
           <Route path="/FAQselect" element={<FAQselect />} />
-          
+          <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
-          <Route path="/MyAppointments/" element={<MyAppointments />} />
+          <Route path="/MyAppointments" element={<MyAppointments />} />
           <Route path="/VetDashboard" element={<VetDashboard />} />
+          <Route path="/VetNotifications" element={<VetNotifications />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
@@ -139,20 +140,18 @@ function App() {
           <Route path="/pet-profile/:petId" element={<PetProfile />} />
           <Route path="/addpet/:customerId" element={<AddPet />} />
           <Route path="/Banktransadmin" element={<Banktransadmin />} />
-          <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
-          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} />
-
-          
-
-          
+          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} /> 
           <Route path="/update-salary"  element={<UpdateSalary/>} />
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
-
+          <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
+          <Route path="/Cart"  element={<AddToCartPage/>} />
 
         </Routes>
+        </CartProvider>
       </Router>
+      </React.StrictMode>
       <ToastContainer position="top-center" />
     </div>
   );

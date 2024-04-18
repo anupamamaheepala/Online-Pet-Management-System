@@ -29,6 +29,8 @@ const ShopCategory = (props) => {
     const addToCart = (productId) => {
         // Add your addToCart logic here
         console.log(`Product added to cart with ID: ${productId}`);
+        // Navigate to cart page
+        props.history.push('/cart');
     };
 
     return (
@@ -54,7 +56,8 @@ const ShopCategory = (props) => {
                         <h5 className="card-title">{item.itemName}</h5>
                         <p className="card-text">Price: LKR {item.price}</p>
                         {(item.quantity > 0) ? (
-                                            <center><button className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</button></center>
+                                            <center><Link to="/Cart" className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</Link>
+                                            </center>
                                         ) : (
                                             <p className="text-danger">Out of Stock</p>
                                         )}
