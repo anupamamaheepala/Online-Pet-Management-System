@@ -40,9 +40,10 @@
 // module.exports = {
 //   saveFeedback
 // };
+// feedbackinquiryController.js
+
 const FeedbackInquiry = require('../models/feedbackinquirymodel');
 
-// Controller function to handle saving feedback data
 const saveFeedback = async (req, res) => {
   try {
     const { feedback, email, name } = req.body;
@@ -58,7 +59,16 @@ const saveFeedback = async (req, res) => {
   }
 };
 
-// Controller function to handle retrieving all feedback data
+const deleteFeedback = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await FeedbackInquiry.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Feedback deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while deleting feedback' });
+  }
+};
+
 const getFeedback = async (req, res) => {
   try {
     const feedback = await FeedbackInquiry.find();
@@ -70,5 +80,6 @@ const getFeedback = async (req, res) => {
 
 module.exports = {
   saveFeedback,
+  deleteFeedback,
   getFeedback
 };
