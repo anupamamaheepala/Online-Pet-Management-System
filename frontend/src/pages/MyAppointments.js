@@ -42,7 +42,7 @@ const MyAppointments = () => {
       // After successful deletion, update the appointments state
       setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
       // Show success message
-      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', icon: 'success', confirmButtonText: 'OK' });
+      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', showConfirmButton: false, icon: 'success', timer:1500 });
     } catch (error) {
       console.error('Error deleting appointment:', error);
       Swal.fire({ title: 'Error', text: 'Failed to remove appointment', icon: 'error', confirmButtonText: 'OK' });
