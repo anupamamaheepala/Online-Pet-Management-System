@@ -45,10 +45,7 @@ const petRoute = require("./routes/petRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 const banktransadminRoute = require('./routes/banktransadminRoute');
-<<<<<<< HEAD
-=======
 
->>>>>>> 62430e9d6346d2aaad290d5aec4ac3fac78f7aa7
 
 
 
@@ -76,10 +73,7 @@ app.use('/products', productRoutes);
 app.use("/step",stepRoutes );
 
 app.use('/pets', petRoute);
-<<<<<<< HEAD
-=======
 
->>>>>>> 62430e9d6346d2aaad290d5aec4ac3fac78f7aa7
 
 
 
