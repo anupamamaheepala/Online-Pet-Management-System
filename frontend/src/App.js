@@ -86,7 +86,6 @@ function App() {
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
           <Route path="/training/application:id" element={<ViewApplication/>}/>
-
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
@@ -94,7 +93,6 @@ function App() {
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} /> 
           <Route path="/FAQselect" element={<FAQselect />} />
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
-          
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
@@ -144,16 +142,10 @@ function App() {
           <Route path="/AddToCart" element={<AddToCart />} />
           <Route path="/pets/:petId/edit" element={<EditPetProfile/>} />
           <Route path="/all-pets" element={<AllPets />} />
-          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} />
-
-          
-
-          
+          <Route path="/Cardpaysuccess" element={<Cardpaysuccess />} /> 
           <Route path="/update-salary"  element={<UpdateSalary/>} />
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
-
-
         </Routes>
         </CartProvider>
       </Router>
