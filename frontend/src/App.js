@@ -44,7 +44,11 @@ import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import TrainingDashboard from './pages/TrainingDashboard';
 import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
+import StepForm from './pages/StepForm';
+
+
 import Shop from './pages/Shop';
+
 import AllCustomers from './pages/AllCustomers';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
@@ -81,12 +85,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
           <Route path="/:id" element={<ViewApplication/>}/>
+          <Route path="/StepForm" element={<StepForm/>}/>
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
