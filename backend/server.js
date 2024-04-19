@@ -34,6 +34,7 @@ const salaryRoute =require("./routes/salaryRoute");
 const productsRouter = require('./routes/products');
 const stepRoutes = require('./routes/stepRoute');
 
+
 const petRoute = require("./routes/petRoute"); 
 
 
@@ -45,7 +46,7 @@ const petRoute = require("./routes/petRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 const banktransadminRoute = require('./routes/banktransadminRoute');
-const cartRouter = require('./routes/cart');
+
 
 
 
@@ -73,7 +74,7 @@ app.use('/products', productRoutes);
 app.use("/step",stepRoutes );
 
 app.use('/pets', petRoute);
-app.use('/cart', cartRouter);
+
 
 
 
