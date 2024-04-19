@@ -90,8 +90,7 @@
 }
 
 /* Add to cart button */
-.oshibtn-primary{
-        display: block;
+PCbtn-primary{      display: block;
     width: 50%;
     padding: 10px;
     font-size: 1rem;

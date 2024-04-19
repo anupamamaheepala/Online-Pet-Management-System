@@ -21,6 +21,7 @@ import Makeappointment from './pages/Makeappointment';
 import VetDashboard from './pages/VetDashboard';
 import VetNotifications from './pages/VetNotifications';
 import AllVetAppointments from './pages/AllVetAppointments';
+import GenerateVetReport from './pages/GenerateVetReport';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
 import Advertisement from './pages/Advertisement';
@@ -114,6 +115,7 @@ function App() {
           <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/VetNotifications" element={<VetNotifications />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
+          <Route path="/GenerateVetReport" element={<GenerateVetReport />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
           <Route path="/AddAdvertisement" element={<AddAdvertisement />} />

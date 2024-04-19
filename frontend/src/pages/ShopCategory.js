@@ -26,6 +26,30 @@ const ShopCategory = (props) => {
         };
         fetchProducts();
     }, []);
+    const handleAddToCart = async (productId) => {
+        try {
+            // Replace 'user_id_here' with the actual user ID
+            const customerId = 'user_id';
+        
+            const response = await axios.post('http://localhost:9000/cart', {
+                customerId,
+                productId,
+            });
+        
+            if (response.status === 200) {
+                // Cart item added successfully
+                console.log('Product added to cart');
+                // Navigate to the cart page
+                props.history.push('/cart');
+            } else {
+                // Handle error
+                console.error('Failed to add product to cart');
+            }
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+        }
+    };
+    
 
     const addToCart = async (productId) => {
         try {
@@ -118,7 +142,9 @@ const ShopCategory = (props) => {
                                             <p className="card-text">Price: LKR {item.price}</p>
                                             {(item.quantity > 0) ? (
                                                 <center>
-                                                    <Link to="/Cart" className="oshibtn-primary" onClick={() => addToCart(item._id)}>Add to Cart</Link>
+                                                  <button className="PCbtn-primary" onClick={() => handleAddToCart(item._id)}>Add to Cart</button>
+
+
                                                 </center>
                                             ) : (
                                                 <p className="text-danger">Out of Stock</p>
