@@ -80,6 +80,7 @@ import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
 import StaffLogin from './pages/StaffLogin';
 import Cardpayreport from './pages/Cardpayreport';
+import EditAdvertisement from './pages/EditAdvertisement';
 
 function App() {
   return (
@@ -166,7 +167,7 @@ function App() {
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/Cardpayreport" element={<Cardpayreport />} />
-
+          <Route path="/edit/:id" element={<EditAdvertisement />} />
 
           </Routes>
         </CartProvider>
