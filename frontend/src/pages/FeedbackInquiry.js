@@ -1,13 +1,12 @@
-
 import React, { useState, useRef } from 'react';
-import axios from 'axios'; // Import Axios for making HTTP requests
+import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/feedbackinquiry.css';
 
 const FeedbackInquiry = () => {
-  const formRef = useRef(); // Create a reference to the form element
+  const formRef = useRef();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -22,14 +21,18 @@ const FeedbackInquiry = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:9000/feedbackinquiry/feedback", formData); // Send form data to backend endpoint
-      console.log('Feedback submitted successfully');
+      // Send form data to backend endpoint
+      await axios.post("http://localhost:9000/feedbackinquiry/feedback", formData);
 
+      // Send email with customer's name
+      await sendEmail(formData.name);
+
+      console.log('Feedback submitted successfully');
       // Optionally, clear the form fields after successful submission
       setFormData({
         name: '',
         email: '',
-        feedback: ''
+        feedback: '' 
       });
       // Optionally, you can show a success message to the user
     } catch (error) {
@@ -38,18 +41,13 @@ const FeedbackInquiry = () => {
     }
   };
 
-  const sendEmail = () => {
-    emailjs.sendForm('service_hs3xk19', 'template_vzgks8e', formRef.current, {
+  const sendEmail = (customerName) => {
+    // Pass customer's name as a parameter to the email template
+    return emailjs.sendForm('service_hs3xk19', 'template_vzgks8e', formRef.current, {
       publicKey: 'J8nt0NYTxJsPNGwOp',
-    })
-      .then(
-        () => {
-          console.log('Email sent successfully!');
-        },
-        (error) => {
-          console.error('Failed to send email:', error);
-        },
-      );
+      name: formData.name,
+      email: formData.email
+    });
   };
 
   return (
