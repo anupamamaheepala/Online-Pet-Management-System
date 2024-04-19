@@ -58,6 +58,7 @@ const ConfirmAdvertisement = () => {
         <>
             <Header />
             <h1><center>Pending Advertisement</center></h1>
+            
             <table className="ma_advertisement-table">
                 <thead>
                     <tr>

@@ -102,3 +102,25 @@ exports.getStaffByIdForSalary = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch staff details" });
   }
 };
+
+
+exports.authenticateStaff = async (req, res) => {
+  try {
+    const { staffId, nic } = req.body;
+
+    // Check if a staff member with the provided staff ID and NIC exists
+    const staff = await Staff.findOne({ staffId, snic: nic });
+
+    if (!staff) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // If authentication succeeds, you can generate a JWT token and send it back to the client
+    // Example: const token = generateToken(staff);
+    // Return the token or any other response you want
+    res.status(200).json({ message: 'Authentication successful', staff });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
