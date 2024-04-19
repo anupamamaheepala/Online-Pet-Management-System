@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 const PrivateTrainingPrograms = () => {
     const [privatetrainings, setPrivatetrainings] = useState([]);
-    const [selectedDescription, setSelectedDescription] = useState(null);
     const [error, setError] = useState(null);
+    const [expandedCardIndex, setExpandedCardIndex] = useState(null);
 
     useEffect(() => {
         // Fetch data
@@ -22,8 +22,8 @@ const PrivateTrainingPrograms = () => {
             });
     }, []);
 
-    const handleLearnMoreClick = (description) => {
-        setSelectedDescription(description);
+    const handleLearnMoreClick = (index) => {
+        setExpandedCardIndex(index);
     };
 
     if (error) {
@@ -41,7 +41,7 @@ const PrivateTrainingPrograms = () => {
             <Header />
             <h2 className="training-topic">Private Training Programs</h2>
             <div className="privatetraining-grid">
-                {privatetrainings.map(privatetraining => (
+                {privatetrainings.map((privatetraining, index) => (
                     <div key={privatetraining._id} className="privatetraining-item">
                         <img src={`http://localhost:9000/${privatetraining.filePath.replace(/\\/g, '/')}`}
                             style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
@@ -49,13 +49,13 @@ const PrivateTrainingPrograms = () => {
                         <h4 className="privatetraining-step">{privatetraining.step}</h4>
                         <div className="privatetraining-details">
                             <h3 className="privatetraining-name">{privatetraining.name}</h3>
-                            {selectedDescription === privatetraining.description && (
+                            {expandedCardIndex === index && (
                                 <p className="privatetraining-description">{privatetraining.description}</p>
                             )}
                             <div className="row justify-content-center">
                                 <div className="col-auto">&nbsp;</div>
                                 <div className="col">
-                                    <button className="add-button" onClick={() => handleLearnMoreClick(privatetraining.description)}>Learn more</button>
+                                    <button className="add-button" onClick={() => handleLearnMoreClick(index)}>Learn more</button>
                                 </div>
                             </div>
                         </div>
