@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import '../css/ptrainingdetails.css'; // Ensure correct path to your CSS file
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -12,6 +12,7 @@ const PrivateTrainingDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
   const [modalImageUrl, setModalImageUrl] = useState(''); // State to store modal image URL
   const { id } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchTrainingDetails = async () => {
@@ -20,24 +21,38 @@ const PrivateTrainingDetails = () => {
         setTraining(response.data);
         setInstructor(response.data.instructor || '');
         setStatus(response.data.status || 'pending');
+        
+        // Check if instructorName is passed from TrainingDashboard
+        if (location.state && location.state.instructorName) {
+          setInstructor(response.data.instructorName);
+        }
       } catch (error) {
         console.error('Error fetching training details:', error);
       }
     };
 
     fetchTrainingDetails();
-  }, [id]);
+  }, [id, location]);
 
   const handleUpdateInstructor = async () => {
     try {
+      // Update the instructorName property in addition to updating the state
       await axios.put(`http://localhost:9000/training/updateInstructor/${id}`, { instructor });
       console.log('Instructor updated successfully');
       // Display alert after successfully adding instructor
       window.alert('Instructor successfully added');
+      // Pass instructor name to TrainingDashboard
+      location.state = { instructorName: instructor };
+      // Update the training object in the frontend state
+      setTraining(prevTraining => ({
+        ...prevTraining,
+        instructorName: instructor,
+      }));
     } catch (error) {
       console.error('Error updating instructor:', error);
     }
   };
+  
 
   const handleApproveTraining = async () => {
     try {
@@ -61,13 +76,9 @@ const PrivateTrainingDetails = () => {
     }
   };
   
+
   const handleRejectTraining = async () => {
     try {
-      // If an instructor has been added and the training is rejected, remove the instructor
-      if (instructor && status === 'rejected') {
-        setInstructor('');
-      }
-  
       await axios.put(`http://localhost:9000/training/reject/${id}`);
       setTraining(prevTraining => ({
         ...prevTraining,
@@ -79,7 +90,7 @@ const PrivateTrainingDetails = () => {
       console.error('Error rejecting training:', error);
     }
   };
-  
+
   const handleOpenModal = (imageUrl) => {
     setModalImageUrl(imageUrl);
     setIsModalOpen(true);
@@ -122,6 +133,7 @@ const PrivateTrainingDetails = () => {
         <p><strong>Dog's Name:</strong> {training.dogName}</p>
         <p><strong>Breed:</strong> {training.breed}</p>
         <p><strong>Age:</strong> {training.age}</p>
+        <p><strong>Instructor's Name:</strong> {instructor || 'Not Assigned'}</p>
         {training.filePath && (
           <div>
             <h3>Health Checkup File</h3>
@@ -149,18 +161,18 @@ const PrivateTrainingDetails = () => {
         )}
       </div>
       {status !== 'rejected' && (
-          <div>
-            <h3>Assign an Instructor</h3>
-            <input
-              type="text"
-              value={instructor}
-              onChange={(e) => setInstructor(e.target.value)}
-              placeholder="Enter new instructor's name"
-              id='instructor'
-            />
-            <button onClick={handleUpdateInstructor}>Add Instructor</button>
-          </div>
-        )}
+        <div>
+          <h3>Assign an Instructor</h3>
+          <input
+            type="text"
+            value={instructor}
+            onChange={(e) => setInstructor(e.target.value)}
+            placeholder="Enter new instructor's name"
+            id='instructor'
+          />
+          <button onClick={handleUpdateInstructor}>Add Instructor</button>
+        </div>
+      )}
       <div>
         <h3>Application status</h3>
         {renderActionButtons()}
