@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .product-column {
@@ -69,4 +71,87 @@
 
 .reject_button {
   background-color: red;
+}
+
+.search-bar {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 0 10px; /* Add padding from left and right */
+}
+
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  width: 15%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.sort-by {
+  margin-top: 20px;
+  padding: 0 10px; /* Add padding from left and right */
+}
+
+.sort-by select {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.sort-by select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.sort-by select:hover {
+  background-color: #e9ecef;
+}
+.ma_advertisement-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 10px; /* Add margin from left */
+  margin-right: 10px; /* Add margin from right */
+  margin-top: 10px;
+}
+
+.ma_advertisement-table th,
+.ma_advertisement-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.ma_advertisement-table th {
+  background-color: #f2f2f2;
+}
+
+.report-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px; 
+}
+
+.report-button:hover {
+  background-color: #0056b3;
 }
