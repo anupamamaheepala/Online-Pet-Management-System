@@ -1,69 +1,48 @@
+// export default StaffLogin;
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const StaffLogin = () => {
   const [formData, setFormData] = useState({
     staffId: '',
-    nic: ''
+    password: '' // Assuming NIC is used as password
   });
 
-  const { staffId, nic } = formData;
+  const { staffId, password } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const onSubmit = async e => {
     e.preventDefault();
-  
     try {
-      const response = await axios.post('http://localhost:9000/staff/authenticate', formData);
-      
-      if (response.status === 200) {
-        const data = response.data;
-        console.log('Authentication successful:', data);
-        window.location.href = '/StaffProfile'; // Redirect to StaffProfile page
-      } else {
-        console.error('Authentication failed');
-        // Display error message or handle failure
-      }
-    } catch (error) {
-      console.error('Error during authentication:', error);
-      // Handle network errors or other issues
+      const res = await axios.post("http://localhost:9000/staff/login", formData);
+      console.log(res.data);
+      // Redirect to staff profile page
+      window.location.href = `/staff/profile/${res.data.staffId}`;
+    } catch (err) {
+      console.error(err);
+      // Handle login error
     }
   };
-  
 
   return (
-    <div className="staffLoginContainer">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit} className='staffLoginForm'>
-        <div className="staffLoginForm-group">
-          <label htmlFor="staffId">Staff ID</label>
-          <input
-            type="text"
-            id="staffId"
-            name="staffId"
-            value={staffId}
-            onChange={onChange}
-            required
-          />
+    <div>
+      <h2>Staff Login</h2>
+      <form onSubmit={onSubmit}>
+        <div>
+          <label>Staff ID:</label>
+          <input type="text" name="staffId" value={staffId} onChange={onChange} required />
         </div>
-        <div className="form-group">
-          <label htmlFor="nic">Password</label>
-          <input
-            type="password"
-            id="nic"
-            name="nic"
-            value={nic}
-            onChange={onChange}
-            required
-          />
+        <div>
+          <label>Password (NIC):</label>
+          <input type="password" name="password" value={password} onChange={onChange} required />
         </div>
         <button type="submit">Login</button>
       </form>
     </div>
   );
-};
+}
 
 export default StaffLogin;
