@@ -1,112 +1,54 @@
-// // import React from 'react';
-// // import '../css/cardpaysuccess.css';
-// // import Header from '../components/Header';
-// // import Footer from '../components/Footer';
-
-// // const Cardpaysuccess = () => {
-// //   const goToCardPayReport = () => {
-// //     // Navigate to the Cardpayreport page
-// //     window.location.href = '/cardpayreport'; // Update the path as needed
-// //   };
-
-// //   const goToHomePage = () => {
-// //     // Navigate to the homepage
-// //     window.location.href = '/'; // Update the path as needed
-// //   };
-
-// //   return (
-// //     <>
-// //       <Header />
-// //       <div className="cps-container">
-// //         <div className="cps-bodycon">
-// //           <h2>Payment Successful</h2>
-// //           <p>Congratulations! Your payment was successful.</p>
-// //         </div>
-// //         <div className="cps-buttoncon">
-// //           <button className="cps-button" onClick={goToCardPayReport}>Download Report</button>
-// //           <button className="cps-button" onClick={goToHomePage}>Back to Home</button>
-// //         </div>
-// //       </div>
-// //       <Footer />
-// //     </>
-// //   );
-// // };
-
-// // export default Cardpaysuccess;
-
-// import React from 'react';
-// import '../css/cardpaysuccess.css';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-
-// const Cardpaysuccess = () => {
-//   const goToCardPayReport = () => {
-//     // Navigate to the Cardpayreport page with the card payment ID
-//     const searchParams = new URLSearchParams(window.location.search);
-//     const id = searchParams.get('id');
-//     window.location.href = `/cardpayreport?id=${id}`;
-//   };
-
-//   const goToHomePage = () => {
-//     // Navigate to the homepage
-//     window.location.href = '/'; // Update the path as needed
-//   };
-
-//   return (
-//     <>
-//       <Header />
-//       <div className="cps-container">
-//         <div className="cps-bodycon">
-//           <h2>Payment Successful</h2>
-//           <p>Congratulations! Your payment was successful.</p>
-//         </div>
-//         <div className="cps-buttoncon">
-//           <button className="cps-button" onClick={goToCardPayReport}>Download Report</button>
-//           <button className="cps-button" onClick={goToHomePage}>Back to Home</button>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// };
-
-// export default Cardpaysuccess;
-
-import React from 'react';
-import '../css/cardpaysuccess.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Cardpaysuccess = () => {
-  const goToCardPayReport = () => {
-    // Retrieve the id parameter from the URL
+  const [payerDetails, setPayerDetails] = useState(null);
+  const [cardDetails, setCardDetails] = useState(null);
+
+  useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const id = searchParams.get('id');
+    const payerId = searchParams.get('id');
 
-    // Navigate to the Cardpayreport page with the card payment ID
-    window.location.href = `/cardpayreport?id=${id}`;
-  };
+    const fetchPayerDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:9000/cardpay/payerdetails/${payerId}`);
+        setPayerDetails(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const goToHomePage = () => {
-    // Navigate to the homepage
-    window.location.href = '/'; // Update the path as needed
-  };
+    const fetchCardDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:9000/cardpay/cardpayments/${payerId}`);
+        setCardDetails(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPayerDetails();
+    fetchCardDetails();
+  }, []);
+
+  if (!payerDetails || !cardDetails) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-      <Header />
-      <div className="cps-container">
-        <div className="cps-bodycon">
-          <h2>Payment Successful</h2>
-          <p>Congratulations! Your payment was successful.</p>
-        </div>
-        <div className="cps-buttoncon">
-          <button className="cps-button" onClick={goToCardPayReport}>Download Report</button>
-          <button className="cps-button" onClick={goToHomePage}>Back to Home</button>
-        </div>
-      </div>
-      <Footer />
-    </>
+    <div>
+      <h2>Payment Successful</h2>
+      <p>Congratulations! Your payment was successful.</p>
+      <h3>Payer Details:</h3>
+      <p>Name: {payerDetails.name}</p>
+      <p>Email: {payerDetails.email}</p>
+      <p>Phone Number: {payerDetails.phonenumber}</p>
+      <p>Address: {payerDetails.address}</p>
+      <p>Purpose: {payerDetails.purpose}</p>
+      <p>Amount: {payerDetails.amount}</p>
+      <p>Name on Card: {cardDetails.nameOnCard}</p>
+      <p>Card Number: {cardDetails.cardNumber}</p>
+    </div>
   );
 };
 
