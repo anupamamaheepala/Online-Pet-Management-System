@@ -144,6 +144,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import '../css/petprofile.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const PetProfile = () => {
   const { petId } = useParams();
@@ -236,15 +238,18 @@ const PetProfile = () => {
   });
 
   return (
+    <>
+      <Header />
+      <br></br>
     <div className="pet-profile-container">
       <h2 className="pet-profile-heading">Pet Profile</h2>
       <div>
         <div className="pet-profile-photo-wrapper">
           <img src={petData.profilePhoto} alt="Profile" className="pet-profile-photo" />
-          <button onClick={handleDeleteProfilePhoto} className="delete-photo-button">Delete Photo</button>
+          <button onClick={handleDeleteProfilePhoto} className="pet-profile-delete-photo-button">Delete Photo</button>
         </div>
         <div className="profile-photo-input-wrapper">
-          <input type="file" onChange={onFileChange} className="profile-photo-input" />
+          <input type="file" onChange={onFileChange} className="pet-profile-photo-input" />
         </div>
         <h3>{petData.petName}</h3>
         <p className="pet-profile-info">Species: {petData.species}</p>
@@ -278,9 +283,12 @@ const PetProfile = () => {
         </div>
 
         <Link to={`/pets/${petId}/edit`} className="pet-profile-button">Edit Profile</Link>
-        <button className="delete-profile-button" onClick={handleDelete}>Delete Profile</button>
+        <button className="delete-pet-profile-button" onClick={handleDelete}>Delete Profile</button>
       </div>
     </div>
+    <br></br>
+    <Footer />
+    </>
   );
 };
 
