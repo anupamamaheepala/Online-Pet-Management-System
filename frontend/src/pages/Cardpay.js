@@ -133,7 +133,8 @@ const Cardpay = () => {
     };
 
     const handleNext = () => {
-        window.location.href = '/cardpaysuccess';
+        window.location.href = `/cardpaysuccess?id=${payerId}`;
+
     };
 
     return (

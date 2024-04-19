@@ -1,109 +1,74 @@
-// // import React from 'react';
-// // import '../css/cardpaysuccess.css';
-// // import Header from '../components/Header';
-// // import Footer from '../components/Footer';
-
-// // const Cardpaysuccess = () => {
-// //   const goToCardPayReport = () => {
-// //     // Navigate to the Cardpayreport page
-// //     window.location.href = '/cardpayreport'; // Update the path as needed
-// //   };
-
-// //   const goToHomePage = () => {
-// //     // Navigate to the homepage
-// //     window.location.href = '/'; // Update the path as needed
-// //   };
-
-// //   return (
-// //     <>
-// //       <Header />
-// //       <div className="cps-container">
-// //         <div className="cps-bodycon">
-// //           <h2>Payment Successful</h2>
-// //           <p>Congratulations! Your payment was successful.</p>
-// //         </div>
-// //         <div className="cps-buttoncon">
-// //           <button className="cps-button" onClick={goToCardPayReport}>Download Report</button>
-// //           <button className="cps-button" onClick={goToHomePage}>Back to Home</button>
-// //         </div>
-// //       </div>
-// //       <Footer />
-// //     </>
-// //   );
-// // };
-
-// // export default Cardpaysuccess;
-
-// import React from 'react';
-// import '../css/cardpaysuccess.css';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-
-// const Cardpaysuccess = () => {
-//   const goToCardPayReport = () => {
-//     // Navigate to the Cardpayreport page with the card payment ID
-//     const searchParams = new URLSearchParams(window.location.search);
-//     const id = searchParams.get('id');
-//     window.location.href = `/cardpayreport?id=${id}`;
-//   };
-
-//   const goToHomePage = () => {
-//     // Navigate to the homepage
-//     window.location.href = '/'; // Update the path as needed
-//   };
-
-//   return (
-//     <>
-//       <Header />
-//       <div className="cps-container">
-//         <div className="cps-bodycon">
-//           <h2>Payment Successful</h2>
-//           <p>Congratulations! Your payment was successful.</p>
-//         </div>
-//         <div className="cps-buttoncon">
-//           <button className="cps-button" onClick={goToCardPayReport}>Download Report</button>
-//           <button className="cps-button" onClick={goToHomePage}>Back to Home</button>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// };
-
-// export default Cardpaysuccess;
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../css/cardpaysuccess.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Cardpaysuccess = () => {
-  const goToCardPayReport = () => {
-    // Retrieve the id parameter from the URL
+  const [payerDetails, setPayerDetails] = useState(null);
+  const [cardDetails, setCardDetails] = useState(null);
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const id = searchParams.get('id');
+    const payerId = searchParams.get('id');
 
-    // Navigate to the Cardpayreport page with the card payment ID
-    window.location.href = `/cardpayreport?id=${id}`;
-  };
+    const fetchPayerDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:9000/cardpay/payerdetails/${payerId}`);
+        setPayerDetails(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const goToHomePage = () => {
-    // Navigate to the homepage
-    window.location.href = '/'; // Update the path as needed
-  };
+    const fetchCardDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:9000/cardpay/cardpayments/${payerId}`);
+        setCardDetails(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPayerDetails();
+    fetchCardDetails();
+
+    // Update currentDateTime every second
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  if (!payerDetails || !cardDetails) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <Header />
       <div className="cps-container">
-        <div className="cps-bodycon">
-          <h2>Payment Successful</h2>
-          <p>Congratulations! Your payment was successful.</p>
-        </div>
-        <div className="cps-buttoncon">
-          <button className="cps-button" onClick={goToCardPayReport}>Download Report</button>
-          <button className="cps-button" onClick={goToHomePage}>Back to Home</button>
-        </div>
+        <h2>Payment Successful
+          <svg xmlns="http://www.w3.org/2000/svg" className="check-mark" viewBox="0 0 24 24" fill="green" width="48" height="48">
+          <path d="M0 0h24v24H0V0z" fill="none"/>
+          <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+          </svg>
+        </h2>
+        <h5>Congratulations! Your payment was successful.</h5>
+        <h3>Payment Acknowledgement</h3>
+        <p><b>Name:</b> {payerDetails.name}</p>
+        <p><b>Email:</b> {payerDetails.email}</p>
+        <p><b>Phone Number:</b> {payerDetails.phonenumber}</p>
+        <p><b>Address:</b> {payerDetails.address}</p>
+        <p><b>Purpose:</b> {payerDetails.purpose}</p>
+        <p><b>Amount:</b> {payerDetails.amount}</p>
+        <p><b>Name on Card:</b> {cardDetails.nameOnCard}</p>
+        <p><b>Card Number:</b> {cardDetails.cardNumber}</p>
+        <p><b>Date:</b> {currentDateTime.toLocaleDateString()}</p>
+        <p><b>Time:</b> {currentDateTime.toLocaleTimeString()}</p>
       </div>
       <Footer />
     </>

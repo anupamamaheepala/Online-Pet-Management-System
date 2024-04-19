@@ -1,5 +1,5 @@
 .cps-container{
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 2px solid #000000;
@@ -7,10 +7,31 @@
     background-color: #ffffff;
     margin-top: 5%;
     margin-bottom: 5%;
-    text-align: center;
 }
 
 .cps-container h2{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;;
+}
+
+.cps-container h5{
+    text-align: center;
+}
+
+.cps-container h3{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.cps-container p{
+    margin-left: 30px;
+}
+
+
+
+/* .cps-container h2{
     font-size: 2.5rem;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -51,4 +72,4 @@
     background-color: #ffffff;
     color: #000000;
     text-decoration: none;
-}
+} */
