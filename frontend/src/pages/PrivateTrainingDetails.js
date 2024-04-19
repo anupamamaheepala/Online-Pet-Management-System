@@ -11,6 +11,7 @@ const PrivateTrainingDetails = () => {
   const [status, setStatus] = useState('pending');
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
   const [modalImageUrl, setModalImageUrl] = useState(''); // State to store modal image URL
+  const [instructorName, setInstructorName] = useState(''); 
   const { id } = useParams();
   const location = useLocation();
 
@@ -52,7 +53,6 @@ const PrivateTrainingDetails = () => {
     }
   };
   
-
   const handleApproveTraining = async () => {
     try {
       // Check if an instructor has been assigned
@@ -172,7 +172,11 @@ const PrivateTrainingDetails = () => {
           <input
             type="text"
             value={instructor}
-            onChange={(e) => setInstructor(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const newValue = value.replace(/[^A-Za-z]/ig, ''); // Allow only letters
+              setInstructor(newValue);
+            }}
             placeholder="Enter new instructor's name"
             id='instructor'
           />
