@@ -87,97 +87,30 @@ exports.getAllCardPaymentsWithPayerInfo = async (req, res) => {
     }
 };
 
-// // Controller function to fetch payer's information along with card number
-// exports.getCardpayReport = async (req, res) => {
-//     try {
-//       const cardPayments = await CardPayment.find().populate('payer');
-  
-//       const formattedData = cardPayments.map(cardPayment => {
-//         const payer = cardPayment.payer;
-//         if (payer) {
-//           return {
-//             name: payer.name,
-//             email: payer.email,
-//             phonenumber: payer.phonenumber,
-//             address: payer.address,
-//             purpose: payer.purpose,
-//             amount: payer.amount,
-//             cardNumber: cardPayment.cardNumber
-//           };
-//         } else {
-//           return {
-//             name: 'Unknown',
-//             email: 'Unknown',
-//             phonenumber: 'Unknown',
-//             address: 'Unknown',
-//             purpose: 'Unknown',
-//             amount: 'Unknown',
-//             cardNumber: cardPayment.cardNumber
-//           };
-//         }
-//       });
-  
-//       res.status(200).json(formattedData);
-//     } catch (error) {
-//       console.error('Error fetching card payments:', error);
-//       res.status(500).json({ message: 'Server Error' });
-//     }
-//   };
 
-// exports.getCardPaymentById = async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       const cardPayment = await CardPayment.findById(id).populate('payer');
-  
-//       if (!cardPayment) {
-//         return res.status(404).json({ message: 'Card payment not found' });
-//       }
-  
-//       const { payer, cardNumber } = cardPayment;
-//       const { name, email, phonenumber, address, purpose, amount } = payer;
-  
-//       const cardPaymentData = {
-//         payerName: name,
-//         payerEmail: email,
-//         payerPhoneNumber: phonenumber,
-//         payerAddress: address,
-//         purpose,
-//         amount,
-//         cardNumber,
-//       };
-  
-//       res.status(200).json(cardPaymentData);
-//     } catch (error) {
-//       console.error('Error fetching card payment data:', error);
-//       res.status(500).json({ message: 'Server Error' });
-//     }
-//   };
-
-exports.getCardPaymentById = async (req, res) => {
+exports.getPayerDetails = async (req, res) => {
+    try {
+        const payerId = req.params.id;
+        const payer = await PayerInfo.findById(payerId);
+        res.status(200).json(payer);
+    } catch (error) {
+        console.error('Error fetching payer details:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+exports.getCardPaymentByPayerId = async (req, res) => {
     try {
       const { id } = req.params;
-      const cardPayment = await CardPayment.findById(id).populate('payer');
+      const cardPayment = await CardPayment.findOne({ payer: id });
   
       if (!cardPayment) {
         return res.status(404).json({ message: 'Card payment not found' });
       }
   
-      const { payer, cardNumber } = cardPayment;
-      const { name, email, phonenumber, address, purpose, amount } = payer;
-  
-      const cardPaymentData = {
-        payerName: name,
-        payerEmail: email,
-        payerPhoneNumber: phonenumber,
-        payerAddress: address,
-        purpose,
-        amount,
-        cardNumber,
-      };
-  
-      res.status(200).json(cardPaymentData);
+      res.status(200).json(cardPayment);
     } catch (error) {
       console.error('Error fetching card payment data:', error);
       res.status(500).json({ message: 'Server Error' });
     }
   };
+  
