@@ -61,9 +61,13 @@ const PrivateTrainingDetails = () => {
     }
   };
   
-
   const handleRejectTraining = async () => {
     try {
+      // If an instructor has been added and the training is rejected, remove the instructor
+      if (instructor && status === 'rejected') {
+        setInstructor('');
+      }
+  
       await axios.put(`http://localhost:9000/training/reject/${id}`);
       setTraining(prevTraining => ({
         ...prevTraining,
@@ -75,7 +79,7 @@ const PrivateTrainingDetails = () => {
       console.error('Error rejecting training:', error);
     }
   };
-
+  
   const handleOpenModal = (imageUrl) => {
     setModalImageUrl(imageUrl);
     setIsModalOpen(true);
@@ -144,17 +148,19 @@ const PrivateTrainingDetails = () => {
           </div>
         )}
       </div>
-      <div>
-        <h3>Assign an Instructor</h3>
-        <input
-          type="text"
-          value={instructor}
-          onChange={(e) => setInstructor(e.target.value)}
-          placeholder="Enter new instructor's name"
-          id='instructor'
-        />
-        <button onClick={handleUpdateInstructor}>Add Instructor</button>
-      </div>
+      {status !== 'rejected' && (
+          <div>
+            <h3>Assign an Instructor</h3>
+            <input
+              type="text"
+              value={instructor}
+              onChange={(e) => setInstructor(e.target.value)}
+              placeholder="Enter new instructor's name"
+              id='instructor'
+            />
+            <button onClick={handleUpdateInstructor}>Add Instructor</button>
+          </div>
+        )}
       <div>
         <h3>Application status</h3>
         {renderActionButtons()}
