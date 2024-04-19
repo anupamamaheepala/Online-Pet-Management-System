@@ -79,7 +79,7 @@ const FeedbackAdminDisplay = () => {
             </div>
 
             <Footer />
-        </>
+        </> 
     );
 }
 

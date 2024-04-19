@@ -1,90 +1,83 @@
-//AllAdvertisements.js
-
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import '../css/advertisement.css';
+import axios from 'axios';
 
 const AllAdvertisements = () => {
     const [advertisements, setAdvertisements] = useState([]);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
-        fetchAdvertisements();
+        getAllConfirmedAdvertisements();
     }, []);
 
-    const fetchAdvertisements = async () => {
+    const getAllConfirmedAdvertisements = async () => {
         try {
-            // Mocking advertisement data
-            const data = [
-                {
-                    id: 1,
-                    type: "Pets for sale",
-                    title: "Ad Title 1",
-                    description: "Description of the pet for sale.",
-                    price: "LKRXXX",
-                    contact: "Contact details"
-                },
-                {
-                    id: 2,
-                    type: "Lost & found",
-                    title: "Lost Pet Title 1",
-                    description: "Description of the lost pet.",
-                    contact: "Contact details"
-                },
-                {
-                    id: 3,
-                    type: "Pets for sale",
-                    title: "Ad Title 1",
-                    description: "Description of the pet for sale.",
-                    price: "LKRXXX",
-                    contact: "Contact details"
-                },
-                {
-                    id: 4,
-                    type: "Lost & found",
-                    title: "Lost Pet Title 1",
-                    description: "Description of the lost pet.",
-                    contact: "Contact details"
-                },
-                // Add more advertisement data as needed
-            ];
-            setAdvertisements(data);
+            const res = await axios.get("http://localhost:9000/confirmedads/confirmedads");
+            setAdvertisements(res.data);
         } catch (error) {
             console.error('Error fetching advertisements:', error);
         }
     };
 
+    const handleImageClick = (imageURL) => {
+        setSelectedImage(imageURL);
+    };
+
     return (
         <>
-        <Header/>
-            <div className="ma_advertisement-container">
-                {advertisements.map(advertisement => (
-                    <div key={advertisement.id} className="ma_advertisement-column">
-                        <h3>{advertisement.type}</h3>
-                        <div className="ma_advertisement-box">
-                            {/* You can conditionally render an image if available */}
-                            {advertisement.image && <img src={advertisement.image} alt={advertisement.title} className="ma_advertisement-photo" />}
-                            <div className="ma_advertisement-details">
-                                <h4>{advertisement.title}</h4>
-                                <p>{advertisement.description}</p>
-                                {advertisement.price && <p>Price: {advertisement.price}</p>}
-                                <p>Contact details: {advertisement.contact}</p>
-                                <div className="ma_advertisement-buttons">
-                                    <div className="ma_button-container">
-                                        <Link to="/ConfirmAdvertisement" className="ma_add_button ma_confirm_button1">Edit</Link>
-                                    </div>
-                                    <div className="ma_button-container">
-                                        <Link to="/AllAdvertisements" className="ma_add_button ma_reject_button">Delete</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <Header/>
+            
+                
+                    <div>
+                    <table className="ma_advertisement-table">
+                        <thead>
+                            <tr>
+                                <th>Owner Name</th>
+                                <th>Email</th>
+                                <th>Title</th>
+                                <th>Breed</th>
+                                <th>Purpose</th>
+                                <th>Description</th>
+                                <th>Pet's image</th>
+                                <th>Contact</th>
+                                <th>Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {advertisements.map(advertisement => (
+                                <tr key={advertisement._id}>
+                                    <td>{advertisement.ownerName}</td>
+                                    <td>{advertisement.email}</td>
+                                    <td>{advertisement.title}</td>
+                                    <td>{advertisement.Breed}</td>
+                                    <td>{advertisement.purpose}</td>
+                                    <td>{advertisement.description}</td>
+                                    <td>
+                                        <img 
+                                            src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} 
+                                            alt="Pet" 
+                                            style={{ width: '130px', height: '130px', cursor: 'pointer' }}
+                                            onClick={() => handleImageClick(`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`)}
+                                        />
+                                    </td>
+                                    <td>{advertisement.contact}</td>
+                                    <td>
+                                        <div className="ma_button-container">
+                                            <Link to={`/edit/${advertisement._id}`} className="ma_add_button ma_confirm_button1">Edit</Link>
+                                            <Link to={`/delete/${advertisement._id}`} className="ma_add_button ma_reject_button">Delete</Link>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                     </div>
-                ))}
-            </div>
+               
             <Footer />
-            </>
+        </>
     );
 }
 
