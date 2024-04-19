@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const appointmentController = require('../controller/MakeAppointmentController');
+const staffController = require('../controller/staffController');
 
 // Route to handle appointment creation
 router.post('/appointments', appointmentController.createAppointment);
@@ -13,5 +14,33 @@ router.delete('/appointments/:id', appointmentController.deleteAppointment);
 
 // Route to handle updating an appointment
 router.put('/appointments/:id', appointmentController.updateAppointment);
+
+// Add the PUT route
+router.put('/appointments/:id', async (req, res) => {
+    try {
+      const appointmentId = req.params.id;
+      const { IsAccept } = req.body;
+  
+      const updatedAppointment = await Appointment.findByIdAndUpdate(
+        appointmentId,
+        { IsAccept },
+        { new: true }
+      );
+  
+      if (updatedAppointment) {
+        res.json(updatedAppointment);
+      } else {
+        res.status(404).json({ error: 'Appointment not found' });
+      }
+    } catch (error) {
+      console.error('Error updating appointment:', error);
+      res.status(500).json({ error: 'Something went wrong' });
+    }
+  });
+
+  // Route to get the count of appointments where IsAccept is false
+router.get('/appointments/count', appointmentController.getUnacceptedAppointmentsCount);
+
+  
 
 module.exports = router;

@@ -90,8 +90,7 @@
 }
 
 /* Add to cart button */
-.oshibtn-primary{
-        display: block;
+PCbtn-primary{      display: block;
     width: 50%;
     padding: 10px;
     font-size: 1rem;
@@ -134,3 +133,29 @@
 .footer {
     margin-top: 50px;
 }
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    width: 25%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+

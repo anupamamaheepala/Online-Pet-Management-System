@@ -21,6 +21,7 @@ import Makeappointment from './pages/Makeappointment';
 import VetDashboard from './pages/VetDashboard';
 import VetNotifications from './pages/VetNotifications';
 import AllVetAppointments from './pages/AllVetAppointments';
+import GenerateVetReport from './pages/GenerateVetReport';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
 import Advertisement from './pages/Advertisement';
@@ -45,7 +46,11 @@ import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import TrainingDashboard from './pages/TrainingDashboard';
 import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
+import StepForm from './pages/StepForm';
+
+
 import Shop from './pages/Shop';
+
 import AllCustomers from './pages/AllCustomers';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
@@ -72,6 +77,8 @@ import SalaryTable from './pages/SalaryTable';
 import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
+import EditProduct from './pages/EditProduct';
+import Cardpayreport from './pages/Cardpayreport';
 
 function App() {
   return (
@@ -80,12 +87,17 @@ function App() {
         <CartProvider>
           <Routes>
           <Route path="/" element={<Home />} />
+          
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
+
+          <Route path="/:id" element={<ViewApplication/>}/>
+          <Route path="/StepForm" element={<StepForm/>}/>
           <Route path="/training/application:id" element={<ViewApplication/>}/>
+
 
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
@@ -103,6 +115,7 @@ function App() {
           <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/VetNotifications" element={<VetNotifications />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
+          <Route path="/GenerateVetReport" element={<GenerateVetReport />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
           <Route path="/AddAdvertisement" element={<AddAdvertisement />} />
@@ -136,7 +149,7 @@ function App() {
           <Route path="/OrderForm" element={<OrderForm />} />
           <Route path="/AllOrders" element={<AllOrders />} />
           <Route path="/Editpayinfo" element={<Editpayinfo />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password/:customerId" element={<ResetPassword />} />
           <Route path="/edit-profile/:customerId" element={<EditProfile />} />
           <Route path="/my-pets/:customerId" element={<MyPets />} />
           <Route path="/pet-profile/:petId" element={<PetProfile />} />
@@ -149,6 +162,9 @@ function App() {
           <Route path="/SalaryTable"  element={<SalaryTable/>} />
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
+          <Route path="/editproduct/:productId" element={<EditProduct />} />
+          <Route path="/Cardpayreport" element={<Cardpayreport />} />
+
           </Routes>
         </CartProvider>
       </Router>

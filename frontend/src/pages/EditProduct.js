@@ -1,83 +1,105 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../css/addingproduct.css';
 
-const EditProduct = ({ productId }) => {
-    const [editedProduct, setEditedProduct] = useState({
+const EditProduct = () => {
+    const { productId } = useParams();
+    const [productData, setProductData] = useState({
         itemName: '',
         category: '',
-        description: '',
-        image: null,
-        price: ''
+        image: null, // Added image state
+        price: '',
+        quantity: ''
     });
 
     useEffect(() => {
-        // Fetch the product details based on productId
-        axios.get(`http://localhost:9000/products/${productId}`)
-            .then((res) => {
-                const productData = res.data;
-                setEditedProduct(productData);
-            })
-            .catch((err) => {
-                alert(err.message);
-            });
-    }, [productId]);
+        fetchProductDetails();
+    }, []);
 
-    const handleChange = e => {
-        if (e.target.name === 'image') {
-            setEditedProduct({ ...editedProduct, [e.target.name]: e.target.files[0] });
-        } else {
-            setEditedProduct({ ...editedProduct, [e.target.name]: e.target.value });
+    const fetchProductDetails = async () => {
+        try {
+            const res = await axios.get(`http://localhost:9000/products/${productId}`);
+            setProductData(res.data);
+        } catch (error) {
+            console.error('Error fetching product details:', error);
         }
     };
 
-    const handleSubmit = async e => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProductData({ ...productData, [name]: value });
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setProductData({ ...productData, image: file });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Prepare form data for image upload
-            const formDataToSend = new FormData();
-            formDataToSend.append('itemName', editedProduct.itemName);
-            formDataToSend.append('category', editedProduct.category);
-            formDataToSend.append('description', editedProduct.description);
-            formDataToSend.append('image', editedProduct.image);
-            formDataToSend.append('price', editedProduct.price);
+            const formData = new FormData();
+            formData.append('itemName', productData.itemName);
+            formData.append('category', productData.category);
+            formData.append('image', productData.image); // Append image to form data
+            formData.append('price', productData.price);
+            formData.append('quantity', productData.quantity);
 
-            // Send edited product data to server
-            await axios.put(`http://localhost:9000/products/${productId}`, formDataToSend, {
+            await axios.put(`http://localhost:9000/products/${productId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
             alert('Product updated successfully');
         } catch (error) {
-            alert('Failed to update Product');
+            console.error('Failed to update product:', error);
+            alert('Failed to update product');
         }
     };
 
+    const { itemName, category, price, quantity } = productData;
+
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Edit Product</h2>
-            <div className="form-group">
-                <label htmlFor="itemName">Item Name:</label>
-                <input type="text" id="itemName" name="itemName" value={editedProduct.itemName} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="category">Category:</label>
-                <input type="text" id="category" name="category" value={editedProduct.category} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="description">Description:</label>
-                <textarea id="description" name="description" value={editedProduct.description} onChange={handleChange}></textarea>
-            </div>
-            <div className="form-group">
-                <label htmlFor="image">Image:</label>
-                <input type="file" id="image" name="image" onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="price">Price:</label>
-                <input type="text" id="price" name="price" value={editedProduct.price} onChange={handleChange} />
-            </div>
-            <button type="submit">Update</button>
-        </form>
+        <>
+            <Header />
+            <form className="product-form" onSubmit={handleSubmit}>
+                <h2>Edit product details</h2>
+                <div className="form-group">
+                    <label htmlFor="itemName">Item Name:</label>
+                    <input type="text" id="itemName" name="itemName" value={itemName} onChange={handleChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="category" className="category-label">Product category:</label>
+                    <select value={category} name="category" className="add-product-selector" onChange={handleChange}>
+                        <option value="Foods">Foods</option>
+                        <option value="Medicines">Medicines</option>
+                        <option value="Toys and Accessories">Toys and Accessories</option>
+                    </select>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="image">Image:</label>
+                    <input type="file" id="image" name="image" onChange={handleImageChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="price">Price:</label>
+                    <input type="number" id="price" name="price" value={price} onChange={handleChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value={quantity} onChange={handleChange} />
+                </div>
+
+                <button type="submit" className="submit-button">Submit</button>
+            </form>
+            <Footer />
+        </>
     );
 };
 

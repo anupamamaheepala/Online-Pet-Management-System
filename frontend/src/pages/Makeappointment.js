@@ -20,6 +20,7 @@ const MakeAppointment = () => {
   const [selectDate, setSelectDate] = useState('');
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
+  
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -39,7 +40,7 @@ const MakeAppointment = () => {
       });
 
     // Show SweetAlert message
-    Swal.fire({ icon: 'success', title: 'Appointment Created Successfully', showConfirmButton: false, timer: 1500 });
+    Swal.fire({ icon: 'success', title: 'Appointment Scheduled Successfully', showConfirmButton: false, timer: 1500 });
       /*toast.success('Appointment created successfully');*/
 
       // Clear form fields after successful submission
@@ -90,9 +91,8 @@ const MakeAppointment = () => {
             <label className="makeappointment_label" htmlFor="selectService">Select Service:</label>
             <select className="makeappointment_select" id="selectService" value={selectService} onChange={(e) => setSelectService(e.target.value)} required>
               <option value="">--Please select--</option>
-              <option value="Grooming">Grooming</option>
-              <option value="Check-up">Check-up</option>
-              <option value="Vaccination">Vaccination</option>
+              <option value="Veterinary Service">Veterinary Service</option>
+              <option value="Grooming Service">Grooming Service</option>
             </select>
           </div>
           <div className="makeappointment_input_container">
@@ -107,9 +107,9 @@ const MakeAppointment = () => {
             <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
             <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => setSelectProfession(e.target.value)} required>
               <option value="">--Please select--</option>
-              <option value="Veterinarian">Veterinarian</option>
-              <option value="Pet Groomer">Pet Groomer</option>
-              <option value="Pet Sitter">Pet Sitter</option>
+              <option value="Veterinarian">Dr D.K.Fernando</option>
+              <option value="Pet Groomer">Dr M.S.Perera</option>
+              <option value="Pet Sitter">Gr G.P.Mendis</option>
             </select>
           </div>
         </div>

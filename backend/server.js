@@ -13,6 +13,7 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
 
+
 // Importing route handlers for various endpoints
 
 const adsRoute = require("./routes/adverisementRoute");
@@ -31,6 +32,8 @@ const productRoutes = require('./routes/products');
 const uploadRoute =require("./routes/uploadRoute");
 const salaryRoute =require("./routes/salaryRoute");
 const productsRouter = require('./routes/products');
+const stepRoutes = require('./routes/stepRoute');
+
 
 const petRoute = require("./routes/petRoute"); 
 
@@ -43,7 +46,8 @@ const petRoute = require("./routes/petRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
 const banktransadminRoute = require('./routes/banktransadminRoute');
-const cartRouter = require('./routes/cart');
+
+
 
 
 
@@ -66,8 +70,11 @@ app.use("/feedbackinquiry", feedbackinquiry);
 app.use('/appointment', makeAppointmentRoute);
 app.use("/orders", orderRoute);
 app.use('/products', productRoutes);
+
+app.use("/step",stepRoutes );
+
 app.use('/pets', petRoute);
-app.use('/cart', cartRouter);
+
 
 
 

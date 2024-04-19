@@ -1,4 +1,5 @@
 const Appointment = require('../models/MakeAppointmentModel');
+const Staff = require('../models/staffModel');
 
 // Create a new appointment
 exports.createAppointment = async (req, res) => {
@@ -108,5 +109,44 @@ exports.updateAppointment = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
+// Get the count of appointments where IsAccept is false
+exports.getUnacceptedAppointmentsCount = async (req, res) => {
+  try {
+    const { IsAccept } = req.query;
+    const count = await Appointment.countDocuments({ IsAccept: IsAccept === 'True' });
+    res.status(200).json({ count });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
+exports.getAppointments = async (req, res) => {
+  try {
+    const { isAccept, isPaid, selectService } = req.query;
+
+    const filter = {};
+
+    // Check if the query parameters are provided
+    if (isAccept !== undefined) {
+      filter.IsAccept = isAccept === 'true';
+    }
+
+    if (isPaid !== undefined) {
+      filter.IsPaid = isPaid === 'true';
+    }
+
+    if (selectService) {
+      filter.selectService = selectService;
+    }
+
+    const appointments = await Appointment.find(filter);
+    res.json(appointments);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
   }
 };
