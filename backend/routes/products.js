@@ -71,28 +71,50 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Route to update product details
-router.put('/:id', upload.single('image'), async (req, res) => {
+
+// Route to get a specific product by ID
+router.get('/:id', async (req, res) => {
     try {
-        const { itemName, category, price, quantity } = req.body;
-        let image = req.file ? req.file.path : req.body.image; // Use the new image if provided, otherwise keep the old one
-
-        // Find the product by ID and update its details
-        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
-            itemName,
-            category,
-            image,
-            price,
-            quantity
-        }, { new: true });
-
-        res.json(updatedProduct);
+        // Fetch the product from the database by ID
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        res.json(product);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Error fetching product details:', error); // Log the error message
+        res.status(500).json({ message: 'Internal Server Error' }); // Send a generic error message
     }
 });
 
-// Route to delete a product
+// Route to update a product
+router.put('/:id', upload.single('image'), async (req, res) => {
+    try {
+        // Fetch the product from the database by ID
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Update the product fields based on the request body
+        product.itemName = req.body.itemName;
+        product.category = req.body.category;
+        product.price = req.body.price;
+        product.quantity = req.body.quantity;
+
+        // Check if a new image is uploaded
+        if (req.file) {
+            product.image = req.file.path;
+        }
+
+        // Save the updated product to the database
+        const updatedProduct = await product.save();
+        res.json(updatedProduct);
+    } catch (error) {
+        console.error('Error updating product:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 router.delete('/:id', async (req, res) => {
     const productId = req.params.id;
 
@@ -106,8 +128,10 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {
         console.error('Error deleting product:', error);
-        res.status(500).json({ message: 'Failed to delete product' });
-    }
+        res.status(500).json({ message: 'Failed to delete product' });
+    }
 });
+
+
 
 module.exports = router;

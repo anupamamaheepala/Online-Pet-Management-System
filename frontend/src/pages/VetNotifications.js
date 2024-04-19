@@ -4,15 +4,18 @@ import '../css/vetnotifications.css';
 import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
+import VetHeader from '../components/Vet components/VetHeader';
 
 const VetNotifications = () => {
-  // Initialize appointments from local storage or an empty array if it doesn't exist
-  const [appointments, setAppointments] = useState(
-    JSON.parse(localStorage.getItem('appointments')) || []
+  const [appointments, setAppointments] = useState([]);
+  const [acceptedAppointments, setAcceptedAppointments] = useState(
+    JSON.parse(localStorage.getItem('acceptedAppointments')) || []
+  );
+  const [rejectedAppointments, setRejectedAppointments] = useState(
+    JSON.parse(localStorage.getItem('rejectedAppointments')) || []
   );
 
   useEffect(() => {
-    // Fetch appointments when the component mounts
     fetchAppointments();
   }, []);
 
@@ -20,30 +23,24 @@ const VetNotifications = () => {
     try {
       const response = await axios.get('http://localhost:9000/appointment/appointments');
       const appointmentsData = response.data;
-      console.log('Appointments fetched:', appointmentsData); // Log fetched appointments
-      localStorage.setItem('appointments', JSON.stringify(appointmentsData));
+      console.log('Appointments fetched:', appointmentsData);
       setAppointments(appointmentsData);
     } catch (error) {
       console.error('Error fetching appointments:', error);
     }
   };
-  
+
   const handleAccept = async (appointmentId) => {
     try {
-      // Send a PUT request to update the IsAccept field to true
-      await axios.put(`http://localhost:9000/appointment/appointments/${appointmentId}`, {
-        IsAccept: true
-      });
-      
-      // Update the state to reflect the change, removing the accepted appointment
-      setAppointments((prevAppointments) => 
+      await axios.put(`http://localhost:9000/appointment/appointments/${appointmentId}`, { IsAccept: true });
+      setAcceptedAppointments([...acceptedAppointments, appointmentId]);
+      setAppointments((prevAppointments) =>
         prevAppointments.filter((appointment) => appointment._id !== appointmentId)
       );
-
-      // Show a SweetAlert success message
-      Swal.fire({ 
-        icon: 'success', 
-        title: 'Appointment Accepted', 
+      localStorage.setItem('acceptedAppointments', JSON.stringify([...acceptedAppointments, appointmentId]));
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Accepted',
         text: `You have successfully accepted the appointment.`,
       });
     } catch (error) {
@@ -53,15 +50,14 @@ const VetNotifications = () => {
 
   const handleReject = (appointmentId) => {
     try {
-      // Update the state to remove the rejected appointment
-      setAppointments((prevAppointments) => 
+      setRejectedAppointments([...rejectedAppointments, appointmentId]);
+      setAppointments((prevAppointments) =>
         prevAppointments.filter((appointment) => appointment._id !== appointmentId)
       );
-
-      // Show a SweetAlert success message
-      Swal.fire({ 
-        icon: 'success', 
-        title: 'Appointment Rejected', 
+      localStorage.setItem('rejectedAppointments', JSON.stringify([...rejectedAppointments, appointmentId]));
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Rejected',
         text: `You have successfully rejected the appointment.`,
       });
     } catch (error) {
@@ -71,7 +67,8 @@ const VetNotifications = () => {
 
   return (
     <>
-      <AdminHeader/>
+      <AdminHeader />
+      <VetHeader />
       <div>
         <h1>Vet Notifications</h1>
         <ul>
@@ -81,26 +78,36 @@ const VetNotifications = () => {
                 {appointment.ownerName} made an appointment for {appointment.selectService}
               </span>
               <div className="vetnotification_button_group">
-                <button
-                  className="vetnotification_accept_button"
-                  onClick={() => handleAccept(appointment._id)}
-                  disabled={appointment.IsAccept} // Disable the button if the appointment is already accepted
-                >
-                  Accept
-                </button>
-                <button
-                  className="vetnotification_reject_button"
-                  onClick={() => handleReject(appointment._id)}
-                >
-                  Reject
-                </button>
+                {acceptedAppointments.includes(appointment._id) && (
+                  <span className="vetnotification_accepted_text">Accepted</span>
+                )}
+                {rejectedAppointments.includes(appointment._id) && (
+                  <span className="vetnotification_rejected_text">Rejected</span>
+                )}
+                {!acceptedAppointments.includes(appointment._id) &&
+                  !rejectedAppointments.includes(appointment._id) && (
+                    <>
+                      <button
+                        className="vetnotification_accept_button"
+                        onClick={() => handleAccept(appointment._id)}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className="vetnotification_reject_button"
+                        onClick={() => handleReject(appointment._id)}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
               </div>
-              <hr className="vetnotification_divider" /> {/* Horizontal line after each appointment */}
+              <hr className="vetnotification_divider" />
             </li>
           ))}
         </ul>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/cardpayadmin.css'; // Import CSS file
 import jsPDF from 'jspdf';
+import AdminHeader from '../components/AdminHeader';
+import Footer from '../components/Footer';
 
 const CardPayAdmin = () => {
   const [cardPayments, setCardPayments] = useState([]);
@@ -46,6 +48,8 @@ const CardPayAdmin = () => {
   };
 
   return (
+    <>
+    <AdminHeader/>
     <div className="card-pay-admin-container">
       <h1 className="card-pay-admin-title">All Card Payments</h1>
       <input
@@ -81,6 +85,8 @@ const CardPayAdmin = () => {
       </table>
       <button className="cardpdfdownload" onClick={generatePDFReport}>Download Financial Report</button>
     </div>
+    <Footer/>
+    </>
   );
 };
 

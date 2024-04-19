@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import '../css/myappointments.css'; 
+import '../css/myappointments.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
@@ -42,7 +42,7 @@ const MyAppointments = () => {
       // After successful deletion, update the appointments state
       setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
       // Show success message
-      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', showConfirmButton: false, icon: 'success', timer:1500 });
+      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', showConfirmButton: false, icon: 'success', timer: 1500 });
     } catch (error) {
       console.error('Error deleting appointment:', error);
       Swal.fire({ title: 'Error', text: 'Failed to remove appointment', icon: 'error', confirmButtonText: 'OK' });
@@ -123,7 +123,7 @@ const MyAppointments = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div>
         <h1>My Appointments</h1>
         <ul>
@@ -141,17 +141,25 @@ const MyAppointments = () => {
                 <p>Appointment Status: {appointment.IsAccept ? 'Approved' : 'Pending'}</p>
               </section>
               <div className="button-container">
-                {appointment.IsAccept ? (
-                  <button className="myappointment_paynow_button" onClick={() => handlePayNow(appointment._id)}>Pay Now</button>
-                ) : null}
-                <button className="myappointment_modify_button" onClick={() => handleModify(appointment)}>Modify</button>
-                <button className="myappointment_remove_button" onClick={() => handleRemove(appointment._id)}>Remove</button>
+                {(!appointment.IsAccept && !appointment.IsPaid) ? (
+                  <>
+                    <button className="myappointment_modify_button" onClick={() => handleModify(appointment)}>Modify</button>
+                    <button className="myappointment_remove_button" onClick={() => handleRemove(appointment._id)}>Remove</button>
+                  </>
+                ) : (
+                  <>
+                    {!appointment.IsPaid && (
+                      <button className="myappointment_paynow_button" onClick={() => handlePayNow(appointment._id)}>Pay Now</button>
+                    )}
+                    <button className="myappointment_remove_button" onClick={() => handleRemove(appointment._id)}>Remove</button>
+                  </>
+                )}
               </div>
             </li>
           ))}
         </ul>
       </div>
-      <div ref={updateFormRef}></div> 
+      <div ref={updateFormRef}></div>
       {editingAppointment && (
         <div className="edit-form">
           <h2>Update Appointment</h2>
@@ -190,7 +198,7 @@ const MyAppointments = () => {
           </form>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 };

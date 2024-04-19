@@ -21,6 +21,7 @@ import Makeappointment from './pages/Makeappointment';
 import VetDashboard from './pages/VetDashboard';
 import VetNotifications from './pages/VetNotifications';
 import AllVetAppointments from './pages/AllVetAppointments';
+import GenerateVetReport from './pages/GenerateVetReport';
 import AllGroomeAppointments from './pages/AllGroomeAppointments';
 import MyAppointments from './pages/MyAppointments';
 import Advertisement from './pages/Advertisement';
@@ -77,6 +78,8 @@ import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
+import StaffLogin from './pages/StaffLogin';
+import Cardpayreport from './pages/Cardpayreport';
 
 function App() {
   return (
@@ -113,6 +116,7 @@ function App() {
           <Route path="/VetDashboard" element={<VetDashboard />} />
           <Route path="/VetNotifications" element={<VetNotifications />} />
           <Route path="/AllVetAppointments" element={<AllVetAppointments />} />
+          <Route path="/GenerateVetReport" element={<GenerateVetReport />} />
           <Route path="/AllGroomeAppointments" element={<AllGroomeAppointments />} />
           <Route path="/Advertisement" element={<Advertisement />} />
           <Route path="/AddAdvertisement" element={<AddAdvertisement />} />
@@ -160,6 +164,9 @@ function App() {
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
+          <Route path="/StaffLogin" element={<StaffLogin />} />
+          <Route path="/Cardpayreport" element={<Cardpayreport />} />
+
 
           </Routes>
         </CartProvider>

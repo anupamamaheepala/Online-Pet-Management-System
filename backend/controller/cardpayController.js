@@ -86,3 +86,31 @@ exports.getAllCardPaymentsWithPayerInfo = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
+
+exports.getPayerDetails = async (req, res) => {
+    try {
+        const payerId = req.params.id;
+        const payer = await PayerInfo.findById(payerId);
+        res.status(200).json(payer);
+    } catch (error) {
+        console.error('Error fetching payer details:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+exports.getCardPaymentByPayerId = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const cardPayment = await CardPayment.findOne({ payer: id });
+  
+      if (!cardPayment) {
+        return res.status(404).json({ message: 'Card payment not found' });
+      }
+  
+      res.status(200).json(cardPayment);
+    } catch (error) {
+      console.error('Error fetching card payment data:', error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
+  

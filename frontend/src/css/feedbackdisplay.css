@@ -1,6 +1,3 @@
-/* feedbackdisplay.css */
-
-/* General page styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
@@ -71,18 +68,3 @@ body {
 .actionButtons button:hover {
   background-color: #0056b3; /* Change hover color */
 }
-
-.faq-button-feedback,
-.faq-button-inquiry{
-    display: block; /* Make the buttons block-level elements */
-    width: 200px; /* Adjust button width as needed */
-    margin: 0 auto 10px; /* Center the button and add bottom margin for spacing */
-    padding: 15px; /* Add padding to the buttons */
-    background-color: #000000; /* Set background color */
-    color: #fff; /* Set text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Add border radius */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    font-size: 18px; /* Set the font size */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-  }
