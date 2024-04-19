@@ -540,8 +540,9 @@ const PetProfile = () => {
           <img src={petData.profilePhoto} alt="Profile" className="pet-profile-photo" />
         </div>
         <div className="profile-photo-input-wrapper">
-          <button onClick={handleDeleteProfilePhoto} className="delete-photo-button">Delete Photo</button>
           <input type="file" onChange={onFileChange} className="profile-photo-input" />
+          <button onClick={handleDeleteProfilePhoto} className="delete-photo-button">Delete Photo</button>
+          
         </div>
         </div>
         <div className="pet-pro-info">
