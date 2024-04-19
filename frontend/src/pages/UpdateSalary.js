@@ -24,13 +24,14 @@ function UpdateSalary(props) {
         
         axios.get(`http://localhost:9000/salary/${id}`)
             .then(response => {
-                    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, bonusAmount, totalSalary } = response.data;
+                    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
                     setLastName(lastName);
                     setSelectedMonth(selectedMonth);
                     setBasicSalary(basicSalary);
                     setOtHours(otHours);
+                    setOtRate(otRate);
                     setBonusAmount(bonusAmount);
                     setTotalSalary(totalSalary);
                 

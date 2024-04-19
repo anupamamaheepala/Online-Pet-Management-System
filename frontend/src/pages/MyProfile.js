@@ -362,10 +362,10 @@ const handleDeleteProfilePhoto = async () => {
               <div className="mypdivleft">
                 <div className="smypinfoimg">
                   <img src={customerData.profilePhoto} alt="Profile" className="ProfilePhoto_custom" />
-                  <button onClick={handleDeleteProfilePhoto} className="ProfilePhotoDeleteButton_custom">Delete Photo</button>
                 </div>
                 <div className="mypinfoimg">
                   <input type="file" name="image" onChange={onFileChange} className="ProfilePhotoInput_custom" />
+                  <button onClick={handleDeleteProfilePhoto} className="ProfilePhotoDeleteButton_custom">Delete Photo</button>
                 </div>
                 <div className="editreset_container">
                 <Link to={`/reset-password/${customerId}`} className="ResetPasswordButton_custom">Reset Password</Link>

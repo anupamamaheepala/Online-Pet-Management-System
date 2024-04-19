@@ -25,12 +25,10 @@
   }
   
   .ProfilePhoto_custom {
-    width: 150px;
-    height:150px;
+    width: 60%;
+    height: auto;
     border-radius: 50%;
     object-fit: cover;
-    
-    ;
   }
   
   .ProfilePhotoInput_custom {
@@ -138,7 +136,6 @@
     
   }
   
-  
   .smypinfoimg{
     display: flex;
     justify-content: center;
@@ -148,4 +145,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .ProfilePhotoDeleteButton_custom{
+    display: block;
+    width: 25%;
+    padding: 10px;
+    font-size: 0.7rem;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+
+  .ProfilePhotoDeleteButton_custom:hover{
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
   }

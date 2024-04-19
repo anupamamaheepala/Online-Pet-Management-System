@@ -29,7 +29,7 @@ exports.addStep = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
-/*
+
 exports.getStep = async (req, res) =>{
     try{
         const step = await Steps.find();
@@ -39,4 +39,3 @@ exports.getStep = async (req, res) =>{
         res.status(500).json({ error: "Server error"})
     }
 };
-*/
