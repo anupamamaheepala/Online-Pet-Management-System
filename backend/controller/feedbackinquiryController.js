@@ -1,47 +1,3 @@
-// // const FeedbackInquiry = require('../models/feedbackinquirymodel');
-
-// // // Controller function to handle saving feedback data
-// // const saveFeedback = async (req, res) => {
-// //   try {
-// //     const { feedback, email, name } = req.body;
-// //     const newFeedback = new FeedbackInquiry({
-// //       feedback,
-// //       email,
-// //       name,
-// //     });
-// //     await newFeedback.save();
-// //     res.status(201).json({ message: 'Feedback saved successfully' });
-// //   } catch (error) {
-// //     res.status(500).json({ error: 'An error occurred while saving feedback' });
-// //   }
-// // };
-
-// // module.exports = {
-// //   saveFeedback
-// // };
-// const FeedbackInquiry = require('../models/feedbackinquirymodel');
-
-// // Controller function to handle saving feedback data
-// const saveFeedback = async (req, res) => {
-//   try {
-//     const { feedback, email, name } = req.body;
-//     const newFeedback = new FeedbackInquiry({
-//       feedback,
-//       email,
-//       name,
-//     });
-//     await newFeedback.save();
-//     res.status(201).json({ message: 'Feedback saved successfully' });
-//   } catch (error) {
-//     res.status(500).json({ error: 'An error occurred while saving feedback' });
-//   }
-// };
-
-// module.exports = {
-//   saveFeedback
-// };
-// feedbackinquiryController.js
-
 const FeedbackInquiry = require('../models/feedbackinquirymodel');
 
 const saveFeedback = async (req, res) => {
@@ -78,8 +34,36 @@ const getFeedback = async (req, res) => {
   }
 };
 
+
+const updateFeedback = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { feedback, email, name, reply } = req.body;
+
+    // Check if the feedback exists
+    const existingFeedback = await FeedbackInquiry.findById(id);
+    if (!existingFeedback) {
+      return res.status(404).json({ error: 'Feedback not found' });
+    }
+
+    // Update the feedback fields
+    existingFeedback.feedback = feedback;
+    existingFeedback.email = email;
+    existingFeedback.name = name;
+    existingFeedback.reply = reply;
+
+    // Save the updated feedback
+    await existingFeedback.save();
+
+    res.status(200).json({ message: 'Feedback updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while updating feedback' });
+  }
+};
+
 module.exports = {
   saveFeedback,
   deleteFeedback,
-  getFeedback
+  getFeedback,
+  updateFeedback
 };

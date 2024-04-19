@@ -4,6 +4,7 @@ import '../css/feedbackadmininquiry.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import jsPDF from 'jspdf';
+import {Link} from "react-router-dom";
 
 const FeedbackInquiryAdmin = () => {
   const [feedbackData, setFeedbackData] = useState([]);
@@ -85,6 +86,11 @@ const FeedbackInquiryAdmin = () => {
                 <td>{feedback.feedback}</td>
                 <td>
                   <button onClick={() => handleDelete(feedback._id)}>Delete</button>
+                </td>
+                <td>
+                  <Link to={`/FeedbackReply/${feedback._id}/${feedback.name}/${feedback.email}/${feedback.feedback}`}>
+                  <button className='' >Reply</button>
+                  </Link>
                 </td>
               </tr>
             ))}
