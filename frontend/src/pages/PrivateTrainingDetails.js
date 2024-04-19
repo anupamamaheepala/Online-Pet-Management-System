@@ -40,8 +40,8 @@ const PrivateTrainingDetails = () => {
       console.log('Instructor updated successfully');
       // Display alert after successfully adding instructor
       window.alert('Instructor successfully added');
-      // Pass instructor name to TrainingDashboard
-      location.state = { instructorName: instructor };
+      // Store instructor's name in local storage
+      localStorage.setItem('instructorName', instructor);
       // Update the training object in the frontend state
       setTraining(prevTraining => ({
         ...prevTraining,
@@ -51,7 +51,6 @@ const PrivateTrainingDetails = () => {
       console.error('Error updating instructor:', error);
     }
   };
-  
   
 
   const handleApproveTraining = async () => {
@@ -80,6 +79,11 @@ const PrivateTrainingDetails = () => {
 
   const handleRejectTraining = async () => {
     try {
+      // Clear the instructor's name from local storage
+      localStorage.removeItem('instructor');
+      // Clear the instructor's name from state
+      setInstructor('');
+      // Update the training status to 'rejected'
       await axios.put(`http://localhost:9000/training/reject/${id}`);
       setTraining(prevTraining => ({
         ...prevTraining,
@@ -90,7 +94,8 @@ const PrivateTrainingDetails = () => {
     } catch (error) {
       console.error('Error rejecting training:', error);
     }
-  };
+  }
+  
 
   const handleOpenModal = (imageUrl) => {
     setModalImageUrl(imageUrl);

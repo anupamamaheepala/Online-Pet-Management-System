@@ -9,6 +9,10 @@ const TrainingDashboard = () => {
   const [trainings, setTrainings] = useState([]);
   const [reportData, setReportData] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [approvedCount, setApprovedCount] = useState(0);
+  const [rejectedCount, setRejectedCount] = useState(0);
+  
 
   useEffect(() => {
     fetchTrainings();
@@ -17,7 +21,12 @@ const TrainingDashboard = () => {
   const fetchTrainings = async () => {
     try {
       const response = await axios.get('http://localhost:9000/training/all');
-      setTrainings(response.data);
+      const data = response.data;
+      setTrainings(data);
+      // Calculate counts for each status
+      setPendingCount(data.filter(training => training.status === 'pending').length);
+      setApprovedCount(data.filter(training => training.status === 'approved').length);
+      setRejectedCount(data.filter(training => training.status === 'rejected').length);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -56,9 +65,14 @@ const TrainingDashboard = () => {
         })
       );
       console.log('Training approved successfully');
-    } catch (error) {
-      console.error('Error approving training:', error);
-    }
+
+    // Update the approved count
+    setApprovedCount(prevCount => prevCount + 1);
+    // Decrease the pending count
+    setPendingCount(prevCount => prevCount - 1);
+  } catch (error) {
+    console.error('Error approving training:', error);
+  }
   };
 
   const generatePDF = () => {
@@ -121,6 +135,20 @@ const TrainingDashboard = () => {
   return (
     <div>
       <AdminHeader />
+      <div className="dashboard-header">
+        <div>
+          Pending Applications: {pendingCount}
+        </div>
+        <div>
+          Approved Applications: {approvedCount}
+        </div>
+        <div>
+          Rejected Applications: {rejectedCount}
+        </div>
+        <div className="total-count">
+          Total Applications: {trainings.length}
+        </div>
+      </div>
       <h2>Training Manager Dashboard</h2>
       <div className="button-row">
         <a href="PrivateTrainingPrograms">
