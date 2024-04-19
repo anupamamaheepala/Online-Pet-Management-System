@@ -36,7 +36,6 @@ const PrivateTrainingDetails = () => {
 
   const handleUpdateInstructor = async () => {
     try {
-      // Update the instructorName property in addition to updating the state
       await axios.put(`http://localhost:9000/training/updateInstructor/${id}`, { instructor });
       console.log('Instructor updated successfully');
       // Display alert after successfully adding instructor
@@ -53,6 +52,7 @@ const PrivateTrainingDetails = () => {
     }
   };
   
+  
 
   const handleApproveTraining = async () => {
     try {
@@ -67,7 +67,8 @@ const PrivateTrainingDetails = () => {
       await axios.put(`http://localhost:9000/training/approve/${id}`);
       setTraining(prevTraining => ({
         ...prevTraining,
-        status: 'approved'
+        status: 'approved',
+        instructorName: instructor, // Update the instructor's name in the frontend state
       }));
       window.alert('Application approved');
       console.log('Training approved successfully');

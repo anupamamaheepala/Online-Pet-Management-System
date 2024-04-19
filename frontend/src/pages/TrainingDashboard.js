@@ -93,7 +93,7 @@ const TrainingDashboard = () => {
         .map((training) => [
           training.ownerName,
           training.dogName,
-          training.instructorName,
+          training.instructor,
           new Date(training.submissionDateTime).toLocaleDateString(),
         ]);
 
@@ -164,17 +164,18 @@ const TrainingDashboard = () => {
                   ? 'Approved'
                   : 'Rejected'}
               </td>
-              <td>{training.instructorName || 'Not Assigned'}</td>
+              <td>{training.instructor || 'Not Assigned'}</td>
 
               <td>
-                <Link
-                  to={{
-                    pathname: `/training/${training._id}`,
-                    state: { instructorName: training.instructorName },
-                  }}
-                >
-                  View Details
-                </Link>
+              <Link
+  to={{
+    pathname: `/training/${training._id}`,
+    state: { instructorName: training.instructor},
+  }}
+>
+  View Details
+</Link>
+
               </td>
               <td>
                 <button onClick={() => handleDelete(training._id)}>Delete</button>
