@@ -3,9 +3,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../css/Trainingdashboard.css'; // Import the CSS file
 import AdminHeader from '../components/AdminHeader';
+import jsPDF from 'jspdf';
+
 
 const TrainingDashboard = () => {
     const [trainings, setTrainings] = useState([]);
+    const[reportData, setReportData] = useState(null);
+    const [searchResults, setSearchResults] = useState([]);
   
     useEffect(() => {
       fetchTrainings();
@@ -40,6 +44,59 @@ const TrainingDashboard = () => {
         }
     };
 
+    const generatePDF = () => {
+        const doc = new jsPDF();
+        const reportTitle = 'Approved Training Applicants';
+        
+        // Adding logo
+        const logo = new Image();
+        logo.src = '/images/logo.png';
+
+        logo.onload = function(){
+            const logoWidth = 40;
+            const xPosition = 10;
+            const yPosition = 10;
+
+            doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+
+            // Calculate title position
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const titleWidth = doc.getStringUnitWidth(reportTitle) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+            const titleXPosition = (pageWidth - titleWidth) / 2;
+            const titleYPosition = yPosition + logoWidth + 10;
+            
+            doc.setFontSize(18);
+            doc.text(reportTitle, titleXPosition, titleYPosition);
+
+            // Generate table data
+            const tableData = trainings.filter(training => training.status === 'approved').map(training => [
+                training.ownerName,
+                training.dogName,
+                training.instructorName,
+                new Date(training.submissionDateTime).toLocaleDateString()
+            ]);
+
+            // Generate the rest of the PDF content
+            doc.setFontSize(12);
+            doc.autoTable({
+                startY: titleYPosition + 10,
+                head: [['Owner Name', 'Dog Name', 'Instructor Name', 'Date']],
+                body: tableData,
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 3,
+                },
+                headStyles: {
+                    fillColor: [128, 128, 128],
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold',
+                },
+            });
+
+            doc.save('training-details.pdf');
+        };
+    };
+
 
     return (
         <div>
@@ -53,7 +110,8 @@ const TrainingDashboard = () => {
                 <button className='alo1-button'> + Manage Private Programs</button>
                 </a>
                 <button className='alo1-button'> Manage Group Programs</button>
-                
+                <button className="report-button" onClick={generatePDF}>Download Report</button>
+
             </div>
            
             <table className="alo1-table">
