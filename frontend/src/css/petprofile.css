@@ -1,0 +1,114 @@
+/* petprofile.css */
+
+.pet-profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .pet-profile-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .pet-profile-photo-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .pet-profile-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .pet-profile-delete-photo-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px 12px;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-photo-input-label {
+    display: block;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .profile-photo-input-label:hover {
+    opacity: 0.8;
+  }
+  
+  .profile-photo-input {
+    display: none;
+  }
+  
+  .pet-profile-info-wrapper {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .pet-profile-info-label {
+    font-weight: bold;
+  }
+  
+  .pet-profile-info-value {
+    margin-left: 10px;
+  }
+  
+  .pet-profile-vaccine-section {
+    margin-top: 20px;
+  }
+  
+  .pet-profile-vaccine-section h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .pet-profile-vaccine-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pet-profile-vaccine-section li {
+    margin-bottom: 5px;
+  }
+  
+  .pet-profile-button,
+  .delete-pet-profile-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .delete-pet-profile-button {
+    background-color: #dc3545;
+  }
+  
+  .pet-profile-button:hover,
+  .delete-pet-profile-button:hover {
+    opacity: 0.8;
+  }
+  
