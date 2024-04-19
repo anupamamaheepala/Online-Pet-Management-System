@@ -34,7 +34,7 @@ const AddedProduct = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             try {
-                await axios.delete(`http://localhost:9000/products/${id}`);
+                await axios.delete(`http://localhost:9000/products/${id}`); // Fix syntax here
                 setProducts(products.filter((product) => product._id !== id));
                 alert('Product deleted successfully');
             } catch (error) {
@@ -43,6 +43,8 @@ const AddedProduct = () => {
             }
         }
     };
+    
+
 
     const handleImageClick = (imageURL) => {
         setSelectedImage(imageURL);
