@@ -1,10 +1,9 @@
-// AddingProduct.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/addingproduct.css';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 const AddingProduct = () => {
     const [formData, setFormData] = useState({
@@ -48,8 +47,21 @@ const AddingProduct = () => {
                 price: '',
                 quantity: 0
             });
+
+            // Display success notification using SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Product added successfully',
+            });
         } catch (err) {
             console.error('Error adding product:', err);
+            // Display error notification using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to add product',
+            });
         }
     };
 
