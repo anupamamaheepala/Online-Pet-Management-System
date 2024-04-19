@@ -57,6 +57,21 @@ exports.deleteAdById = async (req, res) => {
     }
 };
 
+exports.deletecomAdById = async (req, res) => {
+    try {
+        console.log("Deleting advertisement with ID:", req.params.id); // Log the ID
+        const deletedAd = await ConfirmedAds.findByIdAndDelete(req.params.id);
+        if (!deletedAd) {
+            return res.status(404).json({ message: "Advertisement not found" });
+        }
+        res.status(200).json({ message: "Advertisement deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting advertisement:", error); // Log any errors
+        res.status(500).json({ message: "Failed to delete advertisement" });
+    }
+};
+
+
 exports.confirmAdvertisement = async (req, res) => {
     try {
         const adId = req.params.id;

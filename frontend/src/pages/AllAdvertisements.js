@@ -21,6 +21,22 @@ const AllAdvertisements = () => {
             console.error('Error fetching advertisements:', error);
         }
     };
+    const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this Advertisement?")) {
+            try {
+                await axios.delete(`http://localhost:9000/confirmedads/confirmedads/${id}`);
+                setAdvertisements(prevAds => prevAds.filter((advertisement) => advertisements._id !== id));
+    
+                alert('Advertisement deleted successfully');
+            } catch (error) {
+                console.log(error)
+                alert('Failed to delete Advertisement');
+            }
+        } else {
+            alert('Deletion cancelled.');
+        }
+    };
+    
 
     const handleImageClick = (imageURL) => {
         setSelectedImage(imageURL);
@@ -29,9 +45,7 @@ const AllAdvertisements = () => {
     return (
         <>
             <Header/>
-            
-                
-                    <div>
+    
                     <table className="ma_advertisement-table">
                         <thead>
                             <tr>
@@ -67,14 +81,14 @@ const AllAdvertisements = () => {
                                     <td>
                                         <div className="ma_button-container">
                                             <Link to={`/edit/${advertisement._id}`} className="ma_add_button ma_confirm_button1">Edit</Link>
-                                            <Link to={`/delete/${advertisement._id}`} className="ma_add_button ma_reject_button">Delete</Link>
+                                            <button className="btn btn-danger" onClick={() => handleDelete(advertisement._id)}>Delete</button>
                                         </div>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    </div>
+                    
                
             <Footer />
         </>
