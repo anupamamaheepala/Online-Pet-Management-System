@@ -39,7 +39,7 @@ const AllAdvertisements = () => {
       const tableData = confirmedads.map((advertisement) => [
         advertisement.ownerName,
         advertisement.email,
-        advertisement.title,
+        advertisement.pet_type,
         advertisement.Breed,
         advertisement.purpose,
         advertisement.description
@@ -50,7 +50,7 @@ const AllAdvertisements = () => {
       doc.setFontSize(15);
       doc.autoTable({
         startY: yPosition + logoWidth + 10,
-        head: [['Owner Name', 'Owner Email', 'Title', 'Breed', 'Purpose', 'Description']],
+        head: [['Owner Name', 'Owner Email', 'Pet Type', 'Breed', 'Purpose', 'Description']],
         body: tableData,
         styles: {
           fontSize: 10,
@@ -97,7 +97,7 @@ const AllAdvertisements = () => {
           <tr>
             <th>Owner Name</th>
             <th>Email</th>
-            <th>Title</th>
+            <th>pet type</th>
             <th>Breed</th>
             <th>Purpose</th>
             <th>Description</th>
@@ -111,7 +111,7 @@ const AllAdvertisements = () => {
             <tr key={advertisement._id}>
               <td>{advertisement.ownerName}</td>
               <td>{advertisement.email}</td>
-              <td>{advertisement.title}</td>
+              <td>{advertisement.pet_type}</td>
               <td>{advertisement.Breed}</td>
               <td>{advertisement.purpose}</td>
               <td>{advertisement.description}</td>
