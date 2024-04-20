@@ -1,0 +1,49 @@
+.acreportdownloadbtn{
+    display: block;
+    width: 70%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: 10px;;
+}
+
+.acreportdownloadbtn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+  }
+
+.customer_details_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customer_details_table th,
+.customer_details_table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.customer_details_table th:first-child,
+.customer_details_table td:first-child {
+    width: 5%; /* Adjust width for the index column */
+}
+
+.customer_details_table th:last-child,
+.customer_details_table td:last-child {
+    width: 10%; /* Adjust width for the actions column */
+}
+
+/* Adjust width for other columns as needed */
+.customer_details_table th:not(:first-child):not(:last-child),
+.customer_details_table td:not(:first-child):not(:last-child) {
+    width: 20%;
+}
