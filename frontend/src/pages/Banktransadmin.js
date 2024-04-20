@@ -254,6 +254,8 @@
 // export default Banktransadmin;
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import AdminHeader from '../components/AdminHeader';
+import Footer from '../components/Footer';
 import '../css/banktransadmin.css';
 
 const Banktransadmin = () => {
@@ -291,6 +293,8 @@ const Banktransadmin = () => {
   };
 
   return (
+    <>
+    <AdminHeader/>
     <div className="bank-transactions-container">
       <center><h1>Bank Transactions</h1></center>
       <br/>
@@ -321,6 +325,8 @@ const Banktransadmin = () => {
         ))}
       </ul>
     </div>
+    <Footer/>
+    </>
   );
 };
 
