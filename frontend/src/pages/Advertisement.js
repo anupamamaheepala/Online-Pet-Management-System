@@ -1,6 +1,3 @@
-
-// Advertisement.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -10,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Advertisement = () => {
     const [advertisements, setAdvertisements] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -25,6 +23,10 @@ const Advertisement = () => {
             });
     }, []);
 
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
     if (error) {
         return (
             <>
@@ -35,6 +37,11 @@ const Advertisement = () => {
         );
     }
 
+    // Filter advertisements based on search query
+    const filteredAdvertisements = advertisements.filter(advertisement =>
+        advertisement.pet_type && advertisement.pet_type.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
             <Header />
@@ -42,14 +49,23 @@ const Advertisement = () => {
                 <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
                 <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
             </div>
+            <div className="ma_search-container">
+                <input
+                    type="text"
+                    placeholder="Search pet type..."
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    className="ma_search-input"
+                />
+            </div>
             <div className="ma_advertisement-container">
-                {advertisements.map(advertisement => (
+                {filteredAdvertisements.map(advertisement => (
                     <div key={advertisement._id} className="ma_advertisement-card">
                         <img src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} alt={advertisement.title} 
                         style={{ width: '200px', height: '200px', cursor: 'pointer' }}
                         className="ma_advertisement-image" />
                         <div className="ma_advertisement-details">
-                            <h3 className="ma_advertisement-title">{advertisement.pet_type}</h3>
+                            <h3 className="ma_advertisement-description">{advertisement.Breed}</h3>
                             <p className="ma_advertisement-description">{advertisement.description}</p>
                             <p className="ma_advertisement-contact">Contact: {advertisement.contact}</p>
                             {advertisement.price && <p className="ma_advertisement-price">Price: {advertisement.price}</p>}

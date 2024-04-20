@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+import '../css/advertisement.css';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import '../css/advertisement.css';
+import Swal from 'sweetalert2';
+import EditAdvertisement from './EditAdvertisement';
 
 const AllAdvertisements = () => {
   const [advertisements, setAdvertisements] = useState([]);
   const [confirmedads, setConfirmedAds] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [editAdvertisementId, setEditAdvertisementId] = useState(null);
+  const [editingAdvertisement, setEditingAdvertisement] = useState(null);
+  const [advertisementid, setAdvertisementId] = useState(null);
+
+  const [formData, setFormData] = useState({
+    ownerName: '',
+    email: '',
+    pet_type: '',
+    Breed: '',
+    purpose: '',
+    description: '',
+    contact: '',
+    filePath: null
+  });
 
   useEffect(() => {
     getAllConfirmedAdvertisements();
@@ -23,6 +41,23 @@ const AllAdvertisements = () => {
       console.error('Error fetching advertisements:', error);
     }
   };
+
+  const handleEdit = (id) => {
+    Swal.fire({
+      title: 'Edit Advertisement',
+      text: 'Do you want to edit this advertisement?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, edit it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setEditAdvertisementId(id);
+      }
+    });
+  };
+
 
   const generatePdf = () => {
     const doc = new jsPDF();
@@ -83,6 +118,60 @@ const AllAdvertisements = () => {
       alert('Deletion cancelled.');
     }
   };
+  const handleImageClick = (imageURL) => {
+    setSelectedImage(imageURL);
+  };
+
+  
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, filePath: e.target.files[0] });
+  };
+  const handleCancel = () => {
+    setEditingAdvertisement(null);
+    setFormData({
+      ownerName: '',
+      email: '',
+      pet_type: '',
+      Breed: '',
+      purpose: '',
+      description: '',
+      contact: '',
+      filePath: null
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+
+      await axios.put(`http://localhost:9000/confirmedads/confirmedads/${editingAdvertisement._id}`, formDataToSend);
+      alert('Advertisement updated successfully');
+      setEditingAdvertisement(null);
+      setFormData({
+        ownerName: '',
+        email: '',
+        pet_type: '',
+        Breed: '',
+        purpose: '',
+        description: '',
+        contact: '',
+        filePath: null
+      });
+      getAllConfirmedAdvertisements();
+    } catch (error) {
+      console.error('Error updating advertisement:', error);
+      alert('Failed to update advertisement');
+    }
+  };
 
   return (
     <>
@@ -124,8 +213,10 @@ const AllAdvertisements = () => {
               </td>
               <td>{advertisement.contact}</td>
               <td>
-                <div className="ma_button-container">
-                  <button>Edit</button>
+              <div className="ma_button-container">
+              <Link to={`/EditAdvertisement/${advertisement._id}`}>
+  <button className="btn btn-warning" onClick={() => handleEdit(advertisement._id)}>Edit</button>
+</Link>
                   <button className="btn btn-danger" onClick={() => handleDelete(advertisement._id)}>Delete</button>
                 </div>
               </td>
