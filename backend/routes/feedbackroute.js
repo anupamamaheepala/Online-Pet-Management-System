@@ -10,8 +10,7 @@ router.delete("/:id", feedbackController.deleteFeedback);
 router.put("/:id", feedbackController.updateFeedback);
 router.post("/:id/like", feedbackController.likeFeedback);
 router.post("/:id/dislike", feedbackController.dislikeFeedback);
-                // router.post("/:id/reply", feedbackController.replyToFeedback);
 router.get("/customer", feedbackController.getCustomerFeedback);
-
+router.post("/:id/reply", feedbackController.replyToFeedback);
 
 module.exports = router;
