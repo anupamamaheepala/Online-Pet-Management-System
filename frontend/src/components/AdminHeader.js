@@ -63,16 +63,16 @@ const AdminHeader = () => {
             </Nav.Link>
             <Nav.Link
               as={Link}
-              to="/groomer"
-              eventKey="/groomer"
+              to="/GroomeDashboard"
+              eventKey="/GroomeDashboard"
               style={
-                activeLink === '/groomer'
+                activeLink === '/GroomeDashboard'
                   ? activeStyle
-                  : highlightedLink === '/groomer'
+                  : highlightedLink === '/GroomeDashboard'
                   ? highlightedStyle
                   : {}
               }
-              onMouseEnter={() => handleMouseEnter('/groomer')}
+              onMouseEnter={() => handleMouseEnter('/GroomeDashboard')}
               onMouseLeave={handleMouseLeave}
             >
               Groomer

@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
 import { Bell } from 'react-bootstrap-icons';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
-const VetHeader = () => {
+const GroomerHeader = () => {
   const [notificationCount, setNotificationCount] = useState(0);
+  const [groomeAppointmentCount, setGroomeAppointmentCount] = useState(0);
   const [highlightedItem, setHighlightedItem] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMouseInDropdown, setIsMouseInDropdown] = useState(false);
 
   const handleNotificationClick = () => {
     axios
-      .get('http://localhost:9000/appointment/appointments', {
-        params: { IsAccept: false },
+      .get('http://localhost:9000/appointment/grooming-appointments', {
+        params: { IsAccept: false, selectService: 'Grooming Service' },
       })
       .then((response) => {
         const pendingAppointments = response.data;
-  
+
         if (pendingAppointments.length === 0) {
-          MySwal.fire('No Pending Appointments', 'You have no pending appointments at the moment.', 'info');
+          MySwal.fire('No Pending Appointments', 'You have no pending grooming appointments at the moment.', 'info');
         } else {
           const appointmentList = pendingAppointments.map((appointment, index) => (
             <div key={appointment._id}>
@@ -32,36 +32,48 @@ const VetHeader = () => {
               <hr />
             </div>
           ));
-  
+
           MySwal.fire({
-            title: 'Pending Appointments',
+            title: 'Pending Grooming Appointments',
             html: <div>{appointmentList}</div>,
             showCancelButton: true,
             confirmButtonText: 'View Notifications',
             cancelButtonText: 'Close',
             preConfirm: () => {
-              window.location.href = '/VetNotifications';
+              window.location.href = '/GroomerNotifications';
             },
           });
         }
       })
       .catch((error) => {
         console.error('Error fetching pending appointments:', error);
-        MySwal.fire('Error', 'Failed to fetch pending appointments.', 'error');
+        MySwal.fire('Error', 'Failed to fetch pending grooming appointments.', 'error');
       });
   };
 
   useEffect(() => {
+    // Fetch grooming appointments count
     axios
-      .get('http://localhost:9000/appointment/appointments/count', {
-        params: { IsAccept: false },
+      .get('http://localhost:9000/appointment/grooming-appointments/count', {
+        params: { IsAccept: false, IsPaid: false, selectService: 'Grooming Service' },
       })
       .then((response) => {
-        console.log('Response data:', response.data);
+        setGroomeAppointmentCount(response.data.count);
+      })
+      .catch((error) => {
+        console.error('Error fetching grooming appointment count:', error);
+      });
+
+    // Fetch notification count
+    axios
+      .get('http://localhost:9000/appointment/grooming-appointments/count', {
+        params: { IsAccept: false, selectService: 'Grooming Service' },
+      })
+      .then((response) => {
         setNotificationCount(response.data.count);
       })
       .catch((error) => {
-        console.error('Error fetching appointment count:', error);
+        console.error('Error fetching notification count:', error);
       });
   }, []);
 
@@ -133,7 +145,7 @@ const VetHeader = () => {
             onMouseLeave={handleDropdownMouseLeave}
           >
             <NavDropdown.Item
-              href="/VetNotifications"
+              href="/GroomerNotifications"
               style={getSubmenuItemStyle('pendingAppointments')}
               onMouseEnter={() => handleMouseEnter('pendingAppointments')}
               onMouseLeave={handleMouseLeave}
@@ -141,7 +153,7 @@ const VetHeader = () => {
               Pending Appointments
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="/AllVetAppointments"
+              href="/GroomeNotifications"
               style={getSubmenuItemStyle('approvedAppointments')}
               onMouseEnter={() => handleMouseEnter('approvedAppointments')}
               onMouseLeave={handleMouseLeave}
@@ -150,12 +162,12 @@ const VetHeader = () => {
             </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link
-            style={getItemStyle('reports')}
-            href="#reports"
-            onMouseEnter={() => handleMouseEnter('reports')}
+            style={getItemStyle('schedule')}
+            href="#schedule"
+            onMouseEnter={() => handleMouseEnter('schedule')}
             onMouseLeave={handleMouseLeave}
           >
-            Reports
+            Schedule
           </Nav.Link>
           <Nav.Link
             style={getItemStyle('settings')}
@@ -168,26 +180,26 @@ const VetHeader = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">
-  <div style={{ marginRight: '30px' }}>
-    <Button
-      variant="outline-primary"
-      style={{ position: 'relative', color: 'white', borderColor: 'white' }}
-      onClick={handleNotificationClick}
-    >
-      <Bell color="white" />
-      <Badge
-        pill
-        variant="danger"
-        className="position-absolute"
-        style={{ top: -10, right: -10 }}
-      >
-        {notificationCount}
-      </Badge>
-    </Button>
-  </div>
-</Navbar.Collapse>
+        <div style={{ marginRight: '30px' }}>
+          <Button
+            variant="outline-primary"
+            style={{ position: 'relative', color: 'white', borderColor: 'white' }}
+            onClick={handleNotificationClick}
+          >
+            <Bell color="white" />
+            <Badge
+              pill
+              variant="danger"
+              className="position-absolute"
+              style={{ top: -10, right: -10 }}
+            >
+              {notificationCount}
+            </Badge>
+          </Button>
+        </div>
+      </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default VetHeader;
+export default GroomerHeader;

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const appointmentController = require('../controller/MakeAppointmentController');
-const staffController = require('../controller/staffController');
+const staffsController = require('../controller/staffController');
 
 // Route to handle appointment creation
 router.post('/appointments', appointmentController.createAppointment);
@@ -41,6 +41,10 @@ router.put('/appointments/:id', async (req, res) => {
   // Route to get the count of appointments where IsAccept is false
 router.get('/appointments/count', appointmentController.getUnacceptedAppointmentsCount);
 
-  
+// Define routes
+router.get('/grooming-appointments/count', appointmentController.getUnacceptedGroomingAppointmentsCount);
 
+// GET Groomers
+router.get('/', staffsController.getStaffs);
+  
 module.exports = router;
