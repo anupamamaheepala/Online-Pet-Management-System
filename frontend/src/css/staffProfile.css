@@ -30,22 +30,26 @@
 .staffProfile-update-btn {
   background-color: #28a745;
   color: #fff;
+  font-size: 16px;
 }
 
 .staffProfile-delete-btn {
   background-color: #dc3545;
   color: #fff;
+  font-size: 16px;
 }
 
 .staffProfile-leave-btn {
   background-color: #007bff;
   color: #fff;
+  font-size: 16px;
 }
 
 .staffProfile-update-btn:hover,
 .staffProfile-delete-btn:hover,
 .staffProfile-leave-btn:hover {
   opacity: 0.8;
+  text-decoration: none;
 }
 
 
