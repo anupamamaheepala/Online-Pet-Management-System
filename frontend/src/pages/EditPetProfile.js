@@ -267,6 +267,7 @@ const EditPetProfile = () => {
                             onChange={(e) => handleVaccinationChange(index, 'vaccineType', e.target.value)}
                             className="editPetProfileInput"
                         />
+                        <br></br>
 
                         <label htmlFor={`dateAdministered-${index}`} className="editPetProfileLabel">Date Administered:</label>
                         <input
@@ -290,6 +291,7 @@ const EditPetProfile = () => {
                 ))}
 
                 {/* Button to add a new vaccination entry */}
+                <center><div className="editpetpro-btncon">
                 <button
                     type="button"
                     onClick={addVaccination}
@@ -302,6 +304,7 @@ const EditPetProfile = () => {
                 <button type="submit" className="editPetProfileSubmitButton">
                     Update Profile
                 </button>
+                </div></center>
             </form>
         </div>
     );

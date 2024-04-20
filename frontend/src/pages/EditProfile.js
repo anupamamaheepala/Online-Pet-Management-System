@@ -147,7 +147,7 @@ const EditProfile = () => {
             <center><button type="submit" className="save-profile-button">Save</button></center>
             
           </form>
-          <Link to={`/MyProfile/${customerId}`} className="back-to-profile-button">Back to My Profile</Link>
+          
         </div>
         <Footer />
       </>

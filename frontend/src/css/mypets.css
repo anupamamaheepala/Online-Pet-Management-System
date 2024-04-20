@@ -53,3 +53,24 @@
   text-decoration: none;
   color: black;
 }
+
+.addto-pet-button{
+  width: 100%;
+  height: 40%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.addto-pet-button:hover{
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
