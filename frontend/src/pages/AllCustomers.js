@@ -828,44 +828,7 @@ const AllCustomers = () => {
         );
     });
 
-    // const generatePDFReport = () => {
-    //     const doc = new jsPDF();
     
-    //     // Path to your site logo
-    //     const logoURL = '/images/logo.png';
-    
-    //     // Add the logo to the PDF
-    //     doc.addImage(logoURL, 'PNG', 20, 10, 30, 30); // Adjust position and size as needed
-    
-    //     // Add a title to the PDF
-    //     doc.text('Customer Report', 80, 30);
-    
-    //     // Add headers for the table
-    //     const headers = ['#', ...Object.keys(selectedColumns).filter(key => selectedColumns[key]).map(key => key.charAt(0).toUpperCase() + key.slice(1))];
-    
-    //     // Add rows to the table
-    //     const rows = filteredCustomers.map((customer, index) => {
-    //         const row = [index + 1, ...Object.keys(selectedColumns).filter(key => selectedColumns[key]).map(key => key === 'contact' ? customer.contactNumbers.join(', ') : customer[key])];
-    //         return row;
-    //     });
-    
-    //     // Add a table to the PDF
-    //     doc.autoTable({
-    //         startY: 50, // Adjust startY position as needed
-    //         headStyles: {
-    //             fillColor: [0, 0, 0], // Black color for the table head
-    //             textColor: [255, 255, 255] // White text color for the table head
-    //         },
-    //         head: [headers],
-    //         body: rows,
-    //         columnStyles: {
-    //             0: { cellWidth: 10 } // Adjust width for the index number column
-    //         },
-    //     });
-    
-    //     // Save the PDF
-    //     doc.save('customer_report.pdf');
-    // };
     const generatePDFReport = () => {
         const doc = new jsPDF();
     
@@ -929,7 +892,7 @@ const AllCustomers = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <button className="acreportdownloadbtn" onClick={generatePDFReport}>Download PDF Report</button>
-                <div>
+                <div className="selectac-con">
                     <label>
                         <input
                             type="checkbox"

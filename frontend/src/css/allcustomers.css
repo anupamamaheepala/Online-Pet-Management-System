@@ -1,6 +1,6 @@
 .acreportdownloadbtn{
     display: block;
-    width: 70%;
+    width: 50%;
     padding: 10px;
     font-size: 1rem;
     color: #fff;
@@ -46,4 +46,12 @@
 .customer_details_table th:not(:first-child):not(:last-child),
 .customer_details_table td:not(:first-child):not(:last-child) {
     width: 20%;
+}
+
+.selectac-con{
+    width: 100%;
+}
+
+.customer-SearchBar-container{
+    width: 30%;
 }
