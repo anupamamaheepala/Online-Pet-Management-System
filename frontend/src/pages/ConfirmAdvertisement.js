@@ -64,7 +64,7 @@ const ConfirmAdvertisement = () => {
                     <tr>
                         <th>Owner Name</th>
                         <th>Email</th>
-                        <th>Title</th>
+                        <th>Pet type</th>
                         <th>Breed</th>
                         <th>Purpose</th>
                         <th>Description</th>
@@ -78,7 +78,7 @@ const ConfirmAdvertisement = () => {
                         <tr key={ad._id}>
                             <td>{ad.ownerName}</td>
                             <td>{ad.email}</td>
-                            <td>{ad.title}</td>
+                            <td>{ad.pet_type}</td>
                             <td>{ad.Breed}</td>
                             <td>{ad.purpose}</td>
                             <td>{ad.description}</td>

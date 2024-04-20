@@ -1,0 +1,40 @@
+.viewservices-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .viewservices-item {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .viewservices-item h2 {
+    margin-top: 0;
+  }
+  
+  .viewservices-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .viewserviceupdate-button,
+  .viewservicedelete-button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .viewserviceupdate-button {
+    background-color: #4caf50;
+  }
+  
+  .viewservicedelete-button {
+    background-color: #f44336;
+  }

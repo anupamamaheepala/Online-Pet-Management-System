@@ -6,7 +6,7 @@ exports.addAdvertisement = async (req, res) => {
         const {
             ownerName,
             email,
-            title,
+            pet_type,
             Breed,
             purpose,
             description,
@@ -21,7 +21,7 @@ exports.addAdvertisement = async (req, res) => {
         const newAdvertisement = new Ads({
             ownerName,
             email,
-            title,
+            pet_type,
             Breed,
             purpose,
             description,
@@ -85,7 +85,7 @@ exports.confirmAdvertisement = async (req, res) => {
         const confirmedAd = new ConfirmedAds({
             ownerName: ad.ownerName,
             email: ad.email,
-            title: ad.title,
+            pet_type: ad.pet_type,
             Breed: ad.Breed,
             purpose: ad.purpose,
             description: ad.description,
@@ -123,7 +123,7 @@ exports.updateConfirmedAd = async (req, res) => {
       const updatedData = {
         ownerName: req.body.ownerName,
         email: req.body.email,
-        title: req.body.title,
+        pet_type: req.body.pet_type,
         Breed: req.body.Breed,
         purpose: req.body.purpose,
         description: req.body.description,

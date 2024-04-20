@@ -171,27 +171,3 @@ exports.getAppointments = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-
-exports.getStaffs = async (req, res) => {
-  try {
-    const { designation, search } = req.query;
-
-    const query = {
-      designation: designation || '',
-    };
-
-    if (search) {
-      const nameRegex = new RegExp(search, 'i'); // Case-insensitive search
-      query.$or = [
-        { sfirstname: nameRegex },
-        { slastname: nameRegex },
-      ];
-    }
-
-    const staffs = await Staff.find(query);
-    res.json(staffs);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
-  }
-};
