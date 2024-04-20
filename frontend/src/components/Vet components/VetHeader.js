@@ -3,12 +3,53 @@ import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
 import { Bell } from 'react-bootstrap-icons';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const MySwal = withReactContent(Swal);
 const VetHeader = () => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [highlightedItem, setHighlightedItem] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMouseInDropdown, setIsMouseInDropdown] = useState(false);
+
+  const handleNotificationClick = () => {
+    axios
+      .get('http://localhost:9000/appointment/appointments', {
+        params: { IsAccept: false },
+      })
+      .then((response) => {
+        const pendingAppointments = response.data;
+  
+        if (pendingAppointments.length === 0) {
+          MySwal.fire('No Pending Appointments', 'You have no pending appointments at the moment.', 'info');
+        } else {
+          const appointmentList = pendingAppointments.map((appointment, index) => (
+            <div key={appointment._id}>
+              <p>
+                {index + 1}. {appointment.ownerName} - {appointment.selectService}
+              </p>
+              <hr />
+            </div>
+          ));
+  
+          MySwal.fire({
+            title: 'Pending Appointments',
+            html: <div>{appointmentList}</div>,
+            showCancelButton: true,
+            confirmButtonText: 'View Notifications',
+            cancelButtonText: 'Close',
+            preConfirm: () => {
+              window.location.href = '/VetNotifications';
+            },
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching pending appointments:', error);
+        MySwal.fire('Error', 'Failed to fetch pending appointments.', 'error');
+      });
+  };
 
   useEffect(() => {
     axios
@@ -16,6 +57,7 @@ const VetHeader = () => {
         params: { IsAccept: false },
       })
       .then((response) => {
+        console.log('Response data:', response.data);
         setNotificationCount(response.data.count);
       })
       .catch((error) => {
@@ -126,25 +168,24 @@ const VetHeader = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">
-        <div style={{ marginRight: '30px' }}>
-          <Link to="/VetNotifications">
-            <Button
-              variant="outline-primary"
-              style={{ position: 'relative', color: 'white', borderColor: 'white' }}
-            >
-              <Bell color="white" />
-              <Badge
-                pill
-                variant="danger"
-                className="position-absolute"
-                style={{ top: -10, right: -10 }}
-              >
-                {notificationCount}
-              </Badge>
-            </Button>
-          </Link>
-        </div>
-      </Navbar.Collapse>
+  <div style={{ marginRight: '30px' }}>
+    <Button
+      variant="outline-primary"
+      style={{ position: 'relative', color: 'white', borderColor: 'white' }}
+      onClick={handleNotificationClick}
+    >
+      <Bell color="white" />
+      <Badge
+        pill
+        variant="danger"
+        className="position-absolute"
+        style={{ top: -10, right: -10 }}
+      >
+        {notificationCount}
+      </Badge>
+    </Button>
+  </div>
+</Navbar.Collapse>
     </Navbar>
   );
 };

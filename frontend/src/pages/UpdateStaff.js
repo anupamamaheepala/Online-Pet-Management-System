@@ -15,8 +15,13 @@ const UpdateStaff = () => {
     semail: '',
     scontactNumber: '',
     saddress: '',
-    designation: ''
+    designation: '',
+    qualifications: ''
   });
+
+  const [contactNumberError, setContactNumberError] = useState('');
+  const [firstnameError, setFirstnameError] = useState('');
+  const [lastnameError, setLastnameError] = useState('');
 
   useEffect(() => {
     axios.get(`http://localhost:9000/staff/${staffId}`)
@@ -31,8 +36,35 @@ const UpdateStaff = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  
+    if (name === 'scontactNumber') {
+      if (value === '' || /^\d+$/.test(value)) {
+        setFormData({ ...formData, [name]: value });
+        setContactNumberError('');
+      } else {
+        setContactNumberError('Contact number should contain only numbers');
+      }
+    } else if (name === 'sfirstname' || name === 'slastname') {
+      if (/^[a-zA-Z\s]*$/.test(value) || value === '' || value.slice(0, -1) === formData[name].slice(0, -1)) {
+        setFormData({ ...formData, [name]: value });
+        if (name === 'sfirstname') {
+          setFirstnameError('');
+        } else {
+          setLastnameError('');
+        }
+      } else {
+        if (name === 'sfirstname') {
+          setFirstnameError('First name should contain only letters and spaces');
+        } else {
+          setLastnameError('Last name should contain only letters and spaces');
+        }
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+  
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,10 +92,12 @@ const UpdateStaff = () => {
           <div className="UpadateStaffregister-form-group">
             <label className='UpadateStaffregister-form-label'>First Name:</label>
             <input className="UpadateStaffregister-form-input" type="text" name="sfirstname" value={formData.sfirstname} onChange={handleChange} required />
+            {firstnameError && <span className="error">{firstnameError}</span>}
           </div>
           <div className="UpadateStaffregister-form-group">
             <label className='UpadateStaffregister-form-label'>Last Name:</label>
             <input className="UpadateStaffregister-form-input" type="text" name="slastname" value={formData.slastname} onChange={handleChange} required />
+            {lastnameError && <span className="error">{lastnameError}</span>}
           </div>
           <div className="UpadateStaffregister-form-group">
             <label className='UpadateStaffregister-form-label'>NIC No:</label>
@@ -76,6 +110,7 @@ const UpdateStaff = () => {
           <div className="UpadateStaffregister-form-group">
             <label className='UpadateStaffregister-form-label'>Contact Number:</label>
             <input className="UpadateStaffregister-form-input" type="tel" name="scontactNumber" value={formData.scontactNumber} onChange={handleChange} maxLength={10} required />
+            {contactNumberError && <span className="error">{contactNumberError}</span>}
           </div>
           <div className="UpadateStaffregister-form-group">
             <label className='UpadateStaffregister-form-label'>Address:</label>
@@ -85,6 +120,10 @@ const UpdateStaff = () => {
             <label className='UpadateStaffregister-form-label'>Designation:</label>
             <input className="UpadateStaffregister-form-input" type="text" name="designation" value={formData.designation} onChange={handleChange} required />
           </div>
+          <div className="UpadateStaffregister-form-group">
+            <label className='UpadateStaffregister-form-label'>Qualifications:</label>
+            <textarea name="qualifications" id="qualifications" value={formData.qualifications} onChange={handleChange} rows={4} cols={50} />
+        </div>
           <br></br>
           <center><button className="UpadateStaff-button" type="submit">Update</button></center>
         &nbsp;

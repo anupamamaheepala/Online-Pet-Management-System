@@ -45,7 +45,7 @@ const petRoute = require("./routes/petRoute");
 //const cardpayRoute = require("./routes/cardpayRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
-const banktransadminRoute = require('./routes/banktransadminRoute');
+
 
 
 

@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../css/feedbackadmininquiry.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import jsPDF from 'jspdf';
+import {Link} from "react-router-dom";
 
 const FeedbackInquiryAdmin = () => {
   const [feedbackData, setFeedbackData] = useState([]);
@@ -40,6 +42,25 @@ const FeedbackInquiryAdmin = () => {
     );
   });
 
+  const GenReport = () => {
+    const doc = new jsPDF('');
+    const title = "Feedback Report";
+    const titleMargin = 20;
+    const tableMargin = 20;
+    const titleWidth = doc.getTextWidth(title);
+    const center = (doc.internal.pageSize.width / 2) - (titleWidth / 2);
+
+    doc.text(title, center, titleMargin);
+
+    doc.autoTable({
+      head: [['Name', 'Email', 'Feedback']],
+      body: filteredData.map((val, i) => [val.name, val.email, val.feedback]),
+      startY: titleMargin + tableMargin
+    });
+
+    doc.save('Inquiry Report.pdf');
+  };
+
   return (
     <>
       <Header />
@@ -66,10 +87,18 @@ const FeedbackInquiryAdmin = () => {
                 <td>
                   <button onClick={() => handleDelete(feedback._id)}>Delete</button>
                 </td>
+                <td>
+                  <Link to={`/FeedbackReply/${feedback._id}/${feedback.name}/${feedback.email}/${feedback.feedback}`}>
+                  <button className='' >Reply</button>
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <div className='genButton'>
+          <button onClick={GenReport}>Generate Report</button>
+        </div>
       </div>
       <Footer />
     </>
