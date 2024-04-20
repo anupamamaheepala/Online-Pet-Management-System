@@ -44,7 +44,5 @@ router.get('/appointments/count', appointmentController.getUnacceptedAppointment
 // Define routes
 router.get('/grooming-appointments/count', appointmentController.getUnacceptedGroomingAppointmentsCount);
 
-// GET Groomers
-router.get('/', staffsController.getStaffs);
   
 module.exports = router;
