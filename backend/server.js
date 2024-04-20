@@ -37,6 +37,8 @@ const stepRoutes = require('./routes/stepRoute');
 
 const petRoute = require("./routes/petRoute"); 
 
+const servicesRoute = require('./routes/ServiceRoute');
+
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -74,6 +76,8 @@ app.use('/products', productRoutes);
 app.use("/step",stepRoutes );
 
 app.use('/pets', petRoute);
+
+app.use('/services', servicesRoute);
 
 
 
