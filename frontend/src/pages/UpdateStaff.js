@@ -15,7 +15,8 @@ const UpdateStaff = () => {
     semail: '',
     scontactNumber: '',
     saddress: '',
-    designation: ''
+    designation: '',
+    qualifications: ''
   });
 
   const [contactNumberError, setContactNumberError] = useState('');
@@ -119,6 +120,10 @@ const UpdateStaff = () => {
             <label className='UpadateStaffregister-form-label'>Designation:</label>
             <input className="UpadateStaffregister-form-input" type="text" name="designation" value={formData.designation} onChange={handleChange} required />
           </div>
+          <div className="UpadateStaffregister-form-group">
+            <label className='UpadateStaffregister-form-label'>Qualifications:</label>
+            <textarea name="qualifications" id="qualifications" value={formData.qualifications} onChange={handleChange} rows={4} cols={50} />
+        </div>
           <br></br>
           <center><button className="UpadateStaff-button" type="submit">Update</button></center>
         &nbsp;
