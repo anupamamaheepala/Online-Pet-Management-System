@@ -103,24 +103,37 @@ exports.getStaffByIdForSalary = async (req, res) => {
   }
 };
 
-
-exports.authenticateStaff = async (req, res) => {
+exports.staffLogin = async (req, res) => {
   try {
-    const { staffId, nic } = req.body;
+    const { staffId, password } = req.body;
 
-    // Check if a staff member with the provided staff ID and NIC exists
-    const staff = await Staff.findOne({ staffId, snic: nic });
+    // Find the staff member by staffId
+    const staff = await Staff.findOne({ staffId });
 
-    if (!staff) {
+    // Check if staff member exists and if the provided password matches
+    if (!staff || staff.snic !== password) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // If authentication succeeds, you can generate a JWT token and send it back to the client
-    // Example: const token = generateToken(staff);
-    // Return the token or any other response you want
-    res.status(200).json({ message: 'Authentication successful', staff });
+    // If authentication is successful, return the staffId
+    res.status(200).json({ staffId });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+exports.getStaffProfileById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const staff = await Staff.findOne({ staffId: id }); // Using staffId instead of _id
+    if (!staff) {
+      return res.status(404).json({ message: 'Staff member not found' });
+    }
+    res.json(staff);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to fetch staff details' });
+  }
+};
+

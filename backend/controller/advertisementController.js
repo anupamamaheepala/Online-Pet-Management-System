@@ -57,6 +57,21 @@ exports.deleteAdById = async (req, res) => {
     }
 };
 
+exports.deletecomAdById = async (req, res) => {
+    try {
+        console.log("Deleting advertisement with ID:", req.params.id); // Log the ID
+        const deletedAd = await ConfirmedAds.findByIdAndDelete(req.params.id);
+        if (!deletedAd) {
+            return res.status(404).json({ message: "Advertisement not found" });
+        }
+        res.status(200).json({ message: "Advertisement deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting advertisement:", error); // Log any errors
+        res.status(500).json({ message: "Failed to delete advertisement" });
+    }
+};
+
+
 exports.confirmAdvertisement = async (req, res) => {
     try {
         const adId = req.params.id;
@@ -102,3 +117,35 @@ exports.getAllConfirmedAdvertisements = async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 };
+
+exports.updateConfirmedAd = async (req, res) => {
+    try {
+      const updatedData = {
+        ownerName: req.body.ownerName,
+        email: req.body.email,
+        title: req.body.title,
+        Breed: req.body.Breed,
+        purpose: req.body.purpose,
+        description: req.body.description,
+        contact: req.body.contact,
+        filePath: req.file ? `uploads/${req.file.filename}` : req.body.filePath,
+        // Add any other fields you want to update here
+        // Example: field1: req.body.field1,
+        // Example: field2: req.body.field2,
+      };
+  
+      const confirmedAd = await ConfirmedAd.findByIdAndUpdate(
+        req.params.id,
+        updatedData,
+        { new: true }
+      );
+  
+      if (!confirmedAd) {
+        return res.status(404).json({ message: 'Advertisement not found' });
+      }
+      res.json(confirmedAd);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
