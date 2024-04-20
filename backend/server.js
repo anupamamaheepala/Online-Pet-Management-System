@@ -11,7 +11,8 @@ require("dotenv").config();
 const dbconfig = require("./config/dbconfig");
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
-
+const path = require('path')
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Importing route handlers for various endpoints
