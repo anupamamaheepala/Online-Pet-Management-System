@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import '../css/staffProfile.css';
 
 const StaffProfile = () => {
   const [staff, setStaff] = useState(null);
@@ -23,18 +24,20 @@ const StaffProfile = () => {
 
   
   const handleDelete = () => {
-    // Logic for deleting staff profile
+
   };
 
   const handleApplyForLeave = () => {
-    // Logic for applying for leave
   };
 
   return (
-    <div>
-      <h2>Staff Profile</h2>
+    
+    <div className='StaffProfileContainer'>
+      <br></br><br></br>
+      <center><h2>Profile Information</h2></center>
+      <br></br>
       {staff && (
-        <div>
+        <div className='staffProfile'>
           <p>Staff ID: {staff.staffId}</p>
           <p>First Name: {staff.sfirstname}</p>
           <p>Last Name: {staff.slastname}</p>
@@ -43,10 +46,12 @@ const StaffProfile = () => {
           <p>Contact Number: {staff.scontactNumber}</p>
           <p>Address: {staff.saddress}</p>
           <p>Designation: {staff.designation}</p>
-          {/* Add more details if needed */}
-          <Link className="staffList-update-btn" to={`/update/${staff._id}`}>Update</Link>
-          <button className="staffList-delete-btn" onClick={() => handleDelete(staff._id)}>Delete</button>
-          <Link className="staffList-leave-btn" to={`/StaffLeaveForm/${staff._id}`}>Apply For Leave</Link>
+          <p>Qualifications: {staff.qualifications}</p>
+
+          <br></br>
+          <Link className="staffProfile-update-btn" to={`/update/${staff._id}`}>Update</Link>
+          <button className="staffProfile-delete-btn" onClick={() => handleDelete(staff._id)}>Delete</button>
+          <Link className="staffProfile-leave-btn" to={`/StaffLeaveForm/${staff._id}`}>Apply For Leave</Link>
         </div>
       )}
     </div>
