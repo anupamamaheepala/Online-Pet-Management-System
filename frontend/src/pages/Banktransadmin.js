@@ -293,16 +293,17 @@ const Banktransadmin = () => {
   return (
     <div className="bank-transactions-container">
       <center><h1>Bank Transactions</h1></center>
+      <br/>
       <ul>
         {bankTransactions.map((transaction) => (
           <li key={transaction._id} className="transaction-item">
             <div className="transaction-details">
-              <strong>Bank Name:</strong> {transaction.bankName}<br />
-              <strong>Branch Name:</strong> {transaction.branchName}<br />
               <strong>Payer Name:</strong> {transaction.payer.name}<br />
               <strong>Payer Email:</strong> {transaction.payer.email}<br />
               <strong>Purpose:</strong> {transaction.payer.purpose}<br />
               <strong>Amount:</strong> {transaction.payer.amount}<br />
+              <strong>Bank Name:</strong> {transaction.bankName}<br />
+              <strong>Branch Name:</strong> {transaction.branchName}<br />
             </div>
             
             <img
