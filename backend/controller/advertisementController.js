@@ -134,7 +134,7 @@ exports.updateConfirmedAd = async (req, res) => {
         // Example: field2: req.body.field2,
       };
   
-      const confirmedAd = await ConfirmedAd.findByIdAndUpdate(
+      const confirmedAd = await ConfirmedAds.findByIdAndUpdate(
         req.params.id,
         updatedData,
         { new: true }
@@ -149,3 +149,44 @@ exports.updateConfirmedAd = async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
     }
   };
+  exports.getAdvertisementById = async (req, res) => {
+    try {
+      const advertisement = await ConfirmedAds.findById(req.params.id);
+      if (!advertisement) {
+        return res.status(404).json({ message: 'Advertisement not found' });
+      }
+      res.json(advertisement);
+    } catch (error) {
+      console.error('Error fetching advertisement:', error);
+      res.status(500).json({ message: 'Error fetching advertisement', error: error.message });
+    }
+  };
+  
+  // Controller function to update advertisement by ID
+  exports.updateAdvertisementById = async (req, res) => {
+    try {
+        const updatedData = {
+          ownerName: req.body.ownerName,
+          email: req.body.email,
+          pet_type: req.body.pet_type,
+          Breed: req.body.Breed,
+          purpose: req.body.purpose,
+          description: req.body.description,
+          contact: req.body.contact,
+        };
+    
+        const confirmedAd = await ConfirmedAds.findByIdAndUpdate(
+          req.params.id,
+          updatedData,
+          { new: true }
+        );
+    
+        if (!confirmedAd) {
+          return res.status(404).json({ message: 'Advertisement not found' });
+        }
+        res.json(confirmedAd);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+      }
+};
