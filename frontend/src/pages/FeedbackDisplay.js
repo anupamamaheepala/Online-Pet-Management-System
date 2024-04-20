@@ -28,6 +28,30 @@ const FeedbackDisplay = () => {
         return stars;
     };
 
+    // Function to handle thumbs up button click
+    const handleLike = async (feedbackId, index) => {
+        try {
+            const response = await axios.post(`http://localhost:9000/feedback/${feedbackId}/like`);
+            const updatedFeedbackList = [...feedbackList];
+            updatedFeedbackList[index] = response.data;
+            setFeedbackList(updatedFeedbackList);
+        } catch (error) {
+            console.error('Error liking feedback:', error);
+        }
+    };
+
+    // Function to handle thumbs down button click
+    const handleDislike = async (feedbackId, index) => {
+        try {
+            const response = await axios.post(`http://localhost:9000/feedback/${feedbackId}/dislike`);
+            const updatedFeedbackList = [...feedbackList];
+            updatedFeedbackList[index] = response.data;
+            setFeedbackList(updatedFeedbackList);
+        } catch (error) {
+            console.error('Error disliking feedback:', error);
+        }
+    };
+
     // Filter feedback list by selected star rating
     const filteredFeedbackList = selectedStars
         ? feedbackList.filter(feedback => feedback.rating === selectedStars)
@@ -66,6 +90,14 @@ const FeedbackDisplay = () => {
                         <p>{feedback.feedback}</p>
                         <div className="starRating">
                             {renderStarRating(feedback.rating)}
+                        </div>
+                        <div className="feedbackButtons">
+                            <button onClick={() => handleLike(feedback._id, index)} className="likeButton">
+                                &#128077; ({feedback.likes})
+                            </button>
+                            <button onClick={() => handleDislike(feedback._id, index)} className="dislikeButton">
+                                &#128078; ({feedback.dislikes})
+                            </button>
                         </div>
                     </div>
                 ))}
