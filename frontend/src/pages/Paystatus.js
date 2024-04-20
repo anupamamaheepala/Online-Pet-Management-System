@@ -74,7 +74,7 @@ const Paystatus = () => {
                     </div>
                     <div className="anupstbuttoncontainer">
                     <Link to={`/cardpay?payerId=${payerInfo._id}`} className="anupstpaymentlink">Card Payment</Link>
-                    <Link to="/banktrans" className="anupstpaymentlink">Bank Transfer</Link>
+                    <Link to={`/banktrans?payerId=${payerInfo._id}`}  className="anupstpaymentlink">Bank Transfer</Link>
                     </div>
                 </div>
                 

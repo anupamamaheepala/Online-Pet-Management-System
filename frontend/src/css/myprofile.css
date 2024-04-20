@@ -1,169 +1,170 @@
 /* myprofile.css */
 
 .MyProfileContainer_custom {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    border: 2px solid #000000;
-    border-radius: 10px;
-  }
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+
+.ProfileCard_custom {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative; /* Set the parent container position */
+}
+
+.ProfileHeader_custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align items and add space between them */
+  margin-bottom: 20px;
+}
+
+.ProfilePhoto_custom {
+  width: 60%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ProfilePhotoInput_custom {
   
-  .ProfileCard_custom {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    position: relative; /* Set the parent container position */
-  }
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 1px 1px;
   
-  .ProfileHeader_custom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Align items and add space between them */
-    margin-bottom: 20px;
-  }
+}
+
+.ResetPasswordButton_custom {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
   
-  .ProfilePhoto_custom {
-    width: 60%;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+}
+
+.ResetPasswordButton_custom:hover {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+
+.Button_custom:focus {
+  /* Remove focus outline */
+  outline: none;
+}
+
+.MyProfileTitle{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.editreset_container{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
   
-  .ProfilePhotoInput_custom {
-    
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 1px 1px;
-    
-  }
+}
+
+.editreset_container button{
+  margin-right: 20px;
+}
+
+.mypdel_container{
+  display: flex;
+  justify-content: right;
+  margin-top: 50px;
+}
+
+.mypinfo{
+  margin-left: 15%;
+  font-size: 17px;
+}
+
+.mypetbutton{
+  display: block;
+  width: 15%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  margin-right: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mypetbutton:hover {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+
+.ProfileHeader_custom{
+  justify-content: right;
+  margin-bottom: 20px;
+}
+
+.mypmaindiv {
+  display: flex;
+  margin-top: 20px;
+}
+
+.mypdivleft {
+  flex: 1;
+}
+
+.mypdivright {
+  flex: 1;
   
-  .ResetPasswordButton_custom {
-    display: block;
-    width: 50%;
-    padding: 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    text-align: center;
-    
-  }
-  
-  .ResetPasswordButton_custom:hover {
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-  }
-  
-  .Button_custom:focus {
-    /* Remove focus outline */
-    outline: none;
-  }
+}
 
-  .MyProfileTitle{
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 20px;
-  }
+.smypinfoimg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mypinfoimg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .editreset_container{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    
-  }
+.ProfilePhotoDeleteButton_custom{
+  display: block;
+  width: 25%;
+  padding: 10px;
+  font-size: 0.7rem;
+  color: #fff;
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  margin-left: 10px;
+}
 
-  .editreset_container button{
-    margin-right: 20px;
-  }
-
-  .mypdel_container{
-    display: flex;
-    justify-content: right;
-    margin-top: 50px;
-  }
-
-  .mypinfo{
-    margin-left: 15%;
-    font-size: 17px;
-  }
-
-  .mypetbutton{
-    display: block;
-    width: 15%;
-    padding: 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    margin-right: 10px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .mypetbutton:hover {
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-  }
-
-  .ProfileHeader_custom{
-    justify-content: right;
-    margin-bottom: 20px;
-  }
-
-  .mypmaindiv {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .mypdivleft {
-    flex: 1;
-  }
-  
-  .mypdivright {
-    flex: 1;
-    
-  }
-  
-  .smypinfoimg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .mypinfoimg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ProfilePhotoDeleteButton_custom{
-    display: block;
-    width: 25%;
-    padding: 10px;
-    font-size: 0.7rem;
-    color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    margin-left: 10px;
-  }
-
-  .ProfilePhotoDeleteButton_custom:hover{
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-  }
+.ProfilePhotoDeleteButton_custom:hover{
+  background-color: #a90101;
+  border: 1px solid #a90101;
+  color: #ffffff;
+  text-decoration: none;
+}
