@@ -31,4 +31,10 @@ const payerinfoSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('payerinfo', payerinfoSchema)
+//module.exports = mongoose.model('payerinfo', payerinfoSchema)
+// Check if the model already exists
+const PayerInfo = mongoose.models['payerinfo'] ?
+                  mongoose.model('payerinfo') :
+                  mongoose.model('payerinfo', payerinfoSchema);
+
+module.exports = PayerInfo;
