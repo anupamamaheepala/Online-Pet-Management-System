@@ -75,7 +75,7 @@ const VetNotifications = () => {
           {appointments.map((appointment) => (
             <li key={appointment._id} className="vetnotification_appointment_container">
               <span className="vetnotification_appointment_info">
-                {appointment.ownerName} made an appointment for {appointment.selectService}
+                {appointment.ownerName} has made an appointment for {appointment.selectService}
               </span>
               <div className="vetnotification_button_group">
                 {acceptedAppointments.includes(appointment._id) && (

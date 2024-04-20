@@ -280,10 +280,9 @@
 }
 
 .ma_advertisement-table {
-    width: 100%;
+    width: 90%; /* Adjust width as needed */
+    margin: 20px auto; /* Center the table with a small margin */
     border-collapse: collapse; /* Collapse table borders */
-    margin-bottom: 20px;
-    align-content: center; /* Add space between table and other elements */
 }
 
 .ma_advertisement-table th,
@@ -295,7 +294,6 @@
 
 .ma_advertisement-table th {
     background-color: #f2f2f2; /* Background color for table header */
-    ;
 }
 
 .ma_advertisement-table tr:nth-child(even) {
@@ -304,9 +302,4 @@
 
 .ma_advertisement-table tr:hover {
     background-color: #ddd; /* Hover background color */
-    
-}
-.ma_table-container {
-    display: flex;
-    justify-content: center;
 }

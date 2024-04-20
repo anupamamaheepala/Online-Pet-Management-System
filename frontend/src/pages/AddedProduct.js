@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import Swal from 'sweetalert2';
 
 
 const AddedProduct = () => {
@@ -33,10 +34,22 @@ const AddedProduct = () => {
         }
     };
 
-      const handleEdit = (id) => {
-        setEditProductId(id);
+    const handleEdit = (id) => {
+        Swal.fire({
+            title: 'Edit Product',
+            text: 'Do you want to edit this product?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, edit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setEditProductId(id);
+            }
+        });
     };
-
+    
    
     
 
@@ -55,16 +68,34 @@ const AddedProduct = () => {
         setSearchResults(filteredProducts);
     };
     const handleDelete = async (id) => {
-        if (window.confirm("Are you sure you want to delete this product?")) {
-            try {
-                await axios.delete(`http://localhost:9000/products/${id}`); 
-                setProducts(products.filter((product) => product._id !== id));
-                alert('Product deleted successfully');
-            } catch (error) {
-                console.error('Error deleting product:', error);
-                alert('Failed to delete product');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.delete(`http://localhost:9000/products/${id}`); 
+                    setProducts(products.filter((product) => product._id !== id));
+                    Swal.fire(
+                        'Deleted!',
+                        'Your product has been deleted.',
+                        'success'
+                    );
+                } catch (error) {
+                    console.error('Error deleting product:', error);
+                    Swal.fire(
+                        'Error!',
+                        'Failed to delete product.',
+                        'error'
+                    );
+                }
             }
-        }
+        });
     };
 
     const handleSortBy = (category) => {

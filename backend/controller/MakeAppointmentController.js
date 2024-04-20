@@ -112,11 +112,32 @@ exports.updateAppointment = async (req, res) => {
   }
 };
 
-// Get the count of appointments where IsAccept is false
+// Get the count of Vet appointments 
 exports.getUnacceptedAppointmentsCount = async (req, res) => {
   try {
-    const { IsAccept } = req.query;
-    const count = await Appointment.countDocuments({ IsAccept: IsAccept === 'True' });
+    const count = await Appointment.countDocuments({
+      $and: [
+        { IsAccept: false },
+        { IsPaid: false },
+        { selectService: 'Veterinary Service' }
+      ]
+    });
+    res.status(200).json({ count });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+// Get the count of Groome appointments
+exports.getUnacceptedGroomingAppointmentsCount = async (req, res) => {
+  try {
+    const count = await Appointment.countDocuments({
+      $and: [
+        { IsAccept: false },
+        { IsPaid: false },
+        { selectService: 'Groome Service' }
+      ]
+    });
     res.status(200).json({ count });
   } catch (error) {
     console.error(error);
@@ -145,6 +166,30 @@ exports.getAppointments = async (req, res) => {
 
     const appointments = await Appointment.find(filter);
     res.json(appointments);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getStaffs = async (req, res) => {
+  try {
+    const { designation, search } = req.query;
+
+    const query = {
+      designation: designation || '',
+    };
+
+    if (search) {
+      const nameRegex = new RegExp(search, 'i'); // Case-insensitive search
+      query.$or = [
+        { sfirstname: nameRegex },
+        { slastname: nameRegex },
+      ];
+    }
+
+    const staffs = await Staff.find(query);
+    res.json(staffs);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });

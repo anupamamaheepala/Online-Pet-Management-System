@@ -18,10 +18,43 @@ const PrivateTraining = () => {
   const [isSubmitted, setIsSubmitted] = useState(false); // State to track submission status
 
   const { ownerName, address, contact, dogName, breed, age, file } = formData;
+  const [ageError, setAgeError] = useState(false); // State to track age validation error
 
   const onChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    let newValue = value;
+    // Perform validation as user types
+    if (name === 'ownerName' || name === 'dogName' || name === 'breed') {
+      newValue = value.replace(/[^A-Za-z]/ig, '');
+    } else if (name === 'contact') {
+      newValue = value.replace(/[^0-9]/g, '').slice(0, 10); // Limit to 10 digits
+    } else if (name === 'age') {
+      // Allow any number between 1 and 20
+      newValue = value.replace(/[^0-9]/g, '');
+      // Check if entered value meets conditions
+      if (newValue !== '') {
+        const ageValue = parseInt(newValue);
+        if (ageValue < 2) {
+          alert("Your dog should be at least 2 years old.");
+          newValue = '';
+        } else if (ageValue > 12) {
+          alert("Your dog is too old to get trained.");
+          newValue = '';
+        }
+      }
+    }
+    setFormData({ ...formData, [name]: newValue });
   };
+  const onBlurAge = () => {
+    const ageValue = parseInt(formData.age);
+    if (ageValue < 2 || ageValue > 12 || isNaN(ageValue)) {
+      setFormData({ ...formData, age: '' });
+      setAgeError(true);
+    } else {
+      setAgeError(false);
+    }
+  };
+
 
   const onFileChange = e => {
     setFormData({ ...formData, file: e.target.files[0] });
@@ -107,7 +140,8 @@ const PrivateTraining = () => {
                 </div>
                 <div className="alo-form-group">
                   <label className="private" htmlFor="age">Age:</label>
-                  <input type="number" id="age" name="age" value={age} onChange={onChange} />
+                  <input type="number" id="age" name="age" value={age} onChange={onChange} onBlur={onBlurAge} min="2" max="12" />
+                  {ageError && <p className="error-msg">Your dog's age should be between 2 and 12.</p>}
                 </div>
                 <div>
                   <label>Upload Image or PDF:</label>
