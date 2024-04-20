@@ -16,12 +16,52 @@ const StaffRegister = () => {
     designation: ''
   });
 
+  const [contactNumberError, setContactNumberError] = useState('');
+  const [firstnameError, setFirstnameError] = useState('');
+  const [lastnameError, setLastnameError] = useState('');
+
   const { staffId, sfirstname, slastname, snic, semail, scontactNumber, saddress, designation } = formData;
 
   const onChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    
+    // Check if the input is for first name or last name
+    if (name === 'sfirstname' || name === 'slastname') {
+      // Check if the value contains only letters and spaces
+      if (/^[a-zA-Z\s]*$/.test(value) || value === '') {
+        // If the input contains only letters and spaces or is empty, update the form data and clear error message
+        setFormData({ ...formData, [name]: value });
+        if (name === 'sfirstname') {
+          setFirstnameError('');
+        } else {
+          setLastnameError('');
+        }
+      } else {
+        // If the input contains invalid characters, display error message
+        if (name === 'sfirstname') {
+          setFirstnameError('First name should contain only letters and spaces');
+        } else {
+          setLastnameError('Last name should contain only letters and spaces');
+        }
+      }
+    } else if (name === 'scontactNumber') {
+      // Check if the input is for contact number and if it contains non-numeric characters
+      if (value === '' || /^\d+$/.test(value)) {
+        // If the input is empty or contains only numeric characters, update the form data and clear error message
+        setFormData({ ...formData, [name]: value });
+        setContactNumberError('');
+      } else {
+        // If the input contains non-numeric characters, display error message
+        setContactNumberError('Contact number should contain only numbers');
+      }
+    } else {
+      // For other input fields, update the form data
+      setFormData({ ...formData, [name]: value });
+    }
   };
-
+  
+  
+  
   const onSubmit = async e => {
     e.preventDefault();
     try {
@@ -51,7 +91,6 @@ const StaffRegister = () => {
     return 'STAFF_' + randomNumber;
   }
 
-  
   return (
     <>
     <Header />
@@ -70,10 +109,12 @@ const StaffRegister = () => {
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>First Name:</label>
           <input type="text" name="sfirstname" id='sfirstname' value={formData.sfirstname} onChange={onChange} required />
+          {firstnameError && <span className="error">{firstnameError}</span>}
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Last Name:</label>
           <input type="text" name="slastname" id='slastname' value={formData.slastname} onChange={onChange} required />
+          {lastnameError && <span className="error">{lastnameError}</span>}
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>NIC No:</label>
@@ -86,14 +127,20 @@ const StaffRegister = () => {
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Contact Number:</label>
           <input type="tel" name="scontactNumber" id='scontactNumber' value={formData.scontactNumber} onChange={onChange} maxLength={10} required />
+          {contactNumberError && <span className="error">{contactNumberError}</span>}
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Address:</label>
-          <input type="text" name="saddress" id='saddress' value={formData.saddress} onChange={onChange}required />
+          <input type="text" name="saddress" id='saddress' value={formData.saddress} onChange={onChange} required />
         </div>
         <div className="staffregister-form-group">
           <label className='staffregister-form-label'>Designation:</label>
-          <input type="text" name="designation" id='designation' value={formData.designation} onChange={onChange}required />
+          <select name="designation" id="designation" className='designation' value={formData.designation} onChange={onChange} required>
+            <option value="">Select Designation</option>
+            <option value="Veterinarian">Veterinarian</option>
+            <option value="Groomer">Groomer</option>
+            <option value="Pet Trainer">Pet Trainer</option>
+          </select>
         </div>
         <br></br>
         <center><button type="submit" className='staffRegisterButton'>Submit</button></center>
@@ -108,4 +155,4 @@ const StaffRegister = () => {
   );
 }
 
-export default StaffRegister;
+export default StaffRegister;
