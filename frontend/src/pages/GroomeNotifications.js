@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../css/vetnotifications.css';
+import '../css/groomenotifications.css'; // You'll need to create this CSS file for styling
 import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
-import VetHeader from '../components/Vet components/VetHeader';
+import GroomerHeader from '../components/Groome components/GroomerHeader'; // Assuming you have a separate header for groomers
 
-const VetNotifications = () => {
+const GroomeNotifications = () => {
   const [appointments, setAppointments] = useState([]);
   const [acceptedAppointments, setAcceptedAppointments] = useState(
     JSON.parse(localStorage.getItem('acceptedAppointments')) || []
@@ -21,7 +21,7 @@ const VetNotifications = () => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await axios.get('http://localhost:9000/appointment/appointments');
+      const response = await axios.get('http://localhost:9000/appointment/grooming-appointments'); // Assuming grooming appointments have a separate endpoint
       const appointmentsData = response.data;
       console.log('Appointments fetched:', appointmentsData);
       setAppointments(appointmentsData);
@@ -32,7 +32,7 @@ const VetNotifications = () => {
 
   const handleAccept = async (appointmentId) => {
     try {
-      await axios.put(`http://localhost:9000/appointment/appointments/${appointmentId}`, { IsAccept: true });
+      await axios.put(`http://localhost:9000/appointment/grooming-appointments/${appointmentId}`, { IsAccept: true }); // Adjust endpoint for grooming appointments
       setAcceptedAppointments([...acceptedAppointments, appointmentId]);
       setAppointments((prevAppointments) =>
         prevAppointments.filter((appointment) => appointment._id !== appointmentId)
@@ -68,33 +68,33 @@ const VetNotifications = () => {
   return (
     <>
       <AdminHeader />
-      <VetHeader />
+      <GroomerHeader /> {/* Assuming you have a separate header for groomers */}
       <div>
-        <h1>Vet Notifications</h1>
+        <h1>Groomer Notifications</h1>
         <ul>
           {appointments.map((appointment) => (
-            <li key={appointment._id} className="vetnotification_appointment_container">
-              <span className="vetnotification_appointment_info">
+            <li key={appointment._id} className="groomenotification_appointment_container">
+              <span className="groomenotification_appointment_info">
                 {appointment.ownerName} has made an appointment for {appointment.selectService}
               </span>
-              <div className="vetnotification_button_group">
+              <div className="groomenotification_button_group">
                 {acceptedAppointments.includes(appointment._id) && (
-                  <span className="vetnotification_accepted_text">Accepted</span>
+                  <span className="groomenotification_accepted_text">Accepted</span>
                 )}
                 {rejectedAppointments.includes(appointment._id) && (
-                  <span className="vetnotification_rejected_text">Rejected</span>
+                  <span className="groomenotification_rejected_text">Rejected</span>
                 )}
                 {!acceptedAppointments.includes(appointment._id) &&
                   !rejectedAppointments.includes(appointment._id) && (
                     <>
                       <button
-                        className="vetnotification_accept_button"
+                        className="groomenotification_accept_button"
                         onClick={() => handleAccept(appointment._id)}
                       >
                         Accept
                       </button>
                       <button
-                        className="vetnotification_reject_button"
+                        className="groomenotification_reject_button"
                         onClick={() => handleReject(appointment._id)}
                       >
                         Reject
@@ -102,7 +102,7 @@ const VetNotifications = () => {
                     </>
                   )}
               </div>
-              <hr className="vetnotification_divider" />
+              <hr className="groomenotification_divider" />
             </li>
           ))}
         </ul>
@@ -112,4 +112,4 @@ const VetNotifications = () => {
   );
 };
 
-export default VetNotifications;
+export default GroomeNotifications;

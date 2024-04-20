@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import AdminHeader from '../components/AdminHeader';
-import Footer from '../components/Footer';
-import VetHeader from '../components/Vet components/VetHeader';
 
-const VetAppointmentList = () => {
+const GroomeAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
@@ -16,7 +13,7 @@ const VetAppointmentList = () => {
           params: {
             isAccept: true,
             isPaid: true,
-            selectService: 'Veterinary Service',
+            selectService: 'Grooming Service',
           },
         });
         setAppointments(response.data);
@@ -40,7 +37,7 @@ const VetAppointmentList = () => {
     ]);
 
     doc.setFontSize(18);
-    doc.text('Approved Veterinary Appointments', 20, 20);
+    doc.text('Approved Grooming Appointments', 20, 20);
     doc.setFontSize(12);
     doc.autoTable({
       startY: 25,
@@ -56,15 +53,12 @@ const VetAppointmentList = () => {
         fontStyle: 'bold',
       },
     });
-    doc.save('approved-vet-appointments.pdf');
+    doc.save('approved-groome-appointments.pdf');
   };
 
   return (
-    <>
-    <AdminHeader />
-    <VetHeader />
     <div style={styles.container}>
-      <h2 style={styles.heading}>Veterinary Appointments</h2>
+      <h2 style={styles.heading}>Grooming Appointments</h2>
       {appointments.length > 0 ? (
         <>
           <table style={styles.table}>
@@ -101,8 +95,6 @@ const VetAppointmentList = () => {
         <p style={styles.message}>No appointments found.</p>
       )}
     </div>
-    <Footer />
-    </>
   );
 };
 
@@ -149,4 +141,4 @@ const styles = {
   },
 };
 
-export default VetAppointmentList;
+export default GroomeAppointmentList;
