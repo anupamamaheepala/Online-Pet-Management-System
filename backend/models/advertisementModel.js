@@ -11,7 +11,7 @@ const AddsSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      title: {
+      pet_type: {
 
         type: String,
         required: true
