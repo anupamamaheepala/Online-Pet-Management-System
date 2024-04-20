@@ -139,7 +139,7 @@ function App() {
           <Route path="/Banktrans" element={<Banktrans />} />
           <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm />} />
           <Route path="/StaffList" element={<StaffList />} />
-          <Route path="/StaffLeaveForm" element={<StaffLeaveForm />} />
+          <Route path="/StaffLeaveForm/:staffId" element={<StaffLeaveForm />} />
           <Route path="/salary/:staffId" element={<StaffSalaryForm />} />
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />

@@ -7,6 +7,7 @@ import axios from 'axios';
 const StaffLeaveForm = () =>{
 
         const [formData, setFormData] = useState({
+          staffId: '',
           sfirstname: '',
           slastname: '',
           StleaveFromDate: '',
@@ -15,7 +16,7 @@ const StaffLeaveForm = () =>{
           streason: '',
         });
       
-        const { sfirstname, slastname, StleaveFromDate,StleaveToDate, StleaveType, streason } = formData;
+        const { staffId, sfirstname, slastname, StleaveFromDate,StleaveToDate, StleaveType, streason } = formData;
       
         const onChange = e => {
           setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,6 +29,7 @@ const StaffLeaveForm = () =>{
             console.log(res.data);
             // Optionally, you can clear the form fields after successful submission
             setFormData({
+              staffId: '',
               sfirstname: '',
               slastname: '',
               StleaveFromDate: '',
@@ -48,7 +50,10 @@ const StaffLeaveForm = () =>{
         
         <form onSubmit={onSubmit} className='StaffLeave-Form'>
                 <h2>Staff Leave Form</h2>
-               
+                    <div className="StaffLeave-form-group">
+                        <label className='StaffLeave-form-group label'> Staff ID:</label>
+                        <input type="text" name="staffId" id='staffId' value={formData.staffId} onChange={onChange} required  />
+                    </div>
                     <div className="StaffLeave-form-group">
                         <label className='StaffLeave-form-group label'>First Name:</label>
                         <input type="text" name="sfirstname" id='sfirstname' value={formData.sfirstname} onChange={onChange} required  />
@@ -80,7 +85,7 @@ const StaffLeaveForm = () =>{
 
                     <div className="StaffLeave-form-group">
                         <label className='StaffLeave-form-group label'>Reason:</label>
-                        <textarea name="streason" value={formData.streason} onChange={onChange} required />
+                        <textarea name="streason" value={formData.streason} onChange={onChange}  />
                     </div>
 
                     <center><button type="submit" className='staffLeaveButton'>Submit</button></center>
