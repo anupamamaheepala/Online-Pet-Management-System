@@ -135,6 +135,7 @@ const TrainingDashboard = () => {
   return (
     <div>
       <AdminHeader />
+      <h2>Training Manager Dashboard</h2>
       <div className="dashboard-header">
         <div>
           Pending Applications: {pendingCount}
@@ -149,15 +150,15 @@ const TrainingDashboard = () => {
           Total Applications: {trainings.length}
         </div>
       </div>
-      <h2>Training Manager Dashboard</h2>
+      
       <div className="button-row">
         <a href="PrivateTrainingPrograms">
-          <button className="alo1-button"> + Add Dog Details for Private Training</button>
+          <button className="alo1-button">Add Dog Details for Private Training   |</button>
         </a>
         <a href="StepForm">
-          <button className="alo1-button"> + Manage Private Programs</button>
+          <button className="alo1-button">Manage Private Programs   |</button>
         </a>
-        <button className="alo1-button"> Manage Group Programs</button>
+        <button className="alo1-button">Manage Group Programs</button>
         <button className="report-button" onClick={generatePDF}>
           Download Report
         </button>
@@ -174,7 +175,7 @@ const TrainingDashboard = () => {
             <th>Status</th>
             <th>Instructor's Name</th>
             <th>Actions</th>
-            <th>Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -195,19 +196,17 @@ const TrainingDashboard = () => {
               <td>{training.instructor || 'Not Assigned'}</td>
 
               <td>
-              <Link
-  to={{
-    pathname: `/training/${training._id}`,
-    state: { instructorName: training.instructor},
-  }}
->
-  View Details
+               <Link to={{
+  pathname: `/training/${training._id}`,
+  state: { instructorName: training.instructor},
+}} className="alo_view-details-button">
+  <button className="alo1-button">View Details</button>
 </Link>
 
+              &nbsp;
+            <button onClick={() => handleDelete(training._id)}>Delete</button>
               </td>
-              <td>
-                <button onClick={() => handleDelete(training._id)}>Delete</button>
-              </td>
+              
             </tr>
           ))}
         </tbody>
