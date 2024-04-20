@@ -8,7 +8,7 @@ const AddAdvertisement = () => {
     const [formData, setFormData] = useState({
         ownerName: '',
         email: '',
-        title: '',
+        pet_type: '',
         Breed: '',
         purpose: '',
         description: '',
@@ -16,7 +16,7 @@ const AddAdvertisement = () => {
         contact: ''
     });
 
-    const { ownerName, email, title, Breed, purpose, description, file, contact } = formData;
+    const { ownerName, email, pet_type, Breed, purpose, description, file, contact } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,7 +32,7 @@ const AddAdvertisement = () => {
             const formDataToSend = new FormData();
             formDataToSend.append('ownerName', ownerName);
             formDataToSend.append('email', email);
-            formDataToSend.append('title', title);
+            formDataToSend.append('pet_type', pet_type);
             formDataToSend.append('Breed', Breed);
             formDataToSend.append('purpose', purpose);
             formDataToSend.append('description', description);
@@ -49,7 +49,7 @@ const AddAdvertisement = () => {
             setFormData({
                 ownerName: '',
                 email: '',
-                title: '',
+                pet_type: '',
                 Breed: '',
                 purpose: '',
                 description: '',
@@ -83,8 +83,16 @@ const AddAdvertisement = () => {
                 </div>
 
                 <div className="ma_form-group">
-                    <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" name="title" value={title} onChange={onChange} required />
+                    <label htmlFor="pet_type">Pet Type:</label>
+                    <select id="pet_type" name="pet_type" value={pet_type} onChange={onChange} required>
+                        <option value="" disabled>Select your pet type</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>  
+                        <option value="rabbit">Rabbit</option> 
+                        <option value="other">Other</option>
+
+                    </select>
                 </div>
 
                 <div className="ma_form-group">

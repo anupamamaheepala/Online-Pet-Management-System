@@ -47,7 +47,7 @@ const servicesRoute = require('./routes/ServiceRoute');
 //const cardpayRoute = require("./routes/cardpayRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
-const banktransadminRoute = require('./routes/banktransadminRoute');
+
 
 
 

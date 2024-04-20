@@ -82,7 +82,6 @@ import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
 import StaffLogin from './pages/StaffLogin';
-import Cardpayreport from './pages/Cardpayreport';
 import EditAdvertisement from './pages/EditAdvertisement';
 
 function App() {
@@ -139,7 +138,7 @@ function App() {
           <Route path="/Banktrans" element={<Banktrans />} />
           <Route path="/StaffRegistrationForm" element={<StaffRegistrationForm />} />
           <Route path="/StaffList" element={<StaffList />} />
-          <Route path="/StaffLeaveForm" element={<StaffLeaveForm />} />
+          <Route path="/StaffLeaveForm/:staffId" element={<StaffLeaveForm />} />
           <Route path="/salary/:staffId" element={<StaffSalaryForm />} />
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
@@ -172,7 +171,6 @@ function App() {
           <Route path="/Cart"  element={<AddToCartPage/>} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
-          <Route path="/Cardpayreport" element={<Cardpayreport />} />
           <Route path="/edit/:id" element={<EditAdvertisement />} />
 
           </Routes>

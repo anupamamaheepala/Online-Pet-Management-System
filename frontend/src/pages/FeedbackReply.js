@@ -52,7 +52,9 @@ const FeedbackReply = () => {
       console.log('Feedback submitted successfully');
       // Optionally, clear the form fields after successful submission
       setFormData({
-        ...formData,
+        name: '',
+        email: '',
+        feedback: '',
         reply: ''
       });
       // Show success message

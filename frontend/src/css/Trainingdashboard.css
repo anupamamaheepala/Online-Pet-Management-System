@@ -64,3 +64,13 @@
 }
 
 
+
+.alo_view-details-button button {
+  color: #ffffff;
+  background-color: #007bff;
+  
+}
+
+.alo_view-details-button button:hover {
+  background-color: #0056b3;
+}

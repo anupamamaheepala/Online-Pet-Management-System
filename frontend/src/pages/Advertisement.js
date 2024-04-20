@@ -46,10 +46,10 @@ const Advertisement = () => {
                 {advertisements.map(advertisement => (
                     <div key={advertisement._id} className="ma_advertisement-card">
                         <img src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} alt={advertisement.title} 
-                        style={{ width: '290px', height: 'auto', cursor: 'pointer' }}
+                        style={{ width: '200px', height: '200px', cursor: 'pointer' }}
                         className="ma_advertisement-image" />
                         <div className="ma_advertisement-details">
-                            <h3 className="ma_advertisement-title">{advertisement.title}</h3>
+                            <h3 className="ma_advertisement-title">{advertisement.pet_type}</h3>
                             <p className="ma_advertisement-description">{advertisement.description}</p>
                             <p className="ma_advertisement-contact">Contact: {advertisement.contact}</p>
                             {advertisement.price && <p className="ma_advertisement-price">Price: {advertisement.price}</p>}
