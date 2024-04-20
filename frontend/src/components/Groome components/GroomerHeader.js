@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
 import { Bell } from 'react-bootstrap-icons';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
+
 const GroomerHeader = () => {
   const [notificationCount, setNotificationCount] = useState(0);
-  const [groomeAppointmentCount, setGroomeAppointmentCount] = useState(0);
   const [highlightedItem, setHighlightedItem] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMouseInDropdown, setIsMouseInDropdown] = useState(false);
 
   const handleNotificationClick = () => {
     axios
-      .get('http://localhost:9000/appointment/grooming-appointments', {
-        params: { IsAccept: false, selectService: 'Grooming Service' },
+      .get('http://localhost:9000/appointment/appointments', {
+        params: { IsAccept: false, selectService: 'Groome Service' },
       })
       .then((response) => {
         const pendingAppointments = response.data;
@@ -40,40 +41,28 @@ const GroomerHeader = () => {
             confirmButtonText: 'View Notifications',
             cancelButtonText: 'Close',
             preConfirm: () => {
-              window.location.href = '/GroomerNotifications';
+              window.location.href = '/GroomeNotifications';
             },
           });
         }
       })
       .catch((error) => {
         console.error('Error fetching pending appointments:', error);
-        MySwal.fire('Error', 'Failed to fetch pending grooming appointments.', 'error');
+        MySwal.fire('Error', 'Failed to fetch pending appointments.', 'error');
       });
   };
 
   useEffect(() => {
-    // Fetch grooming appointments count
     axios
-      .get('http://localhost:9000/appointment/grooming-appointments/count', {
-        params: { IsAccept: false, IsPaid: false, selectService: 'Grooming Service' },
+      .get('http://localhost:9000/appointment/appointments/count', {
+        params: { IsAccept: false, selectService: 'Groome Service' },
       })
       .then((response) => {
-        setGroomeAppointmentCount(response.data.count);
-      })
-      .catch((error) => {
-        console.error('Error fetching grooming appointment count:', error);
-      });
-
-    // Fetch notification count
-    axios
-      .get('http://localhost:9000/appointment/grooming-appointments/count', {
-        params: { IsAccept: false, selectService: 'Grooming Service' },
-      })
-      .then((response) => {
+        console.log('Response data:', response.data);
         setNotificationCount(response.data.count);
       })
       .catch((error) => {
-        console.error('Error fetching notification count:', error);
+        console.error('Error fetching appointment count:', error);
       });
   }, []);
 
@@ -145,7 +134,7 @@ const GroomerHeader = () => {
             onMouseLeave={handleDropdownMouseLeave}
           >
             <NavDropdown.Item
-              href="/GroomerNotifications"
+              href="/GroomeNotifications"
               style={getSubmenuItemStyle('pendingAppointments')}
               onMouseEnter={() => handleMouseEnter('pendingAppointments')}
               onMouseLeave={handleMouseLeave}
@@ -153,7 +142,7 @@ const GroomerHeader = () => {
               Pending Appointments
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="/GroomeNotifications"
+              href="/AllGroomeAppointments"
               style={getSubmenuItemStyle('approvedAppointments')}
               onMouseEnter={() => handleMouseEnter('approvedAppointments')}
               onMouseLeave={handleMouseLeave}
@@ -162,12 +151,12 @@ const GroomerHeader = () => {
             </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link
-            style={getItemStyle('schedule')}
-            href="#schedule"
-            onMouseEnter={() => handleMouseEnter('schedule')}
+            style={getItemStyle('reports')}
+            href="#reports"
+            onMouseEnter={() => handleMouseEnter('reports')}
             onMouseLeave={handleMouseLeave}
           >
-            Schedule
+            Reports
           </Nav.Link>
           <Nav.Link
             style={getItemStyle('settings')}
