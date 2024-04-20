@@ -67,8 +67,7 @@ const StaffList = () => {
                 staffMember.semail,
                 staffMember.scontactNumber,
                 staffMember.saddress,
-                staffMember.designation,
-                staffMember.qualifications
+                staffMember.designation
             ]);
     
             doc.setFontSize(18);
@@ -76,7 +75,7 @@ const StaffList = () => {
             doc.setFontSize(15);
             doc.autoTable({
                 startY: yPosition + logoWidth + 10,
-                head: [['Staff ID', 'First Name', 'Last Name', 'NIC No', 'Email', 'Contact Number', 'Address', 'Designation', 'Qualifications']],
+                head: [['Staff ID', 'First Name', 'Last Name', 'NIC No', 'Email', 'Contact Number', 'Address', 'Designation']],
                 body: tableData,
                 styles: {
                     fontSize: 10,
@@ -89,7 +88,7 @@ const StaffList = () => {
                     textColor: [255, 255, 255],
                     fontStyle: 'bold',
                 },
-                tableWidth: 180,
+                tableWidth: 190,
             });
             doc.save('staff_list.pdf');
         };
@@ -151,9 +150,11 @@ const StaffList = () => {
                                 <td>{staffMember.designation}</td>
                                 <td>{staffMember.qualifications}</td>
                                 <td>
+                                    <center>
                                     <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
                                     <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
                                     <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}&staffId=${staffMember.staffId}`}>Salary</Link>
+                                    </center>
                                 </td>
                             </tr>
                         ))}
