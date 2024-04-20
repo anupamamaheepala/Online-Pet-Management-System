@@ -44,6 +44,7 @@ const AddAdvertisement = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+
             });
             console.log(res.data);
 
@@ -60,6 +61,7 @@ const AddAdvertisement = () => {
            
             // Display alert after successful submission
             alert('Advertisement submitted successfully');
+            window.location.href = '/Advertisement';
         } catch (err) {
             console.error(err);
             // Display error message to the user

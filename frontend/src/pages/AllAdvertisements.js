@@ -177,10 +177,14 @@ const AllAdvertisements = () => {
     <>
       <Header />
       <div  style={{ textAlign: 'right' }}>
-        <button onClick={generatePdf}>
-          Generate all published advertisements report
+      <Link to="/ConfirmAdvertisement" className="ma_add_button">Pending advertisements</Link>
+
+        <button className="ma_add_button"  onClick={generatePdf}>
+          Download all published advertisements report
         </button>
       </div>
+      <h1 className="ma_text_container"><center>All Advertisement</center></h1>
+      <div className="ma_table-container_center">
       <table className="ma_advertisement-table">
         <thead>
           <tr>
@@ -217,6 +221,7 @@ const AllAdvertisements = () => {
               <Link to={`/EditAdvertisement/${advertisement._id}`}>
   <button className="btn btn-warning" onClick={() => handleEdit(advertisement._id)}>Edit</button>
 </Link>
+&nbsp;
                   <button className="btn btn-danger" onClick={() => handleDelete(advertisement._id)}>Delete</button>
                 </div>
               </td>
@@ -224,6 +229,7 @@ const AllAdvertisements = () => {
           ))}
         </tbody>
       </table>
+      </div>
       <Footer />
     </>
   );

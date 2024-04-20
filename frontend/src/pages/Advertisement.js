@@ -45,11 +45,11 @@ const Advertisement = () => {
     return (
         <>
             <Header />
-            <div className="ma_button-container">
+            
+            
                 <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
                 <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
-            </div>
-            <div className="ma_search-container">
+                
                 <input
                     type="text"
                     placeholder="Search pet type..."
@@ -57,7 +57,11 @@ const Advertisement = () => {
                     onChange={handleSearch}
                     className="ma_search-input"
                 />
-            </div>
+           
+            
+            
+           
+            
             <div className="ma_advertisement-container">
                 {filteredAdvertisements.map(advertisement => (
                     <div key={advertisement._id} className="ma_advertisement-card">

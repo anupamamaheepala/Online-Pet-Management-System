@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/addingproduct.css';
@@ -16,9 +16,13 @@ const EditAdvertisement = () => {
         description: '',
         contact: ''
     });
+    const [petTypes, setPetTypes] = useState([]);
+    const [purposes, setPurposes] = useState([]);
 
     useEffect(() => {
         fetchAdvertisementDetails();
+        fetchPetTypes();
+        fetchPurposes();
     }, []);
 
     const fetchAdvertisementDetails = async () => {
@@ -27,6 +31,24 @@ const EditAdvertisement = () => {
             setAdvertisementData(res.data);
         } catch (error) {
             console.error('Error fetching advertisement details:', error);
+        }
+    };
+
+    const fetchPetTypes = async () => {
+        try {
+            const res = await axios.get('http://localhost:9000/petTypes');
+            setPetTypes(res.data);
+        } catch (error) {
+            console.error('Error fetching pet types:', error);
+        }
+    };
+
+    const fetchPurposes = async () => {
+        try {
+            const res = await axios.get('http://localhost:9000/purposes');
+            setPurposes(res.data);
+        } catch (error) {
+            console.error('Error fetching purposes:', error);
         }
     };
 
@@ -40,6 +62,7 @@ const EditAdvertisement = () => {
         try {
             await axios.put(`http://localhost:9000/confirmedads/${advertisementId}`, advertisementData);
             alert('Advertisement updated successfully');
+            window.location.href = '/AllAdvertisements';
         } catch (error) {
             console.error('Failed to update advertisement:', error);
             alert('Failed to update advertisement');
@@ -65,7 +88,18 @@ const EditAdvertisement = () => {
 
                 <div className="form-group">
                     <label htmlFor="pet_type">Pet Type:</label>
-                    <input type="text" id="pet_type" name="pet_type" value={pet_type} onChange={handleChange} />
+                    <select id="pet_type" name="pet_type" value={pet_type} onChange={handleChange}>
+                        
+                        <option value="">Select your pet type</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>  
+                        <option value="rabbit">Rabbit</option> 
+                        <option value="other">Other</option>
+                        {petTypes.map(type => (
+                            <option key={type._id} value={type.name}>{type.name}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="form-group">
@@ -75,7 +109,14 @@ const EditAdvertisement = () => {
 
                 <div className="form-group">
                     <label htmlFor="purpose">Purpose:</label>
-                    <input type="text" id="purpose" name="purpose" value={purpose} onChange={handleChange} />
+                    <select id="purpose" name="purpose" value={purpose} onChange={handleChange}>
+                        <option value="">Select Purpose</option>
+                        <option value="pet_for_sale">Pet for sale</option>
+                        <option value="lost_my_pet">Lost my pet</option>
+                        {purposes.map(purpose => (
+                            <option key={purpose._id} value={purpose.name}>{purpose.name}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="form-group">
@@ -88,7 +129,7 @@ const EditAdvertisement = () => {
                     <input type="text" id="contact" name="contact" value={contact} onChange={handleChange} />
                 </div>
 
-                <button type="submit" className="submit-button">Update</button>
+                <button type="submit" className="ma_submit-button">Update</button>
             </form>
             <Footer />
         </>
