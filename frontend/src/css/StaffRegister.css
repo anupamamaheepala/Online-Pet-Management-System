@@ -138,8 +138,8 @@
 }
 
 .staffRegisterButton:hover {
-    background-color: #ffffff;
-    color: hsl(0, 0%, 0%);
+    background-color: #4f4c4c;
+    color: #ffffff;
     text-decoration: none;
 }
 /* UpdateStaff component styles */
@@ -176,7 +176,8 @@
   border-radius: 5px;
 }
 
-.UpadateStaffregister-form-group textarea {
+.UpadateStaffregister-form-group textarea,
+.staffregister-form-group textarea  {
   width: 100%; /* Set the width to 100% */
   padding: 8px;
   border: 1px solid #ccc;

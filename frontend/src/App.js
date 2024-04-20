@@ -177,7 +177,7 @@ function App() {
           <Route path="/Cart"  element={<AddToCartPage/>} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
-          <Route path="/edit/:id" element={<EditAdvertisement />} />
+          <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
 
           </Routes>
         </CartProvider>

@@ -4,6 +4,8 @@
 .SalaryTable1 .search-container {
     text-align: left; /* Align to the right */
     margin-bottom: 20px;
+    background-color: #ffffff;
+    border: none;
   }
   
   .SalaryTable1 .search-container .SalaryTablesearch {
@@ -77,5 +79,26 @@
   background-color: #45a049;
   text-decoration: none;
 }
+
+.SalaryGenerateReport {
+  background-color: #000000; 
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.SalaryGenerateReport:hover {
+  background-color: #393b39; 
+}
+
+
 
   
