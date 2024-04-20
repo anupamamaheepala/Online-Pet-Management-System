@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import AdminHeader from '../components/AdminHeader';
+import Footer from '../components/Footer';
+import VetHeader from '../components/Vet components/VetHeader';
 
 const VetAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
@@ -57,6 +60,9 @@ const VetAppointmentList = () => {
   };
 
   return (
+    <>
+    <AdminHeader />
+    <VetHeader />
     <div style={styles.container}>
       <h2 style={styles.heading}>Veterinary Appointments</h2>
       {appointments.length > 0 ? (
@@ -95,6 +101,8 @@ const VetAppointmentList = () => {
         <p style={styles.message}>No appointments found.</p>
       )}
     </div>
+    <Footer />
+    </>
   );
 };
 

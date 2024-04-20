@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/feedbackinquiry.css';
 
+
 const FeedbackInquiry = () => {
   const formRef = useRef();
 
@@ -46,7 +47,8 @@ const FeedbackInquiry = () => {
     return emailjs.sendForm('service_hs3xk19', 'template_vzgks8e', formRef.current, {
       publicKey: 'J8nt0NYTxJsPNGwOp',
       name: formData.name,
-      email: formData.email
+      email: formData.email,
+      feedback: formData.feedback
     });
   };
 

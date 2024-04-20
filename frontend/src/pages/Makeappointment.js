@@ -92,7 +92,7 @@ const MakeAppointment = () => {
             <select className="makeappointment_select" id="selectService" value={selectService} onChange={(e) => setSelectService(e.target.value)} required>
               <option value="">--Please select--</option>
               <option value="Veterinary Service">Veterinary Service</option>
-              <option value="Grooming Service">Grooming Service</option>
+              <option value="Groome Service">Groome Service</option>
             </select>
           </div>
           <div className="makeappointment_input_container">

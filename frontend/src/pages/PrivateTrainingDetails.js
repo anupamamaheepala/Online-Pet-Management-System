@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import '../css/ptrainingdetails.css'; // Ensure correct path to your CSS file
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,7 +11,9 @@ const PrivateTrainingDetails = () => {
   const [status, setStatus] = useState('pending');
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
   const [modalImageUrl, setModalImageUrl] = useState(''); // State to store modal image URL
+  const [instructorName, setInstructorName] = useState(''); 
   const { id } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchTrainingDetails = async () => {
@@ -20,13 +22,18 @@ const PrivateTrainingDetails = () => {
         setTraining(response.data);
         setInstructor(response.data.instructor || '');
         setStatus(response.data.status || 'pending');
+        
+        // Check if instructorName is passed from TrainingDashboard
+        if (location.state && location.state.instructorName) {
+          setInstructor(response.data.instructorName);
+        }
       } catch (error) {
         console.error('Error fetching training details:', error);
       }
     };
 
     fetchTrainingDetails();
-  }, [id]);
+  }, [id, location]);
 
   const handleUpdateInstructor = async () => {
     try {
@@ -34,11 +41,18 @@ const PrivateTrainingDetails = () => {
       console.log('Instructor updated successfully');
       // Display alert after successfully adding instructor
       window.alert('Instructor successfully added');
+      // Store instructor's name in local storage
+      localStorage.setItem('instructorName', instructor);
+      // Update the training object in the frontend state
+      setTraining(prevTraining => ({
+        ...prevTraining,
+        instructorName: instructor,
+      }));
     } catch (error) {
       console.error('Error updating instructor:', error);
     }
   };
-
+  
   const handleApproveTraining = async () => {
     try {
       // Check if an instructor has been assigned
@@ -52,7 +66,8 @@ const PrivateTrainingDetails = () => {
       await axios.put(`http://localhost:9000/training/approve/${id}`);
       setTraining(prevTraining => ({
         ...prevTraining,
-        status: 'approved'
+        status: 'approved',
+        instructorName: instructor, // Update the instructor's name in the frontend state
       }));
       window.alert('Application approved');
       console.log('Training approved successfully');
@@ -64,6 +79,11 @@ const PrivateTrainingDetails = () => {
 
   const handleRejectTraining = async () => {
     try {
+      // Clear the instructor's name from local storage
+      localStorage.removeItem('instructor');
+      // Clear the instructor's name from state
+      setInstructor('');
+      // Update the training status to 'rejected'
       await axios.put(`http://localhost:9000/training/reject/${id}`);
       setTraining(prevTraining => ({
         ...prevTraining,
@@ -74,7 +94,8 @@ const PrivateTrainingDetails = () => {
     } catch (error) {
       console.error('Error rejecting training:', error);
     }
-  };
+  }
+  
 
   const handleOpenModal = (imageUrl) => {
     setModalImageUrl(imageUrl);
@@ -118,6 +139,7 @@ const PrivateTrainingDetails = () => {
         <p><strong>Dog's Name:</strong> {training.dogName}</p>
         <p><strong>Breed:</strong> {training.breed}</p>
         <p><strong>Age:</strong> {training.age}</p>
+        <p><strong>Instructor's Name:</strong> {instructor || 'Not Assigned'}</p>
         {training.filePath && (
           <div>
             <h3>Health Checkup File</h3>
@@ -144,17 +166,23 @@ const PrivateTrainingDetails = () => {
           </div>
         )}
       </div>
-      <div>
-        <h3>Assign an Instructor</h3>
-        <input
-          type="text"
-          value={instructor}
-          onChange={(e) => setInstructor(e.target.value)}
-          placeholder="Enter new instructor's name"
-          id='instructor'
-        />
-        <button onClick={handleUpdateInstructor}>Add Instructor</button>
-      </div>
+      {status !== 'rejected' && (
+        <div>
+          <h3>Assign an Instructor</h3>
+          <input
+            type="text"
+            value={instructor}
+            onChange={(e) => {
+              const value = e.target.value;
+              const newValue = value.replace(/[^A-Za-z]/ig, ''); // Allow only letters
+              setInstructor(newValue);
+            }}
+            placeholder="Enter new instructor's name"
+            id='instructor'
+          />
+          <button onClick={handleUpdateInstructor}>Add Instructor</button>
+        </div>
+      )}
       <div>
         <h3>Application status</h3>
         {renderActionButtons()}
