@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
-import '../css/advertisement.css';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-
+import '../css/advertisement.css';
 
 const AllAdvertisements = () => {
   const [advertisements, setAdvertisements] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [editingAdvertisement, setEditingAdvertisement] = useState(null);
-  const [confirmedads, setAds] = useState([]);
-  const [formData, setFormData] = useState({
-    ownerName: '',
-    email: '',
-    title: '',
-    Breed: '',
-    purpose: '',
-    description: '',
-    contact: '',
-    filePath: null
-  });
+  const [confirmedads, setConfirmedAds] = useState([]);
 
   useEffect(() => {
     getAllConfirmedAdvertisements();
@@ -32,9 +18,55 @@ const AllAdvertisements = () => {
     try {
       const res = await axios.get('http://localhost:9000/confirmedads/confirmedads');
       setAdvertisements(res.data);
+      setConfirmedAds(res.data); // Update confirmedads with fetched data
     } catch (error) {
       console.error('Error fetching advertisements:', error);
     }
+  };
+
+  const generatePdf = () => {
+    const doc = new jsPDF();
+    const logo = new Image();
+    logo.src = '/images/logo.png';
+
+    logo.onload = function () {
+      const logoWidth = 30;
+      const xPosition = 10;
+      const yPosition = 10;
+
+      doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+
+      const tableData = confirmedads.map((advertisement) => [
+        advertisement.ownerName,
+        advertisement.email,
+        advertisement.title,
+        advertisement.Breed,
+        advertisement.purpose,
+        advertisement.description
+      ]);
+
+      doc.setFontSize(18);
+      doc.text('Published advertisements', 70, yPosition + logoWidth -15);
+      doc.setFontSize(15);
+      doc.autoTable({
+        startY: yPosition + logoWidth + 10,
+        head: [['Owner Name', 'Owner Email', 'Title', 'Breed', 'Purpose', 'Description']],
+        body: tableData,
+        styles: {
+          fontSize: 10,
+          cellPadding: 3,
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0]
+        },
+        headStyles: {
+          fillColor: [0, 0, 0],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold',
+          
+        },
+      });
+      doc.save('published_ads.pdf');
+    };
   };
 
   const handleDelete = async (id) => {
@@ -52,115 +84,14 @@ const AllAdvertisements = () => {
     }
   };
 
-  const handleImageClick = (imageURL) => {
-    setSelectedImage(imageURL);
-  };
-
-  const handleEdit = (advertisement) => {
-    setEditingAdvertisement(advertisement);
-    setFormData({
-      ownerName: advertisement.ownerName,
-      email: advertisement.email,
-      title: advertisement.title,
-      Breed: advertisement.Breed,
-      purpose: advertisement.purpose,
-      description: advertisement.description,
-      contact: advertisement.contact,
-      filePath: advertisement.filePath
-    });
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, filePath: e.target.files[0] });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const formDataToSend = new FormData();
-      for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
-      }
-
-      await axios.put(`http://localhost:9000/confirmedads/confirmedads/${editingAdvertisement._id}`, formDataToSend);
-      alert('Advertisement updated successfully');
-      setEditingAdvertisement(null);
-      setFormData({
-        ownerName: '',
-        email: '',
-        title: '',
-        Breed: '',
-        purpose: '',
-        description: '',
-        contact: '',
-        filePath: null
-      });
-      getAllConfirmedAdvertisements();
-    } catch (error) {
-      console.error('Error updating advertisement:', error);
-      alert('Failed to update advertisement');
-    }
-  };
-
-  const handleCancel = () => {
-    setEditingAdvertisement(null);
-    setFormData({
-      ownerName: '',
-      email: '',
-      title: '',
-      Breed: '',
-      purpose: '',
-      description: '',
-      contact: '',
-      filePath: null
-    });
-  };
-//report
-const generatePdf = () => {
-    const doc = new jsPDF();
-    const tableData = confirmedads.map((advertisement) => [
-        advertisement.ownerName,
-        advertisement.email,
-        advertisement.title,
-        advertisement.Breed,
-        advertisement.purpose,
-        advertisement.description
-    ]);
-
-    doc.setFontSize(18);
-    doc.text('Published advertisements', 20, 20);
-    doc.setFontSize(12);
-    doc.autoTable({
-      startY: 25,
-      head: [['Owner Name', 'Owner Email', 'Title', 'Breed', 'Purpose', 'Description']],
-      body: tableData,
-      styles: {
-        fontSize: 10,
-        cellPadding: 3,
-      },
-      headStyles: {
-        fillColor: [128, 128, 128],
-        textColor: [255, 255, 255],
-        fontStyle: 'bold',
-      },
-    });
-    doc.save('published_ads.pdf');
-  };
-//report.
-
   return (
     <>
       <Header />
-      <div className="ma_button-container">
-      <button  onClick={generatePdf}>
-            Generate Report
-          </button>
-          </div>
+      <div  style={{ textAlign: 'right' }}>
+        <button onClick={generatePdf}>
+          Generate all published advertisements report
+        </button>
+      </div>
       <table className="ma_advertisement-table">
         <thead>
           <tr>
@@ -189,13 +120,12 @@ const generatePdf = () => {
                   src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`}
                   alt="Pet"
                   style={{ width: '130px', height: '130px', cursor: 'pointer' }}
-                  onClick={() => handleImageClick(`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`)}
                 />
               </td>
               <td>{advertisement.contact}</td>
               <td>
                 <div className="ma_button-container">
-                  <button onClick={() => handleEdit(advertisement)}>Edit</button>
+                  <button>Edit</button>
                   <button className="btn btn-danger" onClick={() => handleDelete(advertisement._id)}>Delete</button>
                 </div>
               </td>
@@ -203,70 +133,6 @@ const generatePdf = () => {
           ))}
         </tbody>
       </table>
-
-      {editingAdvertisement && (
-        <div>
-          <h2>Update Advertisement</h2>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="ownerName"
-              value={formData.ownerName}
-              onChange={handleInputChange}
-              placeholder="Owner Name"
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Email"
-            />
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              placeholder="Title"
-            />
-            <input
-              type="text"
-              name="Breed"
-              value={formData.Breed}
-              onChange={handleInputChange}
-              placeholder="Breed"
-            />
-            <input
-              type="text"
-              name="purpose"
-              value={formData.purpose}
-              onChange={handleInputChange}
-              placeholder="Purpose"
-            />
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              placeholder="Description"
-            />
-            <input
-              type="text"
-              name="contact"
-              value={formData.contact}
-              onChange={handleInputChange}
-              placeholder="Contact"
-            />
-            <input
-              type="file"
-              name="filePath"
-              onChange={handleFileChange}
-            />
-            <button type="submit">Update</button>
-            <button type="button" onClick={handleCancel}>Cancel</button>
-          </form>
-        </div>
-      )}
-
       <Footer />
     </>
   );
