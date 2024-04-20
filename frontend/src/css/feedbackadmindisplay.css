@@ -19,17 +19,18 @@
     background-color: #f2f2f2;
 }
 
-.feedbackList-delete-btn {
+/* .feedbackList-delete-btn {
     background-color: #f44336;
     color: white;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
-}
+    display: flex;
+} */
 
-.feedbackList-delete-btn:hover {
+/* .feedbackList-delete-btn:hover {
     background-color: #d32f2f;
-}
+} */
 
 .center {
     text-align: center;
@@ -49,4 +50,9 @@
 
 .feedbackList-update-btn:hover {
     background-color: #0056b3;
+}
+
+.ffeedback-admin-container{
+    align-items: center;
+    margin-top: -50px;
 }

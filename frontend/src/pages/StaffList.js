@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/staffList.css';
 import { Link } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const StaffList = () => {
     const [staff, setStaff] = useState([]);
@@ -45,33 +47,82 @@ const StaffList = () => {
         );
     });
 
+    const generatePdf = () => {
+        const doc = new jsPDF();
+        const logo = new Image();
+        logo.src = '/images/logo.png';
+    
+        logo.onload = function () {
+            const logoWidth = 30;
+            const xPosition = 10;
+            const yPosition = 10;
+    
+            doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+    
+            const tableData = filteredStaff.map((staffMember) => [
+                staffMember.staffId,
+                staffMember.sfirstname,
+                staffMember.slastname,
+                staffMember.snic,
+                staffMember.semail,
+                staffMember.scontactNumber,
+                staffMember.saddress,
+                staffMember.designation
+            ]);
+    
+            doc.setFontSize(18);
+            doc.text('Staff List', 70, yPosition + logoWidth - 15);
+            doc.setFontSize(15);
+            doc.autoTable({
+                startY: yPosition + logoWidth + 10,
+                head: [['Staff ID', 'First Name', 'Last Name', 'NIC No', 'Email', 'Contact Number', 'Address', 'Designation']],
+                body: tableData,
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 3,
+                    lineWidth: 0.1,
+                    lineColor: [0, 0, 0]
+                },
+                headStyles: {
+                    fillColor: [0, 0, 0],
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold',
+                },
+                tableWidth: 190,
+            });
+            doc.save('staff_list.pdf');
+        };
+    };
+    
     return (
         <>
             <Header />
             <h1><center>Staff List</center></h1>
             <div className='staffListcontainer1'>
-
-               <div className='staffList-SearchBar-container'>
-                <input
-                    className='staffList-SearchBar'
-                    type="text"
-                    placeholder="Search"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <select value={searchCriteria} onChange={handleSearchCriteriaChange} className='staffList-select'>
-                    <option value="staffId">Staff ID</option>
-                    <option value="sfirstname">First Name</option>
-                    <option value="slastname">Last Name</option>
-                    <option value="snic">NIC No</option>
-                    <option value="semail">Email</option>
-                    <option value="scontactNumber">Contact Number</option>
-                    <option value="saddress">Address</option>
-                    <option value="designation">Designation</option>
-                </select>
+                <div className='staffList-SearchBar-container'>
+                    <input
+                        className='staffList-SearchBar'
+                        type="text"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <select value={searchCriteria} onChange={handleSearchCriteriaChange} className='staffList-select'>
+                        <option value="staffId">Staff ID</option>
+                        <option value="sfirstname">First Name</option>
+                        <option value="slastname">Last Name</option>
+                        <option value="snic">NIC No</option>
+                        <option value="semail">Email</option>
+                        <option value="scontactNumber">Contact Number</option>
+                        <option value="saddress">Address</option>
+                        <option value="designation">Designation</option>
+                    </select>
                 </div>
 
-                <table className="staffList-table">
+                <button className='staffdetailsReport' onClick={generatePdf}>Generate Report</button>
+                <br></br> <br></br>
+
+                <table id="staffList-table" className="staffList-table">
                     <thead>
                         <tr>
                             <th>Staff ID </th>
@@ -99,10 +150,11 @@ const StaffList = () => {
                                 <td>{staffMember.designation}</td>
                                 <td>{staffMember.qualifications}</td>
                                 <td>
+                                    <center>
                                     <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
-                                    &nbsp;
                                     <button className="staffList-delete-btn" onClick={() => handleDelete(staffMember._id)}>Delete</button> {/* Delete button */}
                                     <Link className="staffList-salary-btn" to={`/salary/${staffMember._id}?firstname=${staffMember.sfirstname}&lastname=${staffMember.slastname}&staffId=${staffMember.staffId}`}>Salary</Link>
+                                    </center>
                                 </td>
                             </tr>
                         ))}

@@ -1,6 +1,8 @@
 // export default StaffLogin;
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../css/staffLogin.css';
+import Footer from '../components/Footer';
 
 const StaffLogin = () => {
   const [formData, setFormData] = useState({
@@ -28,20 +30,25 @@ const StaffLogin = () => {
   };
 
   return (
-    <div>
+    <>
+    <div className='staffLoginContainer' >
       <h2>Staff Login</h2>
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>Staff ID:</label>
-          <input type="text" name="staffId" value={staffId} onChange={onChange} required />
+      <br></br>
+      <form onSubmit={onSubmit} className='staffLoginForm'>
+        <div className='staffLogin'>
+          <label className='staffLogin-label'>Staff ID:</label>
+          <input type="text" name="staffId" className='staffId' value={staffId} onChange={onChange} required />
         </div>
         <div>
-          <label>Password (NIC):</label>
-          <input type="password" name="password" value={password} onChange={onChange} required />
+          <label className='staffLogin-label'>Password:</label>
+          <input type="password" name="password" className='staffpassword' value={password} onChange={onChange} required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className='StaffLogin'>Login</button>
       </form>
     </div>
+   <Footer />
+   </>
+
   );
 }
 

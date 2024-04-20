@@ -1,0 +1,51 @@
+/* viewservices.css */
+
+.view-services-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .service-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .service-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .service-type {
+    margin-bottom: 5px;
+  }
+  
+  .service-description {
+    margin-bottom: 10px;
+  }
+  
+  .service-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .view-services-update-button,
+  .view-services-delete-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .view-services-update-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .view-services-delete-button {
+    background-color: #f44336;
+    color: white;
+  }
+  

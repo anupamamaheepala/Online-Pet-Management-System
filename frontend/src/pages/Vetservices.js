@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/vetservices.css';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ShowLoading from '../components/ShowLoading';
-import axios from 'axios';
+import '../css/vetservices.css'; // Make sure to import the styles
 
 function Vetservices() {
   const images = ['vetback1.jpg', 'vetback2.jpg', 'vetback3.jpg', 'vetback4.jpg', 'vetback5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
   const [showDescription, setShowDescription] = useState('');
-
+  const [services, setServices] = useState([]);
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -25,6 +25,21 @@ function Vetservices() {
     return () => clearInterval(interval);
   }, [currentImage]);
 
+  useEffect(() => {
+    fetchServices();
+  }, []); // Fetch services when component mounts
+
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/services/services');
+      // Filter services by type
+      const vetServices = response.data.filter(service => service.type === "Veterinary Service");
+      setServices(vetServices);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
+
   const handleDotClick = (index) => {
     setCurrentImage(index);
   };
@@ -37,21 +52,18 @@ function Vetservices() {
     }
   };
 
-  const services = [
-    { title: 'Vaccinations', description: 'Regular vaccinations are essential to protect your pet from various diseases. Vaccinations typically include shots for rabies, distemper, parvovirus, and others.' },
-    { title: 'Spaying and Neutering', description: 'Spaying and neutering procedures help control the pet population and prevent unwanted behaviors such as aggression and roaming.' },
-    { title: 'General Checkups', description: 'Routine checkups are important for maintaining your pet\'s health. A veterinarian can identify any underlying health issues and provide necessary treatments.' },
-    { title: 'Dental Care', description: 'Dental hygiene is crucial for pets to prevent dental diseases and maintain overall health. Services may include teeth cleaning, extractions, and treatment for gum disease.' },
-    { title: 'Surgery', description: 'Veterinary surgeons perform various surgeries ranging from routine procedures like spaying/neutering to complex surgeries such as tumor removal or orthopedic surgery.' },
-    { title: 'Emergency Care', description: 'In emergencies, quick access to veterinary care is vital. Emergency veterinary services provide immediate medical attention to pets in critical conditions.' },
-  ];
-
-
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:9000/services/services/${id}`);
+      fetchServices(); // Refresh the list of services after deletion
+    } catch (error) {
+      console.error('Error deleting service:', error);
+    }
+  };
 
   return (
-    
     <>
-    <ShowLoading />
+      <ShowLoading />
       <Header />
       <div className="image-slider">
         <div className="upper-text">
@@ -80,10 +92,11 @@ function Vetservices() {
           <h2>Available Veterinary Services</h2>
           <ul className="service-list-vetservices">
             {services.map((service) => (
-              <li key={service.title} onClick={() => toggleDescription(service.title)}>
+              <li key={service._id} onClick={() => toggleDescription(service.title)}>
                 <span className="toggle-icon">{showDescription === service.title ? '-' : '+'}</span>
                 <h3>{service.title}</h3>
                 {showDescription === service.title && <p>{service.description}</p>}
+                
               </li>
             ))}
           </ul>

@@ -1,19 +1,42 @@
-/* Unique CSS for StaffList component */
+/* staffList.css */
+
 .staffListcontainer1 {
-  text-align: center;
-  margin: 0 auto; 
-} 
+  margin: auto;
+  padding: 20px;
+  max-width: 1350px;
+}
+
+.staffList-SearchBar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.staffList-SearchBar {
+  width: 300px; /* Set a fixed width for the search bar */
+  margin-right: 10px; /* Add some spacing between search bar and select */
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.staffList-select {
+  width: 150px; /* Set a fixed width for the select element */
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 
 .staffList-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  padding: 20px;
 }
 
-.staffList-table th, .staffList-table td {
+.staffList-table th,
+.staffList-table td {
   border: 1px solid #ddd;
   padding: 8px;
+  text-align: left;
 }
 
 .staffList-table th {
@@ -21,64 +44,55 @@
   color: #333;
 }
 
-.staffList-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+.staffList-table tr:hover {
+  background-color: #f5f5f5; 
 }
 
-.staffList-table tbody tr:hover {
-  background-color: #ddd;
+.staffList-action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Set position to relative for button alignment */
 }
 
-.staffList-delete-btn,
 .staffList-update-btn,
-.staffList-salary-btn{
-  padding: 6px 12px;
+.staffList-delete-btn,
+.staffList-salary-btn {
+  padding: 8px 16px;
+  margin-right: 8px;
+  margin-bottom: 8px; /* Add margin-bottom for vertical spacing */
   border: none;
   border-radius: 4px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
   cursor: pointer;
-  margin-right: 10px;
+  text-decoration: none;
 }
 
-.staffList-delete-btn {
-  background-color: #f44336;
-  color: white;
+.staffList-update-btn:hover,
+.staffList-delete-btn:hover,
+.staffList-salary-btn:hover {
+  background-color: #45a049; 
+  text-decoration: none;
 }
 
-.staffList-update-btn {
-  background-color: #4caf50;
-  color: white;
+.staffList-delete-btn{
+  background-color:#d33333;
   text-decoration: none;
 }
 
 
 .staffList-salary-btn {
-  background-color: #054ca8;
-  color: white;
+  background-color: #337ab7; 
   text-decoration: none;
 }
-.staffList-delete-btn:hover,
-.staffList-update-btn:hover,
+
 .staffList-salary-btn:hover {
-  opacity: 0.8;
+  background-color: #286090; 
   text-decoration: none;
-}
-.staffList-SearchBar-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Align to the left */
-  margin-bottom: 20px;
-}
-
-.staffList-SearchBar {
-  width: 300px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.staffList-select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
