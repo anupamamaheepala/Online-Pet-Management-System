@@ -228,7 +228,7 @@ const MyPets = () => {
         {/* Add Pet Button */}
         <div className="add-pet-button-container"> {/* Container for the button */}
           <Link to={`/addpet/${customerId}`}>
-            <button className="add-pet-button">Add Pet</button>
+            <button className="addto-pet-button">Add Pet</button>
           </Link>
         </div>
       </div>

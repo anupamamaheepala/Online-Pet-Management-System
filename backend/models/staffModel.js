@@ -34,7 +34,12 @@ const StaffSchema = new mongoose.Schema({
   designation: {
     type: String,
     required: true
+  },
+  qualifications: {
+    type: String,
+    required: true
   }
+
 },{timestamps: false});
 
 module.exports = mongoose.model('Staff', StaffSchema); // Changed model name to 'Staff'
