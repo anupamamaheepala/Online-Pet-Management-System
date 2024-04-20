@@ -15,6 +15,8 @@ import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
 import FeedbackReply from './pages/FeedbackReply';
+import FeedbackReplyForm from './pages/FeedbackReplyForm';
+
 import Services from './pages/Services';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
@@ -112,6 +114,8 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
+          <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
+
           <Route path='/Services' element = {<Services />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
