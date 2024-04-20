@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/services.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Services = () => {
   const [title, setTitle] = useState('');
@@ -12,12 +14,15 @@ const Services = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:9000/services/add', { title, type, description });
+
+      toast.success('Service added');
       // Optionally, you can handle success here (e.g., show a success message)
       // Reset form fields
       setTitle('');
       setType('Veterinary Service');
       setDescription('');
     } catch (error) {
+        toast.error("Something went wrong");
       console.error('Error creating service:', error);
       // Optionally, handle error (e.g., show an error message)
     }

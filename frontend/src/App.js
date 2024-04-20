@@ -18,6 +18,7 @@ import FeedbackReply from './pages/FeedbackReply';
 import FeedbackReplyForm from './pages/FeedbackReplyForm';
 
 import Services from './pages/Services';
+import ViewServices from './pages/ViewServices';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -117,6 +118,7 @@ function App() {
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
 
           <Route path='/Services' element = {<Services />}/>
+          <Route path='/ViewServices' element = {<ViewServices />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
