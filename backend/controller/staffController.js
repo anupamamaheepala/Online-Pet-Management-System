@@ -102,3 +102,38 @@ exports.getStaffByIdForSalary = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch staff details" });
   }
 };
+
+exports.staffLogin = async (req, res) => {
+  try {
+    const { staffId, password } = req.body;
+
+    // Find the staff member by staffId
+    const staff = await Staff.findOne({ staffId });
+
+    // Check if staff member exists and if the provided password matches
+    if (!staff || staff.snic !== password) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // If authentication is successful, return the staffId
+    res.status(200).json({ staffId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+exports.getStaffProfileById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const staff = await Staff.findOne({ staffId: id }); // Using staffId instead of _id
+    if (!staff) {
+      return res.status(404).json({ message: 'Staff member not found' });
+    }
+    res.json(staff);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to fetch staff details' });
+  }
+};
+

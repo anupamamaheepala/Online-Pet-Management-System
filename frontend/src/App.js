@@ -14,6 +14,7 @@ import FeedbackInquiry from './pages/FeedbackInquiry';
 import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
+import FeedbackReply from './pages/FeedbackReply';
 
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
@@ -80,7 +81,9 @@ import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
+import StaffLogin from './pages/StaffLogin';
 import Cardpayreport from './pages/Cardpayreport';
+import EditAdvertisement from './pages/EditAdvertisement';
 
 function App() {
   return (
@@ -109,6 +112,7 @@ function App() {
           <Route path="/FAQselect" element={<FAQselect />} />
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
+          <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
 
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
@@ -147,7 +151,7 @@ function App() {
           <Route path="/AddedProduct" element={<AddedProduct />} />
           <Route path="/product" element={<ShopCategory />}>
           </Route>
-          <Route path="/StaffProfile" element={<StaffProfile />} />
+          <Route path="/staff/profile/:id" element={<StaffProfile />} />
           <Route path="/update/:staffId" element={<UpdateStaff />} />
           <Route path="/Paystatus" element={<Paystatus />} />
           <Route path="/OrderForm" element={<OrderForm />} />
@@ -167,7 +171,9 @@ function App() {
           <Route path="/Cardpayadmin"  element={<Cardpayadmin/>} />
           <Route path="/Cart"  element={<AddToCartPage/>} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
+          <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/Cardpayreport" element={<Cardpayreport />} />
+          <Route path="/edit/:id" element={<EditAdvertisement />} />
 
           </Routes>
         </CartProvider>

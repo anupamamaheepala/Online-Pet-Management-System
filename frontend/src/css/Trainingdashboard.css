@@ -1,8 +1,3 @@
-.alo1-button{
-  width: 400px;
-  margin-left: 1250px;
-  margin-bottom: 20px;
-}
 
 .alo1-table {
     width: 100%;
@@ -27,4 +22,45 @@
   .alo1-table tr:hover {
     background-color: #ddd;
   }
- 
+  .button-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.alo1-button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: rgb(24, 10, 10);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.alo1-button:hover {
+    text-decoration: underline;
+}
+.dashboard-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.total-count {
+  font-size: 18px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 8px;
+  }
+
+  .total-count {
+    font-size: 16px;
+  }
+}
+
+

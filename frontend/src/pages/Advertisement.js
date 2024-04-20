@@ -1,4 +1,6 @@
 
+// Advertisement.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -44,13 +46,12 @@ const Advertisement = () => {
                 {advertisements.map(advertisement => (
                     <div key={advertisement._id} className="ma_advertisement-card">
                         <img src={`http://localhost:9000/${advertisement.filePath.replace(/\\/g, '/')}`} alt={advertisement.title} 
-                        style={{ width: '230px', height: '200px', cursor: 'pointer' }}
+                        style={{ width: '290px', height: 'auto', cursor: 'pointer' }}
                         className="ma_advertisement-image" />
                         <div className="ma_advertisement-details">
                             <h3 className="ma_advertisement-title">{advertisement.title}</h3>
                             <p className="ma_advertisement-description">{advertisement.description}</p>
                             <p className="ma_advertisement-contact">Contact: {advertisement.contact}</p>
-                            <p className="ma_advertisement-contact">Email: {advertisement.email}</p>
                             {advertisement.price && <p className="ma_advertisement-price">Price: {advertisement.price}</p>}
                             {/* Render other details as needed */}
                         </div>

@@ -18,5 +18,6 @@ const upload = multer({ storage: storage });
 
 // Route to add a new step
 router.post('/adds', upload.single('file'), stepController.addStep);
+router.get('/getss',stepController.getStep);
 
 module.exports = router;

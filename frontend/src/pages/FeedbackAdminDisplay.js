@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/feedbackadmindisplay.css';
+import jsPDF from 'jspdf';
 
 const FeedbackAdminDisplay = () => {
     const [feedbackList, setFeedbackList] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         axios.get("http://localhost:9000/feedback/all")
@@ -34,16 +36,52 @@ const FeedbackAdminDisplay = () => {
         alert(`Update feedback with ID: ${id}`);
     };
 
+    const filteredData = feedbackList.filter(feedback => {
+        const searchQueryLower = searchQuery.toLowerCase();
+        return (
+            feedback.name.toLowerCase().includes(searchQueryLower) ||
+            feedback.email.toLowerCase().includes(searchQueryLower)
+        );
+    });
+
+    const GenReport = () => {
+        const doc = new jsPDF('');
+        const title = "Feedback Report";
+        const titleMargin = 20;
+        const tableMargin = 20;
+        const titleWidth = doc.getTextWidth(title);
+        const center = (doc.internal.pageSize.width / 2) - (titleWidth / 2);
+
+        doc.text(title, center, titleMargin);
+
+        doc.autoTable({
+            head: [['Feedback', 'Email', 'Name', 'Rating', 'Likes', 'Dislikes']],
+            body: filteredData.map((val, i) => [val.feedback, val.email, val.name, val.rating, val.likes, val.dislikes]),
+            startY: titleMargin + tableMargin,
+            styles: {
+                cellWidth: 'auto',
+                fontSize: 8,
+            },
+            columnStyles: {
+                0: { cellWidth: 30 },
+                1: { cellWidth: 30 },
+            },
+        });
+
+        doc.save('Feedback Report.pdf');
+    };
+
     return (
         <>
             <Header />
             <h1><center>Feedback List</center></h1>
-
+            <div className="search">
+                <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search" />
+            </div>
             <div className='feedbackListContainer'>
                 <table className="feedbackList-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Feedback</th>
                             <th>Email</th>
                             <th>Name</th>
@@ -54,9 +92,8 @@ const FeedbackAdminDisplay = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {feedbackList.map((feedback, index) => (
+                        {filteredData.map((feedback) => (
                             <tr key={feedback._id}>
-                                <td>{index + 1}</td>
                                 <td>{feedback.feedback}</td>
                                 <td>{feedback.email}</td>
                                 <td>{feedback.name}</td>
@@ -71,9 +108,10 @@ const FeedbackAdminDisplay = () => {
                         ))}
                     </tbody>
                 </table>
+                <div className='genButton'>
+                    <button onClick={GenReport}>Generate Report</button>
+                </div>
             </div>
-
-            {/* Link to Feedback page */}
             <div>
                 <Link to="/feedbackDisplay">View Feedback</Link>
             </div>

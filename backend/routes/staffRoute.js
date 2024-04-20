@@ -20,4 +20,11 @@ router.put('/:id', staffController.updateStaff);
 // New route for fetching staff details specifically for salary calculation
 router.get('/salary/:id', staffController.getStaffByIdForSalary);
 
+//staff login
+router.post('/login', staffController.staffLogin);
+
+// Route to get staff profile by ID
+router.get('/profile/:id', staffController.getStaffProfileById);
+
+
 module.exports = router;

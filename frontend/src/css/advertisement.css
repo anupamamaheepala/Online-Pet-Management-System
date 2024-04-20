@@ -280,9 +280,9 @@
 }
 
 .ma_advertisement-table {
-    width: 100%;
+    width: 90%; /* Adjust width as needed */
+    margin: 20px auto; /* Center the table with a small margin */
     border-collapse: collapse; /* Collapse table borders */
-    margin-bottom: 20px; /* Add space between table and other elements */
 }
 
 .ma_advertisement-table th,
