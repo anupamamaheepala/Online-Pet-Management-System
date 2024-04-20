@@ -82,6 +82,7 @@ const StaffList = () => {
                             <th>Contact Number</th>
                             <th>Address</th>
                             <th>Designation</th>
+                            <th>Qualifications</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -96,6 +97,7 @@ const StaffList = () => {
                                 <td>{staffMember.scontactNumber}</td>
                                 <td>{staffMember.saddress}</td>
                                 <td>{staffMember.designation}</td>
+                                <td>{staffMember.qualifications}</td>
                                 <td>
                                     <Link className="staffList-update-btn" to={`/update/${staffMember._id}`}>Update</Link>
                                     &nbsp;
