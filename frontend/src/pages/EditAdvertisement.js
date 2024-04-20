@@ -10,8 +10,9 @@ const EditAdvertisement = () => {
     const [advertisementData, setAdvertisementData] = useState({
         ownerName: '',
         email: '',
-        pet_type: '',
+        pet_type: '', // Include pet_type in the state
         Breed: '',
+        purpose: '',
         description: '',
         contact: ''
     });
@@ -33,33 +34,19 @@ const EditAdvertisement = () => {
         const { name, value } = e.target;
         setAdvertisementData({ ...advertisementData, [name]: value });
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const formData = new FormData();
-            formData.append('ownerName', advertisementData.ownerName);
-            formData.append('email', advertisementData.email);
-            formData.append('pet_type', advertisementData.pet_type); // Append image to form data
-            formData.append('Breed', advertisementData.Breed);
-            formData.append('description', advertisementData.description);
-            formData.append('contact', advertisementData.contact)
-
-            await axios.put(`http://localhost:9000/confirmedads/${advertisementId}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            alert('Product updated successfully');
+            await axios.put(`http://localhost:9000/confirmedads/${advertisementId}`, advertisementData);
+            alert('Advertisement updated successfully');
         } catch (error) {
-            console.error('Failed to update product:', error);
-            alert('Failed to update product');
+            console.error('Failed to update advertisement:', error);
+            alert('Failed to update advertisement');
         }
     };
 
-
-    
-
-    const { ownerName, email, pet_type, Breed, description, contact } = advertisementData;
+    const { ownerName, email, pet_type, Breed, purpose, description, contact } = advertisementData;
 
     return (
         <>
@@ -77,13 +64,18 @@ const EditAdvertisement = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="pet_type">pet_type:</label>
+                    <label htmlFor="pet_type">Pet Type:</label>
                     <input type="text" id="pet_type" name="pet_type" value={pet_type} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="Breed">Breed:</label>
                     <input type="text" id="Breed" name="Breed" value={Breed} onChange={handleChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="purpose">Purpose:</label>
+                    <input type="text" id="purpose" name="purpose" value={purpose} onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
