@@ -15,7 +15,7 @@ import FAQselect from './pages/FAQselect';
 import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
 import FeedbackReply from './pages/FeedbackReply';
-
+import Services from './pages/Services';
 import Vetservices from './pages/Vetservices';
 import Groomservices from './pages/Groomservices';
 import Makeappointment from './pages/Makeappointment';
@@ -82,7 +82,6 @@ import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
 import StaffLogin from './pages/StaffLogin';
-import Cardpayreport from './pages/Cardpayreport';
 import EditAdvertisement from './pages/EditAdvertisement';
 
 function App() {
@@ -113,7 +112,7 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
-
+          <Route path='/Services' element = {<Services />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
           <Route path="/Groomservices" element={<Groomservices />} />
           <Route path="/Makeappointment" element={<Makeappointment />} />
@@ -172,7 +171,6 @@ function App() {
           <Route path="/Cart"  element={<AddToCartPage/>} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
-          <Route path="/Cardpayreport" element={<Cardpayreport />} />
           <Route path="/edit/:id" element={<EditAdvertisement />} />
 
           </Routes>

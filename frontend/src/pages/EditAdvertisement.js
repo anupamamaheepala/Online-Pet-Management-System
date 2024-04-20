@@ -11,7 +11,7 @@ const EditAdvertisement = () => {
     const [advertisement, setAdvertisement] = useState({
         ownerName: '',
         email: '',
-        title: '',
+        pet_type: '',
         Breed: '',
         purpose: '',
         description: '',
@@ -47,7 +47,7 @@ const EditAdvertisement = () => {
             const formDataToSend = new FormData();
             formDataToSend.append('ownerName', advertisement.ownerName);
             formDataToSend.append('email', advertisement.email);
-            formDataToSend.append('title', advertisement.title);
+            formDataToSend.append('pet_type', advertisement.pet_type);
             formDataToSend.append('Breed', advertisement.Breed);
             formDataToSend.append('purpose', advertisement.purpose);
             formDataToSend.append('description', advertisement.description);
@@ -87,8 +87,8 @@ const EditAdvertisement = () => {
             </div>
 
             <div className="ma_form-group">
-                <label htmlFor="title">Title:</label>
-                <input type="text" id="title" name="title" value={advertisement.title} onChange={onChange} required />
+                <label htmlFor="title">pet_type:</label>
+                <input type="text" id="title" name="title" value={advertisement.pet_type} onChange={onChange} required />
             </div>
 
             <div className="ma_form-group">

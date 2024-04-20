@@ -1,0 +1,44 @@
+/* services.css */
+.add-service-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-service-form-group {
+    margin-bottom: 20px;
+}
+
+.add-service-label {
+    display: block;
+    font-weight: bold;
+}
+
+.add-service-input,
+.add-service-select,
+.add-service-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.add-service-textarea {
+    height: 100px;
+}
+
+.add-service-submit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-service-submit-button:hover {
+    background-color: #0056b3;
+}

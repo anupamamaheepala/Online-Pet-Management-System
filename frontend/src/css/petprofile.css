@@ -1,5 +1,5 @@
 .pet-profile-container{
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
@@ -66,8 +66,8 @@
   padding: 10px;
   font-size: 0.7rem;
   color: #fff;
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -78,8 +78,9 @@
 }
 
 .delete-photo-button:hover{
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #a90101;
+  border: 1px solid #a90101;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -124,8 +125,9 @@
 }
 
 .delete-profile-button:hover{
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #a90101;
+  border: 1px solid #a90101;
+  color: #ffffff;
   text-decoration: none;
 }
 

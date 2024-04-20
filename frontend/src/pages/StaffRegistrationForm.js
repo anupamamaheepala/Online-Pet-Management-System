@@ -13,14 +13,15 @@ const StaffRegister = () => {
     semail: '',
     scontactNumber: '',
     saddress: '',
-    designation: ''
+    designation: '',
+    qualifications: ''
   });
 
   const [contactNumberError, setContactNumberError] = useState('');
   const [firstnameError, setFirstnameError] = useState('');
   const [lastnameError, setLastnameError] = useState('');
 
-  const { staffId, sfirstname, slastname, snic, semail, scontactNumber, saddress, designation } = formData;
+  const { staffId, sfirstname, slastname, snic, semail, scontactNumber, saddress, designation,qualifications } = formData;
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -77,6 +78,7 @@ const StaffRegister = () => {
         scontactNumber: '',
         saddress: '',
         designation: '',
+        qualifications: '',
       });
     } catch (err) {
       console.error(err);
@@ -142,6 +144,11 @@ const StaffRegister = () => {
             <option value="Pet Trainer">Pet Trainer</option>
           </select>
         </div>
+        <div className="staffregister-form-group">
+            <label className='staffregister-form-label'>Qualifications:</label>
+            <textarea name="qualifications" id="qualifications" value={formData.qualifications} onChange={onChange} rows={4} cols={50} />
+        </div>
+
         <br></br>
         <center><button type="submit" className='staffRegisterButton'>Submit</button></center>
       </form>
