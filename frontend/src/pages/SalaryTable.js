@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/salaryTable.css';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const SalaryTable = () => {
   const [salaries, setSalaries] = useState([]);
@@ -11,10 +13,9 @@ const SalaryTable = () => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    // Fetch all salary details from backend API when component mounts
     const fetchSalaries = async () => {
       try {
-        const response = await axios.get('http://localhost:9000/salary'); 
+        const response = await axios.get('http://localhost:9000/salary');
         setSalaries(response.data);
       } catch (error) {
         console.error('Error fetching salary details:', error);
@@ -30,6 +31,58 @@ const SalaryTable = () => {
 
   const handleCriteriaChange = event => {
     setSearchCriteria(event.target.value);
+  };
+
+  const handleGenerateReport = () => {
+    const doc = new jsPDF();
+
+    const logo = new Image();
+    logo.src = '/images/logo.png';
+
+    logo.onload = function () {
+      const logoWidth = 30;
+      const xPosition = 10;
+      const yPosition = 10;
+
+      doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+
+      const tableData = salaries.map(salary => [
+        salary.staffId,
+        salary.firstName,
+        salary.lastName,
+        formatDate(salary.selectedMonth),
+        salary.basicSalary,
+        salary.otHours,
+        salary.otRate,
+        salary.otAmount,
+        salary.bonusAmount,
+        salary.totalSalary,
+      ]);
+
+      doc.setFontSize(18);
+      doc.text('Salary Details', 70, yPosition + logoWidth - 10);
+      doc.setFontSize(15);
+      doc.autoTable({
+        startY: yPosition + logoWidth + 10,
+        head: [['Staff ID', 'First Name', 'Last Name', 'Month', 'Basic Salary', 'OT Hours', 'OT Rate', 'OT Amount', 'Bonus Amount', 'Total Salary']],
+        body: tableData,
+        styles: {
+          fontSize: 9,
+          cellPadding: 3,
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0]
+        },
+        headStyles: {
+          fillColor: [0, 0, 0],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold',
+          halign: 'center', 
+          valign: 'middle'
+        },
+        tableWidth: 190,
+      });
+      doc.save('salary_report.pdf');
+    };
   };
 
   const formatDate = date => {
@@ -48,7 +101,6 @@ const SalaryTable = () => {
     // Return the formatted string containing only month and year
     return `${month} ${year}`;
   };
-  
 
   return (
     <>
@@ -59,12 +111,12 @@ const SalaryTable = () => {
         <center><h2>Salary Details</h2></center>
         <br />
         <div className="search-container">
-          <input 
-            type="text" 
-            placeholder="Search..." 
+          <input
+            type="text"
+            placeholder="Search..."
             className='SalaryTablesearch'
-            value={searchValue} 
-            onChange={handleSearchChange} 
+            value={searchValue}
+            onChange={handleSearchChange}
           />
           <select value={searchCriteria} onChange={handleCriteriaChange} className='SalaryTableselect'>
             <option value="staffId">Staff ID</option>
@@ -72,6 +124,7 @@ const SalaryTable = () => {
             <option value="lastName">Last Name</option>
           </select>
         </div>
+        <button onClick={handleGenerateReport} className='SalaryGenerateReport'>Generate Report</button>
         <br />
         <table className='SalaryTable2'>
           <thead>

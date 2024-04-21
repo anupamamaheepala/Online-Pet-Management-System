@@ -4,6 +4,7 @@ import '../css/myappointments.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -149,7 +150,7 @@ const MyAppointments = () => {
                 ) : (
                   <>
                     {!appointment.IsPaid && (
-                      <button className="myappointment_paynow_button" onClick={() => handlePayNow(appointment._id)}>Pay Now</button>
+                     <button className="myappointment_paynow_button" onClick={() => handlePayNow(appointment._id)}>Pay Now</button>
                     )}
                     <button className="myappointment_remove_button" onClick={() => handleRemove(appointment._id)}>Remove</button>
                   </>

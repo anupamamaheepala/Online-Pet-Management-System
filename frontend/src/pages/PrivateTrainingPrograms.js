@@ -40,6 +40,13 @@ const PrivateTrainingPrograms = () => {
         <>
             <Header />
             <h2 className="training-topic">Private Training Programs</h2>
+            <div className="col text-right">
+            <div className="col">
+                <Link to='/privateTraining'>
+                    <button className="trainingadd-apply-button">Apply</button>
+                </Link>
+                </div>
+            </div>
             <div className="privatetraining-grid">
                 {privatetrainings.map((privatetraining, index) => (
                     <div key={privatetraining._id} className="privatetraining-item">
@@ -62,11 +69,7 @@ const PrivateTrainingPrograms = () => {
                     </div>
                 ))}
             </div>
-            <div className="col">
-                <Link to='/privateTraining'>
-                    <button className="trainingadd-button">Apply</button>
-                </Link>
-            </div>
+            
             <Footer />
         </>
     );

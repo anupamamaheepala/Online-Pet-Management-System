@@ -60,13 +60,17 @@ const FeedbackDisplay = () => {
     return (
         <>
             <Header />
-            <Link to="/feedback">
-                <button className="FDbuttons">Give Feedback</button>
-            </Link>
-            <Link to="/feedbackinquiry">
-                <button className="">Make an Inquiry</button>
-            </Link>
-            <h1><center>Customer Feedback</center></h1>
+            <div className="buttonContainer">
+                <Link to="/feedback">
+                    <button className="FDbuttons">Give Feedback</button>
+                </Link>
+                <Link to="/feedbackinquiry">
+                    <button className="FDBbuttons">Make an Inquiry</button>
+                </Link>
+            </div>
+            <div className="titleContainer">
+                <h1><center>Customers Feedback</center></h1>
+            </div>
 
             {/* Star filter dropdown */}
             <div className="starFilter">
@@ -88,6 +92,12 @@ const FeedbackDisplay = () => {
                     <div key={index} className="feedbackItem">
                         <h3>{feedback.name}</h3>
                         <p>{feedback.feedback}</p>
+                        {feedback.reply !== "pending" && (
+                            <div className="adminReply">
+                                <strong>Pet Zone Hospital:</strong>
+                                <p>{feedback.reply}</p>
+                            </div>
+                        )}
                         <div className="starRating">
                             {renderStarRating(feedback.rating)}
                         </div>

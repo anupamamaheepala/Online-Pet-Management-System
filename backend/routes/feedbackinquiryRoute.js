@@ -14,7 +14,5 @@ router.get('/all', feedbackinquiryController.getFeedback);
 // Route for deleting feedback by ID
 router.delete('/:id', feedbackinquiryController.deleteFeedback);
 
-// Route for updating feedback by ID
-router.put('/:id', feedbackinquiryController.updateFeedback);
 
 module.exports = router;

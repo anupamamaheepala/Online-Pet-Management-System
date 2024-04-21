@@ -1,109 +1,112 @@
 .editPetProfileContainer {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .editPetProfileForm {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .editPetProfileLabel {
-    margin-bottom: 5px;
-  }
-  
-  .editPetProfileInput,
-  .editPetProfileSelect {
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .editPetProfileButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .editPetProfileButton:hover {
-    background-color: #0056b3;
-  }
-  
-  .editpetpro-btncon{
-    width: 35%;
-    display: flex;
-    margin-top: 30px;
-  }
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
 
-  .addVaccinationButton{
-    display: block;
-    width: 50%;
-    padding: 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    text-align: center;
-    margin-right: 10px;
-  }
+.editPetProfileForm {
+  display: flex;
+  flex-direction: column;
+}
 
-  .addVaccinationButton:hover{
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-  }
+.editPetProfileLabel {
+  margin-bottom: 5px;
+}
 
-  .editPetProfileSubmitButton{
-    display: block;
-    width: 50%;
-    padding: 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    text-align: center;
-    margin-left: 10px;
-  }
+.editPetProfileInput,
+.editPetProfileSelect {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+}
 
-  .editPetProfileSubmitButton:hover{
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-  }
+.editPetProfileTextarea{
+  width: 80%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+}
 
-  .removeVaccinationButton{
-    width: 10%;
-    padding: 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    text-align: center;
-    margin-left: 15px;
-  }
+.editPetProfileSelectg{
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+}
 
-  .removeVaccinationButton:hover{
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-  }
+
+.editpetpro-btncon{
+  width: 50%;
+  display: flex;
+  margin-top: 30px;
+}
+
+.addVaccinationButton{
+  display: block;
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.addVaccinationButton:hover{
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+
+.editPetProfileSubmitButton{
+  display: block;
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.editPetProfileSubmitButton:hover{
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+
+.removeVaccinationButton{
+  width: 15%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  margin-left: 15px;
+}
+
+.removeVaccinationButton:hover{
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}

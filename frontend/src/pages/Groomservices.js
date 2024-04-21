@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/groomeservices.css';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ShowLoading from '../components/ShowLoading';
+import '../css/groomeservices.css';
 
 function Groomservices() {
   const images = ['groome1.jpg', 'groome2.jpg', 'groome3.jpg', 'groome4.jpg', 'groome5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
   const [showDescription, setShowDescription] = useState('');
+  const [services, setServices] = useState([]);
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -23,6 +25,20 @@ function Groomservices() {
     return () => clearInterval(interval);
   }, [currentImage]);
 
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/services/services');
+      const groomeServices = response.data.filter(service => service.type === 'Groome Service');
+      setServices(groomeServices);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
+
   const handleDotClick = (index) => {
     setCurrentImage(index);
   };
@@ -30,15 +46,6 @@ function Groomservices() {
   const toggleDescription = (service) => {
     setShowDescription(showDescription === service ? '' : service);
   };
-
-  const services = [
-    { title: 'Bathing and Brushing', description: 'Regular bathing and brushing help keep your pet\'s coat clean and healthy, reducing shedding and preventing matting.' },
-    { title: 'Trimming and Styling', description: 'Professional grooming includes trimming your pet\'s fur to maintain a neat appearance and styling to your preferences.' },
-    { title: 'Nail Clipping', description: 'Trimming your pet\'s nails is essential to prevent overgrowth, which can lead to discomfort and difficulty walking.' },
-    { title: 'Ear Cleaning', description: 'Regular cleaning of your pet\'s ears helps prevent infections and keeps their ears healthy and free from wax buildup.' },
-    { title: 'Teeth Brushing', description: 'Dental hygiene is important for pets, and brushing their teeth helps prevent dental diseases and bad breath.' },
-    { title: 'Special Treatments', description: 'Some pets may require special treatments such as flea baths, skin conditioning, or medicated baths for specific skin conditions.' },
-  ];
 
   return (
     <>

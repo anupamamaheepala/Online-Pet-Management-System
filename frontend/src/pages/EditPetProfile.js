@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/editpetprofile.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const EditPetProfile = () => {
     const { petId } = useParams();
@@ -148,6 +150,8 @@ const EditPetProfile = () => {
     }
 
     return (
+        <>
+        <Header/>
         <div className="editPetProfileContainer">
             <h2>Edit Pet Profile</h2>
             <form onSubmit={handleSubmit} className="editPetProfileForm">
@@ -183,8 +187,9 @@ const EditPetProfile = () => {
                 />
 
                 {/* Age inputs */}
-                <div className="ageInputGroup">
+                
                     <label htmlFor="ageValue" className="editPetProfileLabel">Age:</label>
+                    <div className="ageInputGroup">
                     <input
                         type="number"
                         id="ageValue"
@@ -219,7 +224,7 @@ const EditPetProfile = () => {
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
-                    className="editPetProfileSelect"
+                    className="editPetProfileSelectg"
                 >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -307,6 +312,8 @@ const EditPetProfile = () => {
                 </div></center>
             </form>
         </div>
+        <Footer/>
+        </>
     );
 };
 
