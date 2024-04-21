@@ -28,6 +28,7 @@ const VetAppointmentList = () => {
   }, []);
 
   const generatePdf = () => {
+    
     const doc = new jsPDF();
     const tableData = appointments.map((appointment) => [
       appointment.ownerName,

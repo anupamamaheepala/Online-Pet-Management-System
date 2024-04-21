@@ -138,12 +138,12 @@ exports.getStaffProfileById = async (req, res) => {
 };
 
 
-exports.getVetsAndGroomers = async (req, res) => {
+exports.getAllGroomeandVet = async (req, res) => {
   try {
-      const vetsAndGroomers = await Staff.find({ $or: [{ designation: 'veterinarian' }, { designation: 'groomer' }] });
-      res.status(200).json(vetsAndGroomers);
+    const staffs = await Staff.find(); 
+    res.json(staffs);
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server error' });
+    console.error('Error fetching staff members:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
