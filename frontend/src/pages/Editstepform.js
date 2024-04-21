@@ -6,6 +6,9 @@ import Footer from '../components/Footer';
 
 const EditStepForm = () => {
     const { stepId } = useParams();
+    const [file, setFile] = useState(null);
+    const [fileName, setFileName] = useState('');
+   
     const [stepData, setStepData] = useState({
         step: '',
         name: '',
@@ -36,7 +39,10 @@ const EditStepForm = () => {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setStepData({ ...stepData, file: file });
+        if (file) {
+            setFile(file);
+            setFileName(file.name); // Extract file name from selected file
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -47,20 +53,23 @@ const EditStepForm = () => {
             formData.append('name', stepData.name);
             formData.append('title', stepData.title);
             formData.append('description', stepData.description);
-            formData.append('file', stepData.file);
+            formData.append('file', file); // Use the file state here
             formData.append('contact', stepData.contact);
 
-            await axios.put(`http://localhost:9000/step/edit/${stepId}`, formData, {
+            await axios.put(`http://localhost:9000/step/${stepId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+
             alert('Step updated successfully');
         } catch (error) {
             console.error('Failed to update step:', error);
             alert('Failed to update step');
         }
     };
+
+
 
     const { step, name, title, description, contact, filePath } = stepData;
 
@@ -91,7 +100,7 @@ const EditStepForm = () => {
                 style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
                 <div className="form-group">
                     <label>Upload suitable image for this step:</label>
-                    <input type="file" name="file" onChange={handleImageChange} required />
+                    <input type="file" name="file" onChange={handleImageChange}  />
                 </div>
                 <div className="form-group">
                     <label htmlFor="contact">Contact:</label>

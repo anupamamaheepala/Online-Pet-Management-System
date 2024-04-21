@@ -53,20 +53,28 @@ exports.getStepId = async (req, res) => {
     }
 };
 
-exports.editstep =  async (req, res) => {
-    try {
-        // Fetch the step from the database by ID
-        const step = await Steps.findById(req.params.id);
-        if (!step) {
-            return res.status(404).json({ message: 'step not found' });
-        }
 
+
+exports.editstep = async (req, res) => {
+    try {
         // Update the step fields based on the request body
-        step.itemName = req.body.step;
-        step.category = req.body.name;
-        step.price = req.body.description;
-        step.quantity = req.body.title;
-        step.quantity = req.body.contact;
+        const updatedStep = {
+            step: req.body.step, // Use 'step' instead of 'itemName'
+            name: req.body.name, // Use 'name' instead of 'category'
+            title: req.body.title, // Use 'title' instead of 'quantity'
+            description: req.body.description, // Use 'description' instead of 'price'
+            contact: req.body.contact // Keep 'contact' as it is
+        };
+
+        const step = await Steps.findByIdAndUpdate(
+            req.params.id,
+            updatedStep,
+            { new: true }
+        );
+
+        if (!step) {
+            return res.status(404).json({ message: 'Step not found' });
+        }
 
         // Check if a new image is uploaded
         if (req.file) {
@@ -74,8 +82,9 @@ exports.editstep =  async (req, res) => {
         }
 
         // Save the updated step to the database
-        const updatedstep = await step.save();
-        res.json(updatedstep);
+        await step.save();
+
+        res.json(step);
     } catch (error) {
         console.error('Error updating step:', error);
         res.status(500).json({ message: 'Internal Server Error' });
