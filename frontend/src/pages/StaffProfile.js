@@ -53,6 +53,7 @@ const StaffProfile = () => {
           <Link className="staffProfile-update-btn" to={`/update/${staff._id}`}>Update</Link>
           <button className="staffProfile-delete-btn" onClick={() => handleDelete(staff._id)}>Delete</button>
           <Link className="staffProfile-leave-btn" to={`/StaffLeaveForm/${staff._id}?staffId=${staff.staffId}&sfirstname=${staff.sfirstname}&slastname=${staff.slastname}`}>Apply For Leave</Link>
+          <Link to={`/SalaryView/${id}`} className="staffProfile-view-salary-btn">View Salary</Link>
         </div>
       )}
 
