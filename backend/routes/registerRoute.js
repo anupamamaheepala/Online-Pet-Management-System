@@ -3,7 +3,6 @@ const router = express.Router();
 const registerController = require('../controller/registerController');
 
 
-
 // Register a new customer
 router.post("/register", registerController.registerCustomer);
 

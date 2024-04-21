@@ -49,8 +49,9 @@ const Advertisement = () => {
             
                 <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
                 <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
-                
+               
                 <input
+                
                     type="text"
                     placeholder="Search pet type..."
                     value={searchQuery}

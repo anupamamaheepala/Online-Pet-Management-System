@@ -154,7 +154,6 @@ exports.deleteCustomerById = async (req, res) => {
   }
 };
 
-// Sign-in endpoint
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
 
@@ -173,13 +172,14 @@ exports.signIn = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // If the credentials are valid, return a success message
-    res.status(200).json({ message: 'Sign-in successful', user });
+    // If the credentials are valid, return user data
+    res.status(200).json({ message: 'Sign-in successful', user: { _id: user._id, username: user.username, profilePhoto: user.profilePhoto } });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
 
 
 exports.resetPassword = async (req, res) => {

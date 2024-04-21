@@ -118,7 +118,7 @@ const EditAdvertisement = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="Breed">Breed:</label>
+                    <label htmlFor="Breed">Species:</label>
                     <input type="text" id="Breed" name="Breed" value={Breed} onChange={handleChange} />
                 </div>
 
