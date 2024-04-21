@@ -16,14 +16,6 @@ const Register = () => {
 
     const { username, email, contactNumbers, address, password, confirmPassword } = formData;
 
-    // const handleInputChange = (index, event) => {
-    //     const updatedContactNumbers = [...contactNumbers];
-    //     updatedContactNumbers[index] = event.target.value;
-    //     setFormData({
-    //         ...formData,
-    //         contactNumbers: updatedContactNumbers,
-    //     });
-    // };
     const handleInputChange = (index, event) => {
       const updatedContactNumbers = [...contactNumbers];
       const value = event.target.value;
