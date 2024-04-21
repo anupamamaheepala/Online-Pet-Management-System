@@ -52,10 +52,25 @@ const EditAdvertisement = () => {
         }
     };
 
+    
+        
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setAdvertisementData({ ...advertisementData, [name]: value });
+        let newValue = value;
+        
+        if (name === 'contact') {
+            newValue = value.replace(/[^\d]/g, ''); // Replace non-digit characters with empty string
+            if (newValue.length > 10) {
+                newValue = newValue.slice(0, 10); // Limit to 10 characters
+            }
+        } else if (name === 'ownerName') {
+            newValue = value.replace(/[^A-Za-z\s]/g, ''); // Replace non-letter and non-space characters with empty string
+        }
+        
+        setAdvertisementData({ ...advertisementData, [name]: newValue });
     };
+    
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,7 +93,7 @@ const EditAdvertisement = () => {
                 <h2>Edit advertisement details</h2>
                 <div className="form-group">
                     <label htmlFor="ownerName">Owner Name:</label>
-                    <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={handleChange} />
+                    <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={handleChange} required />
                 </div>
 
                 <div className="form-group">
@@ -126,7 +141,8 @@ const EditAdvertisement = () => {
 
                 <div className="form-group">
                     <label htmlFor="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" value={contact} onChange={handleChange} />
+                    <input type="text" id="contact" name="contact" value={contact} onChange={handleChange} maxLength="10" required />
+
                 </div>
 
                 <button type="submit" className="ma_submit-button">Update</button>

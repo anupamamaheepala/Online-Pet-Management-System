@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/vetnotifications.css';
-import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
 import VetHeader from '../components/Vet components/VetHeader';
@@ -65,14 +64,15 @@ const VetNotifications = () => {
     }
   };
 
+  const veterinaryAppointments = appointments.filter((appointment) => appointment.selectService === "Veterinary Service");
+
   return (
     <>
-      <AdminHeader />
       <VetHeader />
       <div>
         <h1>Vet Notifications</h1>
         <ul>
-          {appointments.map((appointment) => (
+          {veterinaryAppointments.map((appointment) => (
             <li key={appointment._id} className="vetnotification_appointment_container">
               <span className="vetnotification_appointment_info">
                 {appointment.ownerName} has made an appointment for {appointment.selectService}

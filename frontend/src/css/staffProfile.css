@@ -1,16 +1,25 @@
 /* staffProfile.css */
 
+.StaffProfileContainer {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+}
+
+.staffProfileWrapper {
+  text-align: center; /* Align the header to the center */
+  margin-bottom: 20px; /* Add margin below the header */
+}
+
 .staffProfile {
   border: 1px solid #fff;
   border-radius: 5px;
   padding: 20px;
-  margin-top: 20px;
-  text-align: center; /* Align content to the center */
+  text-align: left; /* Align text within the profile details to the left */
+  max-width: 600px; /* Adjust the maximum width as needed */
 }
 
 .staffProfile p {
   margin: 5px 0;
-  text-align: center; /* Align text to the left within paragraphs */
 }
 
 .staffProfile-update-btn,
@@ -26,7 +35,6 @@
   cursor: pointer;
 }
 
-
 .staffProfile-update-btn {
   background-color: #28a745;
   color: #fff;
@@ -40,10 +48,11 @@
 }
 
 .staffProfile-leave-btn {
-  background-color: #007bff;
+  background-color: #000000;
   color: #fff;
   font-size: 16px;
 }
+
 
 .staffProfile-update-btn:hover,
 .staffProfile-delete-btn:hover,
@@ -52,4 +61,20 @@
   text-decoration: none;
 }
 
+.staffProfile-view-salary-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #06047c; 
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+.staffProfile-view-salary-btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}

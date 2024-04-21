@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../css/makeappointment.css';
 import axios from 'axios';
-import Header from '../components/Header'; 
-import Footer from '../components/Footer'; 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import ShowLoading from '../components/ShowLoading';
 import Swal from 'sweetalert2';
 
@@ -16,7 +16,6 @@ const MakeAppointment = () => {
   const [selectDate, setSelectDate] = useState('');
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
-  const [isTimeAvailable, setIsTimeAvailable] = useState(false);
   const [professionOptions, setProfessionOptions] = useState([]);
 
   // Fetch profession options from the backend on component mount
@@ -79,48 +78,6 @@ const MakeAppointment = () => {
     setSelectDate('');
     setSelectTime('');
     setSelectProfession('');
-    setIsTimeAvailable(false); // Reset availability status
-  };
-
-  // Function to handle availability check
-  const handleCheckAvailability = async () => {
-    try {
-      // Send a request to the server to check availability
-      const response = await axios.post('http://localhost:9000/appointment/checkAvailability', {
-        selectDate,
-        selectTime,
-        selectService
-      });
-
-      // Update the availability status based on the response
-      setIsTimeAvailable(response.data.available);
-      
-      // If the time is available, show the submit button
-      if (response.data.available) {
-        // Optionally, you can automatically submit the form here if desired
-        // handleSubmit();
-      } else {
-        // If the time is not available, show a Swal confirmation message
-        Swal.fire({
-          icon: 'error',
-          title: 'Time is not available.',
-          text: 'Do you want to book another time?',
-          showCancelButton: true,
-          confirmButtonText: 'Yes',
-          cancelButtonText: 'No',
-        }).then((result) => {
-          // If the user wants to book another time, clear the select time field
-          if (result.isConfirmed) {
-            setSelectTime('');
-          }
-        });
-      }
-    } catch (error) {
-      // Handle any errors
-      console.error('Error checking availability:', error);
-      // Show an error message
-      Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to check availability. Please try again later.', confirmButtonText: 'OK' });
-    }
   };
 
   // Generate options for time picker from 08:00 am to 12:00 pm and then from 01:00 pm to 04:00 pm
@@ -128,7 +85,7 @@ const MakeAppointment = () => {
     const options = [];
     for (let hour = 8; hour <= 16; hour++) {
       if (hour !== 12) {
-        for (let minute = 0; minute < 60; minute += 30) {
+        for (let minute = 0; minute < 60; minute += 60) {
           const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
           const formattedMinute = minute.toString().padStart(2, '0');
           const period = hour < 12 ? 'am' : 'pm';
@@ -190,16 +147,13 @@ const MakeAppointment = () => {
               <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
               <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => setSelectProfession(e.target.value)} required>
                 <option value="">--Please select--</option>
-                {professionOptions.map((option, index) => (
-                  <option key={index} value={option.value}>{option.label}</option>
-                ))}
+                <option value="vet">vet</option>
+                <option value="groome">groome</option>
+               
               </select>
             </div>
           </div>
-          {/* Availability check button */}
-          <button className="check_availability_button" type="button" onClick={handleCheckAvailability}>Check Availability</button>
-          {/* Conditionally render the submit button based on availability */}
-          {isTimeAvailable && <button className="makeappointment_button" type="submit">Submit</button>}
+          <button className="makeappointment_button" type="submit">Submit</button>
         </form>
       </div>
       <Footer /> 
