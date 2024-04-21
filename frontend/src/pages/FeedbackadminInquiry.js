@@ -4,7 +4,7 @@ import '../css/feedbackadmininquiry.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import jsPDF from 'jspdf';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const FeedbackInquiryAdmin = () => {
   const [feedbackData, setFeedbackData] = useState([]);
@@ -52,13 +52,26 @@ const FeedbackInquiryAdmin = () => {
 
     doc.text(title, center, titleMargin);
 
-    doc.autoTable({
-      head: [['Name', 'Email', 'Feedback']],
-      body: filteredData.map((val, i) => [val.name, val.email, val.feedback]),
-      startY: titleMargin + tableMargin
-    });
+    // Create a new Image object
+    const logo = new Image();
+    logo.src = '/images/logo.png';
 
-    doc.save('Inquiry Report.pdf');
+    // Use onload event to ensure the image is loaded before adding it to the PDF
+    logo.onload = function() {
+      const logoWidth = 20; // Adjust the width of the logo as needed
+      const xPosition = 10; // Set the left margin
+      const yPosition = 10; // Set the top margin
+
+      doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+
+      doc.autoTable({
+        head: [['Name', 'Email', 'Feedback']],
+        body: filteredData.map((val, i) => [val.name, val.email, val.feedback]),
+        startY: titleMargin + tableMargin
+      });
+
+      doc.save('Inquiry Report.pdf');
+    };
   };
 
   return (
@@ -85,12 +98,13 @@ const FeedbackInquiryAdmin = () => {
                 <td>{feedback.email}</td>
                 <td>{feedback.feedback}</td>
                 <td>
-                  <button onClick={() => handleDelete(feedback._id)}>Delete</button>
-                </td>
-                <td>
-                  <Link to={`/FeedbackReply/${feedback._id}/${feedback.name}/${feedback.email}/${feedback.feedback}`}>
-                  <button className='' >Reply</button>
-                  </Link>
+                  <div className="action-buttons">
+                    <button className="btn btn-danger" onClick={() => handleDelete(feedback._id)}>Delete</button>
+                    &nbsp;
+                    <Link to={`/FeedbackReply/${feedback._id}/${feedback.name}/${feedback.email}/${feedback.feedback}`}>
+                      <button className='btn btn-warning'>Reply</button>
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))}
