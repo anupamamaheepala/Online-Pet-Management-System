@@ -8,6 +8,7 @@ import '../css/feedbackdisplay.css';
 const FeedbackDisplay = () => {
     const [feedbackList, setFeedbackList] = useState([]);
     const [selectedStars, setSelectedStars] = useState(null); // State to store the selected star rating
+    const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
 
     useEffect(() => {
         axios.get("http://localhost:9000/feedback/all")
@@ -52,10 +53,23 @@ const FeedbackDisplay = () => {
         }
     };
 
-    // Filter feedback list by selected star rating
-    const filteredFeedbackList = selectedStars
-        ? feedbackList.filter(feedback => feedback.rating === selectedStars)
-        : feedbackList;
+    // Function to filter feedback list by selected star rating and search query
+    const filterFeedbackList = (feedbacks) => {
+        return feedbacks.filter(feedback =>
+            (!selectedStars || feedback.rating === selectedStars) &&
+            (!searchQuery || feedback.name.toLowerCase().includes(searchQuery.toLowerCase()))
+        );
+    };
+
+    // Function to handle star rating filter change
+    const handleStarFilterChange = (e) => {
+        setSelectedStars(parseInt(e.target.value));
+    };
+
+    // Function to handle name search query change
+    const handleNameSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
     return (
         <>
@@ -78,7 +92,7 @@ const FeedbackDisplay = () => {
                 <select
                     id="starFilter"
                     value={selectedStars}
-                    onChange={(e) => setSelectedStars(parseInt(e.target.value))}
+                    onChange={handleStarFilterChange}
                 >
                     <option value="">All</option>
                     {[1, 2, 3, 4, 5].map(star => (
@@ -87,8 +101,20 @@ const FeedbackDisplay = () => {
                 </select>
             </div>
 
+            {/* Name search input field */}
+            <div className="nameSearch">
+                {/* <label htmlFor="nameSearch">Search by name:</label> */}
+                <input
+                    type="text"
+                    id="nameSearch"
+                    placeholder="Enter full name"
+                    value={searchQuery}
+                    onChange={handleNameSearchChange}
+                />
+            </div>
+
             <div className='feedbackListContainer'>
-                {filteredFeedbackList.map((feedback, index) => (
+                {filterFeedbackList(feedbackList).map((feedback, index) => (
                     <div key={index} className="feedbackItem">
                         <h3>{feedback.name}</h3>
                         <p>{feedback.feedback}</p>
