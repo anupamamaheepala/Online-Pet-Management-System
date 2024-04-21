@@ -14,8 +14,8 @@ const SystemAdminHeader = () => {
               Users
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/all-customers">All Customers</Dropdown.Item>
-              <Dropdown.Item href="#/all-pets">All Pets</Dropdown.Item>
+              <Dropdown.Item href="/allCustomers">All Customers</Dropdown.Item>
+              <Dropdown.Item href="/all-pets">All Pets</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
@@ -33,8 +33,8 @@ const SystemAdminHeader = () => {
               Payments
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/all-card-payments">All Card Payments</Dropdown.Item>
-              <Dropdown.Item href="#/all-bank-transfers">All Bank Transfers</Dropdown.Item>
+              <Dropdown.Item href="/Cardpayadmin">All Card Payments</Dropdown.Item>
+              <Dropdown.Item href="/Banktransadmin">All Bank Transfers</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>

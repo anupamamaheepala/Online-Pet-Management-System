@@ -334,7 +334,7 @@
 // export default Banktransadmin;
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AdminHeader from '../components/AdminHeader';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 import '../css/banktransadmin.css';
 
@@ -374,7 +374,7 @@ const Banktransadmin = () => {
 
   return (
     <>
-    <AdminHeader/>
+    <SystemAdminHeader/>
     <div className="bank-transactions-container">
       <center><h1>Bank Transactions</h1></center>
       <br/>
