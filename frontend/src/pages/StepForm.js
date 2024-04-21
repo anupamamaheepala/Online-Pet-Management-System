@@ -102,7 +102,6 @@ const StepForm = () => {
         });
     };
 
-
     const handleDelete = async (id) => {
         try {
             const res = await axios.delete(`http://localhost:9000/step/delete/${id}`);
@@ -114,7 +113,6 @@ const StepForm = () => {
             alert('Failed to delete step');
         }
     };
-
     
 
     return (
@@ -161,19 +159,6 @@ const StepForm = () => {
                 <button style={{ width: '150px' }} type="submit" className="ma_submit-button">Add step</button>
             </form>
 
-            <h2 className="training-topic">Private Training Programs</h2>
-            <div className="col text-right">
-            <div className="col">
-                <Link to='/privateTraining'>
-                    <button className="trainingadd-apply-button">Apply</button>
-                </Link>
-                </div>
-            </div>
-            <div className="privatetraining-grid">
-                {privatetrainings.map((privatetraining, index) => (
-                    <div key={privatetraining._id} className="privatetraining-item">
-
-
 
             //display data
             <h2 className="training-topic">Private Training Programs</h2>
@@ -181,7 +166,6 @@ const StepForm = () => {
             <div className="privatetraining-grid">
                 {privatetrainings.map((privatetraining, index) => (
                     <div key={privatetraining._id} className="privatetraining-item1">
-
                         <img src={`http://localhost:9000/${privatetraining.filePath.replace(/\\/g, '/')}`}
                             style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
 
@@ -194,12 +178,6 @@ const StepForm = () => {
                             <div className="row justify-content-center">
                                 <div className="col-auto">&nbsp;</div>
                                 <div className="col">
-
-                                <Link to={`/Editstepform/${privatetraining._id}`}>
-                                        <button className="btn btn-warning" onClick={() => handleEdit(privatetraining._id)}>Edit</button>
-                                    </Link>
-                                    <button className="add-button" onClick={() => handleLearnMoreClick(index)}>Learn more</button>
-
                                
                                     <button className="add-button" onClick={() => handleLearnMoreClick(index)}>Learn more</button>
 
@@ -218,7 +196,6 @@ const StepForm = () => {
             
             <Footer />
         </>
-        
     );
 };
 
