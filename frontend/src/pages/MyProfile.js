@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
-import '../css/myprofile.css'; // Import the CSS file
+import '../css/myprofile.css'; 
 
 const MyProfile = () => {
   const { customerId } = useParams();
@@ -77,6 +77,10 @@ const handleDeleteProfilePhoto = async () => {
       // After successful deletion, update the customer data state
       setCustomerData({ ...customerData, profilePhoto: '' });
       alert('Profile photo deleted successfully');
+
+      setTimeout(() => {
+        window.location.href = '/Register';
+      }, 3000); 
 
     } catch (error) {
       console.error(error);
