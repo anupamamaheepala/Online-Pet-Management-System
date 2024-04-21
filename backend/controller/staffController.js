@@ -137,3 +137,13 @@ exports.getStaffProfileById = async (req, res) => {
   }
 };
 
+
+exports.getAllGroomeandVet = async (req, res) => {
+  try {
+    const staffs = await Staff.find(); 
+    res.json(staffs);
+  } catch (error) {
+    console.error('Error fetching staff members:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

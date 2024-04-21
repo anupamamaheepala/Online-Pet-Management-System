@@ -26,5 +26,7 @@ router.post('/login', staffController.staffLogin);
 // Route to get staff profile by ID
 router.get('/profile/:id', staffController.getStaffProfileById);
 
+// GET request to fetch Groomers and Veterinarians
+router.get('/', staffController.getAllGroomeandVet);
 
 module.exports = router;

@@ -50,7 +50,7 @@ const FeedbackReply = () => {
       await sendEmail(formData.name);
 
       console.log('Feedback submitted successfully');
-      // Optionally, clear the form fields after successful submission
+      // clear the form fields after  submission
       setFormData({
         name: '',
         email: '',
@@ -59,18 +59,18 @@ const FeedbackReply = () => {
       });
       // Show success message
       setEmailSent(true);
-      // Hide success message after 3 seconds
+      // Hide  message after 3 seconds
       setTimeout(() => {
         setEmailSent(false);
       }, 3000);
     } catch (error) {
       console.error('Failed to submit feedback:', error);
-      // Optionally, you can show an error message to the user
+      // show an error message to the user
     }
   };
 
   const sendEmail = (customerName) => {
-    // Pass customer's name as a parameter to the email template
+    // Pass  name as a parameter to the email template
     return emailjs.sendForm('service_87y425g', 'template_tftifef', formRef.current, {
       publicKey: 'J8nt0NYTxJsPNGwOp',
       name: formData.name,

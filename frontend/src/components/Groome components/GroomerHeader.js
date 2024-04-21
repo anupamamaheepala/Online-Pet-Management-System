@@ -53,19 +53,21 @@ const GroomerHeader = () => {
   };
 
   useEffect(() => {
-    axios
-      .get('http://localhost:9000/appointment/appointments/count', {
-        params: { IsAccept: false, selectService: 'Groome Service' },
-      })
-      .then((response) => {
-        console.log('Response data:', response.data);
-        setNotificationCount(response.data.count);
-      })
-      .catch((error) => {
-        console.error('Error fetching appointment count:', error);
-      });
+    const fetchGroomingAppointmentCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:9000/appointment/appointments');
+        const appointmentsData = response.data;
+        const groomingAppointments = appointmentsData.filter(
+          (appointment) => appointment.selectService === 'Groome Service' && !appointment.IsAccept
+        );
+        setNotificationCount(groomingAppointments.length);
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+  
+    fetchGroomingAppointmentCount();
   }, []);
-
   const handleMouseEnter = (item) => {
     setHighlightedItem(item);
     if (item === 'appointments') {
