@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/StaffLeaveList.css';
 import axios from 'axios';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 
 const StaffLeaveList = () => {
   const [leaves, setLeaves] = useState([]);
@@ -32,7 +32,7 @@ const StaffLeaveList = () => {
 
   return (
     <>
-      <Header />
+      <SystemAdminHeader />
       <h2>Staff Leave List</h2>
       <div className='staffLeaveListcontainer1'>
         <table className='staffLeaveList-table'>
