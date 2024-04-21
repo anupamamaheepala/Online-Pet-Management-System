@@ -63,13 +63,13 @@ const SignIn = () => {
             <input  className="signin-input" type="password" name="password" value={password} onChange={onChange} required />
           </div>
           <div className="signin-form-group">
-            <a href="#">Forgot Password?</a>
+            <a className='singup-a' href="#">Forgot Password?</a>
           </div>
           <div className="signin-form-group" style={{ textAlign: 'center' }}>
             <button className="signin-button" style={{ width: '150px' }} type="submit">Sign In</button>
           </div>
           <div className="signin-form-group">
-            <p className="signin-p">Don't have an account? <a href="#">Sign Up</a></p>
+            <p className="signin-p">Don't have an account? <a className='singup-a' href="/register">Sign Up</a></p>
           </div>
         </form>
         </div>
