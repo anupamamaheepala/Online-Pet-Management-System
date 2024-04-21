@@ -187,12 +187,12 @@ function App() {
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
-<<<<<<< HEAD
+
           <Route path="/editstepform/:stepId" element={ <Editstepform/>}/>
-=======
+
           <Route path="/SalaryView/:id" element={<SalaryView />} />
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
->>>>>>> b860b36bbaf73f557abbc21e20ab485f2f17c798
+
 
           </Routes>
         </CartProvider>
