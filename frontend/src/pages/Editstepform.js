@@ -12,7 +12,8 @@ const EditStepForm = () => {
         title: '',
         description: '',
         file: null,
-        contact: ''
+        contact: '',
+        filePath: '' // Add filePath property
     });
 
     useEffect(() => {
@@ -61,7 +62,7 @@ const EditStepForm = () => {
         }
     };
 
-    const { step, name, title, description, contact } = stepData;
+    const { step, name, title, description, contact, filePath } = stepData;
 
     return (
         <>
@@ -86,6 +87,8 @@ const EditStepForm = () => {
                     <label htmlFor="description">Description:</label>
                     <textarea id="description" name="description" value={description} onChange={handleChange}></textarea>
                 </div>
+                <img src={`http://localhost:9000/${filePath}`} alt="Step Image"
+                style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
                 <div className="form-group">
                     <label>Upload suitable image for this step:</label>
                     <input type="file" name="file" onChange={handleImageChange} required />
@@ -97,6 +100,7 @@ const EditStepForm = () => {
 
                 <button type="submit" className="submit-button">Submit</button>
             </form>
+            
             <Footer />
         </>
     );
