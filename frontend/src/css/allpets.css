@@ -1,136 +1,119 @@
 /* allpets.css */
-
-/* Page Layout */
 .all-pets-container {
   max-width: 1200px;
-  margin: 0 auto;
+
   padding: 20px;
 }
 
-/* Page Title */
-.pets-page-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+.page-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  margin-top: -50px;
+  margin-left: 250px;
+  font-weight: bold;
 }
 
-/* Search Container */
 .pets-search-container {
+  width: 800px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.pets-search-input {
+.search-input {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 20px;
 }
 
 .pets-filter-select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  cursor: pointer;
+  margin-left: 10px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 4px;
 }
 
-/* Select Columns Container */
 .pets-select-columns-container {
   margin-bottom: 20px;
+  margin-left: -20%;
 }
 
 .pets-column-checkbox {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .pets-column-checkbox label {
-  display: flex;
-  align-items: center;
+  display: block;
 }
 
 .pets-column-checkbox-input {
-  margin-right: 5px;
+  margin-right: -27%;
 }
 
-/* Download Button */
+.sch3{
+  margin-left: -45%;
+}
+
 .pets-download-btn {
-  padding: 10px 20px;
-  background-color: #007bff;
+  display: block;
+  width: 20%;
+  padding: 10px;
+  font-size: 1rem;
   color: #fff;
-  border: none;
+  background-color: #000000;
+  border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .pets-download-btn:hover {
-  background-color: #0056b3;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
 }
 
-/* Pets Table */
 .pets-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .pets-table th,
 .pets-table td {
-  padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
+  padding: 8px;
   text-align: left;
 }
 
-.pets-table th {
-  background-color: #f2f2f2;
-}
-
-/* Profile Photo */
-.pets-profile-photo {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* Actions Buttons */
-.pets-actions-btns button {
-  padding: 8px 12px;
+.actions-btns button {
   margin-right: 5px;
-  background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.pets-actions-btns button:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* Update Button */
 .pets-update-btn {
-  border-color: #28a745;
-  color: #28a745;
+  background-color: rgb(231, 231, 9);
+  color: #fff;
+  border: none;
 }
 
 .pets-update-btn:hover {
-  background-color: #218838;
-  border-color: #218838;
-  color: #fff;
+  background-color: #eae01b;
 }
 
-/* Delete Button */
-.pets-alldelete-btn {
-  border-color: #dc3545;
-  color: #dc3545;
+.pets-delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
 }
 
 .pets-delete-btn:hover {
   background-color: #c82333;
-  border-color: #c82333;
-  color: #fff;
 }

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
 import { Bell } from 'react-bootstrap-icons';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
+
 const VetHeader = () => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [highlightedItem, setHighlightedItem] = useState(null);
@@ -16,13 +16,13 @@ const VetHeader = () => {
   const handleNotificationClick = () => {
     axios
       .get('http://localhost:9000/appointment/appointments', {
-        params: { IsAccept: false },
+        params: { IsAccept: false, selectService: 'Veterinary Service' },
       })
       .then((response) => {
         const pendingAppointments = response.data;
-  
+
         if (pendingAppointments.length === 0) {
-          MySwal.fire('No Pending Appointments', 'You have no pending appointments at the moment.', 'info');
+          MySwal.fire('No Pending Appointments', 'You have no pending veterinary appointments at the moment.', 'info');
         } else {
           const appointmentList = pendingAppointments.map((appointment, index) => (
             <div key={appointment._id}>
@@ -32,9 +32,9 @@ const VetHeader = () => {
               <hr />
             </div>
           ));
-  
+
           MySwal.fire({
-            title: 'Pending Appointments',
+            title: 'Pending Veterinary Appointments',
             html: <div>{appointmentList}</div>,
             showCancelButton: true,
             confirmButtonText: 'View Notifications',
@@ -52,17 +52,20 @@ const VetHeader = () => {
   };
 
   useEffect(() => {
-    axios
-      .get('http://localhost:9000/appointment/appointments/count', {
-        params: { IsAccept: false },
-      })
-      .then((response) => {
-        console.log('Response data:', response.data);
-        setNotificationCount(response.data.count);
-      })
-      .catch((error) => {
-        console.error('Error fetching appointment count:', error);
-      });
+    const fetchVetAppointmentCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:9000/appointment/appointments');
+        const appointmentsData = response.data;
+        const vetAppointments = appointmentsData.filter(
+          (appointment) => appointment.selectService === 'Veterinary Service' && !appointment.IsAccept
+        );
+        setNotificationCount(vetAppointments.length);
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+
+    fetchVetAppointmentCount();
   }, []);
 
   const handleMouseEnter = (item) => {
@@ -168,24 +171,24 @@ const VetHeader = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">
-  <div style={{ marginRight: '30px' }}>
-    <Button
-      variant="outline-primary"
-      style={{ position: 'relative', color: 'white', borderColor: 'white' }}
-      onClick={handleNotificationClick}
-    >
-      <Bell color="white" />
-      <Badge
-        pill
-        variant="danger"
-        className="position-absolute"
-        style={{ top: -10, right: -10 }}
-      >
-        {notificationCount}
-      </Badge>
-    </Button>
-  </div>
-</Navbar.Collapse>
+        <div style={{ marginRight: '30px' }}>
+          <Button
+            variant="outline-primary"
+            style={{ position: 'relative', color: 'white', borderColor: 'white' }}
+            onClick={handleNotificationClick}
+          >
+            <Bell color="white" />
+            <Badge
+              pill
+              variant="danger"
+              className="position-absolute"
+              style={{ top: -10, right: -10 }}
+            >
+              {notificationCount}
+            </Badge>
+          </Button>
+        </div>
+      </Navbar.Collapse>
     </Navbar>
   );
 };

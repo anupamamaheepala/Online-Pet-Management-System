@@ -19,6 +19,7 @@ function SalaryCalculator(props) {
     const [totalSalary, setTotalSalary] = useState(0);
     const [isSalaryAssigned, setIsSalaryAssigned] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(new Date());
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -62,7 +63,24 @@ function SalaryCalculator(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // Validate input fields
+        if (
+            isNaN(basicSalary) ||
+            isNaN(otHours) ||
+            isNaN(bonusAmount) ||
+            isNaN(otRate) ||
+            basicSalary < 0 ||
+            otHours < 0 ||
+            bonusAmount < 0 ||
+            otRate < 0
+        ) {
+            setError('Please enter valid positive numbers for all salary fields');
+            return;
+        }
+    
+        // If all inputs are valid, proceed with form submission
         try {
+            setError('');
             const res = await axios.post("http://localhost:9000/salary/add", {
                 staffId,
                 firstName,
@@ -88,17 +106,23 @@ function SalaryCalculator(props) {
                 .catch(error => {
                     console.error('Error fetching staff details:', error);
                 });
-            
+    
+            // Reset form fields
             setSelectedMonth(0);
             setBasicSalary(0);
             setOtHours(0);
-            setOtHours(0);
+            setOtRate(0);
             setBonusAmount(0);
             setTotalSalary(0);
+            
+            // Redirect to SalaryTable page
+            window.location.href = '/SalaryTable';
+
         } catch (err) {
             console.error(err);
         }
     };
+    
     
     
 
@@ -131,6 +155,10 @@ function SalaryCalculator(props) {
                 ) : (
                     <p>Salary is not assigned</p>
                 )}
+
+                {/* Display error message */}
+                {error && <p className="error">{error}</p>}
+
                 <form onSubmit={handleSubmit} className='StaffSalary-form'>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Staff ID:</label>
@@ -153,12 +181,13 @@ function SalaryCalculator(props) {
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
                             readOnly={isSalaryAssigned}
+                            required
                         />
                     </div>
 
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
-                        <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
+                        <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly={isSalaryAssigned} required />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className=''>OT Hours:</label>

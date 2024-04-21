@@ -56,3 +56,11 @@
 .signin-p {
   margin-top: 0;
 }
+
+.singup-a{
+  text-decoration: none;
+}
+
+.singup-a:hover{
+  text-decoration: none;
+}
