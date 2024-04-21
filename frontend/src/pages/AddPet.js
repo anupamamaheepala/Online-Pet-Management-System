@@ -14,13 +14,13 @@ const AddPet = () => {
         petName: '',
         species: '',
         breed: '',
-        ageValue: '', // Add this key to initialize ageValue separately
-        ageUnit: 'years', // Initialize ageUnit as 'years'
+        ageValue: '', 
+        ageUnit: 'years', 
         gender: '',
         weight: 'kg',
         dateAdopted: '',
         additionalNotes: '',
-        profileImage: '' // Initialize as an empty string
+        profileImage: '' 
     });
 
     // Initialize error state for age validation
@@ -28,7 +28,7 @@ const AddPet = () => {
 
     // Handle form field changes
     // Handle form field changes
-const onChange = (e) => {
+    const onChange = (e) => {
     const { name, value } = e.target;
 
     // Update form data state
@@ -93,8 +93,8 @@ const onChange = (e) => {
     }
         
    // Convert and validate weight
-const parsedWeight = parseFloat(formData.weight);
-if (isNaN(parsedWeight) || parsedWeight <= 0 || parsedWeight >= 150) {
+    const parsedWeight = parseFloat(formData.weight);
+    if (isNaN(parsedWeight) || parsedWeight <= 0 || parsedWeight >= 150) {
     alert('Please enter a valid weight between 0 and 150.');
     return;
 }
