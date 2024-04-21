@@ -50,6 +50,7 @@ import TrainingPrograms from './pages/TrainingPrograms';
 import PrivateTrainingPrograms from './pages/PrivateTrainingPrograms';
 import PrivateTraining from './pages/PrivateTraining';
 import TrainingDashboard from './pages/TrainingDashboard';
+import Editstepform from './pages/Editstepform';
 import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
 import StepForm from './pages/StepForm';
 
@@ -186,8 +187,12 @@ function App() {
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
+
+          <Route path="/editstepform/:stepId" element={ <Editstepform/>}/>
+
           <Route path="/SalaryView/:id" element={<SalaryView />} />
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
+
 
           </Routes>
         </CartProvider>

@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import '../css/signin.css';
 import { Link } from 'react-router-dom'; 
 
+
 const SignIn = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -21,26 +22,26 @@ const SignIn = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-
-    try {
-      const res = await axios.post('http://localhost:9000/customer/signin', formData);
-      console.log(res.data); // Check the response from the server
-
-      // Redirect to home page if sign-in successful
-      //window.location.href = '/';
-          // Redirect to MyProfile page if sign-in successful
-    //window.location.href = `/MyProfile/${res.data.user._id}`;
-    // Store the user ID in localStorage upon successful sign-in
-    localStorage.setItem('customerId', res.data.user._id);
-    // Redirect to MyProfile page if sign-in successful
-     window.location.href = `/MyProfile/${res.data.user._id}`;
   
-
-    } catch (err) {
-      console.error(err);
-      alert('Invalid credentials'); // Display an error message
-    }
-  };
+  try {
+    const res = await axios.post('http://localhost:9000/customer/signin', formData);
+    console.log(res.data); // Check the response from the server
+  
+    // Store the user data in local storage
+    localStorage.setItem('userData', JSON.stringify(res.data.user));
+  
+    // Log the userData
+    console.log("User data after sign-in:", res.data.user);
+  
+    // Redirect to MyProfile page if sign-in successful
+    window.location.href = '/';
+  } catch (err) {
+    console.error(err);
+    alert('Invalid credentials'); // Display an error message
+  }
+};
+  
+  
 
   const loginAsStaff = () => {
     window.location.href = '/StaffLogin'; // Redirect to staff login page
