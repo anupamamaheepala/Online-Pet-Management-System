@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import '../css/Trainingapp.css';
 import axios from 'axios';
 
-
 const PrivateTraining = () => {
   const [formData, setFormData] = useState({
     ownerName: '',
@@ -64,48 +63,44 @@ const PrivateTraining = () => {
   const onSubmit = async e => {
     e.preventDefault();
 
+    
     try {
-        const formDataToSend = new FormData();
-        formDataToSend.append('file', file);
-        formDataToSend.append('ownerName', ownerName);
-        formDataToSend.append('address', address);
-        formDataToSend.append('contact', contact);
-        formDataToSend.append('dogName', dogName);
-        formDataToSend.append('breed', breed);
-        formDataToSend.append('age', age);
+      const formDataToSend = new FormData();
+      formDataToSend.append('file', file);
+      formDataToSend.append('ownerName', ownerName);
+      formDataToSend.append('address', address);
+      formDataToSend.append('contact', contact);
+      formDataToSend.append('dogName', dogName);
+      formDataToSend.append('breed', breed);
+      formDataToSend.append('age', age);
 
-        const res = await axios.post("http://localhost:9000/training/insert", formDataToSend, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+      const res = await axios.post("http://localhost:9000/training/insert",
+       formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+       
+      });
+      console.log("Response data:",res.data);
+      window.location.href = `/ViewApplication?id=${res.data._id}`; // Ensure '_id' is the correct property name
 
-        console.log("Response data:", res.data);
-
-        if (res.data && res.data._id) {
-            window.location.href = `/ViewApplication?id=${res.data._id}`;
-        } else {
-            console.error('Invalid response data:', res.data);
-            // Handle the case where res.data._id is undefined or missing
-        }
-
-        // Clear form fields after successful submission
-        setFormData({
-            ownerName: '',
-            address: '',
-            contact: '',
-            dogName: '',
-            breed: '',
-            age: '',
-            file: null
-        });
-
-        // Set submission status to true
-        setIsSubmitted(true);
+      // Clear form fields after successful submission
+      setFormData({
+        ownerName: '',
+        address: '',
+        contact: '',
+        dogName: '',
+        breed: '',
+        age: '',
+        file: null
+      });
+      
+      // Set submission status to true
+      setIsSubmitted(true);
     } catch (err) {
-        console.error(err);
+      console.error(err);
     }
-};
+  };
 
   return (
     <div>
