@@ -99,7 +99,7 @@ const TrainingDashboard = () => {
       const titleYPosition = yPosition + logoWidth + 10;
 
       doc.setFontSize(18);
-      doc.text(reportTitle, titleXPosition, titleYPosition);
+      doc.text(reportTitle, 70,yPosition + logoWidth -15);
 
       // Generate table data
       const tableData = trainings
@@ -109,10 +109,12 @@ const TrainingDashboard = () => {
           training.dogName,
           training.instructor,
           new Date(training.submissionDateTime).toLocaleDateString(),
+          
         ]);
 
       // Generate the rest of the PDF content
       doc.setFontSize(12);
+      
       doc.autoTable({
         startY: titleYPosition + 10,
         head: [['Owner Name', 'Dog Name', 'Instructor Name', 'Date']],
@@ -122,7 +124,7 @@ const TrainingDashboard = () => {
           cellPadding: 3,
         },
         headStyles: {
-          fillColor: [128, 128, 128],
+          fillColor: [0, 0, 0],
           textColor: [255, 255, 255],
           fontStyle: 'bold',
         },
@@ -159,11 +161,11 @@ const TrainingDashboard = () => {
           <button className="alo1-button">Manage Private Programs   |</button>
         </a>
         <button className="alo1-button">Manage Group Programs</button>
-        <button className="report-button" onClick={generatePDF}>
+        <button className="report-button "  onClick={generatePDF}>
           Download Report
         </button>
       </div>
-
+      <div className="alo_table-container"> 
       <table className="alo1-table">
         <thead>
           <tr>
@@ -211,6 +213,7 @@ const TrainingDashboard = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

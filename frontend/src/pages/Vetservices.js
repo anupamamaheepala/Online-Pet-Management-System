@@ -4,13 +4,15 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ShowLoading from '../components/ShowLoading';
-import '../css/vetservices.css'; // Make sure to import the styles
+import '../css/vetservices.css';
 
 function Vetservices() {
   const images = ['vetback1.jpg', 'vetback2.jpg', 'vetback3.jpg', 'vetback4.jpg', 'vetback5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
   const [showDescription, setShowDescription] = useState('');
   const [services, setServices] = useState([]);
+  const [staffs, setStaffs] = useState([]);
+  const [filteredStaffs, setFilteredStaffs] = useState([]);
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -27,17 +29,36 @@ function Vetservices() {
 
   useEffect(() => {
     fetchServices();
-  }, []); // Fetch services when component mounts
+    fetchStaffs();
+  }, []); // Fetch services and staffs when component mounts
 
   const fetchServices = async () => {
     try {
       const response = await axios.get('http://localhost:9000/services/services');
-      // Filter services by type
       const vetServices = response.data.filter(service => service.type === "Veterinary Service");
       setServices(vetServices);
     } catch (error) {
       console.error('Error fetching services:', error);
     }
+  };
+
+  const fetchStaffs = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/staffs');
+      const veterinarians = response.data.filter(staff => staff.designation === "Veterinarian");
+      setStaffs(veterinarians);
+      setFilteredStaffs(veterinarians);
+    } catch (error) {
+      console.error('Error fetching staffs:', error);
+    }
+  };
+
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filtered = staffs.filter(staff =>
+      `${staff.sfirstname} ${staff.slastname}`.toLowerCase().includes(searchTerm)
+    );
+    setFilteredStaffs(filtered);
   };
 
   const handleDotClick = (index) => {
@@ -96,17 +117,27 @@ function Vetservices() {
                 <span className="toggle-icon">{showDescription === service.title ? '-' : '+'}</span>
                 <h3>{service.title}</h3>
                 {showDescription === service.title && <p>{service.description}</p>}
-                
               </li>
             ))}
           </ul>
         </div>
         <div className="search-container-vetservices">
           <div className="search-box-vetservices">
-            <input type="text" placeholder="Search For Veterinarians..." />
+            <input
+              type="text"
+              placeholder="Search For Veterinarians..."
+              onChange={handleSearch}
+            />
             <button className="search-button-vetservices">
               <i className="ri-search-line"></i>
             </button>
+          </div>
+          <div className="search-results-container">
+            {filteredStaffs.map((staff) => (
+              <div key={staff._id} className="staff-card">
+                <h3>{`${staff.sfirstname} ${staff.slastname}`}</h3>
+              </div>
+            ))}
           </div>
         </div>
       </div>
