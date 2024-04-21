@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import GroomeHeader from '../components/Groome components/GroomerHeader';
 
 const GroomeAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -59,13 +59,26 @@ const GroomeAppointmentList = () => {
     doc.save('approved-groome-appointments.pdf');
   };
 
+  // Function to filter appointments based on owner name
+  const filteredAppointments = appointments.filter(appointment =>
+    appointment.ownerName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-      <AdminHeader />
+      
       <GroomeHeader />
       <div style={styles.container}>
         <h2 style={styles.heading}>Grooming Appointments</h2>
-        {appointments.length > 0 ? (
+        {/* Search bar */}
+        <input
+          type="text"
+          placeholder="Search by owner name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ marginBottom: '10px' }}
+        />
+        {filteredAppointments.length > 0 ? (
           <>
             <table style={styles.table}>
               <thead>
@@ -80,7 +93,7 @@ const GroomeAppointmentList = () => {
                 </tr>
               </thead>
               <tbody>
-                {appointments.map((appointment) => (
+                {filteredAppointments.map((appointment) => (
                   <tr key={appointment._id} style={styles.tableRow}>
                     <td style={styles.tableData}>{appointment.ownerName}</td>
                     <td style={styles.tableData}>{appointment.ownerEmail}</td>

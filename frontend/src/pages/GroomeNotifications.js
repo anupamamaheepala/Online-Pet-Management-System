@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/groomenotifications.css';
-import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
 import GroomeHeader from '../components/Groome components/GroomerHeader';
@@ -43,6 +42,7 @@ const GroomeNotifications = () => {
         title: 'Appointment Accepted',
         text: `You have successfully accepted the appointment.`,
       });
+      fetchAppointments(); // Refresh appointments after accepting
     } catch (error) {
       console.error(`Error accepting appointment ${appointmentId}:`, error);
     }
@@ -60,6 +60,7 @@ const GroomeNotifications = () => {
         title: 'Appointment Rejected',
         text: `You have successfully rejected the appointment.`,
       });
+      fetchAppointments(); // Refresh appointments after rejecting
     } catch (error) {
       console.error(`Error rejecting appointment ${appointmentId}:`, error);
     }
@@ -67,7 +68,6 @@ const GroomeNotifications = () => {
 
   return (
     <>
-      <AdminHeader />
       <GroomeHeader />
       <div>
         <h1>Groome Notifications</h1>

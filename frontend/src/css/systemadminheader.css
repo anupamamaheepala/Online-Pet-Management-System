@@ -1,0 +1,17 @@
+.header {
+    background-color: white;
+  }
+  
+  .header .nav-link {
+    color: black;
+    text-align: center;
+  }
+  
+  .header .dropdown-menu {
+    background-color: white;
+  }
+  
+  .header .dropdown-item {
+    color: black;
+  }
+  

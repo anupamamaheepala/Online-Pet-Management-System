@@ -112,16 +112,22 @@ exports.updateAppointment = async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 };
-
-// Get the count of Vet appointments 
+// Get the count of unaccepted Vet appointments
 exports.getUnacceptedAppointmentsCount = async (req, res) => {
   try {
     const count = await Appointment.countDocuments({
-      $and: [
-        { IsAccept: false },
-        { IsPaid: false },
-        { selectService: 'Veterinary Service' }
-      ]
+      $or: [
+        { $and: [ // Include appointments where IsAccept is true and IsPaid is false
+          { IsAccept: true },
+          { IsPaid: false }
+        ] },
+        { $and: [ // Include appointments where IsAccept is false and IsPaid is false and IsRejected is not true
+          { IsAccept: false },
+          { IsPaid: false },
+          { IsRejected: { $ne: true } }
+        ] }
+      ],
+      selectService: 'Veterinary Service'
     });
     res.status(200).json({ count });
   } catch (error) {
@@ -129,6 +135,8 @@ exports.getUnacceptedAppointmentsCount = async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 };
+
+
 // Get the count of Groome appointments
 exports.getUnacceptedGroomingAppointmentsCount = async (req, res) => {
   try {

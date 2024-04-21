@@ -53,9 +53,28 @@
   font-size: 16px;
 }
 
+
 .staffProfile-update-btn:hover,
 .staffProfile-delete-btn:hover,
 .staffProfile-leave-btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.staffProfile-view-salary-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #06047c; 
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.staffProfile-view-salary-btn:hover {
   opacity: 0.8;
   text-decoration: none;
 }

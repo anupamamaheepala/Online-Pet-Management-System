@@ -28,7 +28,23 @@ const Cardpay = () => {
     const onChange = e => {
         const { name, value } = e.target;
 
-        if (name === 'cardNumber') {
+        if (name === 'nameOnCard') {
+            // Allow only letters and spaces
+            if (/^[a-zA-Z\s]*$/.test(value)) {
+                setFormData({ ...formData, [name]: value });
+            }
+        } else if (name === 'cardNumber') {
+            // Check if the card number starts with 4 or 5
+            if (!/^[45]/.test(value.charAt(0))) {
+                // Show error alert here
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Card Number',
+                    text: 'Card numbers can only start with 4 or 5.'
+                });
+                return;
+            }
+    
             // Allow only numbers and add space after every 4 digits
             const formattedValue = value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
             setFormData({ ...formData, [name]: formattedValue.slice(0, 19) });
@@ -41,19 +57,19 @@ const Cardpay = () => {
             const parts = value.split('/');
             let month = parts[0] || ''; // Default month to empty string
             let year = parts[1] || '';  // Default year to empty string
-
+    
             // Limit month to 1-12
             if (month.length === 1 && parseInt(month, 10) > 1) {
                 month = '0' + month; // Prepend '0' to single digit month
             } else if (month.length === 2 && parseInt(month, 10) > 12) {
                 month = '12'; // Limit month to 12 if it exceeds 12
             }
-
+    
             // Limit year to two digits
             if (year.length > 2) {
                 year = year.substring(0, 2); // Limit year to two digits
             }
-
+    
             // Add "/" after typing two digits for the month
             let updatedValue;
             if (month.length === 2 && !value.includes('/')) {
