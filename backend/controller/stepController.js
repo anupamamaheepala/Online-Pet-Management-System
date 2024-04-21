@@ -90,8 +90,7 @@ exports.editstep = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-<<<<<<< HEAD
-=======
+
 
 
 exports.deletesteps = async (req, res) => {
@@ -106,4 +105,3 @@ exports.deletesteps = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
->>>>>>> d219169a40114d4954a6eca8f8aa460ce4c6c9ac
