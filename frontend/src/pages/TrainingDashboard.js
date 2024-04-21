@@ -12,6 +12,7 @@ const TrainingDashboard = () => {
   const [pendingCount, setPendingCount] = useState(0);
   const [approvedCount, setApprovedCount] = useState(0);
   const [rejectedCount, setRejectedCount] = useState(0);
+  const [selectedTrainer, setSelectedTrainer] = useState(null);
   
 
   useEffect(() => {
@@ -198,12 +199,13 @@ const TrainingDashboard = () => {
               <td>{training.instructor || 'Not Assigned'}</td>
 
               <td>
-               <Link to={{
+              <Link to={{
   pathname: `/training/${training._id}`,
-  state: { instructorName: training.instructor},
+  state: { instructorName: selectedTrainer ? selectedTrainer.label : '' },
 }} className="alo_view-details-button">
   <button className="alo1-button">View Details</button>
 </Link>
+
 
               &nbsp;
             <button onClick={() => handleDelete(training._id)}>Delete</button>
