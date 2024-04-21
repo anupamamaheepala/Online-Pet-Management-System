@@ -53,32 +53,11 @@ function Vetservices() {
     }
   };
 
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filtered = staffs.filter(staff =>
-      `${staff.sfirstname} ${staff.slastname}`.toLowerCase().includes(searchTerm)
-    );
-    setFilteredStaffs(filtered);
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentImage(index);
-  };
-
   const toggleDescription = (service) => {
     if (showDescription === service) {
       setShowDescription('');
     } else {
       setShowDescription(service);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:9000/services/services/${id}`);
-      fetchServices(); // Refresh the list of services after deletion
-    } catch (error) {
-      console.error('Error deleting service:', error);
     }
   };
 
@@ -104,7 +83,7 @@ function Vetservices() {
         </button>
         <div className="dots-container">
           {images.map((_, index) => (
-            <span key={index} className={index === currentImage ? 'dot active' : 'dot'} onClick={() => handleDotClick(index)}></span>
+            <span key={index} className={index === currentImage ? 'dot active' : 'dot'} onClick={() => setCurrentImage(index)}></span>
           ))}
         </div>
       </div>
@@ -121,25 +100,7 @@ function Vetservices() {
             ))}
           </ul>
         </div>
-        <div className="search-container-vetservices">
-          <div className="search-box-vetservices">
-            <input
-              type="text"
-              placeholder="Search For Veterinarians..."
-              onChange={handleSearch}
-            />
-            <button className="search-button-vetservices">
-              <i className="ri-search-line"></i>
-            </button>
-          </div>
-          <div className="search-results-container">
-            {filteredStaffs.map((staff) => (
-              <div key={staff._id} className="staff-card">
-                <h3>{`${staff.sfirstname} ${staff.slastname}`}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="square-placeholder"></div> {/* Add a square placeholder */}
       </div>
       <Footer />
     </>

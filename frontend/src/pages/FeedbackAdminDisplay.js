@@ -76,12 +76,11 @@ const FeedbackAdminDisplay = () => {
             doc.save('Feedback Report.pdf');
         };
     };
-    
 
     return (
         <>
             <Header />
-            <div className="ffeedback-admin-container">
+            <div className="feedback-inquiry-admin-container">
                 <h1><center>Feedback List</center></h1>
                 <div className="ssearch">
                     <center><input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search" /></center>
@@ -111,24 +110,26 @@ const FeedbackAdminDisplay = () => {
                                 <td>{feedback.likes}</td>
                                 <td>{feedback.dislikes}</td>
                                 <td>{feedback.reply}</td>
-                                <td><Link to={`/FeedbackReplyForm/${feedback._id}/${feedback.feedback}`}>
-                                    <button className="btn btn-warning" onClick={() => handleUpdate(feedback._id)}>Update</button>
-                                    </Link>
-                                    &nbsp;
-                                    <button className="btn btn-danger" onClick={() => handleDelete(feedback._id)}>Delete</button>
+                                <td>
+                                    <div className="action-buttons">
+                                        <Link to={`/FeedbackReplyForm/${feedback._id}/${feedback.feedback}`}>
+                                            <button className="btn btn-warning" onClick={() => handleUpdate(feedback._id)}>Update</button>
+                                            
+                                        </Link>
+                                        <button className="btn btn-danger" onClick={() => handleDelete(feedback._id)}>Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <div className='genButton'>
+                <div className='ggenButton'>
                     <button onClick={GenReport}>Generate Report</button>
                 </div>
             </div>
             <div>
                 <Link to="/feedbackDisplay">View Feedback</Link>
             </div>
-
             <Footer />
         </>
     );

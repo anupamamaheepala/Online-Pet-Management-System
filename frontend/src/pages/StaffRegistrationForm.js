@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/StaffRegister.css';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const StaffRegister = () => {
   const [formData, setFormData] = useState({
-    staffId: generateStaffId(), // Custom ID for staff member
+    staffId: generateStaffId(),
     sfirstname: '',
     slastname: '',
     snic: '',
@@ -20,8 +20,11 @@ const StaffRegister = () => {
   const [contactNumberError, setContactNumberError] = useState('');
   const [firstnameError, setFirstnameError] = useState('');
   const [lastnameError, setLastnameError] = useState('');
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
-  const { staffId, sfirstname, slastname, snic, semail, scontactNumber, saddress, designation,qualifications } = formData;
+  const { staffId, sfirstname, slastname, snic, semail, scontactNumber, saddress, designation, qualifications } = formData;
+
+
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -68,9 +71,9 @@ const StaffRegister = () => {
     try {
       const res = await axios.post("http://localhost:9000/staff/add", formData);
       console.log(res.data);
-      // Optionally, you can clear the form fields after successful submission
+      setSubmissionSuccess(true);
       setFormData({
-        staffId: generateStaffId(), // Generate a new staff ID
+        staffId: generateStaffId(),
         sfirstname: '',
         slastname: '',
         snic: '',
@@ -84,6 +87,14 @@ const StaffRegister = () => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    if (submissionSuccess) {
+      alert("Staff Member added successfully");
+      window.location.href = '/StaffList';
+    }
+  }, [submissionSuccess]);
+
 
   // Function to generate a unique staff ID
   function generateStaffId() {
