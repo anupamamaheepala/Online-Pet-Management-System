@@ -137,3 +137,13 @@ exports.getStaffProfileById = async (req, res) => {
   }
 };
 
+
+exports.getVetsAndGroomers = async (req, res) => {
+  try {
+      const vetsAndGroomers = await Staff.find({ $or: [{ designation: 'veterinarian' }, { designation: 'groomer' }] });
+      res.status(200).json(vetsAndGroomers);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+  }
+};

@@ -59,8 +59,9 @@ const ConfirmAdvertisement = () => {
     return (
         <>
             <Header />
-            <h1 className="ma_text_container"><center>Pending Advertisement</center></h1>
+            
             <Link to="/AllAdvertisements" className="ma_add_button">View all published advertisements list</Link>            <div className="ma_table-container_center">
+            <h1 className="ma_text_container"><center>Pending Advertisement</center></h1>
             <table className="ma_advertisement-table">
                 <thead>
                     <tr>
