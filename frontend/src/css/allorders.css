@@ -1,0 +1,101 @@
+/* General styling for the table container */
+.order-table-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the order table */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+/* Styling for table headers */
+.order-table th {
+  padding: 12px;
+  background-color: #f2f2f2;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Styling for table rows */
+.order-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect for table rows */
+.order-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Styling for placed orders and report generation (action buttons) */
+.order-table .action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style for buttons in the table */
+.order-table button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.order-table button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for placed orders indicator */
+.order-table .order-placed {
+  color: green;
+  font-weight: bold;
+}
+
+/* Styling for report downloaded indicator */
+.order-table .report-downloaded {
+  color: green;
+  font-weight: bold;
+}
+
+/* Styling for error messages or unavailable content */
+.order-table .error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Styling for order table filter section */
+.order-table-filter {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Styling for the filter dropdown */
+.order-table-filter select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.order-table-filter select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Optional styling for filter section hover effect */
+.order-table-filter select:hover {
+  background-color: #e9ecef;
+}

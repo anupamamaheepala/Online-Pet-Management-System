@@ -86,6 +86,7 @@ import EditProduct from './pages/EditProduct';
 import StaffLogin from './pages/StaffLogin';
 import EditAdvertisement from './pages/EditAdvertisement';
 import SalaryView from './pages/SalaryView';
+import Sysmanagerhome from './pages/Sysmanagerhome';
 
 function App() {
   return (
@@ -117,10 +118,13 @@ function App() {
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
 
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
-
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
 
 
+
+          <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
+
+          <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
           <Route path='/Services' element = {<Services />}/>
           <Route path='/ViewServices' element = {<ViewServices />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
@@ -183,6 +187,7 @@ function App() {
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
           <Route path="/SalaryView/:id" element={<SalaryView />} />
+          <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
 
           </Routes>
         </CartProvider>

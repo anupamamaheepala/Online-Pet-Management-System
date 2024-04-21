@@ -36,6 +36,11 @@ const bankTransactionSchema = new mongoose.Schema({
     type: String, // Assuming you store the image path
     required: true,
   },
+
+  status: {
+    type: String, // Can be "approved", "disapproved", "pending"
+    default: "pending" // Set default status as "pending"
+  }
 });
 
 module.exports = mongoose.model('BankTransaction', bankTransactionSchema);

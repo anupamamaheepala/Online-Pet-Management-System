@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import AdsHeader from '../components/ads components/AdsHeader';
 import '../css/advertisement.css';
 import { Link } from 'react-router-dom';
 
@@ -58,7 +59,7 @@ const ConfirmAdvertisement = () => {
 
     return (
         <>
-            <Header />
+            <AdsHeader />
             
             <Link to="/AllAdvertisements" className="ma_add_button">View all published advertisements list</Link>            <div className="ma_table-container_center">
             <h1 className="ma_text_container"><center>Pending Advertisement</center></h1>
