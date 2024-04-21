@@ -23,12 +23,11 @@ const payerinfoSchema = new mongoose.Schema({
         require: true
     },
     amount : {
-        type : Number,
+        type : String,
         require: true
     },
 
 }, {timestamps: false})
-
 
 
 //module.exports = mongoose.model('payerinfo', payerinfoSchema)
