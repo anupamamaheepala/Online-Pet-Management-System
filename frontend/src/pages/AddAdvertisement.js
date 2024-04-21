@@ -20,8 +20,28 @@ const AddAdvertisement = () => {
     
 
     const onChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        let newValue = value;
+        
+        if (name === 'contact') {
+            newValue = value.replace(/[^\d]/g, ''); // Replace non-digit characters with empty string
+            if (newValue.length > 10) {
+                newValue = newValue.slice(0, 10); // Limit to 10 characters
+            }
+        }
+
+        if (name === 'ownerName') {
+            newValue = value.replace(/[^A-Za-z\s]/g, ''); // Replace non-letter characters with empty string
+        } else if (name === 'contact') {
+            newValue = value.replace(/[^\d]/g, ''); // Replace non-digit characters with empty string
+            if (newValue.length > 10) {
+                newValue = newValue.slice(0, 10); // Limit to 10 characters
+            }
+        }
+        
+        setFormData({ ...formData, [name]: newValue }); // Use 'name' instead of 'e.target.name'
     };
+    
 
     const onFileChange = e => {
         setFormData({ ...formData, file: e.target.files[0] });
@@ -128,7 +148,7 @@ const AddAdvertisement = () => {
 
                 <div className="ma_form-group">
                     <label htmlFor="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" value={contact} onChange={onChange} pattern="[0-9]{10}" title="Contact number must be 10 digits" required />
+                    <input type="text" id="contact" name="contact" value={contact} onChange={onChange} maxLength="10" required />
                 </div>
 
                 <button style={{ width: '150px' }} type="submit" className="ma_submit-button">Submit</button>

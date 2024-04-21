@@ -96,4 +96,38 @@ router.get('/all', async (req, res) => {
 
 module.exports = router;
 
-module.exports = router;
+// POST route to handle approval of a transaction
+router.put('/approve/:transactionId', async (req, res) => {
+  try {
+    const transaction = await BankTransaction.findById(req.params.transactionId);
+    if (!transaction) {
+      return res.status(404).json({ error: 'Transaction not found' });
+    }
+    transaction.status = 'approved'; // Update status to 'approved'
+    await transaction.save();
+    res.json(transaction);
+  } catch (error) {
+    console.error('Error approving transaction: ', error);
+    res.status(500).json({ error: 'Error approving transaction' });
+  }
+});
+
+// POST route to handle disapproval of a transaction
+router.put('/disapprove/:transactionId', async (req, res) => {
+  try {
+    const transaction = await BankTransaction.findById(req.params.transactionId);
+    if (!transaction) {
+      return res.status(404).json({ error: 'Transaction not found' });
+    }
+    transaction.status = 'disapproved'; // Update status to 'disapproved'
+    await transaction.save();
+    res.json(transaction);
+  } catch (error) {
+    console.error('Error disapproving transaction: ', error);
+    res.status(500).json({ error: 'Error disapproving transaction' });
+  }
+});
+
+
+
+
