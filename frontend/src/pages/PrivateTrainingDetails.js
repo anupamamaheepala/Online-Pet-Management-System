@@ -4,6 +4,10 @@ import { useParams, useLocation } from 'react-router-dom';
 import '../css/ptrainingdetails.css'; // Ensure correct path to your CSS file
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+
+
 
 const PrivateTrainingDetails = () => {
   const [training, setTraining] = useState(null);
@@ -57,6 +61,14 @@ const PrivateTrainingDetails = () => {
     fetchTrainingDetails();
   }, [id, location]);
 
+  useEffect(() => {
+    // Retrieve the instructor's name from local storage
+    const storedInstructorName = localStorage.getItem('instructorName');
+    if (storedInstructorName) {
+      setInstructor(storedInstructorName);
+    }
+  }, []);
+  
   const handleUpdateInstructor = async () => {
     try {
       if (!selectedTrainer) {
@@ -64,13 +76,22 @@ const PrivateTrainingDetails = () => {
         return;
       }
   
-      await axios.put(`http://localhost:9000/training/updateInstructor/${id}`, { instructor: selectedTrainer.value });
+      await axios.put(`http://localhost:9000/training/updateInstructor/${id}`, { instructor: selectedTrainer.value },{instructor: selectedTrainer.label});
       console.log('Instructor updated successfully');
       window.alert('Instructor successfully added');
+  
+      // Store the instructor's name in local storage
+      localStorage.setItem('instructorName', selectedTrainer.label);
+      localStorage.setItem('instructorName', selectedTrainer.value);
+      
+      // Update the instructor state
+      setInstructor(selectedTrainer.label);
     } catch (error) {
       console.error('Error updating instructor:', error);
     }
   };
+  
+  
   
   const handleApproveTraining = async () => {
     try {
@@ -89,7 +110,21 @@ const PrivateTrainingDetails = () => {
         status: 'approved',
         instructorName: selectedTrainer.label, // Update the instructor's name in the frontend state
       }));
-      window.alert('Application approved');
+  
+      // Show SweetAlert message
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Application approved and instructor added successfully',
+        confirmButtonText: 'Go back to Dashboard',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return <Link to="../pages/TrainingDashboard.js" />;
+          // Redirect to Dashboard or wherever you want to go
+          // You can use history.push('/dashboard') or window.location.href = '/dashboard'
+        }
+      });
+  
       console.log('Training approved successfully');
     } catch (error) {
       console.error('Error approving training:', error);
