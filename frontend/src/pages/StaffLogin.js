@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/staffLogin.css';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 const StaffLogin = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,7 @@ const StaffLogin = () => {
 
   return (
     <>
+    <Header/>
     <div className='staffLoginContainer' >
       <h2>Staff Login</h2>
       <br></br>
