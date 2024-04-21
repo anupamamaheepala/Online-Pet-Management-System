@@ -16,14 +16,6 @@ const Register = () => {
 
     const { username, email, contactNumbers, address, password, confirmPassword } = formData;
 
-    // const handleInputChange = (index, event) => {
-    //     const updatedContactNumbers = [...contactNumbers];
-    //     updatedContactNumbers[index] = event.target.value;
-    //     setFormData({
-    //         ...formData,
-    //         contactNumbers: updatedContactNumbers,
-    //     });
-    // };
     const handleInputChange = (index, event) => {
       const updatedContactNumbers = [...contactNumbers];
       const value = event.target.value;
@@ -158,12 +150,7 @@ const Register = () => {
                         <center><button className="registration-button" type="submit">Register</button></center>
                     </form>
                     <br />
-                    <label className="registration-staff">Register for staff:</label>
-                    <center>
-                        <button className="registration-staff-registration-btn" onClick={() => window.location.href = '/staff/register'}>
-                            Staff Registration
-                        </button>
-                    </center>
+                    
                 </div>
             </div>
             <Footer />

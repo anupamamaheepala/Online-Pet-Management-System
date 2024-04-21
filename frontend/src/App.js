@@ -16,7 +16,6 @@ import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
 import FeedbackReply from './pages/FeedbackReply';
 import FeedbackReplyForm from './pages/FeedbackReplyForm';
-
 import Services from './pages/Services';
 import ViewServices from './pages/ViewServices';
 import Vetservices from './pages/Vetservices';
@@ -87,6 +86,8 @@ import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
 import StaffLogin from './pages/StaffLogin';
 import EditAdvertisement from './pages/EditAdvertisement';
+import SalaryView from './pages/SalaryView';
+import Sysmanagerhome from './pages/Sysmanagerhome';
 
 function App() {
   return (
@@ -116,8 +117,15 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
+
+          <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
 
+
+
+          <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
+
+          <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
           <Route path='/Services' element = {<Services />}/>
           <Route path='/ViewServices' element = {<ViewServices />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
@@ -179,7 +187,12 @@ function App() {
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
+<<<<<<< HEAD
           <Route path="/editstepform/:stepId" element={ <Editstepform/>}/>
+=======
+          <Route path="/SalaryView/:id" element={<SalaryView />} />
+          <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
+>>>>>>> b860b36bbaf73f557abbc21e20ab485f2f17c798
 
           </Routes>
         </CartProvider>

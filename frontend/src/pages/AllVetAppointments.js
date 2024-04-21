@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import VetHeader from '../components/Vet components/VetHeader';
 
 const VetAppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -28,6 +28,7 @@ const VetAppointmentList = () => {
   }, []);
 
   const generatePdf = () => {
+    
     const doc = new jsPDF();
     const tableData = appointments.map((appointment) => [
       appointment.ownerName,
@@ -59,13 +60,25 @@ const VetAppointmentList = () => {
     doc.save('approved-vet-appointments.pdf');
   };
 
+  // Function to filter appointments based on owner name
+  const filteredAppointments = appointments.filter(appointment =>
+    appointment.ownerName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-    <AdminHeader />
     <VetHeader />
     <div style={styles.container}>
       <h2 style={styles.heading}>Veterinary Appointments</h2>
-      {appointments.length > 0 ? (
+      {/* Search bar */}
+      <input
+        type="text"
+        placeholder="Search by owner name..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ marginBottom: '10px' }}
+      />
+      {filteredAppointments.length > 0 ? (
         <>
           <table style={styles.table}>
             <thead>
@@ -80,7 +93,7 @@ const VetAppointmentList = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments.map((appointment) => (
+              {filteredAppointments.map((appointment) => (
                 <tr key={appointment._id} style={styles.tableRow}>
                   <td style={styles.tableData}>{appointment.ownerName}</td>
                   <td style={styles.tableData}>{appointment.ownerEmail}</td>

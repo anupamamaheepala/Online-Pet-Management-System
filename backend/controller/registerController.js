@@ -105,16 +105,7 @@ exports.getAllCustomers = async (req, res) => {
   }
 };
 
-// // Get customer by ID
-// exports.getCustomerById = async (req, res) => {
-//   try {
-//     const customer = await Customer.findById(req.params.id);
-//     res.json(customer);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Failed to fetch customer details" });
-//   }
-// };
+
 exports.getCustomerById = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);

@@ -45,12 +45,6 @@ const servicesRoute = require('./routes/ServiceRoute');
 //const cardpayRoute = require("./routes/cardpayRoute");
 //const makeAppointmentRoute = require ("./routes/MakeAppointmentRoute");
 
-
-
-
-
-
-
 app.use(cors());
 app.use(bodyParser.json());
 

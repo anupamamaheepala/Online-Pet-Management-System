@@ -67,7 +67,7 @@ const petSchema = new mongoose.Schema({
 
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'customer', // Assuming you have a Customer model for the pet owner
+    ref: 'customer', // Customer model for the pet owner
       }
 });
 

@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const petController = require('../controller/petController');
-const Pet = require('../models/petModel');
+
 
   
 // Route to add a new pet

@@ -35,8 +35,7 @@ const StaffLeaveList = () => {
       <table className='staffLeaveList-table'>
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Staff ID</th>
             <th>Leave From Date</th>
             <th>Leave To Date</th>
             <th>Leave Type</th>
@@ -47,8 +46,7 @@ const StaffLeaveList = () => {
         <tbody>
           {leaves.map(leave => (
             <tr key={leave._id}>
-              <td>{leave.sfirstname}</td>
-              <td>{leave.slastname}</td>
+              <td>{leave.staffId}</td>
               <td>{new Date(leave.StleaveFromDate).toLocaleDateString()}</td>
               <td>{new Date(leave.StleaveToDate).toLocaleDateString()}</td>
               <td>{leave.StleaveType}</td>
