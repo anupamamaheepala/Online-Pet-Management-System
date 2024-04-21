@@ -7,7 +7,7 @@ const SysadminHome = () => {
     <>
       <SystemAdminHeader />
       <div className="content">
-        <h1>Welcome, System Admin!</h1>
+        <h1>Welcome, System Manager!</h1>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
        
