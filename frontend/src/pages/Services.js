@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../css/services.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const Services = () => {
   const [title, setTitle] = useState('');
@@ -15,7 +16,7 @@ const Services = () => {
     try {
       await axios.post('http://localhost:9000/services/add', { title, type, description });
 
-      toast.success('Service added');
+      Swal.fire({ icon: 'success',title: 'Service Added',timer: 1500, showConfirmButton: false });
       // Optionally, you can handle success here (e.g., show a success message)
       // Reset form fields
       setTitle('');

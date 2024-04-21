@@ -17,6 +17,7 @@ const AddAdvertisement = () => {
     });
 
     const { ownerName, email, pet_type, Breed, purpose, description, file, contact } = formData;
+    
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,6 +44,7 @@ const AddAdvertisement = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+
             });
             console.log(res.data);
 
@@ -53,14 +55,17 @@ const AddAdvertisement = () => {
                 Breed: '',
                 purpose: '',
                 description: '',
-                file: null,
+                file:null,
                 contact: ''
             });
-
+           
             // Display alert after successful submission
             alert('Advertisement submitted successfully');
+            window.location.href = '/Advertisement';
         } catch (err) {
             console.error(err);
+            // Display error message to the user
+            alert('Failed to submit advertisement');
         }
     };
 
@@ -85,13 +90,12 @@ const AddAdvertisement = () => {
                 <div className="ma_form-group">
                     <label htmlFor="pet_type">Pet Type:</label>
                     <select id="pet_type" name="pet_type" value={pet_type} onChange={onChange} required>
-                        <option value="" disabled>Select your pet type</option>
+                        <option value="">Select your pet type</option>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
                         <option value="bird">Bird</option>  
                         <option value="rabbit">Rabbit</option> 
                         <option value="other">Other</option>
-
                     </select>
                 </div>
 
@@ -103,7 +107,7 @@ const AddAdvertisement = () => {
                 <div className="ma_form-group">
                     <label htmlFor="purpose">Purpose of the advertisement:</label>
                     <select id="purpose" name="purpose" value={purpose} onChange={onChange} required>
-                        <option value="" disabled>Select Purpose</option>
+                        <option value="">Select Purpose</option>
                         <option value="pet_for_sale">Pet for sale</option>
                         <option value="lost_my_pet">Lost my pet</option>
                     </select>

@@ -72,7 +72,6 @@ const UpdateStaff = () => {
       .then((res) => {
         console.log(res.data);
         alert('Staff updated successfully');
-        window.location.href = '/StaffList';
       })
       .catch((err) => {
         console.error(err);
@@ -126,11 +125,6 @@ const UpdateStaff = () => {
         </div>
           <br></br>
           <center><button className="UpadateStaff-button" type="submit">Update</button></center>
-        &nbsp;
-        {/* Navigate to AllCustomers page using Link */}
-        <Link to="/StaffList" className="edit-staff-link-button">
-          <button className="edit-staff-button">Back to All Staff List</button>
-        </Link>
         </form>
         <br></br>
 

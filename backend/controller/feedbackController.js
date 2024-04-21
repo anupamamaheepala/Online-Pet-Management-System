@@ -79,10 +79,13 @@ const dislikeFeedback = async (req, res) => {
 
 const replyToFeedback = async (req, res) => {
   const feedbackId = req.params.id;
-  const { user, reply } = req.body;
+  const { reply } = req.body;
   try {
-    const updatedFeedback = await Feedback.findByIdAndUpdate(feedbackId, { $push: { replies: { user, reply } } }, { new: true });
-    res.status(200).json(updatedFeedback);
+    const updatedFeedback = await Feedback.findByIdAndUpdate(feedbackId, { reply }, { new: true });
+    if (!updatedFeedback) {
+      return res.status(404).json({ message: 'Feedback not found' });
+    }
+    res.status(200).json({ message: 'Reply added to feedback', updatedFeedback });
   } catch (error) {
     res.status(500).json({ message: 'Server Error', error: error.message });
   }

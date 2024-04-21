@@ -30,5 +30,9 @@ router.delete("/confirmedads/:id", advertisementController.deletecomAdById);
 
 //router.put('/confirmedads/:id', upload.single('filePath'), confirmedadsController.updateConfirmedAd);
 
+// Route for fetching advertisement by ID
+router.get('/:id', advertisementController.getAdvertisementById);
 
+// Route for updating advertisement by ID
+router.put('/:id', advertisementController.updateAdvertisementById);
 module.exports = router;

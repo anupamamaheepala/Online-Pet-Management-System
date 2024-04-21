@@ -1,40 +1,51 @@
-.viewservices-list {
-    list-style-type: none;
-    padding: 0;
+/* viewservices.css */
+
+.view-services-container {
+    max-width: 600px;
+    margin: 0 auto;
   }
   
-  .viewservices-item {
-    background-color: #f5f5f5;
-    padding: 20px;
-    margin-bottom: 10px;
+  .service-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .viewservices-item h2 {
-    margin-top: 0;
+  .service-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
   
-  .viewservices-actions {
+  .service-type {
+    margin-bottom: 5px;
+  }
+  
+  .service-description {
+    margin-bottom: 10px;
+  }
+  
+  .service-buttons {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+    justify-content: space-between;
   }
   
-  .viewserviceupdate-button,
-  .viewservicedelete-button {
-    padding: 8px 16px;
-    margin-left: 10px;
-    color: white;
-    border: none;
-    border-radius: 4px;
+  .view-services-update-button,
+  .view-services-delete-button {
+    padding: 5px 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
   }
   
-  .viewserviceupdate-button {
+  .view-services-update-button {
     background-color: #4caf50;
+    color: white;
   }
   
-  .viewservicedelete-button {
+  .view-services-delete-button {
     background-color: #f44336;
+    color: white;
   }
+  
