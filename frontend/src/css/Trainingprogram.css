@@ -104,4 +104,19 @@ body {
   transition: background-color 0.3s ease;
   margin-left: 600px;
   margin-bottom: 50px;
+  
 }
+.trainingadd-apply-button{
+  background-color: rgba(119, 16, 124, 0.876);
+}
+
+.col.text-right {
+  text-align: right;
+  
+}
+.alo_table-container {
+  margin: 20px auto; /* Apply margin to center the table */
+  width: 90%; /* Adjust width as needed */
+}
+
+/* Add any other CSS styles you need */

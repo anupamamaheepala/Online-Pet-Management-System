@@ -1,6 +1,7 @@
 const Appointment = require('../models/MakeAppointmentModel');
 const Staff = require('../models/staffModel');
 
+
 // Create a new appointment
 exports.createAppointment = async (req, res) => {
   try {
@@ -169,5 +170,84 @@ exports.getAppointments = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Controller method to check availability
+exports.checkAvailability = async (req, res) => {
+  try {
+    // Extract date, time, and service from the request body
+    const { selectDate, selectTime, selectService } = req.body;
+
+    // Parse the selectDate string to a Date object
+    const date = new Date(selectDate);
+
+    // Find appointments for the specified date, time, and service
+    const existingAppointment = await Appointment.findOne({
+      selectDate: date,
+      selectTime,
+      selectService,
+    });
+
+    // If an appointment already exists for the specified date, time, and service, it's not available
+    if (existingAppointment) {
+      return res.status(400).json({ error: 'Appointment slot not available. Please choose another time.' });
+    }
+
+    // If the appointment slot is available, respond with success
+    res.json({ available: true });
+  } catch (error) {
+    // Handle any errors
+    console.error('Error checking availability:', error);
+    res.status(500).json({ error: 'Failed to check availability. Please try again later.' });
+  }
+};
+
+
+// Controller method to check availability
+exports.checkAvailability = async (req, res) => {
+  try {
+    // Extract date, time, and service from the request body
+    const { selectDate, selectTime, selectService } = req.body;
+
+    // Parse the selectDate string to a Date object
+    const date = new Date(selectDate);
+
+    // Find appointments for the specified date, time, and service
+    const existingAppointment = await Appointment.findOne({
+      selectDate: date,
+      selectTime,
+      selectService,
+    });
+
+    // If an appointment already exists for the specified date, time, and service, it's not available
+    if (existingAppointment) {
+      return res.status(400).json({ error: 'Appointment slot not available. Please choose another time.' });
+    }
+
+    // If the appointment slot is available, respond with success
+    res.json({ available: true });
+  } catch (error) {
+    // Handle any errors
+    console.error('Error checking availability:', error);
+    res.status(500).json({ error: 'Failed to check availability. Please try again later.' });
+  }
+};
+
+exports.getProfessions = async (req, res) => {
+  try {
+    // Fetch unique professions from the database
+    const professions = await Staff.distinct('designation');
+
+    // Map professions to format suitable for dropdown options
+    const professionOptions = professions.map((profession) => ({
+      value: profession,
+      label: profession
+    }));
+
+    res.status(200).json(professionOptions);
+  } catch (error) {
+    console.error('Error fetching professions:', error);
+    res.status(500).json({ error: 'Failed to fetch professions' });
   }
 };
