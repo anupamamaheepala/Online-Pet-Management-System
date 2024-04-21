@@ -31,6 +31,16 @@ const AddPet = () => {
     const onChange = (e) => {
     const { name, value } = e.target;
 
+    // Validate input for petName and species fields
+    if (name === 'petName' || name === 'species') {
+        // Allow only letters (alphabetic characters)
+        const onlyLetters = /^[a-zA-Z\s]*$/; // Regular expression to match only letters and spaces
+        if (!onlyLetters.test(value)) {
+            // If input contains any characters other than letters or spaces, don't update the state
+            return;
+        }
+    }
+
     // Update form data state
     setFormData((prevData) => ({
         ...prevData,

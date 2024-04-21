@@ -3,10 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsPersonFill } from 'react-icons/bs';
 import { Link, useLocation } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ profilePhoto }) => {
     const [showHeader, setShowHeader] = useState(true);
     const [activeMenuItem, setActiveMenuItem] = useState('Home');
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')));
     const location = useLocation();
+    const profilePhotoUrl = userData && userData.profilePhoto;
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,12 +28,26 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-        const path = location.pathname.split('/')[1]; // Extracting the first part of the path
-        setActiveMenuItem(path || 'Home'); // If path is empty, set it to 'Home'
+        const path = location.pathname.split('/')[1];
+        setActiveMenuItem(path || 'Home');
     }, [location]);
 
+    useEffect(() => {
+        const storedUserData = JSON.parse(localStorage.getItem('userData'));
+        setUserData(storedUserData);
+    }, [location]);
+
+    const handleSignOut = () => {
+        localStorage.removeItem('userData');
+        window.location.reload();
+    };
+
+    console.log("Profile photo URL in Header:", profilePhoto);
+
     return (
+        
         <nav className={`navbar navbar-expand-lg navbar-light ${showHeader ? 'header-show' : 'header-hide'}`} style={{ backgroundColor: 'white', width: '100%', padding: '10px', transition: 'top 0.5s' }}>
+           
             <div className="container-fluid" style={{ borderBottom: '1px solid #ccc' }}>
                 <a className="navbar-brand" href="#">
                     <img src="/images/logo.png" alt="Logo" style={{ maxHeight: '100px', marginRight: '10px' }} />
@@ -68,25 +85,44 @@ const Header = () => {
                             </li>
                         </ul>
                         <div className="d-flex align-items-center">
-                        <a href="/SignIn">
-                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px', backgroundColor: 'black', color:'white', border:'1px solid black'}}>Sign In</button>
-                        </a>
-
-                            <div style={{ marginRight: '10px' }}>
-                                <a href="/Register"><button className="btn btn-primary me-2" style={{ fontSize: '16px',backgroundColor: 'white' , color:'black', border:'1px solid black'}}>Sign Up</button></a>
-                            </div>
+                            
+                        {userData ? (
                             <div className="dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <BsPersonFill size={40} style={{ border: '1px solid #ccc', borderRadius: '50%', padding: '2px' }} />
+                                    {profilePhotoUrl ? (
+                                        <img
+                                            src={profilePhotoUrl}
+                                            alt="Profile"
+                                            style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                            onError={(e) => {
+                                                console.error('Error loading profile photo:', e.target.src);
+                                                setUserData({ ...userData, profilePhoto: null }); // Optionally reset profilePhoto on error
+                                            }}
+                                        />
+                                    ) : (
+                                        <BsPersonFill size={40} style={{ border: '1px solid #ccc', borderRadius: '50%', padding: '2px' }} />
+                                    )}
+                                    {userData.username}
                                 </a>
-                                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                                    <li><a className="dropdown-item" href="/MyProfile">My Profile</a></li>
-                                    <li><a className="dropdown-item" href="/MyAppointments">My Appointments</a></li>
-                                    <li><a className="dropdown-item" href="#">My Cart</a></li>
-                                    <li><a className="dropdown-item" href="#">Settings</a></li>
-                                    <li><a className="dropdown-item" href="#">Sign Out</a></li>
-                                </ul>
-                            </div>
+                                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                        <li><Link className="dropdown-item" to={`/MyProfile/${userData._id}`}>My Profile</Link></li>
+                                        <li><a className="dropdown-item" href="/MyAppointments">My Appointments</a></li>
+                                        <li><a className="dropdown-item" href="#">My Cart</a></li>
+                                        <li><a className="dropdown-item" href="#">Settings</a></li>
+                                        <li><a className="dropdown-item" href="/SignIn" onClick={handleSignOut}>Sign Out</a></li>
+                                    </ul>
+                                </div>
+                            ) : (
+                                <>
+                                    {/* Sign-in and Sign-up buttons */}
+                                    <a href="/SignIn">
+                                        <button className="btn btn-outline-primary me-2" style={{ fontSize: '16px', backgroundColor: 'black', color: 'white', border: '1px solid black' }}>Sign In</button>
+                                    </a>
+                                    <a href="/Register">
+                                        <button className="btn btn-primary me-2" style={{ fontSize: '16px', backgroundColor: 'white', color: 'black', border: '1px solid black' }}>Sign Up</button>
+                                    </a>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
