@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
+import AdsHeader from '../components/ads components/AdsHeader';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import '../css/advertisement.css';
@@ -175,7 +175,7 @@ const AllAdvertisements = () => {
 
   return (
     <>
-      <Header />
+      <AdsHeader />
       <div  style={{ textAlign: 'right' }}>
       <Link to="/ConfirmAdvertisement" className="ma_add_button">Pending advertisements</Link>
 
