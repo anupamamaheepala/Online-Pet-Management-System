@@ -86,6 +86,7 @@ import EditProduct from './pages/EditProduct';
 import StaffLogin from './pages/StaffLogin';
 import EditAdvertisement from './pages/EditAdvertisement';
 import SalaryView from './pages/SalaryView';
+import Sysmanagerhome from './pages/Sysmanagerhome';
 
 function App() {
   return (
@@ -183,6 +184,7 @@ function App() {
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
           <Route path="/SalaryView/:id" element={<SalaryView />} />
+          <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
 
           </Routes>
         </CartProvider>
