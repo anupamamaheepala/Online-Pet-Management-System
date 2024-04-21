@@ -23,5 +23,9 @@ router.get('/getss',stepController.getStep);
 //get by id
 router.get('/:id',stepController.getStepId);
 router.put('/:id', upload.single('file'),stepController.editstep);
+<<<<<<< HEAD
+=======
+router.delete('/delete/:id',stepController.deletesteps);
+>>>>>>> d219169a40114d4954a6eca8f8aa460ce4c6c9ac
 
 module.exports = router;

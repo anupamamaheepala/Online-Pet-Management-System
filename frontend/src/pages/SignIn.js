@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/signin.css';
+import { Link } from 'react-router-dom'; 
 
 
 const SignIn = () => {
@@ -42,6 +43,10 @@ const SignIn = () => {
   
   
 
+  const loginAsStaff = () => {
+    window.location.href = '/StaffLogin'; // Redirect to staff login page
+  };
+
   return (
     
 <>
@@ -72,6 +77,11 @@ const SignIn = () => {
           <div className="signin-form-group">
             <p className="signin-p">Don't have an account? <a className='singup-a' href="/register">Sign Up</a></p>
           </div>
+          <br></br>
+          <div className="signin-form-group" >
+          <center><Link to="/StaffLogin" className="staffsignin-button" > Login as Staff </Link></center>    
+          </div>
+
         </form>
         </div>
       </div>

@@ -115,7 +115,7 @@ const Payerinfo = () => {
                         <select id="purpose" name="purpose" value={purpose} onChange={onChange} required> 
                         <option value="" disabled>Select Purpose</option>
                         <option value="Buy products">Buy products</option>
-                        <option value="Verterinary appointment">Verterinary appointment</option>
+                        <option value="Veterinary appointment">Veterinary appointment</option>
                         <option value="Grooming appointment">Grooming appointment</option>
                         <option value="Pet training appointment">Pet training appointment</option>
                         <option value="Advertisement">Advertisement</option>

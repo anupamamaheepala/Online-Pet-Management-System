@@ -90,3 +90,20 @@ exports.editstep = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+<<<<<<< HEAD
+=======
+
+
+exports.deletesteps = async (req, res) => {
+    try {
+        const step = await Step.findByIdAndDelete(req.params.id);
+        if (!step) {
+            return res.status(404).json({ message: 'Step not found' });
+        }
+        res.json({ message: 'Step deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting step:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+>>>>>>> d219169a40114d4954a6eca8f8aa460ce4c6c9ac
