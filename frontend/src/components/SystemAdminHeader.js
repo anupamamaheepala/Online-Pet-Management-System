@@ -23,9 +23,10 @@ const SystemAdminHeader = () => {
               Staff
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/register-staff">Register Staff</Dropdown.Item>
-              <Dropdown.Item href="#/staff-list">Staff List</Dropdown.Item>
-              <Dropdown.Item href="#/salary-table">Salary Table</Dropdown.Item>
+              <Dropdown.Item href="/StaffRegistrationForm">Register Staff</Dropdown.Item>
+              <Dropdown.Item href="/StaffList">Staff List</Dropdown.Item>
+              <Dropdown.Item href="/SalaryTable">Salary Table</Dropdown.Item>
+              <Dropdown.Item href="/StaffLeaveList">Staff Leave List</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
