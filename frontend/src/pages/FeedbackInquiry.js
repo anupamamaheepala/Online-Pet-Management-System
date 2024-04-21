@@ -22,28 +22,28 @@ const FeedbackInquiry = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send form data to backend endpoint
+      // Send data to backend 
       await axios.post("http://localhost:9000/feedbackinquiry/feedback", formData);
 
       // Send email with customer's name
       await sendEmail(formData.name);
 
       console.log('Feedback submitted successfully');
-      // Optionally, clear the form fields after successful submission
+      // clear the form fields after successful submission
       setFormData({
         name: '',
         email: '',
         feedback: '' 
       });
-      // Optionally, you can show a success message to the user
+      // show a success message to the user
     } catch (error) {
       console.error('Failed to submit feedback:', error);
-      // Optionally, you can show an error message to the user
+      // show an error message to the user
     }
   };
 
   const sendEmail = (customerName) => {
-    // Pass customer's name as a parameter to the email template
+    // Pass  name as parameter to the email template
     return emailjs.sendForm('service_hs3xk19', 'template_vzgks8e', formRef.current, {
       publicKey: 'J8nt0NYTxJsPNGwOp',
       name: formData.name,

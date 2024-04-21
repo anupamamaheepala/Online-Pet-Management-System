@@ -7,8 +7,8 @@ import '../css/feedbackdisplay.css';
 
 const FeedbackDisplay = () => {
     const [feedbackList, setFeedbackList] = useState([]);
-    const [selectedStars, setSelectedStars] = useState(null); // State to store the selected star rating
-    const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
+    const [selectedStars, setSelectedStars] = useState(null); //  store selected star rating
+    const [searchQuery, setSearchQuery] = useState(""); //  store the search query
 
     useEffect(() => {
         axios.get("http://localhost:9000/feedback/all")
@@ -20,7 +20,7 @@ const FeedbackDisplay = () => {
             });
     }, []);
 
-    // Function to render star ratings
+    // Function star ratings
     const renderStarRating = (rating) => {
         const stars = [];
         for (let i = 0; i < rating; i++) {
@@ -29,7 +29,7 @@ const FeedbackDisplay = () => {
         return stars;
     };
 
-    // Function to handle thumbs up button click
+    // Function handle thumbs up 
     const handleLike = async (feedbackId, index) => {
         try {
             const response = await axios.post(`http://localhost:9000/feedback/${feedbackId}/like`);
@@ -41,7 +41,7 @@ const FeedbackDisplay = () => {
         }
     };
 
-    // Function to handle thumbs down button click
+    // Function handle thumbs down 
     const handleDislike = async (feedbackId, index) => {
         try {
             const response = await axios.post(`http://localhost:9000/feedback/${feedbackId}/dislike`);
@@ -53,7 +53,7 @@ const FeedbackDisplay = () => {
         }
     };
 
-    // Function to filter feedback list by selected star rating and search query
+    //  filter feedback list by selected star  , search 
     const filterFeedbackList = (feedbacks) => {
         return feedbacks.filter(feedback =>
             (!selectedStars || feedback.rating === selectedStars) &&
@@ -61,12 +61,12 @@ const FeedbackDisplay = () => {
         );
     };
 
-    // Function to handle star rating filter change
+    // Function handle star rating filter 
     const handleStarFilterChange = (e) => {
         setSelectedStars(parseInt(e.target.value));
     };
 
-    // Function to handle name search query change
+    // Function handle name search query 
     const handleNameSearchChange = (e) => {
         setSearchQuery(e.target.value);
     };
@@ -101,7 +101,7 @@ const FeedbackDisplay = () => {
                 </select>
             </div>
 
-            {/* Name search input field */}
+            {/*  search input  */}
             <div className="nameSearch">
                 {/* <label htmlFor="nameSearch">Search by name:</label> */}
                 <input
