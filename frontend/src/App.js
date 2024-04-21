@@ -114,7 +114,12 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
+<<<<<<< HEAD
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
+=======
+          <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
+
+>>>>>>> fab4aceb7e3995dd5acf5823de231ee85b53ebb1
           <Route path='/Services' element = {<Services />}/>
           <Route path='/ViewServices' element = {<ViewServices />}/>
           <Route path="/Vetservices" element={<Vetservices />} />

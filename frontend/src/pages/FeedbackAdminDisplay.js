@@ -32,8 +32,7 @@ const FeedbackAdminDisplay = () => {
     };
 
     const handleUpdate = (id) => {
-        // Implement your update logic here
-        alert(`Update feedback with ID: ${id}`);
+        
     };
 
     const filteredData = feedbackList.filter(feedback => {
@@ -60,7 +59,7 @@ const FeedbackAdminDisplay = () => {
     
         // Use onload event to ensure the image is loaded before adding it to the PDF
         logo.onload = function() {
-            const logoWidth = 40; // Adjust the width of the logo as needed
+            const logoWidth = 20; // Adjust the width of the logo as needed
             const xPosition = 10; // Set the left margin
             const yPosition = 10; // Set the top margin
     
@@ -71,14 +70,6 @@ const FeedbackAdminDisplay = () => {
                 head: [['Feedback', 'Email', 'Name', 'Rating', 'Likes', 'Dislikes']],
                 body: filteredData.map((val, i) => [val.feedback, val.email, val.name, val.rating, val.likes, val.dislikes]),
                 startY: titleMargin + tableMargin,
-                styles: {
-                    cellWidth: 'auto',
-                    fontSize: 8,
-                },
-                columnStyles: {
-                    0: { cellWidth: 30 },
-                    1: { cellWidth: 30 },
-                },
             });
     
             // Save the PDF once everything is added
@@ -106,6 +97,7 @@ const FeedbackAdminDisplay = () => {
                             <th>Rating</th>
                             <th>Likes</th>
                             <th>Dislikes</th>
+                            <th>Reply</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -118,8 +110,10 @@ const FeedbackAdminDisplay = () => {
                                 <td>{feedback.rating}</td>
                                 <td>{feedback.likes}</td>
                                 <td>{feedback.dislikes}</td>
-                                <td>
+                                <td>{feedback.reply}</td>
+                                <td><Link to={`/FeedbackReplyForm/${feedback._id}/${feedback.feedback}`}>
                                     <button className="btn btn-warning" onClick={() => handleUpdate(feedback._id)}>Update</button>
+                                    </Link>
                                     &nbsp;
                                     <button className="btn btn-danger" onClick={() => handleDelete(feedback._id)}>Delete</button>
                                 </td>
