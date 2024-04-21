@@ -70,15 +70,19 @@ const StaffList = () => {
                 staffMember.designation
             ]);
     
+            // Calculate the position for the header text
+            const headerTextX = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth('Staff List') * doc.internal.getFontSize() / 2);
+            const headerTextY = yPosition + logoWidth - 15;
+    
             doc.setFontSize(18);
-            doc.text('Staff List', 70, yPosition + logoWidth - 15);
+            doc.text('Staff List', headerTextX, headerTextY); // Adjusted positioning for the header text
             doc.setFontSize(15);
             doc.autoTable({
                 startY: yPosition + logoWidth + 10,
                 head: [['Staff ID', 'First Name', 'Last Name', 'NIC No', 'Email', 'Contact Number', 'Address', 'Designation']],
                 body: tableData,
                 styles: {
-                    fontSize: 10,
+                    fontSize: 7.5,
                     cellPadding: 3,
                     lineWidth: 0.1,
                     lineColor: [0, 0, 0]
@@ -87,12 +91,15 @@ const StaffList = () => {
                     fillColor: [0, 0, 0],
                     textColor: [255, 255, 255],
                     fontStyle: 'bold',
+                    halign: 'center',
+                    valign: 'middle'
                 },
                 tableWidth: 190,
             });
             doc.save('staff_list.pdf');
         };
     };
+    
     
     return (
         <>

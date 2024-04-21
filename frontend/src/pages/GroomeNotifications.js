@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../css/groomenotifications.css'; // You'll need to create this CSS file for styling
+import '../css/groomenotifications.css';
 import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
-import GroomerHeader from '../components/Groome components/GroomerHeader'; // Assuming you have a separate header for groomers
+import GroomeHeader from '../components/Groome components/GroomerHeader';
 
 const GroomeNotifications = () => {
   const [appointments, setAppointments] = useState([]);
   const [acceptedAppointments, setAcceptedAppointments] = useState(
-    JSON.parse(localStorage.getItem('acceptedAppointments')) || []
+    JSON.parse(localStorage.getItem('acceptedGroomeAppointments')) || []
   );
   const [rejectedAppointments, setRejectedAppointments] = useState(
-    JSON.parse(localStorage.getItem('rejectedAppointments')) || []
+    JSON.parse(localStorage.getItem('rejectedGroomeAppointments')) || []
   );
 
   useEffect(() => {
@@ -21,9 +21,9 @@ const GroomeNotifications = () => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await axios.get('http://localhost:9000/appointment/grooming-appointments'); // Assuming grooming appointments have a separate endpoint
-      const appointmentsData = response.data;
-      console.log('Appointments fetched:', appointmentsData);
+      const response = await axios.get('http://localhost:9000/appointment/appointments');
+      const appointmentsData = response.data.filter(appointment => appointment.selectService === 'Groome Service');
+      console.log('Groome Appointments fetched:', appointmentsData);
       setAppointments(appointmentsData);
     } catch (error) {
       console.error('Error fetching appointments:', error);
@@ -32,12 +32,12 @@ const GroomeNotifications = () => {
 
   const handleAccept = async (appointmentId) => {
     try {
-      await axios.put(`http://localhost:9000/appointment/grooming-appointments/${appointmentId}`, { IsAccept: true }); // Adjust endpoint for grooming appointments
+      await axios.put(`http://localhost:9000/appointment/appointments/${appointmentId}`, { IsAccept: true });
       setAcceptedAppointments([...acceptedAppointments, appointmentId]);
       setAppointments((prevAppointments) =>
         prevAppointments.filter((appointment) => appointment._id !== appointmentId)
       );
-      localStorage.setItem('acceptedAppointments', JSON.stringify([...acceptedAppointments, appointmentId]));
+      localStorage.setItem('acceptedGroomeAppointments', JSON.stringify([...acceptedAppointments, appointmentId]));
       Swal.fire({
         icon: 'success',
         title: 'Appointment Accepted',
@@ -54,7 +54,7 @@ const GroomeNotifications = () => {
       setAppointments((prevAppointments) =>
         prevAppointments.filter((appointment) => appointment._id !== appointmentId)
       );
-      localStorage.setItem('rejectedAppointments', JSON.stringify([...rejectedAppointments, appointmentId]));
+      localStorage.setItem('rejectedGroomeAppointments', JSON.stringify([...rejectedAppointments, appointmentId]));
       Swal.fire({
         icon: 'success',
         title: 'Appointment Rejected',
@@ -68,9 +68,9 @@ const GroomeNotifications = () => {
   return (
     <>
       <AdminHeader />
-      <GroomerHeader /> {/* Assuming you have a separate header for groomers */}
+      <GroomeHeader />
       <div>
-        <h1>Groomer Notifications</h1>
+        <h1>Groome Notifications</h1>
         <ul>
           {appointments.map((appointment) => (
             <li key={appointment._id} className="groomenotification_appointment_container">

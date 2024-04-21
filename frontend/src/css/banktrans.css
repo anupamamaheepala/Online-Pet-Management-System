@@ -38,9 +38,14 @@
   border-radius: 5px;
 }
 
+.anubtbtn-con{
+  display: flex;
+  justify-content: center;
+}
+
 .anubtbutton {
   display: block;
-  width: 50%;
+  width: 40%;
   padding: 10px;
   font-size: 1rem;
   color: #fff;
