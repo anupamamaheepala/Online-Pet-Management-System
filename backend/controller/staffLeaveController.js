@@ -3,11 +3,10 @@ const StaffLeave = require('../models/staffLeaveModel');
 // Controller to handle adding a new staff leave entry
 exports.addLeave = async (req, res) => {
   try {
-    const { sfirstname, slastname, StleaveFromDate, StleaveToDate, StleaveType, streason } = req.body;
+    const { staffId, StleaveFromDate, StleaveToDate, StleaveType, streason } = req.body;
 
     const newLeave = new StaffLeave({
-      sfirstname,
-      slastname,
+      staffId,
       StleaveFromDate,
       StleaveToDate,
       StleaveType,
@@ -15,7 +14,7 @@ exports.addLeave = async (req, res) => {
     });
 
     await newLeave.save();
-    res.status(201).json({ message: 'Staff leave added successfully' });
+    res.status(201).json({ message: 'Staff leave added successfully', data: newLeave });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
