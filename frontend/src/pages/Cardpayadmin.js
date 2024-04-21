@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../css/cardpayadmin.css'; // Import CSS file
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Import jspdf-autotable for table generation
-import AdminHeader from '../components/AdminHeader';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 
 const CardPayAdmin = () => {
@@ -89,7 +89,7 @@ const CardPayAdmin = () => {
 
   return (
     <>
-    <AdminHeader/>
+    <SystemAdminHeader/>
     <div className="card-pay-admin-container">
       <h1 className="card-pay-admin-title">All Card Payments</h1>
       <input

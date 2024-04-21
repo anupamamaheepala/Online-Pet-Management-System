@@ -120,6 +120,7 @@ const MyAppointments = () => {
   const handlePayNow = (appointmentId) => {
     // Implement pay now functionality
     console.log("Pay now for appointment:", appointmentId);
+    Window.location.href='/Payerinfo';
   };
 
   return (

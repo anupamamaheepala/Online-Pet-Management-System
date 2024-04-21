@@ -7,7 +7,7 @@ import ShowLoading from '../components/ShowLoading';
 import Swal from 'sweetalert2';
 
 const MakeAppointment = () => {
-  // State variables to store form data
+  // State variables to store form data and error messages
   const [ownerName, setOwnerName] = useState('');
   const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
@@ -17,31 +17,40 @@ const MakeAppointment = () => {
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
   const [professionOptions, setProfessionOptions] = useState([]);
+  const [ownerNameError, setOwnerNameError] = useState('');
+  const [ownerContactError, setOwnerContactError] = useState('');
 
   // Fetch profession options from the backend on component mount
   useEffect(() => {
     fetchProfessionOptions();
   }, []);
 
-  const fetchProfessionOptions = async () => {
-    try {
-      const response = await axios.get('http://localhost:9000/staffs');
-      const groomersAndVets = response.data.filter(
-        (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
-      );
-      const options = groomersAndVets.map((staff) => ({
-        value: `${staff.sfirstname} ${staff.slastname}`,
-        label: `${staff.sfirstname} ${staff.slastname}`,
-      }));
-      setProfessionOptions(options);
-    } catch (error) {
-      console.error('Error fetching profession options:', error);
-    }
-  };
+// Update fetchProfessionOptions function to fetch staff members and extract names
+const fetchProfessionOptions = async () => {
+  try {
+    const response = await axios.get('http://localhost:9000/staff');
+    const groomersAndVets = response.data.filter(
+      (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
+    );
+    const options = groomersAndVets.map((staff) => ({
+      value: staff.staffId, // Using staffId as the value for each option
+      label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
+    }));
+    setProfessionOptions(options);
+  } catch (error) {
+    console.error('Error fetching profession options:', error);
+  }
+};
+
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Perform frontend validation
+    if (!validateForm()) {
+      return;
+    }
 
     try {
       // Send form data to server using Axios POST request
@@ -69,6 +78,28 @@ const MakeAppointment = () => {
     }
   };
 
+  const validateForm = () => {
+    let isValid = true;
+
+    // Validate owner's name
+    if (/\d/.test(ownerName)) {
+      setOwnerNameError('Owner name cannot contain digits');
+      isValid = false;
+    } else {
+      setOwnerNameError('');
+    }
+
+    // Validate owner's contact number
+    if (!/^\d{10}$/.test(ownerContact)) {
+      setOwnerContactError('Contact number must be 10 digits');
+      isValid = false;
+    } else {
+      setOwnerContactError('');
+    }
+
+    return isValid;
+  };
+
   const clearForm = () => {
     setOwnerName('');
     setOwnerEmail('');
@@ -78,6 +109,8 @@ const MakeAppointment = () => {
     setSelectDate('');
     setSelectTime('');
     setSelectProfession('');
+    setOwnerNameError('');
+    setOwnerContactError('');
   };
 
   // Generate options for time picker from 08:00 am to 12:00 pm and then from 01:00 pm to 04:00 pm
@@ -106,7 +139,8 @@ const MakeAppointment = () => {
           <div className="left_inputs">
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerName">Owner Name:</label>
-              <input className="makeappointment_input_text" type="text" id="ownerName" value={ownerName} onChange={(e) => setOwnerName(e.target.value)} required />
+              <input className={`makeappointment_input_text ${ownerNameError ? 'error' : ''}`} type="text" id="ownerName" value={ownerName} onChange={(e) => setOwnerName(e.target.value)} required />
+              {ownerNameError && <p className="error-message">{ownerNameError}</p>}
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerEmail">Owner Email:</label>
@@ -114,7 +148,8 @@ const MakeAppointment = () => {
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerContact">Owner Contact No:</label>
-              <input className="makeappointment_input_tel" type="tel" id="ownerContact" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required />
+              <input className={`makeappointment_input_tel ${ownerContactError ? 'error' : ''}`} type="tel" id="ownerContact" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required />
+              {ownerContactError && <p className="error-message">{ownerContactError}</p>}
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="petType">Pet Type:</label>
@@ -147,9 +182,9 @@ const MakeAppointment = () => {
               <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
               <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => setSelectProfession(e.target.value)} required>
                 <option value="">--Please select--</option>
-                <option value="vet">vet</option>
-                <option value="groome">groome</option>
-               
+                {professionOptions.map((option, index) => (
+                  <option key={index} value={option.value}>{option.label}</option>
+                ))}
               </select>
             </div>
           </div>

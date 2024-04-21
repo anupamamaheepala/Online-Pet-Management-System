@@ -1335,7 +1335,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 import '../css/allpets.css';
 import jsPDF from 'jspdf';
@@ -1573,7 +1573,7 @@ const downloadPDFReport = () => {
 
   return (
     <>
-      <Header />
+      <SystemAdminHeader />
       <div className='all-pets-container'>
         <h1 className='page-title'>All Pets</h1>
 
