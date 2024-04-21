@@ -33,7 +33,7 @@ const MyProfile = () => {
       try {
         await axios.delete(`http://localhost:9000/customer/${customerId}`);
         alert('Profile deleted successfully');
-        window.location.href = '/Register';
+        window.location.href = '/';
       } catch (error) {
         console.error(error);
         alert('Failed to delete profile');
@@ -89,9 +89,11 @@ const handleDeleteProfilePhoto = async () => {
 
 
 
+
   return (
     <>
-      <Header />
+      <Header profilePhoto={customerData && customerData.profilePhoto}/>
+
       <div className="MyProfileContainer_custom">
         {loading ? (
           <p className="LoadingIndicator">Loading...</p>

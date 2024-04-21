@@ -46,6 +46,16 @@ const EditPetProfile = () => {
     // Function to handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        // Validate input for petName and species fields
+    if (name === 'petName' || name === 'species') {
+        // Allow only letters (alphabetic characters) and spaces
+        const onlyLetters = /^[a-zA-Z\s]*$/;
+        if (!onlyLetters.test(value)) {
+            // If input contains any characters other than letters or spaces, don't update the state
+            return;
+        }
+    }
         setFormData({ ...formData, [name]: value });
 
         // Validate age input when ageValue or ageUnit changes
