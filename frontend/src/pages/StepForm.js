@@ -5,11 +5,16 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
 import '../css/Trainingprogram.css';
+import Swal from 'sweetalert2';
+import Editstepform from './Editstepform'; // Adjust the path as needed
+
 
 const StepForm = () => {
     const [privatetrainings, setPrivatetrainings] = useState([]);
     const [error, setError] = useState(null);
+    const [editStepId, setEditStepId] = useState(null);
     const [expandedCardIndex, setExpandedCardIndex] = useState(null);
+
     const [formData, setFormData] = useState({
         step: '',
         name: '',
@@ -78,6 +83,23 @@ const StepForm = () => {
         }
     };
 
+    const handleEdit = (id) => {
+        Swal.fire({
+            title: 'Edit Product',
+            text: 'Do you want to edit this product?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, edit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setEditStepId(id);
+            }
+        });
+    };
+    
+
     return (
         <>
             <Header />
@@ -144,6 +166,9 @@ const StepForm = () => {
                             <div className="row justify-content-center">
                                 <div className="col-auto">&nbsp;</div>
                                 <div className="col">
+                                <Link to={`/Editstepform/${privatetraining._id}`}>
+                                        <button className="btn btn-warning" onClick={() => handleEdit(privatetraining._id)}>Edit</button>
+                                    </Link>
                                     <button className="add-button" onClick={() => handleLearnMoreClick(index)}>Learn more</button>
                                 </div>
                             </div>
@@ -151,6 +176,7 @@ const StepForm = () => {
                     </div>
                 ))}
             </div>
+            {editStepId && <Editstepform steptId={editStepId} />}
             
             <Footer />
         </>
