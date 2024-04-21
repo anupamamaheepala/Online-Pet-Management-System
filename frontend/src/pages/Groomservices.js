@@ -86,14 +86,7 @@ function Groomservices() {
             ))}
           </ul>
         </div>
-        <div className="search-container">
-          <div className="search-box">
-            <input type="text" placeholder="Search For Groomers..." />
-            <button className="search-button">
-              <i className="ri-search-line"></i>
-            </button>
-          </div>
-        </div>
+        <div className="square-placeholder"></div> {/* Add a square placeholder */}
       </div>
       <Footer />
     </>

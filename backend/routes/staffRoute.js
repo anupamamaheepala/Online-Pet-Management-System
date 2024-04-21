@@ -26,5 +26,7 @@ router.post('/login', staffController.staffLogin);
 // Route to get staff profile by ID
 router.get('/profile/:id', staffController.getStaffProfileById);
 
+// Add a new route in staffRoute.js
+router.get('/vets-and-groomers', staffController.getVetsAndGroomers);
 
 module.exports = router;
