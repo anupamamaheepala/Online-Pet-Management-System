@@ -1603,7 +1603,7 @@ const downloadPDFReport = () => {
 
 
         <div className='pets-select-columns-container'>
-          <h3>Select Columns:</h3>
+          <h3 className='sch3'>Select Columns:</h3>
           {Object.keys(selectedColumns).map((column) => (
             <div key={column} className='pets-column-checkbox'>
               <label>
