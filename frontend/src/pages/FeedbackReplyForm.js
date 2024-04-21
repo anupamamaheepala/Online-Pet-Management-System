@@ -21,11 +21,11 @@ const FeedbackReplyForm = ({ onSubmit }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      // Make POST request to submit the reply
-      await axios.post(`http://localhost:9000/feedback/${_id}/reply`, { reply }); // Use backticks for string interpolation
-      // Optionally, you can clear the form field after successful submission
+      // Make POST request 
+      await axios.post(`http://localhost:9000/feedback/${_id}/reply`, { reply }); // Use backticks 
+      // clear the form  submission
       setFormData({ ...formData, reply: '' });
-      // Optionally, you can also trigger any callback function passed from parent component
+      // callback function passed from parent component
       if (onSubmit) onSubmit();
     } catch (err) {
       console.error(err);
@@ -43,7 +43,7 @@ const FeedbackReplyForm = ({ onSubmit }) => {
             onChange={onChange}
             placeholder="Write your reply here"
             name="feedback"
-            readOnly // Make the feedback field read-only
+            readOnly // Make field read-only
             required
           />
           <textarea
