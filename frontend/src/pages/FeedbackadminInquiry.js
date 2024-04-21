@@ -37,8 +37,8 @@ const FeedbackInquiryAdmin = () => {
     const searchQueryLower = searchQuery.toLowerCase();
     return (
       feedback.name.toLowerCase().includes(searchQueryLower) ||
-      feedback.email.toLowerCase().includes(searchQueryLower) ||
-      feedback.feedback.toLowerCase().includes(searchQueryLower)
+      feedback.email.toLowerCase().includes(searchQueryLower) 
+      // feedback.feedback.toLowerCase().includes(searchQueryLower)
     );
   });
 
