@@ -19,10 +19,14 @@
     cursor: pointer;
     border-radius: 3px;
     outline: none;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .ma_add_button:hover {
-    background-color: #ffffff;
+    background-color: #5c5656;
     color: #000000;
     text-decoration: none;
 }
@@ -90,38 +94,7 @@
     text-align: justify;
 }
 
-/*.ma_add_button {
-    background-color: rgba(44, 82, 75, 0.397); 
-    border: 2px solid rgb(39, 20, 9);
-    color: rgb(39, 20, 9);
-    padding: 15px 32px;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 19px;
-    outline: none;
-}
 
-.ma_add_button:hover {
-    background-color: rgba(0, 0, 0, 0.397);
-}
-.ma_button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px; 
-}
-
-.ma_advertisement-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-*/
 .ma_advertisement-column {
     width: 48%; 
 }
@@ -302,4 +275,32 @@
 
 .ma_advertisement-table tr:hover {
     background-color: #ddd; /* Hover background color */
+}
+
+.ma_table-container_center {
+    margin: 20px auto; /* Apply margin to center the table */
+    width: 90%; /* Adjust width as needed */
+  }
+
+  .ma_search-input {
+    width: 300px; /* Adjust width to make it shorter */
+    float: right; /* Align to the right */
+    margin-right: 20px; /* Add some margin for spacing */
+    margin-top: 20px;
+    justify-content: right;
+    justify-items: right;
+}
+
+.ma_main_container{
+    display: flex;
+    
+}
+
+.ma_main_container_center {
+    margin: 20px auto; /* Apply margin to center the table */
+    width: 90%; /* Adjust width as needed */
+}
+
+.ma_text_container{
+    margin-top: -70px;
 }

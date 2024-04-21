@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
+import { Link } from 'react-router-dom';
+
 
 const ConfirmAdvertisement = () => {
     const [ads, setAds] = useState([]);
@@ -57,8 +59,8 @@ const ConfirmAdvertisement = () => {
     return (
         <>
             <Header />
-            <h1><center>Pending Advertisement</center></h1>
-            
+            <h1 className="ma_text_container"><center>Pending Advertisement</center></h1>
+            <Link to="/AllAdvertisements" className="ma_add_button">View all published advertisements list</Link>            <div className="ma_table-container_center">
             <table className="ma_advertisement-table">
                 <thead>
                     <tr>
@@ -101,6 +103,7 @@ const ConfirmAdvertisement = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
             
             <Footer />
         </>

@@ -6,7 +6,6 @@
   border: 1px solid #000000;
   text-align: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  background-color: rgba(180, 186, 185, 0.244);
   margin-bottom: 40px;
 }
 
@@ -69,9 +68,9 @@
   width: calc(100% - 30px); /* Adjusted width to accommodate padding */
   margin: 0 auto; /* Center the button */
   padding: 15px;
-  background-color:#000000;
+  background-color: #000000;
   color: #fff;
-  border: none;
+  border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
@@ -80,7 +79,9 @@
 }
 
 .feedback-form button:hover {
-  background-color: #214267;
+  background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
 }
 
 .success-message {
@@ -99,12 +100,13 @@
 .view-feedback button {
   display: block;
   width: 200px; /* Adjust button width as needed */
+  /* height: 20px; */
   margin: 0 auto; /* Center the button */
   margin-bottom: 10px;
   padding: 15px;
   background-color: #000000;
   color: #fff;
-  border: none;
+  border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
@@ -112,5 +114,7 @@
 }
 
 .view-feedback button:hover {
-  background-color: #214267;
+  background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
 }
