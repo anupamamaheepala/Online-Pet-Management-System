@@ -31,3 +31,24 @@ exports.getAllLeaves = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+// Controller to handle approving a staff leave
+exports.approveLeave = async (req, res) => {
+  try {
+    const { leaveId } = req.params;
+
+    // Update the leave status to 'approved' in the database
+    await StaffLeave.findByIdAndUpdate(leaveId, { status: 'approved' });
+
+    // Get the leave details
+    const leave = await StaffLeave.findById(leaveId);
+
+    // Send notification to the staff member (you can implement this part using email or any other notification mechanism)
+
+    res.status(200).json({ message: 'Leave approved successfully', data: leave });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
