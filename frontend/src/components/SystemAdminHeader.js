@@ -5,7 +5,7 @@ import '../css/systemadminheader.css'; // Import the CSS file
 const SystemAdminHeader = () => {
   return (
     <Navbar bg="light" expand="lg" className="header">
-      <Navbar.Brand href="#home">System Admin</Navbar.Brand>
+      <Navbar.Brand href="/Sysmanagerhome">System Admin</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
