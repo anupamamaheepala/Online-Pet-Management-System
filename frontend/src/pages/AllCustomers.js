@@ -3,7 +3,7 @@ import axios from 'axios';
 import jsPDF from 'jspdf';
 import { Link } from 'react-router-dom';
 import 'jspdf-autotable';
-import AdminHeader from '../components/AdminHeader';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 import '../css/allcustomers.css';
 
@@ -102,7 +102,7 @@ const AllCustomers = () => {
 
     return (
         <>
-            <AdminHeader/>
+            <SystemAdminHeader/>
             <h1><center>All Customer Details</center></h1>
 
             <div className='customer-SearchBar-container'>

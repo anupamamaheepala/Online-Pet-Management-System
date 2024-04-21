@@ -13,11 +13,11 @@ const Feedback = () => {
     rating: 0
   });
 
-  const [submitted, setSubmitted] = useState(false); // State for tracking successful submission
+  const [submitted, setSubmitted] = useState(false); // check successful submission one 
 
   const { feedback, email, name, rating } = formData;
 
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,15 +28,15 @@ const Feedback = () => {
     try {
       const res = await axios.post("http://localhost:9000/feedback/feed", formData);
       console.log(res.data);
-      // Optionally, you can clear the form fields after successful submission
+      // clear form after submission
       setFormData({
         feedback: '',
         email: '',
         name: '',
-        rating: 0 // Reset rating after submission
+        rating: 0 // Reset rating after 
       });
-      setSubmitted(true); // Set submitted state to true
-      // Hide the success message after 3 seconds
+      setSubmitted(true); 
+      // Hide the  message after 3 seconds
       setTimeout(() => setSubmitted(false), 3000);
     } catch (err) {
       console.error(err);
@@ -48,7 +48,7 @@ const Feedback = () => {
   };
 
   const goToFeedbackDisplay = () => {
-    navigate('/feedbackDisplay'); // Navigate to feedbackDisplay page
+    navigate('/feedbackDisplay'); // move to feedbackDisplay one
   };
 
   return (

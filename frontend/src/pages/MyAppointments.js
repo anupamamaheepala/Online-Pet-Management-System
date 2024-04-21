@@ -4,7 +4,7 @@ import '../css/myappointments.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -116,10 +116,11 @@ const MyAppointments = () => {
       selectProfession: ''
     });
   };
+  const navigate = useNavigate(); 
 
   const handlePayNow = (appointmentId) => {
-    // Implement pay now functionality
-    console.log("Pay now for appointment:", appointmentId);
+    // Navigate to the /Payerinfo route
+    navigate('/Payerinfo');
   };
 
   return (

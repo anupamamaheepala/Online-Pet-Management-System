@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const StaffLeaveSchema = new mongoose.Schema({
-  sfirstname: {
-    type: String,
-    required: true
-  },
-  slastname: {
+  staffId: {
     type: String,
     required: true
   },
@@ -23,8 +19,8 @@ const StaffLeaveSchema = new mongoose.Schema({
   },
   streason: {
     type: String,
-    required: true
+    required: false
   }
-}, { timestamps: false });
+}, { timestamps: true });
 
 module.exports = mongoose.model('StaffLeave', StaffLeaveSchema);

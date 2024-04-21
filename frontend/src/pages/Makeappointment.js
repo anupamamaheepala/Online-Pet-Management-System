@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../css/makeappointment.css';
 import axios from 'axios';
-import Header from '../components/Header'; 
-import Footer from '../components/Footer'; 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import ShowLoading from '../components/ShowLoading';
 import Swal from 'sweetalert2';
 
 const MakeAppointment = () => {
-  // State variables to store form data
+  // State variables to store form data and error messages
   const [ownerName, setOwnerName] = useState('');
   const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
@@ -16,33 +16,41 @@ const MakeAppointment = () => {
   const [selectDate, setSelectDate] = useState('');
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
-  const [isTimeAvailable, setIsTimeAvailable] = useState(false);
   const [professionOptions, setProfessionOptions] = useState([]);
+  const [ownerNameError, setOwnerNameError] = useState('');
+  const [ownerContactError, setOwnerContactError] = useState('');
 
   // Fetch profession options from the backend on component mount
   useEffect(() => {
     fetchProfessionOptions();
   }, []);
 
-  const fetchProfessionOptions = async () => {
-    try {
-      const response = await axios.get('http://localhost:9000/staffs');
-      const groomersAndVets = response.data.filter(
-        (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
-      );
-      const options = groomersAndVets.map((staff) => ({
-        value: `${staff.sfirstname} ${staff.slastname}`,
-        label: `${staff.sfirstname} ${staff.slastname}`,
-      }));
-      setProfessionOptions(options);
-    } catch (error) {
-      console.error('Error fetching profession options:', error);
-    }
-  };
+// Update fetchProfessionOptions function to fetch staff members and extract names
+const fetchProfessionOptions = async () => {
+  try {
+    const response = await axios.get('http://localhost:9000/staff');
+    const groomersAndVets = response.data.filter(
+      (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
+    );
+    const options = groomersAndVets.map((staff) => ({
+      value: staff.staffId, // Using staffId as the value for each option
+      label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
+    }));
+    setProfessionOptions(options);
+  } catch (error) {
+    console.error('Error fetching profession options:', error);
+  }
+};
+
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Perform frontend validation
+    if (!validateForm()) {
+      return;
+    }
 
     try {
       // Send form data to server using Axios POST request
@@ -70,6 +78,28 @@ const MakeAppointment = () => {
     }
   };
 
+  const validateForm = () => {
+    let isValid = true;
+
+    // Validate owner's name
+    if (/\d/.test(ownerName)) {
+      setOwnerNameError('Owner name cannot contain digits');
+      isValid = false;
+    } else {
+      setOwnerNameError('');
+    }
+
+    // Validate owner's contact number
+    if (!/^\d{10}$/.test(ownerContact)) {
+      setOwnerContactError('Contact number must be 10 digits');
+      isValid = false;
+    } else {
+      setOwnerContactError('');
+    }
+
+    return isValid;
+  };
+
   const clearForm = () => {
     setOwnerName('');
     setOwnerEmail('');
@@ -79,48 +109,8 @@ const MakeAppointment = () => {
     setSelectDate('');
     setSelectTime('');
     setSelectProfession('');
-    setIsTimeAvailable(false); // Reset availability status
-  };
-
-  // Function to handle availability check
-  const handleCheckAvailability = async () => {
-    try {
-      // Send a request to the server to check availability
-      const response = await axios.post('http://localhost:9000/appointment/checkAvailability', {
-        selectDate,
-        selectTime,
-        selectService
-      });
-
-      // Update the availability status based on the response
-      setIsTimeAvailable(response.data.available);
-      
-      // If the time is available, show the submit button
-      if (response.data.available) {
-        // Optionally, you can automatically submit the form here if desired
-        // handleSubmit();
-      } else {
-        // If the time is not available, show a Swal confirmation message
-        Swal.fire({
-          icon: 'error',
-          title: 'Time is not available.',
-          text: 'Do you want to book another time?',
-          showCancelButton: true,
-          confirmButtonText: 'Yes',
-          cancelButtonText: 'No',
-        }).then((result) => {
-          // If the user wants to book another time, clear the select time field
-          if (result.isConfirmed) {
-            setSelectTime('');
-          }
-        });
-      }
-    } catch (error) {
-      // Handle any errors
-      console.error('Error checking availability:', error);
-      // Show an error message
-      Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to check availability. Please try again later.', confirmButtonText: 'OK' });
-    }
+    setOwnerNameError('');
+    setOwnerContactError('');
   };
 
   // Generate options for time picker from 08:00 am to 12:00 pm and then from 01:00 pm to 04:00 pm
@@ -128,7 +118,7 @@ const MakeAppointment = () => {
     const options = [];
     for (let hour = 8; hour <= 16; hour++) {
       if (hour !== 12) {
-        for (let minute = 0; minute < 60; minute += 30) {
+        for (let minute = 0; minute < 60; minute += 60) {
           const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
           const formattedMinute = minute.toString().padStart(2, '0');
           const period = hour < 12 ? 'am' : 'pm';
@@ -149,7 +139,8 @@ const MakeAppointment = () => {
           <div className="left_inputs">
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerName">Owner Name:</label>
-              <input className="makeappointment_input_text" type="text" id="ownerName" value={ownerName} onChange={(e) => setOwnerName(e.target.value)} required />
+              <input className={`makeappointment_input_text ${ownerNameError ? 'error' : ''}`} type="text" id="ownerName" value={ownerName} onChange={(e) => setOwnerName(e.target.value)} required />
+              {ownerNameError && <p className="error-message">{ownerNameError}</p>}
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerEmail">Owner Email:</label>
@@ -157,7 +148,8 @@ const MakeAppointment = () => {
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerContact">Owner Contact No:</label>
-              <input className="makeappointment_input_tel" type="tel" id="ownerContact" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required />
+              <input className={`makeappointment_input_tel ${ownerContactError ? 'error' : ''}`} type="tel" id="ownerContact" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required />
+              {ownerContactError && <p className="error-message">{ownerContactError}</p>}
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="petType">Pet Type:</label>
@@ -196,10 +188,7 @@ const MakeAppointment = () => {
               </select>
             </div>
           </div>
-          {/* Availability check button */}
-          <button className="check_availability_button" type="button" onClick={handleCheckAvailability}>Check Availability</button>
-          {/* Conditionally render the submit button based on availability */}
-          {isTimeAvailable && <button className="makeappointment_button" type="submit">Submit</button>}
+          <button className="makeappointment_button" type="submit">Submit</button>
         </form>
       </div>
       <Footer /> 

@@ -13,7 +13,7 @@ router.get('/services', ServiceController.getAllServices);
 // DELETE route to delete a service by ID
 router.delete('/delete/:id', ServiceController.deleteService);
 
-// Update a service
+//Update a service
 router.put('/update/:id', ServiceController.updateService);
 
 

@@ -4,9 +4,11 @@ import Swal from 'sweetalert2';
 
 const ViewServices = () => {
   const [services, setServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
   const [updatedService, setUpdatedService] = useState({});
   const [editing, setEditing] = useState(false);
   const [serviceToEdit, setServiceToEdit] = useState(null);
+  const [filterType, setFilterType] = useState('');
 
   useEffect(() => {
     fetchServices();
@@ -16,6 +18,7 @@ const ViewServices = () => {
     try {
       const response = await axios.get('http://localhost:9000/services/services');
       setServices(response.data);
+      setFilteredServices(response.data); // Initialize filtered services with all services
     } catch (error) {
       console.error('Error fetching services:', error);
     }
@@ -30,15 +33,15 @@ const ViewServices = () => {
   const handleUpdate = async () => {
     try {
       console.log('Service ID:', serviceToEdit._id);
-      await axios.put(`http://localhost:9000/update/${serviceToEdit._id}`, updatedService);
+      await axios.put(`http://localhost:9000/services/update/${serviceToEdit._id}`, updatedService);
       fetchServices();
       setUpdatedService({});
       setEditing(false);
       setServiceToEdit(null);
-      Swal.fire({ icon: 'success', title: 'Service updated successfully', showConfirmButton: false, timer: 1500, });
+      Swal.fire({ icon: 'success', title: 'Service updated successfully', showConfirmButton: false, timer: 1500 });
     } catch (error) {
       console.error('Error updating service:', error);
-      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Failed to update the service. Please try again.'});
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Failed to update the service. Please try again.' });
     }
   };
 
@@ -63,11 +66,41 @@ const ViewServices = () => {
     }
   };
 
+  const handleFilter = (type) => {
+    setFilterType(type);
+    if (type === '') {
+      setFilteredServices(services); // Reset to display all services
+    } else {
+      const filtered = services.filter(service => service.type === type);
+      setFilteredServices(filtered);
+    }
+  };
+
   return (
     <div style={{ backgroundColor: '#ffffff', padding: '20px', display: 'flex', justifyContent: 'center' }}>
       <div style={{ maxWidth: '600px', width: '100%' }}>
         <h1 style={{ textAlign: 'center' }}>Services</h1>
-        {services.map(service => (
+        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+          <button
+            style={{ marginRight: '10px', backgroundColor: filterType === 'Veterinary Service' ? '#4caf50' : '', color: filterType === 'Veterinary Service' ? 'white' : '' }}
+            onClick={() => handleFilter('Veterinary Service')}
+          >
+            Veterinary Services
+          </button>
+          <button
+            style={{ marginRight: '10px', backgroundColor: filterType === 'Groome Service' ? '#4caf50' : '', color: filterType === 'Groome Service' ? 'white' : '' }}
+            onClick={() => handleFilter('Groome Service')}
+          >
+            Groome Services
+          </button>
+          <button
+            style={{ backgroundColor: filterType === '' ? '#4caf50' : '', color: filterType === '' ? 'white' : '' }}
+            onClick={() => handleFilter('')}
+          >
+            Clear Filter
+          </button>
+        </div>
+        {filteredServices.map(service => (
           <div
             key={service._id}
             style={{
