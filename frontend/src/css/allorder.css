@@ -1,4 +1,4 @@
-.ma_order-table {
+.os_order-table {
   width: 80%;
   margin: 0 auto;
   border-collapse: collapse;
@@ -6,26 +6,26 @@
   padding-bottom: 10px;
 }
 
-.ma_order-table thead th {
+.os_order-table thead th {
   background-color: #007bff;
   color: #fff;
   padding: 12px;
   text-align: left;
 }
 
-.ma_order-table tbody tr:nth-child(even) {
+.os_order-table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.ma_order-table tbody tr:hover {
+.os_order-table tbody tr:hover {
   background-color: #ddd;
 }
 
-.ma_order-table tbody td {
+.os_order-table tbody td {
   padding: 10px;
 }
 
-.ma_order-buttons button {
+.os_order-buttons button {
   padding: 8px 12px;
   border: none;
   border-radius: 5px;
@@ -33,20 +33,34 @@
   transition: background-color 0.3s ease;
 }
 
-.ma_order-buttons button:hover {
+.os_order-buttons button:hover {
   opacity: 0.8;
 }
 
-.ma_delete_button {
+.os_delete_button {
   background-color: #dc3545;
   color: #fff;
 }
 
-.ma_delete_button:hover {
+.os_delete_button:hover {
   background-color: #c82333;
 }
 
-.ma_button-container {
+.os_blue_button { /* New blue button class */
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text color */
+  padding: 8px 12px; /* Padding for comfort */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.os_blue_button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.os_button-container {
   display: flex;
   justify-content: center;
 }
