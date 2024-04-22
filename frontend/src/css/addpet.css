@@ -27,7 +27,7 @@
   
   .add-pet-form-group input[type="text"]:focus {
     outline: none;
-    border-color: #007bff;
+    border-color:#000000;
   }
   
   .add-pet-button {
