@@ -36,11 +36,24 @@
     display: flex;
   }
 
-  .genButton {
-    margin-top: 5px;
-    margin-left: 77%;
+  .genButton { 
+    margin-top: 5px !important; 
+    margin-left: 77%!important;
     /* justify-content: right; */
   }
+
+  /* .ggenButton button {
+    border-radius: 25px;
+    padding: 5px 5px 5px 5px;
+    background-color: #307dd0;
+  }
+
+  .ggenButton button:hover {
+    
+    padding: 6px 6px 6px 6px;
+    background-color: #307dd0;
+    border: 2px solid black;
+  } */
 
   .search {
     margin-bottom: 5px;

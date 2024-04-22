@@ -1,32 +1,32 @@
-/* ShopCategory.css */
+/* CSS with Consistent Naming Convention */
 
 /* Overall container */
-.shopcategory {
+.os_shopcategory {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* Banner image */
-.shopcategory-banner {
+.os_shopcategory-banner {
     width: 100%;
     margin-bottom: 20px;
 }
 
 /* Index and sort section */
-.shopcategory-indexSort {
+.os_shopcategory-indexSort {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.shopcategory-indexSort p {
+.os_shopcategory-indexSort p {
     font-size: 16px;
     color: #333;
 }
 
-.shopcategory-sort {
+.os_shopcategory-sort {
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -34,20 +34,50 @@
     cursor: pointer;
 }
 
-.shopcategory-sort img {
-    width: 20px;
-    margin-left: 5px;
+/* Search bar */
+.os_search-bar {
+    display: flex;
+    margin-bottom: 20px;
 }
 
-/* Product item */
-.shopcategory-products {
+.os_search-bar input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+.os_search-button {
+    display: block;
+    width: 24%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 10px; /* Added space between input field and button */
+}
+
+.os_search-button:hover {
+    background-color: white;
+    color: #000000;
+    text-decoration: none;
+}
+
+/* Product grid */
+.os_shopcategory-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
-/* Individual item */
-.shopcategory-products div {
+/* Individual product card */
+.os_card {
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -57,40 +87,40 @@
     height: 100%; /* Ensure each card has the same height */
 }
 
-.shopcategory-products div:hover {
+.os_card:hover {
     transform: translateY(-5px);
     transition: transform 0.3s ease;
 }
 
-/* Product image */
-.shopcategory-products div img {
+/* Product image in the card */
+.os_card-img-top {
     width: 100%;
     height: 200px; /* Set a fixed height for the image */
     object-fit: cover; /* Maintain aspect ratio and cover container */
     border-radius: 8px 8px 0 0;
 }
 
-/* Product details */
-.shopcategory-products div .card-body {
+/* Product card body */
+.os_card-body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 20px; /* Add padding to the bottom */
+    padding-bottom: 20px;
 }
 
-.shopcategory-products div .card-title {
+/* Product title and text */
+.os_card-title {
     margin-bottom: 0.5rem;
-    display: block; /* Ensure the title and text are block-level elements */
 }
 
-.shopcategory-products div .card-text {
+.os_card-text {
     margin-bottom: 1rem;
-    display: block; /* Ensure the title and text are block-level elements */
 }
 
-/* Add to cart button */
-PCbtn-primary{      display: block;
+/* Button styling */
+.os_button-primary {
+    display: block;
     width: 50%;
     padding: 10px;
     font-size: 1rem;
@@ -102,21 +132,21 @@ PCbtn-primary{      display: block;
     transition: background-color 0.3s;
     text-decoration: none;
     text-align: center;
-
 }
 
-.shopcategory-products div button:hover {
-    background-color: #0056b3;
+.os_button-primary:hover {
+    background-color: white;
+    color: #000000;
+    text-decoration: none;
 }
 
-
-/* Load more button */
-.shopcategory-loadmore {
+/* Load more section */
+.os_shopcategory-loadmore {
     text-align: center;
     margin-top: 20px;
 }
 
-.shopcategory-loadmore a {
+.os_shopcategory-loadmore a {
     font-size: 16px;
     color: #007bff;
     text-decoration: none;
@@ -124,38 +154,12 @@ PCbtn-primary{      display: block;
     transition: color 0.3s ease;
 }
 
-.shopcategory-loadmore a:hover {
+.os_shopcategory-loadmore a:hover {
     color: #0056b3;
     border-bottom-color: #0056b3;
 }
 
-/* Footer */
-.footer {
+/* Footer section */
+.os_footer {
     margin-top: 50px;
 }
-.search-bar {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.search-bar input[type="text"] {
-    width: 75%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
-}
-
-.search-button {
-    padding: 10px 20px;
-    width: 25%;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
-}
-

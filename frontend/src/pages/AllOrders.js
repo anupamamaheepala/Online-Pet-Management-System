@@ -5,7 +5,6 @@ import moment from 'moment';
 import '../css/allorder.css';
 import StockManagerHeader from '../components/StockManagerHeader';
 
-// Utility function to calculate delivery date (5 working days from a given date)
 const calculateDeliveryDate = (orderDate) => {
     const date = moment(orderDate);
     const weekdaysToAdd = 5;
@@ -39,9 +38,7 @@ const AllOrders = () => {
                 setOrders(initialOrders);
                 setFilteredOrders(initialOrders);
             })
-            .catch((err) => {
-                console.error(err);
-            });
+            .catch((err) => console.error(err));
     }, []);
 
     const handleOrderPlaced = (id) => {
@@ -67,49 +64,42 @@ const AllOrders = () => {
             unit: 'mm',
             format: 'a4',
         });
-    
-        // Load the logo and add it above the box
+
         const logo = new Image();
-        logo.src = '/images/logo.png'; // Path to your logo
-    
-        logo.onload = function() {
-            const logoWidth = 40; // Adjust the width of the logo as needed
-            const logoXPosition = (210 - logoWidth) / 2; // Center horizontally on the A4 page
-            const logoYPosition = 10; // Position at the top of the page
-    
-            doc.addImage(logo, 'PNG', logoXPosition, logoYPosition, logoWidth, logoWidth); // Add the logo
-    
-            const logoBottom = logoYPosition + logoWidth; // Position where the logo ends
-    
-            // Adjust the box and text to avoid the logo
+        logo.src = '/images/logo.png';
+
+        logo.onload = () => {
+            const logoWidth = 40;
+            const logoXPosition = (210 - logoWidth) / 2;
+            const logoYPosition = 10;
+
+            doc.addImage(logo, 'PNG', logoXPosition, logoYPosition, logoWidth, logoWidth);
+
             const boxX = 10;
-            const boxY = logoBottom + 50; // Ensure the box starts below the logo
+            const boxY = logoYPosition + 50;
             const boxWidth = 190;
             const boxHeight = 90;
-    
-            // Draw a box with a border
-            doc.setDrawColor(0, 0, 0); 
+
+            doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(1);
             doc.rect(boxX, boxY, boxWidth, boxHeight);
-    
-            // Reposition the text to avoid the logo
+
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(12);
-    
+
             doc.text(`Order Report`, boxX + 5, boxY + 10);
             doc.text(`Name: ${order.orderName}`, boxX + 5, boxY + 20);
             doc.text(`Contact Number: ${order.orderContactNo}`, boxX + 5, boxY + 30);
             doc.text(`Address: ${order.orderAddress}`, boxX + 5, boxY + 40);
             doc.text(`Ordered Date: ${moment(order.createdAt).format('YYYY-MM-DD')}`, boxX + 5, boxY + 50);
             doc.text(`Delivery Date: ${calculateDeliveryDate(order.createdAt)}`, boxX + 5, boxY + 60);
-    
+
             doc.setFontSize(16);
-            doc.text(`Delivery Details`, 105, logoBottom + 25, null, null, 'center'); // Adjusted for the logo
-    
+            doc.text(`Delivery Details`, 105, boxY - 25, null, null, 'center');
+
             doc.save(`order_report_${order.orderName}.pdf`);
         };
     };
-    
 
     const handleFilterChange = (e) => {
         const filterValue = e.target.value;
@@ -117,9 +107,7 @@ const AllOrders = () => {
 
         if (filterValue === 'lastWeek') {
             const lastWeek = moment().subtract(7, 'days');
-            const filtered = orders.filter(
-                (order) => moment(order.createdAt).isAfter(lastWeek)
-            );
+            const filtered = orders.filter((order) => moment(order.createdAt).isAfter(lastWeek));
             setFilteredOrders(filtered);
         } else {
             setFilteredOrders(orders);
@@ -139,7 +127,7 @@ const AllOrders = () => {
             <h1>
                 <center>Orders</center>
             </h1>
-            <table className="ma_order-table">
+            <table className="os_order-table">
                 <thead>
                     <tr>
                         <th>Order Name</th>
@@ -163,7 +151,10 @@ const AllOrders = () => {
                                 {order.orderPlaced ? (
                                     '✔️'
                                 ) : (
-                                    <button onClick={() => handleOrderPlaced(order._id)}>
+                                    <button
+                                        className="os_blue_button" 
+                                        onClick={() => handleOrderPlaced(order._id)}
+                                    >
                                         Place Order
                                     </button>
                                 )}
@@ -172,7 +163,10 @@ const AllOrders = () => {
                                 {order.reportDownloaded ? (
                                     '✔️'
                                 ) : (
-                                    <button onClick={() => generatePDF(order)}>
+                                    <button
+                                        className="os_blue_button" 
+                                        onClick={() => generatePDF(order)}
+                                    >
                                         Download Report
                                     </button>
                                 )}
