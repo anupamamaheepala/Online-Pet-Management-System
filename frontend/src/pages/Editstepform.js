@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import editstepform from '../css/editstepform.css';
 
 const EditStepForm = () => {
     const { stepId } = useParams();
@@ -107,7 +108,7 @@ const EditStepForm = () => {
                     <input type="text" id="contact" name="contact" value={contact} onChange={handleChange} pattern="[0-9]{10}" title="Contact number must be 10 digits" required />
                 </div>
 
-                <button type="submit" className="submit-button">Submit</button>
+                <button type="submit" className="submit-button">Update</button>
             </form>
             
             <Footer />

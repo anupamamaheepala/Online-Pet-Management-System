@@ -53,7 +53,7 @@ const PrivateTrainingPrograms = () => {
                         <img src={`http://localhost:9000/${privatetraining.filePath.replace(/\\/g, '/')}`}
                             style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
 
-                        <h4 className="privatetraining-step">{privatetraining.step}</h4>
+                        <h4 className="privatetraining-step">Step {privatetraining.step}</h4>
                         <div className="privatetraining-details">
                             <h3 className="privatetraining-name">{privatetraining.name}</h3>
                             {expandedCardIndex === index && (

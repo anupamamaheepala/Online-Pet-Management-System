@@ -114,6 +114,7 @@ const StepForm = () => {
         }
     };
     
+    
 
     return (
         <>
@@ -123,10 +124,22 @@ const StepForm = () => {
                 <p>Enter the private training steps
                     <b>If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
 
-                <div className="ma_form-group">
-                    <label htmlFor="step">step:</label>
-                    <input type="text" id="step" name="step" value={step} onChange={onChange} required />
-                </div>
+                    <div className="ma_form-group">
+    <label htmlFor="step">Step:</label>
+    <input
+        type="number"
+        id="step"
+        name="step"
+        value={step}
+        onChange={onChange}
+        min="1" // Set minimum value
+        step="1" // Set step size
+        placeholder="Step" // Placeholder text
+        required
+    />
+</div>
+
+
 
                 <div className="ma_form-group">
                     <label htmlFor="name">name:</label>
@@ -169,7 +182,7 @@ const StepForm = () => {
                         <img src={`http://localhost:9000/${privatetraining.filePath.replace(/\\/g, '/')}`}
                             style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
 
-                        <h4 className="privatetraining-step">{privatetraining.step}</h4>
+                        <h4 className="privatetraining-step">Step {privatetraining.step} </h4>
                         <div className="privatetraining-details">
                             <h3 className="privatetraining-name">{privatetraining.name}</h3>
                             {expandedCardIndex === index && (
