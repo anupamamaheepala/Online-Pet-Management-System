@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/Trainingapp.css';
 import axios from 'axios';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 const PrivateTraining = () => {
   const [formData, setFormData] = useState({
@@ -79,6 +80,7 @@ const PrivateTraining = () => {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
+        
        
       });
       console.log("Response data:",res.data);
@@ -94,13 +96,21 @@ const PrivateTraining = () => {
         age: '',
         file: null
       });
-      
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        timer: 2000, // Timer in milliseconds
+        text: 'Your application has been successfully submitted.',
+      });
+
       // Set submission status to true
       setIsSubmitted(true);
     } catch (err) {
       console.error(err);
     }
   };
+      // Set submission status to true
+  
 
   return (
     <div>
