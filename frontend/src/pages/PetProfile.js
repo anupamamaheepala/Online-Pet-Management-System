@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import '../css/petprofile.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const PetProfile = () => {
   const { petId } = useParams();
@@ -94,6 +96,8 @@ const PetProfile = () => {
   });
 
   return (
+    <>
+    <Header />
     <div className="pet-profile-container">
       <h2 className="pet-profile-heading">Pet Profile</h2>
       <div>
@@ -148,6 +152,8 @@ const PetProfile = () => {
         </div> </center>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 
