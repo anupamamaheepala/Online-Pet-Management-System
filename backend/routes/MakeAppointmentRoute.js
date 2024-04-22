@@ -45,8 +45,6 @@ router.get('/appointments/count', appointmentController.getUnacceptedAppointment
 // Route to get the count of groome appointments 
 router.get('/grooming-appointments/count', appointmentController.getUnacceptedGroomingAppointmentsCount);
 
-//Check the availability of time slot
-router.post('/checkAvailability', appointmentController.checkAvailability);
 
 
 

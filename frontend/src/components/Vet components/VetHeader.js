@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
-import { Bell } from 'react-bootstrap-icons';
+import { Bell, PersonCircle, HouseDoorFill } from 'react-bootstrap-icons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -124,6 +124,16 @@ const VetHeader = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
         <Nav>
+          <Nav.Link
+            style={getItemStyle('dashboard')}
+            href="/VetDashboard"
+            onMouseEnter={() => handleMouseEnter('dashboard')}
+            onMouseLeave={handleMouseLeave}
+          >
+            <HouseDoorFill color="white" />
+            {' '}
+            Dashboard
+          </Nav.Link>
           <NavDropdown
             title={<span style={getItemStyle('appointments')}>Appointments</span>}
             id="basic-nav-dropdown"
@@ -186,6 +196,13 @@ const VetHeader = () => {
             >
               {notificationCount}
             </Badge>
+          </Button>
+          <Button
+            variant="outline-primary"
+            style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}
+            onClick={() => window.location.href = '/SignIn'}
+          >
+            <PersonCircle color="white" />
           </Button>
         </div>
       </Navbar.Collapse>

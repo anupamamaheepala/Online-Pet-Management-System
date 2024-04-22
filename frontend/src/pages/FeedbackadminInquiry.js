@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/feedbackadmininquiry.css';
-import Header from '../components/Header';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 import jsPDF from 'jspdf';
 import { Link } from "react-router-dom";
@@ -76,7 +76,7 @@ const FeedbackInquiryAdmin = () => {
 
   return (
     <>
-      <Header />
+      <SystemAdminHeader />
       <div className="feedback-inquiry-admin-container">
         <h1>Feedback Inquiry Admin Page</h1>
         <div className="search">

@@ -67,32 +67,49 @@ const AllOrders = () => {
             unit: 'mm',
             format: 'a4',
         });
-
-        const boxX = 10;
-        const boxY = 10;
-        const boxWidth = 190;
-        const boxHeight = 90;
-
-        // Draw a box with a border
-        doc.setDrawColor(0, 0, 0); 
-        doc.setLineWidth(1);
-        doc.rect(boxX, boxY, boxWidth, boxHeight);
-
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(12);
-
-        doc.text(`Order Report`, boxX + 5, boxY + 10);
-        doc.text(`Name: ${order.orderName}`, boxX + 5, boxY + 20);
-        doc.text(`Contact Number: ${order.orderContactNo}`, boxX + 5, boxY + 30);
-        doc.text(`Address: ${order.orderAddress}`, boxX + 5, boxY + 40);
-        doc.text(`Ordered Date: ${moment(order.createdAt).format('YYYY-MM-DD')}`, boxX + 5, boxY + 50);
-        doc.text(`Delivery Date: ${calculateDeliveryDate(order.createdAt)}`, boxX + 5, boxY + 60);
-
-        doc.setFontSize(16); 
-        doc.text(`Customer Order Report`, 105, 5, null, null, 'center'); 
-
-        doc.save(`order_report_${order.orderName}.pdf`);
+    
+        // Load the logo and add it above the box
+        const logo = new Image();
+        logo.src = '/images/logo.png'; // Path to your logo
+    
+        logo.onload = function() {
+            const logoWidth = 40; // Adjust the width of the logo as needed
+            const logoXPosition = (210 - logoWidth) / 2; // Center horizontally on the A4 page
+            const logoYPosition = 10; // Position at the top of the page
+    
+            doc.addImage(logo, 'PNG', logoXPosition, logoYPosition, logoWidth, logoWidth); // Add the logo
+    
+            const logoBottom = logoYPosition + logoWidth; // Position where the logo ends
+    
+            // Adjust the box and text to avoid the logo
+            const boxX = 10;
+            const boxY = logoBottom + 50; // Ensure the box starts below the logo
+            const boxWidth = 190;
+            const boxHeight = 90;
+    
+            // Draw a box with a border
+            doc.setDrawColor(0, 0, 0); 
+            doc.setLineWidth(1);
+            doc.rect(boxX, boxY, boxWidth, boxHeight);
+    
+            // Reposition the text to avoid the logo
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+    
+            doc.text(`Order Report`, boxX + 5, boxY + 10);
+            doc.text(`Name: ${order.orderName}`, boxX + 5, boxY + 20);
+            doc.text(`Contact Number: ${order.orderContactNo}`, boxX + 5, boxY + 30);
+            doc.text(`Address: ${order.orderAddress}`, boxX + 5, boxY + 40);
+            doc.text(`Ordered Date: ${moment(order.createdAt).format('YYYY-MM-DD')}`, boxX + 5, boxY + 50);
+            doc.text(`Delivery Date: ${calculateDeliveryDate(order.createdAt)}`, boxX + 5, boxY + 60);
+    
+            doc.setFontSize(16);
+            doc.text(`Delivery Details`, 105, logoBottom + 25, null, null, 'center'); // Adjusted for the logo
+    
+            doc.save(`order_report_${order.orderName}.pdf`);
+        };
     };
+    
 
     const handleFilterChange = (e) => {
         const filterValue = e.target.value;

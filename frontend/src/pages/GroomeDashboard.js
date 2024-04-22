@@ -1,15 +1,27 @@
 import React from 'react';
-import Header from '../components/Header';
-import AdminHeader from '../components/AdminHeader';
 import Footer from '../components/Footer';
 import GroomeHeader from '../components/Groome components/GroomerHeader';
 
 function GroomeDashboard() {
   return (
     <>
-    <AdminHeader/>
+   
     <GroomeHeader/>
-    <div>GroomeDashboard</div>
+    <div
+        className="vet-dashboard"
+        style={{
+          backgroundImage: `url('/images/petgroomer.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+      </div>
     <Footer/>
     </>
   )
