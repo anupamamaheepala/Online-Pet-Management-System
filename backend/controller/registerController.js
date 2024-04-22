@@ -282,6 +282,17 @@ exports.deleteProfilePhoto = async (req, res) => {
   }
 };
 
+// Check if email exists
+exports.checkEmailExists = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const existingCustomer = await Customer.findOne({ email });
+    res.status(200).json(existingCustomer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 
 
 

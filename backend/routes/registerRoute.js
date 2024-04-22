@@ -30,6 +30,10 @@ router.post('/signin', registerController.signIn);
 // resetting password
 router.post('/reset-password/:customerId', registerController.resetPassword);
 
+// Check if email exists
+router.get("/email/:email", registerController.checkEmailExists);
+
+
 
 
 module.exports = router;
