@@ -91,7 +91,7 @@ exports.confirmAdvertisement = async (req, res) => {
             description: ad.description,
             filePath: ad.filePath,
             contact: ad.contact,
-            createdAt: ad.createdAt // Optionally, copy creation date from the original advertisement
+            createdAt: ad.createdAt // creation date from the original advertisement
         });
 
         // Save the confirmed advertisement to the database
@@ -129,9 +129,7 @@ exports.updateConfirmedAd = async (req, res) => {
         description: req.body.description,
         contact: req.body.contact,
         filePath: req.file ? `uploads/${req.file.filename}` : req.body.filePath,
-        // Add any other fields you want to update here
-        // Example: field1: req.body.field1,
-        // Example: field2: req.body.field2,
+        
       };
   
       const confirmedAd = await ConfirmedAds.findByIdAndUpdate(
