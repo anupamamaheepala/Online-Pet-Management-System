@@ -94,7 +94,7 @@ exports.editstep = async (req, res) => {
 
 exports.deletesteps = async (req, res) => {
     try {
-        const step = await Step.findByIdAndDelete(req.params.id);
+        const step = await Steps.findByIdAndDelete(req.params.id);
         if (!step) {
             return res.status(404).json({ message: 'Step not found' });
         }
