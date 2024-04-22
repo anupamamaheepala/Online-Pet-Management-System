@@ -200,7 +200,7 @@ const VetHeader = () => {
           <Button
             variant="outline-primary"
             style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}
-            onClick={() => window.location.href = '/StaffProfile'}
+            onClick={() => window.location.href = '/SignIn'}
           >
             <PersonCircle color="white" />
           </Button>
