@@ -58,8 +58,8 @@ const AllCustomers = () => {
         const logoURL = '/images/logo.png';
     
         // Add the logo to the PDF
-        doc.addImage(logoURL, 'PNG', 20, 10, 30, 30); // Adjust position and size as needed
-    
+        doc.addImage(logoURL, 'PNG', 20, 10, 30, 30); 
+
         // Add a title to the PDF
         doc.text('Customer Report', 80, 30);
     
@@ -74,15 +74,15 @@ const AllCustomers = () => {
     
         // Add a table to the PDF
         doc.autoTable({
-            startY: 50, // Adjust startY position as needed
+            startY: 50, 
             headStyles: {
-                fillColor: [0, 0, 0], // Black color for the table head
+                fillColor: [0, 0, 0], 
                 textColor: [255, 255, 255] // White text color for the table head
             },
             head: [headers],
             body: rows,
             columnStyles: {
-                0: { cellWidth: 10 }, // Adjust width for the index number column
+                0: { cellWidth: 10 }, 
                 // Add styles for other columns
                 ...Object.fromEntries(headers.map((header, index) => [index, { lineWidth: 0.1, lineColor: [0, 0, 0] }]))
             },
@@ -157,7 +157,7 @@ const AllCustomers = () => {
             <table className="customer_details_table">
                 <thead>
                     <tr>
-                        <th>#</th> {/* Add separate column for index numbers */}
+                        <th>#</th> 
                         {Object.keys(selectedColumns).map((key) => (
                             selectedColumns[key] && <th key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
                         ))}
@@ -165,9 +165,9 @@ const AllCustomers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredCustomers.map((customer, index) => ( // Add index parameter
+                    {filteredCustomers.map((customer, index) => ( 
                         <tr key={customer._id}>
-                            <td>{index + 1}</td> {/* Display index number in separate column */}
+                            <td>{index + 1}</td> 
                             {Object.keys(selectedColumns).map((key) => (
                                 selectedColumns[key] && (
                                     <td key={key}>

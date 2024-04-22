@@ -26,7 +26,7 @@ const AllPets = () => {
     givenVaccineDates: true,
     toBeGivenVaccineTypes: true,
     toBeGivenVaccineDates: true,
-    profilePhoto: true, // Added profile photo column
+    profilePhoto: true, 
   });
 
   const navigate = useNavigate();
@@ -198,14 +198,14 @@ const downloadPDFReport = () => {
 
   // Set font size and style for the table
   doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal'); // Set font to Helvetica with normal style
+  doc.setFont('helvetica', 'normal'); 
 
   // Calculate column widths
   const columnWidths = headers.map(() => 'auto');
 
   // Add the table to the PDF
   doc.autoTable({
-    startY: 50, // Adjust the vertical position as needed
+    startY: 50, 
     head: [headers],
     body: rows,
     styles: {

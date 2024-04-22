@@ -10,7 +10,7 @@ const customerSchema = new mongoose.Schema({
     required: true
   },
   contactNumbers: {
-    type: [String], // Changed to an array of strings
+    type: [String], 
     required: true,
     validate: {
       validator: function(arr) {
@@ -29,7 +29,7 @@ const customerSchema = new mongoose.Schema({
   },
   profilePhoto: {
     type: String, // Assuming the profile photo will be stored as a URL
-    default: '' // Default empty string for profile photo
+    default: '' 
   },
   createdAt: {
     type: Date,

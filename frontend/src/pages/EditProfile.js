@@ -10,7 +10,7 @@ const EditProfile = () => {
     const [customerData, setCustomerData] = useState({
       username: '',
       email: '',
-      contactNumbers: [''], // Initialize with an empty string in the array
+      contactNumbers: [''], 
       address: '',
       profilePhoto:'',
     });
@@ -53,14 +53,7 @@ const EditProfile = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        // // Create a copy of customerData to include all existing fields
-        // const updatedData = { ...customerData };
-    
-        // // Include the profilePhoto URL in the update data if it exists
-        // if (customerData.profilePhoto) {
-        //   updatedData.profilePhoto = customerData.profilePhoto;
-        // }
-        // Use axios.patch to send only the updated fields
+        
         const updatedData = {
           username: customerData.username,
           email: customerData.email,
@@ -124,14 +117,14 @@ const EditProfile = () => {
               {customerData.contactNumbers.map((contactNumber, index) => (
                 <div key={index}>
                   <input
-                    type="tel" // Changed input type to tel for better user feedback and formatting
+                    type="tel" 
                     name="contactNumbers"
                     data-index={index}
                     value={contactNumber}
                     onChange={handleChange}
-                    pattern="\d{10}" // Set pattern to validate input as exactly 10 digits
-                    title="Contact number must be exactly 10 digits long and contain only numbers." // User guidance on input requirements
-                    required // Make the field required
+                    pattern="\d{10}" 
+                    title="Contact number must be exactly 10 digits long and contain only numbers." 
+                    required 
                   />
                   {index > 0 && (
                     <button  type="button" className="edit-profile-remove-button" onClick={() => handleRemoveContactNumber(index)}>
