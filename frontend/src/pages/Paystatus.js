@@ -73,8 +73,8 @@ const Paystatus = () => {
                         <button onClick={() => handleDelete(payerInfo._id)} className="btn btn-danger">Delete</button>
                     </div>
                     <div className="anupstbuttoncontainer">
-                    <Link to={`/cardpay?payerId=${payerInfo._id}`} className="anupstpaymentlink">Card Payment</Link>
-                    <Link to={`/banktrans?payerId=${payerInfo._id}`}  className="anupstpaymentlink">Bank Transfer</Link>
+                        <Link to={`/cardpay?payerId=${payerInfo._id}`} className="anupstpaymentlink">Card Payment</Link>
+                        <Link to={`/banktrans?payerId=${payerInfo._id}&purpose=${payerInfo.purpose}`}  className="anupstpaymentlink">Bank Transfer</Link>
                     </div>
                 </div>
                 
@@ -86,4 +86,3 @@ const Paystatus = () => {
 }
 
 export default Paystatus;
-
