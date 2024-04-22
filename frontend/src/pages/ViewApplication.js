@@ -87,7 +87,7 @@ const ViewApplication = () => {
                                 {training.status === 'approved' && (
                                 <p className="alo22-application-info-item">
                                     <span className="alo22-label">Trainer's Name:</span>
-                                    <span className="alo22-value">{training.instructor}</span>
+                                    <span className="alo22-value">{training.instructorName}</span>
                                 </p>
                             )}
                         
