@@ -148,8 +148,6 @@ exports.getAllGroomeandVet = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
 exports.getAllTrainers = async (req, res) => {
   try {
     const staffs = await Staff.find(); 
@@ -160,4 +158,3 @@ exports.getAllTrainers = async (req, res) => {
   }
 };
 
->>>>>>> 1f49e4177ae7c775baf55f8f68e54214bbaa990e
