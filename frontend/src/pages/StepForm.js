@@ -173,7 +173,8 @@ const StepForm = () => {
             </form>
 
 
-            //display data
+            
+            
             <h2 className="training-topic">Private Training Programs</h2>
             
             <div className="privatetraining-grid">
@@ -195,7 +196,7 @@ const StepForm = () => {
                                     <button className="add-button" onClick={() => handleLearnMoreClick(index)}>Learn more</button>
 
                                     <Link to={`/Editstepform/${privatetraining._id}`}>
-                                        <button className="aloo-button" onClick={() => handleEdit(privatetraining._id)}>Edit</button>
+                                        <button className="alo7-button" onClick={() => handleEdit(privatetraining._id)}>Edit</button>
                                     </Link>
                                     <button className="aloo-button2" onClick={() => handleDelete(privatetraining._id)}>Delete</button>
 
