@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
-import { Bell } from 'react-bootstrap-icons';
+import { Bell, PersonCircle } from 'react-bootstrap-icons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -186,6 +186,13 @@ const VetHeader = () => {
             >
               {notificationCount}
             </Badge>
+          </Button>
+          <Button
+            variant="outline-primary"
+            style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}
+            onClick={() => window.location.href = '/StaffProfile'}
+          >
+            <PersonCircle color="white" />
           </Button>
         </div>
       </Navbar.Collapse>
