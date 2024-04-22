@@ -1,7 +1,7 @@
 /* editstepform.css */
 
 /* Form container */
-.step-form {
+.alo18-step-form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -11,18 +11,18 @@
 }
 
 /* Form fields */
-.form-group {
+.alo18-form-group {
     margin-bottom: 20px;
 }
 
-label {
+.alo18-label {
     display: block;
     font-weight: bold;
 }
 
-input[type="text"],
-textarea,
-input[type="file"] {
+.alo18-input[type="text"],
+.alo18-textarea,
+.alo18-input[type="file"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -31,7 +31,7 @@ input[type="file"] {
     margin-top: 5px;
 }
 
-textarea {
+.alo18-textarea {
     resize: vertical; /* Allow vertical resizing of textarea */
 }
 
@@ -42,7 +42,7 @@ textarea {
 }
 
 /* Submit button */
-.submit-button {
+.alo8-button {
     background-color: #4caf50;
     color: white;
     padding: 10px 20px;
@@ -51,6 +51,6 @@ textarea {
     cursor: pointer;
 }
 
-.submit-button:hover {
+.alo8-button:hover {
     background-color: #45a049;
 }
