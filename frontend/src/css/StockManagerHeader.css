@@ -1,0 +1,33 @@
+.header {
+  background-color: white; /* White background for the header */
+}
+
+.header .nav-link {
+  color: black; /* Black text for navigation links */
+  text-align: center; /* Center-align the text */
+}
+
+.header .nav-link:hover {
+  color: #007bff; /* Optional: Add hover effect to change color */
+}
+
+.header .dropdown-menu {
+  background-color: white; /* Keep the dropdown menu background white */
+}
+
+.header .dropdown-item {
+  color: black; /* Black text for dropdown items */
+}
+
+.header .dropdown-item:hover {
+  background-color: #f1f1f1; /* Optional: Add hover effect for dropdown items */
+}
+
+.header .navbar-brand {
+  font-weight: bold; /* Optional: Make the brand text bold */
+  color: black; /* Black color for brand text */
+}
+
+.header .navbar-toggle {
+  border: none; /* Optional: No border for the navbar toggle button */
+}
