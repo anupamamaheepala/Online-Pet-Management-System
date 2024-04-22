@@ -1,306 +1,288 @@
 .ma_advertisement-column {
-    width: 48%; /* Adjust width to fit two columns */
-    float: none; /* Remove float to allow for proper alignment */
-    margin: 0 auto; /* Center align columns */
-    
+    width: 48% !important;
+    float: none !important;
+    margin: 0 auto !important;
 }
 
 .ma_add_button {
-    background-color: rgb(0, 0, 0); 
-    border: 1px solid rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    padding: 10px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16 px t;
-    margin: 2px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 3px;
-    outline: none;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    background-color: rgb(0, 0, 0) !important;
+    border: 1px solid rgb(0, 0, 0) !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 10px 25px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    margin: 2px 2px !important;
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    border-radius: 3px !important;
+    outline: none !important;
+    margin-bottom: 30px !important;
+    margin-top: 20px !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
 }
 
 .ma_add_button:hover {
-    background-color: #5c5656;
-    color: #000000;
-    text-decoration: none;
+    background-color: #5c5656 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
 }
 
 .ma_button-container {
-    display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
-    margin-top: 10px; 
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin-top: 10px !important;
 }
 
 .ma_advertisement-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap */
-    justify-content: space-between; /* Add space between items */
-    margin-bottom: 20px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    margin-bottom: 20px !important;
 }
 
 .ma_advertisement-box {
-    position: relative; /* Ensure relative positioning for the checkbox */
-    background-color: #f9f9f9;
-    border: 5px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+    position: relative !important;
+    background-color: #f9f9f9 !important;
+    border: 5px solid #ddd !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin-bottom: 20px !important;
 }
 
 .ma_advertisement-box input[type="checkbox"] {
-    position:absolute;
-    top: 20px;
-    transform: scale(1.5); 
-    width: 15px;
-    left: 200px;
+    position: absolute !important;
+    top: 20px !important;
+    transform: scale(1.5) !important;
+    width: 15px !important;
+    left: 200px !important;
 }
 
 .ma_confirm_button {
-    background-color: green;
-    border: 2px solid green;
-    color: rgb(255, 255, 255);
+    background-color: green !important;
+    border: 2px solid green !important;
+    color: rgb(255, 255, 255) !important;
 }
 
 .ma_reject_button {
-    background-color: red;
-    border: 2px solid red;
-    color: white;
+    background-color: red !important;
+    border: 2px solid red !important;
+    color: white !important;
 }
 
 .ma_advertisement-buttons {
-    display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
-    
+    display: flex !important;
+    justify-content: flex-end !important;
 }
 
-
-
 .ma_advertisement-column {
-    width: 50%;
-    float: right;
+    width: 50% !important;
+    float: right !important;
 }
 
 .ma_left-column {
-    text-align: justify;
+    text-align: justify !important;
 }
 
 .ma_right-column {
-    text-align: justify;
-}
-
-
-.ma_advertisement-column {
-    width: 48%; 
-}
-
-.ma_advertisement-box {
-    background-color: #f9f9f9;
-    border: 5px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+    text-align: justify !important;
 }
 
 .ma_advertisement-box h3 {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 .ma_advertisement-form {
-    width: 700px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;;
-    border: 1px solid #000000;
-    border-radius: 8px;
+    width: 700px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #000000 !important;
+    border-radius: 8px !important;
 }
 
 .ma_advertisement-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: center !important;
+    margin-bottom: 20px !important;
 }
 
 .ma_form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
+
 .ma_form-group select {
-    width: 100%;
-    padding: 15px; /* Adjust padding to match other input fields */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    font-size: 16px;
-    color: #000000;
-    cursor: pointer;
+    width: 100% !important;
+    padding: 15px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    background-color: #fff !important;
+    font-size: 16px !important;
+    color: #000000 !important;
+    cursor: pointer !important;
 }
+
 .ma_form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    display: block !important;
+    margin-bottom: 5px !important;
+    font-weight: bold !important;
 }
 
 .ma_form-group input[type="text"],
 .ma_form-group input[type="email"],
 .ma_form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    width: 100% !important;
+    padding: 10px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
 }
 
 .ma_form-group textarea {
-    height: 100px; 
+    height: 100px !important;
 }
 
 .ma_submit-button {
-    background-color: rgb(0, 0, 0); 
-    border: 1px solid rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    padding: 10px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16 px t;
-    margin: 2px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 3px;
-    outline: none;
-    margin-left: 250px;
-
+    background-color: rgb(0, 0, 0) !important;
+    border: 1px solid rgb(0, 0, 0) !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 10px 25px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    margin: 2px 2px !important;
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    border-radius: 3px !important;
+    outline: none !important;
+    margin-left: 250px !important;
 }
 
 .ma_submit-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-      };
-
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+}
 
 /* Style confirm button */
 .ma_confirm_button {
-    background-color: green ;
-    border: 2px solid green;
-    color: white;
+    background-color: green !important;
+    border: 2px solid green !important;
+    color: white !important;
 }
 
 .ma_confirm_button1 {
-    background-color: rgb(67, 64, 240);
-    border: 2px solid rgb(67, 64, 240);
-    color: white;
+    background-color: rgb(67, 64, 240) !important;
+    border: 2px solid rgb(67, 64, 240) !important;
+    color: white !important;
 }
 
 /* Style reject button */
 .ma_reject_button {
-    background-color: red;
-    border: 2px solid red;
-    color: white;
+    background-color: red !important;
+    border: 2px solid red !important;
+    color: white !important;
 }
 
 /* Adjust button container to align buttons in one line */
 .ma_advertisement-buttons {
-    display: flex;
-    justify-content:last baseline;
+    display: flex !important;
+    justify-content: last baseline !important;
 }
 
 .ma_advertisement-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Adjust as needed */
-    align-items: center; /* Center items vertically */
-    margin: 0 auto;
-    max-width: 1200px; /* Adjust max width based on your design */
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    max-width: 1200px !important;
 }
 
 .ma_advertisement-card {
-    width: calc(33.33% - 20px); /* Adjust width for three cards in a row with margin */
-    margin-bottom: 20px; /* Adjust margin as needed */
-    background-color: #f9f9f9; /* Background color for the card */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
-    border-radius: 8px; /* Rounded corners */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    width: calc(33.33% - 20px) !important;
+    margin-bottom: 20px !important;
+    background-color: #f9f9f9 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
 }
 
 .ma_advertisement-image {
-    width: 100%; /* Make the image fill the container */
-    height: auto; /* Maintain aspect ratio */
-    border-top-left-radius: 8px; /* Rounded corners for the image */
-    border-top-right-radius: 8px;
+    width: 200px !important;
+    height: 200px !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
 }
 
 .ma_advertisement-details {
-    padding: 20px; /* Padding for the details */
-    text-align: center; /* Center text */
+    padding: 20px !important;
+    text-align: center !important;
 }
 
 .ma_advertisement-title {
-    margin-top: 0; /* Remove default margin */
+    margin-top: 0 !important;
 }
 
 .ma_advertisement-description {
-    margin-bottom: 10px; /* Adjust margin as needed */
+    margin-bottom: 10px !important;
 }
 
 .ma_advertisement-contact {
-    font-weight: bold; /* Make contact text bold */
+    font-weight: bold !important;
 }
 
 .ma_advertisement-table {
-    width: 90%; /* Adjust width as needed */
-    margin: 20px auto; /* Center the table with a small margin */
-    border-collapse: collapse; /* Collapse table borders */
+    width: 90% !important;
+    margin: 20px auto !important;
+    border-collapse: collapse !important;
 }
 
 .ma_advertisement-table th,
 .ma_advertisement-table td {
-    border: 1px solid #ddd; /* Add border to cells */
-    padding: 8px; /* Add padding to cells */
-    text-align: center; /* Center align text */
+    border: 1px solid #ddd !important;
+    padding: 8px !important;
+    text-align: center !important;
 }
 
 .ma_advertisement-table th {
-    background-color: #f2f2f2; /* Background color for table header */
+    background-color: #f2f2f2 !important;
 }
 
 .ma_advertisement-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternate row background color */
+    background-color: #f9f9f9 !important;
 }
 
 .ma_advertisement-table tr:hover {
-    background-color: #ddd; /* Hover background color */
+    background-color: #ddd !important;
 }
 
 .ma_table-container_center {
-    margin: 20px auto; /* Apply margin to center the table */
-    width: 90%; /* Adjust width as needed */
-  }
-
-  .ma_search-input {
-    width: 300px; /* Adjust width to make it shorter */
-    float: right; /* Align to the right */
-    margin-right: 20px; /* Add some margin for spacing */
-    margin-top: 20px;
-    justify-content: right;
-    justify-items: right;
+    margin: 20px auto !important;
+    width: 90% !important;
 }
 
-.ma_main_container{
-    display: flex;
-    
+.ma_search-input {
+    width: 300px !important;
+    float: right !important;
+    margin-right: 20px !important;
+    margin-top: 20px !important;
+    justify-content: right !important;
+    justify-items: right !important;
+}
+
+.ma_main_container {
+    display: flex !important;
 }
 
 .ma_main_container_center {
-    margin: 20px auto; /* Apply margin to center the table */
-    width: 90%; /* Adjust width as needed */
+    margin: 20px auto !important;
+    width: 90% !important;
 }
 
-.ma_text_container{
-    margin-top: -70px;
+.ma_text_container {
+    margin-top: -70px !important;
 }

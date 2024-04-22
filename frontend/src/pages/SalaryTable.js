@@ -95,7 +95,7 @@ const SalaryTable = () => {
     const dateObj = new Date(date);
   
     // Extract the month and year from the date object
-    const month = dateObj.toLocaleString('default', { month: 'short' }); // Get the short month name
+    const month = dateObj.toLocaleString('default', { month: 'short' }); 
     const year = dateObj.getFullYear();
   
     // Return the formatted string containing only month and year

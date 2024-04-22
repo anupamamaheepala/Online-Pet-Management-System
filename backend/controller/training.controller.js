@@ -41,12 +41,9 @@ const addTrainingprogram = async (req, res) => {
             
         }
 
-        await newTrainingObj.save();
+        const response=await newTrainingObj.save();
 
-        return res.status(200).send({
-            status: true,
-            message: "Data saved successfully",
-        });
+        return res.status(200).json(response);
     } catch (error) {
         console.error("Error adding data:", error);
         res.status(500).json({ message: "Failed to add data" });

@@ -50,9 +50,9 @@ input, .textarea {
     border: 1px solid #ccc;
 }
 
-button {
+.alo-button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: black;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -81,5 +81,30 @@ button {
     height: 16px; /* Adjust height as needed */
     /* Add other styles such as background color, border, etc. */
   }
+
+  .alooo-box {
+    background-color: #f0f0f0; /* Background color */
+    border: 1px solid #ddd; /* Border color */
+    padding: 20px; /* Padding */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Margin at the bottom */
+  }
+  
+  .alooo-box p {
+    margin: 0; /* Remove default margin for paragraphs */
+    font-size: 16px; /* Font size */
+  }
+  
+  .alooo-box a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  .alooo-box a:hover {
+    color: #0056b3; /* Change color on hover */
+  }
+  
   
   

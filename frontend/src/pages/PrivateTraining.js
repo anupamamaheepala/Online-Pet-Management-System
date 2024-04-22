@@ -82,7 +82,7 @@ const PrivateTraining = () => {
        
       });
       console.log("Response data:",res.data);
-      window.location.href = `/ViewApplication?id=${res.data._id}`; // Ensure '_id' is the correct property name
+       window.location.href = `/ViewApplication?id=${res.data._id}`; // Ensure '_id' is the correct property name
 
       // Clear form fields after successful submission
       setFormData({
@@ -148,9 +148,13 @@ const PrivateTraining = () => {
                   <input type="file" name="file" onChange={onFileChange} />
                 </div>
                 <div className="alo-form-group">
-                  <Link to="/schedule-appointment">Schedule Appointment</Link>
+                  <div className='alooo-box'>
+                You need to upload a health checkup report of your dog that has been taken within the last 3 months. If you don't have one, schedule an appointment through our website. Click here to make an appointment.
+                
+                  <Link to="/Makeappointment">Schedule Appointment</Link>
                 </div>
-                <button type="submit">Submit</button>
+                </div>
+                <button className='alo-button' type="submit">Submit</button>
                 {/* Display success message if submission is successful */}
                 {isSubmitted && (
                   <div>
