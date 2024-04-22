@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/addingproduct.css';
 import Swal from 'sweetalert2';
+import StockManagerHeader from '../components/StockManagerHeader';
 
 
 const EditProduct = () => {
@@ -79,7 +80,7 @@ const EditProduct = () => {
 
     return (
         <>
-            <Header />
+            <StockManagerHeader />
             <form className="product-form" onSubmit={handleSubmit}>
                 <h2>Edit product details</h2>
                 <div className="form-group">
@@ -113,7 +114,6 @@ const EditProduct = () => {
 
                 <button type="submit" className="submit-button">Submit</button>
             </form>
-            <Footer />
         </>
     );
 };
