@@ -150,6 +150,15 @@ const MakeAppointment = () => {
     return options;
   };
 
+  // Get current date in YYYY-MM-DD format
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <>
       <ShowLoading />
@@ -188,7 +197,7 @@ const MakeAppointment = () => {
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="selectDate">Select Date:</label>
-              <input className="makeappointment_input_date" type="date" id="selectDate" value={selectDate} onChange={(e) => setSelectDate(e.target.value)} required />
+              <input className="makeappointment_input_date" type="date" id="selectDate" value={selectDate} onChange={(e) => setSelectDate(e.target.value)} min={getCurrentDate()} required />
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="selectTime">Select Time:</label>
