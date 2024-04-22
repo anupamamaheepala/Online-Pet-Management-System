@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import '../css/resetpassword.css'; // Import the CSS file
+import '../css/resetpassword.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 

@@ -27,7 +27,6 @@ const AddPet = () => {
     const [ageError, setAgeError] = useState('');
 
     // Handle form field changes
-    // Handle form field changes
     const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -159,7 +158,7 @@ const AddPet = () => {
             <div className="add-pet-container">
                 <center><h2>Add a Pet</h2></center>
                 <form onSubmit={onSubmit}>
-                    {/* Form fields */}
+                    
                     <div className="add-pet-form-group">
                         <label htmlFor="petName">Pet Name:</label>
                         <input type="text" id="petName" name="petName" value={formData.petName} onChange={onChange} required />

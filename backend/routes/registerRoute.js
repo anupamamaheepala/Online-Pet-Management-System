@@ -27,7 +27,7 @@ router.delete("/:id", registerController.deleteCustomerById);
 // Sign-in endpoint
 router.post('/signin', registerController.signIn);
 
-// Add this route for resetting password
+// resetting password
 router.post('/reset-password/:customerId', registerController.resetPassword);
 
 

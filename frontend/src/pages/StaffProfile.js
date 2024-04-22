@@ -36,7 +36,6 @@ const StaffProfile = () => {
 
   return (
     <>
-      {/* Conditionally render header based on staff's designation */}
       {staff && staff.designation === 'veterinarian' ? (
         
         <VetHeader />

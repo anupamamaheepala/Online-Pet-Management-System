@@ -8,6 +8,7 @@ import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import Swal from 'sweetalert2';
+import StockManagerHeader from '../components/StockManagerHeader';
 
 
 const AddedProduct = () => {
@@ -166,7 +167,7 @@ const AddedProduct = () => {
     };
     return (
         <>
-            <Header />
+            <StockManagerHeader />
             <h1><center>Products Details</center></h1>
             <div className="search-bar">
                 <input
