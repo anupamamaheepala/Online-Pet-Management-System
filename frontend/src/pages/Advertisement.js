@@ -73,8 +73,8 @@ const Advertisement = () => {
                             <h3 className="ma_advertisement-description">{advertisement.Breed}</h3>
                             <p className="ma_advertisement-description">{advertisement.description}</p>
                             <p className="ma_advertisement-contact">Contact: {advertisement.contact}</p>
-                            {advertisement.price && <p className="ma_advertisement-price">Price: {advertisement.price}</p>}
-                            {/* Render other details as needed */}
+                            
+                            
                         </div>
                     </div>
                 ))}
