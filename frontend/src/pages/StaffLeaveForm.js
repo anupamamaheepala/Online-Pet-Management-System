@@ -24,17 +24,32 @@ const StaffLeaveForm = ({ designation }) => {
   const { StleaveFromDate, StleaveToDate, StleaveType, streason } = formData;
 
   const onChange = (e) => {
-    if (e.target.name === 'StleaveFromDate') {
-        const selectedDate = new Date(e.target.value);
+    const { name, value } = e.target;
+    if (name === 'StleaveFromDate') {
+        const selectedFromDate = new Date(value);
+        const selectedToDate = new Date(StleaveToDate);
         const currentDate = new Date();
-        if (selectedDate <= currentDate) {
+        if (selectedFromDate <= currentDate) {
             setDateError('Leave Date From must be after today');
         } else {
             setDateError('');
         }
+        if (selectedToDate < selectedFromDate) {
+            setDateError('Leave Date To cannot be before Leave Date From');
+        }
     }
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (name === 'StleaveToDate') {
+        const selectedToDate = new Date(value);
+        const selectedFromDate = new Date(StleaveFromDate);
+        if (selectedToDate < selectedFromDate) {
+            setDateError('Leave Date To cannot be before Leave Date From');
+        } else {
+            setDateError('');
+        }
+    }
+    setFormData({ ...formData, [name]: value });
 };
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
