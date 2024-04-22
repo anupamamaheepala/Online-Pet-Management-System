@@ -60,7 +60,7 @@ const SalaryTable = () => {
       ]);
 
       doc.setFontSize(18);
-      doc.text('Salary Details', 70, yPosition + logoWidth - 10);
+      doc.text('Salary Details', 90, yPosition + logoWidth - 10);
       doc.setFontSize(15);
       doc.autoTable({
         startY: yPosition + logoWidth + 10,
@@ -101,6 +101,12 @@ const SalaryTable = () => {
     // Return the formatted string containing only month and year
     return `${month} ${year}`;
   };
+
+   // Filtered salaries based on search criteria and value
+   const filteredSalaries = salaries.filter(salary =>
+    salary[searchCriteria].toLowerCase().includes(searchValue.toLowerCase())
+  );
+
 
   return (
     <>
@@ -144,25 +150,26 @@ const SalaryTable = () => {
             </tr>
           </thead>
           <tbody>
-            {salaries.map(salary => (
-              <tr key={salary._id}>
-                <td>{salary.staffId}</td>
-                <td>{salary.firstName}</td>
-                <td>{salary.lastName}</td>
-                <td>{formatMonth(salary.selectedMonth)}</td>
-                <td>{salary.basicSalary}</td>
-                <td>{salary.otHours}</td>
-                <td>{salary.otRate}</td>
-                <td>{salary.otAmount}</td>
-                <td>{salary.bonusAmount}</td>
-                <td>{salary.totalSalary}</td>
-                <td>{formatDate(salary.createdAt)}</td>
-                <td>
-                  <Link className='SalaryUpdate' to={`/update-salary?staffId=${salary.staffId}`}>Update</Link>
-                </td> {/* Link to update page */}
-              </tr>
-            ))}
-          </tbody>
+              {filteredSalaries.map(salary => (
+                <tr key={salary._id}>
+                  <td>{salary.staffId}</td>
+                  <td>{salary.firstName}</td>
+                  <td>{salary.lastName}</td>
+                  <td>{formatMonth(salary.selectedMonth)}</td>
+                  <td>{salary.basicSalary}</td>
+                  <td>{salary.otHours}</td>
+                  <td>{salary.otRate}</td>
+                  <td>{salary.otAmount}</td>
+                  <td>{salary.bonusAmount}</td>
+                  <td>{salary.totalSalary}</td>
+                  <td>{formatDate(salary.createdAt)}</td>
+                  <td>
+                    <Link className='SalaryUpdate' to={`/update-salary?staffId=${salary.staffId}`}>Update</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+
         </table>
         <br />
       </div>
