@@ -21,13 +21,13 @@ const EditPetProfile = () => {
     const [loading, setLoading] = useState(true);
     const [ageError, setAgeError] = useState('');
 
-    // Load pet data when the component mounts
+    
     useEffect(() => {
         const fetchPetData = async () => {
             try {
                 const res = await axios.get(`http://localhost:9000/pets/${petId}`);
                 const petData = res.data;
-                // Split the age into value and unit
+                
                 const { age } = petData;
                 setFormData({
                     ...petData,
@@ -49,10 +49,11 @@ const EditPetProfile = () => {
 
         // Validate input for petName and species fields
     if (name === 'petName' || name === 'species') {
+
         // Allow only letters (alphabetic characters) and spaces
         const onlyLetters = /^[a-zA-Z\s]*$/;
         if (!onlyLetters.test(value)) {
-            // If input contains any characters other than letters or spaces, don't update the state
+            
             return;
         }
     }
@@ -196,7 +197,7 @@ const EditPetProfile = () => {
                     className="editPetProfileInput"
                 />
 
-                {/* Age inputs */}
+                
                 
                     <label htmlFor="ageValue" className="editPetProfileLabel">Age:</label>
                     <div className="ageInputGroup">
@@ -221,7 +222,7 @@ const EditPetProfile = () => {
                     </select>
                 </div>
 
-                {/* Display error message for invalid age */}
+                
                 {ageError && (
                     <div className="ageError">
                         {ageError}
@@ -269,7 +270,7 @@ const EditPetProfile = () => {
                     className="editPetProfileTextarea"
                 />
 
-                {/* Vaccination entries */}
+                
                 <h3>Vaccinations:</h3>
                 {formData.vaccinations.map((vaccination, index) => (
                     <div key={index} className="vaccinationEntry">
@@ -294,7 +295,7 @@ const EditPetProfile = () => {
                             className="editPetProfileInput"
                         />
 
-                        {/* Button to remove the vaccination entry */}
+                       
                         <button
                             type="button"
                             onClick={() => removeVaccination(index)}
@@ -305,7 +306,7 @@ const EditPetProfile = () => {
                     </div>
                 ))}
 
-                {/* Button to add a new vaccination entry */}
+                
                 <center><div className="editpetpro-btncon">
                 <button
                     type="button"
@@ -315,7 +316,7 @@ const EditPetProfile = () => {
                     Add Vaccination
                 </button>
 
-                {/* Submit button */}
+                
                 <button type="submit" className="editPetProfileSubmitButton">
                     Update Profile
                 </button>
