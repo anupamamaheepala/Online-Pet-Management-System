@@ -162,9 +162,9 @@ const PrivateTrainingDetails = () => {
           </div>
         );
       case 'approved':
-        return <p>Training is already approved</p>;
+        return<p> <h4>Training is already approved</h4></p>;
       case 'rejected':
-        return <p>Training is already rejected</p>;
+        return <p><h4>Training is already rejected</h4></p>;
       default:
         return null;
     }
@@ -178,7 +178,7 @@ const PrivateTrainingDetails = () => {
     <div>
       <Header/>
       <div className="alo2">
-        <h2>Private Training Details</h2>
+        <h2><center>Private Training Details</center></h2>
         <div>
           <p><strong>Owner's Name:</strong> {training.ownerName}</p>
           <p><strong>Address:</strong> {training.address}</p>
@@ -193,7 +193,7 @@ const PrivateTrainingDetails = () => {
 
           {training.filePath && (
             <div>
-              <h3>Health Checkup File</h3>
+             
               {training.filePath ? (
                 <>
                   <button onClick={() => handleOpenModal(`http://localhost:9000/uploads/${id}`)}>View Health Checkup Report</button>
@@ -219,7 +219,7 @@ const PrivateTrainingDetails = () => {
         </div>
         {status !== 'rejected' && (
           <div>
-            <h3>Assign an Instructor</h3>
+            
             <div className="trainer-container">
               <label className="trainer-label" htmlFor="selectProfession">Select Trainer:</label>
               <select
@@ -232,7 +232,7 @@ const PrivateTrainingDetails = () => {
   }}
   required
 >
-  <option value="">--Please select--</option>
+  <option value="">Please select</option>
   {professionOptions.map((option, index) => (
     <option key={index} value={option.value}>{option.label}</option>
   ))}
@@ -243,7 +243,7 @@ const PrivateTrainingDetails = () => {
           </div>
         )}
         <div>
-          <h3>Application status</h3>
+          
           {renderActionButtons()}
         </div>
       </div>
