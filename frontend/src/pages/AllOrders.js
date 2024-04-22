@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { jsPDF } from 'jspdf';
 import moment from 'moment';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import '../css/allorder.css';
+import StockManagerHeader from '../components/StockManagerHeader';
 
 // Utility function to calculate delivery date (5 working days from a given date)
 const calculateDeliveryDate = (orderDate) => {
@@ -112,7 +111,7 @@ const AllOrders = () => {
 
     return (
         <>
-            <Header />
+            <StockManagerHeader />
             <div>
                 <label htmlFor="orderFilter">Filter Orders:</label>
                 <select id="orderFilter" onChange={handleFilterChange} value={filter}>
@@ -165,7 +164,6 @@ const AllOrders = () => {
                     ))}
                 </tbody>
             </table>
-            <Footer />
         </>
     );
 };

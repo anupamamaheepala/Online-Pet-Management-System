@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+
 import '../css/addingproduct.css';
 import Swal from 'sweetalert2'; // Import SweetAlert
+import StockManagerHeader from '../components/StockManagerHeader';
 
 const AddingProduct = () => {
     const [formData, setFormData] = useState({
@@ -67,7 +67,7 @@ const AddingProduct = () => {
 
     return (
         <>
-            <Header />
+            <StockManagerHeader />
             <form className="product-form" onSubmit={onSubmit}>
                 <h2>Add your product details here.</h2>
                 <div className="form-group">
@@ -101,7 +101,6 @@ const AddingProduct = () => {
 
                 <button type="submit" className="submit-button">Submit</button>
             </form>
-            <Footer />
         </>
     );
 };

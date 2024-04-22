@@ -70,8 +70,9 @@ const StaffList = () => {
                 staffMember.designation
             ]);
     
-            // Calculate the position for the header text
-            const headerTextX = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth('Staff List') * doc.internal.getFontSize() / 2);
+            // Calculate the position for the header text relative to the page width
+// Calculate the position for the header text relative to the page width, slightly to the right
+            const headerTextX = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth('Staff List') * doc.internal.getFontSize() / 2) + 10;
             const headerTextY = yPosition + logoWidth - 15;
     
             doc.setFontSize(18);
@@ -99,6 +100,7 @@ const StaffList = () => {
             doc.save('staff_list.pdf');
         };
     };
+    
     
     
     return (
