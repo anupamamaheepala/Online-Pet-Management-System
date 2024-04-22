@@ -43,9 +43,9 @@ const ResetPassword = () => {
       setMessage(res.data.message);
 
       // Redirect to the sign-in page after successful password reset
-      setTimeout(() => {
-        window.location.href = '/SignIn';
-      }, 3000); 
+      //setTimeout(() => {
+      //  window.location.href = '/SignIn';
+      //}, 3000); 
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.message === 'Incorrect existing password') {
         setMessage('Existing password is incorrect.');
