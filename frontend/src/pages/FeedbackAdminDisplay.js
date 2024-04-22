@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 import '../css/feedbackadmindisplay.css';
 import jsPDF from 'jspdf';
@@ -79,7 +79,7 @@ const FeedbackAdminDisplay = () => {
 
     return (
         <>
-            <Header />
+            <SystemAdminHeader />
             <div className="feedback-inquiry-admin-container">
                 <h1><center>Feedback List</center></h1>
                 <div className="ssearch">
