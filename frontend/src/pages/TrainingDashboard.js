@@ -203,7 +203,7 @@ const TrainingDashboard = () => {
                     <button className="alo1-button">View Details</button>
                   </Link>
                   &nbsp;
-                  <button onClick={() => handleDelete(training._id)}>Delete</button>
+                  <button className='alo2-button' onClick={() => handleDelete(training._id)}>Delete</button>
                 </td>
               </tr>
             ))}
