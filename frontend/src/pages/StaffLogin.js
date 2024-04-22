@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/staffLogin.css';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 const StaffLogin = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const StaffLogin = () => {
     password: '' // Assuming NIC is used as password
   });
 
+  const [error, setError] = useState('');
   const { staffId, password } = formData;
 
   const onChange = e => {
@@ -25,12 +27,14 @@ const StaffLogin = () => {
       window.location.href = `/staff/profile/${res.data.staffId}`;
     } catch (err) {
       console.error(err);
-      // Handle login error
+      setError('Invalid credentials. Please try again.');
+
     }
   };
 
   return (
     <>
+    <Header/>
     <div className='staffLoginContainer' >
       <h2>Staff Login</h2>
       <br></br>
@@ -44,6 +48,7 @@ const StaffLogin = () => {
           <input type="password" name="password" className='staffpassword' value={password} onChange={onChange} required />
         </div>
         <button type="submit" className='StaffLogin'>Login</button>
+        {error && <p className="staffloginerror">{error}</p>}
       </form>
     </div>
    <Footer />

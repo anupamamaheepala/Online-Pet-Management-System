@@ -1438,6 +1438,18 @@ const filteredPets = pets.filter((pet) => {
       return true;
   }
 });
+{filteredPets.map((pet, index) => (
+  <tr key={pet._id}>
+    {Object.keys(selectedColumns).map((key) =>
+      selectedColumns[key] ? (
+        <td key={key}>
+          {key === 'ownerName' && pet.owner ? pet.owner.name : ''}
+        </td>
+      ) : null
+    )}
+  </tr>
+))}
+
 
 
 const downloadPDFReport = () => {

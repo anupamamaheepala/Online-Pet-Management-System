@@ -132,6 +132,7 @@ exports.updatePetById = async (req, res) => {
   }
 };
 
+
 // Controller function to get all pet details with owner
 exports.getAllPets = async (req, res) => {
   try {
@@ -142,14 +143,24 @@ exports.getAllPets = async (req, res) => {
     const populatedPets = await Promise.all(pets.map(async (pet) => {
       // Assuming the owner field is a reference to the Customer model
       const owner = await customer.findById(pet.owner);
+      if (!owner) {
+        // Handle case where owner is null or undefined
+        return {
+          ...pet.toObject(),
+          owner: {
+            name: 'Unknown',
+            email: 'Unknown'
+          },
+          profilePhoto: pet.profilePhoto ? `${req.protocol}://${req.get('host')}/${pet.profilePhoto}` : ''
+        };
+      }
       // Combine pet data with owner data
       return {
         ...pet.toObject(),
         owner: {
-          name: owner.username,
-          email: owner.email
+          name: owner.username || 'Unknown',
+          email: owner.email || 'Unknown'
         },
-        // Add the full URL for the profile photo
         profilePhoto: pet.profilePhoto ? `${req.protocol}://${req.get('host')}/${pet.profilePhoto}` : ''
       };
     }));
@@ -160,6 +171,7 @@ exports.getAllPets = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
 
 exports.uploadPetProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {

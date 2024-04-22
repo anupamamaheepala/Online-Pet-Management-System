@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
-import '../css/myprofile.css'; // Import the CSS file
+import '../css/myprofile.css'; 
 
 const MyProfile = () => {
   const { customerId } = useParams();
@@ -33,7 +33,7 @@ const MyProfile = () => {
       try {
         await axios.delete(`http://localhost:9000/customer/${customerId}`);
         alert('Profile deleted successfully');
-        window.location.href = '/Register';
+        window.location.href = '/';
       } catch (error) {
         console.error(error);
         alert('Failed to delete profile');
@@ -78,6 +78,10 @@ const handleDeleteProfilePhoto = async () => {
       setCustomerData({ ...customerData, profilePhoto: '' });
       alert('Profile photo deleted successfully');
 
+      setTimeout(() => {
+        window.location.href = '/Register';
+      }, 3000); 
+
     } catch (error) {
       console.error(error);
       alert('Failed to delete profile photo');
@@ -89,9 +93,11 @@ const handleDeleteProfilePhoto = async () => {
 
 
 
+
   return (
     <>
-      <Header />
+      <Header profilePhoto={customerData && customerData.profilePhoto}/>
+
       <div className="MyProfileContainer_custom">
         {loading ? (
           <p className="LoadingIndicator">Loading...</p>

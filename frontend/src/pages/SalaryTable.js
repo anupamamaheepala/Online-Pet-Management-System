@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/salaryTable.css';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 
 const SalaryTable = () => {
   const [salaries, setSalaries] = useState([]);
@@ -104,7 +104,7 @@ const SalaryTable = () => {
 
   return (
     <>
-      <Header />
+      <SystemAdminHeader />
 
       <br />
       <div className='SalaryTable1'>

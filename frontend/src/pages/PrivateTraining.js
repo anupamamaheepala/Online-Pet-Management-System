@@ -82,7 +82,7 @@ const PrivateTraining = () => {
        
       });
       console.log("Response data:",res.data);
-      window.location.href = `/ViewApplication?id=${res.data._id}`;
+      window.location.href = `/ViewApplication?id=${res.data._id}`; // Ensure '_id' is the correct property name
 
       // Clear form fields after successful submission
       setFormData({

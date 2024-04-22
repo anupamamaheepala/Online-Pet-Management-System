@@ -3,7 +3,6 @@ const router = express.Router();
 const registerController = require('../controller/registerController');
 
 
-
 // Register a new customer
 router.post("/register", registerController.registerCustomer);
 
@@ -28,7 +27,7 @@ router.delete("/:id", registerController.deleteCustomerById);
 // Sign-in endpoint
 router.post('/signin', registerController.signIn);
 
-// Add this route for resetting password
+// resetting password
 router.post('/reset-password/:customerId', registerController.resetPassword);
 
 

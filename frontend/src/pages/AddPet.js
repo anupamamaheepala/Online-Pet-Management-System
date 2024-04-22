@@ -27,9 +27,18 @@ const AddPet = () => {
     const [ageError, setAgeError] = useState('');
 
     // Handle form field changes
-    // Handle form field changes
     const onChange = (e) => {
     const { name, value } = e.target;
+
+    // Validate input for petName and species fields
+    if (name === 'petName' || name === 'species') {
+        // Allow only letters (alphabetic characters)
+        const onlyLetters = /^[a-zA-Z\s]*$/; // Regular expression to match only letters and spaces
+        if (!onlyLetters.test(value)) {
+            // If input contains any characters other than letters or spaces, don't update the state
+            return;
+        }
+    }
 
     // Update form data state
     setFormData((prevData) => ({
@@ -149,7 +158,7 @@ const AddPet = () => {
             <div className="add-pet-container">
                 <center><h2>Add a Pet</h2></center>
                 <form onSubmit={onSubmit}>
-                    {/* Form fields */}
+                    
                     <div className="add-pet-form-group">
                         <label htmlFor="petName">Pet Name:</label>
                         <input type="text" id="petName" name="petName" value={formData.petName} onChange={onChange} required />

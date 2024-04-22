@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link component
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
+import '../css/Trainingprogram.css';
+import Swal from 'sweetalert2';
+import Editstepform from './Editstepform'; // Adjust the path as needed
+
+
+//steeeeeeeeeeee
+
 
 const StepForm = () => {
+    const [privatetrainings, setPrivatetrainings] = useState([]);
+    const [error, setError] = useState(null);
+    const [editStepId, setEditStepId] = useState(null);
+    const [expandedCardIndex, setExpandedCardIndex] = useState(null);
+
     const [formData, setFormData] = useState({
         step: '',
         name: '',
@@ -13,6 +26,21 @@ const StepForm = () => {
         file: null,
         contact: ''
     });
+    useEffect(() => {
+        // Fetch data
+        axios.get('http://localhost:9000/step/getss')
+            .then(response => {
+                setPrivatetrainings(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching steps:', error);
+                setError(error);
+            });
+    }, []);
+    const handleLearnMoreClick = (index) => {
+        setExpandedCardIndex(index);
+    };
+
 
     const { step,name,title,description,file,contact } = formData;
 
@@ -58,6 +86,35 @@ const StepForm = () => {
         }
     };
 
+    const handleEdit = (id) => {
+        Swal.fire({
+            title: 'Edit Product',
+            text: 'Do you want to edit this product?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, edit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setEditStepId(id);
+            }
+        });
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            const res = await axios.delete(`http://localhost:9000/step/delete/${id}`);
+            alert('Step deleted successfully');
+            // Remove the deleted step from the state
+            setPrivatetrainings(privatetrainings.filter(step => step._id !== id));
+        } catch (error) {
+            console.error('Error deleting step:', error);
+            alert('Failed to delete step');
+        }
+    };
+    
+
     return (
         <>
             <Header />
@@ -101,6 +158,42 @@ const StepForm = () => {
 
                 <button style={{ width: '150px' }} type="submit" className="ma_submit-button">Add step</button>
             </form>
+
+
+            //display data
+            <h2 className="training-topic">Private Training Programs</h2>
+            
+            <div className="privatetraining-grid">
+                {privatetrainings.map((privatetraining, index) => (
+                    <div key={privatetraining._id} className="privatetraining-item1">
+                        <img src={`http://localhost:9000/${privatetraining.filePath.replace(/\\/g, '/')}`}
+                            style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
+
+                        <h4 className="privatetraining-step">{privatetraining.step}</h4>
+                        <div className="privatetraining-details">
+                            <h3 className="privatetraining-name">{privatetraining.name}</h3>
+                            {expandedCardIndex === index && (
+                                <p className="privatetraining-description">{privatetraining.description}</p>
+                            )}
+                            <div className="row justify-content-center">
+                                <div className="col-auto">&nbsp;</div>
+                                <div className="col">
+                               
+                                    <button className="add-button" onClick={() => handleLearnMoreClick(index)}>Learn more</button>
+
+                                    <Link to={`/Editstepform/${privatetraining._id}`}>
+                                        <button className="aloo-button" onClick={() => handleEdit(privatetraining._id)}>Edit</button>
+                                    </Link>
+                                    <button className="aloo-button2" onClick={() => handleDelete(privatetraining._id)}>Delete</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {editStepId && <Editstepform steptId={editStepId} />}
+            
             <Footer />
         </>
     );

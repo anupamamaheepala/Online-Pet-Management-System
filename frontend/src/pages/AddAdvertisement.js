@@ -120,7 +120,7 @@ const AddAdvertisement = () => {
                 </div>
 
                 <div className="ma_form-group">
-                    <label htmlFor="Breed">Breed:</label>
+                    <label htmlFor="Breed">Species:</label>
                     <input type="text" id="Breed" name="Breed" value={Breed} onChange={onChange} required />
                 </div>
 

@@ -1,4 +1,4 @@
-/* Aligning all content to the center */
+
 .staffLoginContainer {
     display: flex;
     flex-direction: column;
@@ -8,22 +8,21 @@
     margin-bottom: 10px;
     margin-top: 20px;
   }
-  /* Centering the form */
   .staffLoginForm {
     text-align: center;
-    border: 2px solid #ccc; /* Outline for the form */
-    padding: 20px; /* Add some padding for better appearance */
-    border-radius: 10px; /* Rounded corners for the form */
+    border: 2px solid #ccc; 
+    padding: 20px;
+    border-radius: 10px;
   }
   
-  /* Style for input fields */
+ 
   .staffLogin {
     margin-bottom: 10px;
   }
   
   .staffLogin-label {
     display: inline-block;
-    width: 80px; /* Adjust as needed */
+    width: 80px; 
     text-align: right;
     margin-right: 10px;
   }
@@ -36,7 +35,7 @@
     margin-bottom: 20px;
   }
   
-  /* Style for submit button */
+ 
   .StaffLogin {
     margin-bottom: 10px;
     padding: 10px 20px;
@@ -44,12 +43,18 @@
     border-radius: 5px;
     font-size: 16px;
     background-color: #000000;
+    border: 1px solid #000000;
     color: #fff;
     cursor: pointer;
   }
   
-  /* Hover effect for submit button */
+ 
   .StaffLogin:hover {
-    background-color: #0056b3;
+    background-color:  #fff;
+    color: #000000;
+  }
+
+  .staffloginerror{
+    color: red;
   }
   

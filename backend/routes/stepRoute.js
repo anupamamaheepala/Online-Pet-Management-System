@@ -20,4 +20,12 @@ const upload = multer({ storage: storage });
 router.post('/adds', upload.single('file'), stepController.addStep);
 router.get('/getss',stepController.getStep);
 
+//get by id
+router.get('/:id',stepController.getStepId);
+router.put('/:id', upload.single('file'),stepController.editstep);
+
+
+router.delete('/delete/:id',stepController.deletesteps);
+
+
 module.exports = router;

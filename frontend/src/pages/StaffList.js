@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/staffList.css';
 import { Link } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 
 const StaffList = () => {
     const [staff, setStaff] = useState([]);
@@ -70,8 +70,9 @@ const StaffList = () => {
                 staffMember.designation
             ]);
     
-            // Calculate the position for the header text
-            const headerTextX = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth('Staff List') * doc.internal.getFontSize() / 2);
+            // Calculate the position for the header text relative to the page width
+// Calculate the position for the header text relative to the page width, slightly to the right
+            const headerTextX = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth('Staff List') * doc.internal.getFontSize() / 2) + 10;
             const headerTextY = yPosition + logoWidth - 15;
     
             doc.setFontSize(18);
@@ -101,9 +102,10 @@ const StaffList = () => {
     };
     
     
+    
     return (
         <>
-            <Header />
+            <SystemAdminHeader />
             <h1><center>Staff List</center></h1>
             <div className='staffListcontainer1'>
                 <div className='staffList-SearchBar-container'>

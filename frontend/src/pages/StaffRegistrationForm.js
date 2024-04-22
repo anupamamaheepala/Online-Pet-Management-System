@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/StaffRegister.css';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import axios from 'axios';
 
 const StaffRegister = () => {
@@ -106,7 +106,7 @@ const StaffRegister = () => {
 
   return (
     <>
-    <Header />
+    <SystemAdminHeader />
     
       <br></br>
 

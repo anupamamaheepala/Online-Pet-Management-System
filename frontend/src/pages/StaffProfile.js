@@ -3,6 +3,10 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../css/staffProfile.css';
+import Footer from '../components/Footer';
+import VetHeader from '../components/Vet components/VetHeader';
+import GroomeHeader from '../components/Groome components/GroomerHeader';
+
 
 const StaffProfile = () => {
   const [staff, setStaff] = useState(null);
@@ -31,8 +35,17 @@ const StaffProfile = () => {
   };
 
   return (
-    
+    <>
+      {staff && staff.designation === 'veterinarian' ? (
+        
+        <VetHeader />
+      ) : (
+        <GroomeHeader />
+      )}
+      
     <div className='StaffProfileContainer'>
+
+
        <div className='staffProfileWrapper'>
       <br></br><br></br>
       <center><h2>Profile Information</h2></center>
@@ -60,6 +73,9 @@ const StaffProfile = () => {
 
       </div>
     </div>
+    <Footer />
+    </>
+
   );
 };
 

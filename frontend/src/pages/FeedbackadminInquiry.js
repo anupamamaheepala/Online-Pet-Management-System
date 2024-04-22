@@ -52,15 +52,15 @@ const FeedbackInquiryAdmin = () => {
 
     doc.text(title, center, titleMargin);
 
-    // Create a new Image object
+    // Create logo 
     const logo = new Image();
     logo.src = '/images/logo.png';
 
-    // Use onload event to ensure the image is loaded before adding it to the PDF
+    
     logo.onload = function() {
-      const logoWidth = 20; // Adjust the width of the logo as needed
-      const xPosition = 10; // Set the left margin
-      const yPosition = 10; // Set the top margin
+      const logoWidth = 20; // Adjust the width 
+      const xPosition = 10; //  left margin
+      const yPosition = 10; //  top margin
 
       doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
 

@@ -18,10 +18,19 @@ const Payerinfo = () => {
 
     const onChange = e => {
         const { name, value } = e.target;
-        if (name === 'phonenumber') {
+        if (name === 'name') {
+            // Allow only letters and spaces
+            if (/^[a-zA-Z\s]*$/.test(value)) {
+                setFormData({ ...formData, [name]: value });
+            }
+        } else if (name === 'phonenumber') {
             if (/^\d*$/.test(value) && value.length <= 10) {
                 setFormData({ ...formData, [name]: value });
             }
+        } else if (name === 'amount') {
+            // Automatically prepend "Rs." and allow only numbers
+            const newValue = value.replace(/[^\d]/g, ''); // Remove non-numeric characters
+            setFormData({ ...formData, [name]: `Rs.${newValue}` });
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -106,7 +115,7 @@ const Payerinfo = () => {
                         <select id="purpose" name="purpose" value={purpose} onChange={onChange} required> 
                         <option value="" disabled>Select Purpose</option>
                         <option value="Buy products">Buy products</option>
-                        <option value="Verterinary appointment">Verterinary appointment</option>
+                        <option value="Veterinary appointment">Veterinary appointment</option>
                         <option value="Grooming appointment">Grooming appointment</option>
                         <option value="Pet training appointment">Pet training appointment</option>
                         <option value="Advertisement">Advertisement</option>
