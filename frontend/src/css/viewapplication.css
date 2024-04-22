@@ -91,7 +91,10 @@
 }
 
 .alo22-pay-btn {
-    background-color: green;
+    background-color: black;
+    color: white;
+}
+.alo22-pay-btn-hover{
     color: white;
 }
 

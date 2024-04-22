@@ -29,7 +29,12 @@ router.get('/profile/:id', staffController.getStaffProfileById);
 // GET request to fetch Groomers and Veterinarians
 router.get('/', staffController.getAllGroomeandVet);
 
+<<<<<<< HEAD
 
 
+=======
+//Get trainers
+router.get('/',staffController.getAllTrainers);
+>>>>>>> 1f49e4177ae7c775baf55f8f68e54214bbaa990e
 
 module.exports = router;

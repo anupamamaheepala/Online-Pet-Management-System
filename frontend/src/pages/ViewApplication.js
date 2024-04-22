@@ -50,7 +50,16 @@ const ViewApplication = () => {
                                 >
                                     {training.status}
                                 </span>
+                                
                             </div>
+                            
+                            {training.status === 'rejected' && (
+                <div className="alo22-rejection-reason">
+                  <h3>Rejection Reason:</h3>
+                  <p>{training.reason}</p>
+                </div>
+              )}
+                            
                             <p className="alo22-application-info-item">
                                 <span className="alo22-label">Owner's Name:</span>
                                 <span className="alo22-value">{training.ownerName}</span>
@@ -74,12 +83,22 @@ const ViewApplication = () => {
                             <p className="alo22-application-info-item">
                                 <span className="alo22-label">Age:</span>
                                 <span className="alo22-value">{training.age}</span>
-                            </p>
+                                </p>
+                                {training.status === 'approved' && (
+                                <p className="alo22-application-info-item">
+                                    <span className="alo22-label">Trainer's Name:</span>
+                                    <span className="alo22-value">{training.instructorName}</span>
+                                </p>
+                            )}
+                        
+                            
                             <div className="alo22-button-container">
                                 {training.status === 'approved' && (
                                     <>
-                                        <button className="alo22-btn alo22-pay-btn">Pay Now</button>
-                                        <button className="alo22-btn alo22-register-btn">Register</button>
+                                    <a href = 'Payerinfo'>
+                                        <button className="alo22-btn alo22-pay-btn">Pay Now and Register</button>
+                                        </a>
+                                        
                                     </>
                                 )}
                             </div>

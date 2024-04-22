@@ -109,19 +109,29 @@ const getalltrainingdetails = async (req, res) => {
 /* Update instructor for a training*/
 // Update controller function to add instructor
 const updateInstructor = async (req, res) => {
-  try {
     const { id } = req.params;
-    const { instructor } = req.body;
-    const training = await trainingModel.findByIdAndUpdate(id, { instructor }, { new: true });
-    if (!training) {
-      return res.status(404).json({ message: 'Training not found' });
+    const { instructorId, instructorName } = req.body;
+  
+    try {
+      const training = await trainingModel.findById(id);
+      if (!training) {
+        return res.status(404).json({ message: 'Training not found' });
+      }
+  
+      // Update training details with trainer's name and ID
+      training.instructorId = instructorId;
+      training.instructorName = instructorName;
+  
+      // Save the updated training details
+      await training.save();
+  
+      res.status(200).json({ message: 'Trainer updated successfully' });
+    } catch (error) {
+      console.error('Error updating training:', error);
+      res.status(500).json({ message: 'Internal server error' });
     }
-    res.json(training);
-  } catch (error) {
-    console.error('Error updating instructor:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
+  };
+  
 
 // Delete training by ID
 const deleteprogram = async (req, res) => {

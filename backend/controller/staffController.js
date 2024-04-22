@@ -148,3 +148,16 @@ exports.getAllGroomeandVet = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
+=======
+exports.getAllTrainers = async (req, res) => {
+  try {
+    const staffs = await Staff.find(); 
+    res.json(staffs);
+  } catch (error) {
+    console.error('Error fetching staff members:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+>>>>>>> 1f49e4177ae7c775baf55f8f68e54214bbaa990e
