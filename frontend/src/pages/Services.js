@@ -1,10 +1,10 @@
-// Services.js (View)
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/services.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
+import SystemAdminHeader from '../components/SystemAdminHeader'
 
 const Services = () => {
   const [title, setTitle] = useState('');
@@ -25,11 +25,13 @@ const Services = () => {
     } catch (error) {
         toast.error("Something went wrong");
       console.error('Error creating service:', error);
-      // Optionally, handle error (e.g., show an error message)
+      
     }
   };
 
   return (
+    <>
+    <SystemAdminHeader/>
     <div className="add-service-container">
       <h1>Add Service</h1>
       <form onSubmit={handleSubmit}>
@@ -51,6 +53,7 @@ const Services = () => {
         <button type="submit" className="add-service-submit-button">Submit</button>
       </form>
     </div>
+    </>
   );
 };
 

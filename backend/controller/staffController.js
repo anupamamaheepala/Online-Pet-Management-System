@@ -137,7 +137,7 @@ exports.getStaffProfileById = async (req, res) => {
   }
 };
 
-
+// Get all groomers and vets
 exports.getAllGroomeandVet = async (req, res) => {
   try {
     const staffs = await Staff.find(); 

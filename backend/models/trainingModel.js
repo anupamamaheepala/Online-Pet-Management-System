@@ -30,9 +30,9 @@ const TrSchema = new mongoose.Schema({
           required: true,
           default: Date.now
       },
-      instructor: {
-        type: String,
-      },
+     
+      instructorId: String, // New field for trainer's ID
+      instructorName: String, // New field for trainer's name
       status: {
          type: String, 
          enum: ['pending', 'approved', 'rejected'], 

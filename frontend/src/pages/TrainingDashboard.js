@@ -65,7 +65,65 @@ const TrainingDashboard = () => {
   };
 
   const generatePDF = () => {
-    // PDF generation code remains the same
+    const doc = new jsPDF();
+    const reportTitle = 'Approved Training Applicants';
+
+    // Adding logo
+    const logo = new Image();
+    logo.src = '/images/logo.png';
+
+    logo.onload = function () {
+      const logoWidth = 40;
+      const xPosition = 10;
+      const yPosition = 10;
+
+      doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+
+      // Calculate title position
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const titleWidth =
+        (doc.getStringUnitWidth(reportTitle) * doc.internal.getFontSize()) /
+        doc.internal.scaleFactor;
+      const titleXPosition = (pageWidth - titleWidth) / 2;
+      const titleYPosition = yPosition + logoWidth + 10;
+
+      doc.setFontSize(18);
+      doc.text(reportTitle, 70, yPosition + logoWidth - 15);
+
+      // Generate table data
+      const tableData = trainings
+        .filter((training) => training.status === 'approved')
+        .map((training) => [
+          training.ownerName,
+          training.dogName,
+          training.instructor,
+          new Date(training.submissionDateTime).toLocaleDateString(),
+        ]);
+
+      // Generate the rest of the PDF content
+      doc.setFontSize(12);
+
+      doc.autoTable({
+        startY: titleYPosition + 10,
+        head: [['Owner Name', 'Dog Name', 'Instructor Name', 'Date']],
+        body: tableData,
+        styles: {
+          fontSize: 10,
+          cellPadding: 3,
+        },
+        headStyles: {
+          fillColor: [0, 0, 0],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold',
+        },
+      });
+
+      doc.save('training-details.pdf');
+    };
+  };
+
+  const handleDownloadReport = () => {
+    generatePDF();
   };
 
   const filteredTrainings = trainings.filter((training) =>
@@ -90,7 +148,7 @@ const TrainingDashboard = () => {
           <button className="alo1-button">Manage Private Programs |</button>
         </a>
         <button className="alo1-button">Manage Group Programs</button>
-        <button className="report-button" onClick={generatePDF}>
+        <button className="report-button" onClick={handleDownloadReport}>
           Download Report
         </button>
       </div>

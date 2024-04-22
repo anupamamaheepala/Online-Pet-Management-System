@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
-import { Bell } from 'react-bootstrap-icons';
+import { Bell, PersonCircle } from 'react-bootstrap-icons';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -68,6 +68,7 @@ const GroomerHeader = () => {
   
     fetchGroomingAppointmentCount();
   }, []);
+
   const handleMouseEnter = (item) => {
     setHighlightedItem(item);
     if (item === 'appointments') {
@@ -187,6 +188,11 @@ const GroomerHeader = () => {
               {notificationCount}
             </Badge>
           </Button>
+          <Link to="/StaffProfile">
+            <Button variant="outline-primary" style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}>
+              <PersonCircle color="white" />
+            </Button>
+          </Link>
         </div>
       </Navbar.Collapse>
     </Navbar>
