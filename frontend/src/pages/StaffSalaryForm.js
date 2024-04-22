@@ -138,7 +138,7 @@ function SalaryCalculator(props) {
     // useEffect to recalculate salary whenever inputs change
     useEffect(() => {
         calculateSalary();
-    }, [basicSalary, otHours, bonusAmount, otRate]); // Include otRate in the dependency array
+    }, [basicSalary, otHours, bonusAmount, otRate]); 
 
     useEffect(() => {
         calculateSalary();
@@ -194,7 +194,7 @@ function SalaryCalculator(props) {
                         <input type="number" className='otHours' value={otHours} onChange={(e) => setOtHours(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
                     </div>
                     <div className="StaffSalary-form-group">
-                        <label className='StaffSalary-form-group label'>OT Rate:</label> {/* New input field for OT Rate */}
+                        <label className='StaffSalary-form-group label'>OT Rate:</label> 
                         <input type="number" className='otRate' value={otRate} onChange={(e) => setOtRate(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
                     </div>
                     <div className="StaffSalary-form-group">

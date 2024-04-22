@@ -10,7 +10,7 @@ const EditAdvertisement = () => {
     const [advertisementData, setAdvertisementData] = useState({
         ownerName: '',
         email: '',
-        pet_type: '', // Include pet_type in the state
+        pet_type: '', 
         Breed: '',
         purpose: '',
         description: '',

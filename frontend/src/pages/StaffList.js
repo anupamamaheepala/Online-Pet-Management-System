@@ -10,7 +10,7 @@ import SystemAdminHeader from '../components/SystemAdminHeader';
 const StaffList = () => {
     const [staff, setStaff] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchCriteria, setSearchCriteria] = useState('sfirstname'); // Default search criteria
+    const [searchCriteria, setSearchCriteria] = useState('sfirstname'); 
 
     useEffect(() => {
         axios.get("http://localhost:9000/staff/all")
@@ -70,13 +70,12 @@ const StaffList = () => {
                 staffMember.designation
             ]);
     
-            // Calculate the position for the header text relative to the page width
-// Calculate the position for the header text relative to the page width, slightly to the right
+          
             const headerTextX = (doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth('Staff List') * doc.internal.getFontSize() / 2) + 10;
             const headerTextY = yPosition + logoWidth - 15;
     
             doc.setFontSize(18);
-            doc.text('Staff List', headerTextX, headerTextY); // Adjusted positioning for the header text
+            doc.text('Staff List', headerTextX, headerTextY);
             doc.setFontSize(15);
             doc.autoTable({
                 startY: yPosition + logoWidth + 10,

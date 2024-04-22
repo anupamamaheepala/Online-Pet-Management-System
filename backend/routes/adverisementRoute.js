@@ -20,7 +20,7 @@ router.get("/", advertisementController.getAllAdvertisements);
 router.put("/:id/confirm", upload.single('file'), advertisementController.confirmAdvertisement);
 router.delete("/:id", advertisementController.deleteAdById);
 //router.get("/confirmed", advertisementController.getConfirmedAdvertisements);
-//router.get("/:id/confirm", advertisementController.confirmAdvertisement); // GET endpoint for confirming advertisements
+//router.get("/:id/confirm", advertisementController.confirmAdvertisement); 
 
 router.get("/confirmedads", advertisementController.getAllConfirmedAdvertisements);
 

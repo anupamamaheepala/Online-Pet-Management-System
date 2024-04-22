@@ -19,12 +19,12 @@ const StaffProfile = () => {
         setStaff(res.data);
       } catch (error) {
         console.error(error);
-        // Handle error
+
       }
     };
 
     fetchStaffProfile();
-  }, [id]); // Make sure to include id in the dependency array
+  }, [id]);
 
   
   const handleDelete = () => {
