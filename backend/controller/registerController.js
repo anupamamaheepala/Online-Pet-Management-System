@@ -8,7 +8,7 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // Set the destination directory for file uploads
+      cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
       const customerId = req.params.customerId;

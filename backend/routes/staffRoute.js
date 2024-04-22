@@ -32,4 +32,5 @@ router.get('/', staffController.getAllGroomeandVet);
 //Get trainers
 router.get('/',staffController.getAllTrainers);
 
+
 module.exports = router;

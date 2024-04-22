@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import SystemAdminHeader from '../components/SystemAdminHeader'
 
 const ViewServices = () => {
   const [services, setServices] = useState([]);
@@ -77,6 +78,8 @@ const ViewServices = () => {
   };
 
   return (
+    <>
+    <SystemAdminHeader/>
     <div style={{ backgroundColor: '#ffffff', padding: '20px', display: 'flex', justifyContent: 'center' }}>
       <div style={{ maxWidth: '600px', width: '100%' }}>
         <h1 style={{ textAlign: 'center' }}>Services</h1>
@@ -212,6 +215,7 @@ const ViewServices = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
