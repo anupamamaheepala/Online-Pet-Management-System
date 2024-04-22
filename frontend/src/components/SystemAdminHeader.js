@@ -43,7 +43,8 @@ const SystemAdminHeader = () => {
               Feedback
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/reply-inquiry">Reply Inquiry</Dropdown.Item>
+              <Dropdown.Item href="/feedbackadmindisplay">All Feedbacks</Dropdown.Item>
+              <Dropdown.Item href="/feedbackadmininquiry">All Inquiry</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
