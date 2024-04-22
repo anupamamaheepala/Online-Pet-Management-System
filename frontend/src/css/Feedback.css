@@ -21,7 +21,7 @@
 .name {
   width: calc(100% - 0px); 
   margin-bottom: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
 }
 
 .email input,
