@@ -100,7 +100,10 @@ function Vetservices() {
             ))}
           </ul>
         </div>
-        <div className="square-placeholder"></div> {/* Add a square placeholder */}
+        <div className="square-placeholder">
+          <h1>Available Veterinarians</h1>
+          {/*  Veterinarian List */}
+        </div>
       </div>
       <Footer />
     </>

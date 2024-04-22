@@ -83,7 +83,7 @@ const StaffList = () => {
                 head: [['Staff ID', 'First Name', 'Last Name', 'NIC No', 'Email', 'Contact Number', 'Address', 'Designation']],
                 body: tableData,
                 styles: {
-                    fontSize: 7.5,
+                    fontSize: 7.0,
                     cellPadding: 3,
                     lineWidth: 0.1,
                     lineColor: [0, 0, 0]

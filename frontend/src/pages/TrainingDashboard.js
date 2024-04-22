@@ -41,7 +41,7 @@ const TrainingDashboard = () => {
   };
 
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value.toLowerCase());
   };
 
   const handleDelete = async (id) => {
@@ -126,10 +126,13 @@ const TrainingDashboard = () => {
     generatePDF();
   };
 
-  const filteredTrainings = trainings.filter((training) =>
-    training.ownerName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+  const filteredTrainings = trainings.filter((training) => {
+    const ownerNameMatch = training.ownerName.toLowerCase().includes(searchQuery);
+    const instructorMatch = training.instructor && training.instructor.toLowerCase().includes(searchQuery);
+    const instructorIdMatch = training.instructorId && training.instructorId.toLowerCase().includes(searchQuery);
+    return ownerNameMatch || instructorMatch || instructorIdMatch;
+  });
+  
   return (
     <div>
       <AdminHeader />

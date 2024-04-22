@@ -25,23 +25,22 @@ const MakeAppointment = () => {
     fetchProfessionOptions();
   }, []);
 
-// Update fetchProfessionOptions function to fetch staff members and extract names
-const fetchProfessionOptions = async () => {
-  try {
-    const response = await axios.get('http://localhost:9000/staff');
-    const groomersAndVets = response.data.filter(
-      (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
-    );
-    const options = groomersAndVets.map((staff) => ({
-      value: staff.staffId, // Using staffId as the value for each option
-      label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
-    }));
-    setProfessionOptions(options);
-  } catch (error) {
-    console.error('Error fetching profession options:', error);
-  }
-};
-
+  // Update fetchProfessionOptions function to fetch staff members and extract names
+  const fetchProfessionOptions = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/staff');
+      const groomersAndVets = response.data.filter(
+        (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
+      );
+      const options = groomersAndVets.map((staff) => ({
+        value: staff.staffId, // Using staffId as the value for each option
+        label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
+      }));
+      setProfessionOptions(options);
+    } catch (error) {
+      console.error('Error fetching profession options:', error);
+    }
+  };
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -65,14 +64,36 @@ const fetchProfessionOptions = async () => {
         selectProfession
       });
 
-      // Show SweetAlert message
-      Swal.fire({ icon: 'success', title: 'Appointment Scheduled Successfully', showConfirmButton: false, timer: 1500 });
-
       // Clear form fields after successful submission
       clearForm();
+
+      // Show SweetAlert message
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Scheduled Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        // Show payment message
+        Swal.fire({
+          icon: 'info',
+          title: 'Make the payment for Appointment after Approved',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Navigate to MyAppointments.js
+            window.location.href = '/MyAppointments';
+          }
+        });
+      });
     } catch (error) {
       // Show error message
-      Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to create appointment. Please try again later.', confirmButtonText: 'OK' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to create appointment. Please try again later.',
+        confirmButtonText: 'OK'
+      });
       // Handle any errors
       console.error('Error submitting form:', error);
     }
@@ -129,6 +150,15 @@ const fetchProfessionOptions = async () => {
     return options;
   };
 
+  // Get current date in YYYY-MM-DD format
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <>
       <ShowLoading />
@@ -167,7 +197,7 @@ const fetchProfessionOptions = async () => {
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="selectDate">Select Date:</label>
-              <input className="makeappointment_input_date" type="date" id="selectDate" value={selectDate} onChange={(e) => setSelectDate(e.target.value)} required />
+              <input className="makeappointment_input_date" type="date" id="selectDate" value={selectDate} onChange={(e) => setSelectDate(e.target.value)} min={getCurrentDate()} required />
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="selectTime">Select Time:</label>

@@ -88,7 +88,8 @@ function Groomservices() {
         </div>
         <div className="square-placeholder">
           <h1>Available Groomers</h1>
-        </div> {/* Add a square placeholder */}
+         
+        </div> 
       </div>
       <Footer />
     </>
