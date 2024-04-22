@@ -1,5 +1,3 @@
-// petController.js
-
 const Pet = require('../models/petModel');
 const customer = require('../models/registerModel');
 const multer = require('multer');
@@ -9,7 +7,7 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Set the destination directory for file uploads
+    cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
     const petId = req.params.petId;
@@ -26,7 +24,7 @@ exports.addPet = async (req, res) => {
       // Destructure the required fields from the request body
       const { petName, species, breed, ageValue, ageUnit, gender, weight, dateAdopted, additionalNotes, vaccinations, owner } = req.body;
 
-      // Ensure ageValue and ageUnit are provided
+      
       if (ageValue === undefined || ageUnit === undefined) {
           return res.status(400).json({ message: 'ageValue and ageUnit are required.' });
       }
@@ -37,8 +35,8 @@ exports.addPet = async (req, res) => {
           species,
           breed,
           age: {
-              value: parseFloat(ageValue), // Convert ageValue to number
-              unit: ageUnit, // Save ageUnit as it is
+              value: parseFloat(ageValue), 
+              unit: ageUnit, 
           },
           gender,
           weight: parseFloat(weight),
@@ -65,7 +63,7 @@ exports.addPet = async (req, res) => {
         const customerId = req.params.customerId;
         const pets = await Pet.find({ owner: customerId });
     
-        // Format profile photo URLs to include protocol and host
+       
         const formattedPets = pets.map(pet => {
           if (pet.profilePhoto) {
             pet.profilePhoto = `${req.protocol}://${req.get('host')}/${pet.profilePhoto}`;
@@ -120,7 +118,7 @@ exports.deletePetById = async (req, res) => {
 exports.updatePetById = async (req, res) => {
   try {
     const petId = req.params.petId;
-    const updatedPetData = req.body; // Assuming the entire pet data is sent for update
+    const updatedPetData = req.body; 
     const updatedPet = await Pet.findByIdAndUpdate(petId, updatedPetData, { new: true });
     if (!updatedPet) {
       return res.status(404).json({ message: 'Pet not found' });

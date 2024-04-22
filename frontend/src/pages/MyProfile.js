@@ -19,7 +19,7 @@ const MyProfile = () => {
         setLoading(false);
       } catch (error) {
         console.error(error);
-        // Handle error
+        
       }
     };
 

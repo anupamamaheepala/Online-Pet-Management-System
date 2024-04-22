@@ -25,23 +25,22 @@ const MakeAppointment = () => {
     fetchProfessionOptions();
   }, []);
 
-// Update fetchProfessionOptions function to fetch staff members and extract names
-const fetchProfessionOptions = async () => {
-  try {
-    const response = await axios.get('http://localhost:9000/staff');
-    const groomersAndVets = response.data.filter(
-      (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
-    );
-    const options = groomersAndVets.map((staff) => ({
-      value: staff.staffId, // Using staffId as the value for each option
-      label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
-    }));
-    setProfessionOptions(options);
-  } catch (error) {
-    console.error('Error fetching profession options:', error);
-  }
-};
-
+  // Update fetchProfessionOptions function to fetch staff members and extract names
+  const fetchProfessionOptions = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/staff');
+      const groomersAndVets = response.data.filter(
+        (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
+      );
+      const options = groomersAndVets.map((staff) => ({
+        value: staff.staffId, // Using staffId as the value for each option
+        label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
+      }));
+      setProfessionOptions(options);
+    } catch (error) {
+      console.error('Error fetching profession options:', error);
+    }
+  };
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -65,14 +64,36 @@ const fetchProfessionOptions = async () => {
         selectProfession
       });
 
-      // Show SweetAlert message
-      Swal.fire({ icon: 'success', title: 'Appointment Scheduled Successfully', showConfirmButton: false, timer: 1500 });
-
       // Clear form fields after successful submission
       clearForm();
+
+      // Show SweetAlert message
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Scheduled Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        // Show payment message
+        Swal.fire({
+          icon: 'info',
+          title: 'Make the payment for Appointment after Approved',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Navigate to MyAppointments.js
+            window.location.href = '/MyAppointments';
+          }
+        });
+      });
     } catch (error) {
       // Show error message
-      Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to create appointment. Please try again later.', confirmButtonText: 'OK' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to create appointment. Please try again later.',
+        confirmButtonText: 'OK'
+      });
       // Handle any errors
       console.error('Error submitting form:', error);
     }

@@ -43,7 +43,8 @@ const SystemAdminHeader = () => {
               Feedback
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/reply-inquiry">Reply Inquiry</Dropdown.Item>
+              <Dropdown.Item href="/feedbackadmindisplay">All Feedbacks</Dropdown.Item>
+              <Dropdown.Item href="/feedbackadmininquiry">All Inquiry</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
@@ -51,8 +52,8 @@ const SystemAdminHeader = () => {
               Services
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/add-new-service">Add a New Service</Dropdown.Item>
-              <Dropdown.Item href="#/view-available-services">View Available Services</Dropdown.Item>
+              <Dropdown.Item href="/Services">Add a New Service</Dropdown.Item>
+              <Dropdown.Item href="/ViewServices">View Available Services</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Nav>

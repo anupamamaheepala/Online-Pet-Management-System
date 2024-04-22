@@ -8,7 +8,7 @@ const Register = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        contactNumbers: [''], // Initial array with one empty contact number
+        contactNumbers: [''], 
         address: '',
         password: '',
         confirmPassword: '',
@@ -37,7 +37,7 @@ const Register = () => {
     if (contactNumbers.length < 3) {
         setFormData({
             ...formData,
-            contactNumbers: [...contactNumbers, ''], // Add a new empty contact number
+            contactNumbers: [...contactNumbers, ''], 
         });
     } else {
         alert("You can only add up to three contact numbers.");
@@ -74,10 +74,10 @@ const Register = () => {
             const response = await axios.post("http://localhost:9000/customer/register", formData);
             console.log(response.data);
 
-            // Redirect to sign-in page after successful registration
+            
             window.location.href = '/SignIn';
 
-            // Optionally, clear the form fields after successful submission
+            //  clear the form fields after successful submission
             setFormData({
                 username: '',
                 email: '',

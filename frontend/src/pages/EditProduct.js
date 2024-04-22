@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/addingproduct.css';
+import Swal from 'sweetalert2';
+import StockManagerHeader from '../components/StockManagerHeader';
+
 
 const EditProduct = () => {
     const { productId } = useParams();
@@ -47,24 +50,37 @@ const EditProduct = () => {
             formData.append('image', productData.image); // Append image to form data
             formData.append('price', productData.price);
             formData.append('quantity', productData.quantity);
-
+    
             await axios.put(`http://localhost:9000/products/${productId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            alert('Product updated successfully');
+    
+            // Display SweetAlert success message
+            Swal.fire({
+                icon: 'success',
+                title: 'Product updated successfully!',
+                text: `The product with ID: ${productId} has been updated.`,
+            });
         } catch (error) {
             console.error('Failed to update product:', error);
-            alert('Failed to update product');
+    
+            // Display SweetAlert error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed to update product',
+                text: 'An error occurred while updating the product. Please try again later.',
+            });
         }
     };
+    
 
     const { itemName, category, price, quantity } = productData;
 
     return (
         <>
-            <Header />
+            <StockManagerHeader />
             <form className="product-form" onSubmit={handleSubmit}>
                 <h2>Edit product details</h2>
                 <div className="form-group">
@@ -98,7 +114,6 @@ const EditProduct = () => {
 
                 <button type="submit" className="submit-button">Submit</button>
             </form>
-            <Footer />
         </>
     );
 };
