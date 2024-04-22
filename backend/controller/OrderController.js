@@ -1,6 +1,7 @@
 const Order = require('../models/OrderModel');
+const moment = require('moment');
 
-// Controller function to handle adding a new order
+
 const addOrder = async (req, res) => {
   try {
     const {
@@ -9,11 +10,15 @@ const addOrder = async (req, res) => {
       orderAddress
     } = req.body;
 
+    // Calculate delivery date (5 working days from the current date)
+    const deliveryDate = moment().add(5, 'days').format('YYYY-MM-DD');
+
     // Create a new order object
     const newOrder = new Order({
       orderName,
       orderContactNo,
-      orderAddress
+      orderAddress,
+      deliveryDate // Assign the calculated delivery date
     });
 
     // Save the new order object to the database
@@ -25,6 +30,7 @@ const addOrder = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 // Controller function to handle getting all orders
 const getAllOrders = async (req, res) => {
