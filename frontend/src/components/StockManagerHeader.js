@@ -27,17 +27,15 @@ const StockManagerHeader = () => {
           </div>
           <h2><center>Stock Manager's dashboard</center></h2>
           <div className="offcanvas-body">
-            <ul className="navbar-nav mx-auto" style={{ margin: '0 20px' }}>
-              <li className="nav-item">
-                <Link className={`nav-link active`} to="/AllOrders" style={{ fontSize: '20px', fontWeight: 'bold' }}>Order List</Link>
-              </li>
-              
-            
+            <ul className="navbar-nav mx-auto" style={{ margin: '0 20px' }}> 
               <li className="nav-item">
                 <Link className={`nav-link`} to="/AddingProduct" style={{ fontSize: '20px', fontWeight: 'bold' }}>Adding Product</Link>
               </li>
               <li className="nav-item">
                 <Link className={`nav-link`} to="/AddedProduct" style={{ fontSize: '20px', fontWeight: 'bold' }}>Product List</Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link active`} to="/AllOrders" style={{ fontSize: '20px', fontWeight: 'bold' }}>Order List</Link>
               </li>
             </ul>
             <div className="d-flex align-items-center">

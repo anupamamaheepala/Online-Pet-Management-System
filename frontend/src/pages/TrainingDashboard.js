@@ -11,6 +11,7 @@ const TrainingDashboard = () => {
   const [approvedCount, setApprovedCount] = useState(0);
   const [rejectedCount, setRejectedCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTrainer, setSelectedTrainer] = useState(null);
 
   useEffect(() => {
     fetchTrainings();
@@ -76,34 +77,26 @@ const TrainingDashboard = () => {
       <AdminHeader />
       <h2>Training Manager Dashboard</h2>
       <div className="dashboard-header">
-        <div>
-          Pending Applications: {pendingCount}
-        </div>
-        <div>
-          Approved Applications: {approvedCount}
-        </div>
-        <div>
-          Rejected Applications: {rejectedCount}
-        </div>
-        <div className="total-count">
-          Total Applications: {trainings.length}
-        </div>
+        <div>Pending Applications: {pendingCount}</div>
+        <div>Approved Applications: {approvedCount}</div>
+        <div>Rejected Applications: {rejectedCount}</div>
+        <div className="total-count">Total Applications: {trainings.length}</div>
       </div>
       <div className="button-row">
         <a href="PrivateTrainingPrograms">
-          <button className="alo1-button">Add Dog Details for Private Training   |</button>
+          <button className="alo1-button">Add Dog Details for Private Training |</button>
         </a>
         <a href="StepForm">
-          <button className="alo1-button">Manage Private Programs   |</button>
+          <button className="alo1-button">Manage Private Programs |</button>
         </a>
         <button className="alo1-button">Manage Group Programs</button>
-        <button className="report-button "  onClick={generatePDF}>
+        <button className="report-button" onClick={generatePDF}>
           Download Report
         </button>
       </div>
       <input
         type="text"
-        placeholder="Search owner's name..."
+        placeholder="Search..."
         value={searchQuery}
         onChange={handleSearch}
         className="ma_search-input"
@@ -139,10 +132,13 @@ const TrainingDashboard = () => {
                 </td>
                 <td>{training.instructor || 'Not Assigned'}</td>
                 <td>
-                  <Link to={{
-                    pathname: `/training/${training._id}`,
-                    state: { instructorName: training.instructor},
-                  }} className="alo_view-details-button">
+                  <Link
+                    to={{
+                      pathname: `/training/${training._id}`,
+                      state: { instructorName: selectedTrainer ? selectedTrainer.label : '' },
+                    }}
+                    className="alo_view-details-button"
+                  >
                     <button className="alo1-button">View Details</button>
                   </Link>
                   &nbsp;
