@@ -52,6 +52,7 @@ const ViewApplication = () => {
                                 </span>
                                 
                             </div>
+                            
                             {training.status === 'rejected' && (
                 <div className="alo22-rejection-reason">
                   <h3>Rejection Reason:</h3>
@@ -82,7 +83,15 @@ const ViewApplication = () => {
                             <p className="alo22-application-info-item">
                                 <span className="alo22-label">Age:</span>
                                 <span className="alo22-value">{training.age}</span>
-                            </p>
+                                </p>
+                                {training.status === 'approved' && (
+                                <p className="alo22-application-info-item">
+                                    <span className="alo22-label">Trainer's Name:</span>
+                                    <span className="alo22-value">{training.instructor}</span>
+                                </p>
+                            )}
+                        
+                            
                             <div className="alo22-button-container">
                                 {training.status === 'approved' && (
                                     <>

@@ -120,6 +120,7 @@ const PrivateTrainingDetails = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           return <Link to="../pages/TrainingDashboard.js" />;
+          <Link to={`/view-application?id=${id}&instructor=${selectedTrainer.label}`}>View Application</Link>
           // Redirect to Dashboard or wherever you want to go
           // You can use history.push('/dashboard') or window.location.href = '/dashboard'
         }
