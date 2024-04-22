@@ -18,7 +18,7 @@ const MyPets = () => {
         setLoading(false);
       } catch (error) {
         console.error(error);
-        // Handle error
+        
       }
     };
 
@@ -48,8 +48,8 @@ const MyPets = () => {
             ))}
           </div>
         )}
-        {/* Add Pet Button */}
-        <div className="add-pet-button-container"> {/* Container for the button */}
+        
+        <div className="add-pet-button-container"> 
           <Link to={`/addpet/${customerId}`}>
             <button className="addto-pet-button">Add Pet</button>
           </Link>
