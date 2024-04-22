@@ -41,7 +41,7 @@
 .registration-form-group input:focus,
 .registration-form-group textarea:focus {
   outline: none;
-  border-color: #007bff; /* Focus color */
+  border-color: #000000; 
 }
 
 /* Styling for the contact number section */

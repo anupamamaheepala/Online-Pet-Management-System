@@ -36,7 +36,7 @@ const StaffLogin = () => {
     <>
     <Header/>
     <div className='staffLoginContainer' >
-      <h2>Staff Login</h2>
+      <h2 className='staffLoginHeader'>Staff Login</h2>
       <br></br>
       <form onSubmit={onSubmit} className='staffLoginForm'>
         <div className='staffLogin'>

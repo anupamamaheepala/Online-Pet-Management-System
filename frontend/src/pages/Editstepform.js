@@ -77,38 +77,38 @@ const EditStepForm = () => {
     return (
         <>
             <Header />
-            <form className="step-form" onSubmit={handleSubmit}>
+            <form className="alo18-step-form" onSubmit={handleSubmit}>
                 <h2>Edit step details</h2>
-                <div className="form-group">
-                    <label htmlFor="step">Step:</label>
-                    <input type="text" id="step" name="step" value={step} onChange={handleChange} />
+                <div className="alo18-form-group">
+                    <label className='alo18-label' htmlFor="step">Step:</label>
+                    <input className='alo18-input' type="text" id="step" name="step" value={step} onChange={handleChange} />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={name} onChange={handleChange} />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" name="title" value={title} onChange={handleChange} />
+                <div className="alo18-form-group">
+                    <label className='alo18-label' htmlFor="name">Name:</label>
+                    <input className='alo18-input' type="text" id="name" name="name" value={name} onChange={handleChange} />
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" value={description} onChange={handleChange}></textarea>
+                <div className="alo18-form-group">
+                    <label className='alo18-label' htmlFor="title">Title:</label>
+                    <input className='alo18-input' type="text" id="title" name="title" value={title} onChange={handleChange} />
+                </div>
+
+                <div className="alo18-form-group">
+                    <label className='alo18-label' htmlFor="description">Description:</label>
+                    <textarea className ='alo18-label' id="description" name="description" value={description} onChange={handleChange}></textarea>
                 </div>
                 <img src={`http://localhost:9000/${filePath}`} alt="Step Image"
                 style={{ width: '230px', height: '200px' }} className="privatetraining-image" />
-                <div className="form-group">
-                    <label>Upload suitable image for this step:</label>
-                    <input type="file" name="file" onChange={handleImageChange}  />
+                <div className="alo18-form-group">
+                    <label className='alo18-label'>Upload suitable image for this step:</label>
+                    <input className='alo18-input' type="file" name="file" onChange={handleImageChange}  />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="contact">Contact:</label>
-                    <input type="text" id="contact" name="contact" value={contact} onChange={handleChange} pattern="[0-9]{10}" title="Contact number must be 10 digits" required />
+                <div className="alo18-form-group">
+                    <label className='alo18-label'htmlFor="contact">Contact:</label>
+                    <input className='alo18-input' type="text" id="contact" name="contact" value={contact} onChange={handleChange} pattern="[0-9]{10}" title="Contact number must be 10 digits" required />
                 </div>
 
-                <button type="submit" className="submit-button">Update</button>
+                <button className='alo18-button' type="submit" >Update</button>
             </form>
             
             <Footer />
