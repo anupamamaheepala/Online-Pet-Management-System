@@ -91,3 +91,149 @@
     cursor: pointer;
   }
   
+  .alo2 {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.alo2 h2 {
+  margin-bottom: 20px;
+}
+
+.alo2 div {
+  margin-bottom: 10px;
+}
+
+.alo2 label {
+  font-weight: bold;
+}
+
+.alo2 input[type="text"],
+.alo2 input[type="number"],
+.alo2 textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+.alo2 input[type="text"]:focus,
+.alo2 input[type="number"]:focus,
+.alo2 textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.alo2 button {
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.alo2 button:hover {
+  background-color: #606160;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal img {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.training-details-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.training-details-container h2 {
+  margin-bottom: 20px;
+}
+
+.details {
+  margin-bottom: 20px;
+}
+
+.file-section button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.action-buttons button {
+  margin-right: 20px;
+}
+
+.aloka_add_button {
+  background-color: rgb(0, 0, 0); 
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16 px t;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
