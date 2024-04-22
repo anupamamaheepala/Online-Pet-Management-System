@@ -147,9 +147,17 @@ const PrivateTrainingDetails = () => {
           </div>
         );
       case 'approved':
-        return <p>Training is already approved</p>;
+        return (
+          <p>
+            <h4>Training is already approved</h4>
+          </p>
+        );
       case 'rejected':
-        return <p>Training is already rejected</p>;
+        return (
+          <p>
+            <h4>Training is already rejected</h4>
+          </p>
+        );
       default:
         return null;
     }
@@ -163,7 +171,7 @@ const PrivateTrainingDetails = () => {
     <div>
       <Header/>
       <div className="alo2">
-        <h2>Private Training Details</h2>
+        <h2 style={{ textAlign: "center" }}>Private Training Details</h2>
         <div>
           <p><strong>Owner's Name:</strong> {training.ownerName}</p>
           <p><strong>Address:</strong> {training.address}</p>
@@ -176,7 +184,6 @@ const PrivateTrainingDetails = () => {
 
           {training.filePath && (
             <div>
-              <h3>Health Checkup File</h3>
               {training.filePath ? (
                 <>
                   <button onClick={() => handleOpenModal(`http://localhost:9000/uploads/${id}`)}>View Health Checkup Report</button>
@@ -186,10 +193,7 @@ const PrivateTrainingDetails = () => {
                       {training.filePath.endsWith('.pdf') ? (
                         <embed src={`http://localhost:9000/uploads/${id}`} type="application/pdf" width="100%" height="100%" />
                       ) : (
-                        <img
-                          src={`http://localhost:9000/uploads/${id}`}
-                          alt="Uploaded File"
-                        />
+                        <img src={`http://localhost:9000/uploads/${id}`} alt="Uploaded File" />
                       )}
                     </div>
                   )}
@@ -202,11 +206,9 @@ const PrivateTrainingDetails = () => {
         </div>
         {status !== 'rejected' && (
           <div>
-            <h3>Assign an Instructor</h3>
             <div className="trainer-container">
               <label className="trainer-label" htmlFor="selectProfession">Select Trainer:</label>
               <select
-                className="trainer_select"
                 id="selectProfession"
                 value={selectedTrainer ? selectedTrainer.value : ''}
                 onChange={(e) => {
@@ -225,7 +227,6 @@ const PrivateTrainingDetails = () => {
           </div>
         )}
         <div>
-          <h3>Application status</h3>
           {renderActionButtons()}
         </div>
       </div>
