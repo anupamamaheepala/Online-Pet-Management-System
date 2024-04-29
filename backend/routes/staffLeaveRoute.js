@@ -11,4 +11,6 @@ router.get('/getallleaves', getAllLeaves);
 // Route to approve a staff leave
 router.put('/approve/:leaveId', approveLeave);
 
+
 module.exports = router;
+

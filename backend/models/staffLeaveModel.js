@@ -24,3 +24,4 @@ const StaffLeaveSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model('StaffLeave', StaffLeaveSchema);
+

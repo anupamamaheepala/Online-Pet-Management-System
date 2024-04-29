@@ -19,12 +19,15 @@ const StaffLeaveList = () => {
     fetchData();
   }, []);
 
-  const approveLeave = async (leaveId) => {
+  // Frontend code in React component
+  const approveLeave = async (leaveId, index) => {
     try {
       await axios.put(`http://localhost:9000/staffLeave/approve/${leaveId}`);
-      // Refresh leaves data after approval
-      const response = await axios.get('http://localhost:9000/staffLeave/getallleaves');
-      setLeaves(response.data);
+      // Update the approved status of the leave
+      const updatedLeaves = [...leaves];
+      updatedLeaves[index].approved = true;
+      setLeaves(updatedLeaves);
+      // You don't need to refresh leaves data here, as it's handled in the backend
     } catch (error) {
       console.error('Error approving leave:', error);
     }
@@ -47,7 +50,7 @@ const StaffLeaveList = () => {
             </tr>
           </thead>
           <tbody>
-            {leaves.map(leave => (
+            {leaves.map((leave, index) => (
               <tr key={leave._id}>
                 <td>{leave.staffId}</td>
                 <td>{new Date(leave.StleaveFromDate).toLocaleDateString()}</td>
@@ -55,7 +58,9 @@ const StaffLeaveList = () => {
                 <td>{leave.StleaveType}</td>
                 <td>{leave.streason}</td>
                 <td>
-                  <button className='StaffLeave-Approve' onClick={() => approveLeave(leave._id)}>Approve</button>
+                  {!leave.approved && (
+                    <button className='StaffLeave-Approve' onClick={() => approveLeave(leave._id, index)}>Approve</button>
+                  )}
                   <button className='StaffLeave-Disapprove'>Disapprove</button>
                 </td>
               </tr>
