@@ -1,3 +1,4 @@
+// JavaScript (React Component)
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../css/ShopCategory.css';
@@ -26,62 +27,29 @@ const ShopCategory = (props) => {
         };
         fetchProducts();
     }, []);
+
     const handleAddToCart = async (productId) => {
         try {
-            // Replace 'user_id_here' with the actual user ID
             const customerId = 'user_id';
-        
-            const response = await axios.post('http://localhost:9000/cart', {
-                customerId,
-                productId,
-            });
-        
+            const response = await axios.post('http://localhost:9000/cart', { customerId, productId });
+
             if (response.status === 200) {
-                // Cart item added successfully
                 console.log('Product added to cart');
-                // Navigate to the cart page
                 props.history.push('/cart');
             } else {
-                // Handle error
                 console.error('Failed to add product to cart');
             }
         } catch (error) {
             console.error('Error adding product to cart:', error);
         }
     };
-    
 
-    const addToCart = async (productId) => {
-        try {
-          // Replace 'user_id_here' with the actual user ID
-          const customerId = 'user_id';
-      
-          const response = await axios.post('http://localhost:9000/cart', {
-            customerId,
-            productId,
-          });
-      
-          if (response.status === 200) {
-            // Cart item added successfully
-            console.log('Product added to cart');
-            // Navigate to the cart page
-            props.history.push('/cart');
-          } else {
-            // Handle error
-            console.error('Failed to add product to cart');
-          }
-        } catch (error) {
-          console.error('Error adding product to cart:', error);
-        }
-      };
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
     };
 
     const handleSearch = () => {
-        // Add logic to perform search here
         console.log("Searching for:", searchQuery);
-        // You can perform further actions like filtering, displaying results, etc.
     };
 
     const handleSortChange = (event) => {
@@ -90,10 +58,8 @@ const ShopCategory = (props) => {
 
     const sortedProducts = [...allProducts].sort((a, b) => {
         if (sortOption === 'date') {
-            // Sort by date
             return new Date(b.date) - new Date(a.date);
         } else if (sortOption === 'price') {
-            // Sort by price
             return a.price - b.price;
         }
     });
@@ -103,12 +69,12 @@ const ShopCategory = (props) => {
     return (
         <>
             <Header />
-            <div className="shopcategory">
+            <div className="os_shopcategory">
                 <Navbar products={allProducts} />
-                <img src={props.banner} className="shopcategory-banner" alt="" />
-                <div className="shopcategory-indexSort">
+                <img src={props.banner} className="os_shopcategory-banner" alt="" />
+                <div className="os_shopcategory-indexSort">
                     <p><span>Showing 1 - {filteredProducts.length}</span> out of {allProducts.length} Products</p>
-                    <div className="shopcategory-sort">
+                    <div className="os_shopcategory-sort">
                         Sort by
                         <select value={sortOption} onChange={handleSortChange}>
                             <option value="date">Date</option>
@@ -116,35 +82,30 @@ const ShopCategory = (props) => {
                         </select>
                     </div>
                 </div>
-                <div className="search-bar">
+                <div className="os_search-bar">
                     <input
                         type="text"
                         placeholder="Search products..."
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />
-                    <button className="search-button" onClick={handleSearch}>Search</button>
+                    <button className="os_search-button" onClick={handleSearch}>Search</button>
                 </div>
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     {filteredProducts && filteredProducts.length > 0 ? (
-                        filteredProducts.map(item => {
-                            console.log("Item category:", item.category);
-                            console.log("Props category:", props.category);
-                            return (
-                                (props.category === item.category) &&
+                        filteredProducts.map(item => (
+                            (props.category === item.category) && (
                                 <div key={item._id} className="col">
-                                    <div className="card h-100 d-flex flex-column justify-content-between">
+                                    <div className="os_card h-100 d-flex flex-column justify-content-between">
                                         <div className="d-flex justify-content-center align-items-center" style={{ height: '190px' }}>
-                                            <img src={`http://localhost:9000/${item.image}`} className="card-img-top" alt={item.itemName} style={{ width: '170px', height: 'auto', cursor: 'pointer' }} />
+                                            <img src={`http://localhost:9000/${item.image}`} className="os_card-img-top" alt={item.itemName} style={{ width: '170px', height: 'auto', cursor: 'pointer' }} />
                                         </div>
-                                        <div className="card-body text-center">
-                                            <h5 className="card-title">{item.itemName}</h5>
-                                            <p className="card-text">Price: LKR {item.price}</p>
-                                            {(item.quantity > 0) ? (
+                                        <div className="os_card-body text-center">
+                                            <h5 className="os_card-title">{item.itemName}</h5>
+                                            <p className="os_card-text">Price: LKR {item.price}</p>
+                                            {item.quantity > 0 ? (
                                                 <center>
-                                                  <button className="PCbtn-primary" onClick={() => handleAddToCart(item._id)}>Add to Cart</button>
-
-
+                                                    <button className="os_button-primary" onClick={() => handleAddToCart(item._id)}>Add to Cart</button>
                                                 </center>
                                             ) : (
                                                 <p className="text-danger">Out of Stock</p>
@@ -152,13 +113,13 @@ const ShopCategory = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                            );
-                        })
+                            )
+                        ))
                     ) : (
                         <p>No products found.</p>
                     )}
                 </div>
-                <div className="shopcategory-loadmore">
+                <div className="os_shopcategory-loadmore">
                     <Link to='/' style={{ textDecoration: 'none' }}>Explore More</Link>
                 </div>
             </div>

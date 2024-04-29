@@ -1,32 +1,31 @@
-/* vetnotifications.css */
 .vetnotification_accept_button,
 .vetnotification_reject_button {
-  margin-left: 20px !important; /* Add more space between buttons */
-  padding: 8px 12px !important; /* Padding inside the buttons */
+  margin-left: 20px !important; 
+  padding: 8px 12px !important; 
 }
 
 .vetnotification_accept_button {
-  background-color: lightgreen !important; /* Light green color */
-  color: rgb(255, 255, 255) !important; /* Change text color if desired */
+  background-color: lightgreen !important; 
+  color: rgb(255, 255, 255) !important; 
 }
 
 .vetnotification_reject_button {
-  background-color: lightcoral !important; /* Light red color */
-  color: rgb(255, 255, 255) !important; /* Change text color if desired */
+  background-color: lightcoral !important; 
+  color: rgb(255, 255, 255) !important; 
 }
 
 .vetnotification_appointment_container {
-  display: flex !important; /* Use flex layout */
-  justify-content: space-between !important; /* Align items to left and right */
-  align-items: center !important; /* Center items vertically */
+  display: flex !important; 
+  justify-content: space-between !important;
+  align-items: center !important; 
   padding: 10px !important;
 }
 
 .vetnotification_appointment_info {
-  flex-grow: 1 !important; /* Take up the remaining space */
+  flex-grow: 1 !important; 
 }
 
 .vetnotification_button_group {
-  display: flex !important; /* Use flex layout for buttons */
+  display: flex !important; 
   margin-right: 400px !important;
 }
