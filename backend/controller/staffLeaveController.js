@@ -52,24 +52,21 @@ exports.approveLeave = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-
-
+// Controller to handle approving a staff leave
 exports.approveLeave = async (req, res) => {
   try {
-    const leaveId = req.params.leaveId;
-    const leave = await StaffLeave.findById(leaveId);
+    const { leaveId } = req.params;
 
-    if (!leave) {
+    // Update the leave status to 'approved' in the database
+    const updatedLeave = await StaffLeave.findByIdAndUpdate(leaveId, { approved: true }, { new: true });
+
+    if (!updatedLeave) {
       return res.status(404).json({ message: "Leave not found" });
     }
 
-    // Mark the leave as approved
-    leave.approved = true;
-    await leave.save();
-
-    res.status(200).json({ message: "Leave approved successfully" });
+    res.status(200).json({ message: 'Leave approved successfully', data: updatedLeave });
   } catch (error) {
-    console.error('Error approving leave:', error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
   }
 };
