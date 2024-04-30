@@ -37,9 +37,11 @@ const Advertisement = () => {
         );
     }
 
-    // Filter advertisements based on search query
+    
     const filteredAdvertisements = advertisements.filter(advertisement =>
-        advertisement.pet_type && advertisement.pet_type.toLowerCase().includes(searchQuery.toLowerCase())
+        (advertisement.pet_type && advertisement.pet_type.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (advertisement.purpose && advertisement.purpose.toLowerCase().includes(searchQuery.toLowerCase()))
+
     );
 
     return (
