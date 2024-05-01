@@ -69,7 +69,7 @@ const SignIn = () => {
             <input  className="signin-input" type="password" name="password" value={password} onChange={onChange} required />
           </div>
           <div className="signin-form-group">
-            <a className='singup-a' href="#">Forgot Password?</a>
+          <Link to="/forgot-password">Forgot Password?</Link>
           </div>
           <div className="signin-form-group" style={{ textAlign: 'center' }}>
             <button className="signin-button" style={{ width: '150px' }} type="submit">Sign In</button>

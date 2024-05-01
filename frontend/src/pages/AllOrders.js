@@ -47,11 +47,9 @@ const AllOrders = () => {
                 order._id === id ? { ...order, orderPlaced: true } : order
             )
         );
-        if (filter === 'lastWeek') {
-            const lastWeek = moment().subtract(7, 'days');
-            const filtered = orders.filter(
-                (order) => moment(order.createdAt).isAfter(lastWeek)
-            );
+
+        if (filter === 'notPlaced') {
+            const filtered = orders.filter((order) => !order.orderPlaced);
             setFilteredOrders(filtered);
         } else {
             setFilteredOrders(orders);
@@ -87,15 +85,12 @@ const AllOrders = () => {
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(12);
 
-            doc.text(`Order Report`, boxX + 5, boxY + 10);
+            doc.text(`Delivery Details`, boxX + 5, boxY + 10);
             doc.text(`Name: ${order.orderName}`, boxX + 5, boxY + 20);
             doc.text(`Contact Number: ${order.orderContactNo}`, boxX + 5, boxY + 30);
             doc.text(`Address: ${order.orderAddress}`, boxX + 5, boxY + 40);
             doc.text(`Ordered Date: ${moment(order.createdAt).format('YYYY-MM-DD')}`, boxX + 5, boxY + 50);
             doc.text(`Delivery Date: ${calculateDeliveryDate(order.createdAt)}`, boxX + 5, boxY + 60);
-
-            doc.setFontSize(16);
-            doc.text(`Delivery Details`, 105, boxY - 25, null, null, 'center');
 
             doc.save(`order_report_${order.orderName}.pdf`);
         };
@@ -105,9 +100,11 @@ const AllOrders = () => {
         const filterValue = e.target.value;
         setFilter(filterValue);
 
-        if (filterValue === 'lastWeek') {
-            const lastWeek = moment().subtract(7, 'days');
-            const filtered = orders.filter((order) => moment(order.createdAt).isAfter(lastWeek));
+        if (filterValue === 'placed') {
+            const filtered = orders.filter((order) => order.orderPlaced);
+            setFilteredOrders(filtered);
+        } else if (filterValue === 'notPlaced') {
+            const filtered = orders.filter((order) => !order.orderPlaced);
             setFilteredOrders(filtered);
         } else {
             setFilteredOrders(orders);
@@ -121,7 +118,8 @@ const AllOrders = () => {
                 <label htmlFor="orderFilter">Filter Orders:</label>
                 <select id="orderFilter" onChange={handleFilterChange} value={filter}>
                     <option value="all">All Orders</option>
-                    <option value="lastWeek">Last Week Orders</option>
+                    <option value="placed">Orders Done</option>
+                    <option value="notPlaced">Orders To Be Done</option>
                 </select>
             </div>
             <h1>
@@ -149,10 +147,10 @@ const AllOrders = () => {
                             <td>{calculateDeliveryDate(order.createdAt)}</td>
                             <td>
                                 {order.orderPlaced ? (
-                                    '✔️'
+                                    'Successfully'
                                 ) : (
                                     <button
-                                        className="os_blue_button" 
+                                        className="os_blue_button"
                                         onClick={() => handleOrderPlaced(order._id)}
                                     >
                                         Place Order
@@ -161,10 +159,10 @@ const AllOrders = () => {
                             </td>
                             <td>
                                 {order.reportDownloaded ? (
-                                    '✔️'
+                                    'Successfully'
                                 ) : (
                                     <button
-                                        className="os_blue_button" 
+                                        className="os_blue_button"
                                         onClick={() => generatePDF(order)}
                                     >
                                         Download Report
