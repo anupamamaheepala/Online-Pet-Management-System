@@ -1,3 +1,5 @@
+//advertisementController.js
+
 const Ads = require("../models/advertisementModel");
 const ConfirmedAds = require("../models/confirmedAdsModel");
 

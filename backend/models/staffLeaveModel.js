@@ -20,7 +20,12 @@ const StaffLeaveSchema = new mongoose.Schema({
   streason: {
     type: String,
     required: false
+  },
+  approved: {
+    type: Boolean,
+    default: false // Default value is false, indicating leave is not approved initially
   }
 }, { timestamps: true });
 
 module.exports = mongoose.model('StaffLeave', StaffLeaveSchema);
+

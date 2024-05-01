@@ -295,7 +295,16 @@ exports.checkEmailExists = async (req, res) => {
 };
 
 
-
+exports.checkContactNumberExists = async (req, res) => {
+  try {
+    const { contactNumber } = req.params;
+    const existingCustomer = await Customer.findOne({ contactNumbers: contactNumber });
+    res.status(200).json(existingCustomer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 
 
 
