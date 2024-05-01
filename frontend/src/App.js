@@ -88,6 +88,7 @@ import StaffLogin from './pages/StaffLogin';
 import EditAdvertisement from './pages/EditAdvertisement';
 import SalaryView from './pages/SalaryView';
 import Sysmanagerhome from './pages/Sysmanagerhome';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
@@ -192,6 +193,7 @@ function App() {
 
           <Route path="/SalaryView/:id" element={<SalaryView />} />
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
+          <Route path="/forgot-password" element={<ForgotPassword/>}/>
 
 
           </Routes>
