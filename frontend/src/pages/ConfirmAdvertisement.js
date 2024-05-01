@@ -1,3 +1,5 @@
+//ConfirmAdvertisement.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
@@ -97,7 +99,7 @@ const ConfirmAdvertisement = () => {
                             <td>{ad.contact}</td>
                             <td>
                                 <div className="ma_button-container">
-                                    <button className="btn btn-warning" style={{ marginRight: '5px' }} onClick={() => handleConfirm(ad._id)}>Confirm</button>
+                                    <button className="btn btn-warning" style={{ marginRight: '5px' }} onClick={() => handleConfirm(ad._id)}>Publish</button>
                                     <button className="btn btn-danger" onClick={() => handleDelete(ad._id)}>Delete</button>
                                 </div>
                             </td>

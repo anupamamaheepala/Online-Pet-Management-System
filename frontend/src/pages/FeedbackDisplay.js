@@ -57,7 +57,11 @@ const FeedbackDisplay = () => {
     const filterFeedbackList = (feedbacks) => {
         return feedbacks.filter(feedback =>
             (!selectedStars || feedback.rating === selectedStars) &&
-            (!searchQuery || feedback.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            (!searchQuery || 
+                feedback.feedback.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                feedback.reply.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                feedback.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
         );
     };
 
@@ -103,11 +107,10 @@ const FeedbackDisplay = () => {
 
             {/*  search input  */}
             <div className="nameSearch">
-                {/* <label htmlFor="nameSearch">Search by name:</label> */}
                 <input
                     type="text"
                     id="nameSearch"
-                    placeholder="Enter full name"
+                    placeholder=""
                     value={searchQuery}
                     onChange={handleNameSearchChange}
                 />
