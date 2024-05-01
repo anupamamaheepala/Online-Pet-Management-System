@@ -3,8 +3,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* margin-top: -250px;
-    margin-bottom: -225px; */
+    margin-top: -130px;
+    margin-bottom: -200px;
   }
   
   .feedback-reply-form {
@@ -34,6 +34,7 @@
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    color: #ccc;
     
   }
   
@@ -41,5 +42,6 @@
     background-color: #ffffff;
     color: #000000;
     text-decoration: none;
+    
   }
   

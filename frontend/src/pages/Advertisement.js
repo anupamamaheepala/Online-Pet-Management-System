@@ -1,3 +1,5 @@
+//Advertisement.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -37,9 +39,11 @@ const Advertisement = () => {
         );
     }
 
-    // Filter advertisements based on search query
+    
     const filteredAdvertisements = advertisements.filter(advertisement =>
-        advertisement.pet_type && advertisement.pet_type.toLowerCase().includes(searchQuery.toLowerCase())
+        (advertisement.pet_type && advertisement.pet_type.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (advertisement.purpose && advertisement.purpose.toLowerCase().includes(searchQuery.toLowerCase()))
+
     );
 
     return (

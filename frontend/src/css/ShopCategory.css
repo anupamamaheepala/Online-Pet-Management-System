@@ -163,3 +163,36 @@
 .os_footer {
     margin-top: 50px;
 }
+/* Base style for the badge */
+/* Base style for the badge */
+.status-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 6px 10px; /* Additional padding for a softer look */
+    border-radius: 12px; /* Rounded corners */
+    font-size: 0.85em; /* Slightly larger font size */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Centered text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Light shadow for depth */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+  }
+  
+  /* Light green gradient for 'In Stock' badge with dark green text */
+  .in-stock {
+    background: linear-gradient(45deg, #a4e0a1, #78c479); /* Light green gradient */
+    color: #216b39; /* Dark green text */
+  }
+  
+  /* Light red gradient for 'Out of Stock' badge with dark red text */
+  .out-of-stock {
+    background: linear-gradient(45deg, #f8c2c1, #e69f9d); /* Light red gradient */
+    color: #a3262e; /* Dark red text */
+  }
+  
+  /* Hover effects for enhanced interactivity */
+  .status-badge:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+    transform: scale(1.05); /* Slight scale-up on hover */
+  }
+  
