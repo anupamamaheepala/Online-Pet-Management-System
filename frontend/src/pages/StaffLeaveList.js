@@ -22,11 +22,13 @@ const StaffLeaveList = () => {
   const getStatusText = (leave) => {
     if (leave.approved) {
       return 'Approved';
+    } else if (leave.status === 'Disapproved') {
+      return 'Disapproved';
     } else {
-      return 'Pending'; // You can add more conditions to handle other statuses like disapproved
+      return 'Pending';
     }
   };
-
+  
   const approveLeave = async (leaveId, index) => {
     try {
       await axios.put(`http://localhost:9000/staffLeave/approve/${leaveId}`);
@@ -39,46 +41,74 @@ const StaffLeaveList = () => {
     }
   };
 
-  return (
-    <>
-      <SystemAdminHeader />
-      <h2>Staff Leave List</h2>
-      <div className='staffLeaveListcontainer1'>
-        <table className='staffLeaveList-table'>
-          <thead>
-            <tr>
-              <th>Staff ID</th>
-              <th>Leave From Date</th>
-              <th>Leave To Date</th>
-              <th>Leave Type</th>
-              <th>Reason</th>
-              <th>Status</th>
-              <th>Action</th>
+  // Frontend code in React component
+const [disapprovalReason, setDisapprovalReason] = useState("");
+
+
+const disapproveLeave = async (leaveId, index) => {
+  try {
+    // Prompt user for disapproval reason
+    const reason = prompt("Enter reason for disapproval:");
+    if (!reason) return; // If reason is not provided, do nothing
+
+    // Send disapproval reason along with leave ID to the backend
+    await axios.put(`http://localhost:9000/staffLeave/disapprove/${leaveId}`, { reason });
+
+    // Update the local state to mark leave as disapproved and update the status
+    const updatedLeaves = [...leaves];
+    updatedLeaves[index].status = 'Disapproved'; // Update status to 'Disapproved'
+    setLeaves(updatedLeaves);
+  } catch (error) {
+    console.error('Error disapproving leave:', error);
+  }
+};
+
+
+
+return (
+  <>
+    <SystemAdminHeader />
+    <h2>Staff Leave List</h2>
+    <div className='staffLeaveListcontainer1'>
+      <table className='staffLeaveList-table'>
+        <thead>
+          <tr>
+            <th>Staff ID</th>
+            <th>Leave From Date</th>
+            <th>Leave To Date</th>
+            <th>Leave Type</th>
+            <th>Reason</th>
+            <th>Status</th>
+            
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaves.map((leave, index) => (
+            <tr key={leave._id}>
+              <td>{leave.staffId}</td>
+              <td>{new Date(leave.StleaveFromDate).toLocaleDateString()}</td>
+              <td>{new Date(leave.StleaveToDate).toLocaleDateString()}</td>
+              <td>{leave.StleaveType}</td>
+              <td>{leave.streason}</td>
+              <td>{getStatusText(leave)}</td>
+              
+              <td>
+                {!leave.approved && (
+                  <button className='StaffLeave-Approve' onClick={() => approveLeave(leave._id, index)}>Approve</button>
+                )}
+                <button className='StaffLeave-Disapprove' onClick={() => disapproveLeave(leave._id, index)}>Disapprove</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {leaves.map((leave, index) => (
-              <tr key={leave._id}>
-                <td>{leave.staffId}</td>
-                <td>{new Date(leave.StleaveFromDate).toLocaleDateString()}</td>
-                <td>{new Date(leave.StleaveToDate).toLocaleDateString()}</td>
-                <td>{leave.StleaveType}</td>
-                <td>{leave.streason}</td>
-                <td>{getStatusText(leave)}</td> {/* Display status */}
-                <td>
-                  {!leave.approved && (
-                    <button className='StaffLeave-Approve' onClick={() => approveLeave(leave._id, index)}>Approve</button>
-                  )}
-                  <button className='StaffLeave-Disapprove'>Disapprove</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <Footer />
-    </>
-  );
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <Footer />
+  </>
+);
+
+
 };
 
 export default StaffLeaveList;
