@@ -1,3 +1,5 @@
+//advertisementRoute.js
+
 const express = require("express");
 const router = express.Router();
 const multer = require('multer');
@@ -35,4 +37,8 @@ router.get('/:id', advertisementController.getAdvertisementById);
 
 // Route for updating advertisement by ID
 router.put('/:id', advertisementController.updateAdvertisementById);
+
+
+router.get("/user/:userId", advertisementController.getAdvertisementsByUserId);
+
 module.exports = router;

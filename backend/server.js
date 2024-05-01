@@ -14,7 +14,7 @@ app.use('/uploads', express.static('uploads'));
 const path = require('path')
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
+require('./schedule');
 // Importing route handlers for various endpoints
 
 const adsRoute = require("./routes/adverisementRoute");
@@ -36,7 +36,6 @@ const productsRouter = require('./routes/products');
 const stepRoutes = require('./routes/stepRoute');
 const petRoute = require("./routes/petRoute"); 
 const servicesRoute = require('./routes/ServiceRoute');
-
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");

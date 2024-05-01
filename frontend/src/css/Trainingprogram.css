@@ -112,6 +112,10 @@ body {
 }
 .trainingadd-apply-button{
   background-color: rgba(119, 16, 124, 0.876);
+  height: 40px;
+  width: 30%;
+  color: white;
+  border-radius: 5px;
 }
 
 .col.text-right {

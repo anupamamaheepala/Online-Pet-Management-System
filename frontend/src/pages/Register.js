@@ -8,7 +8,7 @@ const Register = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        contactNumbers: [''], 
+        contactNumbers: [''],
         address: '',
         password: '',
         confirmPassword: '',
@@ -17,32 +17,44 @@ const Register = () => {
     const { username, email, contactNumbers, address, password, confirmPassword } = formData;
 
     const handleInputChange = (index, event) => {
-      const updatedContactNumbers = [...contactNumbers];
-      const value = event.target.value;
-      // Validate the contact number
-      if (/^\d{0,10}$/.test(value)) {
-          updatedContactNumbers[index] = value;
-          setFormData({
-              ...formData,
-              contactNumbers: updatedContactNumbers,
-          });
-      } else {
-          // Alert the user if the input is invalid
-          alert("Contact number must be 10 digits long and contain only numbers.");
-      }
-  };
-  
+        const updatedContactNumbers = [...contactNumbers];
+        const value = event.target.value;
+        // Validate the contact number
+        if (/^\d{0,10}$/.test(value)) {
+            updatedContactNumbers[index] = value;
+            setFormData({
+                ...formData,
+                contactNumbers: updatedContactNumbers,
+            });
+        } else {
+            // Alert the user if the input is invalid
+            alert("Contact number must be 10 digits long and contain only numbers.");
+        }
+    };
 
-  const addContactNumberField = () => {
-    if (contactNumbers.length < 3) {
-        setFormData({
-            ...formData,
-            contactNumbers: [...contactNumbers, ''], 
-        });
-    } else {
-        alert("You can only add up to three contact numbers.");
-    }
-};
+    const onBlurContactNumber = async (index, event) => {
+        const value = event.target.value;
+        try {
+            const response = await axios.get(`http://localhost:9000/customer/contact-number/${value}`);
+            if (response.data) {
+                alert("Contact number already exists. Please use a different contact number.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred while checking the contact number. Please try again later.");
+        }
+    };
+
+    const addContactNumberField = () => {
+        if (contactNumbers.length < 3) {
+            setFormData({
+                ...formData,
+                contactNumbers: [...contactNumbers, ''],
+            });
+        } else {
+            alert("You can only add up to three contact numbers.");
+        }
+    };
 
     const removeContactNumberField = (index) => {
         if (contactNumbers.length > 1) {
@@ -53,7 +65,6 @@ const Register = () => {
             });
         }
     };
-    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -74,7 +85,6 @@ const Register = () => {
             const response = await axios.post("http://localhost:9000/customer/register", formData);
             console.log(response.data);
 
-            
             window.location.href = '/SignIn';
 
             //  clear the form fields after successful submission
@@ -121,23 +131,24 @@ const Register = () => {
                             {contactNumbers.map((contactNumber, index) => (
                                 <div className="registration-contact-number-group" key={index}>
                                     <input
-                                            type="tel"
-                                            name="contactNumber"
-                                            pattern="\d{10}"
-                                            maxLength={10}
-                                            value={contactNumber}
-                                            onChange={(event) => handleInputChange(index, event)}
-                                            required
+                                        type="tel"
+                                        name="contactNumber"
+                                        pattern="\d{10}"
+                                        maxLength={10}
+                                        value={contactNumber}
+                                        onChange={(event) => handleInputChange(index, event)}
+                                        onBlur={(event) => onBlurContactNumber(index, event)}
+                                        required
                                     />
 
-                                    <button type="button"  onClick={() => removeContactNumberField(index)}>Remove</button>
+                                    <button type="button" onClick={() => removeContactNumberField(index)}>Remove</button>
                                 </div>
                             ))}
                             <button type="button" className="add-contact-number-button" onClick={addContactNumberField} >
                                 Add Contact Number
                             </button>
                         </div>
-                        
+
                         <div className="registration-form-group">
                             <label>Password:</label>
                             <input type="password" name="password" value={password} onChange={handleChange} required />
@@ -150,7 +161,7 @@ const Register = () => {
                         <center><button className="registration-button" type="submit">Register</button></center>
                     </form>
                     <br />
-                    
+
                 </div>
             </div>
             <Footer />

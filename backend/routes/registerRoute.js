@@ -33,6 +33,8 @@ router.post('/reset-password/:customerId', registerController.resetPassword);
 // Check if email exists
 router.get("/email/:email", registerController.checkEmailExists);
 
+// Check if contact number exists
+router.get("/contact-number/:contactNumber", registerController.checkContactNumberExists);
 
 
 
