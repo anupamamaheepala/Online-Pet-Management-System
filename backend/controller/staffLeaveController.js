@@ -93,3 +93,35 @@ exports.disapproveLeave = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+// Controller to handle deleting a staff leave
+exports.deleteLeave = async (req, res) => {
+  try {
+    const { leaveId } = req.params;
+
+    // Find the leave by ID and delete it
+    const deletedLeave = await StaffLeave.findByIdAndDelete(leaveId);
+
+    if (!deletedLeave) {
+      return res.status(404).json({ message: "Leave not found" });
+    }
+
+    res.status(200).json({ message: 'Leave deleted successfully', data: deletedLeave });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Fetch leave details by ID
+exports.getLeaveDetails = async (req, res) => {
+  try {
+    const leaveId = req.params.leaveId;
+    const leaveDetails = await StaffLeave.findById(leaveId);
+    res.status(200).json(leaveDetails);
+  } catch (error) {
+    console.error('Error fetching leave details:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

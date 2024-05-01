@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import '../css/StaffLeaveList.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import SystemAdminHeader from '../components/SystemAdminHeader';
 
 const StaffLeaveList = () => {
@@ -29,40 +30,25 @@ const StaffLeaveList = () => {
     }
   };
   
-  const approveLeave = async (leaveId, index) => {
-    try {
-      await axios.put(`http://localhost:9000/staffLeave/approve/${leaveId}`);
-      // Update the approved status of the leave in the local state
-      const updatedLeaves = [...leaves];
-      updatedLeaves[index].approved = true; // Update the 'approved' field to true
-      setLeaves(updatedLeaves);
-    } catch (error) {
-      console.error('Error approving leave:', error);
-    }
-  };
-
-  // Frontend code in React component
-const [disapprovalReason, setDisapprovalReason] = useState("");
 
 
-const disapproveLeave = async (leaveId, index) => {
-  try {
-    // Prompt user for disapproval reason
-    const reason = prompt("Enter reason for disapproval:");
-    if (!reason) return; // If reason is not provided, do nothing
-
-    // Send disapproval reason along with leave ID to the backend
-    await axios.put(`http://localhost:9000/staffLeave/disapprove/${leaveId}`, { reason });
-
-    // Update the local state to mark leave as disapproved and update the status
-    const updatedLeaves = [...leaves];
-    updatedLeaves[index].status = 'Disapproved'; // Update status to 'Disapproved'
-    setLeaves(updatedLeaves);
-  } catch (error) {
-    console.error('Error disapproving leave:', error);
-  }
+const handleViewDetails = (leaveId) => {
+  // Logic to handle viewing details
 };
 
+const handleDeleteLeave = async (leaveId, index) => {
+  try {
+    // Send request to delete the leave record
+    await axios.delete(`http://localhost:9000/staffLeave/delete/${leaveId}`);
+    
+    // Update the local state to remove the deleted leave
+    const updatedLeaves = [...leaves];
+    updatedLeaves.splice(index, 1); // Remove the leave at the specified index
+    setLeaves(updatedLeaves);
+  } catch (error) {
+    console.error('Error deleting leave:', error);
+  }
+};
 
 
 return (
@@ -79,8 +65,8 @@ return (
             <th>Leave Type</th>
             <th>Reason</th>
             <th>Status</th>
+            <th>To Do</th> 
             
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -92,13 +78,12 @@ return (
               <td>{leave.StleaveType}</td>
               <td>{leave.streason}</td>
               <td>{getStatusText(leave)}</td>
-              
               <td>
-                {!leave.approved && (
-                  <button className='StaffLeave-Approve' onClick={() => approveLeave(leave._id, index)}>Approve</button>
-                )}
-                <button className='StaffLeave-Disapprove' onClick={() => disapproveLeave(leave._id, index)}>Disapprove</button>
+               <Link to={`/leave-details/${leave._id}`} className='View-Details'>View Details</Link>
+
+                <button className='Delete-Leave' onClick={() => handleDeleteLeave(leave._id, index)}>Delete</button>
               </td>
+              
             </tr>
           ))}
         </tbody>
