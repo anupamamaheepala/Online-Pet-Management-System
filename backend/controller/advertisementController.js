@@ -190,3 +190,15 @@ exports.updateConfirmedAd = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
       }
 };
+
+
+exports.getAdvertisementsByUserId = async (req, res) => {
+  try {
+      const userId = req.params.userId;
+      const advertisements = await Ads.find({ userId }); // Assuming userId is the field in the Ads model that represents the user ID
+      res.json(advertisements);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error" });
+  }
+};
