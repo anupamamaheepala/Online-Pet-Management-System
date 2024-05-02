@@ -36,6 +36,7 @@ const productsRouter = require('./routes/products');
 const stepRoutes = require('./routes/stepRoute');
 const petRoute = require("./routes/petRoute"); 
 const servicesRoute = require('./routes/ServiceRoute');
+const cartRoute = require("./routes/cartRoute")
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -68,6 +69,7 @@ app.use('/pets', petRoute);
 app.use('/services', servicesRoute);
 app.use('/salary', salaryRoute);
 //app.use('/banktransadmin', banktransadminRoute);
+app.use('/cart', cartRoute);
 
 
 // Route to handle requests to the root URL

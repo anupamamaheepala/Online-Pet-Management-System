@@ -1,34 +1,41 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
-// Create a context for the cart
 const CartContext = createContext();
 
-// CartProvider component
-export const CartProvider = ({ children }) => {
-    // State to hold the cart items
-    const [cart, setCart] = useState([]);
+export const useCart = () => useContext(CartContext);
 
-    // Function to add an item to the cart
-    const addToCart = (product) => {
-        setCart([...cart, product]);
-    };
+const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState(null);
+  const customerId = 'user_id'; // Placeholder, replace with actual user ID logic
 
-    // Function to remove an item from the cart
-    const removeFromCart = (productId) => {
-        setCart(cart.filter(item => item._id !== productId));
-    };
+  const fetchCart = async () => {
+    try {
+      const response = await axios.get(`http://localhost:9000/cart/${customerId}`);
+      setCart(response.data);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  };
 
-    // Function to calculate the total price of items in the cart
-    const calculateTotal = () => {
-        return cart.reduce((total, item) => total + item.price, 0);
-    };
+  const addToCart = async (productId) => {
+    try {
+      const response = await axios.post('http://localhost:9000/cart', { customerId, productId });
+      setCart(response.data.cart); // Update the cart state
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
 
-    return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, calculateTotal }}>
-            {children}
-        </CartContext.Provider>
-    );
+  useEffect(() => {
+    fetchCart(); // Fetch the cart when the component mounts
+  }, []);
+
+  return (
+    <CartContext.Provider value={{ cart, addToCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
-// Custom hook to access the cart context
-export const useCart = () => useContext(CartContext);
+export { CartProvider }; 
