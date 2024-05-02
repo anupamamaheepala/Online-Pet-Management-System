@@ -12,7 +12,7 @@ const OrderForm = () => {
     return today.toISOString().split('T')[0]; // Format to 'yyyy-mm-dd'
   };
 
-  // Set initial form state, with current date for 'deliveryDate'
+  // Set initial form state
   const [formData, setFormData] = useState({
     orderName: '',
     orderContactNo: '',
@@ -30,8 +30,26 @@ const OrderForm = () => {
     }));
   };
 
+  // Function to allow only numeric characters in the contact number field
+  const onKeyPress = (e) => {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode < 48 || charCode > 57) { // Prevent non-numeric input
+      e.preventDefault();
+    }
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    // Ensure the contact number is exactly 10 digits
+    if (orderContactNo.length !== 10) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Contact Number',
+        text: 'Please enter a valid 10-digit contact number.',
+      });
+      return;
+    }
 
     try {
       await axios.post('http://localhost:9000/orders/add', formData);
@@ -41,6 +59,7 @@ const OrderForm = () => {
         text: 'Your order has been placed successfully!',
       });
 
+      // Reset form data
       setFormData({
         orderName: '',
         orderContactNo: '',
@@ -67,7 +86,7 @@ const OrderForm = () => {
         </div>
         <div className="form-group">
           <label htmlFor="orderContactNo">Contact No:</label>
-          <input type="tel" id="orderContactNo" name="orderContactNo" maxLength={10} value={orderContactNo} onChange={onChange} />
+          <input type="tel" id="orderContactNo" name="orderContactNo" maxLength={10} value={orderContactNo} onChange={onChange} onKeyPress={onKeyPress} />
         </div>
         <div className="form-group">
           <label htmlFor="orderAddress">Address:</label>
@@ -80,7 +99,7 @@ const OrderForm = () => {
         <button type="submit" className="submit-button">Place Order</button>
       </form>
       <div className="important-note">
-        <p>** Important: We deliver within 5 working days. Deliveries do not occur on Saturdays or Sundays. **</p>
+        <p>** Important: We deliver within 5-10 working days. Deliveries do not occur on Saturdays or Sundays. **</p>
       </div>
       <Footer />
     </>

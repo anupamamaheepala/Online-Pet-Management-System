@@ -33,7 +33,17 @@ router.post('/reset-password/:customerId', registerController.resetPassword);
 // Check if email exists
 router.get("/email/:email", registerController.checkEmailExists);
 
+// Check if contact number exists
+router.get("/contact-number/:contactNumber", registerController.checkContactNumberExists);
 
+//to handle OTP generation and sending
+router.post('/forgot-password', registerController.generateAndSendOTP);
+
+//to handle OTP verification
+router.post('/verify-otp', registerController.verifyOTP);
+
+//to change the password if otp correct
+router.post('/change-password', registerController.changePassword);
 
 
 module.exports = router;

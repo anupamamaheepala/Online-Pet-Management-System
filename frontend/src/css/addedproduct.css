@@ -155,3 +155,15 @@
 .report-button:hover {
   background-color: #0056b3;
 }
+
+.important-note {
+  background-color: #f2d7d5; /* Light red/pink background */
+  border: 2px solid #e74c3c; /* Dark red border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Padding inside the box */
+  font-weight: bold; /* Bold text */
+  color: #c0392b; /* Dark red text */
+  text-align: center; /* Centered text */
+  margin-top: 20px;
+  margin-bottom: 20px; /* Space between form and note */
+}
