@@ -9,7 +9,7 @@ const PetProfile = () => {
   const { petId } = useParams();
   const [petData, setPetData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
     const fetchPetData = async () => {
       try {
@@ -24,12 +24,17 @@ const PetProfile = () => {
     fetchPetData();
   }, [petId]);
 
+  
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this pet profile?");
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:9000/pets/${petId}`);
+        const response = await axios.delete(`http://localhost:9000/pets/${petId}`);
+        const customerId = response.data.customerId; // Extract customerId from the response
+  
         alert("Deletion successful");
+        // Navigate to MyPets page of the relevant customer after deletion
+        window.location.href = `/my-pets/${customerId}`;
       } catch (error) {
         console.error("Error deleting pet profile:", error);
         alert("Error deleting pet profile");
@@ -37,7 +42,8 @@ const PetProfile = () => {
     } else {
       alert("Deletion cancelled");
     }
-  };
+  };  
+  
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -68,6 +74,8 @@ const PetProfile = () => {
   
         setPetData({ ...petData, profilePhoto: '' });
         alert('Profile photo deleted successfully');
+
+       
       } catch (error) {
         console.error('Failed to delete profile photo:', error);
         alert('Failed to delete profile photo');

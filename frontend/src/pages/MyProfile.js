@@ -33,7 +33,11 @@ const MyProfile = () => {
       try {
         await axios.delete(`http://localhost:9000/customer/${customerId}`);
         alert('Profile deleted successfully');
-        window.location.href = '/';
+        // Remove user data from local storage
+      localStorage.removeItem('userData');
+
+      // Redirect to the registration page
+      window.location.href = '/Register';
       } catch (error) {
         console.error(error);
         alert('Failed to delete profile');
@@ -51,20 +55,20 @@ const onFileChange = async (e) => {
   formData.append('profilePhoto', file);
 
   try {
-      const res = await axios.put(`http://localhost:9000/customer/profile-photo/${customerId}`, formData, {
-          headers: {
-              'Content-Type': 'multipart/form-data'
-          }
-      });
+    const res = await axios.put(`http://localhost:9000/customer/profile-photo/${customerId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
-      // Update the profile photo URL in the state with the URL returned by the server
-      setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
+    // Update the profile photo URL in the state with the URL returned by the server
+    setCustomerData({ ...customerData, profilePhoto: res.data.profilePhoto });
 
-      // Show a success message
-      alert('Profile photo uploaded successfully');
+    // Show a success message
+    alert('Profile photo uploaded successfully');
   } catch (error) {
-      console.error(error);
-      alert('Failed to upload profile photo');
+    console.error(error);
+    alert('Failed to upload profile photo');
   }
 };
 
@@ -77,11 +81,6 @@ const handleDeleteProfilePhoto = async () => {
       // After successful deletion, update the customer data state
       setCustomerData({ ...customerData, profilePhoto: '' });
       alert('Profile photo deleted successfully');
-
-      setTimeout(() => {
-        window.location.href = '/Register';
-      }, 3000); 
-
     } catch (error) {
       console.error(error);
       alert('Failed to delete profile photo');
@@ -93,10 +92,11 @@ const handleDeleteProfilePhoto = async () => {
 
 
 
-
   return (
     <>
-      <Header profilePhoto={customerData && customerData.profilePhoto}/>
+      <Header profilePhoto={customerData?.profilePhoto} />
+
+
 
       <div className="MyProfileContainer_custom">
         {loading ? (

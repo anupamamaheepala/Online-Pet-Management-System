@@ -19,8 +19,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-
-
 // Schema for password validation
 const schema = new passwordValidator();
 schema
@@ -105,7 +103,6 @@ exports.getAllCustomers = async (req, res) => {
   }
 };
 
-
 exports.getCustomerById = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
@@ -124,7 +121,6 @@ exports.getCustomerById = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch customer details" });
   }
 };
-
 
 // Update customer details
 exports.updateCustomer = async (req, res) => {
@@ -180,8 +176,6 @@ exports.signIn = async (req, res) => {
   }
 };
 
-
-
 exports.resetPassword = async (req, res) => {
   const { customerId } = req.params;
   const { existingPassword, newPassword } = req.body;
@@ -214,9 +208,6 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-
-
-
 //function to upload profile photo
 exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
   try {
@@ -244,8 +235,6 @@ exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) =>
       res.status(500).json({ message: 'Server error' });
   }
 }];
-
-
 
 // Function to delete profile photo
 exports.deleteProfilePhoto = async (req, res) => {
@@ -306,8 +295,6 @@ exports.checkContactNumberExists = async (req, res) => {
   }
 };
 
-
-
 // Generate OTP
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000); // Generate a random 6-digit OTP
@@ -353,7 +340,6 @@ exports.generateAndSendOTP = async (req, res) => {
   }
 };
 
-
 // Function to verify OTP
 exports.verifyOTP = async (req, res) => {
   const { email, otp } = req.body;
@@ -375,59 +361,7 @@ exports.verifyOTP = async (req, res) => {
   }
 };
 
-// exports.changePassword = async (req, res) => {
-//   const { email, newPassword } = req.body;
-
-//   try {
-//     // Find the user by email
-//     const user = await Customer.findOne({ email });
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
-
-//     // Hash the new password
-//     const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-//     // Update the user's password in the database
-//     user.password = hashedPassword;
-//     await user.save();
-
-//     return res.status(200).json({ message: 'Password changed successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ message: 'Server error' });
-//   }
-// };
-// exports.changePassword = async (req, res) => {
-//   const { email, newPassword, confirmPassword } = req.body;
-
-//   try {
-//     // Find the user by email
-//     const user = await Customer.findOne({ email });
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
-
-//     // Check if newPassword and confirmPassword match
-//     if (newPassword !== confirmPassword) {
-//       return res.status(400).json({ message: 'New password and confirm password should be the same' });
-//     }
-
-//     // Hash the new password
-//     const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-//     // Update the user's password in the database
-//     user.password = hashedPassword;
-//     await user.save();
-
-//     return res.status(200).json({ message: 'Password changed successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ message: 'Server error' });
-//   }
-// };
+//function to change password when password forgot
 exports.changePassword = async (req, res) => {
   const { email, newPassword, confirmPassword } = req.body;
 

@@ -9,6 +9,7 @@ const MyPets = () => {
   const { customerId } = useParams();
   const [customerPets, setCustomerPets] = useState([]);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const fetchCustomerPets = async () => {
