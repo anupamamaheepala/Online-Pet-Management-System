@@ -20,13 +20,14 @@ const StaffLeaveList = () => {
     fetchData();
   }, []);
 
+
   const getStatusText = (leave) => {
     if (leave.approved) {
-      return 'Approved';
+      return <span style={{ color: 'green' }}>Approved</span>;
     } else if (leave.status === 'Disapproved') {
-      return 'Disapproved';
+      return <span style={{ color: 'red' }}>Rejected</span>;
     } else {
-      return 'Pending';
+      return <span style={{ color: 'black' }}>Pending</span>;
     }
   };
   
@@ -54,8 +55,10 @@ const handleDeleteLeave = async (leaveId, index) => {
 return (
   <>
     <SystemAdminHeader />
-    <h2>Staff Leave List</h2>
+    <br></br>
+    <center><h2>Staff Leave List</h2></center>
     <div className='staffLeaveListcontainer1'>
+    
       <table className='staffLeaveList-table'>
         <thead>
           <tr>
@@ -65,7 +68,7 @@ return (
             <th>Leave Type</th>
             <th>Reason</th>
             <th>Status</th>
-            <th>To Do</th> 
+            <th>Actions</th> 
             
           </tr>
         </thead>
@@ -89,6 +92,7 @@ return (
         </tbody>
       </table>
     </div>
+    <br></br>
     <Footer />
   </>
 );
