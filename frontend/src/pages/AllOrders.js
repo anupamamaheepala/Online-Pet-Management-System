@@ -27,29 +27,69 @@ const AllOrders = () => {
     const [filter, setFilter] = useState('all');
 
     useEffect(() => {
-        axios
-            .get('http://localhost:9000/orders/all')
-            .then((res) => {
+        const fetchOrders = async () => {
+            try {
+                const res = await axios.get('http://localhost:9000/orders/all');
                 const initialOrders = res.data.map((order) => ({
                     ...order,
                     orderPlaced: false,
                     reportDownloaded: false,
                 }));
-                setOrders(initialOrders);
-                setFilteredOrders(initialOrders);
-            })
-            .catch((err) => console.error(err));
+
+                // Restore orderPlaced status from local storage
+                const confirmedOrders = JSON.parse(
+                    localStorage.getItem('confirmedOrders') || '[]'
+                );
+                const updatedOrders = initialOrders.map((order) => ({
+                    ...order,
+                    orderPlaced: confirmedOrders.includes(order._id),
+                }));
+
+                setOrders(updatedOrders);
+                setFilteredOrders(updatedOrders);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchOrders();
     }, []);
 
     const handleOrderPlaced = (id) => {
-        setOrders((prevOrders) =>
-            prevOrders.map((order) =>
-                order._id === id ? { ...order, orderPlaced: true } : order
-            )
+        // Update orderPlaced state
+        const updatedOrders = orders.map((order) =>
+            order._id === id ? { ...order, orderPlaced: true } : order
         );
+        setOrders(updatedOrders);
+
+        // Store confirmed order in local storage
+        const confirmedOrders = JSON.parse(
+            localStorage.getItem('confirmedOrders') || '[]'
+        );
+        if (!confirmedOrders.includes(id)) {
+            confirmedOrders.push(id);
+            localStorage.setItem('confirmedOrders', JSON.stringify(confirmedOrders));
+        }
 
         if (filter === 'notPlaced') {
-            const filtered = orders.filter((order) => !order.orderPlaced);
+            const filtered = updatedOrders.filter((order) => !order.orderPlaced);
+            setFilteredOrders(filtered);
+        } else {
+            setFilteredOrders(updatedOrders);
+        }
+    };
+
+    const handleFilterChange = (e) => {
+        const filterValue = e.target.value;
+        setFilter(filterValue);
+
+        if (filterValue === 'placed') {
+            const filtered = orders.filter((order) => order.orderPlaced);
+            setFilteredOrders(filtered);
+        } else if (filterValue === 'notPlaced') {
+            const filtered = orders.filter(
+                (order) => !order.orderPlaced
+            );
             setFilteredOrders(filtered);
         } else {
             setFilteredOrders(orders);
@@ -96,27 +136,16 @@ const AllOrders = () => {
         };
     };
 
-    const handleFilterChange = (e) => {
-        const filterValue = e.target.value;
-        setFilter(filterValue);
-
-        if (filterValue === 'placed') {
-            const filtered = orders.filter((order) => order.orderPlaced);
-            setFilteredOrders(filtered);
-        } else if (filterValue === 'notPlaced') {
-            const filtered = orders.filter((order) => !order.orderPlaced);
-            setFilteredOrders(filtered);
-        } else {
-            setFilteredOrders(orders);
-        }
-    };
-
     return (
         <>
             <StockManagerHeader />
             <div>
                 <label htmlFor="orderFilter">Filter Orders:</label>
-                <select id="orderFilter" onChange={handleFilterChange} value={filter}>
+                <select
+                    id="orderFilter"
+                    onChange={handleFilterChange}
+                    value={filter}
+                >
                     <option value="all">All Orders</option>
                     <option value="placed">Orders Done</option>
                     <option value="notPlaced">Orders To Be Done</option>

@@ -1,54 +1,73 @@
 /* StaffLeaveList.css */
 
-.staffLeaveListcontainer1 {
-    margin: 20px;
-  }
-  
-  .staffLeaveList-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .staffLeaveList-table th,
-  .staffLeaveList-table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .staffLeaveList-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .staffLeaveList-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .staffLeaveList-table tr:hover {
-    background-color: #f2f2f2;
-  }
+.staffLeaveList-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
-.StaffLeave-Approve,
-.StaffLeave-Disapprove {
-  padding: 6px 12px;
+.staffLeaveList-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.staffLeaveList-table th,
+.staffLeaveList-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.staffLeaveList-table th {
+  background-color: #f2f2f2;
+  text-align: center; /* Center align text in table headers */
+}
+
+.staffLeaveList-table td {
+  background-color: #ffffff;
+  text-align: center; /* Center align text in table cells */
+}
+
+.staffLeaveList-table th:first-child,
+.staffLeaveList-table td:first-child {
+  border-left: none;
+}
+
+.staffLeaveList-table th:last-child,
+.staffLeaveList-table td:last-child {
+  border-right: none;
+}
+
+.staffLeaveList-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.staffLeaveList-table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.View-Details,
+.Delete-Leave {
+  padding: 6px 10px;
   border: none;
-  border-radius: 4px;
+  color: #ffffff;
   cursor: pointer;
+  text-decoration: none;
+  border-radius: 4px;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
-
-.StaffLeave-Disapprove {
-  background-color: #f44336;
-  color: white;
-}
- 
-.StaffLeave-Approve {
-  background-color: #4caf50;
-  color: white;
+.View-Details {
+  background-color: black; /* Black for View Details button */
 }
 
-.StaffLeave-Disapprove:hover,
-.StaffLeave-Approve:hover {
-  opacity: 0.8;
+.Delete-Leave {
+  background-color: red; /* Red for Delete button */
+}
+
+/* Add gap between buttons */
+.Delete-Leave {
+  margin-right: 10px; /* Adjust as needed */
 }
