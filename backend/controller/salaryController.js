@@ -45,6 +45,7 @@ exports.getSalary = async (req, res) => {
         staffId: staff.staffId,
         firstName: staff.sfirstname,
         lastName: staff.slastname,
+        designation: staff.designation,
         message: 'Salary not assigned'
       });
     }

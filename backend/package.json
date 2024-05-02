@@ -14,10 +14,14 @@
     "mongoose": "^8.1.2",
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.3",
+<<<<<<< HEAD
 
 
     "node-mailer": "^0.1.1",
 
+=======
+    "node-mailer": "^0.1.1",
+>>>>>>> de2161969bf90d5151f2ef1b3511bf0f54e139f0
     "nodemailer": "^6.9.13",
     "password-validator": "^5.3.0",
     "path": "^0.12.7"
