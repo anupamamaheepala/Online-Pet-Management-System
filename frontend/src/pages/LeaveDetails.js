@@ -35,11 +35,10 @@ const LeaveDetails = () => {
   const approveLeave = async () => {
     try {
       await axios.put(`http://localhost:9000/staffLeave/approve/${leaveId}`);
-      // Update the local state to mark leave as approved
-      setLeaveDetails(prevState => ({
-        ...prevState,
-        status: 'Approved'
-      }));
+      // Fetch updated leave details after approval
+      const response = await axios.get(`http://localhost:9000/staffLeave/details/${leaveId}`);
+      // Update the local state with the updated leave details
+      setLeaveDetails(response.data);
     } catch (error) {
       console.error('Error approving leave:', error);
     }
@@ -51,15 +50,15 @@ const LeaveDetails = () => {
       if (!reason) return;
   
       await axios.put(`http://localhost:9000/staffLeave/disapprove/${leaveId}`, { reason });
-      // Update the local state to mark leave as disapproved
-      setLeaveDetails(prevState => ({
-        ...prevState,
-        status: 'Disapproved'
-      }));
+      // Fetch updated leave details after disapproval
+      const response = await axios.get(`http://localhost:9000/staffLeave/details/${leaveId}`);
+      // Update the local state with the updated leave details
+      setLeaveDetails(response.data);
     } catch (error) {
       console.error('Error disapproving leave:', error);
     }
   };
+  
   
   
 

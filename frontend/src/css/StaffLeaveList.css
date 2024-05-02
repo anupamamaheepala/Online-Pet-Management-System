@@ -8,7 +8,8 @@
 .staffLeaveList-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .staffLeaveList-table th,
@@ -20,10 +21,12 @@
 
 .staffLeaveList-table th {
   background-color: #f2f2f2;
+  text-align: center; /* Center align text in table headers */
 }
 
 .staffLeaveList-table td {
   background-color: #ffffff;
+  text-align: center; /* Center align text in table cells */
 }
 
 .staffLeaveList-table th:first-child,
@@ -68,6 +71,3 @@
 .Delete-Leave {
   margin-right: 10px; /* Adjust as needed */
 }
-
-
-
