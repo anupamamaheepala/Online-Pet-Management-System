@@ -103,6 +103,11 @@ function UpdateSalary(props) {
         }
         };
 
+        const handleRegenerateSalary = () => {
+            window.location.href = `/RegenerateSalary?staffId=${staffId}&firstName=${firstName}&lastName=${lastName}`;
+        };
+        
+
     return (
         <>
             <Header />
@@ -158,6 +163,7 @@ function UpdateSalary(props) {
                     </div>
                    <center> 
                     <button type="submit" className='UpdateStaffCalculate'>Update Salary</button>
+                    <button onClick={handleRegenerateSalary} className='RegenerateSalary'>Regenerate Salary</button>
                     <Link to="/StaffList" className="edit-staff-link-button">
                     <button className="edit-staff-button">Back to All Staff List</button>
                     </Link>

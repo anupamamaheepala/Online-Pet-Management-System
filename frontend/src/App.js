@@ -91,6 +91,7 @@ import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
 import { CartProvider } from './Context/CartContext'; // Verify the path
 import AppliedLeaves from './pages/AppliedLeaves';
+import RegenerateSalary from './pages/RegenerateSalary';
 
 
 
@@ -200,8 +201,8 @@ function App() {
           <Route path="/leave-details/:leaveId" element={<LeaveDetails />} />
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
-
-
+          <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          
 
           </Routes>
         </CartProvider>
