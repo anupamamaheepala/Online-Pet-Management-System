@@ -90,6 +90,7 @@ import Sysmanagerhome from './pages/Sysmanagerhome';
 import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
 import { CartProvider } from './Context/CartContext'; // Verify the path
+import AppliedLeaves from './pages/AppliedLeaves';
 
 
 
@@ -198,6 +199,7 @@ function App() {
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
           <Route path="/leave-details/:leaveId" element={<LeaveDetails />} />
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
+          <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
 
 
 

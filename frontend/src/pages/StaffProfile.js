@@ -70,9 +70,9 @@ const StaffProfile = () => {
 
           <div className="StaffProfilenavigation-row">
               
-          <Link className="staffProfile-leave-btn" to={`/StaffLeaveForm/${staff.staffId}?staffId=${staff.staffId}&sfirstname=${staff.sfirstname}&slastname=${staff.slastname}`}>
-            Apply for Leave </Link>
-              <Link to={`/applied-leaves/${id}`} className="nav-link">Applied Leaves</Link>
+              <Link className="staffProfile-leave-btn" to={`/StaffLeaveForm/${staff.staffId}?staffId=${staff.staffId}&sfirstname=${staff.sfirstname}&slastname=${staff.slastname}`}>
+                 Apply for Leave </Link>
+               <Link to={`/applied-leaves/${id}`} className="nav-link">Applied Leaves</Link>
               <Link to={`/SalaryView/${id}`} className="staffProfile-view-salary-btn">View Salary</Link>
             </div>
           
