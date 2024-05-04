@@ -16,7 +16,6 @@ const AllAdvertisements = () => {
   const [editAdvertisementId, setEditAdvertisementId] = useState(null);
   const [editingAdvertisement, setEditingAdvertisement] = useState(null);
   const [advertisementid, setAdvertisementId] = useState(null);
-
   const [formData, setFormData] = useState({
     ownerName: '',
     email: '',
@@ -42,6 +41,16 @@ const AllAdvertisements = () => {
     }
   };
 
+  // Function to calculate the duration in days and hours
+  const calculateDuration = (createdAt) => {
+    const now = new Date();
+    const createdDate = new Date(createdAt);
+    const diffInMs = now - createdDate;
+    const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    return `${days} days, ${hours} hours`;
+  };
+
   const handleEdit = (id) => {
     Swal.fire({
       title: 'Edit Advertisement',
@@ -57,7 +66,6 @@ const AllAdvertisements = () => {
       }
     });
   };
-
 
   const generatePdf = () => {
     const doc = new jsPDF();
@@ -97,7 +105,6 @@ const AllAdvertisements = () => {
           fillColor: [0, 0, 0],
           textColor: [255, 255, 255],
           fontStyle: 'bold',
-          
         },
       });
       doc.save('published_ads.pdf');
@@ -118,67 +125,12 @@ const AllAdvertisements = () => {
       alert('Deletion cancelled.');
     }
   };
-  const handleImageClick = (imageURL) => {
-    setSelectedImage(imageURL);
-  };
-
-  
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, filePath: e.target.files[0] });
-  };
-  const handleCancel = () => {
-    setEditingAdvertisement(null);
-    setFormData({
-      ownerName: '',
-      email: '',
-      pet_type: '',
-      Breed: '',
-      purpose: '',
-      description: '',
-      contact: '',
-      filePath: null
-    });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const formDataToSend = new FormData();
-      for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
-      }
-
-      await axios.put(`http://localhost:9000/confirmedads/confirmedads/${editingAdvertisement._id}`, formDataToSend);
-      alert('Advertisement updated successfully');
-      setEditingAdvertisement(null);
-      setFormData({
-        ownerName: '',
-        email: '',
-        pet_type: '',
-        Breed: '',
-        purpose: '',
-        description: '',
-        contact: '',
-        filePath: null
-      });
-      getAllConfirmedAdvertisements();
-    } catch (error) {
-      console.error('Error updating advertisement:', error);
-      alert('Failed to update advertisement');
-    }
-  };
 
   return (
     <>
       <AdsHeader />
       <div  style={{ textAlign: 'right' }}>
-      <Link to="/ConfirmAdvertisement" className="ma_add_button">Pending advertisements</Link>
-
+        <Link to="/ConfirmAdvertisement" className="ma_add_button">Pending advertisements</Link>
         <button className="ma_add_button"  onClick={generatePdf}>
           Download all published advertisements report
         </button>
@@ -196,6 +148,7 @@ const AllAdvertisements = () => {
             <th>Description</th>
             <th>Pet's image</th>
             <th>Contact</th>
+            <th>Duration</th>
             <th>Manage</th>
           </tr>
         </thead>
@@ -216,12 +169,13 @@ const AllAdvertisements = () => {
                 />
               </td>
               <td>{advertisement.contact}</td>
+              <td>{calculateDuration(advertisement.createdAt)}</td>
               <td>
-              <div className="ma_button-container">
-              <Link to={`/EditAdvertisement/${advertisement._id}`}>
-  <button className="btn btn-warning" onClick={() => handleEdit(advertisement._id)}>Edit</button>
-</Link>
-&nbsp;
+                <div className="ma_button-container">
+                  <Link to={`/EditAdvertisement/${advertisement._id}`}>
+                    <button className="btn btn-warning" onClick={() => handleEdit(advertisement._id)}>Edit</button>
+                  </Link>
+                  &nbsp;
                   <button className="btn btn-danger" onClick={() => handleDelete(advertisement._id)}>Delete</button>
                 </div>
               </td>

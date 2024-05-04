@@ -96,15 +96,70 @@ router.get('/all', async (req, res) => {
 
 module.exports = router;
 
+// // POST route to handle approval of a transaction
+// router.put('/approve/:transactionId', async (req, res) => {
+//   try {
+//     const transaction = await BankTransaction.findById(req.params.transactionId);
+//     if (!transaction) {
+//       return res.status(404).json({ error: 'Transaction not found' });
+//     }
+//     transaction.status = 'approved'; // Update status to 'approved'
+//     await transaction.save();
+//     res.json(transaction);
+//   } catch (error) {
+//     console.error('Error approving transaction: ', error);
+//     res.status(500).json({ error: 'Error approving transaction' });
+//   }
+// });
+
 // POST route to handle approval of a transaction
+const nodemailer = require('nodemailer');
 router.put('/approve/:transactionId', async (req, res) => {
   try {
-    const transaction = await BankTransaction.findById(req.params.transactionId);
+    const transaction = await BankTransaction.findById(req.params.transactionId).populate('payer');
     if (!transaction) {
       return res.status(404).json({ error: 'Transaction not found' });
     }
     transaction.status = 'approved'; // Update status to 'approved'
     await transaction.save();
+
+    // Send email to customer
+    const transporter = nodemailer.createTransport({
+      // Configure your email provider here
+      // Example: Gmail
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL, // Your email
+        pass: process.env.bpassword, // Your password
+      },
+    });
+
+    const mailOptions = {
+    from: 'petzonemanagement@gmail.com', // Sender address
+      to: transaction.payer.email,
+      subject: 'Payment Confirmation',
+      html: `
+        <h1>Your payment was successfully received!</h1>
+        <p>Thank you for choosing PetZone Animal Hospital.</p>
+        <h2>Payment Details:</h2>
+        <ul>
+          <li><strong>Name:</strong> ${transaction.payer.name}</li>
+          <li><strong>Email:</strong> ${transaction.payer.email}</li>
+          <li><strong>Purpose:</strong> ${transaction.payer.purpose}</li>
+          <li><strong>Amount:</strong> ${transaction.payer.amount}</li>
+        </ul>
+        <p>Payment Status: ${transaction.status}</p>
+      `,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+
     res.json(transaction);
   } catch (error) {
     console.error('Error approving transaction: ', error);
@@ -112,15 +167,61 @@ router.put('/approve/:transactionId', async (req, res) => {
   }
 });
 
+// // POST route to handle disapproval of a transaction
+// router.put('/disapprove/:transactionId', async (req, res) => {
+//   try {
+//     const transaction = await BankTransaction.findById(req.params.transactionId);
+//     if (!transaction) {
+//       return res.status(404).json({ error: 'Transaction not found' });
+//     }
+//     transaction.status = 'disapproved'; // Update status to 'disapproved'
+//     await transaction.save();
+//     res.json(transaction);
+//   } catch (error) {
+//     console.error('Error disapproving transaction: ', error);
+//     res.status(500).json({ error: 'Error disapproving transaction' });
+//   }
+// });
+
 // POST route to handle disapproval of a transaction
 router.put('/disapprove/:transactionId', async (req, res) => {
   try {
-    const transaction = await BankTransaction.findById(req.params.transactionId);
+    const transaction = await BankTransaction.findById(req.params.transactionId).populate('payer');
     if (!transaction) {
       return res.status(404).json({ error: 'Transaction not found' });
     }
     transaction.status = 'disapproved'; // Update status to 'disapproved'
     await transaction.save();
+
+    // Send email to customer
+    const transporter = nodemailer.createTransport({
+      // Configure your email provider here
+      // Example: Gmail
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL, // Your email
+        pass: process.env.dispassword, // Your password
+      },
+    });
+
+    const mailOptions = {
+      from: 'petzonemanagement@gmail.com',
+      to: transaction.payer.email,
+      subject: 'Payment Unsuccessful',
+      html: `
+        <h1>Your payment was unsuccessful</h1>
+        <p>Please upload the correct deposit slip.</p>
+      `,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+
     res.json(transaction);
   } catch (error) {
     console.error('Error disapproving transaction: ', error);
