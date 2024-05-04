@@ -12,7 +12,7 @@ const Home = () => {
   const slides = [
     {
       image: '/images/h1.jpg', // Example image URL
-      text: 'Welcome to the Pet Zone',
+      text: <span style={{ fontFamily: 'Times New Roman', fontSize: '94px' }}>Welcome To The Pet Zone</span>,
     },
     {
       image: '/images/h2.jpg', // Example image URL
@@ -36,6 +36,12 @@ const Home = () => {
   const counterStyle = {
     backgroundImage: 'url("/images/tp1.jpg")',
     backgroundColor:'',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    marginBottom:'30px'
+  };
+  const counterStyle2 = {
+    backgroundImage: 'url("/images/tp1.jpg")',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     marginBottom:'30px'
@@ -81,19 +87,19 @@ const Home = () => {
             </div>
             <p>
               Pet Zone Hospital is a multifaceted platform dedicated to providing holistic pet care solutions, encompassing veterinary services, professional grooming, expert training programs, 
-              efficient inventory management, lost and found advertisement postings, streamlined staff management tools, easy registration processes, and convenient payment methods. Our integrated approach ensures that pets receive comprehensive care while offering pet owners a seamless experience, from accessing essential services to managing their pets' well-being and administrative needs
+              efficient inventory management, lost and found advertisement postings, streamlined staff management tools, easy registration processes, and convenient payment methods. Our integrated approach ensures that pets receive comprehensive care while offering pet owners a seamless experience, from accessing essential services to managing their pets' well-being and administrative needs...
             </p>
-            <button className="primary-btn" style={{width: '130px'}}>ABOUT US</button>
+            <button className="home_about-button" style={{width: '130px'}}>About Us</button>
           </div>
           <div className="right">
             <img style={{ height: "300px",paddingRight:'100px'}} src="/images/tp1.jpg" alt="Info Image" />
           </div>
         </div>
       </section>
-
-      <h1> Our services</h1>
-      <h3>info about pet zone hospital</h3>
-
+<div className='home_welcome-heading'>
+      <h3>Our Services </h3>
+     
+      </div>
 
       <div className="home-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '400px' }}>
         <div className="row">
@@ -110,16 +116,16 @@ const Home = () => {
       <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '400px' }}>
         <div className="row">
           <div className="text-column">
-            <h2>Training Programs</h2>
+            <h2>Vet & Groom Services</h2>
             <p>Description</p>
           </div>
           <div className="image-column">
-            <img src="/images/tp2.jpg" alt="Image" style={{ height: "300px" }} />
+            <img src="/images/groom.jpeg" alt="Image" style={{ height: "300px" }} />
           </div>
         </div>
       </div>
 
-      <section className="counter top" style={counterStyle}>
+      <section className="counter top" style={counterStyle2}>
         <div className="home-container grid" style={containerStyle}>
           <div className="box" style={{paddingBottom:'50px'}}>
             <h1>2500</h1>
@@ -142,6 +148,7 @@ const Home = () => {
             <span>Expert Trainers</span>
           </div>
         </div>
+        
       </section>
       <Footer /> {/* Add the Footer component */}
     </div>
