@@ -181,7 +181,6 @@ exports.getAppointments = async (req, res) => {
   }
 };
 
-// MakeAppointmentController.js
 exports.getBookedTimes = async (req, res) => {
   const { selectDate, selectService } = req.query;
   try {
@@ -196,6 +195,3 @@ exports.getBookedTimes = async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 };
-
-
-
