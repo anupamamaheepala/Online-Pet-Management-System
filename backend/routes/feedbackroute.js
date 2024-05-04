@@ -12,5 +12,6 @@ router.post("/:id/like", feedbackController.likeFeedback);
 router.post("/:id/dislike", feedbackController.dislikeFeedback);
 router.get("/customer", feedbackController.getCustomerFeedback);
 router.post("/:id/reply", feedbackController.replyToFeedback);
+router.get("/rating", feedbackController.getFeedbackRatings);
 
 module.exports = router;

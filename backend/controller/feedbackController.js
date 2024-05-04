@@ -109,6 +109,21 @@ const storeFeedbackInquiry = async (req, res) => {
   }
 };
 
+const getFeedbackRatings = async (req, res) => {
+  try {
+    const ratingData = await Feedback.aggregate([
+      {
+        $group: {
+          _id: '$rating',
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+    res.status(200).json(ratingData);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
 
 module.exports = {
   addFeedback,
@@ -119,5 +134,6 @@ module.exports = {
   dislikeFeedback,
   replyToFeedback,
   getCustomerFeedback,
-  storeFeedbackInquiry
+  storeFeedbackInquiry,
+  getFeedbackRatings
 };
