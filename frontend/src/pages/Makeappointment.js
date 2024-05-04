@@ -15,6 +15,7 @@ const MakeAppointment = () => {
   const [selectDate, setSelectDate] = useState('');
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
+  const [allProfessions, setAllProfessions] = useState([]);
   const [professionOptions, setProfessionOptions] = useState([]);
   const [bookedTimes, setBookedTimes] = useState([]);
   const [ownerNameError, setOwnerNameError] = useState('');
@@ -24,36 +25,49 @@ const MakeAppointment = () => {
     fetchProfessionOptions();
   }, []);
 
+  useEffect(() => {
+    filterProfessionsByService();
+  }, [selectService]);
+
   const fetchProfessionOptions = async () => {
     try {
       const response = await axios.get('http://localhost:9000/staff');
-      const groomersAndVets = response.data.filter(staff => staff.designation === 'Groomer' || staff.designation === 'Veterinarian');
-      const options = groomersAndVets.map(staff => ({
-        value: staff.staffId,
-        label: `${staff.sfirstname} ${staff.slastname}`
-      }));
-      setProfessionOptions(options);
+      setAllProfessions(response.data);
     } catch (error) {
       console.error('Error fetching profession options:', error);
     }
   };
 
-  const fetchBookedTimes = async () => {
-    if (selectDate && selectService) {
-      try {
-        const response = await axios.get(`http://localhost:9000/appointment/booked-times`, {
-          params: { selectDate, selectService }
-        });
-        setBookedTimes(response.data);
-      } catch (error) {
-        console.error('Error fetching booked times:', error);
-      }
-    }
+  const filterProfessionsByService = () => {
+    const filteredOptions = allProfessions.filter(staff => {
+      return (selectService === "Veterinary Service" && staff.designation === "Veterinarian") ||
+             (selectService === "Grooming Service" && staff.designation === "Groomer");
+    }).map(staff => ({
+      value: staff.staffId,
+      label: `${staff.sfirstname} ${staff.slastname} (${staff.designation})`
+    }));
+    setProfessionOptions(filteredOptions);
+    setSelectProfession(''); // Reset profession selection
   };
 
   useEffect(() => {
-    fetchBookedTimes();
-  }, [selectDate, selectService]);
+    if (selectDate && selectService && selectProfession) {
+      fetchBookedTimes();
+    } else {
+      setBookedTimes([]); // Clear booked times if not all fields needed are selected
+    }
+  }, [selectDate, selectService, selectProfession]);
+
+  const fetchBookedTimes = async () => {
+    try {
+      const response = await axios.get(`http://localhost:9000/appointment/booked-times`, {
+        params: { selectDate, selectService, selectProfession }
+      });
+      setBookedTimes(response.data);
+    } catch (error) {
+      console.error('Error fetching booked times:', error);
+    }
+  };
 
   const validateForm = () => {
     let isValid = true;
@@ -136,9 +150,11 @@ const MakeAppointment = () => {
         const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
         const period = hour < 12 ? 'am' : 'pm';
         const timeOption = `${formattedHour}:00 ${period}`;
-        if (!bookedTimes.includes(timeOption)) {
-          options.push(timeOption);
-        }
+        const isBooked = bookedTimes.includes(timeOption);
+        options.push({
+            time: timeOption,
+            isBooked: isBooked
+        });
       }
     }
     return options;
@@ -172,7 +188,7 @@ const MakeAppointment = () => {
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerContact">Owner Contact No:</label>
               <input className={`makeappointment_input_tel ${ownerContactError ? 'error' : ''}`} type="tel" id="ownerContact" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required />
-              {ownerContactError && <p className="error-message">{ownerContactError}</p>}
+              {ownerContactError && <p className="error-message">${ownerContactError}</p>}
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="petType">Pet Type:</label>
@@ -193,20 +209,25 @@ const MakeAppointment = () => {
               <input className="makeappointment_input_date" type="date" id="selectDate" value={selectDate} onChange={(e) => setSelectDate(e.target.value)} min={getCurrentDate()} required />
             </div>
             <div className="makeappointment_input_container">
-              <label className="makeappointment_label" htmlFor="selectTime">Select Time:</label>
-              <select className="makeappointment_select" id="selectTime" value={selectTime} onChange={(e) => setSelectTime(e.target.value)} required>
+              <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
+              <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => {
+                setSelectProfession(e.target.value);
+                setSelectTime(''); // Reset time selection when profession changes
+              }} required>
                 <option value="">--Please select--</option>
-                {generateTimeOptions().map((timeOption, index) => (
-                  <option key={index} value={timeOption}>{timeOption}</option>
+                {professionOptions.map((option, index) => (
+                  <option key={index} value={option.value}>{option.label}</option>
                 ))}
               </select>
             </div>
             <div className="makeappointment_input_container">
-              <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
-              <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => setSelectProfession(e.target.value)} required>
+              <label className="makeappointment_label" htmlFor="selectTime">Select Time:</label>
+              <select className="makeappointment_select" id="selectTime" value={selectTime} onChange={(e) => setSelectTime(e.target.value)} required disabled={!selectProfession}>
                 <option value="">--Please select--</option>
-                {professionOptions.map((option, index) => (
-                  <option key={index} value={option.value}>{option.label}</option>
+                {selectProfession && generateTimeOptions().map((option, index) => (
+                  <option key={index} value={option.time} style={option.isBooked ? { color: 'red' } : {}}>
+                    {option.time} {option.isBooked ? '(Already booked)' : '(Available)'}
+                  </option>
                 ))}
               </select>
             </div>
