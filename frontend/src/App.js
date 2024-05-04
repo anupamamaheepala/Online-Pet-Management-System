@@ -123,7 +123,6 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
-
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
 
