@@ -42,10 +42,14 @@ function RegenerateSalary(props) {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default form submission behavior
+        
         try {
-            // Call the backend API to add the new salary record
-            await axios.post('/salary/add', {
+            // Calculate OT amount
+            const otAmount = calculateOTAmount();
+            
+            // Prepare the data to be submitted
+            const formData = {
                 staffId,
                 firstName,
                 lastName,
@@ -53,14 +57,28 @@ function RegenerateSalary(props) {
                 basicSalary,
                 otHours,
                 otRate,
-                bonusAmount
-            });
-            // Redirect to the staff list page after successful submission
+                otAmount, // Include otAmount in the form data
+                bonusAmount,
+                totalSalary
+                // Add any other necessary fields here
+            };
+    
+            // Send a POST request to the server with the form data
+            const response = await axios.post('http://localhost:9000/salary/add', formData);
+    
+            // Handle the response
+            console.log(response.data); // Log the response data or handle it as needed
+    
+            // Optionally, you can redirect the user to another page after successful submission
+            // history.push('/success'); // Import useHistory hook to use history.push
+    
         } catch (error) {
-            console.error('Error assigning salary:', error);
-            // Handle error if needed
+            // Handle errors
+            console.error('Error submitting form:', error);
+            // Optionally, you can show an error message to the user
         }
     };
+    
 
     const calculateOTAmount = () => {
         const otAmount = otHours * otRate;
@@ -101,7 +119,7 @@ function RegenerateSalary(props) {
                             onChange={date => setSelectedMonth(date)}
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
-                            readOnly
+                            
                         />
                     </div>
                     <div className="StaffSalary-form-group">
