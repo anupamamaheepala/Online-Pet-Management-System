@@ -1,63 +1,59 @@
-import React, { useEffect, useState } from "react";
-import '../css/Cart.css';
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import React from 'react';
+import { useCart } from '../Context/CartContext';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Cart = () => {
-    const [cartItems, setCartItems] = useState([]);
+  const { cart, removeFromCart } = useCart();
 
-    useEffect(() => {
-        const fetchCartItems = async () => {
-            try {
-                const response = await fetch('http://localhost:9000/cart', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    // You need to replace 'customer_id_here' with the actual customer ID
-                    // You can retrieve the customer ID from the authentication system or pass it as a prop from the parent component
-                    body: JSON.stringify({ customerId: 'customer_id_here' })
-                });
+  if (!cart) {
+    return <p>Loading cart...</p>;
+  }
+  const addToCart = async (productId) => {
+    const customerId = '661687e6f681919dd55aa688'; // Replace with actual logic to get the customer ID
+    console.log(customerId)
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch cart items');
-                }
+    try {
+      const response = await axios.post('http://localhost:9000/cart', { customerId:customerId,productId:productId });
+      if (response.status === 201) {
 
-                const data = await response.json();
-                setCartItems(data.items);
-            } catch (error) {
-                console.error('Error fetching cart items:', error);
-            }
-        };
+        console.log('Product added to cart');
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
+  
 
-        fetchCartItems();
-    }, []);
-
-    return (
-        <>
-            <Header />
-            <div className="cart">
-                <h1>Your Cart</h1>
-                {cartItems.length > 0 ? (
-                    <div className="cart-items">
-                        {cartItems.map(item => (
-                            <div key={item.productId} className="cart-item">
-                                <img src={`http://localhost:9000/${item.image}`} alt={item.itemName} />
-                                <div className="item-details">
-                                    <h3>{item.itemName}</h3>
-                                    <p>Price: LKR {item.price}</p>
-                                    <p>Quantity: {item.quantity}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <p>Your cart is empty</p>
-                )}
-            </div>
-            <Footer />
-        </>
-    );
+  return (
+    <div className="cart-container">
+      <h2>Your Cart</h2>
+      {cart.items.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <ul>
+          {cart.items.map((item) => (
+            <li key={item.productId._id}>
+              <div className="cart-item">
+                <img
+                  src={`http://localhost:9000/${item.productId.image}`}
+                  alt={item.productId.itemName}
+                  style={{ width: '50px', height: '50px' }}
+                />
+                <span>{item.productId.itemName}</span>
+                <span>Price: LKR {item.productId.price}</span>
+                <span>Quantity: {item.quantity}</span>
+                <button onClick={() => removeFromCart(item.productId._id)}>
+                  Remove
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      <Link to="/shop">Continue Shopping</Link>
+    </div>
+  );
 };
 
 export default Cart;

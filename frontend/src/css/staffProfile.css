@@ -2,65 +2,43 @@
 
 .StaffProfileContainer {
   display: flex;
-  justify-content: center; /* Center the content horizontally */
+  flex-direction: column;
+  align-items: center;
 }
 
 .staffProfileWrapper {
-  text-align: center; /* Align the header to the center */
-  margin-bottom: 20px; /* Add margin below the header */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .staffProfile {
   border: 1px solid #fff;
   border-radius: 5px;
   padding: 20px;
-  text-align: left; /* Align text within the profile details to the left */
-  max-width: 600px; /* Adjust the maximum width as needed */
+  text-align: left;
+  max-width: 600px;
 }
 
 .staffProfile p {
   margin: 5px 0;
 }
 
+.StaffProfilenavigation-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Add margin bottom for spacing */
+}
+
+.staffProfile-update-delete-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Add margin bottom for spacing */
+}
+
 .staffProfile-update-btn,
 .staffProfile-delete-btn,
-.staffProfile-leave-btn {
-  display: inline-block;
-  padding: 12px 18px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.staffProfile-update-btn {
-  background-color: #28a745;
-  color: #fff;
-  font-size: 16px;
-}
-
-.staffProfile-delete-btn {
-  background-color: #dc3545;
-  color: #fff;
-  font-size: 16px;
-}
-
-.staffProfile-leave-btn {
-  background-color: #000000;
-  color: #fff;
-  font-size: 16px;
-}
-
-
-.staffProfile-update-btn:hover,
-.staffProfile-delete-btn:hover,
-.staffProfile-leave-btn:hover {
-  opacity: 0.8;
-  text-decoration: none;
-}
-
+.staffProfile-leave-btn,
+.staffProfile-applied-leaves-btn,
 .staffProfile-view-salary-btn {
   display: inline-block;
   padding: 12px 18px;
@@ -68,13 +46,31 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #06047c; 
-  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
 
+.staffProfile-update-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.staffProfile-delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.staffProfile-leave-btn,
+.staffProfile-applied-leaves-btn,
+.staffProfile-view-salary-btn {
+  background-color: #000000;
+  color: #fff;
+}
+
+.staffProfile-update-btn:hover,
+.staffProfile-delete-btn:hover,
+.staffProfile-leave-btn:hover,
+.staffProfile-applied-leaves-btn:hover,
 .staffProfile-view-salary-btn:hover {
   opacity: 0.8;
-  text-decoration: none;
 }

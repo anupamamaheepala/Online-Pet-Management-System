@@ -103,6 +103,11 @@ function UpdateSalary(props) {
         }
         };
 
+        const handleRegenerateSalary = () => {
+            window.location.href = `/RegenerateSalary?staffId=${staffId}&firstName=${firstName}&lastName=${lastName}`;
+        };
+        
+
     return (
         <>
             <Header />
@@ -129,11 +134,12 @@ function UpdateSalary(props) {
                             onChange={date => setSelectedMonth(date)}
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
+                            readOnly
                         />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
-                        <input type="number" className='basicSalary' value={basicSalary} onChange={handleBasicSalaryChange} />  
+                        <input type="number" className='basicSalary' value={basicSalary} onChange={handleBasicSalaryChange} readOnly/>  
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className=''>OT Hours:</label>
@@ -141,7 +147,7 @@ function UpdateSalary(props) {
                      </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Rate:</label>
-                        <input type="number" className='otRate' value={otRate} onChange={handleOtRateChange} />        
+                        <input type="number" className='otRate' value={otRate} onChange={handleOtRateChange} readOnly/>        
                      </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Amount:</label>
@@ -157,6 +163,7 @@ function UpdateSalary(props) {
                     </div>
                    <center> 
                     <button type="submit" className='UpdateStaffCalculate'>Update Salary</button>
+                    <button onClick={handleRegenerateSalary} className='RegenerateSalary'>Regenerate Salary</button>
                     <Link to="/StaffList" className="edit-staff-link-button">
                     <button className="edit-staff-button">Back to All Staff List</button>
                     </Link>

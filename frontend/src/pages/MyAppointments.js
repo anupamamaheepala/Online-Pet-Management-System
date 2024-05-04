@@ -4,7 +4,7 @@ import '../css/myappointments.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -19,10 +19,10 @@ const MyAppointments = () => {
     selectTime: '',
     selectProfession: ''
   });
-  const updateFormRef = useRef(null); // Create a ref for the update form
+  const [appointmentCount, setAppointmentCount] = useState(0);
+  const updateFormRef = useRef(null);
 
   useEffect(() => {
-    // Fetch appointments when the component mounts
     fetchAppointments();
   }, []);
 
@@ -30,6 +30,7 @@ const MyAppointments = () => {
     try {
       const response = await axios.get('http://localhost:9000/appointment/appointments');
       setAppointments(response.data);
+      setAppointmentCount(response.data.length);
     } catch (error) {
       console.error('Error fetching appointments:', error);
     }
@@ -37,12 +38,10 @@ const MyAppointments = () => {
 
   const handleRemove = async (appointmentId) => {
     try {
-      // Send a DELETE request to the backend
       await axios.delete(`http://localhost:9000/appointment/appointments/${appointmentId}`);
 
-      // After successful deletion, update the appointments state
       setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
-      // Show success message
+      setAppointmentCount(appointmentCount - 1);
       Swal.fire({ title: 'Success', text: 'Successfully removed appointment', showConfirmButton: false, icon: 'success', timer: 1500 });
     } catch (error) {
       console.error('Error deleting appointment:', error);
@@ -51,7 +50,6 @@ const MyAppointments = () => {
   };
 
   const handleModify = (appointment) => {
-    // Set the editing appointment and pre-fill the form with its details
     setEditingAppointment(appointment);
     setFormData({
       ownerName: appointment.ownerName,
@@ -63,7 +61,6 @@ const MyAppointments = () => {
       selectTime: appointment.selectTime,
       selectProfession: appointment.selectProfession
     });
-    // Scroll to the update form
     updateFormRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -75,13 +72,10 @@ const MyAppointments = () => {
     e.preventDefault();
 
     try {
-      // Send a PUT request to update the appointment
       await axios.put(`http://localhost:9000/appointment/appointments/${editingAppointment._id}`, formData);
 
-      // Show success message
       Swal.fire({ title: 'Success', text: 'Appointment updated successfully', icon: 'success', confirmButtonText: 'OK' });
 
-      // Clear the editing appointment and form data
       setEditingAppointment(null);
       setFormData({
         ownerName: '',
@@ -94,7 +88,6 @@ const MyAppointments = () => {
         selectProfession: ''
       });
 
-      // Refetch appointments to update the list
       fetchAppointments();
     } catch (error) {
       console.error('Error updating appointment:', error);
@@ -103,7 +96,6 @@ const MyAppointments = () => {
   };
 
   const handleCancel = () => {
-    // Clear the editing appointment and form data
     setEditingAppointment(null);
     setFormData({
       ownerName: '',
@@ -116,10 +108,9 @@ const MyAppointments = () => {
       selectProfession: ''
     });
   };
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handlePayNow = (appointmentId) => {
-    // Navigate to the /Payerinfo route
     navigate('/Payerinfo');
   };
 
@@ -128,6 +119,7 @@ const MyAppointments = () => {
       <Header />
       <div>
         <h1>My Appointments</h1>
+        <p>Appointment Count: {appointmentCount}</p>
         <ul>
           {appointments.map(appointment => (
             <li key={appointment._id} className="appointment-item">

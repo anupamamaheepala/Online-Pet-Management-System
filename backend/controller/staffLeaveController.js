@@ -126,3 +126,16 @@ exports.getLeaveDetails = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+// Controller to handle fetching applied leaves for a specific staff member
+exports.getAppliedLeaves = async (req, res) => {
+  try {
+    const { staffId } = req.params;
+    const appliedLeaves = await StaffLeave.find({ staffId });
+    res.status(200).json(appliedLeaves);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

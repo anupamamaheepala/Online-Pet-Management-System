@@ -1,0 +1,47 @@
+/* AppliedLeaves.css */
+
+/* AppliedLeaves.css */
+
+/* Container */
+.AppliedLeavesCon {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center align the content */
+  }
+  
+  /* Heading */
+  .AppliedLeavesHead {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  
+  /* List */
+  .AppliedLeavescard {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* List Item */
+  .AppliedLeavescard li {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  /* Leave Details */
+  .AppliedLeavescard li p {
+    margin: 5px 0;
+  }
+  
+  /* Leave Status */
+  .AppliedLeavescard li p:last-child {
+    font-weight: bold;
+  }
+  

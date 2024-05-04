@@ -80,7 +80,6 @@ import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
-import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
@@ -90,6 +89,10 @@ import SalaryView from './pages/SalaryView';
 import Sysmanagerhome from './pages/Sysmanagerhome';
 import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
+import { CartProvider } from './Context/CartContext'; // Verify the path
+import AppliedLeaves from './pages/AppliedLeaves';
+import RegenerateSalary from './pages/RegenerateSalary';
+
 
 
 function App() {
@@ -197,8 +200,9 @@ function App() {
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
           <Route path="/leave-details/:leaveId" element={<LeaveDetails />} />
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
-
-
+          <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
+          <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          
 
           </Routes>
         </CartProvider>
