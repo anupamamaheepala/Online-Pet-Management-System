@@ -33,7 +33,7 @@ const AddAdvertisement = () => {
         }
 
         if (name === 'ownerName') {
-            newValue = value.replace(/[^A-Za-z\s]/g, ''); // Replace non-letter characters with empty string
+            newValue = value.replace(/[^A-Za-z.\s]/g, ''); // Allow letters, dots, and spaces
         } else if (name === 'contact') {
             newValue = value.replace(/[^\d]/g, ''); // Replace non-digit characters with empty string
             if (newValue.length > 10) {
@@ -95,10 +95,10 @@ const AddAdvertisement = () => {
         <>
             <Header />
             <form className="ma_advertisement-form" onSubmit={onSubmit} encType="multipart/form-data">
-                <h2>Add Your Advertisement Details Here.</h2>
-                <p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
-                    <b>If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
-
+                <h4><center>Add Your Advertisement Details Here.</center></h4>
+                <h7><p>You should enter the pet's date of birth, health status, height, weight etc. in the description box.
+                    <b>If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.<b> Advertisements are posted for 10 days only.</b></p>
+                    </h7>
                 <div className="ma_form-group">
                     <label htmlFor="ownerName">Owner Name:</label>
                     <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={onChange} required />
