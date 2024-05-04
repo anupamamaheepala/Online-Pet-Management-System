@@ -7,7 +7,6 @@ import ShowLoading from '../components/ShowLoading';
 import Swal from 'sweetalert2';
 
 const MakeAppointment = () => {
-  // State variables to store form data and error messages
   const [ownerName, setOwnerName] = useState('');
   const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
@@ -17,24 +16,21 @@ const MakeAppointment = () => {
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
   const [professionOptions, setProfessionOptions] = useState([]);
+  const [bookedTimes, setBookedTimes] = useState([]);
   const [ownerNameError, setOwnerNameError] = useState('');
   const [ownerContactError, setOwnerContactError] = useState('');
 
-  // Fetch profession options from the backend on component mount
   useEffect(() => {
     fetchProfessionOptions();
   }, []);
 
-  // Update fetchProfessionOptions function to fetch staff members and extract names
   const fetchProfessionOptions = async () => {
     try {
       const response = await axios.get('http://localhost:9000/staff');
-      const groomersAndVets = response.data.filter(
-        (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
-      );
-      const options = groomersAndVets.map((staff) => ({
-        value: staff.staffId, // Using staffId as the value for each option
-        label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
+      const groomersAndVets = response.data.filter(staff => staff.designation === 'Groomer' || staff.designation === 'Veterinarian');
+      const options = groomersAndVets.map(staff => ({
+        value: staff.staffId,
+        label: `${staff.sfirstname} ${staff.slastname}`
       }));
       setProfessionOptions(options);
     } catch (error) {
@@ -42,82 +38,35 @@ const MakeAppointment = () => {
     }
   };
 
-  // Function to handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Perform frontend validation
-    if (!validateForm()) {
-      return;
-    }
-
+  const fetchBookedTimes = async (date) => {
     try {
-      // Send form data to server using Axios POST request
-      await axios.post('http://localhost:9000/appointment/appointments', {
-        ownerName,
-        ownerEmail,
-        ownerContact,
-        petType,
-        selectService,
-        selectDate,
-        selectTime,
-        selectProfession
-      });
-
-      // Clear form fields after successful submission
-      clearForm();
-
-      // Show SweetAlert message
-      Swal.fire({
-        icon: 'success',
-        title: 'Appointment Scheduled Successfully',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(() => {
-        // Show payment message
-        Swal.fire({
-          icon: 'info',
-          title: 'Make the payment for Appointment after Approved',
-          confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Navigate to MyAppointments.js
-            window.location.href = '/MyAppointments';
-          }
-        });
-      });
+      const response = await axios.get(`http://localhost:9000/appointment/booked-times?selectDate=${date}`);
+      setBookedTimes(response.data);
     } catch (error) {
-      // Show error message
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Failed to create appointment. Please try again later.',
-        confirmButtonText: 'OK'
-      });
-      // Handle any errors
-      console.error('Error submitting form:', error);
+      console.error('Error fetching booked times:', error);
     }
   };
 
+  useEffect(() => {
+    if (selectDate) {
+      fetchBookedTimes(selectDate);
+    }
+  }, [selectDate]);
+
   const validateForm = () => {
     let isValid = true;
-
-    // Validate owner's name
     if (/\d/.test(ownerName)) {
       setOwnerNameError('Owner name cannot contain digits');
       isValid = false;
     } else {
       setOwnerNameError('');
     }
-
-    // Validate owner's contact number
     if (!/^\d{10}$/.test(ownerContact)) {
       setOwnerContactError('Contact number must be 10 digits');
       isValid = false;
     } else {
       setOwnerContactError('');
     }
-
     return isValid;
   };
 
@@ -134,7 +83,50 @@ const MakeAppointment = () => {
     setOwnerContactError('');
   };
 
-  // Generate options for time picker from 08:00 am to 12:00 pm and then from 01:00 pm to 04:00 pm
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
+    try {
+      await axios.post('http://localhost:9000/appointment/appointments', {
+        ownerName,
+        ownerEmail,
+        ownerContact,
+        petType,
+        selectService,
+        selectDate,
+        selectTime,
+        selectProfession
+      });
+      clearForm();
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Scheduled Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Make the payment for Appointment after Approved',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '/MyAppointments';
+          }
+        });
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to create appointment. Please try again later.',
+        confirmButtonText: 'OK'
+      });
+      console.error('Error submitting form:', error);
+    }
+  };
+
   const generateTimeOptions = () => {
     const options = [];
     for (let hour = 8; hour <= 16; hour++) {
@@ -147,10 +139,9 @@ const MakeAppointment = () => {
         }
       }
     }
-    return options;
+    return options.filter(time => !bookedTimes.includes(time));
   };
 
-  // Get current date in YYYY-MM-DD format
   const getCurrentDate = () => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -221,7 +212,7 @@ const MakeAppointment = () => {
           <button className="makeappointment_button" type="submit">Submit</button>
         </form>
       </div>
-      <Footer /> 
+      <Footer />
     </>
   );
 };

@@ -181,4 +181,17 @@ exports.getAppointments = async (req, res) => {
   }
 };
 
+// Get booked times for a specific date
+exports.getBookedTimes = async (req, res) => {
+  const { selectDate } = req.query;
+  try {
+    const appointments = await Appointment.find({ selectDate });
+    const bookedTimes = appointments.map(appointment => appointment.selectTime);
+    res.status(200).json(bookedTimes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
 

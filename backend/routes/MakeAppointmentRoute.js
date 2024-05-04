@@ -45,6 +45,8 @@ router.get('/appointments/count', appointmentController.getUnacceptedAppointment
 // Route to get the count of groome appointments 
 router.get('/grooming-appointments/count', appointmentController.getUnacceptedGroomingAppointmentsCount);
 
+// Route to get booked times for a specific date
+router.get('/booked-times', appointmentController.getBookedTimes);
 
 
 
