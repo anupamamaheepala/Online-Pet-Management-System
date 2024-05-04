@@ -11,9 +11,9 @@ import '../css/groomeservices.css';
 function Groomservices() {
   const images = ['groome1.jpg', 'groome2.jpg', 'groome3.jpg', 'groome4.jpg', 'groome5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
-  const [showDescription, setShowDescription] = useState('');
   const [services, setServices] = useState([]);
   const [groomers, setGroomers] = useState([]);
+  const [selectedGroomerId, setSelectedGroomerId] = useState(null); // New state variable
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -54,12 +54,9 @@ function Groomservices() {
     }
   };
 
-  const handleDotClick = (index) => {
-    setCurrentImage(index);
-  };
-
-  const toggleDescription = (service) => {
-    setShowDescription(showDescription === service ? '' : service);
+  // Function to handle click on groomer name
+  const handleGroomerClick = (groomerId) => {
+    setSelectedGroomerId(prevId => (prevId === groomerId ? null : groomerId)); // Toggle selected groomer ID
   };
 
   return (
@@ -84,7 +81,7 @@ function Groomservices() {
         </button>
         <div className="dots-container">
           {images.map((_, index) => (
-            <span key={index} className={index === currentImage ? 'dot active' : 'dot'} onClick={() => handleDotClick(index)}></span>
+            <span key={index} className={index === currentImage ? 'dot active' : 'dot'} onClick={() => setCurrentImage(index)}></span>
           ))}
         </div>
       </div>
@@ -93,10 +90,9 @@ function Groomservices() {
           <h2>Available Grooming Services</h2>
           <ul className="service-list">
             {services.map((service) => (
-              <li key={service.title} onClick={() => toggleDescription(service.title)}>
-                <span className="toggle-icon">{showDescription === service.title ? '-' : '+'}</span>
+              <li key={service.title}>
                 <h3>{service.title}</h3>
-                {showDescription === service.title && <p>{service.description}</p>}
+                <p>{service.description}</p>
               </li>
             ))}
           </ul>
@@ -105,7 +101,19 @@ function Groomservices() {
           <h1>Available Groomers</h1>
           <ul>
             {groomers.map(groomer => (
-              <li key={groomer._id}>{groomer.sfirstname} {groomer.slastname}</li>
+              <li key={groomer._id}>
+                <span className="groomer-name" onClick={() => handleGroomerClick(groomer._id)}>
+                  <button className={`toggle-button ${selectedGroomerId === groomer._id ? 'active' : ''}`} onClick={(e) => e.preventDefault()}>{selectedGroomerId === groomer._id ? '-' : <strong>+</strong>}</button> {/* Toggle details */}
+                  {groomer.sfirstname} {groomer.slastname}
+                </span>
+                {selectedGroomerId === groomer._id && ( // Display details only for the selected groomer
+                  <div className="groomer-details">
+                    <p>Qualifications: {groomer.qualifications}</p>
+                    <p>Email: {groomer.semail}</p>
+                    <p>Contact Number: {groomer.scontactNumber}</p>
+                  </div>
+                )}
+              </li>
             ))}
           </ul>
         </div>

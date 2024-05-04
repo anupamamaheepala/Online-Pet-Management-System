@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/SalaryView.css';
+import Footer from '../components/Footer';
+import VetHeader from '../components/Vet components/VetHeader';
+import GroomeHeader from '../components/Groome components/GroomerHeader';
+
+
 
 const SalaryView = () => {
   const [salary, setSalary] = useState(null);
@@ -22,6 +27,13 @@ const SalaryView = () => {
   }, [id]);
 
   return (
+
+    <>
+      
+        
+        <VetHeader />
+    
+
     <div className='SalaryViewContainer'>
     <div className='SalaryViewHeader'>
       <h2>Salary Details</h2>
@@ -44,6 +56,9 @@ const SalaryView = () => {
       )}
     </div>
     </div>
+
+    <Footer />
+    </>
   );
 };
 
