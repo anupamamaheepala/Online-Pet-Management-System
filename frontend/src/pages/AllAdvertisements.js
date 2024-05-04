@@ -137,7 +137,9 @@ const AllAdvertisements = () => {
       </div>
       <h1 className="ma_text_container"><center>All Advertisement</center></h1>
       <div className="ma_table-container_center">
+        
       <table className="ma_advertisement-table">
+        
         <thead>
           <tr>
             <th>Owner Name</th>
