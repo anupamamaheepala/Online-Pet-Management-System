@@ -89,7 +89,6 @@ import SalaryView from './pages/SalaryView';
 import Sysmanagerhome from './pages/Sysmanagerhome';
 import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
-import { CartProvider } from './Context/CartContext'; // Verify the path
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
 
@@ -99,7 +98,7 @@ function App() {
   return (
     <div>
       <Router>
-        <CartProvider>
+        
           <Routes>
           <Route path="/" element={<Home />} />
           
@@ -123,7 +122,6 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
-
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
 
@@ -205,7 +203,6 @@ function App() {
           
 
           </Routes>
-        </CartProvider>
       </Router>
       <ToastContainer position="top-center" />
     </div>
