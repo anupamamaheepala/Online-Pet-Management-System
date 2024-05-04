@@ -181,4 +181,21 @@ exports.getAppointments = async (req, res) => {
   }
 };
 
+// MakeAppointmentController.js
+exports.getBookedTimes = async (req, res) => {
+  const { selectDate, selectService } = req.query;
+  try {
+    const appointments = await Appointment.find({
+      selectDate,
+      selectService
+    });
+    const bookedTimes = appointments.map(appointment => appointment.selectTime);
+    res.status(200).json(bookedTimes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
+
 

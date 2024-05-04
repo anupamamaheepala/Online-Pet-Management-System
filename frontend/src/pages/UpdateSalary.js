@@ -104,8 +104,9 @@ function UpdateSalary(props) {
         };
 
         const handleRegenerateSalary = () => {
-            window.location.href = `/RegenerateSalary?staffId=${staffId}&firstName=${firstName}&lastName=${lastName}`;
+            window.location.href = `/RegenerateSalary?staffId=${staffId}&firstName=${firstName}&lastName=${lastName}&basicSalary=${basicSalary}&otRate=${otRate}`;
         };
+        
         
 
     return (

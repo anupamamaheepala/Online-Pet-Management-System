@@ -19,20 +19,48 @@ function RegenerateSalary(props) {
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
 
+
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         setStaffId(params.get('staffId'));
         setFirstName(params.get('firstName'));
         setLastName(params.get('lastName'));
-
+        setBasicSalary(parseFloat(params.get('basicSalary'))); 
+        setOtRate(parseFloat(params.get('otRate'))); 
+    
         // Simulate data fetching for other salary details
         // For demonstration purposes, setting default values here
-        setBasicSalary(1000);
-        setOtHours(10);
-        setOtRate(20);
-        setBonusAmount(200);
+        
+        setOtHours(0);
+        setBonusAmount(0);
         calculateTotalSalary(); // Calculate total salary based on fetched and default values
     }, [location.search]);
+
+    useEffect(() => {
+        calculateTotalSalary();
+    }, [otHours, bonusAmount, basicSalary]);
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            // Call the backend API to add the new salary record
+            await axios.post('/salary/add', {
+                staffId,
+                firstName,
+                lastName,
+                selectedMonth,
+                basicSalary,
+                otHours,
+                otRate,
+                bonusAmount
+            });
+            // Redirect to the staff list page after successful submission
+        } catch (error) {
+            console.error('Error assigning salary:', error);
+            // Handle error if needed
+        }
+    };
 
     const calculateOTAmount = () => {
         const otAmount = otHours * otRate;
@@ -41,15 +69,11 @@ function RegenerateSalary(props) {
 
     const calculateTotalSalary = () => {
         const otAmount = calculateOTAmount();
-        const total = basicSalary + otAmount + bonusAmount;
+        const total = basicSalary + otAmount + parseFloat(bonusAmount);
         setTotalSalary(total);
     };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Placeholder for regeneration logic
-        console.log('Salary regenerated successfully');
-    };
+    
+    
 
     return (
         <>
@@ -93,6 +117,10 @@ function RegenerateSalary(props) {
                         <input type="number" className='otRate' value={otRate} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>OT Amount:</label>
+                        <input type="number" className='otAmount' value={calculateOTAmount()} readOnly />
+                    </div>
+                    <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Bonus Amount:</label>
                         <input type="number" className='bonusAmount' value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} />
                     </div>
@@ -101,7 +129,7 @@ function RegenerateSalary(props) {
                         <input type="number" className='totalSalary' value={totalSalary} readOnly />
                     </div>
                     <center>
-                        <button type="submit" className='UpdateStaffCalculate'>Regenerate Salary</button>
+                        <button type="submit" className='UpdateStaffCalculate'>Assign Salary</button>
                         <Link to="/StaffList" className="edit-staff-link-button">
                             <button className="edit-staff-button">Back to All Staff List</button>
                         </Link>
