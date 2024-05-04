@@ -20,6 +20,7 @@ function SalaryCalculator(props) {
     const [isSalaryAssigned, setIsSalaryAssigned] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(new Date());
     const [error, setError] = useState('');
+    const [designation, setDesignation] = useState('');
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -30,14 +31,14 @@ function SalaryCalculator(props) {
                 if (response.data && response.data.basicSalary !== undefined) {
                     // Salary is assigned
                     setIsSalaryAssigned(true);
-                    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = response.data;
+                    const { staffId, firstName, lastName, selectedMonth, basicSalary, otHours, otRate, otAmount, bonusAmount, totalSalary } = response.data;
                     setStaffId(staffId);
                     setFirstName(firstName);
                     setLastName(lastName);
                     setSelectedMonth(selectedMonth);
                     setBasicSalary(basicSalary);
+                    setOtRate(otRate); // Set OT rate here
                     setOtHours(otHours);
-                    setOtRate(otRate);
                     setOtAmount(otAmount);
                     setBonusAmount(bonusAmount);
                     setTotalSalary(totalSalary);
@@ -46,10 +47,30 @@ function SalaryCalculator(props) {
                     setIsSalaryAssigned(false);
                     axios.get(`http://localhost:9000/staff/salary/${id}`)
                         .then(response => {
-                            const { staffId, sfirstname, slastname } = response.data;
+                            const { staffId, sfirstname, slastname, designation } = response.data;
                             setStaffId(staffId);
                             setFirstName(sfirstname);
                             setLastName(slastname);
+                            setDesignation(designation);
+    
+                            // Set basic salary based on designation
+                            switch (designation) {
+                                case 'Veterinarian':
+                                    setBasicSalary(50000);
+                                    setOtRate(250); // Set OT rate based on designation
+                                    break;
+                                case 'Groomer':
+                                    setBasicSalary(35000);
+                                    setOtRate(150); // Set OT rate based on designation
+                                    break;
+                                case 'Pet Trainer':
+                                    setBasicSalary(40000);
+                                    setOtRate(200); // Set OT rate based on designation
+                                    break;
+                                default:
+                                    setBasicSalary(0);
+                                    setOtRate(0);
+                            }
                         })
                         .catch(error => {
                             console.error('Error fetching staff details:', error);
@@ -60,6 +81,7 @@ function SalaryCalculator(props) {
                 console.error('Error fetching salary:', error);
             });
     }, []);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -144,6 +166,12 @@ function SalaryCalculator(props) {
         calculateSalary();
     }, []);
 
+            // Calculate the last day of the previous month
+    const lastDayOfPreviousMonth = new Date();
+    lastDayOfPreviousMonth.setDate(0); // Move to the last day of the current month
+    lastDayOfPreviousMonth.setDate(1); // Move to the first day of the current month
+
+
 
     return (
         <>
@@ -181,13 +209,14 @@ function SalaryCalculator(props) {
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
                             readOnly={isSalaryAssigned}
+                            maxDate={lastDayOfPreviousMonth}
                             required
                         />
                     </div>
 
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
-                        <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly={isSalaryAssigned} required />
+                        <input type="number" className='basicSalary' value={basicSalary} onChange={(e) => setBasicSalary(parseInt(e.target.value))} readOnly required />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className=''>OT Hours:</label>
@@ -195,7 +224,7 @@ function SalaryCalculator(props) {
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Rate:</label> 
-                        <input type="number" className='otRate' value={otRate} onChange={(e) => setOtRate(parseInt(e.target.value))} readOnly={isSalaryAssigned} />
+                        <input type="number" className='otRate' value={otRate} onChange={(e) => setOtRate(parseInt(e.target.value))} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Amount:</label>

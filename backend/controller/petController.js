@@ -57,13 +57,15 @@ exports.addPet = async (req, res) => {
   }
 };
 
-
     exports.getCustomerPets = async (req, res) => {
       try {
         const customerId = req.params.customerId;
+        if (!customerId) {
+          return res.status(400).json({ message: 'Customer ID is missing' });
+        }
+    
         const pets = await Pet.find({ owner: customerId });
     
-       
         const formattedPets = pets.map(pet => {
           if (pet.profilePhoto) {
             pet.profilePhoto = `${req.protocol}://${req.get('host')}/${pet.profilePhoto}`;
@@ -77,6 +79,7 @@ exports.addPet = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
       }
     };
+    
     
 
     exports.getPetById = async (req, res) => {
@@ -98,7 +101,6 @@ exports.addPet = async (req, res) => {
     };
     
 
-    // Controller function to delete a pet profile
 exports.deletePetById = async (req, res) => {
   try {
     const petId = req.params.petId;
@@ -106,13 +108,17 @@ exports.deletePetById = async (req, res) => {
     if (!deletedPet) {
       return res.status(404).json({ message: 'Pet not found' });
     }
-    
-    res.status(200).json({ message: 'Pet deleted successfully' });
+
+    // Extract customerId from the owner field of the deleted pet
+    const customerId = deletedPet.owner;
+
+    res.status(200).json({ message: 'Pet deleted successfully', customerId });
   } catch (error) {
     console.error('Error deleting pet:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
     // Controller function to update a pet profile
 exports.updatePetById = async (req, res) => {

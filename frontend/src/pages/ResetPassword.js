@@ -42,10 +42,9 @@ const ResetPassword = () => {
 
       setMessage(res.data.message);
 
-      // Redirect to the sign-in page after successful password reset
-      //setTimeout(() => {
-      //  window.location.href = '/SignIn';
-      //}, 3000); 
+      // Sign out and navigate to sign-in page after successful password reset
+      handleSignOut();
+      window.location.href = '/SignIn';
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.message === 'Incorrect existing password') {
         setMessage('Existing password is incorrect.');
@@ -66,6 +65,11 @@ const ResetPassword = () => {
   // Function to show password requirements
   const showPasswordRequirements = () => {
     setPasswordRequirements(true);
+  };
+
+  // Function to sign out
+  const handleSignOut = () => {
+    localStorage.removeItem('userData');
   };
 
   return (

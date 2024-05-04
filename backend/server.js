@@ -14,7 +14,7 @@ app.use('/uploads', express.static('uploads'));
 const path = require('path')
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
+require('./schedule');
 // Importing route handlers for various endpoints
 
 const adsRoute = require("./routes/adverisementRoute");
@@ -36,7 +36,7 @@ const productsRouter = require('./routes/products');
 const stepRoutes = require('./routes/stepRoute');
 const petRoute = require("./routes/petRoute"); 
 const servicesRoute = require('./routes/ServiceRoute');
-
+const cartRoute = require("./routes/cartRoute")
 
 
 //const appointmentRoutes = require("./routes/MakeAppointmentRoute");
@@ -69,6 +69,7 @@ app.use('/pets', petRoute);
 app.use('/services', servicesRoute);
 app.use('/salary', salaryRoute);
 //app.use('/banktransadmin', banktransadminRoute);
+app.use('/cart', cartRoute);
 
 
 // Route to handle requests to the root URL

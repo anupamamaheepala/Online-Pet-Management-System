@@ -27,30 +27,68 @@ const AllOrders = () => {
     const [filter, setFilter] = useState('all');
 
     useEffect(() => {
-        axios
-            .get('http://localhost:9000/orders/all')
-            .then((res) => {
+        const fetchOrders = async () => {
+            try {
+                const res = await axios.get('http://localhost:9000/orders/all');
                 const initialOrders = res.data.map((order) => ({
                     ...order,
                     orderPlaced: false,
                     reportDownloaded: false,
                 }));
-                setOrders(initialOrders);
-                setFilteredOrders(initialOrders);
-            })
-            .catch((err) => console.error(err));
+
+                // Restore orderPlaced status from local storage
+                const confirmedOrders = JSON.parse(
+                    localStorage.getItem('confirmedOrders') || '[]'
+                );
+                const updatedOrders = initialOrders.map((order) => ({
+                    ...order,
+                    orderPlaced: confirmedOrders.includes(order._id),
+                }));
+
+                setOrders(updatedOrders);
+                setFilteredOrders(updatedOrders);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchOrders();
     }, []);
 
     const handleOrderPlaced = (id) => {
-        setOrders((prevOrders) =>
-            prevOrders.map((order) =>
-                order._id === id ? { ...order, orderPlaced: true } : order
-            )
+        // Update orderPlaced state
+        const updatedOrders = orders.map((order) =>
+            order._id === id ? { ...order, orderPlaced: true } : order
         );
-        if (filter === 'lastWeek') {
-            const lastWeek = moment().subtract(7, 'days');
+        setOrders(updatedOrders);
+
+        // Store confirmed order in local storage
+        const confirmedOrders = JSON.parse(
+            localStorage.getItem('confirmedOrders') || '[]'
+        );
+        if (!confirmedOrders.includes(id)) {
+            confirmedOrders.push(id);
+            localStorage.setItem('confirmedOrders', JSON.stringify(confirmedOrders));
+        }
+
+        if (filter === 'notPlaced') {
+            const filtered = updatedOrders.filter((order) => !order.orderPlaced);
+            setFilteredOrders(filtered);
+        } else {
+            setFilteredOrders(updatedOrders);
+        }
+    };
+
+    const handleFilterChange = (e) => {
+        const filterValue = e.target.value;
+        setFilter(filterValue);
+
+        if (filterValue === 'placed') {
+            const filtered = orders.filter((order) => order.orderPlaced);
+            setFilteredOrders(filtered);
+        } else if (filterValue === 'notPlaced') {
             const filtered = orders.filter(
-                (order) => moment(order.createdAt).isAfter(lastWeek)
+                (order) => !order.orderPlaced
             );
             setFilteredOrders(filtered);
         } else {
@@ -87,31 +125,15 @@ const AllOrders = () => {
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(12);
 
-            doc.text(`Order Report`, boxX + 5, boxY + 10);
+            doc.text(`Delivery Details`, boxX + 5, boxY + 10);
             doc.text(`Name: ${order.orderName}`, boxX + 5, boxY + 20);
             doc.text(`Contact Number: ${order.orderContactNo}`, boxX + 5, boxY + 30);
             doc.text(`Address: ${order.orderAddress}`, boxX + 5, boxY + 40);
             doc.text(`Ordered Date: ${moment(order.createdAt).format('YYYY-MM-DD')}`, boxX + 5, boxY + 50);
             doc.text(`Delivery Date: ${calculateDeliveryDate(order.createdAt)}`, boxX + 5, boxY + 60);
 
-            doc.setFontSize(16);
-            doc.text(`Delivery Details`, 105, boxY - 25, null, null, 'center');
-
             doc.save(`order_report_${order.orderName}.pdf`);
         };
-    };
-
-    const handleFilterChange = (e) => {
-        const filterValue = e.target.value;
-        setFilter(filterValue);
-
-        if (filterValue === 'lastWeek') {
-            const lastWeek = moment().subtract(7, 'days');
-            const filtered = orders.filter((order) => moment(order.createdAt).isAfter(lastWeek));
-            setFilteredOrders(filtered);
-        } else {
-            setFilteredOrders(orders);
-        }
     };
 
     return (
@@ -119,9 +141,14 @@ const AllOrders = () => {
             <StockManagerHeader />
             <div>
                 <label htmlFor="orderFilter">Filter Orders:</label>
-                <select id="orderFilter" onChange={handleFilterChange} value={filter}>
+                <select
+                    id="orderFilter"
+                    onChange={handleFilterChange}
+                    value={filter}
+                >
                     <option value="all">All Orders</option>
-                    <option value="lastWeek">Last Week Orders</option>
+                    <option value="placed">Orders Done</option>
+                    <option value="notPlaced">Orders To Be Done</option>
                 </select>
             </div>
             <h1>
@@ -149,10 +176,10 @@ const AllOrders = () => {
                             <td>{calculateDeliveryDate(order.createdAt)}</td>
                             <td>
                                 {order.orderPlaced ? (
-                                    '✔️'
+                                    'Successfully'
                                 ) : (
                                     <button
-                                        className="os_blue_button" 
+                                        className="os_blue_button"
                                         onClick={() => handleOrderPlaced(order._id)}
                                     >
                                         Place Order
@@ -161,10 +188,10 @@ const AllOrders = () => {
                             </td>
                             <td>
                                 {order.reportDownloaded ? (
-                                    '✔️'
+                                    'Successfully'
                                 ) : (
                                     <button
-                                        className="os_blue_button" 
+                                        className="os_blue_button"
                                         onClick={() => generatePDF(order)}
                                     >
                                         Download Report

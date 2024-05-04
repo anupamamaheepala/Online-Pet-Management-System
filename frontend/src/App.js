@@ -80,7 +80,6 @@ import AllPets from './pages/AllPets';
 import Cardpaysuccess from './pages/Cardpaysuccess';
 import UpdateSalary from './pages/UpdateSalary';
 import SalaryTable from './pages/SalaryTable';
-import { CartProvider } from './Context/CartContext';
 import Cardpayadmin from './pages/Cardpayadmin';
 import AddToCartPage from './pages/Cart';
 import EditProduct from './pages/EditProduct';
@@ -88,12 +87,18 @@ import StaffLogin from './pages/StaffLogin';
 import EditAdvertisement from './pages/EditAdvertisement';
 import SalaryView from './pages/SalaryView';
 import Sysmanagerhome from './pages/Sysmanagerhome';
+import LeaveDetails from './pages/LeaveDetails';
+import ForgotPassword from './pages/ForgotPassword';
+import AppliedLeaves from './pages/AppliedLeaves';
+import RegenerateSalary from './pages/RegenerateSalary';
+
+
 
 function App() {
   return (
     <div>
       <Router>
-        <CartProvider>
+        
           <Routes>
           <Route path="/" element={<Home />} />
           
@@ -117,7 +122,6 @@ function App() {
           <Route path="/FeedbackRating" element={<FeedbackRating />} />
           <Route path="/FeedbackadminInquiry" element={<FeedbackadminInquiry />} />
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
-
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
 
@@ -192,10 +196,13 @@ function App() {
 
           <Route path="/SalaryView/:id" element={<SalaryView />} />
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
-
+          <Route path="/leave-details/:leaveId" element={<LeaveDetails />} />
+          <Route path="/forgot-password" element={<ForgotPassword/>}/>
+          <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
+          <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          
 
           </Routes>
-        </CartProvider>
       </Router>
       <ToastContainer position="top-center" />
     </div>

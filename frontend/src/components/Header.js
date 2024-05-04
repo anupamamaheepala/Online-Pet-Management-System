@@ -8,7 +8,8 @@ const Header = ({ profilePhoto }) => {
     const [activeMenuItem, setActiveMenuItem] = useState('Home');
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')));
     const location = useLocation();
-    const profilePhotoUrl = userData && userData.profilePhoto;
+    const profilePhotoUrl = profilePhoto;
+    console.log("Profile photo URL in Header:", profilePhotoUrl);
 
 
     useEffect(() => {
@@ -86,21 +87,22 @@ const Header = ({ profilePhoto }) => {
                         </ul>
                         <div className="d-flex align-items-center">
                             
-                        {userData ? (
-                            <div className="dropdown">
+                        
+                            {userData ? (
+                                <div className="dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {profilePhotoUrl ? (
-                                        <img
-                                            src={profilePhotoUrl}
-                                            alt="Profile"
-                                            style={{ borderRadius: '50%', width: '40px', height: '40px' }}
-                                            onError={(e) => {
-                                                console.error('Error loading profile photo:', e.target.src);
-                                                setUserData({ ...userData, profilePhoto: null }); // Optionally reset profilePhoto on error
-                                            }}
-                                        />
+                                    {profilePhoto ? ( // Check if profilePhoto exists
+                                    <img
+                                        src={profilePhoto}
+                                        alt="Profile"
+                                        style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+                                        onError={(e) => {
+                                        console.error('Error loading profile photo:', e.target.src);
+                                        setUserData({ ...userData, profilePhoto: null }); // Optionally reset profilePhoto on error
+                                        }}
+                                    />
                                     ) : (
-                                        <BsPersonFill size={40} style={{ border: '1px solid #ccc', borderRadius: '50%', padding: '2px' }} />
+                                    <BsPersonFill size={40} style={{ border: '1px solid #ccc', borderRadius: '50%', padding: '2px' }} />
                                     )}
                                     {userData.username}
                                 </a>

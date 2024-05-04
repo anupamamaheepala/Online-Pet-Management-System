@@ -10,8 +10,8 @@ const Payerinfo = () => {
         email: '',
         phonenumber: '',
         address: '',
-        purpose: '', // corrected from purposee
-        amount: ''   // corrected from emout
+        purpose: '',
+        amount: ''
     });
 
     const { name, email, phonenumber, address, purpose, amount } = formData;
@@ -43,21 +43,16 @@ const Payerinfo = () => {
             console.log(res.data);
             // Redirect to PayStatus page after successful form submission
             window.location.href = `/Paystatus?id=${res.data._id}`;
-
-              
-            // Optionally, you can clear the form fields after successful submission
-            setFormData({
-                name: '',
-                email: '',
-                phonenumber: '',
-                address: '',
-                purpose: '',
-                amount: '',
-            });
-
-
         } catch (err) {
-            console.error(err);
+            console.error(err.response.data);
+            // Check if error message indicates email already exists
+            if (err.response.data.message === "Email already exists. Please use the same name.") {
+                // Display a message to the user
+                alert("Email already exists. Please use the same name.");
+            } else {
+                // Handle other errors
+                console.error(err);
+            }
         }
     };
 

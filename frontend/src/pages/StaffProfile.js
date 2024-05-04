@@ -44,7 +44,8 @@ const StaffProfile = () => {
       )}
       
     <div className='StaffProfileContainer'>
-
+      
+      
 
        <div className='staffProfileWrapper'>
       <br></br><br></br>
@@ -65,9 +66,16 @@ const StaffProfile = () => {
           <br></br>
           <Link className="staffProfile-update-btn" to={`/update/${staff._id}`}>Update</Link>
           <button className="staffProfile-delete-btn" onClick={() => handleDelete(staff._id)}>Delete</button>
-          <Link className="staffProfile-leave-btn" to={`/StaffLeaveForm/${staff.staffId}?staffId=${staff.staffId}&sfirstname=${staff.sfirstname}&slastname=${staff.slastname}`}>
-            Apply for Leave </Link>
-          <Link to={`/SalaryView/${id}`} className="staffProfile-view-salary-btn">View Salary</Link>
+
+
+          <div className="StaffProfilenavigation-row">
+              
+              <Link className="staffProfile-leave-btn" to={`/StaffLeaveForm/${staff.staffId}?staffId=${staff.staffId}&sfirstname=${staff.sfirstname}&slastname=${staff.slastname}`}>
+                 Apply for Leave </Link>
+               <Link to={`/applied-leaves/${id}`} className="nav-link">Applied Leaves</Link>
+              <Link to={`/SalaryView/${id}`} className="staffProfile-view-salary-btn">View Salary</Link>
+            </div>
+          
         </div>
       )}
 

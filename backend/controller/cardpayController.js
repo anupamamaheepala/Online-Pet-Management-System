@@ -34,6 +34,15 @@ exports.processCardPayment = async (req, res) => {
         // Mask the CVV using the maskCVV function
         const maskedCvv = maskCVV(cvv);
 
+        // Check if the expiration date is valid
+        const currentDate = new Date();
+        const [month, year] = expireDate.split('/').map(part => parseInt(part, 10));
+        const cardExpirationDate = new Date(2000 + year, month - 1); // Adjust the year to 4 digits and month to 0-based index
+
+        if (cardExpirationDate < currentDate) {
+            return res.status(400).json({ message: "The card has already expired" });
+        }
+
         const cardPayment = new CardPayment({
             payer: payer._id,
             nameOnCard,

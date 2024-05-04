@@ -1,6 +1,5 @@
 const Payerinfo = require("../models/paymentModel");
 
-// Controller function for handling payment-related operations
 const paymentController = {
   // Method for adding payer information
   addPayerInfo: async (req, res) => {
@@ -9,6 +8,16 @@ const paymentController = {
 
       if (!name || !email || !phonenumber || !address || !purpose || !amount) {
         return res.status(400).json({ message: "All fields are required!" });
+      }
+
+      // Check if email already exists
+      const existingPayer = await Payerinfo.findOne({ email });
+
+      if (existingPayer) {
+        // If email already exists, check if the provided name matches the existing name
+        if (existingPayer.name !== name) {
+          return res.status(400).json({ message: "Email already exists. Please use the same name." });
+        }
       }
 
       const payerInfo = new Payerinfo({

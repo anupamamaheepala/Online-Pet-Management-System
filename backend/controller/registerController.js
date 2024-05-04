@@ -4,7 +4,7 @@ const passwordValidator = require('password-validator');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-
+const nodemailer = require('nodemailer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,8 +18,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
-
 
 // Schema for password validation
 const schema = new passwordValidator();
@@ -105,7 +103,6 @@ exports.getAllCustomers = async (req, res) => {
   }
 };
 
-
 exports.getCustomerById = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
@@ -124,7 +121,6 @@ exports.getCustomerById = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch customer details" });
   }
 };
-
 
 // Update customer details
 exports.updateCustomer = async (req, res) => {
@@ -180,8 +176,6 @@ exports.signIn = async (req, res) => {
   }
 };
 
-
-
 exports.resetPassword = async (req, res) => {
   const { customerId } = req.params;
   const { existingPassword, newPassword } = req.body;
@@ -214,9 +208,6 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-
-
-
 //function to upload profile photo
 exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) => {
   try {
@@ -244,8 +235,6 @@ exports.uploadProfilePhoto = [upload.single('profilePhoto'), async (req, res) =>
       res.status(500).json({ message: 'Server error' });
   }
 }];
-
-
 
 // Function to delete profile photo
 exports.deleteProfilePhoto = async (req, res) => {
@@ -294,9 +283,116 @@ exports.checkEmailExists = async (req, res) => {
   }
 };
 
+//check if contact number already exist
+exports.checkContactNumberExists = async (req, res) => {
+  try {
+    const { contactNumber } = req.params;
+    const existingCustomer = await Customer.findOne({ contactNumbers: contactNumber });
+    res.status(200).json(existingCustomer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 
+// Generate OTP
+const generateOTP = () => {
+  return Math.floor(100000 + Math.random() * 900000); // Generate a random 6-digit OTP
+};
 
+// Map to store OTPs for each email
+const otpMap = new Map();
 
+// Function to send OTP to email
+exports.generateAndSendOTP = async (req, res) => {
+  const { email } = req.body;
 
+  // Generate OTP
+  const otp = generateOTP();
 
+  // Store OTP in the map
+  otpMap.set(email, otp);
 
+  // Configure nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.EMAIL, // Gmail email address
+      pass: process.env.PASSWORD, // app-specific password
+    },
+  });
+
+  // Email content
+  const mailOptions = {
+    from: 'petzonemanagement@gmail.com', // Sender address
+    to: email, // Recipient address
+    subject: 'Password Reset OTP', // Email subject
+    text: `Your OTP for password reset is: ${otp}`, // Email body
+  };
+
+  // Send OTP to the email address
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'OTP sent successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to send OTP' });
+  }
+};
+
+// Function to verify OTP
+exports.verifyOTP = async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    // Retrieve the stored OTP for the given email
+    const storedOTP = otpMap.get(email);
+
+    // Check if the provided OTP matches the stored OTP
+    if (storedOTP && otp === storedOTP.toString()) { // Convert otp to string for comparison
+      return res.status(200).json({ message: 'OTP verified successfully' });
+    } else {
+      // Invalid OTP
+      return res.status(400).json({ message: 'Invalid OTP' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+//function to change password when password forgot
+exports.changePassword = async (req, res) => {
+  const { email, newPassword, confirmPassword } = req.body;
+
+  try {
+    // Find the user by email
+    const user = await Customer.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if newPassword and confirmPassword match
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: 'New password and confirm password should be the same' });
+    }
+
+    // Validate the new password against the schema
+    if (!schema.validate(newPassword)) {
+      return res.status(400).json({ message: 'Password does not meet the requirements' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password in the database
+    user.password = hashedPassword;
+    await user.save();
+
+    return res.status(200).json({ message: 'Password changed successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
