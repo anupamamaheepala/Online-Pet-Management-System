@@ -31,7 +31,7 @@ const Cart = ({ customerId }) => {
     if (quantity < 1) return; // Prevent removing items via quantity update
     try {
       await axios.post(`http://localhost:9000/cart`, {
-        customerId,
+        customerId, // Include customerId in the payload
         productId,
         quantity,
       });
@@ -43,7 +43,9 @@ const Cart = ({ customerId }) => {
 
   const removeItem = async (productId) => {
     try {
-      await axios.delete(`http://localhost:9000/cart/${customerId}/${productId}`);
+      await axios.delete(`http://localhost:9000/cart/${customerId}/${productId}`, {
+        data: { customerId } // Include customerId in the payload for security
+      });
       fetchCartItems(); // Refresh the cart after removal
     } catch (error) {
       console.error('Failed to remove item:', error);
