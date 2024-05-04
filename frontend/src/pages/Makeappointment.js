@@ -38,20 +38,22 @@ const MakeAppointment = () => {
     }
   };
 
-  const fetchBookedTimes = async (date) => {
-    try {
-      const response = await axios.get(`http://localhost:9000/appointment/booked-times?selectDate=${date}`);
-      setBookedTimes(response.data);
-    } catch (error) {
-      console.error('Error fetching booked times:', error);
+  const fetchBookedTimes = async () => {
+    if (selectDate && selectService) {
+      try {
+        const response = await axios.get(`http://localhost:9000/appointment/booked-times`, {
+          params: { selectDate, selectService }
+        });
+        setBookedTimes(response.data);
+      } catch (error) {
+        console.error('Error fetching booked times:', error);
+      }
     }
   };
 
   useEffect(() => {
-    if (selectDate) {
-      fetchBookedTimes(selectDate);
-    }
-  }, [selectDate]);
+    fetchBookedTimes();
+  }, [selectDate, selectService]);
 
   const validateForm = () => {
     let isValid = true;
@@ -131,15 +133,15 @@ const MakeAppointment = () => {
     const options = [];
     for (let hour = 8; hour <= 16; hour++) {
       if (hour !== 12) {
-        for (let minute = 0; minute < 60; minute += 60) {
-          const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-          const formattedMinute = minute.toString().padStart(2, '0');
-          const period = hour < 12 ? 'am' : 'pm';
-          options.push(`${formattedHour}:${formattedMinute} ${period}`);
+        const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+        const period = hour < 12 ? 'am' : 'pm';
+        const timeOption = `${formattedHour}:00 ${period}`;
+        if (!bookedTimes.includes(timeOption)) {
+          options.push(timeOption);
         }
       }
     }
-    return options.filter(time => !bookedTimes.includes(time));
+    return options;
   };
 
   const getCurrentDate = () => {
@@ -183,7 +185,7 @@ const MakeAppointment = () => {
               <select className="makeappointment_select" id="selectService" value={selectService} onChange={(e) => setSelectService(e.target.value)} required>
                 <option value="">--Please select--</option>
                 <option value="Veterinary Service">Veterinary Service</option>
-                <option value="Groome Service">Groome Service</option>
+                <option value="Grooming Service">Grooming Service</option>
               </select>
             </div>
             <div className="makeappointment_input_container">
