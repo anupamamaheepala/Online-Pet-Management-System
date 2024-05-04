@@ -1,3 +1,5 @@
+// Vetservices.js
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,8 +13,8 @@ function Vetservices() {
   const [currentImage, setCurrentImage] = useState(0);
   const [showDescription, setShowDescription] = useState('');
   const [services, setServices] = useState([]);
-  const [staffs, setStaffs] = useState([]);
-  const [filteredStaffs, setFilteredStaffs] = useState([]);
+  const [veterinarians, setVeterinarians] = useState([]);
+  const [filteredVeterinarians, setFilteredVeterinarians] = useState([]);
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -29,8 +31,8 @@ function Vetservices() {
 
   useEffect(() => {
     fetchServices();
-    fetchStaffs();
-  }, []); // Fetch services and staffs when component mounts
+    fetchVeterinarians();
+  }, []); // Fetch services and veterinarians when component mounts
 
   const fetchServices = async () => {
     try {
@@ -41,15 +43,15 @@ function Vetservices() {
       console.error('Error fetching services:', error);
     }
   };
-
-  const fetchStaffs = async () => {
+  
+  // Fetch and display available veterinarians
+  const fetchVeterinarians = async () => {
     try {
-      const response = await axios.get('http://localhost:9000/staffs');
-      const veterinarians = response.data.filter(staff => staff.designation === "Veterinarian");
-      setStaffs(veterinarians);
-      setFilteredStaffs(veterinarians);
+      const response = await axios.get('http://localhost:9000/staff');
+      const vetStaff = response.data.filter(staff => staff.designation === "Veterinarian");
+      setVeterinarians(vetStaff);
     } catch (error) {
-      console.error('Error fetching staffs:', error);
+      console.error('Error fetching veterinarians:', error);
     }
   };
 
@@ -102,7 +104,11 @@ function Vetservices() {
         </div>
         <div className="square-placeholder">
           <h1>Available Veterinarians</h1>
-          {/*  Veterinarian List */}
+          <ul>
+            {veterinarians.map(vet => (
+              <li key={vet._id}>{vet.sfirstname} {vet.slastname}</li>
+            ))}
+          </ul>
         </div>
       </div>
       <Footer />

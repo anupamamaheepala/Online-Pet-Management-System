@@ -1,3 +1,5 @@
+// Groomservices.js
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,6 +13,7 @@ function Groomservices() {
   const [currentImage, setCurrentImage] = useState(0);
   const [showDescription, setShowDescription] = useState('');
   const [services, setServices] = useState([]);
+  const [groomers, setGroomers] = useState([]);
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -27,6 +30,7 @@ function Groomservices() {
 
   useEffect(() => {
     fetchServices();
+    fetchGroomers();
   }, []);
 
   const fetchServices = async () => {
@@ -36,6 +40,17 @@ function Groomservices() {
       setServices(groomeServices);
     } catch (error) {
       console.error('Error fetching services:', error);
+    }
+  };
+  
+  // Fetch and display available groomers
+  const fetchGroomers = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/staff');
+      const groomerStaff = response.data.filter(staff => staff.designation === "Groomer");
+      setGroomers(groomerStaff);
+    } catch (error) {
+      console.error('Error fetching groomers:', error);
     }
   };
 
@@ -88,8 +103,12 @@ function Groomservices() {
         </div>
         <div className="square-placeholder">
           <h1>Available Groomers</h1>
-         
-        </div> 
+          <ul>
+            {groomers.map(groomer => (
+              <li key={groomer._id}>{groomer.sfirstname} {groomer.slastname}</li>
+            ))}
+          </ul>
+        </div>
       </div>
       <Footer />
     </>
