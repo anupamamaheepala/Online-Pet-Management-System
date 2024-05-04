@@ -19,7 +19,7 @@ function RegenerateSalary(props) {
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
 
-    
+
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         setStaffId(params.get('staffId'));
@@ -31,11 +31,15 @@ function RegenerateSalary(props) {
         // Simulate data fetching for other salary details
         // For demonstration purposes, setting default values here
         
-        setOtHours(10);
-        setBonusAmount(200);
+        setOtHours(0);
+        setBonusAmount(0);
         calculateTotalSalary(); // Calculate total salary based on fetched and default values
     }, [location.search]);
-    
+
+    useEffect(() => {
+        calculateTotalSalary();
+    }, [otHours, bonusAmount, basicSalary]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -65,9 +69,11 @@ function RegenerateSalary(props) {
 
     const calculateTotalSalary = () => {
         const otAmount = calculateOTAmount();
-        const total = basicSalary + otAmount + bonusAmount;
+        const total = basicSalary + otAmount + parseFloat(bonusAmount);
         setTotalSalary(total);
     };
+    
+    
 
     return (
         <>
@@ -109,6 +115,10 @@ function RegenerateSalary(props) {
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>OT Rate:</label>
                         <input type="number" className='otRate' value={otRate} readOnly />
+                    </div>
+                    <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>OT Amount:</label>
+                        <input type="number" className='otAmount' value={calculateOTAmount()} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Bonus Amount:</label>
