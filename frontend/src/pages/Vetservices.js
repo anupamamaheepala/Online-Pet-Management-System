@@ -14,7 +14,7 @@ function Vetservices() {
   const [showDescription, setShowDescription] = useState('');
   const [services, setServices] = useState([]);
   const [veterinarians, setVeterinarians] = useState([]);
-  const [filteredVeterinarians, setFilteredVeterinarians] = useState([]);
+  const [selectedVetId, setSelectedVetId] = useState(null); // New state variable
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -32,7 +32,7 @@ function Vetservices() {
   useEffect(() => {
     fetchServices();
     fetchVeterinarians();
-  }, []); // Fetch services and veterinarians when component mounts
+  }, []);
 
   const fetchServices = async () => {
     try {
@@ -55,12 +55,9 @@ function Vetservices() {
     }
   };
 
-  const toggleDescription = (service) => {
-    if (showDescription === service) {
-      setShowDescription('');
-    } else {
-      setShowDescription(service);
-    }
+  // Function to handle click on veterinarian name
+  const handleVetClick = (vetId) => {
+    setSelectedVetId(prevId => (prevId === vetId ? null : vetId)); // Toggle selected veterinarian ID
   };
 
   return (
@@ -94,7 +91,7 @@ function Vetservices() {
           <h2>Available Veterinary Services</h2>
           <ul className="service-list-vetservices">
             {services.map((service) => (
-              <li key={service._id} onClick={() => toggleDescription(service.title)}>
+              <li key={service._id} onClick={() => setShowDescription(service.title)}>
                 <span className="toggle-icon">{showDescription === service.title ? '-' : '+'}</span>
                 <h3>{service.title}</h3>
                 {showDescription === service.title && <p>{service.description}</p>}
@@ -106,7 +103,19 @@ function Vetservices() {
           <h1>Available Veterinarians</h1>
           <ul>
             {veterinarians.map(vet => (
-              <li key={vet._id}>{vet.sfirstname} {vet.slastname}</li>
+              <li key={vet._id}>
+                <span className="vet-name" onClick={() => handleVetClick(vet._id)} style={{marginTop: '10px'}}> {/* Added top margin */}
+                  <button className={`toggle-button ${selectedVetId === vet._id ? 'active' : ''}`} onClick={(e) => e.preventDefault()}>{selectedVetId === vet._id ? '-' : <strong>+</strong>}</button> {/* Toggle details */}
+                {vet.sfirstname} {vet.slastname}
+                </span>
+                {selectedVetId === vet._id && ( 
+                  <div className="vet-details">
+                    <p>Qualifications: {vet.qualifications}</p>
+                    <p>Email: {vet.semail}</p>
+                    <p>Contact Number: {vet.scontactNumber}</p>
+                  </div>
+                )}
+              </li>
             ))}
           </ul>
         </div>
