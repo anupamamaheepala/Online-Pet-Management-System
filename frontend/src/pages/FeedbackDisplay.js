@@ -1,5 +1,3 @@
-// FeedbackDisplay.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -23,10 +21,11 @@ const FeedbackDisplay = () => {
     }, []);
 
     // Function star ratings
-    const renderStarRating = (rating) => {
+    const renderStarRating = (rating, averageRating) => {
         const stars = [];
-        for (let i = 0; i < rating; i++) {
-            stars.push(<span key={i} className="star">★</span>);
+        for (let i = 0; i < 5; i++) {
+            const starClass = i < rating ? 'fstar selected' : 'fstar';
+            stars.push(<span key={i} className={starClass}>★</span>);
         }
         return stars;
     };
@@ -72,9 +71,20 @@ const FeedbackDisplay = () => {
         setSelectedStars(parseInt(e.target.value));
     };
 
-    // Function handle name search query 
+     // Function handle name search query
     const handleNameSearchChange = (e) => {
-        setSearchQuery(e.target.value);
+    const { value } = e.target;
+    setSearchQuery(value);
+    // Update the placeholder text based on whether the search query is empty
+    document.getElementById("nameSearch").placeholder = value ? "" : "Search Your Feedbacks";
+};
+   
+
+    // Calculate average rating
+    const calculateAverageRating = () => {
+        if (feedbackList.length === 0) return 0;
+        const totalRating = feedbackList.reduce((sum, feedback) => sum + feedback.rating, 0);
+        return Math.round(totalRating / feedbackList.length);
     };
 
     return (
@@ -97,6 +107,11 @@ const FeedbackDisplay = () => {
             </div>
             <div className="titleContainer">
                 <h1><center>Customers Feedback</center></h1>
+            </div>
+
+            {/* Average Rating */}
+            <div className="averageRating">
+                <div>{renderStarRating(calculateAverageRating())}</div>
             </div>
 
             {/* Star filter dropdown */}
