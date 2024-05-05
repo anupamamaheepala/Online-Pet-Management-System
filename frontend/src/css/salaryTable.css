@@ -65,7 +65,7 @@
 .SalaryUpdate {
   display: inline-block;
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: #000000;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -77,8 +77,24 @@
   border-radius: 4px;
 }
 
+.salarydelete{
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #cd2c2c;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+
+}
+
 .SalaryUpdate:hover {
-  background-color: #45a049;
+  background-color: #000000;
   text-decoration: none;
 }
 

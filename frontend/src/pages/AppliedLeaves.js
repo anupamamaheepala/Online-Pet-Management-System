@@ -46,7 +46,7 @@ const AppliedLeaves = () => {
               <p>Type: {leave.StleaveType}</p>
               <p>Reason: {leave.streason}</p>
               <p>Requested Date: {formatDate(leave.createdAt)}</p>
-              <p>Approved Date: {formatDate(leave.updatedAt)}</p>
+              
               <p style={{ color: leave.status === 'Approved' ? 'green' : leave.status === 'Disapproved' ? 'red' : 'black' }}>
               Status: {leave.status}
             </p>

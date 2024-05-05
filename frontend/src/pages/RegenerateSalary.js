@@ -92,6 +92,7 @@ function RegenerateSalary(props) {
             setError('');
             // Optionally, show a success message
             alert('Salary assigned successfully!');
+            window.location.href = '/SalaryTable';
     
         } catch (error) {
             console.error('Error submitting form:', error);
