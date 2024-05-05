@@ -26,23 +26,20 @@ const MyAdvertisements = ({ userId }) => {
         <>
             <Header /> 
             <div className="ma_advertisement-container">
-                {advertisements.map(advertisement => (
-                    <div key={advertisement._id} className="ma_advertisement-column">
-                        <h3>{advertisement.purpose}</h3>
-                        <div className="ma_advertisement-box">
-                            <img src={`http://localhost:9000/${advertisement.filePath}`} alt="Pet for sale" className="ma_advertisement-photo" />
-                            <div className="ma_advertisement-details">
-                                <p>{advertisement.description}</p>
-                                <p>Contact details: {advertisement.contact}</p>
-                                <div className="ma_advertisement-buttons">
-                                    <Link to={`/pay/${advertisement._id}`} className="ma_add_button ma_confirm_button">Pay</Link>
-                                    <Link to={`/edit/${advertisement._id}`} className="ma_add_button ma_confirm_button">Edit</Link>
-                                    <Link to={`/delete/${advertisement._id}`} className="ma_add_button ma_reject_button">Delete</Link>
-                                </div>
+                <div className="ma_advertisement-column">
+                    <h3>My advertisements</h3>
+                    <div className="ma_advertisement-box">
+                        <div className="ma_advertisement-details">
+                            <p>This puppy for sale (LKR 12000)</p>
+                            <p>0773641569</p>
+                            <div className="ma_advertisement-buttons">
+                                <Link to="/payerinfo" className="ma_add_button ma_confirm_button">Pay</Link>
+                                <Link to="/EditAdvertisement" className="ma_add_button ma_confirm_button">Edit</Link>
+                                <div className="ma_add_button ma_reject_button">Delete</div>
                             </div>
                         </div>
                     </div>
-                ))}
+                </div>
             </div>
             <Footer />
         </>

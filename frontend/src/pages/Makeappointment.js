@@ -61,13 +61,14 @@ const MakeAppointment = () => {
   const fetchBookedTimes = async () => {
     try {
       const response = await axios.get(`http://localhost:9000/appointment/booked-times`, {
-        params: { selectDate, selectService, selectProfession }
+        params: { selectDate, selectService }
       });
       setBookedTimes(response.data);
     } catch (error) {
       console.error('Error fetching booked times:', error);
     }
   };
+  
 
   const validateForm = () => {
     let isValid = true;
@@ -159,6 +160,7 @@ const MakeAppointment = () => {
     }
     return options;
   };
+  
 
   const getCurrentDate = () => {
     const currentDate = new Date();
