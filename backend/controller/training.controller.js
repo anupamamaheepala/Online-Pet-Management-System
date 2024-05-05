@@ -242,6 +242,16 @@ const rejectTraining = async (req, res) => {
         if (!training) {
             return res.status(404).json({ message: 'Training not found' });
         }
+            // Send email to customer
+      const recipientEmail = training.email; // Assuming email is stored in the training object
+      const subject = 'Training Rejected';
+      const message = `
+        <h1>Your training is approved successfully!</h1>
+        <p>Thank you for choosing PetZone Animal Hospital.</p>
+        <!-- Add any additional information you want to include in the email -->
+      `;
+      await sendEmail(recipientEmail, subject, message);
+  
         res.json({ message: 'Training rejected successfully' });
     } catch (error) {
         console.error('Error rejecting training:', error);

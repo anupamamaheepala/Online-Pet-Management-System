@@ -137,3 +137,25 @@ exports.updateSalary = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+
+// Controller for fetching salary details by staff ID or related IDs
+exports.getSalaryByModifiedId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Use a regular expression to match staff IDs starting with the provided ID
+    const salaries = await Salary.find({ staffId: new RegExp(`^${id}`) });
+
+    if (!salaries || salaries.length === 0) {
+      return res.status(404).json({ message: 'Salary details not found' });
+    }
+
+    // Return the salary details
+    res.status(200).json(salaries);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+

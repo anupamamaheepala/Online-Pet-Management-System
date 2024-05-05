@@ -40,6 +40,14 @@
 .alo1-button:hover {
     text-decoration: underline;
 }
+.alo222_search-input {
+  width: 300px !important;
+  float: right !important;
+  margin-right: 20px !important;
+  margin-top: 20px !important;
+  justify-content: right !important;
+  justify-items: right !important;
+}
 .dashboard-header {
   background-color: #f0f0f0;
   padding: 10px;
@@ -122,5 +130,10 @@
   font-size: larger;
   font-weight: bold;
   
+}
+
+.alo22-txt{
+  margin-top: 10px;
+ 
 }
 
