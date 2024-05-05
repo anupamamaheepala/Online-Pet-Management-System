@@ -4,6 +4,8 @@ import { useParams, Link } from 'react-router-dom';
 import '../css/petprofile.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import jsPDF from 'jspdf';
+
 
 const PetProfile = () => {
   const { petId } = useParams();
@@ -84,6 +86,49 @@ const PetProfile = () => {
       alert('Deletion cancelled.');
     }
   };
+ 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    // Path to your site logo
+    const logoURL = '/images/logo.png';
+    
+    // Add the logo to the PDF
+    doc.addImage(logoURL, 'PNG', 20, 10, 30, 30); // Adjust position and size as needed
+    
+    // Add a title to the PDF
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0); // Set text color to black
+    doc.text('Pet Report', 80, 40); // Increased y-coordinate here
+    
+      // Add pet profile details to the PDF
+      doc.setFontSize(18);
+      doc.text(20, 60, 'Pet Profile'); // Increased y-coordinate here
+      doc.setFontSize(12);
+      doc.text(20, 70, `Name: ${petData.petName}`);
+      doc.text(20, 80, `Species: ${petData.species}`);
+      doc.text(20, 90, `Breed: ${petData.breed}`);
+      doc.text(20, 100, `Age: ${petData.age ? `${petData.age.value} ${petData.age.unit}` : 'N/A'}`);
+      doc.text(20, 110, `Gender: ${petData.gender}`);
+      doc.text(20, 120, `Weight: ${petData.weight}kg`);
+      doc.text(20, 130, `Date Adopted: ${petData.dateAdopted ? new Date(petData.dateAdopted).toLocaleDateString() : 'N/A'}`);
+      doc.text(20, 140, `Additional Notes: ${petData.additionalNotes}`);
+    
+      // Add given vaccines
+      doc.text(20, 160, 'Given Vaccines:'); // Increased y-coordinate here
+      givenVaccines.forEach((vaccination, index) => {
+        doc.text(30, 170 + index * 10, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
+      });
+    
+      // Add upcoming vaccines
+      doc.text(20, 190 + givenVaccines.length * 10, 'Upcoming Vaccines:'); // Increased y-coordinate here
+      upcomingVaccines.forEach((vaccination, index) => {
+        doc.text(30, 200 + (index + givenVaccines.length) * 10, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
+      });
+    
+      // Save the PDF
+      doc.save('pet_profile.pdf');
+  };
+  
 
   if (loading) {
     return <p>Loading...</p>;
@@ -156,13 +201,19 @@ const PetProfile = () => {
         <center>
         <div className="pet-profile-button-wrapper">   
         <Link to={`/pets/${petId}/edit`} className="pet-profile-button">Edit Profile</Link>
-        <button className="delete-profile-button" onClick={handleDelete}>Delete Profile</button>
+        &nbsp;
+        &nbsp;
+        <button className="delete-profile-button" onClick={handleDelete}>Delete Profile</button>      
+
         </div> </center>
+        <div><button className="pet-download-pdf-button" onClick={generatePDF}>Download PDF</button></div>
       </div>
     </div>
     <Footer />
+    <button onClick={() => window.print()}>Download PDF</button>
     </>
   );
 };
 
 export default PetProfile;
+

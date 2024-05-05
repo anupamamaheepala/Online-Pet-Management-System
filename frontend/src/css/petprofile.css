@@ -137,3 +137,24 @@
   justify-content: space-between;
   margin-top: 20px;
 }
+.pet-download-pdf-button{
+  display: block;
+  width: 20%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.pet-download-pdf-button:hover{
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}

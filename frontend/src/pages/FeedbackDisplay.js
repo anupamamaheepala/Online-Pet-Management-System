@@ -1,3 +1,5 @@
+// FeedbackDisplay.jsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -76,7 +78,7 @@ const FeedbackDisplay = () => {
     };
 
     return (
-        <>
+        <div className="fbody"> 
             <Header />
             <div className="buttonContainer">
                 <Link to="/feedback">
@@ -143,7 +145,7 @@ const FeedbackDisplay = () => {
             </div>
 
             <Footer />
-        </>
+        </div>
     );
 }
 

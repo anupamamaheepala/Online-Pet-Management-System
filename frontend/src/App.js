@@ -64,7 +64,6 @@ import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
-import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
 import ViewApplication from './pages/ViewApplication';
 import ResetPassword from './pages/ResetPassword';
@@ -92,6 +91,7 @@ import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
+import OrderForm from './pages/OrderForm';
 
 
 
@@ -198,6 +198,9 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+
+
           
 
           </Routes>
