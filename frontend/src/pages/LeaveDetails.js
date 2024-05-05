@@ -35,6 +35,7 @@ const LeaveDetails = () => {
   const approveLeave = async () => {
     try {
       await axios.put(`http://localhost:9000/staffLeave/approve/${leaveId}`);
+      window.location.href = '/StaffLeaveList';
       // Fetch updated leave details after approval
       const response = await axios.get(`http://localhost:9000/staffLeave/details/${leaveId}`);
       // Update the local state with the updated leave details
@@ -46,10 +47,10 @@ const LeaveDetails = () => {
   
   const disapproveLeave = async () => {
     try {
-      const reason = prompt("Enter reason for disapproval:");
-      if (!reason) return;
+
   
-      await axios.put(`http://localhost:9000/staffLeave/disapprove/${leaveId}`, { reason });
+      await axios.put(`http://localhost:9000/staffLeave/disapprove/${leaveId}`);
+      window.location.href = '/StaffLeaveList';
       // Fetch updated leave details after disapproval
       const response = await axios.get(`http://localhost:9000/staffLeave/details/${leaveId}`);
       // Update the local state with the updated leave details
