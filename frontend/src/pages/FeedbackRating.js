@@ -6,53 +6,55 @@ const FeedbackRating = () => {
     const [ratingData, setRatingData] = useState([]);
 
     useEffect(() => {
+        // Fetch feedback rating data from backend
         axios.get("http://localhost:9000/feedback/rating")
             .then((res) => {
-                const data = res.data;
-                setRatingData(data);
+                setRatingData(res.data);
             })
             .catch((err) => {
-                console.error('Error fetching rating data:', err);
+                console.error("Error fetching feedback rating data:", err);
             });
     }, []);
 
-    // Extract labels and ratings for the bar graph
-    const labels = ratingData.map(item => item._id);
-    const ratings = ratingData.map(item => item.count);
-
-    // Data for the bar graph
+    // Prepare data for chart
     const data = {
-        labels: labels,
+        labels: ratingData.map(item => item._id), // Assuming _id contains the rating
         datasets: [
             {
-                label: 'Rating Count',
+                label: 'Feedback Ratings',
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: ratings
+                borderWidth: 1,
+                data: ratingData.map(item => item.count)
             }
         ]
-    };
-
-    // Options for the bar graph
-    const options = {
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
     };
 
     return (
         <div>
             <h2>Feedback Ratings</h2>
-            <Bar
-                data={data}
-                options={options}
-            />
+            <div>
+                <Bar
+                    data={data}
+                    options={{
+                        title: {
+                            display: true,
+                            text: 'Feedback Ratings',
+                            fontSize: 20
+                        },
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }}
+                />
+            </div>
         </div>
     );
 }
