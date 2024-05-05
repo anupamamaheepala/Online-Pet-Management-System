@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
   if (!customerId) {
     return res.status(400).json({ message: 'Customer ID is required' });
   }
-  console.log(productId);
+
   try {
     let cart = await Cart.findOne({ customerId });
     console.log(cart);
@@ -31,4 +31,19 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router; // Ensure the route is exported correctly
+router.get('/:customerId', async (req, res) => {
+  const { customerId } = req.params;
+
+  try {
+    const cart = await Cart.findOne({ customerId });
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching cart', error });
+  }
+})
+
+module.exports = router; // Ensure the route is exported correctly

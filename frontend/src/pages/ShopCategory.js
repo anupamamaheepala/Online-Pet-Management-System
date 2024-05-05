@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar/Navbar';
 
-const ShopCategory = ({ category, banner, customerId }) => {
+const ShopCategory = ({ category, banner }) => {
   const [allProducts, setAllProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('date');
@@ -27,7 +27,10 @@ const ShopCategory = ({ category, banner, customerId }) => {
 
   const handleAddToCart = async (productId) => {
     try {
-      const response = await axios.post('http://localhost:9000/cart', { customerId, productId });
+      const response = await axios.post('http://localhost:9000/cart', {
+        customerId: localStorage.getItem('userId'),
+        productId,
+      });
       if (response.status === 201) {
         console.log('Product added to cart');
         navigate('/cart'); // Redirect to the cart page
@@ -51,11 +54,12 @@ const ShopCategory = ({ category, banner, customerId }) => {
     } else if (sortOption === 'price') {
       return a.price - b.price;
     }
+    return 0; // Default case to ensure no errors in case of unknown sortOption
   });
 
   const filteredProducts = sortedProducts.filter(
     (item) =>
-      item.category === category &&
+      item.category.toLowerCase() === category.toLowerCase() &&
       item.itemName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -63,14 +67,14 @@ const ShopCategory = ({ category, banner, customerId }) => {
     <>
       <Header />
       <div className="os_shopcategory">
-        <Navbar products={allProducts} />
-        <img src={banner} className="os_shopcategory-banner" alt="" />
+        <Navbar />
+        <img src={banner} className="os_shopcategory-banner" alt="Category Banner" />
         <div className="os_shopcategory-indexSort">
           <p>
-            Showing 1 - {filteredProducts.length} out of {allProducts.length} Products
+            Showing {filteredProducts.length} out of {allProducts.length} Products
           </p>
           <div className="os_shopcategory-sort">
-            Sort by
+            Sort by:
             <select value={sortOption} onChange={handleSortChange}>
               <option value="date">Date</option>
               <option value="price">Price</option>
@@ -85,7 +89,6 @@ const ShopCategory = ({ category, banner, customerId }) => {
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button className="os_search-button">Search</button>
         </div>
 
         <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -120,14 +123,12 @@ const ShopCategory = ({ category, banner, customerId }) => {
                     ) : null}
 
                     {item.quantity > 0 ? (
-                      <center>
-                        <button
-                          className="os_button-primary"
-                          onClick={() => handleAddToCart(item._id)}
-                        >
-                          Add to Cart
-                        </button>
-                      </center>
+                      <button
+                        className="os_button-primary"
+                        onClick={() => handleAddToCart(item._id)}
+                      >
+                        Add to Cart
+                      </button>
                     ) : (
                       <p className="text-danger">Out of Stock</p>
                     )}
