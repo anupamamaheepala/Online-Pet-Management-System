@@ -13,7 +13,7 @@ const AppliedLeaves = () => {
       try {
         const res = await axios.get(`http://localhost:9000/staffLeave/applied-leaves/${id}`);
         setAppliedLeaves(res.data);
-        console.log(res.data); // Add this line to check the received data
+        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
