@@ -1,12 +1,11 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
-import Home from "./pages/Home";
 
+import Home from "./pages/Home";
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
@@ -16,7 +15,6 @@ import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
 import FeedbackReply from './pages/FeedbackReply';
 import FeedbackReplyForm from './pages/FeedbackReplyForm';
-
 import Services from './pages/Services';
 import ViewServices from './pages/ViewServices';
 import Vetservices from './pages/Vetservices';
@@ -54,17 +52,13 @@ import TrainingDashboard from './pages/TrainingDashboard';
 import Editstepform from './pages/Editstepform';
 import PrivateTrainingDetails from './pages/PrivateTrainingDetails';
 import StepForm from './pages/StepForm';
-
-
 import Shop from './pages/Shop';
-
 import AllCustomers from './pages/AllCustomers';
 import banner from './components/Assests/banner.png';
 import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
-import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
 import ViewApplication from './pages/ViewApplication';
 import ResetPassword from './pages/ResetPassword';
@@ -92,8 +86,7 @@ import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
-
-
+import OrderForm from './pages/OrderForm';
 
 function App() {
   return (
@@ -102,18 +95,14 @@ function App() {
         
           <Routes>
           <Route path="/" element={<Home />} />
-          
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
           <Route path="/PrivateTraining" element={<PrivateTraining />} />
           <Route path="/TrainingDashboard" element={<TrainingDashboard />} />
           <Route path="/training/:id" element={<PrivateTrainingDetails />} />
-
           <Route path="/:id" element={<ViewApplication/>}/>
           <Route path="/StepForm" element={<StepForm/>}/>
           <Route path="/training/application:id" element={<ViewApplication/>}/>
-
-
           <Route path="/Feedback" element={<Feedback />} />
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
@@ -127,7 +116,6 @@ function App() {
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
-
           <Route path='/Services' element = {<Services />}/>
           <Route path='/ViewServices' element = {<ViewServices />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
@@ -165,8 +153,7 @@ function App() {
           <Route path="/Toys And Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
           <Route path="/AddingProduct" element={<AddingProduct />} />
           <Route path="/AddedProduct" element={<AddedProduct />} />
-          <Route path="/product" element={<ShopCategory />}>
-          </Route>
+          <Route path="/product" element={<ShopCategory />}></Route>
           <Route path="/staff/profile/:id" element={<StaffProfile />} />
           <Route path="/update/:staffId" element={<UpdateStaff />} />
           <Route path="/Paystatus" element={<Paystatus />} />
@@ -189,17 +176,14 @@ function App() {
           <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route path="/StaffLogin" element={<StaffLogin />} />
           <Route path="/editadvertisement/:advertisementId" element={<EditAdvertisement />} />
-
           <Route path="/editstepform/:stepId" element={ <Editstepform/>}/>
-
           <Route path="/SalaryView/:id" element={<SalaryView />} />
           <Route path="/Sysmanagerhome" element={<Sysmanagerhome/>}/>
           <Route path="/leave-details/:leaveId" element={<LeaveDetails />} />
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
-          
-
+          <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
           </Routes>
       </Router>
       <ToastContainer position="top-center" />

@@ -16,4 +16,8 @@ router.get('/', salaryController.getAllSalaries);
 // Route for updating salary details
 router.put('/:id/update', salaryController.updateSalary);
 
+// Route for fetching modified salary information
+router.get('/modified-salary/:id', salaryController.getSalaryByModifiedId);
+
+
 module.exports = router;
