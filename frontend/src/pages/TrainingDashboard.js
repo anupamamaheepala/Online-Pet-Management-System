@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Chart from 'chart.js/auto';
 import '../css/Trainingdashboard.css';
 import AdminHeader from '../components/AdminHeader';
 import jsPDF from 'jspdf';
@@ -12,6 +13,10 @@ const TrainingDashboard = () => {
   const [rejectedCount, setRejectedCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTrainer, setSelectedTrainer] = useState(null);
+  const [chartData, setChartData] = useState(null);
+  const [pieChartData, setPieChartData] = useState(null);
+  const [chartInstance, setChartInstance] = useState(null);
+  const [pieChartInstance, setPieChartInstance] = useState(null);
 
   useEffect(() => {
     fetchTrainings();
@@ -19,7 +24,20 @@ const TrainingDashboard = () => {
 
   useEffect(() => {
     updateCounts(trainings);
+    generateChartData(trainings);
+    generatePieChartData(trainings);
   }, [trainings]);
+
+  useEffect(() => {
+    if (chartData) {
+      destroyChart();
+      createChart();
+    }
+    if (pieChartData) {
+      destroyPieChart();
+      createPieChart();
+    }
+  }, [chartData, pieChartData]);
 
   const fetchTrainings = async () => {
     try {
@@ -38,6 +56,163 @@ const TrainingDashboard = () => {
     setPendingCount(pending);
     setApprovedCount(approved);
     setRejectedCount(rejected);
+  };
+
+  const generateChartData = (trainings) => {
+    const labels = [];
+    const approvedData = [];
+    const rejectedData = [];
+    const pendingData = [];
+
+    const groupedByDate = trainings.reduce((acc, training) => {
+      const date = new Date(training.submissionDateTime).toLocaleDateString();
+      if (!acc[date]) {
+        acc[date] = { approved: 0, rejected: 0, pending: 0 };
+      }
+      acc[date][training.status]++;
+      return acc;
+    }, {});
+
+    Object.entries(groupedByDate).forEach(([date, counts]) => {
+      labels.push(date);
+      approvedData.push(counts.approved);
+      rejectedData.push(counts.rejected);
+      pendingData.push(counts.pending);
+    });
+
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Approved',
+          data: approvedData,
+          borderColor: 'green',
+          backgroundColor: 'rgba(0, 128, 0, 0.1)',
+          fill: false,
+        },
+        {
+          label: 'Rejected',
+          data: rejectedData,
+          borderColor: 'red',
+          backgroundColor: 'rgba(255, 0, 0, 0.1)',
+          fill: false,
+        },
+        {
+          label: 'Pending',
+          data: pendingData,
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.1)',
+          fill: false,
+        },
+      ],
+    };
+
+    setChartData(data);
+  };
+
+  const generatePieChartData = (trainings) => {
+    const months = {};
+
+    trainings.forEach((training) => {
+      const month = new Date(training.submissionDateTime).getMonth();
+      if (!months[month]) {
+        months[month] = 0;
+      }
+      months[month]++;
+    });
+
+    const labels = Object.keys(months).map((month) => {
+      return new Date(0, month).toLocaleString('default', { month: 'long' });
+    });
+
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Applications per Month',
+          data: Object.values(months),
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    setPieChartData(data);
+  };
+
+  const destroyChart = () => {
+    if (chartInstance) {
+      chartInstance.destroy();
+    }
+  };
+
+  const createChart = () => {
+    const ctx = document.getElementById('trainingChart');
+    const newChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: chartData,
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Date',
+            },
+            ticks: {
+              autoSkip: true,
+              maxTicksLimit: 10,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Frequency',
+            },
+          },
+        },
+      },
+    });
+    setChartInstance(newChartInstance);
+  };
+
+  const destroyPieChart = () => {
+    if (pieChartInstance) {
+      pieChartInstance.destroy();
+    }
+  };
+
+  const createPieChart = () => {
+    const ctx = document.getElementById('pieChart');
+    const newPieChartInstance = new Chart(ctx, {
+      type: 'pie',
+      data: pieChartData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',
+          },
+          
+        },
+      },
+    });
+    setPieChartInstance(newPieChartInstance);
   };
 
   const handleSearch = (e) => {
@@ -68,7 +243,6 @@ const TrainingDashboard = () => {
     const doc = new jsPDF();
     const reportTitle = 'Approved Training Applicants';
 
-    // Adding logo
     const logo = new Image();
     logo.src = '/images/logo.png';
 
@@ -79,7 +253,6 @@ const TrainingDashboard = () => {
 
       doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
 
-      // Calculating part
       const pageWidth = doc.internal.pageSize.getWidth();
       const titleWidth =
         (doc.getStringUnitWidth(reportTitle) * doc.internal.getFontSize()) /
@@ -90,17 +263,15 @@ const TrainingDashboard = () => {
       doc.setFontSize(18);
       doc.text(reportTitle, 70, yPosition + logoWidth - 15);
 
-      // Generate table data to report
       const tableData = trainings
         .filter((training) => training.status === 'approved')
         .map((training) => [
           training.ownerName,
           training.dogName,
-          training.instructor,
+          training.instructorName,
           new Date(training.submissionDateTime).toLocaleDateString(),
         ]);
 
-      // pdf content
       doc.setFontSize(12);
 
       doc.autoTable({
@@ -118,7 +289,7 @@ const TrainingDashboard = () => {
         },
       });
 
-      doc.save('training-details.pdf');
+      doc.save('approved Trainng details.pdf');
     };
   };
 
@@ -132,9 +303,8 @@ const TrainingDashboard = () => {
     const instructorIdMatch = training.instructorId && training.instructorId.toLowerCase().includes(searchQuery);
     const instructorNameMatch = training.instructorName && training.instructorName.toLowerCase().includes(searchQuery);
     return ownerNameMatch || instructorMatch || instructorIdMatch || instructorNameMatch;
-});
+  })
 
-  
   return (
     <div>
       <AdminHeader />
@@ -153,7 +323,7 @@ const TrainingDashboard = () => {
           <button className="alo1-button">Manage Private Programs |</button>
         </a>
         <button className="alo1-button">Manage Group Programs</button>
-        <button style={{backgroundColor:'black'}} className="report-button" onClick={handleDownloadReport}>
+        <button style={{ backgroundColor: 'black' }} className="report-button" onClick={handleDownloadReport}>
           Download Report
         </button>
       </div>
@@ -196,27 +366,43 @@ const TrainingDashboard = () => {
                 </td>
                 <td>{training.instructorId || 'Not Assigned'}</td>
                 <td>{training.instructorName || 'Not Assigned'}</td>
-
-<td>
-  <Link
-    to={{
-      pathname: `/training/${training._id}`,
-      state: { instructorName: selectedTrainer ? selectedTrainer.value : '' },
-    }}
-    className="alo_view-details-button"
-  >
-    <button className="alo1-button">View Details</button>
-  </Link>
+                <td>
+                  <Link
+                    to={{
+                      pathname: `/training/${training._id}`,
+                      state: { instructorName: selectedTrainer ? selectedTrainer.value : '' },
+                    }}
+                    className="alo_view-details-button"
+                  >
+                    <button className="alo1-button">View Details</button>
+                  </Link>
                   &nbsp;
-                  <button className='alo2-button' onClick={() => handleDelete(training._id)}>Delete</button>
+                  <button className="alo2-button" onClick={() => handleDelete(training._id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <div className="asw18-chart-container">
+       < div className="alo1802name" >
+        Training Frequency Over Time
+        </div>
+          <canvas id="trainingChart"></canvas>
+          
+          
+        </div>
+        <div className="a1802-piechart-container">
+        < div className="alo1802name" >
+        Training Applications by Month
+        </div>
+        <canvas id="pieChart"></canvas>
+        </div>
       </div>
     </div>
   );
 };
 
 export default TrainingDashboard;
+

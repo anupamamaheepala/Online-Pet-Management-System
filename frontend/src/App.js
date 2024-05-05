@@ -162,7 +162,7 @@ function App() {
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
           <Route path="/Store" element={<Shop />} />
-          <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
+          <Route path="/Foods" element={<ShopCategory customerId={localStorage.getItem('userData')} banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys And Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
           <Route path="/AddingProduct" element={<AddingProduct />} />
