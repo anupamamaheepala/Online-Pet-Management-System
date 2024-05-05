@@ -27,7 +27,7 @@ const SuccessBanktrans = () => {
         <center><h1>Approved Bank Transactions</h1></center>
         <br />
         <ul>
-          {approvedTransactions.map((transaction) => (
+          {approvedTransactions.slice(0).reverse().map((transaction) => (
             <li key={transaction._id} className="transaction-item">
               <div className="transaction-details">
                 <strong>Payer Name:</strong> {transaction.payer.name}<br />
