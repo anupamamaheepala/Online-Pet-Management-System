@@ -1,42 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const multer = require('multer');
-// const path = require('path');
-// const BankTransaction = require('../models/banktransModel');
-
-// // Multer configuration
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'uploads/'); // File upload destination
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + path.extname(file.originalname)); // File name configuration
-//   },
-// });
-
-// const upload = multer({ storage: storage });
-
-// // POST route to handle bank transfer with file upload
-// router.post('/bpay', upload.single('depositSlip'), async (req, res) => {
-//   try {
-//     const { bankName, branchName } = req.body;
-//     const depositSlip = req.file.path; // Uploaded file path
-
-//     const newTransaction = new BankTransaction({
-//       bankName,
-//       branchName,
-//       depositSlip,
-//     });
-
-//     const savedTransaction = await newTransaction.save();
-//     res.json(savedTransaction);
-//   } catch (error) {
-//     console.error('Error saving bank transaction: ', error);
-//     res.status(500).json({ error: 'Error saving bank transaction' });
-//   }
-// });
-
-// module.exports = router;
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
@@ -96,21 +57,6 @@ router.get('/all', async (req, res) => {
 
 module.exports = router;
 
-// // POST route to handle approval of a transaction
-// router.put('/approve/:transactionId', async (req, res) => {
-//   try {
-//     const transaction = await BankTransaction.findById(req.params.transactionId);
-//     if (!transaction) {
-//       return res.status(404).json({ error: 'Transaction not found' });
-//     }
-//     transaction.status = 'approved'; // Update status to 'approved'
-//     await transaction.save();
-//     res.json(transaction);
-//   } catch (error) {
-//     console.error('Error approving transaction: ', error);
-//     res.status(500).json({ error: 'Error approving transaction' });
-//   }
-// });
 
 // POST route to handle approval of a transaction
 const nodemailer = require('nodemailer');
@@ -167,21 +113,6 @@ router.put('/approve/:transactionId', async (req, res) => {
   }
 });
 
-// // POST route to handle disapproval of a transaction
-// router.put('/disapprove/:transactionId', async (req, res) => {
-//   try {
-//     const transaction = await BankTransaction.findById(req.params.transactionId);
-//     if (!transaction) {
-//       return res.status(404).json({ error: 'Transaction not found' });
-//     }
-//     transaction.status = 'disapproved'; // Update status to 'disapproved'
-//     await transaction.save();
-//     res.json(transaction);
-//   } catch (error) {
-//     console.error('Error disapproving transaction: ', error);
-//     res.status(500).json({ error: 'Error disapproving transaction' });
-//   }
-// });
 
 // POST route to handle disapproval of a transaction
 router.put('/disapprove/:transactionId', async (req, res) => {
@@ -229,6 +160,16 @@ router.put('/disapprove/:transactionId', async (req, res) => {
   }
 });
 
+// GET route to fetch only approved bank transactions with payer details
+router.get('/approved', async (req, res) => {
+  try {
+    const approvedTransactions = await BankTransaction.find({ status: 'approved' }).populate('payer');
+    res.json(approvedTransactions);
+  } catch (error) {
+    console.error('Error fetching approved bank transactions: ', error);
+    res.status(500).json({ error: 'Error fetching approved bank transactions' });
+  }
+});
 
 
 
