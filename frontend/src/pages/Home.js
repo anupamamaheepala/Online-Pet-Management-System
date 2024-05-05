@@ -96,8 +96,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-<div className='home_welcome-heading'>
-      <h3>Our Services </h3>
+<div >
+      <h3><b>Our Services</b> </h3>
      
       </div>
 
@@ -108,7 +108,7 @@ const Home = () => {
           </div>
           <div className="text-column">
             <h2>Training Programs</h2>
-            <p>Description</p>
+            <p style={{textAlign: 'justify'}}>Join us on a journey of companionship and understanding as we help you unlock the secrets to effective communication with your beloved pet. Our holistic approach to training not only teaches obedience but fosters mutual respect and trust, laying the foundation for a lifelong friendship. With personalized attention and proven techniques, we cater to the unique needs of every pet and owner duo. Embrace the joy of watching your furry friend thrive as they showcase their newfound skills and confidence. Let's embark on this adventure together and witness the transformation as we unleash your pet's full potential!</p>
           </div>
         </div>
       </div>
@@ -117,7 +117,10 @@ const Home = () => {
         <div className="row">
           <div className="text-column">
             <h2>Vet & Groom Services</h2>
-            <p>Description</p>
+            <p style={{textAlign: 'justify'}}>where we provide top-tier veterinary care and grooming services for your beloved pets. Our dedicated team of professionals is committed to ensuring the health, happiness, and well-being of your furry companions. From routine check-ups and vaccinations to specialized treatments and surgeries, we offer comprehensive veterinary care tailored to meet your pet's individual needs.
+
+In addition to veterinary services, we also provide expert grooming services to keep your pet looking and feeling their best. From baths and haircuts to nail trims and ear cleaning, our experienced groomers will pamper your pet with gentle care and attention to detail.
+</p>
           </div>
           <div className="image-column">
             <img src="/images/groom.jpeg" alt="Image" style={{ height: "300px" }} />
@@ -133,17 +136,17 @@ const Home = () => {
             <span>Customer</span>
           </div>
           <div className="box">
-            <h1>1250</h1>
+            <h1>2250</h1>
             <hr />
             <span>Happy Customer</span>
           </div>
           <div className="box">
-            <h1>150</h1>
+            <h1>30</h1>
             <hr />
             <span>Expert Veterinary</span>
           </div>
           <div className="box">
-            <h1>3550</h1>
+            <h1>50</h1>
             <hr />
             <span>Expert Trainers</span>
           </div>
