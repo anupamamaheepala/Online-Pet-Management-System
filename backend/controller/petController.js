@@ -3,6 +3,8 @@ const customer = require('../models/registerModel');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const cron = require('cron');
+const nodemailer = require('nodemailer');
 
 
 const storage = multer.diskStorage({
@@ -238,3 +240,52 @@ exports.deletePetProfilePhoto = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+// Create a cron job to run daily
+const job = new cron.CronJob('00 00 08 * * *', async () => { // Runs every day at 8 AM
+  try {
+    // Fetch all pets
+    const pets = await Pet.find().populate('owner');
+
+    // Iterate through pets to check for upcoming vaccinations
+    pets.forEach(async (pet) => {
+      const upcomingVaccinations = pet.vaccinations.filter(vaccine => {
+        const vaccineDate = new Date(vaccine.dateAdministered);
+        const currentDate = new Date();
+        // Assuming upcoming vaccinations are within 7 days
+        const sevenDaysLater = new Date(currentDate);
+        sevenDaysLater.setDate(currentDate.getDate() + 7);
+        return vaccineDate > currentDate && vaccineDate <= sevenDaysLater;
+      });
+
+      if (upcomingVaccinations.length > 0) {
+        // Compose email message
+        const message = `Dear ${pet.owner.username},\n\nYour pet ${pet.petName} has upcoming vaccinations:\n\n`;
+        const vaccinesList = upcomingVaccinations.map(vaccine => `- ${vaccine.vaccineType} on ${vaccine.dateAdministered}\n`).join('');
+        const mailOptions = {
+          from: 'petzonemanagement@gmail.com',
+          to: pet.owner.email,
+          subject: 'Upcoming Pet Vaccinations',
+          text: message + vaccinesList,
+        };
+
+        // Send email
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully!');
+      }
+    });
+  } catch (error) {
+    console.error('Error sending email notifications:', error);
+  }
+});
+
+// Start the cron job
+job.start();
+
+// Create a Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.vaccinationpassword,
+  },
+});

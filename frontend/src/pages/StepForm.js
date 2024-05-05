@@ -7,6 +7,7 @@ import '../css/advertisement.css';
 import '../css/Trainingprogram.css';
 import Swal from 'sweetalert2';
 import Editstepform from './Editstepform'; // Adjust the path as needed
+import AdminHeader from '../components/AdminHeader';
 
 
 //steeeeeeeeeeee
@@ -118,7 +119,7 @@ const StepForm = () => {
 
     return (
         <>
-            <Header />
+            <AdminHeader />
             <form className="ma_advertisement-form" onSubmit={onSubmit} encType="multipart/form-data">
                 <h2>New Steps for Private Training Program</h2>
                 <p>Add Steps for private pet training
