@@ -146,7 +146,7 @@ const SalaryTable = () => {
               <th>Bonus Amount</th>
               <th>Total Salary</th>
               <th>Created Date</th>
-              <th>Update Details</th> 
+              <th>Actions</th> 
             </tr>
           </thead>
           <tbody>
@@ -164,7 +164,7 @@ const SalaryTable = () => {
                   <td>{salary.totalSalary}</td>
                   <td>{formatDate(salary.createdAt)}</td>
                   <td>
-                    <Link className='SalaryUpdate' to={`/update-salary?staffId=${salary.staffId}`}>Update</Link>
+                    <Link className='SalaryUpdate' to={`/update-salary?staffId=${salary.staffId}`}>View Details</Link>
                   </td>
                 </tr>
               ))}
