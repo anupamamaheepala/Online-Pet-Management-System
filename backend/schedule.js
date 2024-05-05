@@ -2,10 +2,10 @@ const cron = require('node-cron');
 const ConfirmedAds = require('./models/confirmedAdsModel');
 const Ads = require('./models/advertisementModel');
 
-// Define the cron job
+
 cron.schedule('0 0 */1 * *', async () => { // Runs at midnight every day
     try {
-        // Find confirmed advertisements older than 10 days
+        // Find confirmed ads older 10 days
         const tenDaysAgo = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000); // Current time minus 10 days
         const olderAds = await ConfirmedAds.find({ createdAt: { $lt: tenDaysAgo } });
 
