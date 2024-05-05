@@ -19,6 +19,8 @@ const FeedbackDisplay = () => {
                 alert(err.message);
             });
     }, []);
+    
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
 
     // Function star ratings
     const renderStarRating = (rating, averageRating) => {
@@ -86,7 +88,7 @@ const FeedbackDisplay = () => {
         const totalRating = feedbackList.reduce((sum, feedback) => sum + feedback.rating, 0);
         return Math.round(totalRating / feedbackList.length);
     };
-
+    if (storedUserData){
     return (
         <div className="fbody"> 
             <Header />
@@ -168,7 +170,88 @@ const FeedbackDisplay = () => {
 
             <Footer />
         </div>
-    );
+    ); }
+    else {
+        return (
+            <div className="fbody"> 
+                <Header />
+                <div className="ftop-container">
+                    <p className="ftop-text1">Welcome...!</p>
+                    <p className="ftop-text2">We Want Your Feedbacks...</p>
+                    <div class="fimage-container">
+                    <img src='/images/catd.png' alt="Image"/>
+                </div>
+                </div>
+                <div className="buttonContainer">
+                    <Link to="/feedbackinquiry">
+                        <button className="FDBbuttons">Make an Inquiry</button>
+                    </Link>
+                </div>
+                <div className="titleContainer">
+                    <h1><center>Customers Feedback</center></h1>
+                </div>
+    
+                {/* Average Rating */}
+                <div className="averageRating">
+                    <div>{renderStarRating(calculateAverageRating())}</div>
+                </div>
+    
+                {/* Star filter dropdown */}
+                <div className="starFilter">
+                    <label htmlFor="starFilter">Filter by star rating:</label>
+                    <select
+                        id="starFilter"
+                        value={selectedStars}
+                        onChange={handleStarFilterChange}
+                    >
+                        <option value="">All</option>
+                        {[1, 2, 3, 4, 5].map(star => (
+                            <option key={star} value={star}>{renderStarRating(star)}</option>
+                        ))}
+                    </select>
+                </div>
+    
+                {/*  search input  */}
+                <div className="nameSearch">
+                    <input
+                        type="text"
+                        id="nameSearch"
+                        placeholder=""
+                        value={searchQuery}
+                        onChange={handleNameSearchChange}
+                    />
+                </div>
+    
+                <div className='feedbackListContainer'>
+                    {filterFeedbackList(feedbackList).map((feedback, index) => (
+                        <div key={index} className="feedbackItem">
+                            <h3>{feedback.name}</h3>
+                            <p>{feedback.feedback}</p>
+                            {feedback.reply !== "pending" && (
+                                <div className="adminReply">
+                                    <strong>Pet Zone Hospital:</strong>
+                                    <p>{feedback.reply}</p>
+                                </div>
+                            )}
+                            <div className="starRating">
+                                {renderStarRating(feedback.rating)}
+                            </div>
+                            <div className="feedbackButtons">
+                                <button onClick={() => handleLike(feedback._id, index)} className="likeButton">
+                                    &#128077; ({feedback.likes})
+                                </button>
+                                <button onClick={() => handleDislike(feedback._id, index)} className="dislikeButton">
+                                    &#128078; ({feedback.dislikes})
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+    
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default FeedbackDisplay;
