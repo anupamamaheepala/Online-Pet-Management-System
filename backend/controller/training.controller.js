@@ -19,13 +19,14 @@ const upload = multer({ storage: storage });
 // Add Training Program with file upload
 const addTrainingprogram = async (req, res) => {
     try {
-        const { ownerName, address, contact, dogName, breed, age } = req.body;
+        const { ownerName, email,  address, contact, dogName, breed, age } = req.body;
 
         // Capture current date and time
         const submissionDateTime = new Date();
 
         const trainingData = {
             ownerName: ownerName,
+            email: email,
             address: address,
             contact: contact,
             dogName: dogName,
