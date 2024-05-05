@@ -18,6 +18,7 @@ function RegenerateSalary(props) {
     const [otRate, setOtRate] = useState(0);
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
+    const [error, setError] = useState('');
 
 
     useEffect(() => {
@@ -42,13 +43,28 @@ function RegenerateSalary(props) {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault();
         
         try {
-            // Calculate OT amount
+            const response = await axios.get(`http://localhost:9000/salary/modified-salary/${staffId}`);
+            if (response.data && response.data.length > 0) {
+                // Check if there's any salary record for the selected month
+                const existingRecord = response.data.find(record => {
+                    const recordDate = new Date(record.selectedMonth);
+                    return (
+                        recordDate.getMonth() === selectedMonth.getMonth() &&
+                        recordDate.getFullYear() === selectedMonth.getFullYear()
+                    );
+                });
+                if (existingRecord) {
+                    setError('A salary record already exists for the selected month and staff ID.');
+                    alert('A salary record already exists for the selected month and staff ID.');
+                    return;
+                }
+            }
+            
             const otAmount = calculateOTAmount();
             
-            // Prepare the data to be submitted
             const formData = {
                 staffId,
                 firstName,
@@ -57,27 +73,28 @@ function RegenerateSalary(props) {
                 basicSalary,
                 otHours,
                 otRate,
-                otAmount, // Include otAmount in the form data
+                otAmount,
                 bonusAmount,
                 totalSalary
-                // Add any other necessary fields here
             };
     
-            // Send a POST request to the server with the form data
-            const response = await axios.post('http://localhost:9000/salary/add', formData);
+            const postResponse = await axios.post('http://localhost:9000/salary/add', formData);
     
-            // Handle the response
-            console.log(response.data); // Log the response data or handle it as needed
+            console.log(postResponse.data);
     
-            // Optionally, you can redirect the user to another page after successful submission
-            // history.push('/success'); // Import useHistory hook to use history.push
+            // Clear the error state if submission is successful
+            setError('');
+            // Optionally, show a success message
+            alert('Salary assigned successfully!');
     
         } catch (error) {
-            // Handle errors
             console.error('Error submitting form:', error);
-            // Optionally, you can show an error message to the user
+            setError('An error occurred while submitting the form. Please try again.');
+            // Optionally, show an alert for the error
+            alert('An error occurred while submitting the form. Please try again.');
         }
     };
+    
     
 
     const calculateOTAmount = () => {
@@ -119,8 +136,9 @@ function RegenerateSalary(props) {
                             onChange={date => setSelectedMonth(date)}
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
-                            
+                            maxDate={new Date(new Date().getFullYear(), new Date().getMonth(), 0)} 
                         />
+
                     </div>
                     <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Basic Salary:</label>
