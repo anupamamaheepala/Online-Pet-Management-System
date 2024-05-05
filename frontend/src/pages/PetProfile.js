@@ -89,20 +89,20 @@ const PetProfile = () => {
  
   const generatePDF = () => {
     const doc = new jsPDF();
-    // Path to your site logo
+    
     const logoURL = '/images/logo.png';
     
-    // Add the logo to the PDF
-    doc.addImage(logoURL, 'PNG', 20, 10, 30, 30); // Adjust position and size as needed
     
-    // Add a title to the PDF
+    doc.addImage(logoURL, 'PNG', 20, 10, 30, 30);
+    
+    
     doc.setFontSize(16);
-    doc.setTextColor(0, 0, 0); // Set text color to black
-    doc.text('Pet Report', 80, 40); // Increased y-coordinate here
+    doc.setTextColor(0, 0, 0); 
+    doc.text('Pet Report', 80, 40); 
     
       // Add pet profile details to the PDF
       doc.setFontSize(18);
-      doc.text(20, 60, 'Pet Profile'); // Increased y-coordinate here
+      doc.text(20, 60, 'Pet Profile'); 
       doc.setFontSize(12);
       doc.text(20, 70, `Name: ${petData.petName}`);
       doc.text(20, 80, `Species: ${petData.species}`);
@@ -114,13 +114,13 @@ const PetProfile = () => {
       doc.text(20, 140, `Additional Notes: ${petData.additionalNotes}`);
     
       // Add given vaccines
-      doc.text(20, 160, 'Given Vaccines:'); // Increased y-coordinate here
+      doc.text(20, 160, 'Given Vaccines:');
       givenVaccines.forEach((vaccination, index) => {
         doc.text(30, 170 + index * 10, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
       });
     
       // Add upcoming vaccines
-      doc.text(20, 190 + givenVaccines.length * 10, 'Upcoming Vaccines:'); // Increased y-coordinate here
+      doc.text(20, 190 + givenVaccines.length * 10, 'Upcoming Vaccines:'); 
       upcomingVaccines.forEach((vaccination, index) => {
         doc.text(30, 200 + (index + givenVaccines.length) * 10, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
       });
