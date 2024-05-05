@@ -1,27 +1,38 @@
 /* SalaryView.css */
 
+/* Container for the entire SalaryView component */
 .SalaryViewContainer {
-  margin-top: 20px;
+  padding: 20px;
+  margin: auto;
+  max-width: 800px;
 }
 
+/* Header section */
 .SalaryViewHeader {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: left;
 }
 
+.SalaryViewHeader h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Individual salary details */
 .SalaryView {
   border: 1px solid #ccc;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 15px;
   margin-bottom: 20px;
+  background-color: #f9f9f9;
+
+  /* Center content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .SalaryView p {
   margin: 5px 0;
-}
-
-/* Separate salary records by month */
-.SalaryMonth {
-  margin-top: 20px;
-  border-top: 2px solid #000;
-  padding-top: 20px;
+  text-align: left;
 }

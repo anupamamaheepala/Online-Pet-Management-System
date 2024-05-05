@@ -77,4 +77,5 @@
 .staffProfile-applied-leaves-btn:hover,
 .staffProfile-view-salary-btn:hover {
   opacity: 0.8;
+  text-decoration: none;
 }

@@ -51,7 +51,7 @@ const Advertisement = () => {
             <Header />
             
             
-                <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
+                <Link to="/AddAdvertisement" className="ma_add_button3">Add a new advertisement</Link>
                 <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
                
                 <input
