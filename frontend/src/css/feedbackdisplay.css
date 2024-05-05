@@ -1,5 +1,7 @@
 /* feedbackdisplay.css */
-
+.fbody {
+  background: linear-gradient(to bottom, rgb(255, 255, 95) 0%, #fff7d0 100%); 
+}
 .buttonContainer {
   display: flex;
   justify-content: center; /* Center the container horizontally */

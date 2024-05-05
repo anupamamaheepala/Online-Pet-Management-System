@@ -204,7 +204,7 @@ const Cardpaysuccess = () => {
     // Determine where to navigate based on the purpose
     switch (payerDetails.purpose) {
       case "Buy products":
-        window.location.href = '/Store';
+        window.location.href = '/OrderForm';
         break;
       case "Veterinary appointment":
         window.location.href = '/MyAppointments';

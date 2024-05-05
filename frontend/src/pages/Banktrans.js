@@ -339,7 +339,7 @@ const Banktrans = () => {
   const goToHomePage = () => {
     switch (purpose) {
       case 'Buy products':
-        window.location.href = '/Store';
+        window.location.href = '/OrderForm';
         break;
       case 'Veterinary appointment':
       case 'Grooming appointment':

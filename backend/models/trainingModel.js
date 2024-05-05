@@ -5,6 +5,11 @@ const TrSchema = new mongoose.Schema({
         type: String,
         required: true
       },
+
+      email:{
+        type: String,
+        required: true
+      },
       address: {
         type: String,
         required: true
