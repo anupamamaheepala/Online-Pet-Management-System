@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const feedbackinquirySchema = new mongoose.Schema({
-  feedback: {
+  inquiry: {
     type: String,
     required: true
   },

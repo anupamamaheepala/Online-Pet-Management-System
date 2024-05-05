@@ -80,6 +80,13 @@ const FeedbackDisplay = () => {
     return (
         <div className="fbody"> 
             <Header />
+            <div className="ftop-container">
+                <p className="ftop-text1">Welcome...!</p>
+                <p className="ftop-text2">We Want Your Feedbacks...</p>
+                <div class="fimage-container">
+                <img src='/images/catd.png' alt="Image"/>
+            </div>
+            </div>
             <div className="buttonContainer">
                 <Link to="/feedback">
                     <button className="FDbuttons">Give Feedback</button>
