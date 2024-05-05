@@ -2,6 +2,8 @@ const express = require('express');
 
 const multer = require('multer'); // Import multer
 const trainingModel = require('../models/trainingModel');
+const nodemailer = require('nodemailer');
+
 
 // Add Training Program
 const storage = multer.diskStorage({
@@ -166,19 +168,72 @@ const updateTrainingStatusById = async (req, res) => {
 };
 
 // Update training status to "rejected"
-const approveTraining = async (req, res) => {
+// const approveTraining = async (req, res) => {
+//     const { id } = req.params;
+//     try {
+//         const training = await trainingModel.findByIdAndUpdate(id, { status: 'approved' }, { new: true });
+//         if (!training) {
+//             return res.status(404).json({ message: 'Training not found' });
+//         }
+//         res.json({ message: 'Training approved successfully' });
+//     } catch (error) {
+//         console.error('Error approving training:', error);
+//         res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
+// Function to send email
+const sendEmail = async (recipientEmail, subject, message) => {
+    try {
+      const transporter = nodemailer.createTransport({
+        // Configure your email provider here
+        // Example: Gmail
+        service: 'Gmail',
+        auth: {
+          user: process.env.EMAIL, // Your email
+          pass: process.env.TApassword, // Your password
+        },
+      });
+  
+      const mailOptions = {
+        from: 'petzonemanagement@gmail.com',
+        to: recipientEmail,
+        subject: subject,
+        html: message,
+      };
+  
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Email sent: ', info.response);
+    } catch (error) {
+      console.error('Error sending email: ', error);
+    }
+  };
+  
+  // Update training status to "approved"
+  const approveTraining = async (req, res) => {
     const { id } = req.params;
     try {
-        const training = await trainingModel.findByIdAndUpdate(id, { status: 'approved' }, { new: true });
-        if (!training) {
-            return res.status(404).json({ message: 'Training not found' });
-        }
-        res.json({ message: 'Training approved successfully' });
+      const training = await trainingModel.findByIdAndUpdate(id, { status: 'approved' }, { new: true });
+      if (!training) {
+        return res.status(404).json({ message: 'Training not found' });
+      }
+  
+      // Send email to customer
+      const recipientEmail = training.email; // Assuming email is stored in the training object
+      const subject = 'Training Approved';
+      const message = `
+        <h1>Your training is approved successfully!</h1>
+        <p>Thank you for choosing PetZone Animal Hospital.</p>
+        <!-- Add any additional information you want to include in the email -->
+      `;
+      await sendEmail(recipientEmail, subject, message);
+  
+      res.json({ message: 'Training approved successfully' });
     } catch (error) {
-        console.error('Error approving training:', error);
-        res.status(500).json({ message: 'Internal server error' });
+      console.error('Error approving training:', error);
+      res.status(500).json({ message: 'Internal server error' });
     }
-};
+  };
 
 const rejectTraining = async (req, res) => {
     const { id } = req.params;
@@ -202,7 +257,6 @@ module.exports = {
     addTrainingprogram,
     getalltrainings,
     getalltrainingdetails,
-    /*npm start updateInstructor*/
     deleteprogram,
     /*updateTrainingStatus*/
     updateInstructor,
