@@ -32,7 +32,6 @@ const ShopCategory = ({ category, banner }) => {
         productId,
       });
       if (response.status === 201) {
-        console.log('Product added to cart');
         navigate('/cart'); // Redirect to the cart page
       }
     } catch (error) {
@@ -54,7 +53,7 @@ const ShopCategory = ({ category, banner }) => {
     } else if (sortOption === 'price') {
       return a.price - b.price;
     }
-    return 0; // Default case to ensure no errors in case of unknown sortOption
+    return 0; // Default case to ensure no errors in case of unknown sort option
   });
 
   const filteredProducts = sortedProducts.filter(
@@ -96,17 +95,10 @@ const ShopCategory = ({ category, banner }) => {
             filteredProducts.map((item) => (
               <div key={item._id} className="col">
                 <div className="os_card h-100 d-flex flex-column justify-content-between position-relative">
-                  <div
-                    className={`status-badge ${
-                      item.quantity > 0 ? 'in-stock' : 'out-of-stock'
-                    }`}
-                  >
+                  <div className={`status-badge ${item.quantity > 0 ? 'in-stock' : 'out-of-stock'}`}>
                     {item.quantity > 0 ? 'In Stock' : 'Out of Stock'}
                   </div>
-                  <div
-                    className="d-flex justify-content-center align-items-center"
-                    style={{ height: '190px' }}
-                  >
+                  <div className="d-flex justify-content-center align-items-center" style={{ height: '190px' }}>
                     <img
                       src={`http://localhost:9000/${item.image}`}
                       className="os_card-img-top"
@@ -123,12 +115,14 @@ const ShopCategory = ({ category, banner }) => {
                     ) : null}
 
                     {item.quantity > 0 ? (
-                      <button
-                        className="os_button-primary"
-                        onClick={() => handleAddToCart(item._id)}
-                      >
-                        Add to Cart
-                      </button>
+                      <div className="d-flex justify-content-center"> {/* Centering the button */}
+                        <button
+                          className="os_button-primary"
+                          onClick={() => handleAddToCart(item._id)}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
                     ) : (
                       <p className="text-danger">Out of Stock</p>
                     )}

@@ -1,198 +1,153 @@
-/* CSS with Consistent Naming Convention */
-
-/* Overall container */
+/* Main container styling */
 .os_shopcategory {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-}
-
-/* Banner image */
-.os_shopcategory-banner {
+  }
+  
+  /* Banner styling */
+  .os_shopcategory-banner {
     width: 100%;
+    height: auto; /* Ensures the banner retains its original aspect ratio */
+    border-radius: 5px;
     margin-bottom: 20px;
-}
-
-/* Index and sort section */
-.os_shopcategory-indexSort {
+  }
+  
+  /* Sorting and indexing section */
+  .os_shopcategory-indexSort {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.os_shopcategory-indexSort p {
-    font-size: 16px;
-    color: #333;
-}
-
-.os_shopcategory-sort {
+  }
+  
+  .os_shopcategory-sort {
     display: flex;
     align-items: center;
     font-size: 14px;
     color: #666;
-    cursor: pointer;
-}
-
-/* Search bar */
-.os_search-bar {
+  }
+  
+  /* Search bar styling */
+  .os_search-bar {
     display: flex;
     margin-bottom: 20px;
-}
-
-.os_search-bar input[type="text"] {
-    width: 75%;
+  }
+  
+  .os_search-bar input[type="text"] {
+    flex-grow: 1; /* Ensures the input field fills the available space */
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
-}
-
-.os_search-button {
-    display: block;
-    width: 24%;
+    border-radius: 5px;
+  }
+  
+  .os_search-button {
     padding: 10px;
     font-size: 1rem;
     color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
+    background-color: #000;
+    border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
     text-decoration: none;
-    text-align: center;
-    margin-left: 10px; /* Added space between input field and button */
-}
-
-.os_search-button:hover {
-    background-color: white;
-    color: #000000;
-    text-decoration: none;
-}
-
-/* Product grid */
-.os_shopcategory-products {
+  }
+  
+  .os_search-button:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  /* Product grid */
+  .os_shopcategory-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-/* Individual product card */
-.os_card {
+    gap: 20px; /* Uniform spacing between grid items */
+  }
+  
+  /* Individual product card styling */
+  .os_card {
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    height: 100%; /* Ensure each card has the same height */
-}
-
-.os_card:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-}
-
-/* Product image in the card */
-.os_card-img-top {
+  }
+  
+  .os_card-img-top {
     width: 100%;
-    height: 200px; /* Set a fixed height for the image */
-    object-fit: cover; /* Maintain aspect ratio and cover container */
-    border-radius: 8px 8px 0 0;
-}
-
-/* Product card body */
-.os_card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 20px;
-}
-
-/* Product title and text */
-.os_card-title {
-    margin-bottom: 0.5rem;
-}
-
-.os_card-text {
-    margin-bottom: 1rem;
-}
-
-/* Button styling */
-.os_button-primary {
-    display: block;
-    width: 50%;
+    height: 200px; /* Fixed height for product images */
+    object-fit: cover;
+    border-radius: 5px; /* Smooth rounded corners for images */
+  }
+  
+  /* Product card body */
+  .os_card-body {
+    text-align: center; /* Aligns all text to the center */
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .os_card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .os_card-text {
+    font-size: 1rem;
+  }
+  
+  .os_button-primary {
     padding: 10px;
     font-size: 1rem;
     color: #fff;
-    background-color: #000000;
-    border: 1px solid #000000;
+    background-color: #000;
+    border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
     text-decoration: none;
-    text-align: center;
-}
-
-.os_button-primary:hover {
-    background-color: white;
-    color: #000000;
-    text-decoration: none;
-}
-
-/* Load more section */
-.os_shopcategory-loadmore {
+    transition: background-color 0.3s ease;
+  }
+  
+  .os_button-primary:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  /* Load more section styling */
+  .os_shopcategory-loadmore {
     text-align: center;
     margin-top: 20px;
-}
-
-.os_shopcategory-loadmore a {
-    font-size: 16px;
-    color: #007bff;
+  }
+  
+  .os_shopcategory-loadmore a {
+    font-size: 1rem;
+    color: #000;
     text-decoration: none;
-    border-bottom: 1px solid #007bff;
-    transition: color 0.3s ease;
-}
-
-.os_shopcategory-loadmore a:hover {
-    color: #0056b3;
-    border-bottom-color: #0056b3;
-}
-
-/* Footer section */
-.os_footer {
-    margin-top: 50px;
-}
-/* Base style for the badge */
-/* Base style for the badge */
-.status-badge {
+  }
+  
+  .os_shopcategory-loadmore a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Status badge styling for in-stock/out-of-stock indicators */
+  .status-badge {
     position: absolute;
     top: 10px;
     left: 10px;
-    padding: 6px 10px; /* Additional padding for a softer look */
-    border-radius: 12px; /* Rounded corners */
-    font-size: 0.85em; /* Slightly larger font size */
-    font-weight: bold; /* Bold text */
-    text-align: center; /* Centered text */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Light shadow for depth */
-    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    padding: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #fff;
   }
   
-  /* Light green gradient for 'In Stock' badge with dark green text */
   .in-stock {
-    background: linear-gradient(45deg, #a4e0a1, #78c479); /* Light green gradient */
-    color: #216b39; /* Dark green text */
+    background: #2ecc71; /* Light green for in-stock status */
   }
   
-  /* Light red gradient for 'Out of Stock' badge with dark red text */
   .out-of-stock {
-    background: linear-gradient(45deg, #f8c2c1, #e69f9d); /* Light red gradient */
-    color: #a3262e; /* Dark red text */
-  }
-  
-  /* Hover effects for enhanced interactivity */
-  .status-badge:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
-    transform: scale(1.05); /* Slight scale-up on hover */
+    background: #e74c3c; /* Red for out-of-stock status */
   }
   
