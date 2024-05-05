@@ -153,3 +153,18 @@
   margin-right: 0%;
 }
 
+.fstar {
+  color: #ccc; /* default color for stars */
+  font-size: 24px;
+}
+
+/* Style for selected stars (highlight in yellow) */
+.fstar.selected {
+  color: rgb(255, 208, 0);
+}
+
+.averageRating {
+  text-align: center;
+  margin-top: -15px; /* Adjust as needed */
+  margin-bottom: -10px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/AppliedLeves.css';
 import { useParams } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const AppliedLeaves = () => {
   const { id } = useParams(); // Accessing staffId parameter from URL
@@ -31,15 +32,21 @@ const AppliedLeaves = () => {
   };
   
   return (
+
+    <>
     <div className='AppliedLeavesCon'>
       <h2 className='AppliedLeavesHead'>Applied Leaves</h2>
       <ul className='AppliedLeavescard'>
           {appliedLeaves.map((leave) => (
             <li key={leave._id}>
+              <p>Staff ID: {leave.staffId}</p>
+              <p>Staff ID: {leave.staffId}</p>
               <p>From: {formatDate(leave.StleaveFromDate)}</p>
               <p>To: {formatDate(leave.StleaveToDate)}</p>
               <p>Type: {leave.StleaveType}</p>
               <p>Reason: {leave.streason}</p>
+              <p>Requested Date: {formatDate(leave.createdAt)}</p>
+              <p>Approved Date: {formatDate(leave.updatedAt)}</p>
               <p style={{ color: leave.status === 'Approved' ? 'green' : leave.status === 'Disapproved' ? 'red' : 'black' }}>
               Status: {leave.status}
             </p>
@@ -47,6 +54,9 @@ const AppliedLeaves = () => {
           ))}
       </ul>
     </div>
+
+    <Footer />
+    </>
   );
 };
 

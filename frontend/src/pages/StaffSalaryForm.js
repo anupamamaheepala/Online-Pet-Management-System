@@ -81,6 +81,13 @@ function SalaryCalculator(props) {
                 console.error('Error fetching salary:', error);
             });
     }, []);
+
+    useEffect(() => {
+        const currentDate = new Date();
+        const previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+        setSelectedMonth(previousMonth);
+    }, []);
+
     
 
     const handleSubmit = async (e) => {
