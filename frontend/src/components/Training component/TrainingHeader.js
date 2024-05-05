@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const AdsHeader = () => {
+
+
+const TrainingHeader = () => {
   const [activeLink, setActiveLink] = useState('');
   const [highlightedLink, setHighlightedLink] = useState('');
 
@@ -13,7 +15,7 @@ const AdsHeader = () => {
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-light header-show`} style={{ backgroundColor: 'white', width: '100%', padding: '10px', transition: 'top 0.5s' }}>
-      <div className="container-fluid" style={{ borderBottom: '1px solid #ccc' }}>
+      <div className="container-fluid" style={{ borderBottom: '1px solid #ccc'}}>
         <a className="navbar-brand" href="#">
           <img src="/images/logo.png" alt="Logo" style={{ maxHeight: '100px', marginRight: '10px' }} />
         </a>
@@ -24,23 +26,26 @@ const AdsHeader = () => {
           <div className="offcanvas-header">
             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <h2><center>Advertisement coordinator's dashboard</center></h2>
+          <div className='alo25-text'  style={{textAlign:'center', marginRight:'50px'}}>
+          <h2>Training Manager Dashboard</h2>
+          </div>
           <div className="offcanvas-body">
-            <ul className="navbar-nav mx-auto" style={{ margin: '0 20px' }}>
+         
+            <ul className="navbar-nav mx-auto" style={{ textAlign:'center' }}>
               <li className="nav-item">
-                <Link className={`nav-link active`} to="/" style={{ fontSize: '20px', fontWeight: 'bold' }}>Home</Link>
+                <Link className={`nav-link`} to="/" style={{ fontSize: '20px', fontWeight: 'bold',marginLeft:'90px' }}>Home</Link>
               </li>
               
             
               <li className="nav-item">
-                <Link className={`nav-link`} to="/Advertisement" style={{ fontSize: '20px', fontWeight: 'bold' }}>Advertisements</Link>
+                <Link className={`nav-link active`} to="/TrainingDashboard" style={{ fontSize: '20px', fontWeight: 'bold' }}>Training Dashboard</Link>
               </li>
               <li className="nav-item">
                 <Link className={`nav-link`} to="/FeedbackDisplay" style={{ fontSize: '20px', fontWeight: 'bold' }}>FAQ</Link>
               </li>
             </ul>
-            <div className='ma22-txt' style={{marginRight:'10px' ,marginTop: '10px'}}>
-            Malinda  
+            <div className='alo22-txt' style={{marginRight:'10px'}}>
+            Aswini  
     
             </div>
             <div className="d-flex align-items-center">
@@ -48,15 +53,17 @@ const AdsHeader = () => {
               <div style={{ marginRight: '10px' }}>
                 <a href="/"><button className="btn btn-primary me-2" style={{ fontSize: '16px', backgroundColor: 'white', color: 'black', border: '1px solid black' }}>Sign out</button></a>
               </div>
+              
               <div className="dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   <span className="icon"></span>
                 </a>
+               
                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><a className="dropdown-item" href="/MyProfile">My Profile</a></li>
+                  <li><a className="dropdown-item" href="staff/profile/STAFF_740085">Manager Profile</a></li>
                   
                   <li><a className="dropdown-item" href="#">Settings</a></li>
-                  <li><a className="dropdown-item" href="#">Sign Out</a></li>
+                  <li><a className="dropdown-item" href="StaffLogin">Sign Out</a></li>
                 </ul>
               </div>
             </div>
@@ -67,4 +74,4 @@ const AdsHeader = () => {
   );
 }
 
-export default AdsHeader;
+export default TrainingHeader;
