@@ -23,14 +23,35 @@ const StaffLogin = () => {
     try {
       const res = await axios.post("http://localhost:9000/staff/login", formData);
       console.log(res.data);
-      // Redirect to staff profile page
-      window.location.href = `/staff/profile/${res.data.staffId}`;
+      
+      // Redirect based on staff designation
+      switch (res.data.designation) {
+        case 'System Manager':
+          // Redirect to System Manager page
+          window.location.href = '/Sysmanagerhome';
+          break;
+        case 'Advertisement Co-ordinator':
+          // Redirect to Advertisement Coordinator page
+          window.location.href = '/ConfirmAdvertisement';
+          break;
+        case 'Stock Manager':
+            // Redirect to Advertisement Coordinator page
+            window.location.href = '/AddingProduct';
+            break;
+        case 'Pet Training Manager':
+            // Redirect to Advertisement Coordinator page
+            window.location.href = '/TrainingDashboard';
+             break;
+        default:
+          // Redirect to staff profile page
+          window.location.href = `/staff/profile/${res.data.staffId}`;
+      }
     } catch (err) {
       console.error(err);
       setError('Invalid credentials. Please try again.');
-
     }
-  };
+};
+
 
   return (
     <>

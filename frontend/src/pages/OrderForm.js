@@ -18,9 +18,10 @@ const OrderForm = () => {
     orderContactNo: '',
     orderAddress: '',
     deliveryDate: getCurrentDate(), // Set to the current date
+    pdfFile: null, // File state for PDF upload
   });
 
-  const { orderName, orderContactNo, orderAddress, deliveryDate } = formData;
+  const { orderName, orderContactNo, orderAddress, deliveryDate, pdfFile } = formData;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +29,11 @@ const OrderForm = () => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  // Function to handle PDF file upload
+  const handleFileUpload = (e) => {
+    setFormData({ ...formData, pdfFile: e.target.files[0] });
   };
 
   // Function to allow only numeric characters in the contact number field
@@ -52,7 +58,14 @@ const OrderForm = () => {
     }
 
     try {
-      await axios.post('http://localhost:9000/orders/add', formData);
+      const formDataToSend = new FormData();
+      formDataToSend.append('orderName', orderName);
+      formDataToSend.append('orderContactNo', orderContactNo);
+      formDataToSend.append('orderAddress', orderAddress);
+      formDataToSend.append('deliveryDate', deliveryDate);
+      formDataToSend.append('pdfFile', pdfFile);
+
+      await axios.post('http://localhost:9000/orders/add', formDataToSend);
       Swal.fire({
         icon: 'success',
         title: 'Order Placed',
@@ -65,6 +78,7 @@ const OrderForm = () => {
         orderContactNo: '',
         orderAddress: '',
         deliveryDate: getCurrentDate(), // Reset to the current date
+        pdfFile: null,
       });
     } catch (err) {
       Swal.fire({
@@ -93,8 +107,12 @@ const OrderForm = () => {
           <textarea id="orderAddress" name="orderAddress" value={orderAddress} onChange={onChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="deliveryDate">Delivery Date:</label>
+          <label htmlFor="deliveryDate">Ordering Date:</label>
           <input type="date" id="deliveryDate" name="deliveryDate" value={deliveryDate} readOnly />
+        </div>
+        <div className="form-group">
+          <label htmlFor="pdfFile">Add Cart Slip:</label>
+          <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" onChange={handleFileUpload} />
         </div>
         <button type="submit" className="submit-button">Place Order</button>
       </form>

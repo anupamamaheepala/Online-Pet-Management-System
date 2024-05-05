@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar/Navbar';
 
-const ShopCategory = ({ category, banner, customerId }) => {
+const ShopCategory = ({ category, banner }) => {
   const [allProducts, setAllProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('date');
@@ -27,9 +27,11 @@ const ShopCategory = ({ category, banner, customerId }) => {
 
   const handleAddToCart = async (productId) => {
     try {
-      const response = await axios.post('http://localhost:9000/cart', { customerId, productId });
+      const response = await axios.post('http://localhost:9000/cart', {
+        customerId: localStorage.getItem('userId'),
+        productId,
+      });
       if (response.status === 201) {
-        console.log('Product added to cart');
         navigate('/cart'); // Redirect to the cart page
       }
     } catch (error) {
@@ -51,11 +53,12 @@ const ShopCategory = ({ category, banner, customerId }) => {
     } else if (sortOption === 'price') {
       return a.price - b.price;
     }
+    return 0; // Default case to ensure no errors in case of unknown sort option
   });
 
   const filteredProducts = sortedProducts.filter(
     (item) =>
-      item.category === category &&
+      item.category.toLowerCase() === category.toLowerCase() &&
       item.itemName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -63,14 +66,14 @@ const ShopCategory = ({ category, banner, customerId }) => {
     <>
       <Header />
       <div className="os_shopcategory">
-        <Navbar products={allProducts} />
-        <img src={banner} className="os_shopcategory-banner" alt="" />
+        <Navbar />
+        <img src={banner} className="os_shopcategory-banner" alt="Category Banner" />
         <div className="os_shopcategory-indexSort">
           <p>
-            Showing 1 - {filteredProducts.length} out of {allProducts.length} Products
+            Showing {filteredProducts.length} out of {allProducts.length} Products
           </p>
           <div className="os_shopcategory-sort">
-            Sort by
+            Sort by:
             <select value={sortOption} onChange={handleSortChange}>
               <option value="date">Date</option>
               <option value="price">Price</option>
@@ -85,7 +88,6 @@ const ShopCategory = ({ category, banner, customerId }) => {
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button className="os_search-button">Search</button>
         </div>
 
         <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -93,17 +95,10 @@ const ShopCategory = ({ category, banner, customerId }) => {
             filteredProducts.map((item) => (
               <div key={item._id} className="col">
                 <div className="os_card h-100 d-flex flex-column justify-content-between position-relative">
-                  <div
-                    className={`status-badge ${
-                      item.quantity > 0 ? 'in-stock' : 'out-of-stock'
-                    }`}
-                  >
+                  <div className={`status-badge ${item.quantity > 0 ? 'in-stock' : 'out-of-stock'}`}>
                     {item.quantity > 0 ? 'In Stock' : 'Out of Stock'}
                   </div>
-                  <div
-                    className="d-flex justify-content-center align-items-center"
-                    style={{ height: '190px' }}
-                  >
+                  <div className="d-flex justify-content-center align-items-center" style={{ height: '190px' }}>
                     <img
                       src={`http://localhost:9000/${item.image}`}
                       className="os_card-img-top"
@@ -120,14 +115,14 @@ const ShopCategory = ({ category, banner, customerId }) => {
                     ) : null}
 
                     {item.quantity > 0 ? (
-                      <center>
+                      <div className="d-flex justify-content-center"> {/* Centering the button */}
                         <button
                           className="os_button-primary"
                           onClick={() => handleAddToCart(item._id)}
                         >
                           Add to Cart
                         </button>
-                      </center>
+                      </div>
                     ) : (
                       <p className="text-danger">Out of Stock</p>
                     )}

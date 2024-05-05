@@ -193,6 +193,7 @@ const PrivateTrainingDetails = () => {
         <h2 style={{ textAlign: "center" }}>Private Training Details</h2>
         <div>
           <p><strong>Owner's Name:</strong> {training.ownerName}</p>
+          <p><strong>Email:</strong>{training.email}</p>
           <p><strong>Address:</strong> {training.address}</p>
           <p><strong>Contact Number:</strong> {training.contact}</p>
           <p><strong>Dog's Name:</strong> {training.dogName}</p>

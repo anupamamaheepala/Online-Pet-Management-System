@@ -16,6 +16,7 @@ import FeedbackRating from './pages/FeedbackRating';
 import FeedbackadminInquiry from './pages/FeedbackadminInquiry';
 import FeedbackReply from './pages/FeedbackReply';
 import FeedbackReplyForm from './pages/FeedbackReplyForm';
+
 import Services from './pages/Services';
 import ViewServices from './pages/ViewServices';
 import Vetservices from './pages/Vetservices';
@@ -63,7 +64,6 @@ import ShopCategory from './pages/ShopCategory';
 import AddedProduct from './pages/AddedProduct';
 import AddingProduct from './pages/AddingProduct';
 import StaffProfile from './pages/StaffProfile';
-import OrderForm from './pages/OrderForm';
 import AllOrders from './pages/AllOrders';
 import ViewApplication from './pages/ViewApplication';
 import ResetPassword from './pages/ResetPassword';
@@ -91,6 +91,7 @@ import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
+import OrderForm from './pages/OrderForm';
 
 
 
@@ -124,12 +125,9 @@ function App() {
           <Route path="/FeedbackReply/:_id/:name/:email/:feedback" element={<FeedbackReply />} />
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
-
-
-
           <Route path="/FeedbackReplyForm" element={<FeedbackReplyForm />} />
-
           <Route path="/FeedbackReplyForm/:_id/:feedback" element={<FeedbackReplyForm />} />
+
           <Route path='/Services' element = {<Services />}/>
           <Route path='/ViewServices' element = {<ViewServices />}/>
           <Route path="/Vetservices" element={<Vetservices />} />
@@ -162,7 +160,7 @@ function App() {
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
           <Route path="/Store" element={<Shop />} />
-          <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
+          <Route path="/Foods" element={<ShopCategory customerId={localStorage.getItem('userData')} banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys And Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
           <Route path="/AddingProduct" element={<AddingProduct />} />
@@ -200,6 +198,9 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+
+
           
 
           </Routes>
