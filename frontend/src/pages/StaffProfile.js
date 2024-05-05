@@ -36,7 +36,7 @@ const StaffProfile = () => {
 
   return (
     <>
-      {staff && staff.designation === 'veterinarian' ? (
+      {staff && staff.designation === 'Veterinarian' ? (
         
         <VetHeader />
       ) : (

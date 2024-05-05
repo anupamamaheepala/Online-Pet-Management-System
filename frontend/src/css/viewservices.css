@@ -1,5 +1,3 @@
-/* viewservices.css */
-
 .view-services-container {
     max-width: 600px;
     margin: 0 auto;
@@ -27,7 +25,7 @@
   }
   
   .service-buttons {
-    display: flex;
+    display: flex ;
     justify-content: space-between;
   }
   
