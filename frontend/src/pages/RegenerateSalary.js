@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 import Footer from '../components/Footer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom'; // Import Link component and useLocation hook
-import '../css/StaffSalary.css';
 
 function RegenerateSalary(props) {
     const location = useLocation(); // Use useLocation hook to access location object
@@ -40,6 +39,13 @@ function RegenerateSalary(props) {
     useEffect(() => {
         calculateTotalSalary();
     }, [otHours, bonusAmount, basicSalary]);
+
+    useEffect(() => {
+        const currentDate = new Date();
+        const previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+        setSelectedMonth(previousMonth);
+    }, []);
+
 
 
     const handleSubmit = async (e) => {
@@ -112,7 +118,8 @@ function RegenerateSalary(props) {
 
     return (
         <>
-            <Header />
+            <SystemAdminHeader />
+
             <div className="StaffSalary">
                 <h2>Regenerate Salary</h2>
                 <form onSubmit={handleSubmit} className='StaffSalary-form'>

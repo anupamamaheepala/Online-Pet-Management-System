@@ -61,14 +61,14 @@ exports.deleteAdById = async (req, res) => {
 
 exports.deletecomAdById = async (req, res) => {
     try {
-        console.log("Deleting advertisement with ID:", req.params.id); // Log the ID
+        console.log("Deleting advertisement with ID:", req.params.id); 
         const deletedAd = await ConfirmedAds.findByIdAndDelete(req.params.id);
         if (!deletedAd) {
             return res.status(404).json({ message: "Advertisement not found" });
         }
         res.status(200).json({ message: "Advertisement deleted successfully" });
     } catch (error) {
-        console.error("Error deleting advertisement:", error); // Log any errors
+        console.error("Error deleting advertisement:", error); 
         res.status(500).json({ message: "Failed to delete advertisement" });
     }
 };
@@ -93,13 +93,11 @@ exports.confirmAdvertisement = async (req, res) => {
             description: ad.description,
             filePath: ad.filePath,
             contact: ad.contact,
-            createdAt: ad.createdAt // creation date from the original advertisement
+            createdAt: ad.createdAt 
         });
 
-        // Save the confirmed advertisement to the database
         await confirmedAd.save();
 
-        // Delete the advertisement from the original collection
         await Ads.findByIdAndDelete(adId);
 
         res.status(200).json({ message: "Advertisement confirmed and moved successfully" });
@@ -108,7 +106,6 @@ exports.confirmAdvertisement = async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 };
-
 
 exports.getAllConfirmedAdvertisements = async (req, res) => {
     try {
@@ -162,7 +159,7 @@ exports.updateConfirmedAd = async (req, res) => {
     }
   };
   
-  // Controller function to update advertisement by ID
+  // update advertisement by ID
   exports.updateAdvertisementById = async (req, res) => {
     try {
         const updatedData = {
@@ -191,11 +188,10 @@ exports.updateConfirmedAd = async (req, res) => {
       }
 };
 
-
 exports.getAdvertisementsByUserId = async (req, res) => {
   try {
       const userId = req.params.userId;
-      const advertisements = await Ads.find({ userId }); // Assuming userId is the field in the Ads model that represents the user ID
+      const advertisements = await Ads.find({ userId }); 
       res.json(advertisements);
   } catch (error) {
       console.error(error);

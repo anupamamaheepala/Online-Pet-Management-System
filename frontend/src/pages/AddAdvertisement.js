@@ -35,13 +35,13 @@ const AddAdvertisement = () => {
         if (name === 'ownerName') {
             newValue = value.replace(/[^A-Za-z.\s]/g, ''); // Allow letters, dots, and spaces
         } else if (name === 'contact') {
-            newValue = value.replace(/[^\d]/g, ''); // Replace non-digit characters with empty string
+            newValue = value.replace(/[^\d]/g, ''); 
             if (newValue.length > 10) {
-                newValue = newValue.slice(0, 10); // Limit to 10 characters
+                newValue = newValue.slice(0, 10); 
             }
         }
         
-        setFormData({ ...formData, [name]: newValue }); // Use 'name' instead of 'e.target.name'
+        setFormData({ ...formData, [name]: newValue }); 
     };
     
 
