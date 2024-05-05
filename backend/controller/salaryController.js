@@ -139,8 +139,7 @@ exports.updateSalary = async (req, res) => {
 };
 
 
-
-// Controller for fetching salary details by staff ID or related IDs
+// Controller for fetching salary details by modified staff ID
 exports.getSalaryByModifiedId = async (req, res) => {
   try {
     const { id } = req.params;
@@ -158,4 +157,3 @@ exports.getSalaryByModifiedId = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-
