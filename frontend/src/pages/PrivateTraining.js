@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'; // Import SweetAlert
 const PrivateTraining = () => {
   const [formData, setFormData] = useState({
     ownerName: '',
+    email: '',
     address: '',
     contact: '',
     dogName: '',
@@ -18,7 +19,7 @@ const PrivateTraining = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false); // State to track submission status
 
-  const { ownerName, address, contact, dogName, breed, age, file } = formData;
+  const { ownerName, email,address, contact, dogName, breed, age, file } = formData;
   const [ageError, setAgeError] = useState(false); // State to track age validation error
 
   const onChange = e => {
@@ -69,6 +70,7 @@ const PrivateTraining = () => {
       const formDataToSend = new FormData();
       formDataToSend.append('file', file);
       formDataToSend.append('ownerName', ownerName);
+      formDataToSend.append('email', email);
       formDataToSend.append('address', address);
       formDataToSend.append('contact', contact);
       formDataToSend.append('dogName', dogName);
@@ -89,6 +91,7 @@ const PrivateTraining = () => {
       // Clear form fields after successful submission
       setFormData({
         ownerName: '',
+        email:'',
         address: '',
         contact: '',
         dogName: '',
@@ -131,6 +134,10 @@ const PrivateTraining = () => {
                 <div className="alo-form-group">
                   <label className="private" htmlFor="ownerName">Owner's Name:</label>
                   <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={onChange} />
+                </div>
+                <div className="alo-form-group">
+                <label className="private" htmlFor="email">Email:</label>
+                  <input type="email" id="email" name="email" value={email} onChange={onChange} />
                 </div>
                 <div className="alo-form-group">
                   <label className="private" htmlFor="address">Address:</label>
