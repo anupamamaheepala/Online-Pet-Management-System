@@ -61,7 +61,7 @@ const FeedbackInquiry = () => {
           <input className="custom-form-input" type="text" name="name" value={formData.name} onChange={handleChange} />
           <label className="custom-form-label">Email</label>
           <input className="custom-form-input" type="email" name="email" value={formData.email} onChange={handleChange} />
-          <label className="custom-form-label">Feedback</label>
+          <label className="custom-form-label">Inquiry</label>
           <textarea className="custom-form-textarea" name="feedback" value={formData.feedback} onChange={handleChange} />
           <button className="custom-form-submit" type="submit">Send</button>
         </form>

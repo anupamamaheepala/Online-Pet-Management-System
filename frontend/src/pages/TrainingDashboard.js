@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Chart from 'chart.js/auto';
 import '../css/Trainingdashboard.css';
-import AdminHeader from '../components/AdminHeader';
+import TrainingHeader from '../components/Training component/TrainingHeader';
 import jsPDF from 'jspdf';
 
 const TrainingDashboard = () => {
@@ -307,8 +307,8 @@ const TrainingDashboard = () => {
 
   return (
     <div>
-      <AdminHeader />
-      <h2>Training Manager Dashboard</h2>
+      <TrainingHeader />
+  
       <div className="dashboard-header">
         <div>Pending Applications: {pendingCount}</div>
         <div>Approved Applications: {approvedCount}</div>
@@ -332,7 +332,7 @@ const TrainingDashboard = () => {
         placeholder="Search..."
         value={searchQuery}
         onChange={handleSearch}
-        className="ma_search-input"
+        className="alo222_search-input"
       />
       <div className="alo_table-container">
         <table className="alo1-table">

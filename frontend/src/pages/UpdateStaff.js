@@ -36,6 +36,8 @@ const UpdateStaff = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    const updatedValue = value === '' ? '' : value;
   
     if (name === 'scontactNumber') {
       if (value === '' || /^\d+$/.test(value)) {
@@ -60,7 +62,7 @@ const UpdateStaff = () => {
         }
       }
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData({ ...formData, [name]: updatedValue  });
     }
   };
   
