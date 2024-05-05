@@ -25,7 +25,7 @@ const StaffProfile = () => {
   }, [id]);
 
   const handleDelete = () => {
-    // Implement delete functionality
+    
   };
 
   return (
