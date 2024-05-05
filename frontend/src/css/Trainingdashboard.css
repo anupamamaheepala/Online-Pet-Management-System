@@ -67,19 +67,60 @@
 
 .alo_view-details-button button {
   color: #ffffff;
-  background-color: #007bff;
+  background-color: #2b5c8f;
+  border-radius: 5px;
   
 }
 
 .alo_view-details-button button:hover {
-  background-color: #0056b3;
+  background-color: #275d98;
 }
 
 .alo2-button {
   padding: 10px 20px;
-  background-color: rgb(255, 0, 0);
+  background-color: rgba(198, 17, 17, 0.913);
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
+
+/* Trainingdashboard.css */
+.asw18-chart-container {
+  margin-top: 60px; /* Add some margin to separate the chart from the table */
+  max-width: 800px; /* Set a maximum width for the chart */
+  margin-left: 10px; /* Center the chart horizontally */
+  margin-right: auto;
+  background-color: rgb(226, 218, 187); /* Set background color to light blue */
+  padding: 20px; /* Add padding to create space around the chart */
+  border-radius: 15px; /* Add border radius to create rounded corners */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+  
+}
+.a1802-piechart-container {
+  margin-top: 60px; /* Add some margin to separate the chart from the table */
+  max-width: 800px; /* Set a maximum width for the chart */
+  margin-left: 5px; /* Center the chart horizontally */
+  margin-right: auto;
+  background-color: rgb(226, 218, 187); /* Set background color to light blue */
+  padding: 20px; /* Add padding to create space around the chart */
+  border-radius: 15px; /* Add border radius to create rounded corners */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+  
+}
+#pieChart{
+  max-height: 500px;
+  width: 50%;
+}
+#trainingChart {
+  max-height: 600px; /* Set a maximum height for the chart */
+  width: 80%; /* Make the chart fill its container */
+}
+.alo1802name{
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: larger;
+  font-weight: bold;
+  
+}
+

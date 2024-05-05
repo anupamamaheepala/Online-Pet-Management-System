@@ -120,9 +120,9 @@ const StepForm = () => {
         <>
             <Header />
             <form className="ma_advertisement-form" onSubmit={onSubmit} encType="multipart/form-data">
-                <h2>AddTraining New step.</h2>
-                <p>Enter the private training steps
-                    <b>If your pet is lost,</b> include those facts clearly. The time the pet went missing, last seen location etc.</p>
+                <h2>New Steps for Private Training Program</h2>
+                <p>Add Steps for private pet training
+                    </p>
 
                     <div className="ma_form-group">
     <label htmlFor="step">Step:</label>
