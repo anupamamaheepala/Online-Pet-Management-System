@@ -5,9 +5,10 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../css/Cart.css';
 
-const Cart = ({ customerId }) => {
+const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
+  const customerId = localStorage.getItem('userId');
 
   useEffect(() => {
     if (customerId) {
@@ -28,9 +29,9 @@ const Cart = ({ customerId }) => {
   };
 
   const updateQuantity = async (productId, quantity) => {
-    if (quantity < 1) return; // Prevent removing items via quantity update
+    if (quantity < 1) return; // Prevent setting quantity to zero or negative
     try {
-      await axios.post(`http://localhost:9000/cart`, {
+      await axios.post('http://localhost:9000/cart', {
         customerId, // Include customerId in the payload
         productId,
         quantity,
@@ -43,9 +44,7 @@ const Cart = ({ customerId }) => {
 
   const removeItem = async (productId) => {
     try {
-      await axios.delete(`http://localhost:9000/cart/${customerId}/${productId}`, {
-        data: { customerId } // Include customerId in the payload for security
-      });
+      await axios.delete(`http://localhost:9000/cart/${customerId}/${productId}`);
       fetchCartItems(); // Refresh the cart after removal
     } catch (error) {
       console.error('Failed to remove item:', error);
@@ -53,7 +52,7 @@ const Cart = ({ customerId }) => {
   };
 
   const handleCheckout = () => {
-    navigate('/checkout'); // Navigate to checkout page
+    navigate('/checkout'); // Navigate to the checkout page
   };
 
   return (
@@ -63,9 +62,9 @@ const Cart = ({ customerId }) => {
         <h2 className="os_cart-header">Cart</h2>
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
-            <div key={item.productId} className="os_cart-item">
+            <div key={item.productId._id} className="os_cart-item">
               <p className="os_product-details">
-                <span className="os_product-name">{item.productId.itemName}</span> -
+                <span className="os_product-name">{item.productId.itemName}</span> - 
                 <span className="os_product-price">LKR {item.productId.price}</span> (Qty: {item.quantity})
               </p>
               <div className="os_quantity-controls">
@@ -76,7 +75,7 @@ const Cart = ({ customerId }) => {
             </div>
           ))
         ) : (
-          <p>No items in cart.</p>
+          <p>No items in the cart.</p>
         )}
         <button onClick={handleCheckout} className="os_checkout-btn">Checkout</button>
       </div>
