@@ -216,7 +216,7 @@ const Cardpaysuccess = () => {
         window.location.href = '/TrainingPrograms#'; // Add appropriate anchor if needed
         break;
       case "Advertisement":
-        window.location.href = '/MyAdvertisements';
+        window.location.href = '/Advertisement';
         break;
       default:
         window.location.href = '/'; // Navigate to home page by default
