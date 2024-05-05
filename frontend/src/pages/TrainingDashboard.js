@@ -79,7 +79,7 @@ const TrainingDashboard = () => {
 
       doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
 
-      // Calculate title position
+      // Calculating part
       const pageWidth = doc.internal.pageSize.getWidth();
       const titleWidth =
         (doc.getStringUnitWidth(reportTitle) * doc.internal.getFontSize()) /
@@ -90,7 +90,7 @@ const TrainingDashboard = () => {
       doc.setFontSize(18);
       doc.text(reportTitle, 70, yPosition + logoWidth - 15);
 
-      // Generate table data
+      // Generate table data to report
       const tableData = trainings
         .filter((training) => training.status === 'approved')
         .map((training) => [
@@ -100,7 +100,7 @@ const TrainingDashboard = () => {
           new Date(training.submissionDateTime).toLocaleDateString(),
         ]);
 
-      // Generate the rest of the PDF content
+      // pdf content
       doc.setFontSize(12);
 
       doc.autoTable({
@@ -127,11 +127,13 @@ const TrainingDashboard = () => {
   };
 
   const filteredTrainings = trainings.filter((training) => {
-    const ownerNameMatch = training.ownerName.toLowerCase().includes(searchQuery);
+    const ownerNameMatch = training.ownerName && training.ownerName.toLowerCase().includes(searchQuery);
     const instructorMatch = training.instructor && training.instructor.toLowerCase().includes(searchQuery);
     const instructorIdMatch = training.instructorId && training.instructorId.toLowerCase().includes(searchQuery);
-    return ownerNameMatch || instructorMatch || instructorIdMatch;
-  });
+    const instructorNameMatch = training.instructorName && training.instructorName.toLowerCase().includes(searchQuery);
+    return ownerNameMatch || instructorMatch || instructorIdMatch || instructorNameMatch;
+});
+
   
   return (
     <div>
@@ -151,7 +153,7 @@ const TrainingDashboard = () => {
           <button className="alo1-button">Manage Private Programs |</button>
         </a>
         <button className="alo1-button">Manage Group Programs</button>
-        <button className="report-button" onClick={handleDownloadReport}>
+        <button style={{backgroundColor:'black'}} className="report-button" onClick={handleDownloadReport}>
           Download Report
         </button>
       </div>
@@ -172,6 +174,7 @@ const TrainingDashboard = () => {
               <th>Date</th>
               <th>Time</th>
               <th>Status</th>
+              <th>Instructor's ID</th>
               <th>Instructor's Name</th>
               <th>Actions</th>
             </tr>
@@ -191,17 +194,19 @@ const TrainingDashboard = () => {
                     ? 'Approved'
                     : 'Rejected'}
                 </td>
-                <td>{training.instructor || 'Not Assigned'}</td>
-                <td>
-                  <Link
-                    to={{
-                      pathname: `/training/${training._id}`,
-                      state: { instructorName: selectedTrainer ? selectedTrainer.label : '' },
-                    }}
-                    className="alo_view-details-button"
-                  >
-                    <button className="alo1-button">View Details</button>
-                  </Link>
+                <td>{training.instructorId || 'Not Assigned'}</td>
+                <td>{training.instructorName || 'Not Assigned'}</td>
+
+<td>
+  <Link
+    to={{
+      pathname: `/training/${training._id}`,
+      state: { instructorName: selectedTrainer ? selectedTrainer.value : '' },
+    }}
+    className="alo_view-details-button"
+  >
+    <button className="alo1-button">View Details</button>
+  </Link>
                   &nbsp;
                   <button className='alo2-button' onClick={() => handleDelete(training._id)}>Delete</button>
                 </td>

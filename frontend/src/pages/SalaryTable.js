@@ -152,7 +152,7 @@ const SalaryTable = () => {
           <tbody>
               {filteredSalaries.map(salary => (
                 <tr key={salary._id}>
-                  <td>{salary.staffId}</td>
+                 <td>{`${salary.staffId.split('_')[0]}_${salary.staffId.split('_')[1]}`}</td>
                   <td>{salary.firstName}</td>
                   <td>{salary.lastName}</td>
                   <td>{formatMonth(salary.selectedMonth)}</td>

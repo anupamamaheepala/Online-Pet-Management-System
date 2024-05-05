@@ -4,7 +4,7 @@ const Staff = require('../models/staffModel');
 // Controller for adding salary details
 exports.addSalary = async (req, res) => {
   try {
-    const { staffId, firstName, lastName, selectedMonth,basicSalary, otHours, otRate,otAmount, bonusAmount, totalSalary } = req.body;
+    const { staffId, firstName, lastName, selectedMonth, basicSalary, otHours, otRate, otAmount, bonusAmount, totalSalary } = req.body;
     const newSalary = new Salary({
       staffId,
       firstName,
@@ -17,8 +17,34 @@ exports.addSalary = async (req, res) => {
       bonusAmount,
       totalSalary
     });
-    await newSalary.save();
-    res.status(201).json(newSalary);
+
+    try {
+      // Attempt to save the new salary document
+      await newSalary.save();
+      res.status(201).json(newSalary);
+    } catch (error) {
+      // If a duplicate key error occurs, handle it
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.staffId === 1) {
+        // Insert the record as a new document even if it has a duplicate staffId
+        const newRecord = await Salary.create({
+          staffId: `${staffId}_${Date.now()}`, // Append a timestamp to make the staffId unique
+          firstName,
+          lastName,
+          selectedMonth,
+          basicSalary,
+          otHours,
+          otRate,
+          otAmount,
+          bonusAmount,
+          totalSalary
+        });
+        res.status(201).json(newRecord);
+      } else {
+        // If the error is not a duplicate key error, return a generic error response
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+      }
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });

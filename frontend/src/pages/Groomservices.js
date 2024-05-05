@@ -1,3 +1,5 @@
+// Groomservices.js
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -9,8 +11,9 @@ import '../css/groomeservices.css';
 function Groomservices() {
   const images = ['groome1.jpg', 'groome2.jpg', 'groome3.jpg', 'groome4.jpg', 'groome5.jpg'];
   const [currentImage, setCurrentImage] = useState(0);
-  const [showDescription, setShowDescription] = useState('');
   const [services, setServices] = useState([]);
+  const [groomers, setGroomers] = useState([]);
+  const [selectedGroomerId, setSelectedGroomerId] = useState(null); // New state variable
 
   const nextImage = () => {
     setCurrentImage((currentImage + 1) % images.length);
@@ -27,6 +30,7 @@ function Groomservices() {
 
   useEffect(() => {
     fetchServices();
+    fetchGroomers();
   }, []);
 
   const fetchServices = async () => {
@@ -38,13 +42,21 @@ function Groomservices() {
       console.error('Error fetching services:', error);
     }
   };
-
-  const handleDotClick = (index) => {
-    setCurrentImage(index);
+  
+  // Fetch and display available groomers
+  const fetchGroomers = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/staff');
+      const groomerStaff = response.data.filter(staff => staff.designation === "Groomer");
+      setGroomers(groomerStaff);
+    } catch (error) {
+      console.error('Error fetching groomers:', error);
+    }
   };
 
-  const toggleDescription = (service) => {
-    setShowDescription(showDescription === service ? '' : service);
+  // Function to handle click on groomer name
+  const handleGroomerClick = (groomerId) => {
+    setSelectedGroomerId(prevId => (prevId === groomerId ? null : groomerId)); // Toggle selected groomer ID
   };
 
   return (
@@ -69,7 +81,7 @@ function Groomservices() {
         </button>
         <div className="dots-container">
           {images.map((_, index) => (
-            <span key={index} className={index === currentImage ? 'dot active' : 'dot'} onClick={() => handleDotClick(index)}></span>
+            <span key={index} className={index === currentImage ? 'dot active' : 'dot'} onClick={() => setCurrentImage(index)}></span>
           ))}
         </div>
       </div>
@@ -78,18 +90,33 @@ function Groomservices() {
           <h2>Available Grooming Services</h2>
           <ul className="service-list">
             {services.map((service) => (
-              <li key={service.title} onClick={() => toggleDescription(service.title)}>
-                <span className="toggle-icon">{showDescription === service.title ? '-' : '+'}</span>
+              <li key={service.title}>
                 <h3>{service.title}</h3>
-                {showDescription === service.title && <p>{service.description}</p>}
+                <p>{service.description}</p>
               </li>
             ))}
           </ul>
         </div>
         <div className="square-placeholder">
           <h1>Available Groomers</h1>
-         
-        </div> 
+          <ul>
+            {groomers.map(groomer => (
+              <li key={groomer._id}>
+                <span className="groomer-name" onClick={() => handleGroomerClick(groomer._id)}>
+                  <button className={`toggle-button ${selectedGroomerId === groomer._id ? 'active' : ''}`} onClick={(e) => e.preventDefault()}>{selectedGroomerId === groomer._id ? '-' : <strong>+</strong>}</button> {/* Toggle details */}
+                  {groomer.sfirstname} {groomer.slastname}
+                </span>
+                {selectedGroomerId === groomer._id && ( // Display details only for the selected groomer
+                  <div className="groomer-details">
+                    <p>Qualifications: {groomer.qualifications}</p>
+                    <p>Email: {groomer.semail}</p>
+                    <p>Contact Number: {groomer.scontactNumber}</p>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <Footer />
     </>

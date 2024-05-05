@@ -127,10 +127,29 @@ const PrivateTrainingDetails = () => {
       await axios.put(`http://localhost:9000/training/reject/${id}`);
       console.log('Training rejected successfully');
       window.alert('Application rejected');
+  
+      // Clear the selected trainer state
+      setSelectedTrainer(null);
+  
+      // Clear the instructor details from the training state
+      setTraining(prevTraining => ({
+        ...prevTraining,
+        instructorId: null,
+        instructorName: null
+      }));
+  
+      // Update the backend to remove the instructor details
+      await axios.put(`http://localhost:9000/training/updateInstructor/${id}`, {
+        instructorId: null,
+        instructorName: null
+      });
     } catch (error) {
       console.error('Error rejecting training:', error);
     }
-  }
+  };
+  
+  
+  
 
   const handleOpenModal = (imageUrl) => {
     setModalImageUrl(imageUrl);

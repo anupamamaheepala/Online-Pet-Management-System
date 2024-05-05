@@ -170,7 +170,7 @@ justify-content: space-between;
 
 .text-column {
   flex: 1; /* Take up remaining space */
-  padding: 0 20px; /* Add padding for spacing */
+  padding: 0 60px 0 0px;; /* Add padding for spacing */
 }
 
 .image-column {
@@ -178,3 +178,20 @@ justify-content: space-between;
   text-align: right; /* Align content to the right */
 }
 
+.home_about-button {
+  background-color: #302e2ee5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px; 
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.home_about-button:hover {
+  background-color: #000;
+}
+
+.home_welcome-heading {
+  font-family: 'Times New Roman', Times, serif;
+}
