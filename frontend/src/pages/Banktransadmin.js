@@ -38,8 +38,9 @@ const Banktransadmin = () => {
     }
   };
 
-  // Filter out approved transactions
-  const filteredTransactions = bankTransactions.filter(transaction => transaction.status !== 'approved');
+  // Filter transactions to show only pending and disapproved ones
+  const filteredTransactions = bankTransactions.filter(transaction => 
+    transaction.status === 'pending' || transaction.status === 'disapproved');
 
   return (
     <>
@@ -48,7 +49,7 @@ const Banktransadmin = () => {
       <center><h1>Bank Transactions</h1></center>
       <br/>
       <ul>
-        {filteredTransactions.map((transaction) => (
+        {filteredTransactions.slice(0).reverse().map((transaction) => (
           <li key={transaction._id} className="transaction-item">
             <div className="transaction-details">
               <strong>Payer Name:</strong> {transaction.payer.name}<br />
@@ -67,11 +68,11 @@ const Banktransadmin = () => {
             />
             <br></br>
             <div className="transaction-actions">
-              {transaction.status !== 'approved' && (
-                <button onClick={() => handleApproval(transaction._id)}>Approve</button>
-              )}
-              {transaction.status !== 'disapproved' && (
-                <button onClick={() => handleDisapproval(transaction._id)}>Disapprove</button>
+              {transaction.status === 'pending' && (
+                <>
+                  <button onClick={() => handleApproval(transaction._id)}>Approve</button>
+                  <button onClick={() => handleDisapproval(transaction._id)}>Disapprove</button>
+                </>
               )}
             </div>
             <hr />
