@@ -1,6 +1,6 @@
 /* feedbackdisplay.css */
 .fbody {
-  background-color: #ffe786; /* Replace with your desired background color */
+  background: linear-gradient(to bottom, rgb(255, 255, 95) 0%, #fff7d0 100%); 
 }
 .buttonContainer {
   display: flex;
