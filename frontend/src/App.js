@@ -87,7 +87,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
 import OrderForm from './pages/OrderForm';
-
+import SuccessBankTrans from './pages/SuccessBankTrans';
 function App() {
   return (
     <div>
@@ -184,6 +184,7 @@ function App() {
           <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          <Route path="/successbanktrans" element={<SuccessBankTrans />}/>
           </Routes>
       </Router>
       <ToastContainer position="top-center" />
