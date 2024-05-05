@@ -37,3 +37,4 @@ router.get('/',staffController.getAllTrainers);
 
 
 module.exports = router;
+

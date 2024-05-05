@@ -115,13 +115,14 @@ exports.staffLogin = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // If authentication is successful, return the staffId
-    res.status(200).json({ staffId });
+    // If authentication is successful, return the staffId and designation
+    res.status(200).json({ staffId: staff.staffId, designation: staff.designation });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 exports.getStaffProfileById = async (req, res) => {
   try {
@@ -157,4 +158,5 @@ exports.getAllTrainers = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
