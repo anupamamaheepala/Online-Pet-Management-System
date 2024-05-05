@@ -1,39 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Ensure useNavigate is imported
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../css/ShopCategory.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar/Navbar';
-import { useCart } from '../Context/CartContext'; // Import useCart context
-import axios from 'axios'; // Correct import of axios
 
-const ShopCategory = (props) => {
+const ShopCategory = ({ category, banner }) => {
   const [allProducts, setAllProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('date');
-  const { addToCart } = useCart(); // Context to manage the cart
-  const navigate = useNavigate(); // Corrected import for navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:9000/products'); // Ensure backend server is running
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        const data = await response.json();
-        setAllProducts(data); // Set products in state
+        const response = await axios.get('http://localhost:9000/products');
+        setAllProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
-    fetchProducts(); // Fetch products on component mount
-  }, []); // Ensure useEffect has a dependency array
+
+    fetchProducts();
+  }, []); // Fetch products on component mount
 
   const handleAddToCart = async (productId) => {
-    const customerId = '661687e6f681919dd55aa688'; // Ensure this is a valid customer ID
     try {
-      const response = await axios.post('http://localhost:9000/cart', { customerId, productId });
+      const response = await axios.post('http://localhost:9000/cart', {
+        customerId: localStorage.getItem('userId'),
+        productId,
+      });
       if (response.status === 201) {
         console.log('Product added to cart');
         navigate('/cart'); // Redirect to the cart page
@@ -44,11 +41,11 @@ const ShopCategory = (props) => {
   };
 
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value); // Update search query
+    setSearchQuery(event.target.value);
   };
 
   const handleSortChange = (event) => {
-    setSortOption(event.target.value); // Update sort option
+    setSortOption(event.target.value);
   };
 
   const sortedProducts = [...allProducts].sort((a, b) => {
@@ -57,11 +54,12 @@ const ShopCategory = (props) => {
     } else if (sortOption === 'price') {
       return a.price - b.price;
     }
+    return 0; // Default case to ensure no errors in case of unknown sortOption
   });
 
   const filteredProducts = sortedProducts.filter(
     (item) =>
-      item.category === props.category &&
+      item.category.toLowerCase() === category.toLowerCase() &&
       item.itemName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -69,14 +67,14 @@ const ShopCategory = (props) => {
     <>
       <Header />
       <div className="os_shopcategory">
-        <Navbar products={allProducts} />
-        <img src={props.banner} className="os_shopcategory-banner" alt="" />
+        <Navbar />
+        <img src={banner} className="os_shopcategory-banner" alt="Category Banner" />
         <div className="os_shopcategory-indexSort">
           <p>
-            Showing 1 - {filteredProducts.length} out of {allProducts.length} Products
+            Showing {filteredProducts.length} out of {allProducts.length} Products
           </p>
           <div className="os_shopcategory-sort">
-            Sort by
+            Sort by:
             <select value={sortOption} onChange={handleSortChange}>
               <option value="date">Date</option>
               <option value="price">Price</option>
@@ -91,9 +89,6 @@ const ShopCategory = (props) => {
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button className="os_search-button" onClick={() => console.log('Searching for:', searchQuery)}>
-            Search
-          </button>
         </div>
 
         <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -101,9 +96,11 @@ const ShopCategory = (props) => {
             filteredProducts.map((item) => (
               <div key={item._id} className="col">
                 <div className="os_card h-100 d-flex flex-column justify-content-between position-relative">
-                  <div className={`status-badge ${
+                  <div
+                    className={`status-badge ${
                       item.quantity > 0 ? 'in-stock' : 'out-of-stock'
-                    }`}>
+                    }`}
+                  >
                     {item.quantity > 0 ? 'In Stock' : 'Out of Stock'}
                   </div>
                   <div
@@ -126,14 +123,12 @@ const ShopCategory = (props) => {
                     ) : null}
 
                     {item.quantity > 0 ? (
-                      <center>
-                        <button
-                          className="os_button-primary"
-                          onClick={() => handleAddToCart(item._id)}
-                        >
-                          Add to Cart
-                        </button>
-                      </center>
+                      <button
+                        className="os_button-primary"
+                        onClick={() => handleAddToCart(item._id)}
+                      >
+                        Add to Cart
+                      </button>
                     ) : (
                       <p className="text-danger">Out of Stock</p>
                     )}
@@ -157,4 +152,4 @@ const ShopCategory = (props) => {
   );
 };
 
-export default ShopCategory; // Ensure proper export
+export default ShopCategory;

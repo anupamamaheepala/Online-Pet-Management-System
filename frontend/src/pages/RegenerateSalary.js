@@ -19,20 +19,66 @@ function RegenerateSalary(props) {
     const [bonusAmount, setBonusAmount] = useState(0);
     const [totalSalary, setTotalSalary] = useState(0);
 
+
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         setStaffId(params.get('staffId'));
         setFirstName(params.get('firstName'));
         setLastName(params.get('lastName'));
-
+        setBasicSalary(parseFloat(params.get('basicSalary'))); 
+        setOtRate(parseFloat(params.get('otRate'))); 
+    
         // Simulate data fetching for other salary details
         // For demonstration purposes, setting default values here
-        setBasicSalary(1000);
-        setOtHours(10);
-        setOtRate(20);
-        setBonusAmount(200);
+        
+        setOtHours(0);
+        setBonusAmount(0);
         calculateTotalSalary(); // Calculate total salary based on fetched and default values
     }, [location.search]);
+
+    useEffect(() => {
+        calculateTotalSalary();
+    }, [otHours, bonusAmount, basicSalary]);
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+        
+        try {
+            // Calculate OT amount
+            const otAmount = calculateOTAmount();
+            
+            // Prepare the data to be submitted
+            const formData = {
+                staffId,
+                firstName,
+                lastName,
+                selectedMonth,
+                basicSalary,
+                otHours,
+                otRate,
+                otAmount, // Include otAmount in the form data
+                bonusAmount,
+                totalSalary
+                // Add any other necessary fields here
+            };
+    
+            // Send a POST request to the server with the form data
+            const response = await axios.post('http://localhost:9000/salary/add', formData);
+    
+            // Handle the response
+            console.log(response.data); // Log the response data or handle it as needed
+    
+            // Optionally, you can redirect the user to another page after successful submission
+            // history.push('/success'); // Import useHistory hook to use history.push
+    
+        } catch (error) {
+            // Handle errors
+            console.error('Error submitting form:', error);
+            // Optionally, you can show an error message to the user
+        }
+    };
+    
 
     const calculateOTAmount = () => {
         const otAmount = otHours * otRate;
@@ -41,15 +87,11 @@ function RegenerateSalary(props) {
 
     const calculateTotalSalary = () => {
         const otAmount = calculateOTAmount();
-        const total = basicSalary + otAmount + bonusAmount;
+        const total = basicSalary + otAmount + parseFloat(bonusAmount);
         setTotalSalary(total);
     };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Placeholder for regeneration logic
-        console.log('Salary regenerated successfully');
-    };
+    
+    
 
     return (
         <>
@@ -77,7 +119,7 @@ function RegenerateSalary(props) {
                             onChange={date => setSelectedMonth(date)}
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
-                            readOnly
+                            
                         />
                     </div>
                     <div className="StaffSalary-form-group">
@@ -93,6 +135,10 @@ function RegenerateSalary(props) {
                         <input type="number" className='otRate' value={otRate} readOnly />
                     </div>
                     <div className="StaffSalary-form-group">
+                        <label className='StaffSalary-form-group label'>OT Amount:</label>
+                        <input type="number" className='otAmount' value={calculateOTAmount()} readOnly />
+                    </div>
+                    <div className="StaffSalary-form-group">
                         <label className='StaffSalary-form-group label'>Bonus Amount:</label>
                         <input type="number" className='bonusAmount' value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} />
                     </div>
@@ -101,7 +147,7 @@ function RegenerateSalary(props) {
                         <input type="number" className='totalSalary' value={totalSalary} readOnly />
                     </div>
                     <center>
-                        <button type="submit" className='UpdateStaffCalculate'>Regenerate Salary</button>
+                        <button type="submit" className='UpdateStaffCalculate'>Assign Salary</button>
                         <Link to="/StaffList" className="edit-staff-link-button">
                             <button className="edit-staff-button">Back to All Staff List</button>
                         </Link>

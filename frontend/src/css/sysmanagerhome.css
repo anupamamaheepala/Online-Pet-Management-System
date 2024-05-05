@@ -1,0 +1,12 @@
+.sysbody{
+    background-image: url('../images/zzz.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.sysh1{
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: black;
+}

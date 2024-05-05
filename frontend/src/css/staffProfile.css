@@ -8,13 +8,17 @@
 
 .staffProfileWrapper {
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 20px;
+  border: 2px solid transparent;
+  border-color: #000000;
 }
 
 .staffProfile {
   border: 1px solid #fff;
   border-radius: 5px;
   padding: 20px;
+  font-size: 18px;
   text-align: left;
   max-width: 600px;
 }

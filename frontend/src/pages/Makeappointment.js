@@ -7,7 +7,6 @@ import ShowLoading from '../components/ShowLoading';
 import Swal from 'sweetalert2';
 
 const MakeAppointment = () => {
-  // State variables to store form data and error messages
   const [ownerName, setOwnerName] = useState('');
   const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerContact, setOwnerContact] = useState('');
@@ -16,108 +15,75 @@ const MakeAppointment = () => {
   const [selectDate, setSelectDate] = useState('');
   const [selectTime, setSelectTime] = useState('');
   const [selectProfession, setSelectProfession] = useState('');
+  const [allProfessions, setAllProfessions] = useState([]);
   const [professionOptions, setProfessionOptions] = useState([]);
+  const [bookedTimes, setBookedTimes] = useState([]);
   const [ownerNameError, setOwnerNameError] = useState('');
   const [ownerContactError, setOwnerContactError] = useState('');
 
-  // Fetch profession options from the backend on component mount
   useEffect(() => {
     fetchProfessionOptions();
   }, []);
 
-  // Update fetchProfessionOptions function to fetch staff members and extract names
+  useEffect(() => {
+    filterProfessionsByService();
+  }, [selectService]);
+
   const fetchProfessionOptions = async () => {
     try {
       const response = await axios.get('http://localhost:9000/staff');
-      const groomersAndVets = response.data.filter(
-        (staff) => staff.designation === 'Groomer' || staff.designation === 'Veterinarian'
-      );
-      const options = groomersAndVets.map((staff) => ({
-        value: staff.staffId, // Using staffId as the value for each option
-        label: `${staff.sfirstname} ${staff.slastname}` // Concatenating first name and last name for display
-      }));
-      setProfessionOptions(options);
+      setAllProfessions(response.data);
     } catch (error) {
       console.error('Error fetching profession options:', error);
     }
   };
 
-  // Function to handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const filterProfessionsByService = () => {
+    const filteredOptions = allProfessions.filter(staff => {
+      return (selectService === "Veterinary Service" && staff.designation === "Veterinarian") ||
+             (selectService === "Grooming Service" && staff.designation === "Groomer");
+    }).map(staff => ({
+      value: staff.staffId,
+      label: `${staff.sfirstname} ${staff.slastname} (${staff.designation})`
+    }));
+    setProfessionOptions(filteredOptions);
+    setSelectProfession(''); // Reset profession selection
+  };
 
-    // Perform frontend validation
-    if (!validateForm()) {
-      return;
+  useEffect(() => {
+    if (selectDate && selectService && selectProfession) {
+      fetchBookedTimes();
+    } else {
+      setBookedTimes([]); // Clear booked times if not all fields needed are selected
     }
+  }, [selectDate, selectService, selectProfession]);
 
+  const fetchBookedTimes = async () => {
     try {
-      // Send form data to server using Axios POST request
-      await axios.post('http://localhost:9000/appointment/appointments', {
-        ownerName,
-        ownerEmail,
-        ownerContact,
-        petType,
-        selectService,
-        selectDate,
-        selectTime,
-        selectProfession
+      const response = await axios.get(`http://localhost:9000/appointment/booked-times`, {
+        params: { selectDate, selectService }
       });
-
-      // Clear form fields after successful submission
-      clearForm();
-
-      // Show SweetAlert message
-      Swal.fire({
-        icon: 'success',
-        title: 'Appointment Scheduled Successfully',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(() => {
-        // Show payment message
-        Swal.fire({
-          icon: 'info',
-          title: 'Make the payment for Appointment after Approved',
-          confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Navigate to MyAppointments.js
-            window.location.href = '/MyAppointments';
-          }
-        });
-      });
+      setBookedTimes(response.data);
     } catch (error) {
-      // Show error message
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Failed to create appointment. Please try again later.',
-        confirmButtonText: 'OK'
-      });
-      // Handle any errors
-      console.error('Error submitting form:', error);
+      console.error('Error fetching booked times:', error);
     }
   };
+  
 
   const validateForm = () => {
     let isValid = true;
-
-    // Validate owner's name
     if (/\d/.test(ownerName)) {
       setOwnerNameError('Owner name cannot contain digits');
       isValid = false;
     } else {
       setOwnerNameError('');
     }
-
-    // Validate owner's contact number
     if (!/^\d{10}$/.test(ownerContact)) {
       setOwnerContactError('Contact number must be 10 digits');
       isValid = false;
     } else {
       setOwnerContactError('');
     }
-
     return isValid;
   };
 
@@ -134,23 +100,68 @@ const MakeAppointment = () => {
     setOwnerContactError('');
   };
 
-  // Generate options for time picker from 08:00 am to 12:00 pm and then from 01:00 pm to 04:00 pm
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
+    try {
+      await axios.post('http://localhost:9000/appointment/appointments', {
+        ownerName,
+        ownerEmail,
+        ownerContact,
+        petType,
+        selectService,
+        selectDate,
+        selectTime,
+        selectProfession
+      });
+      clearForm();
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Scheduled Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Make the payment for Appointment after Approved',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '/MyAppointments';
+          }
+        });
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to create appointment. Please try again later.',
+        confirmButtonText: 'OK'
+      });
+      console.error('Error submitting form:', error);
+    }
+  };
+
   const generateTimeOptions = () => {
     const options = [];
     for (let hour = 8; hour <= 16; hour++) {
       if (hour !== 12) {
-        for (let minute = 0; minute < 60; minute += 60) {
-          const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-          const formattedMinute = minute.toString().padStart(2, '0');
-          const period = hour < 12 ? 'am' : 'pm';
-          options.push(`${formattedHour}:${formattedMinute} ${period}`);
-        }
+        const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+        const period = hour < 12 ? 'am' : 'pm';
+        const timeOption = `${formattedHour}:00 ${period}`;
+        const isBooked = bookedTimes.includes(timeOption);
+        options.push({
+            time: timeOption,
+            isBooked: isBooked
+        });
       }
     }
     return options;
   };
+  
 
-  // Get current date in YYYY-MM-DD format
   const getCurrentDate = () => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -179,7 +190,7 @@ const MakeAppointment = () => {
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="ownerContact">Owner Contact No:</label>
               <input className={`makeappointment_input_tel ${ownerContactError ? 'error' : ''}`} type="tel" id="ownerContact" value={ownerContact} onChange={(e) => setOwnerContact(e.target.value)} required />
-              {ownerContactError && <p className="error-message">{ownerContactError}</p>}
+              {ownerContactError && <p className="error-message">${ownerContactError}</p>}
             </div>
             <div className="makeappointment_input_container">
               <label className="makeappointment_label" htmlFor="petType">Pet Type:</label>
@@ -192,7 +203,7 @@ const MakeAppointment = () => {
               <select className="makeappointment_select" id="selectService" value={selectService} onChange={(e) => setSelectService(e.target.value)} required>
                 <option value="">--Please select--</option>
                 <option value="Veterinary Service">Veterinary Service</option>
-                <option value="Groome Service">Groome Service</option>
+                <option value="Grooming Service">Grooming Service</option>
               </select>
             </div>
             <div className="makeappointment_input_container">
@@ -200,20 +211,25 @@ const MakeAppointment = () => {
               <input className="makeappointment_input_date" type="date" id="selectDate" value={selectDate} onChange={(e) => setSelectDate(e.target.value)} min={getCurrentDate()} required />
             </div>
             <div className="makeappointment_input_container">
-              <label className="makeappointment_label" htmlFor="selectTime">Select Time:</label>
-              <select className="makeappointment_select" id="selectTime" value={selectTime} onChange={(e) => setSelectTime(e.target.value)} required>
+              <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
+              <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => {
+                setSelectProfession(e.target.value);
+                setSelectTime(''); // Reset time selection when profession changes
+              }} required>
                 <option value="">--Please select--</option>
-                {generateTimeOptions().map((timeOption, index) => (
-                  <option key={index} value={timeOption}>{timeOption}</option>
+                {professionOptions.map((option, index) => (
+                  <option key={index} value={option.value}>{option.label}</option>
                 ))}
               </select>
             </div>
             <div className="makeappointment_input_container">
-              <label className="makeappointment_label" htmlFor="selectProfession">Select Profession:</label>
-              <select className="makeappointment_select" id="selectProfession" value={selectProfession} onChange={(e) => setSelectProfession(e.target.value)} required>
+              <label className="makeappointment_label" htmlFor="selectTime">Select Time:</label>
+              <select className="makeappointment_select" id="selectTime" value={selectTime} onChange={(e) => setSelectTime(e.target.value)} required disabled={!selectProfession}>
                 <option value="">--Please select--</option>
-                {professionOptions.map((option, index) => (
-                  <option key={index} value={option.value}>{option.label}</option>
+                {selectProfession && generateTimeOptions().map((option, index) => (
+                  <option key={index} value={option.time} style={option.isBooked ? { color: 'red' } : {}}>
+                    {option.time} {option.isBooked ? '(Already booked)' : '(Available)'}
+                  </option>
                 ))}
               </select>
             </div>
@@ -221,7 +237,7 @@ const MakeAppointment = () => {
           <button className="makeappointment_button" type="submit">Submit</button>
         </form>
       </div>
-      <Footer /> 
+      <Footer />
     </>
   );
 };

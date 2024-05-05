@@ -174,3 +174,32 @@
   color: black;
   text-decoration: none;
 }
+
+.groomer-name {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.groomer-details {
+  margin-top: 10px;
+}
+
+.toggle-button {
+  border: none;
+  border-radius: 50%;
+  background-color: #ccc;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.toggle-button.active {
+  background-color: #69C;
+  color: white;
+}

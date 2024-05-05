@@ -90,7 +90,6 @@ import SalaryView from './pages/SalaryView';
 import Sysmanagerhome from './pages/Sysmanagerhome';
 import LeaveDetails from './pages/LeaveDetails';
 import ForgotPassword from './pages/ForgotPassword';
-import { CartProvider } from './Context/CartContext'; // Verify the path
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
 
@@ -100,7 +99,7 @@ function App() {
   return (
     <div>
       <Router>
-        <CartProvider>
+        
           <Routes>
           <Route path="/" element={<Home />} />
           
@@ -161,7 +160,7 @@ function App() {
           <Route path="/StaffLeaveList" element={<StaffLeaveList />} />
           <Route path="/AllCustomers" element={<AllCustomers />} />
           <Route path="/Store" element={<Shop />} />
-          <Route path="/Foods" element={<ShopCategory banner={banner} category="Foods" />} />
+          <Route path="/Foods" element={<ShopCategory customerId={localStorage.getItem('userData')} banner={banner} category="Foods" />} />
           <Route path="/Medicines" element={<ShopCategory banner={banner} category="Medicines" />} />
           <Route path="/Toys And Accessories" element={<ShopCategory banner={banner} category="Toys and Accessories" />} />
           <Route path="/AddingProduct" element={<AddingProduct />} />
@@ -202,7 +201,6 @@ function App() {
           
 
           </Routes>
-        </CartProvider>
       </Router>
       <ToastContainer position="top-center" />
     </div>

@@ -84,15 +84,35 @@ const Cardpay = () => {
         }
     };
 
-    const onSubmit = async e => {
+    const handleConfirmPayment = async (e) => {
         e.preventDefault();
+        console.log("Confirm payment button clicked."); // Add this line
         try {
             // Basic form validation
             if (!payerId || !nameOnCard || !cardNumber || !cvv || !expireDate) {
                 console.error("All fields are required!");
                 return;
             }
-
+    
+            // Show loading message with timer
+            let timerInterval;
+            Swal.fire({
+                title: "Wait for the payment process",
+                html: "Processing... <b></b>",
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    const timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 100);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            });
+    
             const res = await axios.post("http://localhost:9000/cardpay/cpay", {
                 payerId,
                 nameOnCard,
@@ -100,7 +120,7 @@ const Cardpay = () => {
                 cvv,
                 expireDate
             });
-
+    
             console.log(res.data);
             setFormData({
                 payerId: '',
@@ -109,14 +129,14 @@ const Cardpay = () => {
                 cvv: '',
                 expireDate: ''
             });
-
-            // Show success alert if payment is successful
+    
+            // After payment is successful, show success alert
             Swal.fire({
                 icon: 'success',
                 title: 'Payment Successful',
                 text: 'Your payment has been successfully processed.'
             });
-
+    
         } catch (err) {
             console.error(err.response.data);
             // Check if error message indicates card has expired
@@ -134,14 +154,9 @@ const Cardpay = () => {
         }
     };
     
-    const handleConfirmPayment = async (e) => {
-        e.preventDefault();
-        onSubmit(e);
-    };
 
     const handleNext = () => {
         window.location.href = `/cardpaysuccess?id=${payerId}`;
-
     };
 
     return (
@@ -149,7 +164,7 @@ const Cardpay = () => {
             <Header />
             <div className="anucard-payment">
                 <h2>Card Payment</h2>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={handleConfirmPayment}>
                     <div className="payment-method">
                         <input type="radio" name="payment-method" id="method-1" checked />
                         <label htmlFor="method-1" className="payment-method-item">
@@ -209,7 +224,7 @@ const Cardpay = () => {
                         />
                     </div>
                     <div className="carddivbutton">
-                        <button className="anucpbutton" type="button" onClick={handleConfirmPayment}>Confirm Payment</button>
+                        <button className="anucpbutton" type="submit">Confirm Payment</button>
                         <button className="anucpbutton" type="button" onClick={handleNext}>Next</button>
                     </div>
                 </form>
