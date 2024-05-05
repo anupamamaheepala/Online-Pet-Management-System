@@ -1,5 +1,7 @@
 /* feedbackdisplay.css */
-
+.fbody {
+  background-color: #ffe786; /* Replace with your desired background color */
+}
 .buttonContainer {
   display: flex;
   justify-content: center; /* Center the container horizontally */
