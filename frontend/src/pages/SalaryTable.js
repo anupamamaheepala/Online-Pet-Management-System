@@ -46,9 +46,9 @@ const SalaryTable = () => {
 
         doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
 
-        // Modify staffId format
+       
         const tableData = salaries.map(salary => [
-            `${salary.staffId.split('_')[0]}_${salary.staffId.split('_')[1]}`, // Modified staffId format
+            `${salary.staffId.split('_')[0]}_${salary.staffId.split('_')[1]}`, 
             salary.firstName,
             salary.lastName,
             formatDate(salary.selectedMonth),
@@ -60,27 +60,27 @@ const SalaryTable = () => {
             salary.totalSalary,
         ]);
 
-        // Define column widths
+      
         const columnWidths = {
-            0: 30, // Staff ID column width
-            1: 30, // First Name column width
-            2: 30, // Last Name column width
-            3: 30, // Month column width
-            4: 30, // Basic Salary column width
-            5: 20, // OT Hours column width
-            6: 20, // OT Rate column width
-            7: 30, // OT Amount column width
-            8: 30, // Bonus Amount column width
-            9: 30, // Total Salary column width
+            0: 30, 
+            1: 30, 
+            2: 30, 
+            3: 30, 
+            4: 30, 
+            5: 20, 
+            6: 20, 
+            7: 30, 
+            8: 30, 
+            9: 30,
         };
 
         doc.setFontSize(18);
         doc.text('Salary Details', 90, yPosition + logoWidth - 10);
         doc.setFontSize(15);
 
-        // Specify styles for the table content
+     
         const tableStyles = {
-            fontSize: 8, // Set the font size to a smaller value for the table content
+            fontSize: 8, 
         };
 
         doc.autoTable({
@@ -100,15 +100,15 @@ const SalaryTable = () => {
                 halign: 'center',
                 valign: 'middle',
             },
-            columnStyles: columnWidths, // Set column widths
-            tableWidth: 'auto', // Set table width to auto
+            columnStyles: columnWidths, 
+            tableWidth: 'auto',
             didDrawCell: (data) => {
-                // Apply custom styles to table cells
+                
                 if (data.row.index % 2 === 0) {
-                    data.cell.styles.fillColor = [240, 240, 240]; // Alternate row background color
+                    data.cell.styles.fillColor = [240, 240, 240]; 
                 }
             },
-            styles: tableStyles, // Apply custom styles to table content
+            styles: tableStyles, 
         });
         doc.save('salary_report.pdf');
     };
