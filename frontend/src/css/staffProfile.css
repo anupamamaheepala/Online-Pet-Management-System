@@ -30,13 +30,13 @@
 .StaffProfilenavigation-row {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; /* Add margin bottom for spacing */
+  margin-bottom: 20px; 
 }
 
 .staffProfile-update-delete-row {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; /* Add margin bottom for spacing */
+  margin-bottom: 20px;
 }
 
 .staffProfile-update-btn,

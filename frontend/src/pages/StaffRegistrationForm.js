@@ -153,8 +153,8 @@ const StaffRegister = () => {
             <option value="Veterinarian">Veterinarian</option>
             <option value="Groomer">Groomer</option>
             <option value="Pet Trainer">Pet Trainer</option>
-            <option value="Pet Trainer">System Manager</option>
-            <option value="Pet Trainer">Advertisement Co-ordinator</option>
+            <option value="System Manager">System Manager</option>
+            <option value="Advertisement Co-ordinator">Advertisement Co-ordinator</option>
             
           </select>
         </div>

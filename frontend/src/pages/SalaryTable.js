@@ -40,50 +40,80 @@ const SalaryTable = () => {
     logo.src = '/images/logo.png';
 
     logo.onload = function () {
-      const logoWidth = 30;
-      const xPosition = 10;
-      const yPosition = 10;
+        const logoWidth = 30;
+        const xPosition = 10;
+        const yPosition = 10;
 
-      doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
+        doc.addImage(logo, 'PNG', xPosition, yPosition, logoWidth, logoWidth);
 
-      const tableData = salaries.map(salary => [
-        salary.staffId,
-        salary.firstName,
-        salary.lastName,
-        formatDate(salary.selectedMonth),
-        salary.basicSalary,
-        salary.otHours,
-        salary.otRate,
-        salary.otAmount,
-        salary.bonusAmount,
-        salary.totalSalary,
-      ]);
+       
+        const tableData = salaries.map(salary => [
+            `${salary.staffId.split('_')[0]}_${salary.staffId.split('_')[1]}`, 
+            salary.firstName,
+            salary.lastName,
+            formatDate(salary.selectedMonth),
+            salary.basicSalary,
+            salary.otHours,
+            salary.otRate,
+            salary.otAmount,
+            salary.bonusAmount,
+            salary.totalSalary,
+        ]);
 
-      doc.setFontSize(18);
-      doc.text('Salary Details', 90, yPosition + logoWidth - 10);
-      doc.setFontSize(15);
-      doc.autoTable({
-        startY: yPosition + logoWidth + 10,
-        head: [['Staff ID', 'First Name', 'Last Name', 'Month', 'Basic Salary', 'OT Hours', 'OT Rate', 'OT Amount', 'Bonus Amount', 'Total Salary']],
-        body: tableData,
-        styles: {
-          fontSize: 9,
-          cellPadding: 3,
-          lineWidth: 0.1,
-          lineColor: [0, 0, 0]
-        },
-        headStyles: {
-          fillColor: [0, 0, 0],
-          textColor: [255, 255, 255],
-          fontStyle: 'bold',
-          halign: 'center', 
-          valign: 'middle'
-        },
-        tableWidth: 190,
-      });
-      doc.save('salary_report.pdf');
+      
+        const columnWidths = {
+            0: 30, 
+            1: 30, 
+            2: 30, 
+            3: 30, 
+            4: 30, 
+            5: 20, 
+            6: 20, 
+            7: 30, 
+            8: 30, 
+            9: 30,
+        };
+
+        doc.setFontSize(18);
+        doc.text('Salary Details', 90, yPosition + logoWidth - 10);
+        doc.setFontSize(15);
+
+     
+        const tableStyles = {
+            fontSize: 8, 
+        };
+
+        doc.autoTable({
+            startY: yPosition + logoWidth + 10,
+            head: [['Staff ID', 'First Name', 'Last Name', 'Month', 'Basic Salary', 'OT Hours', 'OT Rate', 'OT Amount', 'Bonus Amount', 'Total Salary']],
+            body: tableData,
+            styles: {
+                fontSize: 9,
+                cellPadding: 3,
+                lineWidth: 0.1,
+                lineColor: [0, 0, 0],
+            },
+            headStyles: {
+                fillColor: [0, 0, 0],
+                textColor: [255, 255, 255],
+                fontStyle: 'bold',
+                halign: 'center',
+                valign: 'middle',
+            },
+            columnStyles: columnWidths, 
+            tableWidth: 'auto',
+            didDrawCell: (data) => {
+                
+                if (data.row.index % 2 === 0) {
+                    data.cell.styles.fillColor = [240, 240, 240]; 
+                }
+            },
+            styles: tableStyles, 
+        });
+        doc.save('salary_report.pdf');
     };
-  };
+};
+
 
   const formatDate = date => {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric' };

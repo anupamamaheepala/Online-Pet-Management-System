@@ -178,7 +178,7 @@
 
 .UpadateStaffregister-form-group textarea,
 .staffregister-form-group textarea  {
-  width: 100%; /* Set the width to 100% */
+  width: 100%; 
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
