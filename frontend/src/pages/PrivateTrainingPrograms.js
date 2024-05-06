@@ -47,7 +47,7 @@ const PrivateTrainingPrograms = () => {
                 </Link>
                 </div>
             </div>
-            <div className="privatetraining-grid">
+            <div className="privatetraining-grid" style={{marginLeft:'90px'}}>
                 {privatetrainings.map((privatetraining, index) => (
                     <div key={privatetraining._id} className="privatetraining-item">
                         <img src={`http://localhost:9000/${privatetraining.filePath.replace(/\\/g, '/')}`}
