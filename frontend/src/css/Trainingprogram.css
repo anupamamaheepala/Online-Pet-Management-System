@@ -1,6 +1,4 @@
-/* Assuming this is your Trainingprogram.css file */
 
-/* Reset CSS */
 * {
   margin: 0;
   padding: 0;
@@ -21,15 +19,14 @@ body {
   margin-top: 10px;
 }
 
-/* Main container */
+
 .privatetraining-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three items in one row */
-  gap: 20px; /* Gap between items */
-  
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
 }
 
-/* Product item */
+
 .privatetraining-item {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -41,7 +38,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* Product image */
+
 .privatetraining-image {
   width: 90%;
   height: auto;
@@ -51,13 +48,13 @@ body {
   
 }
 
-/* Product details */
+
 .privatetraining-details {
   padding: 10px;
   text-align: center;
 }
 
-/* Product name */
+
 .privatetraining-name {
   margin-top: 10px;
   font-weight: 400;
@@ -65,19 +62,19 @@ body {
   text-align: center;
 }
 
-/* Product description */
+
 .privatetraining-description {
   color: #555;
   text-align: center;
 }
 
-/* Product price */
+
 .privatetraining-price {
   font-weight: bold;
   color: #007bff;
 }
 
-/* Button */
+
 .add-button {
   display: block;
   width: 80%;
@@ -123,21 +120,21 @@ body {
   
 }
 .alo_table-container {
-  margin: 20px auto; /* Apply margin to center the table */
-  width: 90%; /* Adjust width as needed */
+  margin: 20px auto; 
+  width: 90%; 
 }
 
 .aloo-button2 {
   width: 100px;
-  margin-top: 30px; /* Move the button down */
-  background-color: blue; /* Change button color to blue */
-  color: white; /* Change text color to white */
-  border: none; /* Remove button border */
-  border-radius: 5px; /* Add border radius */
-  padding: 10px 12px; /* Add padding */
+  margin-top: 30px; 
+  background-color: blue;
+  color: white;
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 12px; 
 }
 
-/* Add gap between the two buttons */
+
 .alo7-button {
   margin-right: 40px;
   background-color: green;
@@ -156,3 +153,26 @@ body {
   height: 500px;
   margin-bottom: 20px;
 }
+
+
+.alo55 {
+  background-color: #f0efda; 
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.alo55:hover {
+  background-color: #ceddcf; 
+}
+
+
+

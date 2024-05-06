@@ -2,12 +2,13 @@
   width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  background-color: rgb(98, 133, 144, 0.35);  
+  border: 2px solid #000000;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Center vertically */
+  justify-content: space-between; 
+  margin-bottom: 10px;
 }
 
 .order-form h2 {
@@ -39,17 +40,20 @@
 
 .submit-button {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 12px;
+  background-color: black;
+  color: white;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
-}
+  background-color: #fff;
+  color: #000000;
+  border: 1px solid black;;}
 .important-note {
   background-color: #f2d7d5; /* Light red/pink background */
   border: 2px solid #e74c3c; /* Dark red border */

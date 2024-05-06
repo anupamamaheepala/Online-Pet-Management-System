@@ -7,7 +7,7 @@ import StockManagerHeader from '../components/StockManagerHeader';
 
 const EditProduct = () => {
     const { productId } = useParams();
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); 
     const [productData, setProductData] = useState({
         itemName: '',
         category: '',

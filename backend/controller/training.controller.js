@@ -1,6 +1,6 @@
 const express = require('express');
 
-const multer = require('multer'); // Import multer
+const multer = require('multer'); 
 const trainingModel = require('../models/trainingModel');
 const nodemailer = require('nodemailer');
 

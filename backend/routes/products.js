@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
-        const timestamp = new Date().toISOString().replace(/:/g, '-'); // Replace colons with dashes
+        const timestamp = new Date().toISOString().replace(/:/g, '-'); 
         cb(null, timestamp + '-' + file.originalname);
     }
 });
@@ -31,7 +31,7 @@ function checkFileType(file, cb) {
 // Initialize multer upload
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 1024 * 1024 * 5 }, // 5 MB file size limit
+    limits: { fileSize: 1024 * 1024 * 5 }, 
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
     }
@@ -82,8 +82,8 @@ router.get('/:id', async (req, res) => {
         }
         res.json(product);
     } catch (error) {
-        console.error('Error fetching product details:', error); // Log the error message
-        res.status(500).json({ message: 'Internal Server Error' }); // Send a generic error message
+        console.error('Error fetching product details:', error); 
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 

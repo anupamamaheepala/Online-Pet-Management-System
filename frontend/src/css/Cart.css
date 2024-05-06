@@ -87,8 +87,9 @@ body {
 
 /* Checkout button */
 .os_checkout-btn {
-  background-color: #2ECC40;
-  color: white;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -101,7 +102,11 @@ body {
 }
 
 .os_checkout-btn:hover {
-  background-color: #28b62c;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  border: 1px solid rgb(0, 0, 0); 
+
 }
 
 /* Responsive adjustments */
@@ -128,8 +133,9 @@ body {
 }
 
 .os_cart-slip-btn {
-  background-color: #2ECC40;
-  color: white;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -139,9 +145,12 @@ body {
   border-radius: 4px;
   margin: 20px auto; /* Center the button horizontally and add margin top and bottom */
   text-align: center;
+  width: 40%;
 }
 
 .os_cart-slip-btn:hover {
-  background-color: black; /* Change hover background color to black */
-  color: white; /* Change hover text color to white */
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  border: 1px solid rgb(0, 0, 0); 
 }
