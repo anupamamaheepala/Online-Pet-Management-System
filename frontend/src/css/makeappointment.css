@@ -12,8 +12,10 @@
   width: 100% !important;
   padding: 40px !important;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-  border-radius: 10px !important;
   margin-bottom: 100px !important;
+  border: 2px solid #000000 !important;
+  border-radius: 10px !important;
+  background-color: rgb(98, 133, 144, 0.35) !important;
 }
 
 .makeappointment_input_container {

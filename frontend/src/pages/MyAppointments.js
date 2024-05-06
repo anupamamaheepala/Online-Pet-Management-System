@@ -3,8 +3,7 @@ import axios from 'axios';
 import '../css/myappointments.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -21,6 +20,7 @@ const MyAppointments = () => {
   });
   const [appointmentCount, setAppointmentCount] = useState(0);
   const updateFormRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAppointments();
@@ -39,13 +39,10 @@ const MyAppointments = () => {
   const handleRemove = async (appointmentId) => {
     try {
       await axios.delete(`http://localhost:9000/appointment/appointments/${appointmentId}`);
-
       setAppointments(appointments.filter(appointment => appointment._id !== appointmentId));
       setAppointmentCount(appointmentCount - 1);
-      Swal.fire({ title: 'Success', text: 'Successfully removed appointment', showConfirmButton: false, icon: 'success', timer: 1500 });
     } catch (error) {
       console.error('Error deleting appointment:', error);
-      Swal.fire({ title: 'Error', text: 'Failed to remove appointment', icon: 'error', confirmButtonText: 'OK' });
     }
   };
 
@@ -73,9 +70,6 @@ const MyAppointments = () => {
 
     try {
       await axios.put(`http://localhost:9000/appointment/appointments/${editingAppointment._id}`, formData);
-
-      Swal.fire({ title: 'Success', text: 'Appointment updated successfully', icon: 'success', confirmButtonText: 'OK' });
-
       setEditingAppointment(null);
       setFormData({
         ownerName: '',
@@ -87,11 +81,9 @@ const MyAppointments = () => {
         selectTime: '',
         selectProfession: ''
       });
-
       fetchAppointments();
     } catch (error) {
       console.error('Error updating appointment:', error);
-      Swal.fire({ title: 'Error', text: 'Failed to update appointment', icon: 'error', confirmButtonText: 'OK' });
     }
   };
 
@@ -108,10 +100,15 @@ const MyAppointments = () => {
       selectProfession: ''
     });
   };
-  const navigate = useNavigate();
 
-  const handlePayNow = (appointmentId) => {
-    navigate('/Payerinfo');
+  const handlePayNow = async (appointmentId) => {
+    try {
+      await axios.put(`http://localhost:9000/appointment/appointments/${appointmentId}`, { IsPaid: true });
+      fetchAppointments();
+      navigate('/Payerinfo');
+    } catch (error) {
+      console.error('Error updating payment status:', error);
+    }
   };
 
   return (
@@ -133,21 +130,19 @@ const MyAppointments = () => {
                 <p>Appointment Time: {appointment.selectTime}</p>
                 <p>Professioner: {appointment.selectProfession}</p>
                 <p>Appointment Status: {appointment.IsAccept ? 'Approved' : 'Pending'}</p>
+                {appointment.IsPaid && appointment.IsAccept ? (
+                  <p>Payment Done</p>
+                ) : null}
               </section>
               <div className="button-container">
-                {(!appointment.IsAccept && !appointment.IsPaid) ? (
+                {(!appointment.IsPaid && !appointment.IsAccept) ? (
                   <>
                     <button className="myappointment_modify_button" onClick={() => handleModify(appointment)}>Modify</button>
                     <button className="myappointment_remove_button" onClick={() => handleRemove(appointment._id)}>Remove</button>
                   </>
-                ) : (
-                  <>
-                    {!appointment.IsPaid && (
-                     <button className="myappointment_paynow_button" onClick={() => handlePayNow(appointment._id)}>Pay Now</button>
-                    )}
-                    <button className="myappointment_remove_button" onClick={() => handleRemove(appointment._id)}>Remove</button>
-                  </>
-                )}
+                ) : !appointment.IsPaid && appointment.IsAccept ? (
+                  <button className="myappointment_paynow_button" onClick={() => handlePayNow(appointment._id)}>Pay Now</button>
+                ) : null}
               </div>
             </li>
           ))}
@@ -170,19 +165,19 @@ const MyAppointments = () => {
             <select name="selectService" value={formData.selectService} onChange={handleInputChange} required>
               <option value="">--Please select--</option>
               <option value="Grooming">Grooming</option>
-              <option value="Check-up">Check-up</option>
-              <option value="Vaccination">Vaccination</option>
+              <option value="Check-up">Veterinary</option>
             </select>
             <label>Appointment Date:</label>
             <input type="date" name="selectDate" value={formData.selectDate} onChange={handleInputChange} required />
             <label>Appointment Time:</label>
             <input type="time" name="selectTime" value={formData.selectTime} onChange={handleInputChange} required />
-            <label>Select Service:</label>
+            <label>Select Profession:</label>
             <select name="selectProfession" value={formData.selectProfession} onChange={handleInputChange} required>
               <option value="">--Please select--</option>
-              <option value="Veterinarian">Veterinarian</option>
-              <option value="Pet Groomer">Pet Groomer</option>
-              <option value="Pet Sitter">Pet Sitter</option>
+              <option value="Veterinarian">Subodhi Karunarathna</option>
+              <option value="Pet Groomer">Sathyajith Abayawardhana</option>
+              <option value="Pet Sitter">Dilushan Rajapaksha</option>
+              <option value="Pet Sitter">Rashini De Silva</option>
             </select>
 
             <div className="button-container">
