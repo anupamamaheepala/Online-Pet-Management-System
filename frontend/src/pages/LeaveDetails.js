@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/LeaveDetails.css';
+import SystemAdminHeader from '../components/SystemAdminHeader';
+import Footer from '../components/Footer';
 
 const LeaveDetails = () => {
   const { leaveId } = useParams();
@@ -64,6 +66,10 @@ const LeaveDetails = () => {
   
 
   return (
+    <>
+      <SystemAdminHeader />
+
+      <br></br>
     <div className='leavedeatils'>
       <h2>Leave Details</h2>
       <p>Staff ID: {leaveDetails.staffId}</p>
@@ -81,6 +87,10 @@ const LeaveDetails = () => {
         </div>
 
     </div>
+    <br></br>
+    <Footer />
+    </>
+    
   );
 };
 
