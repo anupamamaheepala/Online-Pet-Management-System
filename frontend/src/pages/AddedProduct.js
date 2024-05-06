@@ -18,7 +18,7 @@ const AddedProduct = () => {
     const [sortBy, setSortBy] = useState('');
     const [lowQuantityProducts, setLowQuantityProducts] = useState([]);
 
-    const LOW_QUANTITY_THRESHOLD = 5; // Show warning only when quantity is 5 or below
+    const LOW_QUANTITY_THRESHOLD = 5; 
 
     useEffect(() => {
         fetchProducts();
@@ -34,7 +34,7 @@ const AddedProduct = () => {
             const lowQuantity = res.data.filter(
                 product => product.quantity <= LOW_QUANTITY_THRESHOLD
             );
-            setLowQuantityProducts(lowQuantity); // Store low-quantity products
+            setLowQuantityProducts(lowQuantity); 
         } catch (err) {
             console.error('Error fetching products:', err);
             alert(err.message);

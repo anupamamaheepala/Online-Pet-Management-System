@@ -15,9 +15,9 @@ const orderSchema = new mongoose.Schema({
     required: true
   },
   deliveryDate: {
-    type: String, // Store as string (yyyy-mm-dd)
+    type: String, 
     required: true
   }
-}, { timestamps: true }); // Add timestamps for createdAt and updatedAt
+}, { timestamps: true }); 
 
 module.exports = mongoose.model('Order', orderSchema); // Export the Order model
