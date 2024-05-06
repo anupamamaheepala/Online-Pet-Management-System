@@ -31,17 +31,29 @@ const Cart = () => {
 
   const updateQuantity = async (productId, newQuantity) => {
     if (newQuantity < 1) return;
+    // Update UI immediately
+    setCartItems(currentItems =>
+      currentItems.map(item =>
+        item.productId._id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
     try {
-      await axios.post('http://localhost:9000/cart', {
+      const response = await axios.post('http://localhost:9000/cart', {
         customerId,
         productId,
         quantity: newQuantity,
       });
-      setCartItems(cartItems.map(item =>
-        item.productId._id === productId ? { ...item, quantity: newQuantity } : item
-      ));
+      if (response.status !== 200) { // Check your backend status, it might be 204, etc.
+        throw new Error('Failed to update server');
+      }
     } catch (error) {
       console.error('Failed to update quantity:', error);
+      // Revert changes in UI if there's an error
+      setCartItems(currentItems =>
+        currentItems.map(item =>
+          item.productId._id === productId ? { ...item, quantity: item.quantity } : item
+        )
+      );
     }
   };
 
@@ -104,7 +116,6 @@ const Cart = () => {
     // Save the PDF
     doc.save(`cart_report_${moment().format('YYYYMMDD_HHmmss')}.pdf`);
   };
-  
 
   return (
     <>

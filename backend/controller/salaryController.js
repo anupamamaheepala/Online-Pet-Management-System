@@ -157,3 +157,21 @@ exports.getSalaryByModifiedId = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+// Controller for deleting a salary record by ID
+exports.deleteSalary = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedSalary = await Salary.findByIdAndDelete(id);
+
+    if (!deletedSalary) {
+      return res.status(404).json({ message: 'Salary not found' });
+    }
+
+    res.status(200).json({ message: 'Salary deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
