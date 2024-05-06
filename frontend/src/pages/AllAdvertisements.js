@@ -41,7 +41,7 @@ const AllAdvertisements = () => {
     }
   };
 
-  // Function to calculate the duration in days and hours
+  // calculate the duration in days and hours
   const calculateDuration = (createdAt) => {
     const now = new Date();
     const createdDate = new Date(createdAt);
@@ -93,7 +93,7 @@ const AllAdvertisements = () => {
       doc.setFontSize(15);
       doc.autoTable({
         startY: yPosition + logoWidth + 10,
-        head: [['Owner Name', 'Owner Email', 'Pet Type', 'Breed', 'Purpose', 'Description']],
+        head: [['Owner Name', 'Owner Email', 'Pet Type', 'Species', 'Purpose', 'Description']],
         body: tableData,
         styles: {
           fontSize: 10,
@@ -145,7 +145,7 @@ const AllAdvertisements = () => {
             <th>Owner Name</th>
             <th>Email</th>
             <th>pet type</th>
-            <th>Breed</th>
+            <th>Species</th>
             <th>Purpose</th>
             <th>Description</th>
             <th>Pet's image</th>

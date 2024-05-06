@@ -69,5 +69,40 @@
 
 /* Add gap between buttons */
 .Delete-Leave {
-  margin-right: 10px; /* Adjust as needed */
+  margin-right: 10px; 
 }
+
+.leave-status {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.leave-status p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.leave-status p span {
+  font-weight: bold;
+}
+
+.leaveList-search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Add margin bottom for spacing */
+}
+
+.leaveList-search-bar select {
+  padding: 8px;
+  width: auto;
+  margin-right: 5px;
+  height: 40px; /* Set the height to match the input field */
+}
+
+.leaveList-search-bar input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  width: 120px;
+  height: 40px; /* Keep the height consistent with the select field */
+}
+

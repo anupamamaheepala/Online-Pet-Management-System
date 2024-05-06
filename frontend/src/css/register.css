@@ -4,9 +4,10 @@
   max-width: 450px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: rgb(98, 133, 144, 0.35);  
+  margin-bottom: 20px;
 }
 
 .registration-form h2 {

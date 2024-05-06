@@ -4,7 +4,7 @@ const saveFeedback = async (req, res) => {
   try {
     const { feedback, email, name } = req.body;
     const newFeedback = new FeedbackInquiry({
-      feedback,
+      inquiry,
       email,
       name,
     });
@@ -47,7 +47,7 @@ const updateFeedback = async (req, res) => {
     }
 
     // Update the feedback fields
-    existingFeedback.feedback = feedback;
+    existingFeedback.inquiry = inquiry;
     existingFeedback.email = email;
     existingFeedback.name = name;
     existingFeedback.reply = reply;

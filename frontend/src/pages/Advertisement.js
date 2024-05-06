@@ -50,23 +50,17 @@ const Advertisement = () => {
         <>
             <Header />
             
-            
-                <Link to="/AddAdvertisement" className="ma_add_button">Add a new advertisement</Link>
+                <Link to="/AddAdvertisement" className="ma_add_button3">Add a new advertisement</Link>
                 <Link to="/MyAdvertisements" className="ma_add_button">My advertisements</Link>
                
                 <input
-                
                     type="text"
                     placeholder="Search pet type..."
                     value={searchQuery}
                     onChange={handleSearch}
-                    className="ma_search-input"
-                />
+                    className="ma_search-input"  />
            
-            
-            
-           
-            
+        
             <div className="ma_advertisement-container">
                 {filteredAdvertisements.map(advertisement => (
                     <div key={advertisement._id} className="ma_advertisement-card">

@@ -23,8 +23,33 @@
     margin-left: 20px !important;
     margin-right: 20px !important;
 }
+.ma_add_button3 {
+    background-color: rgb(0, 0, 0) !important;
+    border: 1px solid rgb(0, 0, 0) !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 10px 25px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    margin: 2px 2px !important;
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    border-radius: 3px !important;
+    outline: none !important;
+    margin-bottom: 30px !important;
+    margin-top: 20px !important;
+    margin-left: 450px !important;
+    margin-right: 20px !important;
+}
 
 .ma_add_button:hover {
+    background-color: #5c5656 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+}
+
+.ma_add_button3:hover {
     background-color: #5c5656 !important;
     color: #000000 !important;
     text-decoration: none !important;
@@ -98,7 +123,7 @@
     width: 700px !important;
     margin: 0 auto !important;
     padding: 20px !important;
-    background-color: #ffffff !important;
+    background-color: rgb(98, 133, 144, 0.35) !important;
     border: 1px solid #000000 !important;
     border-radius: 8px !important;
 }
@@ -165,7 +190,7 @@
     text-decoration: none !important;
 }
 
-/* Style confirm button */
+
 .ma_confirm_button {
     background-color: green !important;
     border: 2px solid green !important;
@@ -178,14 +203,14 @@
     color: white !important;
 }
 
-/* Style reject button */
+
 .ma_reject_button {
     background-color: red !important;
     border: 2px solid red !important;
     color: white !important;
 }
 
-/* Adjust button container to align buttons in one line */
+
 .ma_advertisement-buttons {
     display: flex !important;
     justify-content: last baseline !important;

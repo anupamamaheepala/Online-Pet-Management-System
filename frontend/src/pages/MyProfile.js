@@ -94,7 +94,7 @@ const handleDeleteProfilePhoto = async () => {
 
   return (
     <>
-      <Header profilePhoto={customerData?.profilePhoto} />
+      <Header  />
 
 
 

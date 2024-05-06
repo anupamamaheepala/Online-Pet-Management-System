@@ -27,17 +27,16 @@ const ShopCategory = ({ category, banner }) => {
 
   const handleAddToCart = async (productId) => {
     try {
-      const response = await axios.post('http://localhost:9000/cart', {
-        customerId: localStorage.getItem('userId'),
-        productId,
-      });
+      const response = await axios.post('http://localhost:9000/cart', { customerId: localStorage.getItem('userId'), productId });
       if (response.status === 201) {
+        console.log('Product added to cart');
         navigate('/cart'); // Redirect to the cart page
       }
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
   };
+
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);

@@ -37,7 +37,7 @@ function SalaryCalculator(props) {
                     setLastName(lastName);
                     setSelectedMonth(selectedMonth);
                     setBasicSalary(basicSalary);
-                    setOtRate(otRate); // Set OT rate here
+                    setOtRate(otRate); 
                     setOtHours(otHours);
                     setOtAmount(otAmount);
                     setBonusAmount(bonusAmount);
@@ -57,15 +57,15 @@ function SalaryCalculator(props) {
                             switch (designation) {
                                 case 'Veterinarian':
                                     setBasicSalary(50000);
-                                    setOtRate(250); // Set OT rate based on designation
+                                    setOtRate(250); 
                                     break;
                                 case 'Groomer':
                                     setBasicSalary(35000);
-                                    setOtRate(150); // Set OT rate based on designation
+                                    setOtRate(150); 
                                     break;
                                 case 'Pet Trainer':
                                     setBasicSalary(40000);
-                                    setOtRate(200); // Set OT rate based on designation
+                                    setOtRate(200); 
                                     break;
                                 default:
                                     setBasicSalary(0);
@@ -81,6 +81,13 @@ function SalaryCalculator(props) {
                 console.error('Error fetching salary:', error);
             });
     }, []);
+
+    useEffect(() => {
+        const currentDate = new Date();
+        const previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+        setSelectedMonth(previousMonth);
+    }, []);
+
     
 
     const handleSubmit = async (e) => {
@@ -184,7 +191,7 @@ function SalaryCalculator(props) {
                     <p>Salary is not assigned</p>
                 )}
 
-                {/* Display error message */}
+                
                 {error && <p className="error">{error}</p>}
 
                 <form onSubmit={handleSubmit} className='StaffSalary-form'>
