@@ -88,7 +88,12 @@ import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
 import OrderForm from './pages/OrderForm';
+
+import GroupTrainingPrograms from './pages/GroupTrainingPrograms';
+
+
 import SuccessBankTrans from './pages/SuccessBankTrans';
+
 function App() {
 
 
@@ -113,6 +118,7 @@ function App() {
         )}
 
           <Route path="/" element={<Home />} />
+          <Route path="/GroupTrainingPrograms" element={<GroupTrainingPrograms />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
           <Route path="/PrivateTraining" element={<PrivateTraining />} />

@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema({
     },
     quantity: {
         type: Number,
-        default: 0  // Assuming initial quantity is zero
+        default: 0  
     }
 });
 

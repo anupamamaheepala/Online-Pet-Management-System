@@ -102,5 +102,15 @@ input, .textarea {
     color: #0056b3; /* Change color on hover */
   }
   
+
+  
+.suba18-instructions {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.suba18-instructions li {
+  margin-bottom: 10px;
+}
   
   

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
 import '../css/addingproduct.css';
-import Swal from 'sweetalert2'; // Import SweetAlert
+import Swal from 'sweetalert2'; 
 import StockManagerHeader from '../components/StockManagerHeader';
 
 const AddingProduct = () => {

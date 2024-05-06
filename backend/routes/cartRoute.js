@@ -53,12 +53,12 @@ router.delete('/:customerId/:productId', async (req, res) => {
   try {
     let cart = await Cart.findOne({ customerId });
     if (!cart) {
-      console.log('Cart not found');  // Log if cart is not found
+      console.log('Cart not found');  
       return res.status(404).json({ message: 'Cart not found' });
     }
     console.log('Current items:', cart.items);  // Log current items
     cart.items = cart.items.filter(item => !item.productId.equals(productId));
-    console.log('Items after removal:', cart.items);  // Log items after attempted removal
+    console.log('Items after removal:', cart.items);  
     await cart.save();
     res.status(200).json(cart);
   } catch (error) {

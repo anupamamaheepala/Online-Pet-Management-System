@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../css/addingproduct.css';
 import Swal from 'sweetalert2';
 import StockManagerHeader from '../components/StockManagerHeader';
 
-
 const EditProduct = () => {
     const { productId } = useParams();
+    const navigate = useNavigate(); 
     const [productData, setProductData] = useState({
         itemName: '',
         category: '',
-        image: null, // Added image state
+        image: null,
         price: '',
         quantity: ''
     });
@@ -47,25 +45,28 @@ const EditProduct = () => {
             const formData = new FormData();
             formData.append('itemName', productData.itemName);
             formData.append('category', productData.category);
-            formData.append('image', productData.image); // Append image to form data
+            formData.append('image', productData.image);
             formData.append('price', productData.price);
             formData.append('quantity', productData.quantity);
     
-            await axios.put(`http://localhost:9000/products/${productId}`, formData, {
+            const response = await axios.put(`http://localhost:9000/products/${productId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
     
-            // Display SweetAlert success message
+            // Display SweetAlert success message and navigate
             Swal.fire({
                 icon: 'success',
                 title: 'Product updated successfully!',
-                text: `The product with ID: ${productId} has been updated.`,
+                text: `The product has been updated.`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/AddedProduct'); // Use the correct route for the AddedProduct page
+                }
             });
         } catch (error) {
             console.error('Failed to update product:', error);
-    
             // Display SweetAlert error message
             Swal.fire({
                 icon: 'error',
@@ -74,7 +75,6 @@ const EditProduct = () => {
             });
         }
     };
-    
 
     const { itemName, category, price, quantity } = productData;
 

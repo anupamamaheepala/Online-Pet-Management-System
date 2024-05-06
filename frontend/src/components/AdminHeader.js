@@ -131,7 +131,9 @@ const AdminHeader = () => {
           <Button variant="outline-success" className="mr-sm-2">
             Sign In
           </Button>
+          <a href="StaffLogin">
           <Button variant="outline-danger">Sign Out</Button>
+          </a>
         </Navbar.Collapse>
       </Container>
     </Navbar>

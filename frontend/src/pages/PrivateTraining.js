@@ -102,7 +102,7 @@ const PrivateTraining = () => {
       Swal.fire({
         icon: 'success',
         title: 'Success!',
-        timer: 2000, // Timer in milliseconds
+        timer: 4000, // Timer in milliseconds
         text: 'Your application has been successfully submitted.',
       });
 
@@ -119,12 +119,21 @@ const PrivateTraining = () => {
     <div>
       <Header />
       <div className="alo-background-container">
-        <img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />
+        {/*<img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />*/}
         <div className="alo-container">
           <div className="alo-right-side">
             <div className="alo-info-container">
               <h2>Training Program</h2>
               <p>Training Program information...</p>
+              <p1>Here are the instructions:</p1>
+              <ul className="suba18-instructions">
+                  <li>Apply for dog training through our website by filling out the form on the left.</li>
+                  <li>You need to upload a health checkup report of your dog taken within the last 2 months to ensure the health and safety of other dogs and our trainers. If the health checkup report is invalid, your application may be rejected, and you will be informed via email.</li>
+                  <li>We aim to inform you about the approval or rejection of your application as soon as possible via email. You can also check the status on our website.</li>
+                  <li>Once approved, you must bring your dog to our training center. We will inform you of the starting date and other details via email.</li>
+                  <li>No advanced payment is required for registration after approval.</li>
+                  <li>If you have any further inquiries, please contact our customer care or provide feedback through our website.</li>
+              </ul>
             </div>
           </div>
           <div className="alo-left-side">

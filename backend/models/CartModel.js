@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cartItemSchema = new mongoose.Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product', // Ensure this is the correct reference
+    ref: 'Product', 
     required: true,
   },
   quantity: {
@@ -13,7 +13,7 @@ const cartItemSchema = new mongoose.Schema({
   },
   productId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product', // This must match the name given in mongoose.model() of the Product model
+    ref: 'Product', 
     required: true,
   }
   
@@ -23,7 +23,7 @@ const cartItemSchema = new mongoose.Schema({
 const cartSchema = new mongoose.Schema({
   customerId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Customer', // Ensure this references the correct collection
+    ref: 'Customer', 
     required: true,
   },
   items: [cartItemSchema],
