@@ -59,7 +59,7 @@ const StaffLeaveForm = ({ designation }) => {
             ...formData, // Include other form data
         });
   console.log(res.data);
-      // Optionally, you can clear the form fields after successful submission
+      // Optionally,clear the form fields after successful submission
       setFormData({
         ...formData,
         StleaveFromDate: '',

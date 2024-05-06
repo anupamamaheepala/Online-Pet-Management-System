@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom'; 
 import '../css/StaffSalary.css';
+import SystemAdminHeader from '../components/SystemAdminHeader';
 
 function UpdateSalary(props) {
     const [staffId, setStaffId] = useState('');
@@ -94,24 +94,19 @@ function UpdateSalary(props) {
                 totalSalary
             });
             console.log(res.data);
-                alert('Salary updated successfully'); // Show success alert
+                alert('Salary updated successfully');
                 // Redirect to SalaryTable page
                  window.location.href = '/SalaryTable';
           } catch (err) {
                 console.error(err);
-                alert('Error updating salary'); // Show error alert
+                alert('Error updating salary'); 
         }
         };
-
-        const handleRegenerateSalary = () => {
-            window.location.href = `/RegenerateSalary?staffId=${staffId}&firstName=${firstName}&lastName=${lastName}&basicSalary=${basicSalary}&otRate=${otRate}`;
-        };
-        
         
 
     return (
         <>
-            <Header />
+            <SystemAdminHeader />
             <div className="StaffSalary">
                 <h2>Update Salary</h2>
                 <form onSubmit={handleSubmit} className='StaffSalary-form'>
@@ -164,10 +159,15 @@ function UpdateSalary(props) {
                     </div>
                    <center> 
                     <button type="submit" className='UpdateStaffCalculate'>Update Salary</button>
-                    <button onClick={handleRegenerateSalary} className='RegenerateSalary'>Regenerate Salary</button>
+
+                    <div className='UpdateSalary-nav-row'>
+                    <Link className="staffProfile-leave-btn" to={`/RegenerateSalary?staffId=${staffId}&firstName=${firstName}&lastName=${lastName}&basicSalary=${basicSalary}&otRate=${otRate}`}>
+                     Regenerate Salary
+                    </Link>
                     <Link to="/StaffList" className="edit-staff-link-button">
                     <button className="edit-staff-button">Back to All Staff List</button>
                     </Link>
+                    </div>
                     </center>
 
 

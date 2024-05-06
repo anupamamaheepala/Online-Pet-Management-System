@@ -74,7 +74,7 @@ const LeaveDetails = () => {
       <p>Status: {leaveDetails.status}</p>
       <p>Applied Date: {formatDate(leaveDetails.createdAt)}</p>
 
-      {/* Approve and disapprove buttons */}
+     
         <div className='Staffbutton-container'>
         <button className='StaffLeave-Approve' onClick={approveLeave}>Approve</button>
         <button className='StaffLeave-Disapprove' onClick={disapproveLeave}>Disapprove</button>

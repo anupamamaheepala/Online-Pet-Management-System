@@ -19,5 +19,9 @@ router.put('/:id/update', salaryController.updateSalary);
 // Route for fetching modified salary information
 router.get('/modified-salary/:id', salaryController.getSalaryByModifiedId);
 
+// Route for deleting a salary document
+router.delete('/:id/delete', salaryController.deleteSalary);
+
+
 
 module.exports = router;

@@ -49,6 +49,12 @@
     text-decoration: none !important;
 }
 
+.ma_add_button3:hover {
+    background-color: #5c5656 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+}
+
 .ma_button-container {
     display: flex !important;
     justify-content: flex-end !important;
@@ -184,7 +190,7 @@
     text-decoration: none !important;
 }
 
-/* Style confirm button */
+
 .ma_confirm_button {
     background-color: green !important;
     border: 2px solid green !important;
@@ -197,14 +203,14 @@
     color: white !important;
 }
 
-/* Style reject button */
+
 .ma_reject_button {
     background-color: red !important;
     border: 2px solid red !important;
     color: white !important;
 }
 
-/* Adjust button container to align buttons in one line */
+
 .ma_advertisement-buttons {
     display: flex !important;
     justify-content: last baseline !important;

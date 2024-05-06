@@ -98,7 +98,7 @@ const StaffRegister = () => {
 
   // Function to generate a unique staff ID
   function generateStaffId() {
-    // Generate a random number (you can use any custom logic here)
+    // Generate a random number 
     const randomNumber = Math.floor(Math.random() * 1000000);
     // Concatenate with a prefix to ensure uniqueness
     return 'STAFF_' + randomNumber;
