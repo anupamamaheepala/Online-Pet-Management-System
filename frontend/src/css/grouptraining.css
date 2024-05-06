@@ -1,0 +1,71 @@
+/* GroupTrainingPrograms.css */
+
+/* Background container */
+.aloka1972-background-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding-top: 50px; 
+  padding-bottom: 50px;
+
+   
+  }
+  
+  /* Content container */
+  .aloka1972-content-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Card container */
+  .aloka1972-card-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px; /* Adjust as needed */
+  }
+  
+  /* Individual card */
+  .aloka1972-card {
+    width: 300px; /* Adjust as needed */
+    margin-bottom: 30px; /* Adjust as needed */
+  }
+  
+  /* Card image */
+  .aloka1972-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Card content */
+  .aloka1972-card-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  /* Feedback button container */
+  .aloka1972-feedback-button-container {
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
+  }
+  
+  /* Feedback button */
+  .aloka1972-feedback-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .aloka1972-feedback-button:hover {
+    background-color: #45a049; /* Darker green */
+  }
+  
