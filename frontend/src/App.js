@@ -88,12 +88,12 @@ import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
 import OrderForm from './pages/OrderForm';
-<<<<<<< HEAD
+
 import GroupTrainingPrograms from './pages/GroupTrainingPrograms';
 
-=======
+
 import SuccessBankTrans from './pages/SuccessBankTrans';
->>>>>>> 8c014ae8a78aa44296461adc3576c30de11e7d95
+
 function App() {
 
 
