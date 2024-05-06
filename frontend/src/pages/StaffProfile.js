@@ -6,6 +6,9 @@ import '../css/staffProfile.css';
 import Footer from '../components/Footer';
 import VetHeader from '../components/Vet components/VetHeader';
 import GroomeHeader from '../components/Groome components/GroomerHeader';
+import SystemAdminHeader from '../components/SystemAdminHeader';
+import TrainingHeader from '../components/Training component/TrainingHeader';
+import AdsHeader from '../components/ads components/AdsHeader';
 
 const StaffProfile = () => {
   const [staff, setStaff] = useState(null);
@@ -25,19 +28,30 @@ const StaffProfile = () => {
   }, [id]);
 
   const handleDelete = () => {
-    // Implement delete functionality
+    
+  };
+
+  const renderHeader = () => {
+    if (staff) {
+      switch (staff.designation) {
+        case 'Veterinarian':
+          return <VetHeader />;
+        case 'System Manager':
+          return <SystemAdminHeader />;
+        case 'Pet Training Manager':
+          return <TrainingHeader />;
+        case 'Advertisement Coordinator':
+          return <AdsHeader />;
+        default:
+          return <GroomeHeader />;
+      }
+    }
+    return null;
   };
 
   return (
     <>
-
-      
-      {staff && staff.designation === 'Veterinarian' ? (
-        
-        <VetHeader />
-      ) : (
-        <GroomeHeader />
-      )}
+      {renderHeader()}
 
       <div className='StaffProfileContainer'>
         <div className='staffProfileWrapper'>

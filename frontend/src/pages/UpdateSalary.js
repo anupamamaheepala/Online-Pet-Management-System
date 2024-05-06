@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom'; 
 import '../css/StaffSalary.css';
 import SystemAdminHeader from '../components/SystemAdminHeader';
 
@@ -94,12 +94,12 @@ function UpdateSalary(props) {
                 totalSalary
             });
             console.log(res.data);
-                alert('Salary updated successfully'); // Show success alert
+                alert('Salary updated successfully');
                 // Redirect to SalaryTable page
                  window.location.href = '/SalaryTable';
           } catch (err) {
                 console.error(err);
-                alert('Error updating salary'); // Show error alert
+                alert('Error updating salary'); 
         }
         };
         

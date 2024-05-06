@@ -107,6 +107,16 @@ const SalaryTable = () => {
     salary[searchCriteria].toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:9000/salary/${id}/delete`);
+      // Update the salaries state after deletion
+      setSalaries(prevSalaries => prevSalaries.filter(salary => salary._id !== id));
+    } catch (error) {
+      console.error('Error deleting salary:', error);
+    }
+  };
+
 
   return (
     <>
@@ -165,6 +175,7 @@ const SalaryTable = () => {
                   <td>{formatDate(salary.createdAt)}</td>
                   <td>
                     <Link className='SalaryUpdate' to={`/update-salary?staffId=${salary.staffId}`}>View Details</Link>
+                    <button className='salarydelete' onClick={() => handleDelete(salary._id)}>Delete</button>
                   </td>
                 </tr>
               ))}

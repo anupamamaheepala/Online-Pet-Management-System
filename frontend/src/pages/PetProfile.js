@@ -86,48 +86,93 @@ const PetProfile = () => {
       alert('Deletion cancelled.');
     }
   };
- 
-  const generatePDF = () => {
+   const generatePDF = () => {
     const doc = new jsPDF();
     
     const logoURL = '/images/logo.png';
     
-    
+    // Add logo
     doc.addImage(logoURL, 'PNG', 20, 10, 30, 30);
     
+  // Title - Pet Report
+  const reportText = 'Pet Report';
+  const textWidth = doc.getStringUnitWidth(reportText) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+  const xCoordinate = (doc.internal.pageSize.getWidth() - textWidth) / 2;
+  
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0); 
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(reportText, xCoordinate, 40); 
+  doc.setFont('helvetica', 'normal'); 
     
-    doc.setFontSize(16);
-    doc.setTextColor(0, 0, 0); 
-    doc.text('Pet Report', 80, 40); 
+  // Pet profile details
+  doc.setFontSize(18);
+ 
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 70, 'Name: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(35, 70, petData.petName);
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 80, 'Species: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(38, 80, petData.species);
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 90, 'Breed: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(35, 90, petData.breed);
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 100, 'Age: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(33, 100, petData.age ? `${petData.age.value} ${petData.age.unit}` : 'N/A');
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 110, 'Gender: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(38, 110, petData.gender);
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 120, 'Weight: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(36, 120, `${petData.weight}kg`);
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 130, 'Date Adopted: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(50, 130, petData.dateAdopted ? new Date(petData.dateAdopted).toLocaleDateString() : 'N/A');
+  doc.setFont('helvetica', 'bold'); 
+  doc.text(20, 140, 'Additional Notes: ');
+  doc.setFont('helvetica', 'normal'); 
+  doc.text(55, 140, petData.additionalNotes);
+
+    // Vaccination details
+    const vaccinationStartY = 70; 
+    const lineHeight = 10; 
+    const vaccinesStartX = 130; 
     
-      // Add pet profile details to the PDF
-      doc.setFontSize(18);
-      doc.text(20, 60, 'Pet Profile'); 
-      doc.setFontSize(12);
-      doc.text(20, 70, `Name: ${petData.petName}`);
-      doc.text(20, 80, `Species: ${petData.species}`);
-      doc.text(20, 90, `Breed: ${petData.breed}`);
-      doc.text(20, 100, `Age: ${petData.age ? `${petData.age.value} ${petData.age.unit}` : 'N/A'}`);
-      doc.text(20, 110, `Gender: ${petData.gender}`);
-      doc.text(20, 120, `Weight: ${petData.weight}kg`);
-      doc.text(20, 130, `Date Adopted: ${petData.dateAdopted ? new Date(petData.dateAdopted).toLocaleDateString() : 'N/A'}`);
-      doc.text(20, 140, `Additional Notes: ${petData.additionalNotes}`);
     
-      // Add given vaccines
-      doc.text(20, 160, 'Given Vaccines:');
-      givenVaccines.forEach((vaccination, index) => {
-        doc.text(30, 170 + index * 10, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
-      });
+    doc.setFont('helvetica', 'bold');
+    doc.text(130, vaccinationStartY, 'Vaccination Details:');
+    doc.setFont('helvetica', 'normal'); 
     
-      // Add upcoming vaccines
-      doc.text(20, 190 + givenVaccines.length * 10, 'Upcoming Vaccines:'); 
-      upcomingVaccines.forEach((vaccination, index) => {
-        doc.text(30, 200 + (index + givenVaccines.length) * 10, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
-      });
+  
+    doc.setFont('helvetica', 'bold');
+    doc.text(130, vaccinationStartY + lineHeight, 'Given Vaccines:');
+    doc.setFont('helvetica', 'normal'); 
+    givenVaccines.forEach((vaccination, index) => {
+        const y = vaccinationStartY + (index + 2) * lineHeight;
+        doc.text(vaccinesStartX, y, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
+    });
+  
+    doc.setFont('helvetica', 'bold');
+    doc.text(130, vaccinationStartY + (givenVaccines.length + 3) * lineHeight, 'Upcoming Vaccines:');
+    doc.setFont('helvetica', 'normal'); 
+    upcomingVaccines.forEach((vaccination, index) => {
+        const y = vaccinationStartY + (givenVaccines.length + index + 4) * lineHeight;
+        doc.text(vaccinesStartX, y, `${vaccination.vaccineType} - ${new Date(vaccination.dateAdministered).toLocaleDateString()}`);
+    });
     
-      // Save the PDF
-      doc.save('pet_profile.pdf');
+    // Save the PDF
+    doc.save('pet_profile.pdf');
   };
+  
   
 
   if (loading) {

@@ -13,7 +13,7 @@ const AppliedLeaves = () => {
       try {
         const res = await axios.get(`http://localhost:9000/staffLeave/applied-leaves/${id}`);
         setAppliedLeaves(res.data);
-        console.log(res.data); // Add this line to check the received data
+        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
@@ -46,7 +46,7 @@ const AppliedLeaves = () => {
               <p>Type: {leave.StleaveType}</p>
               <p>Reason: {leave.streason}</p>
               <p>Requested Date: {formatDate(leave.createdAt)}</p>
-              <p>Approved Date: {formatDate(leave.updatedAt)}</p>
+              
               <p style={{ color: leave.status === 'Approved' ? 'green' : leave.status === 'Disapproved' ? 'red' : 'black' }}>
               Status: {leave.status}
             </p>
