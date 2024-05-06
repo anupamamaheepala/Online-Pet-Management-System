@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
-import { Bell, PersonCircle } from 'react-bootstrap-icons';
+import { Bell, PersonCircle, HouseDoorFill, BoxArrowRight } from 'react-bootstrap-icons';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useNavigate } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal);
 
-const GroomerHeader = () => {
+const GroomeHeader = () => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [highlightedItem, setHighlightedItem] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMouseInDropdown, setIsMouseInDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const handleNotificationClick = () => {
     axios
       .get('http://localhost:9000/appointment/appointments', {
-        params: { IsAccept: false, selectService: 'Groome Service' },
+        params: { IsAccept: false, selectService: 'Grooming Service' },
       })
       .then((response) => {
         const pendingAppointments = response.data;
@@ -27,9 +28,7 @@ const GroomerHeader = () => {
         } else {
           const appointmentList = pendingAppointments.map((appointment, index) => (
             <div key={appointment._id}>
-              <p>
-                {index + 1}. {appointment.ownerName} - {appointment.selectService}
-              </p>
+              <p>{index + 1}. {appointment.ownerName} - {appointment.selectService}</p>
               <hr />
             </div>
           ));
@@ -53,20 +52,20 @@ const GroomerHeader = () => {
   };
 
   useEffect(() => {
-    const fetchGroomingAppointmentCount = async () => {
+    const fetchGroomeAppointmentCount = async () => {
       try {
         const response = await axios.get('http://localhost:9000/appointment/appointments');
         const appointmentsData = response.data;
-        const groomingAppointments = appointmentsData.filter(
-          (appointment) => appointment.selectService === 'Groome Service' && !appointment.IsAccept
+        const groomeAppointments = appointmentsData.filter(
+          (appointment) => appointment.selectService === 'Grooming Service' && !appointment.IsAccept
         );
-        setNotificationCount(groomingAppointments.length);
+        setNotificationCount(groomeAppointments.length);
       } catch (error) {
         console.error('Error fetching appointments:', error);
       }
     };
-  
-    fetchGroomingAppointmentCount();
+
+    fetchGroomeAppointmentCount();
   }, []);
 
   const handleMouseEnter = (item) => {
@@ -81,6 +80,11 @@ const GroomerHeader = () => {
       setHighlightedItem(null);
       setDropdownOpen(false);
     }
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('userData'); // Clear user data from local storage
+    navigate('/SignIn'); // Redirect to the sign-in page
   };
 
   const getItemStyle = (item) => {
@@ -125,6 +129,14 @@ const GroomerHeader = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
         <Nav>
+          <Nav.Link
+            style={getItemStyle('dashboard')}
+            href="/GroomeDashboard"
+            onMouseEnter={() => handleMouseEnter('dashboard')}
+            onMouseLeave={handleMouseLeave}
+          >
+            <HouseDoorFill color="white" /> Dashboard
+          </Nav.Link>
           <NavDropdown
             title={<span style={getItemStyle('appointments')}>Appointments</span>}
             id="basic-nav-dropdown"
@@ -179,24 +191,28 @@ const GroomerHeader = () => {
             onClick={handleNotificationClick}
           >
             <Bell color="white" />
-            <Badge
-              pill
-              variant="danger"
-              className="position-absolute"
-              style={{ top: -10, right: -10 }}
-            >
+            <Badge pill variant="danger" className="position-absolute" style={{ top: -10, right: -10 }}>
               {notificationCount}
             </Badge>
           </Button>
-          <Link to="/StaffProfile">
-            <Button variant="outline-primary" style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}>
-              <PersonCircle color="white" />
-            </Button>
-          </Link>
+          <Button
+            variant="outline-primary"
+            style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}
+            onClick={() => window.location.href = '/StaffProfile'}
+          >
+            <PersonCircle color="white" />
+          </Button>
+          <Button
+            variant="outline-primary"
+            style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}
+            onClick={handleSignOut}
+          >
+            <BoxArrowRight color="white" /> Sign Out
+          </Button>
         </div>
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default GroomerHeader;
+export default GroomeHeader;
