@@ -80,12 +80,12 @@ const LeaveDetails = () => {
       <p>Status: {leaveDetails.status}</p>
       <p>Applied Date: {formatDate(leaveDetails.createdAt)}</p>
 
-     
-        <div className='Staffbutton-container'>
-        <button className='StaffLeave-Approve' onClick={approveLeave}>Approve</button>
-        <button className='StaffLeave-Disapprove' onClick={disapproveLeave}>Disapprove</button>
-        </div>
-
+      {(leaveDetails.status === 'Pending') && (
+          <div className='staff-button-container'>
+            <button className='StaffLeave-Approve' onClick={approveLeave}>Approve</button>
+            <button className='StaffLeave-Disapprove' onClick={disapproveLeave}>Disapprove</button>
+          </div>
+        )}
     </div>
     <br></br>
     <Footer />
