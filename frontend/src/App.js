@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import './App.css';
 
 import Home from "./pages/Home";
+
 import Feedback from './pages/Feedback';
 import FeedbackDisplay from './pages/FeedbackDisplay';
 import FeedbackAdminDisplay from './pages/FeedbackAdminDisplay';
@@ -87,13 +88,30 @@ import ForgotPassword from './pages/ForgotPassword';
 import AppliedLeaves from './pages/AppliedLeaves';
 import RegenerateSalary from './pages/RegenerateSalary';
 import OrderForm from './pages/OrderForm';
-
+import SuccessBankTrans from './pages/SuccessBankTrans';
 function App() {
+
+
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    setIsLoggedIn(storedUserData ? true : false);
+  }, []);
+
   return (
     <div>
       <Router>
         
           <Routes>
+
+          {isLoggedIn && (
+          <>
+            <Route path="/Feedback" element={<Feedback />} />
+          </>
+        )}
+
           <Route path="/" element={<Home />} />
           <Route path="/TrainingPrograms" element={<TrainingPrograms />} />
           <Route path="/PrivateTrainingPrograms" element={<PrivateTrainingPrograms />} />
@@ -103,7 +121,7 @@ function App() {
           <Route path="/:id" element={<ViewApplication/>}/>
           <Route path="/StepForm" element={<StepForm/>}/>
           <Route path="/training/application:id" element={<ViewApplication/>}/>
-          <Route path="/Feedback" element={<Feedback />} />
+          
           <Route path="/FeedbackDisplay" element={<FeedbackDisplay />} />
           <Route path="/FeedbackInquiry" element={<FeedbackInquiry />} />
           <Route path="/FeedbackAdminDisplay" element={<FeedbackAdminDisplay />} />
@@ -184,6 +202,7 @@ function App() {
           <Route path="/applied-leaves/:id" element={<AppliedLeaves />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
           <Route path="/RegenerateSalary" element={<RegenerateSalary />} />
+          <Route path="/successbanktrans" element={<SuccessBankTrans />}/>
           </Routes>
       </Router>
       <ToastContainer position="top-center" />

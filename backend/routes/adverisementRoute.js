@@ -21,23 +21,14 @@ router.post('/add', upload.single('file'), advertisementController.addAdvertisem
 router.get("/", advertisementController.getAllAdvertisements);
 router.put("/:id/confirm", upload.single('file'), advertisementController.confirmAdvertisement);
 router.delete("/:id", advertisementController.deleteAdById);
-//router.get("/confirmed", advertisementController.getConfirmedAdvertisements);
-//router.get("/:id/confirm", advertisementController.confirmAdvertisement); 
 
 router.get("/confirmedads", advertisementController.getAllConfirmedAdvertisements);
 
-// DELETE route for deleting an advertisement by ID
 router.delete("/confirmedads/:id", advertisementController.deletecomAdById);
 
-
-//router.put('/confirmedads/:id', upload.single('filePath'), confirmedadsController.updateConfirmedAd);
-
-// Route for fetching advertisement by ID
 router.get('/:id', advertisementController.getAdvertisementById);
 
-// Route for updating advertisement by ID
 router.put('/:id', advertisementController.updateAdvertisementById);
-
 
 router.get("/user/:userId", advertisementController.getAdvertisementsByUserId);
 

@@ -39,7 +39,7 @@ const StaffLogin = () => {
             window.location.href = '/AddingProduct';
             break;
         case 'Pet Training Manager':
-            // Redirect to Advertisement Coordinator page
+            // Redirect to Training Dashboard page
             window.location.href = '/TrainingDashboard';
              break;
         default:

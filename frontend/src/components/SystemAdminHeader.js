@@ -35,7 +35,8 @@ const SystemAdminHeader = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="/Cardpayadmin">All Card Payments</Dropdown.Item>
-              <Dropdown.Item href="/Banktransadmin">All Bank Transfers</Dropdown.Item>
+              <Dropdown.Item href="/Banktransadmin">Pending Bank Transfers</Dropdown.Item>
+              <Dropdown.Item href="/SuccessBankTrans">Approved Bank Transfers</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>

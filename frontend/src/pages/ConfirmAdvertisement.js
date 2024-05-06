@@ -43,11 +43,9 @@ const ConfirmAdvertisement = () => {
 
     const handleConfirm = async (id) => {
         try {
-            // Send a PUT request to confirm the advertisement
             await axios.put(`http://localhost:9000/ads/${id}/confirm`);
             alert('Advertisement confirmed and moved successfully');
             
-            // After confirmation, update the local state to remove the confirmed advertisement
             setAds(prevAds => prevAds.filter((ad) => ad._id !== id));
 
         } catch (error) {
@@ -63,7 +61,8 @@ const ConfirmAdvertisement = () => {
         <>
             <AdsHeader />
             
-            <Link to="/AllAdvertisements" className="ma_add_button">View all published advertisements list</Link>            <div className="ma_table-container_center">
+            <Link to="/AllAdvertisements" className="ma_add_button">View all published advertisements list</Link> 
+             <div className="ma_table-container_center">
             <h4 className="ma_text_container"><center>Pending Advertisement</center></h4>
             <table className="ma_advertisement-table">
                 <thead>
@@ -71,7 +70,7 @@ const ConfirmAdvertisement = () => {
                         <th>Owner Name</th>
                         <th>Email</th>
                         <th>Pet type</th>
-                        <th>Breed</th>
+                        <th>Species</th>
                         <th>Purpose</th>
                         <th>Description</th>
                         <th>Pet's image</th>

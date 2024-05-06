@@ -51,27 +51,22 @@ const EditAdvertisement = () => {
             console.error('Error fetching purposes:', error);
         }
     };
-
-    
-        
+   
     const handleChange = (e) => {
         const { name, value } = e.target;
         let newValue = value;
         
         if (name === 'contact') {
-            newValue = value.replace(/[^\d]/g, ''); // Replace non-digit characters with empty string
+            newValue = value.replace(/[^\d]/g, ''); 
             if (newValue.length > 10) {
-                newValue = newValue.slice(0, 10); // Limit to 10 characters
+                newValue = newValue.slice(0, 10); 
             }
         } else if (name === 'ownerName') {
-            newValue = value.replace(/[^A-Za-z\s]/g, ''); // Replace non-letter and non-space characters with empty string
+            newValue = value.replace(/[^A-Za-z\s]/g, '');  
         }
-        
         setAdvertisementData({ ...advertisementData, [name]: newValue });
     };
     
-    
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

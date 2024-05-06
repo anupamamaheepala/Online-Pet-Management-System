@@ -34,7 +34,7 @@ const MyAdvertisements = ({ userId }) => {
                             <p>0773641569</p>
                             <div className="ma_advertisement-buttons">
                                 <Link to="/payerinfo" className="ma_add_button ma_confirm_button">Pay</Link>
-                                <Link to="/EditAdvertisement" className="ma_add_button ma_confirm_button">Edit</Link>
+                                <Link to="/AddAdvertisement" className="ma_add_button ma_confirm_button">Edit</Link>
                                 <div className="ma_add_button ma_reject_button">Delete</div>
                             </div>
                         </div>
