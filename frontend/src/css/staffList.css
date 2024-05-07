@@ -52,7 +52,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Set position to relative for button alignment */
+  position: relative; 
 }
 
 .staffList-update-btn,
@@ -60,10 +60,10 @@
 .staffList-salary-btn {
   padding: 8px 16px;
   margin-right: 8px;
-  margin-bottom: 8px; /* Add margin-bottom for vertical spacing */
+  margin-bottom: 8px; 
   border: none;
   border-radius: 4px;
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: white;
   text-align: center;
   text-decoration: none;

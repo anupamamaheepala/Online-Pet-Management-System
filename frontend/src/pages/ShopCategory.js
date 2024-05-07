@@ -114,7 +114,7 @@ const ShopCategory = ({ category, banner }) => {
                     ) : null}
 
                     {item.quantity > 0 ? (
-                      <div className="d-flex justify-content-center"> {/* Centering the button */}
+                      <div className="d-flex justify-content-center"> 
                         <button
                           className="os_button-primary"
                           onClick={() => handleAddToCart(item._id)}

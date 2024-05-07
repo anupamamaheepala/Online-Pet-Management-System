@@ -18,7 +18,7 @@ const addOrder = async (req, res) => {
       orderName,
       orderContactNo,
       orderAddress,
-      deliveryDate // Assign the calculated delivery date
+      deliveryDate 
     });
 
     // Save the new order object to the database
