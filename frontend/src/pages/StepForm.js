@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom'; 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/advertisement.css';
 import '../css/Trainingprogram.css';
 import Swal from 'sweetalert2';
-import Editstepform from './Editstepform'; // Adjust the path as needed
+import Editstepform from './Editstepform'; 
 import AdminHeader from '../components/AdminHeader';
 
 
@@ -80,7 +80,7 @@ const StepForm = () => {
                 contact: ''
             });
 
-            // Display alert after successful submission
+           
             alert('training successfuly submitted');
         } catch (err) {
             console.error(err);
@@ -107,7 +107,7 @@ const StepForm = () => {
         try {
             const res = await axios.delete(`http://localhost:9000/step/delete/${id}`);
             alert('Step deleted successfully');
-            // Remove the deleted step from the state
+           
             setPrivatetrainings(privatetrainings.filter(step => step._id !== id));
         } catch (error) {
             console.error('Error deleting step:', error);
@@ -133,9 +133,9 @@ const StepForm = () => {
         name="step"
         value={step}
         onChange={onChange}
-        min="1" // Set minimum value
-        step="1" // Set step size
-        placeholder="Step" // Placeholder text
+        min="1" 
+        step="1" 
+        placeholder="Step" 
         required
     />
 </div>

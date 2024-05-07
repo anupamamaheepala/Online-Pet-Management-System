@@ -17,7 +17,7 @@ const EditStepForm = () => {
         description: '',
         file: null,
         contact: '',
-        filePath: '' // Add filePath property
+        filePath: ''
     });
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const EditStepForm = () => {
         const file = e.target.files[0];
         if (file) {
             setFile(file);
-            setFileName(file.name); // Extract file name from selected file
+            setFileName(file.name); 
         }
     };
 
@@ -54,7 +54,7 @@ const EditStepForm = () => {
             formData.append('name', stepData.name);
             formData.append('title', stepData.title);
             formData.append('description', stepData.description);
-            formData.append('file', file); // Use the file state here
+            formData.append('file', file); 
             formData.append('contact', stepData.contact);
 
             await axios.put(`http://localhost:9000/step/${stepId}`, formData, {

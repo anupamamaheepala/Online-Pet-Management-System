@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer'); // Import multer
-const path = require('path'); // Import path module
+const multer = require('multer'); 
+const path = require('path'); 
 const trainingController = require('../controller/training.controller');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../uploads/')); // Adjusted destination path
+        cb(null, path.join(__dirname, '../uploads/')); 
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
@@ -31,9 +31,9 @@ const {
 router.post('/insert', upload.single('file'), addTrainingprogram);
 router.get('/all', getalltrainings);
 router.get('/:id', getalltrainingdetails);
-//router.put('/updateInstructor/:id', updateInstructor); // Ensure the path includes ':id' parameter
+//router.put('/updateInstructor/:id', updateInstructor);
 router.put('/updateInstructor/:id', trainingController.updateInstructor);
-router.delete('/delete/:id', deleteprogram); // Ensure the path includes ':id' parameter
+router.delete('/delete/:id', deleteprogram); 
 //router.put('/status/:id', updateTrainingStatus);
 
 //reject

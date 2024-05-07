@@ -1,6 +1,4 @@
-/* editstepform.css */
 
-/* Form container */
 .alo18-step-form {
     max-width: 600px;
     margin: 0 auto;
@@ -10,7 +8,7 @@
     background-color: #f9f9f9;
 }
 
-/* Form fields */
+
 .alo18-form-group {
     margin-bottom: 20px;
 }
@@ -32,16 +30,16 @@
 }
 
 .alo18-textarea {
-    resize: vertical; /* Allow vertical resizing of textarea */
+    resize: vertical; 
 }
 
-/* Image preview */
+
 .privatetraining-image {
     display: block;
     margin-top: 10px;
 }
 
-/* Submit button */
+
 .alo18-button {
     background-color: #4caf50;
     color: white;

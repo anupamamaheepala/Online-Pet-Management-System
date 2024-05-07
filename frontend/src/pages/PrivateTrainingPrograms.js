@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
-import '../css/Trainingprogram.css'; // Assuming the CSS file is named Trainingprogram.css
+import '../css/Trainingprogram.css';
 import { Link } from 'react-router-dom';
 
 const PrivateTrainingPrograms = () => {

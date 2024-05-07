@@ -71,7 +71,7 @@ const PrivateTrainingDetails = () => {
         {training.filePath && (
   <div>
    <h3>Health Checkup File</h3>
-{/* Check file extension to determine the type */}
+
 {training.filePath ? (
   <>
     <button onClick={() => handleOpenModal(`http://localhost:9000/uploads/${id}`)}>View Health Checkup Report</button>

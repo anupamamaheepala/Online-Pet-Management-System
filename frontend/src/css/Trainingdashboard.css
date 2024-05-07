@@ -93,27 +93,27 @@
   cursor: pointer;
 }
 
-/* Trainingdashboard.css */
+
 .asw18-chart-container {
-  margin-top: 60px; /* Add some margin to separate the chart from the table */
-  max-width: 800px; /* Set a maximum width for the chart */
-  margin-left: 10px; /* Center the chart horizontally */
+  margin-top: 60px; 
+  max-width: 800px; 
+  margin-left: 10px;
   margin-right: auto;
-  background-color: rgb(226, 218, 187); /* Set background color to light blue */
-  padding: 20px; /* Add padding to create space around the chart */
-  border-radius: 15px; /* Add border radius to create rounded corners */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+  background-color: rgb(226, 218, 187); 
+  padding: 20px; 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
   
 }
 .a1802-piechart-container {
-  margin-top: 60px; /* Add some margin to separate the chart from the table */
-  max-width: 800px; /* Set a maximum width for the chart */
-  margin-left: 5px; /* Center the chart horizontally */
+  margin-top: 60px; 
+  max-width: 800px; 
+  margin-left: 5px; 
   margin-right: auto;
-  background-color: rgb(226, 218, 187); /* Set background color to light blue */
-  padding: 20px; /* Add padding to create space around the chart */
-  border-radius: 15px; /* Add border radius to create rounded corners */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+  background-color: rgb(226, 218, 187); 
+  padding: 20px;
+  border-radius: 15px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
   
 }
 #pieChart{
@@ -121,8 +121,8 @@
   width: 50%;
 }
 #trainingChart {
-  max-height: 600px; /* Set a maximum height for the chart */
-  width: 80%; /* Make the chart fill its container */
+  max-height: 600px; 
+  width: 80%; 
 }
 .alo1802name{
   text-align: center;
