@@ -160,7 +160,7 @@
 
 /* Style for selected stars (highlight in yellow) */
 .fstar.selected {
-  color: rgb(255, 208, 0);
+  color: rgb(255, 217, 0);
 }
 
 .averageRating {
@@ -168,3 +168,4 @@
   margin-top: -15px; /* Adjust as needed */
   margin-bottom: -10px;
 }
+

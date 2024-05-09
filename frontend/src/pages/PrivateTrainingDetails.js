@@ -110,9 +110,8 @@ const PrivateTrainingDetails = () => {
         confirmButtonText: 'Go back to Dashboard',
       }).then((result) => {
         if (result.isConfirmed) {
-          return <Link to="../pages/TrainingDashboard.js" />;
-          // Redirect to Dashboard or wherever you want to go
-          // You can use history.push('/dashboard') or window.location.href = '/dashboard'
+          return <Link to="/pages/TrainingDashboard.js" />;
+          
         }
       });
 
@@ -128,10 +127,10 @@ const PrivateTrainingDetails = () => {
       console.log('Training rejected successfully');
       window.alert('Application rejected');
   
-      // Clear the selected trainer state
+      
       setSelectedTrainer(null);
   
-      // Clear the instructor details from the training state
+      
       setTraining(prevTraining => ({
         ...prevTraining,
         instructorId: null,
@@ -168,13 +167,13 @@ const PrivateTrainingDetails = () => {
       case 'approved':
         return (
           <p>
-            <h4>Training is already approved</h4>
+            <h4>Training is approved</h4>
           </p>
         );
       case 'rejected':
         return (
           <p>
-            <h4>Training is already rejected</h4>
+            <h4>Training is rejected</h4>
           </p>
         );
       default:

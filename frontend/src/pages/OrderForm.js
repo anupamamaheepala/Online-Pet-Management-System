@@ -3,13 +3,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import '../css/orderform.css'; // Include relevant CSS
+import '../css/orderform.css'; 
 
 const OrderForm = () => {
   // Function to get the current date
   const getCurrentDate = () => {
-    const today = new Date(); // Get current date
-    return today.toISOString().split('T')[0]; // Format to 'yyyy-mm-dd'
+    const today = new Date(); 
+    return today.toISOString().split('T')[0]; 
   };
 
   // Set initial form state
@@ -17,7 +17,7 @@ const OrderForm = () => {
     orderName: '',
     orderContactNo: '',
     orderAddress: '',
-    deliveryDate: getCurrentDate(), // Set to the current date
+    deliveryDate: getCurrentDate(), 
   });
 
   const { orderName, orderContactNo, orderAddress, deliveryDate } = formData;
@@ -33,7 +33,7 @@ const OrderForm = () => {
   // Function to allow only numeric characters in the contact number field
   const onKeyPress = (e) => {
     const charCode = e.which ? e.which : e.keyCode;
-    if (charCode < 48 || charCode > 57) { // Prevent non-numeric input
+    if (charCode < 48 || charCode > 57) { 
       e.preventDefault();
     }
   };
@@ -64,7 +64,7 @@ const OrderForm = () => {
         orderName: '',
         orderContactNo: '',
         orderAddress: '',
-        deliveryDate: getCurrentDate(), // Reset to the current date
+        deliveryDate: getCurrentDate(), 
       });
     } catch (err) {
       Swal.fire({
@@ -93,7 +93,7 @@ const OrderForm = () => {
           <textarea id="orderAddress" name="orderAddress" value={orderAddress} onChange={onChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="deliveryDate">Delivery Date:</label>
+          <label htmlFor="deliveryDate">Ordering Date:</label>
           <input type="date" id="deliveryDate" name="deliveryDate" value={deliveryDate} readOnly />
         </div>
         <button type="submit" className="submit-button">Place Order</button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import '../css/grouptraining.css'; // Import your CSS file
+import '../css/grouptraining.css'; 
 
 const GroupTrainingPrograms = () => {
   return (

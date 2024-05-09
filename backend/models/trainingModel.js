@@ -30,20 +30,20 @@ const TrSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      submissionDateTime: { // New field for submission date and time
+      submissionDateTime: { //submission date and time
           type: Date,
           required: true,
           default: Date.now
       },
      
-      instructorId: String, // New field for trainer's ID
-      instructorName: String, // New field for trainer's name
+      instructorId: String, //  trainer's ID
+      instructorName: String, //trainer's name
       status: {
          type: String, 
          enum: ['pending', 'approved', 'rejected'], 
          default: 'pending'
      },
-           // Field for storing file path
+           // file path
      filePath: {
          type: String,
          required: true

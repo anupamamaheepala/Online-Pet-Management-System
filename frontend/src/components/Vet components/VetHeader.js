@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Badge, NavDropdown } from 'react-bootstrap';
-import { Bell, PersonCircle, HouseDoorFill } from 'react-bootstrap-icons';
+import { Bell, PersonCircle, HouseDoorFill, BoxArrowRight } from 'react-bootstrap-icons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useNavigate } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal);
 
@@ -12,6 +13,7 @@ const VetHeader = () => {
   const [highlightedItem, setHighlightedItem] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMouseInDropdown, setIsMouseInDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const handleNotificationClick = () => {
     axios
@@ -26,9 +28,7 @@ const VetHeader = () => {
         } else {
           const appointmentList = pendingAppointments.map((appointment, index) => (
             <div key={appointment._id}>
-              <p>
-                {index + 1}. {appointment.ownerName} - {appointment.selectService}
-              </p>
+              <p>{index + 1}. {appointment.ownerName} - {appointment.selectService}</p>
               <hr />
             </div>
           ));
@@ -82,6 +82,11 @@ const VetHeader = () => {
     }
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem('userData'); // Clear user data from local storage
+    navigate('/SignIn'); // Redirect to the sign-in page
+  };
+
   const getItemStyle = (item) => {
     if (highlightedItem === item) {
       return {
@@ -130,9 +135,7 @@ const VetHeader = () => {
             onMouseEnter={() => handleMouseEnter('dashboard')}
             onMouseLeave={handleMouseLeave}
           >
-            <HouseDoorFill color="white" />
-            {' '}
-            Dashboard
+            <HouseDoorFill color="white" /> Dashboard
           </Nav.Link>
           <NavDropdown
             title={<span style={getItemStyle('appointments')}>Appointments</span>}
@@ -188,12 +191,7 @@ const VetHeader = () => {
             onClick={handleNotificationClick}
           >
             <Bell color="white" />
-            <Badge
-              pill
-              variant="danger"
-              className="position-absolute"
-              style={{ top: -10, right: -10 }}
-            >
+            <Badge pill variant="danger" className="position-absolute" style={{ top: -10, right: -10 }}>
               {notificationCount}
             </Badge>
           </Button>
@@ -203,6 +201,13 @@ const VetHeader = () => {
             onClick={() => window.location.href = '/StaffProfile'}
           >
             <PersonCircle color="white" />
+          </Button>
+          <Button
+            variant="outline-primary"
+            style={{ marginLeft: '10px', color: 'white', borderColor: 'white' }}
+            onClick={handleSignOut}
+          >
+            <BoxArrowRight color="white" /> Sign Out
           </Button>
         </div>
       </Navbar.Collapse>

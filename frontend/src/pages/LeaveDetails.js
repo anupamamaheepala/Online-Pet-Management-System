@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/LeaveDetails.css';
+import SystemAdminHeader from '../components/SystemAdminHeader';
+import Footer from '../components/Footer';
 
 const LeaveDetails = () => {
   const { leaveId } = useParams();
@@ -64,6 +66,10 @@ const LeaveDetails = () => {
   
 
   return (
+    <>
+      <SystemAdminHeader />
+
+      <br></br>
     <div className='leavedeatils'>
       <h2>Leave Details</h2>
       <p>Staff ID: {leaveDetails.staffId}</p>
@@ -74,13 +80,17 @@ const LeaveDetails = () => {
       <p>Status: {leaveDetails.status}</p>
       <p>Applied Date: {formatDate(leaveDetails.createdAt)}</p>
 
-     
-        <div className='Staffbutton-container'>
-        <button className='StaffLeave-Approve' onClick={approveLeave}>Approve</button>
-        <button className='StaffLeave-Disapprove' onClick={disapproveLeave}>Disapprove</button>
-        </div>
-
+      {(leaveDetails.status === 'Pending') && (
+          <div className='staff-button-container'>
+            <button className='StaffLeave-Approve' onClick={approveLeave}>Approve</button>
+            <button className='StaffLeave-Disapprove' onClick={disapproveLeave}>Disapprove</button>
+          </div>
+        )}
     </div>
+    <br></br>
+    <Footer />
+    </>
+    
   );
 };
 

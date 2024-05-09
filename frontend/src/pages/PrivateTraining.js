@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/Trainingapp.css';
 import axios from 'axios';
-import Swal from 'sweetalert2'; // Import SweetAlert
+import Swal from 'sweetalert2';
 
 const PrivateTraining = () => {
   const [formData, setFormData] = useState({
@@ -17,36 +17,35 @@ const PrivateTraining = () => {
     age: '',
     file: null
   });
-  const [isSubmitted, setIsSubmitted] = useState(false); // State to track submission status
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [ageError, setAgeError] = useState(false);
 
-  const { ownerName, email,address, contact, dogName, breed, age, file } = formData;
-  const [ageError, setAgeError] = useState(false); // State to track age validation error
+  const { ownerName, email, address, contact, dogName, breed, age, file } = formData;
 
   const onChange = e => {
     const { name, value } = e.target;
     let newValue = value;
-    // Perform validation as user types
     if (name === 'ownerName' || name === 'dogName' || name === 'breed') {
-      newValue = value.replace(/[^A-Za-z]/ig, '');
+        // Allow alphabets and spaces
+        newValue = value.replace(/[^A-Za-z\s]/ig, '');
     } else if (name === 'contact') {
-      newValue = value.replace(/[^0-9]/g, '').slice(0, 10); // Limit to 10 digits
+        newValue = value.replace(/[^0-9]/g, '').slice(0, 10);
     } else if (name === 'age') {
-      // Allow any number between 1 and 20
-      newValue = value.replace(/[^0-9]/g, '');
-      // Check if entered value meets conditions
-      if (newValue !== '') {
-        const ageValue = parseInt(newValue);
-        if (ageValue < 2) {
-          alert("Your dog should be at least 2 years old.");
-          newValue = '';
-        } else if (ageValue > 12) {
-          alert("Your dog is too old to get trained.");
-          newValue = '';
+        newValue = value.replace(/[^0-9]/g, '');
+        if (newValue !== '') {
+            const ageValue = parseInt(newValue);
+            if (ageValue < 2) {
+                alert("Your dog should be at least 2 years old.");
+                newValue = '';
+            } else if (ageValue > 12) {
+                alert("Your dog is too old to get trained.");
+                newValue = '';
+            }
         }
-      }
     }
     setFormData({ ...formData, [name]: newValue });
   };
+
   const onBlurAge = () => {
     const ageValue = parseInt(formData.age);
     if (ageValue < 2 || ageValue > 12 || isNaN(ageValue)) {
@@ -57,7 +56,6 @@ const PrivateTraining = () => {
     }
   };
 
-
   const onFileChange = e => {
     setFormData({ ...formData, file: e.target.files[0] });
   };
@@ -65,7 +63,18 @@ const PrivateTraining = () => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    
+    // Check if any field is empty
+    for (const key in formData) {
+      if (formData[key] === '') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please fill out all fields!',
+        });
+        return; // Stop submission
+      }
+    }
+
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('file', file);
@@ -78,20 +87,18 @@ const PrivateTraining = () => {
       formDataToSend.append('age', age);
 
       const res = await axios.post("http://localhost:9000/training/insert",
-       formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        
-       
-      });
-      console.log("Response data:",res.data);
-       window.location.href = `/ViewApplication?id=${res.data._id}`; // Ensure '_id' is the correct property name
+        formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+        });
 
-      // Clear form fields after successful submission
+      console.log("Response data:", res.data);
+      window.location.href = `/ViewApplication?id=${res.data._id}`;
+
       setFormData({
         ownerName: '',
-        email:'',
+        email: '',
         address: '',
         contact: '',
         dogName: '',
@@ -99,27 +106,25 @@ const PrivateTraining = () => {
         age: '',
         file: null
       });
+
+      setIsSubmitted(true);
+
       Swal.fire({
         icon: 'success',
         title: 'Success!',
-        timer: 4000, // Timer in milliseconds
+        timer: 4000,
         text: 'Your application has been successfully submitted.',
       });
 
-      // Set submission status to true
-      setIsSubmitted(true);
     } catch (err) {
       console.error(err);
     }
   };
-      // Set submission status to true
-  
 
   return (
     <div>
       <Header />
       <div className="alo-background-container">
-        {/*<img src="/images/pt.jpg" alt="Pet Training Header Image" className="img-fluid mb-4" />*/}
         <div className="alo-container">
           <div className="alo-right-side">
             <div className="alo-info-container">
@@ -127,12 +132,12 @@ const PrivateTraining = () => {
               <p>Training Program information...</p>
               <p1>Here are the instructions:</p1>
               <ul className="suba18-instructions">
-                  <li>Apply for dog training through our website by filling out the form on the left.</li>
-                  <li>You need to upload a health checkup report of your dog taken within the last 2 months to ensure the health and safety of other dogs and our trainers. If the health checkup report is invalid, your application may be rejected, and you will be informed via email.</li>
-                  <li>We aim to inform you about the approval or rejection of your application as soon as possible via email. You can also check the status on our website.</li>
-                  <li>Once approved, you must bring your dog to our training center. We will inform you of the starting date and other details via email.</li>
-                  <li>No advanced payment is required for registration after approval.</li>
-                  <li>If you have any further inquiries, please contact our customer care or provide feedback through our website.</li>
+                <li>Apply for dog training through our website by filling out the form on the left.</li>
+                <li>You need to upload a health checkup report of your dog taken within the last 2 months to ensure the health and safety of other dogs and our trainers. If the health checkup report is invalid, your application may be rejected, and you will be informed via email.</li>
+                <li>We aim to inform you about the approval or rejection of your application as soon as possible via email. You can also check the status on our website.</li>
+                <li>Once approved, you must bring your dog to our training center. We will inform you of the starting date and other details via email.</li>
+                <li>No advanced payment is required for registration after approval.</li>
+                <li>If you have any further inquiries, please contact our customer care or provide feedback through our website.</li>
               </ul>
             </div>
           </div>
@@ -145,7 +150,7 @@ const PrivateTraining = () => {
                   <input type="text" id="ownerName" name="ownerName" value={ownerName} onChange={onChange} />
                 </div>
                 <div className="alo-form-group">
-                <label className="private" htmlFor="email">Email:</label>
+                  <label className="private" htmlFor="email">Email:</label>
                   <input type="email" id="email" name="email" value={email} onChange={onChange} />
                 </div>
                 <div className="alo-form-group">
@@ -175,17 +180,15 @@ const PrivateTraining = () => {
                 </div>
                 <div className="alo-form-group">
                   <div className='alooo-box'>
-                You need to upload a health checkup report of your dog that has been taken within the last 3 months. If you don't have one, schedule an appointment through our website. Click here to make an appointment.
-                
-                  <Link to="/Makeappointment">Schedule Appointment</Link>
-                </div>
+                    You need to upload a health checkup report of your dog that has been taken within the last 3 months. If you don't have one, schedule an appointment through our website. Click here to make an appointment.
+
+                    <Link to="/Makeappointment">Schedule Appointment</Link>
+                  </div>
                 </div>
                 <button className='alo-button' type="submit">Submit</button>
-                {/* Display success message if submission is successful */}
                 {isSubmitted && (
                   <div>
                     <p>Your application has been successfully submitted.</p>
-
                   </div>
                 )}
               </form>

@@ -23,7 +23,7 @@ const addTrainingprogram = async (req, res) => {
     try {
         const { ownerName, email,  address, contact, dogName, breed, age } = req.body;
 
-        // Capture current date and time
+        // submitted date and time
         const submissionDateTime = new Date();
 
         const trainingData = {
@@ -34,13 +34,13 @@ const addTrainingprogram = async (req, res) => {
             dogName: dogName,
             breed: breed,
             age: age,
-            submissionDateTime: submissionDateTime // Include submission date and time
+            submissionDateTime: submissionDateTime 
         };
 
         const newTrainingObj = new trainingModel(trainingData);
 
         if (req.file) {
-            newTrainingObj.filePath = path.basename(req.file.path); // Add file path to training object
+            newTrainingObj.filePath = path.basename(req.file.path); //changing file path to upload
             
         }
 
@@ -213,27 +213,38 @@ const sendEmail = async (recipientEmail, subject, message) => {
   const approveTraining = async (req, res) => {
     const { id } = req.params;
     try {
-      const training = await trainingModel.findByIdAndUpdate(id, { status: 'approved' }, { new: true });
-      if (!training) {
-        return res.status(404).json({ message: 'Training not found' });
-      }
-  
-      // Send email to customer
-      const recipientEmail = training.email; // Assuming email is stored in the training object
-      const subject = 'Training Approved';
-      const message = `
-        <h1>Your training is approved successfully!</h1>
-        <p>Thank you for choosing PetZone Animal Hospital.</p>
-        <!-- Add any additional information you want to include in the email -->
-      `;
-      await sendEmail(recipientEmail, subject, message);
-  
-      res.json({ message: 'Training approved successfully' });
+        const training = await trainingModel.findByIdAndUpdate(id, { status: 'approved' }, { new: true });
+        if (!training) {
+            return res.status(404).json({ message: 'Training not found' });
+        }
+
+        // Send email to customer
+        const recipientEmail = training.email;
+        const subject = 'Your Dog Training Application Has Been Approved!';
+        const message = `
+            <p>Dear ${training.ownerName},</p>
+            <p>We are pleased to inform you that your application for dog training at Pet Zone Hospital has been approved!</p>
+            <p>We would like to invite you to come to Pet Zone Hospital to meet with our training administration. This meeting will provide you with the opportunity to discuss any specific requirements or concerns you may have regarding your dog's training.</p>
+            <p>Our training administration will be available to assist you in selecting the most suitable instructor for your dog. If, after meeting with the instructor, you feel the need to change instructors, please inform us, and we will make the necessary arrangements.</p>
+            <p>During this meeting, our training administration will provide you with an easy-to-follow schedule and confirm the starting date for your dog's training sessions.</p>
+            <p>We kindly request your presence at Pet Zone Hospital within the next two weeks for this meeting.</p>
+            <p>If you have any questions or need further assistance, please do not hesitate to contact us.</p>
+            <p>We look forward to seeing you and your dog at Pet Zone Hospital soon!</p>
+            <p>Best regards,</p>
+            <p>Aswini Ranaviraja</p>
+            <p>Training Manager</p>
+            <p>Pet Zone Hospital</p>
+        `;
+
+        await sendEmail(recipientEmail, subject, message);
+
+        res.json({ message: 'Training approved successfully' });
     } catch (error) {
-      console.error('Error approving training:', error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error('Error approving training:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  };
+};
+
 
 const rejectTraining = async (req, res) => {
     const { id } = req.params;
@@ -243,12 +254,13 @@ const rejectTraining = async (req, res) => {
             return res.status(404).json({ message: 'Training not found' });
         }
             // Send email to customer
-      const recipientEmail = training.email; // Assuming email is stored in the training object
+      const recipientEmail = training.email; 
       const subject = 'Training Rejected';
       const message = `
-        <h1>Your training is approved successfully!</h1>
+        <h1>Your training is Rejected</h1>
         <p>Thank you for choosing PetZone Animal Hospital.</p>
-        <!-- Add any additional information you want to include in the email -->
+        <p>Soory to say that your Application is rejected</p>
+        <p>Schedule an appointment for health checkup </p>
       `;
       await sendEmail(recipientEmail, subject, message);
   
